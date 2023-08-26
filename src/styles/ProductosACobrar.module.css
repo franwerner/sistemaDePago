@@ -24,16 +24,18 @@
 .infoDelProducto {
     margin-top: -15px;
     margin-bottom: -10px;
-    overflow-x: overlay;
+    overflow-x: scroll;
     color: #888;
 }
 
-.infoDelProducto::-webkit-scrollbar {
+
+
+/* .infoDelProducto div::-webkit-scrollbar {
     width: 0px;
     height: 15px;
-    background-color: rgba(56, 55, 55, 0);
+    background-color: rgba(179, 20, 20, 0.979);
 
-}
+} */
 
 
 
@@ -44,7 +46,7 @@
 
 
 
-.precioPorMetodo,
+
 .precioTotalDelProducto {
     overflow: hidden;
     text-overflow: ellipsis;

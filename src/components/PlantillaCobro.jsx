@@ -146,17 +146,25 @@ const ContenedorCobro = ({ children }) => {
             <Col md={5} lg={columna}
 
                 style={{ width: widthPixeles, }}
-                className={`p-0   ${styles.contenedorCobroPrincipal}`}>
+                className={`p-0 d-flex  ${styles.contenedorCobroPrincipal}`}>
 
-                <span onMouseDown={onClickMove}
+
+                <div className="overflow-hidden w-100">
+                    {children}
+                </div>
+
+                <div onMouseDown={onClickMove}
                     style={{
-                        left: widthPixeles,
+                 
                     }}
 
                     className={`d-none d-md-block  ${styles.linea}`}>
-                </span>
+                </div>
 
-                {children}
+
+
+
+
 
             </Col>
 

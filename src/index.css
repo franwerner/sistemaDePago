@@ -1,7 +1,7 @@
 .interface-sistema {
     height: 100vh;
-    max-height: 100vh;
-   overflow: hidden;
+    /* max-height: 100vh; */
+   /* overflow: hidden; */
 }
 
 
@@ -19,7 +19,7 @@ body::-webkit-scrollbar{
 
 *{
     font-family: "Montserrat";
-    letter-spacing: 0.3px;
+
     user-select: none;
 }
 

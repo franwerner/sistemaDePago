@@ -1,6 +1,8 @@
 
 .contenedorCobroPrincipal {
     position: relative;
+    height: 100vh;
+
 
 }
 
@@ -9,6 +11,7 @@
     max-height: 45vh;
     height: 45vh;
     border-bottom: 4px solid rgb(110, 200, 155);
+
 }
 .contenedorSinProductos{
  overflow-y: none;
@@ -62,12 +65,11 @@
 
  .linea {
     width: 5px;
-    background-color: rgb(94, 95, 93);
-    ;
-    height: 100%;
-    right: 0%;
-    position: absolute;
+    min-height: 5px;
+    background-color: rgb(94, 95, 93);;
+    height: 100vh;
     z-index: 2;
+
     cursor: w-resize;
 
 }

@@ -30,13 +30,13 @@ const ContendioDelProducto = React.memo(({ producto }) => {
 
                 <Row className={`flex-nowrap ${styles.infoDelProducto}`}>
 
-                    <Col className={`mx-1 d-flex justify-content-between  `}>
+                    <Col className={`mx-1 d-flex justify-content-between  ${styles.test} `}>
 
                         <p className="fw-bolder text-secondary  me-3">
                             {comprobarMetodo}
                         </p>
 
-                        <div className={`d-flex ${styles.precioPorMetodo}`}>
+                        <div className="d-flex">
                             <p   >{metodo} en </p>
                             <div className=" d-flex  mx-1 ">
                                 <p> {`$ ${separarNumerosConDecimales(precioModificado)}`}</p>

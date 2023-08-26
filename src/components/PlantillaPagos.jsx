@@ -8,14 +8,14 @@ export const PlantillaPagos = () => {
 
     return (
         <>
-            <Container fluid className={` h-100 ${styles.contenedorPlantillaPagos}`}>
+            <Container  fluid className={`${styles.contenedorPlantillaPagos}`}>
                 <Row>
-                    <Col>
+                    <Col className="px-3">
                         <ListaDeTarifas></ListaDeTarifas>
                     </Col>
                 </Row>
 
-                <Row style={{height : "30%"}} className=" mt-3 border-danger">
+                <Row style={{height : "300px"}} className="p-3  border-danger">
                     <Col className={`text-center border align-items-center justify-content-center d-flex border-secondary border-2 ${styles.botonPagos}`}>
                         <div className={styles.test}>
                             <i className="fa-solid  fa-circle-arrow-right "></i>
