@@ -1,0 +1,112 @@
+
+.contenedorCobroPrincipal {
+    position: relative;
+
+}
+
+.contenedorCobroBody{
+    overflow-x: overlay;
+    max-height: 45vh;
+    height: 45vh;
+    border-bottom: 4px solid rgb(110, 200, 155);
+}
+.contenedorSinProductos{
+ overflow-y: none;
+ height: 100%;
+}
+
+
+.contenedorCobroBody::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.contenedorCobroBody::-webkit-scrollbar:vertical {
+    width:12px;
+}
+
+.contenedorCobroBody::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.contenedorCobroBody::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.contenedorCobroBody::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.contenedorCobroBody::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+
+
+
+.carrito {
+    font-size: 170px;
+    color: #DDD;
+    opacity: 40%;
+}
+
+.textoCarrito {
+    color: #bdbcbc;
+    z-index: 1;
+    position: absolute;
+    top: 25%;
+
+}
+
+
+
+ .linea {
+    width: 5px;
+    background-color: rgb(94, 95, 93);
+    ;
+    height: 100%;
+    right: 0%;
+    position: absolute;
+    z-index: 2;
+    cursor: w-resize;
+
+}
+
+.linea:hover,
+.linea:active {
+    background-color: rgb(110, 200, 155);
+    filter: brightness(110%);
+    transform: scale(1.2);
+    transition: 0.1 all;
+}
+
+
+.botonesCrud div{
+    display: flex;
+    justify-content: center;
+}
+
+.botonesCrud span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #7D80AB;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    font-size: 20px;
+}
+
+
+.botonesCrud span:hover {
+    background-color: white;
+    color: #7D80AB;
+    cursor: pointer;
+}
+
+.seleccionNombre {
+    min-width: 100px;
+}
+

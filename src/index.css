@@ -1,0 +1,25 @@
+.interface-sistema {
+    height: 100vh;
+    max-height: 100vh;
+   overflow: hidden;
+}
+
+
+
+body::-webkit-scrollbar{
+    width: 0px;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+
+
+*{
+    font-family: "Montserrat";
+    letter-spacing: 0.3px;
+    user-select: none;
+}
+

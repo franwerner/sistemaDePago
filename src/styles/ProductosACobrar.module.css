@@ -1,0 +1,63 @@
+.productosACobrar {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-y: none;
+}
+
+.contenedorDelProducto {
+    margin-top: 2px;
+}
+
+.productosACobrar:focus   {
+    outline: 2px solid rgba(65, 64, 64, 0.377);
+    border-radius: 2px;
+}
+
+.nombreDelProducto{
+    color: #555555;
+    font-weight: 600px;
+}
+
+
+
+.infoDelProducto {
+    margin-top: -15px;
+    margin-bottom: -10px;
+    overflow-x: overlay;
+    color: #888;
+}
+
+.infoDelProducto::-webkit-scrollbar {
+    width: 0px;
+    height: 15px;
+    background-color: rgba(56, 55, 55, 0);
+
+}
+
+
+
+.precioTotalDelProducto {
+    color: #555555;
+}
+
+
+
+
+.precioPorMetodo,
+.precioTotalDelProducto {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.contenedorCobroProductos:hover {
+    background-color: rgba(140, 143, 183, 0.078);
+    transition: 0.2s all;
+}
+
+.contendorCobroProductoSeleccionado {
+    transition: 0.2s all;
+    background-color: rgba(140, 143, 183, 0.2);
+}

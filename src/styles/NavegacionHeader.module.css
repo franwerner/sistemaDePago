@@ -1,0 +1,16 @@
+.navegacionHeader {
+    background-color: #875A7B;
+    z-index: 3;
+    max-height: 55px;
+    overflow: hidden;
+}
+
+.contenedorFormSearch {
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    .navegacionHeader {
+        max-height: 100%;
+  }
+}
