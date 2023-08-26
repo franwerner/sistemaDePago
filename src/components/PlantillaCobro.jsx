@@ -104,16 +104,6 @@ const PlantillaCobroHeader = React.memo(() => {
 })
 
 
-const comprobarClientX = (clientX) => {
-    if (!clientX) {
-        return {}
-    } else {
-        return {
-
-            widthPixeles: `${clientX}px`
-        }
-    }
-}
 
 const ContenedorCobro = ({ children }) => {
 
@@ -138,14 +128,13 @@ const ContenedorCobro = ({ children }) => {
     }, [clientX, ejeLimitacion])
 
 
-    const { widthPixeles } = comprobarClientX(clientX)
 
     return (
         <>
 
             <Col md={5} lg={columna}
 
-                style={{ width: widthPixeles, }}
+                style={{ width: clientX, }}
                 className={`p-0 d-flex  ${styles.contenedorCobroPrincipal}`}>
 
 
@@ -154,10 +143,6 @@ const ContenedorCobro = ({ children }) => {
                 </div>
 
                 <div onMouseDown={onClickMove}
-                    style={{
-                 
-                    }}
-
                     className={`d-none d-md-block  ${styles.linea}`}>
                 </div>
 

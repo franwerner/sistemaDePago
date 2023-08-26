@@ -16,11 +16,11 @@ export const InterfaceSistema = () => {
     return (
         <>
             <BuscadorPorductosProvider>
-                <Container className='  interface-sistema ' fluid>
+                <Container className='  m-0 interface-sistema ' fluid>
                     <Row>
                         <NavegacionHeader></NavegacionHeader>
                     </Row>
-                    <Row className=' p-0 d-md-flex'>
+                    <Row className=' p-0 d-md-flex '>
                         <ProductoReducerProvider>
                             <PlantillaCobro></PlantillaCobro>
                             <SeccionesProductos></SeccionesProductos>
