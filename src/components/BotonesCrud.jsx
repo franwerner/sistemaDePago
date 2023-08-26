@@ -9,8 +9,6 @@ export const BotonEditarProducto = React.memo(({ alternarMostrar }) => {
 
     }
 
-    console.log("pene")
-
     return (
         <>
 
