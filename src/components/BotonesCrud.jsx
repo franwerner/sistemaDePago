@@ -22,7 +22,9 @@ export const BotonEditarProducto = React.memo(({ alternarMostrar }) => {
 })
 
 export const BotonEliminarProducto = React.memo(() => {
+
     const { eliminarProducto } = useContext(productoReducerContext)
+    
     const { seleccion } = useContext(productoSeleccionadoContext)
 
     const onClick = (e) => {

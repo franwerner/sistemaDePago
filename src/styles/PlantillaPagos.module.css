@@ -1,5 +1,22 @@
 .contenedorPlantillaPagos {
-
     background-color: #f8f6f6;
-   height: 100%;
 }
+
+.botonPagos i {
+    font-size: 70px;
+    cursor: pointer;
+}
+
+.botonPagos p {
+    color: #555;
+}
+
+
+.botonPagos:hover i {
+
+    color: rgb(136, 220, 101);
+    border-radius: 50%;
+
+}
+
+

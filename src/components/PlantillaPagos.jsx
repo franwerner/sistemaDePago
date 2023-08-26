@@ -8,45 +8,28 @@ export const PlantillaPagos = () => {
 
     return (
         <>
-            <Container fluid className={` ${styles.contenedorPlantillaPagos}`}>
+            <Container fluid className={` h-100 ${styles.contenedorPlantillaPagos}`}>
                 <Row>
                     <Col>
-                    <ListaDeTarifas></ListaDeTarifas>
+                        <ListaDeTarifas></ListaDeTarifas>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                    <ListaDeTarifas></ListaDeTarifas>
+
+                <Row style={{height : "30%"}} className=" mt-3 border-danger">
+                    <Col className={`text-center border align-items-center justify-content-center d-flex border-secondary border-2 ${styles.botonPagos}`}>
+                        <div className={styles.test}>
+                            <i className="fa-solid  fa-circle-arrow-right "></i>
+                            <p className="fw-bolder ">Pagos</p>
+                        </div>
+                    </Col>
+                    <Col className="border border-primary">
+
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                    <ListaDeTarifas></ListaDeTarifas>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                    <ListaDeTarifas></ListaDeTarifas>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                    <ListaDeTarifas></ListaDeTarifas>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                    <ListaDeTarifas></ListaDeTarifas>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                    <ListaDeTarifas></ListaDeTarifas>
-                    </Col>
-                </Row>
-    
-        
-        
+
+
+
+
             </Container>
         </>
     )
