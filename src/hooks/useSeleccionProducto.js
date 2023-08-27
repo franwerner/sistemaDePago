@@ -12,13 +12,13 @@ export const useSeleccionProducto = (listaProducto = []) => {
 
         setSeleccion(producto)
 
-    })
+    },[])
 
     const borrarSeleccion = useCallback(() => {
 
         setSeleccion({})
 
-    })
+    },[])
 
     useEffect(() => {
 

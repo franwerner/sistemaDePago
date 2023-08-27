@@ -13,6 +13,7 @@ import { ProductoSeleccionadoProvider } from "../context/provider/ProductoSelecc
 import { useEstablecerLimitesEjes } from "../hooks/useEstablecerLimitesEjes"
 import { useEjesFinales } from "../hooks/useEjesFinales"
 import { useColumna } from "../hooks/useColumna"
+import { useCapturarPulsacionesDelTecladoGlobal } from "../hooks/useCapturarPulsacionesDelTecladoGlobal"
 
 const SinProductos = () => {
 
@@ -159,6 +160,8 @@ const ContenedorCobro = ({ children }) => {
 }
 
 export const PlantillaCobro = () => {
+
+    
 
     return (
         <>
