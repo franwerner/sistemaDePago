@@ -1,0 +1,143 @@
+¿Que es git?
+Es una herramienta para tener un historial completo del codigo que desarrollamos
+
+1.historial
+
+2.Almacenar codigo
+
+3.Trabajar en equipo
+
+4.Saber cuando se intrudujo un error en la aplicacion, es decir al tener el control de versiones y saber desde cual se produjo
+el error, reducimos el tiempo de lectura del codigo y es mas facil encontrar errores
+
+
+*Importante*
+La mayoria de los desarrolares con los que compartamos codigo van a utilizar la terminal. hay otras aplicacion de git, pero la mas usada es la terminal.
+
+Tampoco no utilizar la terminal de windows, es mejor utilizar git bash
+
+*COMANDOS GLOBALES*
+
+git config --global : sirve para que todas las configuraciones sean a nivel global y no de proyecto
+
+git config --global user.name "Franco Werner" : Configuramos el nombre
+
+git config --global user.email "ifrank4444@gmail.com" : Configuramos el email
+
+git config --global core.editor "code --wait" : la opcion de --wait sirve para que la que nuestra terminal de git se quede esperando hasta que cerremos el editor de codigo
+
+git config --global -e = sirve para ver las configuraciones aplicadas(se abre el editor con gitConfig)
+
+git config --global core.autocrlf true (si sos de windows) :  se utiliza para configurar cómo Git maneja los caracteres de retorno de carro y de salto de línea
+
+git config -h : entrega un listado de todas las configuraciones de comandos
+
+*COMANDOS*
+
+LS : es un comando que nos permite listar todos los archivos y carpetas de un determinado directorio
+PWD : nos indica en el directorio que estamos actualmente
+CD: accedes a un directorio
+CD .. : Me vuelve al directorio anterior(Con un espacio entre los puntos)
+mkdir : sirve para crear un archivo dentro de un directorio
+ls  -a : podremos ejecutar la carpeta para ver las de la carpeta git, y luego entrar a .git y ejecutar de nuevo ls -a para ver los archivos para gestionar nuestros proyectos
+tambien es donde se almacena todos lo relacionado con el comit,ramas etc (detalle de implementacion)
+code . : abre la carpeta que seleccionamos en un vs code
+
+/*ETAPA DE GUARDADO*/
+PC : Aca podemos empezar agregar y modificar los archivos que nosotros querramos(No se sube inmediatamente), los los añadirmos con "git add"
+
+STAGE : Esta es una etapa intermedia para que nosotros podamos indicar cuales son los cambiamos que efectuamos para que se pasen al repositorio.
+Luego ejecutamos el comando git commit y se pasan para los archivos commit
+
+COMMIT : Luego aca podemos pasar los archivos con cambios a un servidor
+
+SERVER : 
+
+
+//En caso si ya agregamos al stage pero modificamos el archivo, tenemos que volver a usar git add y se reemplaza
+
+/*Comando de repositorio*/
+git status : nos muestra el estado actual de nuestro repositorio
+git add = {
+    *.txt : agrega todo los archivos con extensiones mencionada,
+    git.txt : agrega el archivo mencionado,
+    . : agrega todos los archivos(Esto es mala practica, ya que podrian guardarse archivos no deseados)
+}
+
+git diff :  es un comando en Git que se utiliza para mostrar las diferencias entre los cambios 
+realizados en los archivos en tu directorio de trabajo y los commits existentes en el repositorio.
+Te permite ver de manera detallada cómo han cambiado los contenidos de los archivos desde el último 
+commit o entre dos commits específicos.
+
+git diff --staged : muestra los cambios realizados en la etapa de stage
+
+git commit -m "{mesaje}" : sirve para comprometer los cambios realizados, y los saca de la estapa de stage
+
+git commit : sirve para dar un mensaje mas detallado del commit dentro de un editor de texto
+
+git commit -a : saltea la parte del  git add y abre vscode con todos los archivos en en stage para un mensaje, es recomendable usar para commitear rapido pero no de forma detallada, usar con preocaucion
+
+git commit --amend: Se utiliza para realizar modificaciones en el commit más reciente. 
+
+git status -s : se utiliza para obtenr un resumen mas chico de la lista de (
+    M : Modificacion,
+    ?? : archivo no agregadom
+    A : agregando archivo 
+)
+
+
+
+git log : obtengo el historial de commits
+
+git log --oneline : otra forma de ver el log
+
+rm "{nombre del archivo}" : sirve para eliminar archivos
+
+git rm "{nombre del archivo}" : saltea el paso del git add
+
+git restore {nombre del archivo} : sirve para restaurar un archivo ya sea eliminado o modificado
+
+git restore --stage : sirve para los archivos de la estapa de stage
+
+mv {nombre del archivo} {nuevo nombre de archivo} : sirve para cambiar el nombre del archivo
+luego usamos git add {nombre nuevo} {nombre viejo} y se reemplazan los nombre 
+
+git mv : sirve para hacerlo salteando el paso de git add
+
+cat {nombre del archivo} : nos muestra el contenido del archivo
+
+/*ARCHIVOS .ENV*/
+
+se utiliza para definir variables de entorno que son específicas de tu entorno local de desarrollo.
+Estas variables pueden contener información sensible o configuraciones personalizadas que se utilizan en tu aplicación, pero que no deben ser compartidas públicamente en el repositorio, 
+ya que podrían contener información confidencial como claves de API, contraseñas u otros detalles sensibles.
+
+/*ARCHIVOS .gitignore*/
+Aca se especifica cuales son los archivos o rutas que quiero ignorar y que no vayan a mi repositorio
+
+/*Ramas o branches*/
+
+¿Que pasaria si otro desarrolador esta editando el mismo archivo?
+Cuando se edita un archivo se crea una rama del arbol principal, lo que genera un secuencia de commit propios que no interfieren con el archivo principal
+Una vez terminemos de commitear, podemos solicitar un merge(Que es hacer una solicitud al equipo de trabajo para una revisio y posterior integracion del nuevo codigo)
+
+git branch : sirve para que podamos ver la rama en la que estamos trabajando
+
+git checkout {nombre de la rama/main} : sirve para cambiar las ramas
+
+git checkout -b {nombre de la rama} : sirve para crear una nueva rama 
+
+git merge {nombre de la rama} : insertamos los cambios en la rama principal
+ 
+/NOTA : La rama main = master, por cuestiones de terminologias que llama main/
+
+/*CONEXION Y SERVIDOR*/
+
+git remote add origin https://github.com/harkleywerner/testeo.git
+
+git push -u origin {nombre de la rama} : Sirve para indicar crear en github la rama nueva
+
+git remote : nos sirve para indiciar si es que vamos a tener un servidor remoto para subir nuestros cambios
+
+git add origin : aca indiciamos de donde nosotros obtenemos y mandamos nuestro codigo
+
