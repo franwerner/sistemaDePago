@@ -3,6 +3,7 @@
     white-space: nowrap;
     overflow: hidden;
     overflow-y: none;
+    cursor: pointer;
 }
 
 .contenedorDelProducto {
@@ -24,18 +25,19 @@
 .infoDelProducto {
     margin-top: -15px;
     margin-bottom: -10px;
-    overflow-x: scroll;
     color: #888;
+  
 }
 
+.contendorCobroProductoSeleccionado {
+    transition: 0.2s all;
+    background-color: rgba(140, 143, 183, 0.2);
 
+}
 
-/* .infoDelProducto div::-webkit-scrollbar {
-    width: 0px;
-    height: 15px;
-    background-color: rgba(179, 20, 20, 0.979);
-
-} */
+.contendorCobroProductoSeleccionado .infoDelProducto {
+    overflow-x: overlay;
+}
 
 
 
@@ -59,7 +61,3 @@
     transition: 0.2s all;
 }
 
-.contendorCobroProductoSeleccionado {
-    transition: 0.2s all;
-    background-color: rgba(140, 143, 183, 0.2);
-}

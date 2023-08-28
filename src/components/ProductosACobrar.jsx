@@ -20,15 +20,15 @@ const ContenidoDelProductoArriba = React.memo(({ producto }) => {
 
     const porcentaje = calculadoraPorcentaje(nuevoPrecio, tarifa.tarifa)
 
+
+
     return (
         <>
-            <Container fluid className="p-0">
-                <Row >
-                    <Col className={` me-1 fw-bolder ${styles.nombreDelProducto}`}>{nombre}</Col>
-                    <Col className={`fw-bolder text-end ${styles.precioTotalDelProducto}`}>{`$ ${separarNumerosConDecimales(porcentaje + nuevoPrecio)}`}</Col>
-                </Row>
 
-            </Container>
+            <Row className="" >
+                <Col className={`me-1 fw-bolder ${styles.nombreDelProducto}`}>{nombre}</Col>
+                <Col className={`fw-bolder text-end  ${styles.precioTotalDelProducto}`}>{`$ ${separarNumerosConDecimales(porcentaje + nuevoPrecio)}`}</Col>
+            </Row>
         </>
     )
 
@@ -44,9 +44,9 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
         <>
             <Row className={`flex-nowrap ${styles.infoDelProducto}`}>
 
-                <Col className={`mx-1 d-flex justify-content-between  ${styles.test} `}>
+                <Col className={`mx-1 d-flex justify-content-between `}>
 
-                    <p className="fw-bolder text-secondary  me-3">
+                    <p className="fw-bolder text-secondary me-3">
                         {comprobarMetodo}
                     </p>
 
@@ -72,6 +72,13 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
         seleccionarProducto(producto)
     }
 
+
+    useEffect(() => {
+        seleccionarProducto(producto)
+    }, [producto])
+
+
+
     return (
         <>
             <Row
@@ -79,10 +86,11 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
                 className={`${styles.contenedorDelProducto}`}
             >
                 <Col
-                    className={`${background} mt-1 ${styles.productosACobrar} `}>
-                    <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
-                    <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
-
+                    className={`${background} p-1 mt-1 ${styles.productosACobrar} `}>
+                    <Container fluid className="p-0">
+                        <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
+                        <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
+                    </Container>
                 </Col>
             </Row>
         </>
@@ -95,7 +103,6 @@ export const ProductosACobrar = ({ listaProducto }) => {
     const { seleccion, seleccionarProducto } = useContext(productoSeleccionadoContext)
 
     useCapturarPulsacionesDelTecladoGlobal(seleccion)
-
 
     return (
         <>
