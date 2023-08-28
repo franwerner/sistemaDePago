@@ -1,6 +1,6 @@
 .navegacionHeader {
     background-color: #875A7B;
-    z-index: 3;
+    z-index: 2;
     max-height: 55px;
     overflow: hidden;
 }

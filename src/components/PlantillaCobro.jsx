@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useRef } from "react"
 import { ProductosACobrar } from "./ProductosACobrar"
 import { productoReducerContext } from "../context/Contextos"
@@ -13,7 +12,6 @@ import { ProductoSeleccionadoProvider } from "../context/provider/ProductoSelecc
 import { useEstablecerLimitesEjes } from "../hooks/useEstablecerLimitesEjes"
 import { useEjesFinales } from "../hooks/useEjesFinales"
 import { useColumna } from "../hooks/useColumna"
-import { useCapturarPulsacionesDelTecladoGlobal } from "../hooks/useCapturarPulsacionesDelTecladoGlobal"
 
 const SinProductos = () => {
 
@@ -138,19 +136,13 @@ const ContenedorCobro = ({ children }) => {
                 style={{ width: clientX, }}
                 className={`p-0 d-flex  ${styles.contenedorCobroPrincipal}`}>
 
-
                 <div className="overflow-hidden w-100">
                     {children}
                 </div>
 
-                <div onMouseDown={onClickMove}
+                <span onMouseDown={onClickMove}
                     className={`d-none d-md-block  ${styles.linea}`}>
-                </div>
-
-
-
-
-
+                </span>
 
             </Col>
 

@@ -1,26 +1,23 @@
 
 import { useMemo } from "react"
 import { useContext } from "react"
-import { TarifaContex } from "../context/Contextos"
-import { calculadoraPorcentaje } from "../helper/calcularPorcentaje"
+import { TarifaContex, productoReducerContext } from "../context/Contextos"
 
-export const useListadoFinalProducto = (listadoProductos) => {
+export const useListadoFinalProducto = () => {
 
-
+   const { listaProducto } = useContext(productoReducerContext)
 
    const { tarifa } = useContext(TarifaContex)
 
 
    const listadoFinal = useMemo(() => {
 
-      const calculo = listadoProductos.reduce((acc, { precioModificado, cantidadSeleccionada }) =>
+      const calculo = listaProducto.reduce((acc, { precioModificado, cantidadSeleccionada }) =>
          acc + precioModificado * cantidadSeleccionada, 0)
 
-      const porcentaje = calculadoraPorcentaje(calculo, tarifa.tarifa) + calculo
+         return (tarifa.tarifa / 100) * calculo + calculo
 
-      return porcentaje
-
-   }, [listadoProductos, tarifa.tarifa])
+   }, [listaProducto, tarifa.tarifa])
 
 
    return {

@@ -71,19 +71,16 @@ const secciones = {
 
 
 import React, { useContext } from "react"
-import { TarifaContex, buscadorProductosContext, productoReducerContext } from "../context/Contextos"
+import {buscadorProductosContext, productoReducerContext } from "../context/Contextos"
 import styles from "../styles/PlantillaProductos.module.css"
 import { OverlayDefault } from "./OverlayDefault";
 import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
-import { calculadoraPorcentaje } from "../helper/calcularPorcentaje";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col  } from "react-bootstrap";
+import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje";
 
 const Precio = React.memo(({ precio }) => {
 
-
-  const { tarifa } = useContext(TarifaContex)
-
-  const porcentaje = calculadoraPorcentaje(precio, tarifa.tarifa)
+  const porcentaje = useCalculadoraPorcenje(precio)
 
   const resultado = porcentaje + precio
 
@@ -145,8 +142,6 @@ const Producto = ({ lista }) => {
 
 
 export const PlantillaProductos = ({ seccion }) => {
-
-
 
   const { productoARenderizar } = useContext(buscadorProductosContext)
 

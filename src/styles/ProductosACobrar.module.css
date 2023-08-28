@@ -26,12 +26,12 @@
     margin-top: -15px;
     margin-bottom: -10px;
     color: #888;
-  
 }
 
 .contendorCobroProductoSeleccionado {
     transition: 0.2s all;
     background-color: rgba(140, 143, 183, 0.2);
+
 
 }
 
@@ -39,7 +39,18 @@
     overflow-x: overlay;
 }
 
+.contendorCobroProductoSeleccionado .infoDelProducto::-webkit-scrollbar {
+    height: 12px;
+  }
 
+.contendorCobroProductoSeleccionado .infoDelProducto::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+  }
+  
+.contendorCobroProductoSeleccionado .infoDelProducto::-webkit-scrollbar-thumb {
+    background-color: #555555;
+    border-radius: 10px;
+  }
 
 .precioTotalDelProducto {
     color: #555555;

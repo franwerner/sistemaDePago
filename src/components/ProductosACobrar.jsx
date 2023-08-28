@@ -1,26 +1,23 @@
 
 import React, { useContext, useEffect, useRef } from "react"
-import { TarifaContex, productoSeleccionadoContext, } from "../context/Contextos"
+import { productoSeleccionadoContext, } from "../context/Contextos"
 import styles from "../styles/ProductosACobrar.module.css"
 import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
-import { calculadoraPorcentaje } from "../helper/calcularPorcentaje"
 import { Col, Container, Row } from "react-bootstrap"
 import { useCapturarPulsacionesDelTecladoGlobal } from "../hooks/useCapturarPulsacionesDelTecladoGlobal"
+import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje"
 
 
 
 
 const ContenidoDelProductoArriba = React.memo(({ producto }) => {
 
-    const { tarifa } = useContext(TarifaContex)
 
     const { nombre, cantidadSeleccionada, precioModificado } = producto
 
     const nuevoPrecio = precioModificado * cantidadSeleccionada
 
-    const porcentaje = calculadoraPorcentaje(nuevoPrecio, tarifa.tarifa)
-
-
+    const porcentaje = useCalculadoraPorcenje(nuevoPrecio)
 
     return (
         <>
@@ -40,9 +37,13 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
 
     const comprobarMetodo = metodo == "Unidades" ? separarNumerosConDecimales(cantidadSeleccionada) : cantidadSeleccionada.toFixed(3)
 
+    const containerRef = useRef(null)
+
+
+
     return (
         <>
-            <Row className={`flex-nowrap ${styles.infoDelProducto}`}>
+            <Row ref = {containerRef} className={`flex-nowrap ${styles.infoDelProducto}`}>
 
                 <Col className={`mx-1 d-flex justify-content-between `}>
 
@@ -77,7 +78,7 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
         seleccionarProducto(producto)
     }, [producto])
 
-
+  
 
     return (
         <>
@@ -85,13 +86,10 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
                 onClick={onClick}
                 className={`${styles.contenedorDelProducto}`}
             >
-                <Col
-                    className={`${background} p-1 mt-1 ${styles.productosACobrar} `}>
-                    <Container fluid className="p-0">
+                    <Container fluid className={`${background} p-1 mt-1 ${styles.productosACobrar} `}>
                         <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
                         <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
                     </Container>
-                </Col>
             </Row>
         </>
     )

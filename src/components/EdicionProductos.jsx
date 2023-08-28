@@ -3,20 +3,16 @@ import { useForm } from "../hooks/useForm"
 import { useComprobarNumeros } from "../hooks/useComprobarNumeros.js"
 import { Modal, Button, Form, FloatingLabel } from "react-bootstrap"
 import React, { useContext } from "react"
-import { TarifaContex, productoReducerContext, productoSeleccionadoContext } from "../context/Contextos"
+import { productoReducerContext, productoSeleccionadoContext } from "../context/Contextos"
 import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
-import { calculadoraPorcentaje } from "../helper/calcularPorcentaje"
+import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje"
 
 
 export const EdicionProductos = React.memo(({alternarMostrar }) => {
 
-
-    
     const { seleccion } = useContext(productoSeleccionadoContext)
 
     const { editarProducto } = useContext(productoReducerContext)
-
-    const { tarifa } = useContext(TarifaContex)
 
     const { precioModificado, cantidadSeleccionada } = seleccion
 
@@ -36,7 +32,7 @@ export const EdicionProductos = React.memo(({alternarMostrar }) => {
         "cantidadSeleccionada": parseFloat(cantidadForm)
     }
 
-    const porcentaje = calculadoraPorcentaje(cantidadForm, tarifa.tarifa)
+    const porcentaje = useCalculadoraPorcenje(cantidadForm)
 
     const total = porcentaje + (precioForm * cantidadForm)
 

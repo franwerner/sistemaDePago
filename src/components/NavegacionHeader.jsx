@@ -4,6 +4,7 @@ import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import { OverlayDefault } from "./OverlayDefault"
 import { ListaUsuarios } from "./ListaUsuarios"
 import { BuscadorInput } from "./BuscadorInput"
+import React from "react"
 
 const OverylayNavLock = () => {
 
@@ -66,8 +67,8 @@ const OverlayNavUsuarios = () => {
                     <i onClick={alternarMostrar} className={`fa-regular fa-address-card text-white fs-4 }`}></i>
                 </Nav.Link>
             </OverlayDefault>
-            
-                        {mostrar &&
+
+            {mostrar &&
                 <ListaUsuarios mostrar={mostrar} alternarMostrar={alternarMostrar}></ListaUsuarios>
             }
         </>
@@ -76,7 +77,7 @@ const OverlayNavUsuarios = () => {
 
 
 
-export const NavegacionHeader = () => {
+export const NavegacionHeader = React.memo(({ mostrar }) => {
 
 
     return (
@@ -89,11 +90,13 @@ export const NavegacionHeader = () => {
                     <Navbar.Toggle className="bg-white" aria-controls="navbarCollapse" />
                     <Navbar.Collapse id="navbarCollapse"
                         className="d-md-flex  justify-content-between w-100">
-                        <Nav.Item className={`d-flex mt-md-0 mt-2 align-items-center ${styles.contenedorFormSearch} rounded`}>
-                            <i className="fa-solid fa-magnifying-glass p-1 mx-2"></i>
-                            <BuscadorInput></BuscadorInput>
-                        </Nav.Item>
-                        <Nav className="flex-row justify-content-between align-items-center mt-md-0 mt-2 ">
+                        {!mostrar &&
+                            <Nav.Item className={`d-flex mt-md-0 mt-2 align-items-center ${styles.contenedorFormSearch} rounded`}>
+                                <i className="fa-solid fa-magnifying-glass p-1 mx-2"></i>
+                                <BuscadorInput></BuscadorInput>
+                            </Nav.Item>
+                        }
+                        <Nav className="flex-row justify-content-between justify-content-md-end w-100 align-items-center mt-md-0 mt-2 ">
                             <OverlayNavUsuarios></OverlayNavUsuarios>
                             <OverlayNavTickets></OverlayNavTickets>
                             <OverylayNavLock></OverylayNavLock>
@@ -104,4 +107,4 @@ export const NavegacionHeader = () => {
 
         </>
     )
-}
+})
