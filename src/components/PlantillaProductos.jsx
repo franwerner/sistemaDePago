@@ -90,7 +90,7 @@ const Precio = React.memo(({ precio }) => {
       <OverlayDefault
         overlayCustom={separacion}
         position="top" >
-        <div className={`rounded-1 text-white text-start ${styles.productoPrecio}`}>
+        <div className={`rounded-1 text-white overflow-hidden text-start ${styles.productoPrecio}`}>
           <p className="mx-1">
             $ {separacion}
           </p>
@@ -116,7 +116,7 @@ const ContendioDelProducto = React.memo(({ lista }) => {
         <i className="fa-solid fa-camera"></i>
       </div>
 
-      <p className={`text-center ${styles.productoNombre}`} >
+      <p className={`text-center overflow-hidden ${styles.productoNombre}`} >
         {nombre}
       </p>
     </>
@@ -130,11 +130,11 @@ const Producto = ({ lista }) => {
 
   return (
 
-    <Col xs="auto" onClick={() => agregarProducto(lista)}
-      className={` mx-2 w-100 flex-column d-flex my-1 border ${styles.contenedorProducto}`}>
+    <div  onClick={() => agregarProducto(lista)}
+      className={` mx-2 w-100 flex-column d-flex my-1 border  ${styles.producto}`}>
       <ContendioDelProducto lista={lista}></ContendioDelProducto>
 
-    </Col>
+    </div>
 
   )
 

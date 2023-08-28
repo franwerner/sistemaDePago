@@ -86,7 +86,7 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
                 onClick={onClick}
                 className={`${styles.contenedorDelProducto}`}
             >
-                    <Container fluid className={`${background} p-1 mt-1 ${styles.productosACobrar} `}>
+                    <Container fluid className={`${background}  ${styles.productosACobrar} `}>
                         <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
                         <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
                     </Container>

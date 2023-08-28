@@ -1,16 +1,38 @@
+.botonesContainer {
+    background-color: #d3d3d3;
+    border-bottom: 4px solid rgb(110, 200, 155);
+    overflow-x: overlay;
+
+}
+
+.botonesContainer::-webkit-scrollbar {
+    height: 6px;
+}
+
+.botonesContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(34, 34, 34, 0.685);
+    border-radius: 100px;
+
+}
+
 .seccionesPrincipal {
-    flex-grow: 1;
-    max-height: 100vh;
-    overflow-y: scroll;
+    overflow-y: hidden;
     max-width: 100%;
     background-color: rgba(244, 244, 245, 0.651);
-    position: relative;
+
 }
 
 
-.seccionesPrincipal::-webkit-scrollbar {
-    width: 0px;
+.contenedorProductos{
+    overflow-y: auto;
+    max-height: calc(100vh - 121px);
 }
+
+.contenedorProductos::-webkit-scrollbar{
+width: 0px;
+}
+
+
 
 
 .BotonesSeccion {
@@ -39,18 +61,3 @@
 
 }
 
-.botonesContainer {
-    background-color: #d3d3d3;
-    border-bottom: 4px solid rgb(110, 200, 155);
-    overflow-x: overlay;
-}
-
-.botonesContainer::-webkit-scrollbar {
-    height: 6px;
-}
-
-.botonesContainer::-webkit-scrollbar-thumb {
-    background-color: rgba(34, 34, 34, 0.685);
-    border-radius: 100px;
-
-}

@@ -1,6 +1,5 @@
 
-.contenedorProducto {
-
+.producto {
     width: 130px;
     max-width: 130px;
     height: 150px;
@@ -8,7 +7,7 @@
     background-color: rgb(255, 255, 255);
 }
 
-.contenedorProducto:hover {
+.producto:hover,.producto:active {
     transform: scale(1.2);
     transition: 0.3 all;
     z-index: 1;
@@ -23,7 +22,6 @@
 
 .productoNombre {
     font-size: 14px;
-    overflow: hidden;
     word-wrap: break-word;
     margin: 0;
     font-weight: 400;
@@ -37,11 +35,9 @@
 }
 
 .productoPrecio p {
-    
     font-size: 15px;
     white-space: nowrap;
     z-index: 10;
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 

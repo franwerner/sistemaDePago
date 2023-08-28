@@ -1,8 +1,6 @@
 .contenedorPlantillaPagos {
     background-color: #f8f6f6;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+
 }
 
 .botonPagos i {
@@ -11,15 +9,7 @@
 }
 
 .subContenedor {
-    flex-grow: 1;
     border : 1px solid #555;
-}
-
-
-
-
-.subContenedor::-webkit-scrollbar {
-    -webkit-appearance: none;
 }
 
 .botonPagos p {

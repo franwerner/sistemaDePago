@@ -17,7 +17,7 @@ const SinProductos = () => {
 
     return (
         <>
-            <Row className={`d-flex justify-content-center  align-items-center ${styles.contenedorSinProductos}`}>
+            <Row className={`d-flex justify-content-center align-items-center ${styles.contenedorSinProductos}`}>
                 <Col className="d-flex justify-content-center position-relative ">
                     <i className={`fa-solid fa-cart-shopping ${styles.carrito}`}></i>
                     <p className={` text-center fs-5 fw-bolder ${styles.textoCarrito}`}>No hay productos selecionados</p>
@@ -134,14 +134,14 @@ const ContenedorCobro = ({ children }) => {
             <Col md={5} lg={columna}
 
                 style={{ width: clientX, }}
-                className={`p-0 d-flex`}>
+                className={`p-0 overflow-hidden d-flex`}>
 
-                <div className={`overflow-hidden w-100 ${styles.contenedorCobroPrincipal}`}>
+                <div className={`overflow-hidden w-100 d-flex flex-column`}>
                     {children}
                 </div>
 
                 <span onMouseDown={onClickMove}
-                    className={`d-none d-md-block  ${styles.linea}`}>
+                    className={`d-none d-md-block overflow-hidden h-100 ${styles.linea}`}>
                 </span>
 
             </Col>

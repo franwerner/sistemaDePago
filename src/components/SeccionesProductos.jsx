@@ -11,11 +11,11 @@ export const SeccionesBotones = ({ seccionActual, secciones, elegirSeccion }) =>
 
     const variante = secciones == seccionActual ? "BotonSeccionPresionado" : "BotonesSeccion"
 
-    const btnSeccion = <Col
+    const btnSeccion = <span
         onClick={() => { elegirSeccion(secciones) }}
         className={` p-3 ${styles[variante]}   `}>
         {secciones}
-    </Col>
+    </span>
 
     return (
         <>
@@ -33,8 +33,8 @@ export const SeccionesProductos = () => {
 
 
     const { seccion, elegirSeccion, seccionesProductos } = useSeccion()
-  //ACA REALIZAR UNA LLAMADA A LA BASE DE DATOS EN BASE A LA SECCION PROPORCIONADA O EN BASE AL BUSCADOR INPUT
-    
+    //ACA REALIZAR UNA LLAMADA A LA BASE DE DATOS EN BASE A LA SECCION PROPORCIONADA O EN BASE AL BUSCADOR INPUT
+
 
     const onClick = (nombre) => {
         elegirSeccion(nombre)
@@ -43,13 +43,13 @@ export const SeccionesProductos = () => {
 
     return (
         <>
-            <Col className={`p-0 d-none d-md-block ${styles.seccionesPrincipal}`}>
+            <Col className={`p-0 flex-grow-1  ${styles.seccionesPrincipal}`}>
                 <Container fluid className={`d-flex  ${styles.botonesContainer} p-0`}>
-                    <Row>
-                        <Col onClick={() => onClick("Home")}
+                    <Col className="d-flex">
+                        <span onClick={() => onClick("Home")}
                             className={`fs-4 px-4 text-center d-flex align-items-center justify-content-center text-uppercase ${styles.BotonHome}`}>
                             <i className="fa-solid mx-3 fa-house text-white"></i>
-                        </Col>
+                        </span>
                         {seccionesProductos.map(secProductos =>
                             <SeccionesBotones key={secProductos.nombre}
                                 elegirSeccion={onClick}
@@ -59,13 +59,15 @@ export const SeccionesProductos = () => {
                             />
                         )}
 
-                    </Row>
+                    </Col>
                 </Container>
 
-                <Container className={`flex-wrap position-relative  my-2  d-flex justify-content-start justify-content-md-center  `}>
-                    <PlantillaProductos seccion={seccion} />
+                <Container className={` ${styles.contenedorProductos}  `}>
+                    <Col className="flex-wrap my-2 flex d-flex justify-content-center justify-content-md-start" >
+                        <PlantillaProductos seccion={seccion} />
+                    </Col>
                 </Container>
-                
+
             </Col>
         </>
     )
