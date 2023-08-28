@@ -7,6 +7,19 @@
     cursor: pointer;
 }
 
+.subContenedor {
+    max-height: 35vh;
+    overflow-y: overlay;
+    border : 1px solid #555;
+}
+
+
+
+
+.subContenedor::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
 .botonPagos p {
     color: #555;
 }

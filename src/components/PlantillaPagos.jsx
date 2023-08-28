@@ -13,27 +13,33 @@ export const PlantillaPagos = () => {
 
     return (
         <>
-            <Container fluid className={`${styles.contenedorPlantillaPagos}`}>
-                <Row>
+            <Container fluid className={`${styles.contenedorPlantillaPagos} pt-4 h-100`}>
+                <Row className="">
                     <Col className="px-3">
                         <ListaDeTarifas></ListaDeTarifas>
                     </Col>
                 </Row>
 
-                <Row style={{ height: "300px" }} className="p-3  border-danger">
+                <Row className={`m-1 p-2 d-block   ${styles.subContenedor}`}>
 
-                    <Col className={`text-center border align-items-center justify-content-center d-flex border-secondary border-2 ${styles.botonPagos}`}>
-                        <div onClick={alternarMostrar} className={styles.test}>
+                    <Col className={`text-center align-items-center justify-content-center d-flex  border-secondary border-2 ${styles.botonPagos}`}>
+                        <div onClick={alternarMostrar} className="my-5">
                             <i className="fa-solid  fa-circle-arrow-right "></i>
                             <p className="fw-bolder ">Pagos</p>
                         </div>
-            
+                  
                         <ContenedorDePagos alternarMostrar={alternarMostrar} mostrar={mostrar}></ContenedorDePagos>
                    
                     </Col>
 
-                    <Col className="border border-primary">
-
+                <Col className={`text-center align-items-center justify-content-center d-flex  border-secondary border-2 ${styles.botonPagos}`}>
+                        <div onClick={alternarMostrar} className="my-5">
+                            <i className="fa-solid  fa-circle-arrow-right "></i>
+                            <p className="fw-bolder ">Pagos</p>
+                        </div>
+                  
+                        <ContenedorDePagos alternarMostrar={alternarMostrar} mostrar={mostrar}></ContenedorDePagos>
+                   
                     </Col>
                 </Row>
 

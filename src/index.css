@@ -1,9 +1,3 @@
-.interface-sistema {
-    height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-}
-
 
 
 body::-webkit-scrollbar{
