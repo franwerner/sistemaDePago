@@ -62,7 +62,7 @@ export const SeccionesProductos = () => {
                     </Row>
                 </Container>
 
-                <Container className={`flex-wrap position-relative  my-2  d-flex justify-content-md-start justify-content-center `}>
+                <Container className={`flex-wrap position-relative  my-2  d-flex justify-content-start justify-content-md-center  `}>
                     <PlantillaProductos seccion={seccion} />
                 </Container>
                 
