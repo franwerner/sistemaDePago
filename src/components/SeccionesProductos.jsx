@@ -43,7 +43,7 @@ export const SeccionesProductos = () => {
 
     return (
         <>
-            <Col className={`p-0 ${styles.seccionesPrincipal}`}>
+            <Col className={`p-0 d-none d-md-block ${styles.seccionesPrincipal}`}>
                 <Container fluid className={`d-flex  ${styles.botonesContainer} p-0`}>
                     <Row>
                         <Col onClick={() => onClick("Home")}

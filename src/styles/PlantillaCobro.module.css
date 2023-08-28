@@ -1,21 +1,20 @@
-
 .contenedorCobroPrincipal {
-    position: relative;
-    height: 100vh;
-
-
+    display: flex;
+    flex-direction: column;
 }
 
-.contenedorCobroBody{
+.contenedorCobroBody {
     overflow-x: overlay;
-    max-height: 45vh;
-    height: 45vh;
+    max-height: 40vh;
+    height: 40vh;
     border-bottom: 4px solid rgb(110, 200, 155);
 
 }
-.contenedorSinProductos{
- overflow-y: none;
- height: 100%;
+
+.contenedorSinProductos {
+    overflow-y: none;
+    max-height: 39vh;
+    height: 39vh;
 }
 
 
@@ -24,12 +23,13 @@
 }
 
 .contenedorCobroBody::-webkit-scrollbar:vertical {
-    width:12px;
+    width: 12px;
 }
 
-.contenedorCobroBody::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+.contenedorCobroBody::-webkit-scrollbar-button:increment,
+.contenedor::-webkit-scrollbar-button {
     display: none;
-} 
+}
 
 .contenedorCobroBody::-webkit-scrollbar:horizontal {
     height: 10px;
@@ -42,7 +42,7 @@
 }
 
 .contenedorCobroBody::-webkit-scrollbar-track {
-    border-radius: 10px;  
+    border-radius: 10px;
 }
 
 
@@ -63,15 +63,14 @@
 
 
 
- .linea {
+.linea {
     width: 5px;
     min-height: 5px;
-    background-color: rgb(94, 95, 93);;
-    height: 100vh;
+    background-color: rgb(94, 95, 93);
+    ;
+    height: 100%;
     z-index: 2;
-
     cursor: w-resize;
-
 }
 
 .linea:hover,
@@ -83,7 +82,7 @@
 }
 
 
-.botonesCrud div{
+.botonesCrud div {
     display: flex;
     justify-content: center;
 }
@@ -111,4 +110,3 @@
 .seleccionNombre {
     min-width: 100px;
 }
-

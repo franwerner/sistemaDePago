@@ -13,14 +13,14 @@ export const PlantillaPagos = () => {
 
     return (
         <>
-            <Container fluid className={`${styles.contenedorPlantillaPagos} pt-4 h-100`}>
+            <Container  fluid className={`${styles.contenedorPlantillaPagos} `}>
                 <Row className="">
                     <Col className="px-3">
                         <ListaDeTarifas></ListaDeTarifas>
                     </Col>
                 </Row>
 
-                <Row className={`m-1 p-2 d-block   ${styles.subContenedor}`}>
+                <Row className={`m-1 p-2  ${styles.subContenedor}`}>
 
                     <Col className={`text-center align-items-center justify-content-center d-flex  border-secondary border-2 ${styles.botonPagos}`}>
                         <div onClick={alternarMostrar} className="my-5">

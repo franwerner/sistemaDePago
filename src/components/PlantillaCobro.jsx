@@ -134,9 +134,9 @@ const ContenedorCobro = ({ children }) => {
             <Col md={5} lg={columna}
 
                 style={{ width: clientX, }}
-                className={`p-0 d-flex  ${styles.contenedorCobroPrincipal}`}>
+                className={`p-0 d-flex`}>
 
-                <div className="overflow-hidden w-100">
+                <div className={`overflow-hidden w-100 ${styles.contenedorCobroPrincipal}`}>
                     {children}
                 </div>
 
