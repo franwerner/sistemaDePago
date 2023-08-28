@@ -75,7 +75,6 @@ import {buscadorProductosContext, productoReducerContext } from "../context/Cont
 import styles from "../styles/PlantillaProductos.module.css"
 import { OverlayDefault } from "./OverlayDefault";
 import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
-import { Col  } from "react-bootstrap";
 import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje";
 
 const Precio = React.memo(({ precio }) => {

@@ -10,7 +10,6 @@ export const BuscadorPorductosProvider = ({ children }) => {
     const [productoARenderizar, setProductoARenderizar] = useState(false)
 
     const establecerPruductoARenderizar = (producto) => {
-        console.log(producto)
         setProductoARenderizar(producto)
     }
 

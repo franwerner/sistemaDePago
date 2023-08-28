@@ -31,16 +31,6 @@ export const PlantillaPagos = () => {
                         <ContenedorDePagos alternarMostrar={alternarMostrar} mostrar={mostrar}></ContenedorDePagos>
                    
                     </Col>
-
-                <Col className={`text-center align-items-center justify-content-center d-flex  border-secondary border-2 ${styles.botonPagos}`}>
-                        <div onClick={alternarMostrar} className="my-5">
-                            <i className="fa-solid  fa-circle-arrow-right "></i>
-                            <p className="fw-bolder ">Pagos</p>
-                        </div>
-                  
-                        <ContenedorDePagos alternarMostrar={alternarMostrar} mostrar={mostrar}></ContenedorDePagos>
-                   
-                    </Col>
                 </Row>
 
 
