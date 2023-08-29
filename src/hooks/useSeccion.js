@@ -1,5 +1,5 @@
 
-import { useCallback, useState } from "react"
+import { useState } from "react"
 
 const seccionesProductos = [
     {
@@ -25,9 +25,9 @@ export const useSeccion = () => {
 
     const [seccion, setSeccion] = useState("Home")
 
-    const elegirSeccion = useCallback((nombre) => {
+    const elegirSeccion = (nombre) => {
         setSeccion(nombre)
-    })
+    }
 
     return {
         elegirSeccion,

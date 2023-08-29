@@ -3,7 +3,6 @@ import styles from "../../styles/PlantillaCobro.module.css"
 
 export const CarritoDeProductoVacio = () => {
 
-    console.log(styles)
     return (
         <>
             <Row className={`d-flex justify-content-center align-items-center ${styles.contenedorSinProductos}`}>

@@ -1,11 +1,11 @@
 
 import { ProductoReducerProvider } from '../context/provider/ProductosReducerProvider';
-import { SeccionesProductos } from './SeccionesProductos';
 import { NavegacionHeader } from './NavegacionHeader';
 import "../index.css"
 import { Container, Row } from 'react-bootstrap';
 import { BuscadorPorductosProvider } from '../context/provider/BuscardorProductosProvider';
 import { PlantillaCobro } from './PlantillaCobro/PlantillaCobro';
+import { PlantillaProductos } from './PlantillaProductos/PlantillaProductos';
 
 
 
@@ -24,7 +24,7 @@ export const InterfaceSistema = () => {
                     <Row className='flex-grow-1  p-0 '>
                         <ProductoReducerProvider>
                             <PlantillaCobro></PlantillaCobro>
-                            <SeccionesProductos></SeccionesProductos>
+                            <PlantillaProductos></PlantillaProductos>
                         </ProductoReducerProvider>
                     </Row>
 

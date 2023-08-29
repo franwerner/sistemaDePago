@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react"
 import { Container, Row } from "react-bootstrap"
 import { productoReducerContext } from "../../context/Contextos"
-
 import { CarritoDeProductoVacio } from "./CarritoDeProductoVacio"
 import { ListaDeProductosACobrar } from "./ListaDeProductosACobrar"
 import styles from "../../styles/PlantillaCobro.module.css"
