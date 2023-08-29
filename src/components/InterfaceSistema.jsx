@@ -1,10 +1,11 @@
-import { PlantillaCobro } from './PlantillaCobro'
+
 import { ProductoReducerProvider } from '../context/provider/ProductosReducerProvider';
 import { SeccionesProductos } from './SeccionesProductos';
 import { NavegacionHeader } from './NavegacionHeader';
 import "../index.css"
 import { Container, Row } from 'react-bootstrap';
 import { BuscadorPorductosProvider } from '../context/provider/BuscardorProductosProvider';
+import { PlantillaCobro } from './PlantillaCobro/PlantillaCobro';
 
 
 

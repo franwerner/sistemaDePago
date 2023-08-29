@@ -44,6 +44,7 @@ export const BotonEliminarProducto = React.memo(() => {
 
 
 export const BotonBorrarProducto = React.memo(() => {
+    
 
     const { borrarProducto } = useContext(productoReducerContext)
 

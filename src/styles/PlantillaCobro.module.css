@@ -41,7 +41,7 @@
     border-radius: 10px;
 }
 
-
+/*Carrito de compras vacio*/
 
 .carrito {
     font-size: 170px;
@@ -57,7 +57,7 @@
 
 }
 
-
+/*Linea divisoria*/
 
 .linea {
     width: 5px;
@@ -76,7 +76,7 @@
     transition: 0.1 all;
 }
 
-
+/*Botones Header*/
 .botonesCrud div {
     display: flex;
     justify-content: center;
@@ -104,4 +104,71 @@
 
 .seleccionNombre {
     min-width: 100px;
+}
+
+/*Productos*/
+.productosACobrar {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-y: none;
+    cursor: pointer;
+}
+
+.contenedorDelProducto {
+    margin-top: 2px;
+}
+
+.productosACobrar:focus {
+    outline: 2px solid rgba(65, 64, 64, 0.377);
+    border-radius: 2px;
+}
+
+.nombreDelProducto {
+    color: #555555;
+    font-weight: 600px;
+}
+
+.infoDelProducto {
+    margin-bottom: -10px;
+    color: #888;
+}
+
+.precioTotalDelProducto {
+    color: #555555;
+}
+
+.precioTotalDelProducto {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.contenedorCobroProductos:hover {
+    background-color: rgba(140, 143, 183, 0.078);
+    transition: 0.2s all;
+}
+
+
+.contendorCobroProductoSeleccionado {
+    transition: 0.2s all;
+    background-color: rgba(140, 143, 183, 0.2);
+}
+
+.contendorCobroProductoSeleccionado .infoDelProducto {
+    overflow-x: overlay;
+}
+
+.contendorCobroProductoSeleccionado .infoDelProducto::-webkit-scrollbar {
+    height: 12px;
+}
+
+.contendorCobroProductoSeleccionado .infoDelProducto::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+.contendorCobroProductoSeleccionado .infoDelProducto::-webkit-scrollbar-thumb {
+    background-color: #555555;
+    border-radius: 10px;
 }

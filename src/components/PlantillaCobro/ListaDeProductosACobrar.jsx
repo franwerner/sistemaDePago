@@ -1,13 +1,11 @@
 
 import React, { useContext, useEffect, useRef } from "react"
-import { productoSeleccionadoContext, } from "../context/Contextos"
-import styles from "../styles/ProductosACobrar.module.css"
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
+import { productoSeleccionadoContext, } from "../../context/Contextos"
+import styles from "../../styles/PlantillaCobro.module.css"
+import { separarNumerosConDecimales } from "../../helper/separarNumerosConDecimales"
 import { Col, Container, Row } from "react-bootstrap"
-import { useCapturarPulsacionesDelTecladoGlobal } from "../hooks/useCapturarPulsacionesDelTecladoGlobal"
-import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje"
-
-
+import { useCapturarPulsacionesDelTecladoGlobal } from "../../hooks/useCapturarPulsacionesDelTecladoGlobal"
+import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje"
 
 
 const ContenidoDelProductoArriba = React.memo(({ producto }) => {
@@ -43,7 +41,7 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
 
     return (
         <>
-            <Row ref = {containerRef} className={`flex-nowrap ${styles.infoDelProducto}`}>
+            <Row ref = {containerRef} className={`flex-nowrap  ${styles.infoDelProducto}`}>
 
                 <Col className={`mx-1 d-flex justify-content-between `}>
 
@@ -86,7 +84,7 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
                 onClick={onClick}
                 className={`${styles.contenedorDelProducto}`}
             >
-                    <Container fluid className={`${background}  ${styles.productosACobrar} `}>
+                    <Container fluid className={`${background} my-1 ${styles.productosACobrar} `}>
                         <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
                         <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
                     </Container>
@@ -95,7 +93,7 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
     )
 })
 
-export const ProductosACobrar = ({ listaProducto }) => {
+export const ListaDeProductosACobrar = ({ listaProducto }) => {
 
 
     const { seleccion, seleccionarProducto } = useContext(productoSeleccionadoContext)

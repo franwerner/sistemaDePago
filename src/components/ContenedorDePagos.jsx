@@ -3,17 +3,25 @@ import { Button, Col, Container, Modal, Row } from "react-bootstrap"
 import { useListadoFinalProducto } from "../hooks/useListadoFinalProducto"
 
 
+const MetodoDePago = () => {
+
+    return (
+        <Col className={`$"{styles.metodoDePago}"`}>
+
+        </Col>
+    )
+}
 
 export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
 
-  
+
     const { listadoFinal } = useListadoFinalProducto()
 
     return (
 
 
-        <Modal animation = {false} className="" show={mostrar} fullscreen={true} >
+        <Modal animation={false} className="" show={false} fullscreen={true} >
 
             <Modal.Header className="p-0 d-block"  >
 
@@ -43,9 +51,10 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
                         </Col>
                     </Row>
                     <Row>
-                      <p>
+                        {/* <p>
                       {listadoFinal}
-                      </p>
+                      </p> */}
+                        <MetodoDePago></MetodoDePago>
                     </Row>
                 </Container>
             </Modal.Body>
