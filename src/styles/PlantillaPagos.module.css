@@ -9,7 +9,7 @@
 }
 
 .subContenedor {
-    border : 1px solid #555;
+    border: 1px solid #555;
 }
 
 .botonPagos p {
@@ -24,4 +24,41 @@
 
 }
 
+/*Contenedor pagos*/
 
+.textPagos {
+    color: #555;
+    font-weight: 600;
+}
+
+.lineaPunteada {
+    border: 1px dotted #ccc;
+}
+
+
+/*Metodo de pago*/
+
+
+.metodoDePago p {
+    background-color: #c9c5c554;
+    color: black;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.metodoDePago p:hover {
+    background-color: rgb(136, 220, 101);
+    color: white;
+}
+
+/*Interaccion de Metodos de pagos*/
+
+.PrecioTotal {
+    color: rgb(110, 200, 155);
+    font-weight: 600;
+    font-size: 55px;
+}
+
+.textDeAyuda {
+    color: #555;
+}

@@ -30,9 +30,6 @@ export const BuscadorInput = () => {
     }, [buscador,productoARenderizar]);
 
 
-
-
-
     return (
         <>
             <Form
