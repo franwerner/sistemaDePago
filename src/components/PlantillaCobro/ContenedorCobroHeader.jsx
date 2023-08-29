@@ -2,8 +2,10 @@ import { Col, Container, Row } from "react-bootstrap"
 import styles from "../../styles/PlantillaCobro.module.css"
 import React from "react"
 import { useEventoMostrar } from "../../hooks/useEventoMostrar"
-import { BotonBorrarProducto, BotonEditarProducto, BotonEliminarProducto } from "../BotonesCrud"
 import { EdicionPreciosProductos } from "../EdicionPreciosProductos"
+import { BotonEliminarProducto } from "../BotonesCrud/BotonEliminarProducto"
+import { BotonBorrarProducto } from "../BotonesCrud/BotonBorrarProducto"
+import { BotonEditarProducto } from "../BotonesCrud/BotonEditarPruducto"
 
 export const ContenedorCobroHeader = React.memo(() => {
 
