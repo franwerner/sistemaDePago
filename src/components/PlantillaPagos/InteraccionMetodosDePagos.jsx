@@ -26,7 +26,7 @@ export const BotonesDeInteraccion = () => {
 
     return (
         <>
-            <Col>
+            <Col className={`${styles.botonesDeInteraccion}`}>
                 asdadasdasdasdsads
             </Col>
         </>
@@ -37,12 +37,12 @@ export const InteraccionMetodosDePagos = () => {
 
     return (
         <>
-            <Col className="border border-danger">
-                <Container fluid className="d-flex flex-column h-100">
-                    <Row className="border text-center p-5">
+            <Col className={`${styles.InteraccionMetodosDePagos}`}>
+                <Container  fluid className="p-0 d-flex flex-column h-100">
+                    <Row className=" text-center p-5">
                         <PrecioTotal />
                     </Row>
-                    <Row className="border flex-grow-1">
+                    <Row className={`flex-grow-1 `}>
                         <BotonesDeInteraccion />
                     </Row>
                 </Container>

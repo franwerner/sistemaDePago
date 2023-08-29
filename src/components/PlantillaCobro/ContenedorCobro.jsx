@@ -33,7 +33,7 @@ export const ContenedorCobro = ({ children }) => {
             <Col md={5} lg={columna}
 
                 style={{ width: clientX, }}
-                className={`p-0 overflow-hidden   d-flex`}>
+                className={`p-0 overflow-hidden  d-flex`}>
 
                 <div className={`overflow-hidden w-100 d-flex flex-column`}>
                     {children}

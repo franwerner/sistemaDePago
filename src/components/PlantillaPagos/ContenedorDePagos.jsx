@@ -21,9 +21,9 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
                 </Modal.Title>
 
             </Modal.Header>
-            <Modal.Body className="flex-grow-1">
-                <Container fluid className=" h-100 d-flex flex-column  w-75 border-danger">
-                    <Row className="text-center ">
+            <Modal.Body  className="flex-grow-1">
+                <Container fluid className=" h-100 d-flex flex-column  w-75 ">
+                    <Row className={`text-center ${styles.navegacionPagos}`}>
                         <Col className="d-flex p-0">
                             <Button onClick={alternarMostrar}>
                                 Volver
@@ -40,7 +40,7 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
                             </Button>
                         </Col>
                     </Row>
-                    <Row className={`${styles.lineaPunteada} p-3 h-100`}>
+                    <Row className={`${styles.lineaPunteada}  h-100`}>
 
                          <MetodosDePago/>
                          <InteraccionMetodosDePagos/>

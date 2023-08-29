@@ -11,7 +11,7 @@ export const PlantillaPagos = () => {
 
     return (
         <>
-            <Container  fluid className={`flex-grow-1 border border-danger d-flex flex-column ${styles.contenedorPlantillaPagos} `}>
+            <Container  fluid className={`flex-grow-1  d-flex flex-column ${styles.contenedorPlantillaPagos} `}>
                 <Row>
                     <Col className="px-3">
                         <ListaDeTarifas></ListaDeTarifas>
