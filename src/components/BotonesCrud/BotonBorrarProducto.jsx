@@ -13,6 +13,8 @@ export const BotonBorrarProducto = React.memo(() => {
         borrarSeleccion()
     }
 
+    
+
     return (
         <>
             <span  onClick={onClick}>
