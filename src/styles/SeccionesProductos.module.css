@@ -22,14 +22,13 @@
 
 }
 
-.contenedorProductos{
+.contenedorProductos {
     overflow-y: auto;
-    max-height: calc(100vh - 115px);
 
 }
 
-.contenedorProductos::-webkit-scrollbar{
-width: 0px;
+.contenedorProductos::-webkit-scrollbar {
+    width: 0px;
 }
 
 
@@ -60,4 +59,3 @@ width: 0px;
     color: white;
 
 }
-

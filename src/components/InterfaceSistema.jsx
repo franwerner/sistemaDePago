@@ -20,7 +20,7 @@ export const InterfaceSistema = () => {
                     <Row className='flex-grow-0' >
                         <NavegacionHeader></NavegacionHeader>
                     </Row>
-                    <Row className='d-flex   flex-grow-1 flex-colum p-0 '>
+                    <Row className='flex-grow-1  p-0 '>
                         <ProductoReducerProvider>
                             <PlantillaCobro></PlantillaCobro>
                             <SeccionesProductos></SeccionesProductos>

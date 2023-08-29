@@ -140,7 +140,8 @@ const Producto = ({ lista }) => {
 }
 
 
-export const PlantillaProductos = ({ seccion }) => {
+export const PlantillaProductos = React.memo(({ seccion }) => {
+
 
   const { productoARenderizar } = useContext(buscadorProductosContext)
 
@@ -163,4 +164,4 @@ export const PlantillaProductos = ({ seccion }) => {
 
   )
 
-}
+})

@@ -86,7 +86,10 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
                     <Navbar.Brand className="w-50 d-flex text-white">
                         Logo
                     </Navbar.Brand>
-                    <Navbar.Toggle className="bg-white" aria-controls="navbarCollapse" />
+                 
+                    <Navbar.Toggle  className={`bg-white ${styles.navBarToggle}`} aria-controls="navbarCollapse" />
+                  
+               
                     <Navbar.Collapse id="navbarCollapse"
                         className="d-md-flex  justify-content-between w-100">
                         {!mostrar &&

@@ -2,12 +2,49 @@
 import { PlantillaProductos } from "./PlantillaProductos"
 import { useSeccion } from "../hooks/useSeccion"
 import styles from "../styles/SeccionesProductos.module.css"
-import { Col, Container, Row } from "react-bootstrap"
-import React, { useEffect, useRef, useState } from "react"
+import { Col, Container } from "react-bootstrap"
+import React, { useEffect, useState } from "react"
+
+const ContainerDeProductos = ({ seccion }) => {
+
+    const [maxHeight, setMaxHeight] = useState(850);
+
+    const [click, setClick] = useState(false)
+
+    useEffect(() => {
+
+        const navbarHeight = document.querySelector('.navbar-toggler')
+
+        const onClick = (e) => {
+
+            if (!click) {
+                setMaxHeight(maxHeight - 94);
+            }
+            else {
+                setMaxHeight(850)
+            }
+
+            setClick(prevClick => !prevClick);
+        }
+        navbarHeight.addEventListener("click", onClick)
+
+        return () => navbarHeight.removeEventListener("click", onClick)
+
+    }, [click]);
+
+    return (
+        <>
+            <Container style={{ maxHeight: `${maxHeight}px` }} className={` ${styles.contenedorProductos}  `}>
+                <Col className="flex-wrap my-2  flex d-flex justify-content-center justify-content-md-start" >
+                    <PlantillaProductos seccion={seccion} />
+                </Col>
+            </Container>
+        </>
+    )
+}
 
 
-
-export const SeccionesBotones = ({ seccionActual, secciones, elegirSeccion }) => {
+const SeccionesBotones = ({ seccionActual, secciones, elegirSeccion }) => {
 
     const variante = secciones == seccionActual ? "BotonSeccionPresionado" : "BotonesSeccion"
 
@@ -27,7 +64,6 @@ export const SeccionesBotones = ({ seccionActual, secciones, elegirSeccion }) =>
     )
 }
 
-//ACA REALIZAR UNA LLAMADA A LA BASE DE DATOS DE LA SECCIONES
 
 export const SeccionesProductos = () => {
 
@@ -36,16 +72,13 @@ export const SeccionesProductos = () => {
     //ACA REALIZAR UNA LLAMADA A LA BASE DE DATOS EN BASE A LA SECCION PROPORCIONADA O EN BASE AL BUSCADOR INPUT
 
 
-    const test = useRef(0)
-
     const onClick = (nombre) => {
         elegirSeccion(nombre)
     }
 
-
     return (
         <>
-            <Col className={`p-0 flex-grow-1  ${styles.seccionesPrincipal}`}>
+            <Col className={`p-0   ${styles.seccionesPrincipal}`}>
                 <Container fluid className={`d-flex  ${styles.botonesContainer} p-0`}>
                     <Col className="d-flex">
                         <span onClick={() => onClick("Home")}
@@ -64,11 +97,7 @@ export const SeccionesProductos = () => {
                     </Col>
                 </Container>
 
-                <Container  className={` ${styles.contenedorProductos}  `}>
-                    <Col className="flex-wrap my-2  flex d-flex justify-content-center justify-content-md-start" >
-                        <PlantillaProductos seccion={seccion} />
-                    </Col>
-                </Container>
+                <ContainerDeProductos seccion={seccion} />
 
             </Col>
         </>
