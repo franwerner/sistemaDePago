@@ -4,7 +4,7 @@ import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import { OverlayDefault } from "./OverlayDefault"
 import { ListaUsuarios } from "./ListaUsuarios"
 import { BuscadorInput } from "./BuscadorInput"
-import React from "react"
+import React, { useEffect } from "react"
 
 const OverylayNavLock = () => {
 
@@ -78,7 +78,6 @@ const OverlayNavUsuarios = () => {
 
 
 export const NavegacionHeader = React.memo(({ mostrar }) => {
-
 
     return (
         <>

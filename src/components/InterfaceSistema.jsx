@@ -11,6 +11,8 @@ import { BuscadorPorductosProvider } from '../context/provider/BuscardorProducto
 
 
 export const InterfaceSistema = () => {
+
+
     return (
         <>
             <BuscadorPorductosProvider>

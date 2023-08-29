@@ -3,7 +3,7 @@ import { PlantillaProductos } from "./PlantillaProductos"
 import { useSeccion } from "../hooks/useSeccion"
 import styles from "../styles/SeccionesProductos.module.css"
 import { Col, Container, Row } from "react-bootstrap"
-import React, { } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 
 
@@ -36,6 +36,8 @@ export const SeccionesProductos = () => {
     //ACA REALIZAR UNA LLAMADA A LA BASE DE DATOS EN BASE A LA SECCION PROPORCIONADA O EN BASE AL BUSCADOR INPUT
 
 
+    const test = useRef(0)
+
     const onClick = (nombre) => {
         elegirSeccion(nombre)
     }
@@ -62,8 +64,8 @@ export const SeccionesProductos = () => {
                     </Col>
                 </Container>
 
-                <Container className={` ${styles.contenedorProductos}  `}>
-                    <Col className="flex-wrap my-2 flex d-flex justify-content-center justify-content-md-start" >
+                <Container  className={` ${styles.contenedorProductos}  `}>
+                    <Col className="flex-wrap my-2  flex d-flex justify-content-center justify-content-md-start" >
                         <PlantillaProductos seccion={seccion} />
                     </Col>
                 </Container>

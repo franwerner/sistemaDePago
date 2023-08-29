@@ -5,8 +5,6 @@ import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import { ContenedorDePagos } from "./ContenedorDePagos"
 
 
-
-
 export const PlantillaPagos = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()

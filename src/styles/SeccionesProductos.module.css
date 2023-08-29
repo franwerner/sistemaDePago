@@ -22,10 +22,10 @@
 
 }
 
-
 .contenedorProductos{
     overflow-y: auto;
-    max-height: calc(100vh - 121px);
+    max-height: calc(100vh - 115px);
+
 }
 
 .contenedorProductos::-webkit-scrollbar{
