@@ -1,90 +1,65 @@
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "../../styles/PlantillaPagos.module.css"
-import { useContext } from "react";
-import { TarifaContex } from "../../context/Contextos";
+import React, {  useContext, useState } from "react";
+import { TarifaContex, restoDelPagoContext } from "../../context/Contextos";
 
 
-const ListaDeMetodosDePagos = ({ tarifa }) => {
 
+
+const ListaDeMetodosDePagos = React.memo(({ tarifa,establecerRestante,restante}) => {
+
+    const onClick  = ( ) =>{
+        establecerRestante(restante)
+    }
 
     return (
         <>
-            <Row className={`${styles.metodo} mt-1 border border`}>
-                <p className="my-0  p-4  ">
+            <Row onClick={onClick} tabIndex={1} className={`${styles.metodo} mt-1 border border`}>
+                <Col className="my-0 border   ">
                     {tarifa.tipoDePago}
-                </p>
+                </Col>
+                <Col>
+                {restante.restante}
+                </Col>
+             
             </Row>
         </>
     )
 
-}
+})
 
-export const MetodosDePago = () => {
 
-    // const { listadoDeTarifas } = useContext(TarifaContex)
+const RestoDelPago = React.memo(({restante}) =>{
+    
 
-    const listadoDeTarifas = [
-        {
-            "tipoDePago": "Efectivo",
-            "tarifa": 0
-        },
-        {
-            "tipoDePago": "Tajeta",
-            "tarifa": 15
-        },
-        {
-            "tipoDePago": "Dolar",
-            "tarifa": 30
-        },
-        {
-            "tipoDePago": "Dolar2",
-            "tarifa": 30
-        },
-        {
-            "tipoDePago": "Dolar4",
-            "tarifa": 30
-        },
-        {
-            "tipoDePago": "Dolar3",
-            "tarifa": 30
-        },
-        {
-            "tipoDePago": "Dolar6",
-            "tarifa": 30
-        },
-        {
-            "tipoDePago": "Dolar5",
-            "tarifa": 30
-        },
-        {
-            "tipoDePago": "Dolar23",
-            "tarifa": 30
-        },
-        {
-            "tipoDePago": "Dolar434",
-            "tarifa": 30
-        },
+  
+    return(
+        <>
+        <p>{restante.restante == -1 ? restante.total : restante.restante}</p>
+        </>
+    )
+})
 
-        {
-            "tipoDePago": "Dolar544",
-            "tarifa": 30
-        },
-        {
-            "tipoDePago": "Dolar123",
-            "tarifa": 30
-        },
-    ]
+export const MetodosDePago = React.memo(() => {
+
+    const { listadoDeTarifas, tarifa } = useContext(TarifaContex)
+
+    const { restante, establecerRestante} = useContext(restoDelPagoContext)
+
 
     return (
         <>
             <Col xs={4} className={`${styles.metodoDePago} p-3  h-100`}>
-                <Container fluid >
-                    {listadoDeTarifas.map(tarifa =>
-                        <ListaDeMetodosDePagos key={tarifa.tipoDePago} tarifa={tarifa}></ListaDeMetodosDePagos>
+                <Container fluid id="metodos-de-pagos" >
+                  {listadoDeTarifas.map(t => 
+                    <ListaDeMetodosDePagos key={t.tipoDePago} restante = {restante.total} establecerRestante = {establecerRestante} tarifa = {t}></ListaDeMetodosDePagos>
                     )}
-
                 </Container>
+                <RestoDelPago restante = {restante}></RestoDelPago>
             </Col>
+
+
+    
         </>
     );
-};
+});

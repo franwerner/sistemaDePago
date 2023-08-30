@@ -11,7 +11,7 @@ export const PlantillaProductos = () => {
 
     return (
         <>
-            <Col className={` d-flex flex-column p-0 ${styles.PlantillaProductos}`}>
+            <Col className={` d-flex flex-column  p-0 ${styles.PlantillaProductos}`}>
                 <SeccionesProductos seccion={seccion} elegirSeccion={elegirSeccion} seccionesProductos = {seccionesProductos}></SeccionesProductos>
                 <ContainerDeProductos seccion={seccion}></ContainerDeProductos>
               

@@ -4,7 +4,7 @@ import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import { OverlayDefault } from "./OverlayDefault"
 import { ListaUsuarios } from "./ListaUsuarios"
 import { BuscadorInput } from "./BuscadorInput"
-import React, { useEffect } from "react"
+import React from "react"
 
 const OverylayNavLock = () => {
 
@@ -21,6 +21,7 @@ const OverylayNavLock = () => {
                 onMouseEnter={alternarMostrar}
                 onMouseLeave={alternarMostrar}
                 href="#action2"
+                tabIndex={0}
                 style={{ width: "40px", marginTop: "-9px" }}
                 className=" d-flex justify-content-center  fs-4"
             >
@@ -44,7 +45,7 @@ const OverlayNavTickets = () => {
             <OverlayDefault
                 overlayCustom={overlayText}
             >
-                <Nav.Link href="/AbrirProductosCobrados">
+                <Nav.Link tabIndex={0} href="/AbrirProductosCobrados">
                     <i className="fa-solid fa-ticket mx-4 text-warning fs-4"></i>
                 </Nav.Link>
             </OverlayDefault>
@@ -63,7 +64,7 @@ const OverlayNavUsuarios = () => {
         <>
             <OverlayDefault
                 overlayCustom={overlayText} >
-                <Nav.Link>
+                <Nav.Link tabIndex={0}>
                     <i onClick={alternarMostrar} className={`fa-regular fa-address-card text-white fs-4 }`}></i>
                 </Nav.Link>
             </OverlayDefault>
@@ -81,7 +82,7 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
 
     return (
         <>
-            <Navbar expand="md" className={`${styles.navegacionHeader}`}>
+            <Navbar  expand="md" className={`${styles.navegacionHeader}`}>
                 <Container fluid>
                     <Navbar.Brand className="w-50 d-flex text-white">
                         Logo

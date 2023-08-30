@@ -16,18 +16,22 @@ export const BuscadorInput = () => {
 
 
     useEffect(() => {
+        
         if(buscador == "") establecerPruductoARenderizar(false)
-        if (timer) {
-            clearTimeout(timer);
+        else{
+          establecerPruductoARenderizar(buscador)
         }
-        if (buscador) {
-            setTimer(
-                setTimeout(() => {
-                    establecerPruductoARenderizar(buscador);
-                }, 1000)
-            );
-        }
-    }, [buscador,productoARenderizar]);
+        // if (timer) {
+        //     clearTimeout(timer);
+        // }
+        // if (buscador) {
+        //     setTimer(
+        //         setTimeout(() => {
+        //             establecerPruductoARenderizar(buscador);
+        //         }, 1000)
+        //     );
+        // }
+    }, [buscador]);
 
 
     return (

@@ -10,6 +10,8 @@ import { validarUsuarioFetch } from "../helper/endpoints/validarUsuarioFetch"
 
 const CambiarUsuarioActual = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {
 
+
+
     const { onSubmit, changeForm, form } = useForm({ "contraseña": "" })
 
     const { cambiarUsuario } = useContext(listaUsuariosContext)
@@ -52,8 +54,8 @@ const CambiarUsuarioActual = ({ cerrarTodo, mostrar, usuarioSeleccionado, altern
    
     return (
         <>
-            <Modal show={mostrar} onHide={alternarMostrar} >
-                <Modal.Header  >
+            <Modal  show={mostrar} onHide={alternarMostrar} >
+                <Modal.Header   >
                     <Modal.Title style={{ color: "#555555" }} className="fs-2 text-u" >
                         {usuarioSeleccionado.nombre}
                     </Modal.Title>

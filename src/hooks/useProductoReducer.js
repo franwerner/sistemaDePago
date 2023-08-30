@@ -91,13 +91,13 @@ export const productoReducer = () => {
         dispatch({ type: "AGREGAR", producto })
     }
 
-    const eliminarProducto = (producto) => {
+    const eliminarProducto = useCallback((producto) => {
         
         if (verificarPropiedadesDeUnObjecto(producto)) return
 
         dispatch({ type: "ELIMINAR", producto })
 
-    }
+    },[])
 
     const editarProducto = (producto) => {
    

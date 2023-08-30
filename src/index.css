@@ -1,9 +1,14 @@
 
 
 body {
+<<<<<<< HEAD
     max-height: 100vh;
     overflow-y: overlay;
+=======
+    overflow: hidden;
+>>>>>>> werner
 }
+
 
 
 @font-face {
@@ -15,7 +20,7 @@ body {
 
 *{
     font-family: "Montserrat";
-
+    outline: none;
     user-select: none;
 }
 
