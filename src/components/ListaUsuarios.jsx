@@ -10,6 +10,8 @@ import { validarUsuarioFetch } from "../helper/endpoints/validarUsuarioFetch"
 
 const CambiarUsuarioActual = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {
 
+
+
     const { onSubmit, changeForm, form } = useForm({ "contraseña": "" })
 
     const { cambiarUsuario } = useContext(listaUsuariosContext)

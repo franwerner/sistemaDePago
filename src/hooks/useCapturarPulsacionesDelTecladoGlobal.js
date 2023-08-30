@@ -5,15 +5,17 @@ import { useDetectarElementoEnFocos } from "./useDetectarElementoEnFoco"
 
 export const useCapturarPulsacionesDelTecladoGlobal = (seleccion = {}) => {
 
+    //Solo se activa cuando se activa un producto en el carrito
+
     const { eliminarProducto } = useContext(productoReducerContext)
 
     const {elemntoFocus} = useDetectarElementoEnFocos()
 
     const handleTeclas = (e) => {
 
-        if (elemntoFocus == "INPUT") return
+        if (elemntoFocus.tagName == "INPUT") return
 
-        if (e.key === "Backspace") {
+        if (e.key === "Backspace" && elemntoFocus.children[0].id !== "modal-pagos") {
             eliminarProducto(seleccion)
 
         }

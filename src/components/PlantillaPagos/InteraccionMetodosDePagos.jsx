@@ -2,6 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useListadoFinalProducto } from "../../hooks/useListadoFinalProducto";
 import styles from "../../styles/PlantillaPagos.module.css"
 import { separarNumerosConDecimales } from "../../helper/separarNumerosConDecimales";
+import React from "react";
 
 
 export const PrecioTotal = () => {
@@ -33,8 +34,9 @@ export const BotonesDeInteraccion = () => {
     )
 }
 
-export const InteraccionMetodosDePagos = () => {
+export const InteraccionMetodosDePagos = React.memo(() => {
 
+    console.log("<")
     return (
         <>
             <Col className={`${styles.InteraccionMetodosDePagos}`}>
@@ -49,4 +51,4 @@ export const InteraccionMetodosDePagos = () => {
             </Col>
         </>
     );
-};
+});

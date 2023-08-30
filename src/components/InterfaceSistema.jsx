@@ -12,12 +12,11 @@ import { PlantillaProductos } from './PlantillaProductos/PlantillaProductos';
 
 
 export const InterfaceSistema = () => {
-
-
-    return (
+return (
         <>
+  
             <BuscadorPorductosProvider>
-                <Container  tabIndex={0} className='d-flex m-0 flex-column   vh-100' fluid>
+                <Container tabIndex={0}  className='d-flex m-0 flex-column   vh-100' fluid>
                     <Row className='flex-grow-0 ' >
                         <NavegacionHeader></NavegacionHeader>
                     </Row>
@@ -30,6 +29,7 @@ export const InterfaceSistema = () => {
 
                 </Container>
             </BuscadorPorductosProvider >
+      
         </>
     )
 }

@@ -4,15 +4,15 @@ import { useEffect, useState } from "react"
 export const useDetectarElementoEnFocos = () =>{
 
     
-    const [elemntoFocus, setFocus] = useState(document.activeElement.tagName)
-
+    const [elemntoFocus, setFocus] = useState(document.activeElement)
 
 
     useEffect(() => {
 
         const handleFocus = (e) => {
-            setFocus(e.target.tagName)
+            setFocus(e.target)
         }
+       
 
         document.addEventListener("focusin", handleFocus)
         return () => {
