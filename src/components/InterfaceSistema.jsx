@@ -22,12 +22,12 @@ export const InterfaceSistema = () => {
                         <NavegacionHeader></NavegacionHeader>
                     </Row>
 
-                    <Row className='flex-grow-1 p-0 '>
+                    <Row className='flex-grow-1 '>
                         <ProductoReducerProvider>
 
                             <SeccionCobroYPagos>
 
-                                <Col  className="overflow-hidden  d-flex p-0 flex-column">
+                                <Col  className="overflow-hidden  d-flex  flex-column">
                                     <PlantillaCobro />
                                     <PlantillaPagos />
                                 </Col>

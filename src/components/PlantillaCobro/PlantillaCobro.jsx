@@ -8,13 +8,19 @@ import styles from "../../styles/PlantillaCobro.module.css"
 
 
 export const PlantillaCobro = () => {
+
+    console.log("asdasd")
+
     return (
         <>
+
             <Container fluid className="p-0">
                 <ProductoSeleccionadoProvider>
-                    <Row className={`d-flex flex-column ${styles.contenedorCobroPrincipal}`}>
-                        <ContenedorCobroHeader />
-                        <ContenedorCobroBody />
+                    <Row >
+                        <Col className={`d-flex flex-column ${styles.contenedorCobroPrincipal}`}>
+                            <ContenedorCobroHeader />
+                            <ContenedorCobroBody />
+                        </Col>
                     </Row>
                 </ProductoSeleccionadoProvider>
             </Container>
