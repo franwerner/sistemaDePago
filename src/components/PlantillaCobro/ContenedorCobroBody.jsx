@@ -23,9 +23,9 @@ export const ContenedorCobroBody = React.memo(() => {
 
     return (
         <>
-            <Container fluid ref={referido} className={`d-flex flex-column ${styles.contenedorCobroBody}`}>
+            <Container fluid ref={referido} className={` ${styles.contenedorCobroBody}`}>
                 {listaProducto.length == 0 ? <CarritoDeProductoVacio></CarritoDeProductoVacio> :
-                    <div className={styles.test}>
+                    <>
                         <ListaDeProductosACobrar
                             listaProducto={listaProducto}
                         >
@@ -34,7 +34,7 @@ export const ContenedorCobroBody = React.memo(() => {
                         <Row>
                             <TotalPrecioProductos/>
                         </Row>
-                    </div>
+                    </>
                 }
             </Container>
 

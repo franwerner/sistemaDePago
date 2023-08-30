@@ -32,10 +32,10 @@ export const ContenedorCobro = ({ children }) => {
         <>
             <Col md={5} lg={columna}
 
-                style={{ width: clientX}}
-                className={`p-0 overflow-hidden h-100  d-flex`}>
+                style={{ width: clientX, }}
+                className={`p-0 overflow-hidden  d-flex`}>
 
-                <div  style={{maxHeight : "100%"}} className={`overflow-hidden w-100 h-100  d-flex flex-column`}>
+                <div className={`overflow-hidden w-100 d-flex flex-column`}>
                     {children}
                 </div>
 
