@@ -84,9 +84,8 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
             <Row
                 tabIndex={0}
                 onClick={onClick}
-                className={`${styles.contenedorDelProducto}`}
+                className={`producto-a-cobrar ${styles.contenedorDelProducto}`}
                 ref={referencia}
-                id="producto-a-cobrar"
             >
                 <Container fluid className={`${background} my-1 ${styles.productosACobrar} `}>
                     <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
@@ -100,20 +99,19 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
 
 export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto }) => {
 
-
     const { seleccion, seleccionarProducto } = useContext(productoSeleccionadoContext)
 
 
-
-
-    const handleShortcut = useCallback(() => {
+    const handleShortcut = () => {
         const target = document.activeElement
-     
-        if (target.id == "producto-a-cobrar" || target.id == "interface-sistema") {
+
+
+
+        if (target.classList.contains("producto-a-cobrar") || target.id == "interface-sistema") {
             eliminarProducto(seleccion)
         }
 
-    },[]);
+    };
 
 
     useHotkeys("backSpace,", handleShortcut)

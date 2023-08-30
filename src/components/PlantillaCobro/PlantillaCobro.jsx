@@ -9,7 +9,7 @@ import styles from "../../styles/PlantillaCobro.module.css"
 
 export const PlantillaCobro = () => {
 
-    console.log("asdasd")
+
 
     return (
         <>
