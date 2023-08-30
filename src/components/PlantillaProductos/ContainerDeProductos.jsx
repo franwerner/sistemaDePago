@@ -5,35 +5,36 @@ import { useEffect, useState } from "react";
 
 export const ContainerDeProductos = ({ seccion }) => {
 
-    const [maxHeight, setMaxHeight] = useState(850);
+    // const [maxHeight, setMaxHeight] = useState(850);
 
-    const [click, setClick] = useState(false)
+    // const [click, setClick] = useState(false)
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const navbarHeight = document.querySelector('.navbar-toggler')
+    //     const navbarHeight = document.querySelector('.navbar-toggler')
 
-        const onClick = (e) => {
+    //     const onClick = (e) => {
 
-            if (!click) {
-                setMaxHeight(maxHeight - 94);
-            }
-            else {
-                setMaxHeight(850)
-            }
+    //         if (!click) {
+    //             setMaxHeight(maxHeight - 94);
+    //         }
+    //         else {
+    //             setMaxHeight(850)
+    //         }
 
-            setClick(prevClick => !prevClick);
-        }
-        navbarHeight.addEventListener("click", onClick)
+    //         setClick(prevClick => !prevClick);
+    //     }
+    //     navbarHeight.addEventListener("click", onClick)
 
-        return () => navbarHeight.removeEventListener("click", onClick)
+    //     return () => navbarHeight.removeEventListener("click", onClick)
 
-    }, [click]);
-
+    // }, [click]);
+    
+   
     return (
         <>
-            <Container style={{ maxHeight: `${maxHeight}px` }} className={` ${styles.contenedorProductos}  `}>
-                <Col className="flex-wrap my-2  flex d-flex justify-content-center justify-content-md-start" >
+            <Container  className={` ${styles.contenedorProductos}  `}>
+                <Col className="flex-wrap my-2 flex-grow-1 border border-danger flex d-flex justify-content-center justify-content-md-start" >
                     <ListaDeProductos seccion={seccion} />
                 </Col>
             </Container>

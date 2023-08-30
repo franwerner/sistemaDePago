@@ -28,7 +28,95 @@ const panaderia = [
     "nombre": "Galletitas",
     "precio": 500,
     "metodo": "Kilogramos"
-  }
+  },
+  {
+    "nombre": "Galletitas2",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  {
+    "nombre": "Galletitas3",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  
+  {
+    "nombre": "Galletitas24",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  {
+    "nombre": "Galletitas34",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+
+  {
+    "nombre": "Galletitas25",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  {
+    "nombre": "Galletitas35",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  
+  {
+    "nombre": "Galletitas26",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  {
+    "nombre": "Galletitas36",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  
+  {
+    "nombre": "Galletitas27",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  {
+    "nombre": "Galletitas37",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  
+  {
+    "nombre": "Galletitas28",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  {
+    "nombre": "Galletitas38",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  
+  {
+    "nombre": "Galletitas99",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  {
+    "nombre": "Galletitas993",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  
+  {
+    "nombre": "Galletit9as2",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  {
+    "nombre": "Gal9letitas3",
+    "precio": 500,
+    "metodo": "Kilogramos"
+  },
+  
 ];
 
 const helados = [

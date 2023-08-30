@@ -9,7 +9,7 @@
 }
 
 .subContenedor {
-    border : 1px solid #555;
+    border: 1px solid #555;
 }
 
 .botonPagos p {
@@ -23,5 +23,100 @@
     border-radius: 50%;
 
 }
+/*navegacionPagos*/
+
+.navegacionPagos{
+  border: 1px dotted #ccc;
+  border-bottom: 0;
+}
+
+/*Contenedor pagos*/
+
+.textPagos {
+    color: #555;
+    font-weight: 600;
+}
+
+.lineaPunteada {
+    border: 1px dotted #ccc;
+}
 
 
+/*Metodo de pago*/
+
+
+
+.metodoDePago {
+    overflow: auto;
+    max-height: 100%;
+
+}
+
+.metodoDePago::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.metodoDePago::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+.metodoDePago::-webkit-scrollbar-button:increment,
+.metodoDePago::-webkit-scrollbar-button {
+    display: none;
+}
+
+.metodoDePago::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.metodoDePago::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.metodoDePago::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+
+.metodoDePago div {
+    max-height: 10vh;
+}
+
+
+
+.metodo p {
+    background-color: #c9c5c554;
+    color: black;
+    cursor: pointer;
+    font-weight: 500;
+
+}
+
+.metodo p:hover {
+    background-color: rgb(136, 220, 101);
+    color: white;
+}
+
+/*Interaccion de Metodos de pagos*/
+
+.PrecioTotal {
+    color: rgb(110, 200, 155);
+    font-weight: 600;
+    font-size: 55px;
+}
+
+.textDeAyuda {
+    color: #555;
+}
+
+.InteraccionMetodosDePagos{
+    border-left: 1px dotted #ccc;
+}
+.botonesDeInteraccion{
+    border: 1px  dotted #ccc;
+    border-left: 0;
+    border-right: 0;
+
+}

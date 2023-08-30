@@ -33,7 +33,7 @@ export const SeccionesProductos = ({seccion,elegirSeccion,seccionesProductos}) =
 
     return (
         <>
-            <Container fluid className={`d-flex  ${styles.botonesContainer} p-0`}>
+            <Container fluid className={`d-flex flex-grow-0 ${styles.botonesContainer} p-0`}>
                 <Col className="d-flex">
                     <span onClick={() => onClick("Home")}
                         className={`fs-4 px-4 text-center d-flex align-items-center justify-content-center text-uppercase ${styles.BotonHome}`}>
