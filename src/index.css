@@ -2,11 +2,9 @@
 
 body {
     max-height: 100vh;
+    overflow-y: overlay;
 }
 
-body::-webkit-scrollbar{
-    width: 0px;
-}
 
 @font-face {
     font-family: "Montserrat";
