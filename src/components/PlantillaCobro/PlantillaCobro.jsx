@@ -17,15 +17,16 @@ export const PlantillaCobro = () => {
 
                     <Container fluid className="overflow-hidden  d-flex p-0 flex-column">
                         <Row>
-                            <Col className={`${styles.contenedorCobroPrincipal} d-flex flex-column`}>
+                            <Col className={`d-flex flex-column ${styles.contenedorCobroPrincipal}`}>
                                 <ContenedorCobroHeader />
                                 <ContenedorCobroBody />
                             </Col>
-
                         </Row>
 
                         <Row className="flex-grow-1">
-                            <PlantillaPagos />
+                            <Col>
+                                <PlantillaPagos />
+                            </Col>
                         </Row>
                     </Container>
                 </ProductoSeleccionadoProvider>
