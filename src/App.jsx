@@ -1,14 +1,21 @@
 
-
-
 import { InterfaceSistema } from './components/InterfaceSistema'
-
+import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
+import { TarifaProvider } from './context/provider/tarifaProvider'
 
 function App() {
 
   return (
     <>
-      <InterfaceSistema ></InterfaceSistema>
+      <ListaUsuariosProvider>
+
+        <TarifaProvider>
+
+          <InterfaceSistema ></InterfaceSistema>
+
+        </TarifaProvider>
+
+      </ListaUsuariosProvider>
     </>
   )
 }

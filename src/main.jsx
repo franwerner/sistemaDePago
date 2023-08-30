@@ -6,14 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { CustomErrorProvider } from './context/provider/CustomErrorProvider'
-import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
-import { TarifaProvider } from './context/provider/tarifaProvider'
+import { InterfaceSistema } from './components/InterfaceSistema.jsx'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: <InterfaceSistema></InterfaceSistema>,
     errorElement: <h1>Ruta no existente</h1>
   },
 
@@ -21,22 +20,14 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+
     <CustomErrorProvider>
+      <App>
+        <RouterProvider router={router}>
 
-      <ListaUsuariosProvider>
+        </RouterProvider>
+      </App>
 
-        <TarifaProvider>
-
-   
-
-            <RouterProvider router={router}>
-            </RouterProvider>
-
-      
-
-        </TarifaProvider>
-
-      </ListaUsuariosProvider>
 
     </CustomErrorProvider>
 
