@@ -17,8 +17,8 @@ export const InterfaceSistema = () => {
     return (
         <>
             <BuscadorPorductosProvider>
-                <Container  tabIndex={0} className='d-flex m-0 flex-column  vh-100' fluid>
-                    <Row className='flex-grow-0' >
+                <Container  tabIndex={0} className='d-flex m-0 flex-column   vh-100' fluid>
+                    <Row className='flex-grow-0 ' >
                         <NavegacionHeader></NavegacionHeader>
                     </Row>
                     <Row className='flex-grow-1 p-0 '>

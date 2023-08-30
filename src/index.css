@@ -1,8 +1,11 @@
 
 
 body {
-    max-height: 100vh;
-    overflow-y: overlay;
+    overflow: hidden;
+}
+
+body::-webkit-scrollbar{
+    width: 0px;
 }
 
 
