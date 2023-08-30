@@ -2,7 +2,7 @@
 import { ContenedorCobroBody } from "./ContenedorCobroBody"
 import { ContenedorCobroHeader } from "./ContenedorCobroHeader"
 import { ProductoSeleccionadoProvider } from "../../context/provider/ProductoSeleccionadoProvider"
-import { Col, Row } from "react-bootstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import styles from "../../styles/PlantillaCobro.module.css"
 
 
@@ -10,14 +10,14 @@ import styles from "../../styles/PlantillaCobro.module.css"
 export const PlantillaCobro = () => {
     return (
         <>
-            <Row>
+            <Container fluid className="p-0">
                 <ProductoSeleccionadoProvider>
-                    <Col className={`d-flex flex-column ${styles.contenedorCobroPrincipal}`}>
+                    <Row className={`d-flex flex-column ${styles.contenedorCobroPrincipal}`}>
                         <ContenedorCobroHeader />
                         <ContenedorCobroBody />
-                    </Col>
+                    </Row>
                 </ProductoSeleccionadoProvider>
-            </Row>
+            </Container>
         </>
     )
 }

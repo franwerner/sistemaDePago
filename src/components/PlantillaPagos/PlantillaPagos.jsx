@@ -13,9 +13,9 @@ export const PlantillaPagos = () => {
 
     return (
         <>
-            <Row className="flex-grow-1">
-                <Col>
-                    <Container fluid className={`d-flex h-100 flex-column ${styles.contenedorPlantillaPagos} `}>
+            <Container fluid className="flex-grow-1 ">
+                <Row className="h-100">
+                    <Col  className={`d-flex h-100  flex-column ${styles.contenedorPlantillaPagos} `}>
 
                         <PlantillaPagosHeader />
                         <PlantillaPagosBody alternarMostrar={alternarMostrar} />
@@ -28,9 +28,9 @@ export const PlantillaPagos = () => {
 
                         </RestoDelPagoProvider>
 
-                    </Container>
-                </Col>
-            </Row>
+                    </Col>
+                </Row>
+            </Container>
         </>
     )
 }

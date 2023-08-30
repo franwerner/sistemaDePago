@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { ListaDeTarifas } from "../ListaDeTarifas";
 
 
@@ -7,11 +7,11 @@ export const PlantillaPagosHeader = React.memo(() => {
 
     return (
         <>
-            <Row>
-                <Col className="px-3">
+            <Container fluid className="p-0">
+                <Row className="px-3">
                     <ListaDeTarifas></ListaDeTarifas>
-                </Col>
-            </Row>
+                </Row>
+            </Container>
 
         </>
     );

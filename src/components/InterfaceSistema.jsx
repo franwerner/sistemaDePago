@@ -2,7 +2,7 @@
 import { ProductoReducerProvider } from '../context/provider/ProductosReducerProvider';
 import { NavegacionHeader } from './NavegacionHeader';
 import "../index.css"
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { BuscadorPorductosProvider } from '../context/provider/BuscardorProductosProvider';
 import { PlantillaCobro } from './PlantillaCobro/PlantillaCobro';
 import { PlantillaProductos } from './PlantillaProductos/PlantillaProductos';
@@ -27,10 +27,10 @@ export const InterfaceSistema = () => {
 
                             <SeccionCobroYPagos>
 
-                                <Container fluid className="overflow-hidden  d-flex p-0 flex-column">
+                                <Col  className="overflow-hidden  d-flex p-0 flex-column">
                                     <PlantillaCobro />
                                     <PlantillaPagos />
-                                </Container>
+                                </Col>
 
                             </SeccionCobroYPagos>
 
