@@ -13,10 +13,6 @@ export const PlantillaCobro = () => {
 
     return (
         <>
-
-
-
-
             <Container fluid className="p-0">
                 <ProductoSeleccionadoProvider>
                     <Row >
