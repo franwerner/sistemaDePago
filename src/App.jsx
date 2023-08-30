@@ -1,15 +1,14 @@
 
 
+
 import { InterfaceSistema } from './components/InterfaceSistema'
+
 
 function App() {
 
-
   return (
     <>
-      
-            <InterfaceSistema></InterfaceSistema>
- 
+      <InterfaceSistema ></InterfaceSistema>
     </>
   )
 }

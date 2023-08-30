@@ -16,7 +16,7 @@ return (
         <>
   
             <BuscadorPorductosProvider>
-                <Container tabIndex={0}  className='d-flex m-0 flex-column   vh-100' fluid>
+                <Container id="interface-sistema" tabIndex={0}   className='d-flex m-0 flex-column   vh-100' fluid>
                     <Row className='flex-grow-0 ' >
                         <NavegacionHeader></NavegacionHeader>
                     </Row>

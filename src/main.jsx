@@ -9,6 +9,7 @@ import { CustomErrorProvider } from './context/provider/CustomErrorProvider'
 import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
 import { TarifaProvider } from './context/provider/tarifaProvider'
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,13 +22,23 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CustomErrorProvider>
-      <ListaUsuariosProvider>
-        <TarifaProvider>
-          <RouterProvider router={router}>
 
-          </RouterProvider>
+      <ListaUsuariosProvider>
+
+        <TarifaProvider>
+
+   
+
+            <RouterProvider router={router}>
+            </RouterProvider>
+
+      
+
         </TarifaProvider>
+
       </ListaUsuariosProvider>
+
     </CustomErrorProvider>
+
   </React.StrictMode>,
 )

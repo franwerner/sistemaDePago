@@ -27,7 +27,7 @@ export const MetodosDePago = React.memo(() => {
     return (
         <>
             <Col xs={4} className={`${styles.metodoDePago} p-3  h-100`}>
-                <Container fluid >
+                <Container fluid id = "metodos-de-pagos" >
                     {listadoDeTarifas.map(tarifa =>
                         <ListaDeMetodosDePagos key={tarifa.tipoDePago} tarifa={tarifa}></ListaDeMetodosDePagos>
                     )}

@@ -1,11 +1,11 @@
 
 import React, { useContext, useEffect, useRef } from "react"
-import { productoSeleccionadoContext, } from "../../context/Contextos"
+import { productoSeleccionadoContext } from "../../context/Contextos"
 import styles from "../../styles/PlantillaCobro.module.css"
 import { separarNumerosConDecimales } from "../../helper/separarNumerosConDecimales"
 import { Col, Container, Row } from "react-bootstrap"
-import { useCapturarPulsacionesDelTecladoGlobal } from "../../hooks/useCapturarPulsacionesDelTecladoGlobal"
 import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje"
+import { useHotkeys } from "react-hotkeys-hook"
 
 
 const ContenidoDelProductoArriba = React.memo(({ producto }) => {
@@ -41,7 +41,7 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
 
     return (
         <>
-            <Row ref = {containerRef} className={`flex-nowrap  ${styles.infoDelProducto}`}>
+            <Row ref={containerRef} className={`flex-nowrap  ${styles.infoDelProducto}`}>
 
                 <Col className={`mx-1 d-flex justify-content-between `}>
 
@@ -70,41 +70,65 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
     const onClick = () => {
         seleccionarProducto(producto)
     }
+    const referencia = useRef(null)
 
 
     useEffect(() => {
         seleccionarProducto(producto)
+        referencia.current.focus()
     }, [producto])
 
-  
 
     return (
         <>
             <Row
+                tabIndex={0}
                 onClick={onClick}
                 className={`${styles.contenedorDelProducto}`}
+                ref={referencia}
+                id="producto-a-cobrar"
             >
-                    <Container fluid className={`${background} my-1 ${styles.productosACobrar} `}>
-                        <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
-                        <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
-                    </Container>
+                <Container fluid className={`${background} my-1 ${styles.productosACobrar} `}>
+                    <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
+                    <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
+                </Container>
             </Row>
         </>
     )
 })
 
-export const ListaDeProductosACobrar = ({ listaProducto }) => {
+
+export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto }) => {
 
 
     const { seleccion, seleccionarProducto } = useContext(productoSeleccionadoContext)
 
-    useCapturarPulsacionesDelTecladoGlobal(seleccion)
+
+
+
+    const handleShortcut = () => {
+        const target = document.activeElement
+
+        console.log(target.id)
+        
+        if (target.id == "producto-a-cobrar" || target.id == "interface-sistema") {
+            eliminarProducto(seleccion)
+        }
+
+
+
+    };
+
+
+    useHotkeys("backSpace,", handleShortcut)
+
 
     return (
         <>
+
             {listaProducto.map(lista => {
 
-                const background = seleccion.nombre == lista.nombre ? `${styles.contendorCobroProductoSeleccionado}` : `${styles.contenedorCobroProductos}`
+                const background = seleccion.nombre == lista.nombre ? `${styles.contendorCobroProductoSeleccionado}` : `${styles.contenedorCobroProductoNoSeleccionado}`
 
                 return (
                     <Producto

@@ -118,6 +118,7 @@
 
 .contenedorDelProducto {
     margin-top: 2px;
+    outline: none;
 }
 
 .productosACobrar:focus {
@@ -146,7 +147,7 @@
 }
 
 
-.contenedorCobroProductos:hover {
+.contenedorCobroProductoNoSeleccionado:hover {
     background-color: rgba(140, 143, 183, 0.078);
     transition: 0.2s all;
 }

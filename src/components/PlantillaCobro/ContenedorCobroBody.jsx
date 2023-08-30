@@ -9,7 +9,7 @@ import { TotalPrecioProductos } from "../TotalPrecioProductos"
 
 export const ContenedorCobroBody = React.memo(() => {
 
-    const { listaProducto } = useContext(productoReducerContext)
+    const { listaProducto,eliminarProducto} = useContext(productoReducerContext)
 
     const referido = useRef(null)
 
@@ -30,6 +30,9 @@ export const ContenedorCobroBody = React.memo(() => {
                     <>
                         <ListaDeProductosACobrar
                             listaProducto={listaProducto}
+                            eliminarProducto={eliminarProducto}
+
+
                         >
                         </ListaDeProductosACobrar>
 
