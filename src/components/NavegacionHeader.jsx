@@ -4,7 +4,7 @@ import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import { OverlayDefault } from "./OverlayDefault"
 import { ListaUsuarios } from "./ListaUsuarios"
 import { BuscadorInput } from "./BuscadorInput"
-import React, { useEffect } from "react"
+import React from "react"
 
 const OverylayNavLock = () => {
 
@@ -82,7 +82,7 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
 
     return (
         <>
-            <Navbar expand="md" className={`${styles.navegacionHeader}`}>
+            <Navbar  expand="md" className={`${styles.navegacionHeader}`}>
                 <Container fluid>
                     <Navbar.Brand className="w-50 d-flex text-white">
                         Logo

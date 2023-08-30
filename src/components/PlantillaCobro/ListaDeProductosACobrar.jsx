@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useRef } from "react"
+import React, { useCallback, useContext, useEffect, useRef } from "react"
 import { productoSeleccionadoContext } from "../../context/Contextos"
 import styles from "../../styles/PlantillaCobro.module.css"
 import { separarNumerosConDecimales } from "../../helper/separarNumerosConDecimales"
@@ -106,18 +106,14 @@ export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto }) => 
 
 
 
-    const handleShortcut = () => {
+    const handleShortcut = useCallback(() => {
         const target = document.activeElement
-
-        console.log(target.id)
-        
+     
         if (target.id == "producto-a-cobrar" || target.id == "interface-sistema") {
             eliminarProducto(seleccion)
         }
 
-
-
-    };
+    },[]);
 
 
     useHotkeys("backSpace,", handleShortcut)

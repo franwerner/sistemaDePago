@@ -11,3 +11,5 @@ export const customErrorContext = createContext()
 export const productoSeleccionadoContext = createContext()
 
 export const buscadorProductosContext = createContext()
+
+export const restoDelPagoContext = createContext();

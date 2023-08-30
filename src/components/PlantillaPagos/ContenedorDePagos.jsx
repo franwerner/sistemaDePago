@@ -31,8 +31,11 @@ const ModalBody = React.memo(({ alternarMostrar }) => {
                 </Row>
 
                 <Row className={`${styles.lineaPunteada}  h-100`}>
+                    
+                    
+                        <MetodosDePago />
+                   
 
-                    <MetodosDePago />
                     <InteraccionMetodosDePagos />
 
                 </Row>
@@ -42,20 +45,19 @@ const ModalBody = React.memo(({ alternarMostrar }) => {
     )
 })
 
-export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
+export const ContenedorDePagos = React.memo(({ mostrar, alternarMostrar }) => {
 
     const display = mostrar ? "block" : "none"
 
-    
 
     return (
 
         <>
             <Container fluid
                 tabIndex={1}
-                id = "modal-pagos"
+                id="modal-pagos"
                 className="modal p-0 show"
-                style={{ display}}
+                style={{ display }}
             >
                 <Modal.Dialog fullscreen={true}>
                     <Modal.Header className="p-0 flex-grow-0 d-block" >
@@ -73,4 +75,4 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
     )
 
-}
+})

@@ -1,12 +1,12 @@
 
-import { useEstablecerLimitesEjes } from "../../hooks/useEstablecerLimitesEjes"
-import { useEjesFinales } from "../../hooks/useEjesFinales"
-import { useColumna } from "../../hooks/useColumna"
-import styles from "../../styles/PlantillaCobro.module.css"
+import { useEstablecerLimitesEjes } from "../hooks/useEstablecerLimitesEjes"
+import { useEjesFinales } from "../hooks/useEjesFinales"
+import { useColumna } from "../hooks/useColumna"
+import styles from "../styles/PlantillaCobro.module.css"
 import { useEffect } from "react"
 import { Col } from "react-bootstrap"
 
-export const ContenedorCobro = ({ children }) => {
+export const SeccionCobroYPagos = ({ children }) => {
 
     const ESTADO_INCIAL = 4
 
@@ -32,17 +32,18 @@ export const ContenedorCobro = ({ children }) => {
         <>
             <Col md={5} lg={columna}
 
-                style={{ width: clientX}}
+                style={{ width: clientX }}
                 className={`p-0  h-100 overflow-hidden  d-flex`}>
 
+               
                     {children}
-           
+          
 
                 <span onMouseDown={onClickMove}
                     className={`d-none d-md-block overflow-hidden h-100  ${styles.linea}`}>
                 </span>
 
-            </Col>
+            </Col >
         </>
     )
 

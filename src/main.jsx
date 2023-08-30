@@ -20,14 +20,13 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-
     <CustomErrorProvider>
+      
       <App>
         <RouterProvider router={router}>
 
         </RouterProvider>
       </App>
-
 
     </CustomErrorProvider>
 

@@ -8,6 +8,7 @@ import React from "react";
 export const PrecioTotal = () => {
     const { listadoFinal } = useListadoFinalProducto()
 
+
     return (
         <>
             <Row>
@@ -36,7 +37,7 @@ export const BotonesDeInteraccion = () => {
 
 export const InteraccionMetodosDePagos = React.memo(() => {
 
-    console.log("<")
+   
     return (
         <>
             <Col className={`${styles.InteraccionMetodosDePagos}`}>

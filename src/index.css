@@ -18,7 +18,7 @@ body::-webkit-scrollbar{
 
 *{
     font-family: "Montserrat";
-
+    outline: none;
     user-select: none;
 }
 
