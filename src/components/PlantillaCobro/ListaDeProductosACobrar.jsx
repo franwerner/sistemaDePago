@@ -78,7 +78,7 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
         referencia.current.focus()
     }, [producto])
 
-
+   
     return (
         <>
             <Row
@@ -112,6 +112,7 @@ export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto }) => 
         }
 
     };
+
 
 
     useHotkeys("backSpace,", handleShortcut)
