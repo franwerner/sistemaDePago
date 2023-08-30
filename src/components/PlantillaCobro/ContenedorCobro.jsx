@@ -32,15 +32,14 @@ export const ContenedorCobro = ({ children }) => {
         <>
             <Col md={5} lg={columna}
 
-                style={{ width: clientX, }}
-                className={`p-0 overflow-hidden  d-flex`}>
+                style={{ width: clientX}}
+                className={`p-0  h-100 overflow-hidden  d-flex`}>
 
-                <div className={`overflow-hidden w-100 d-flex flex-column`}>
                     {children}
-                </div>
+           
 
                 <span onMouseDown={onClickMove}
-                    className={`d-none d-md-block overflow-hidden h-100 ${styles.linea}`}>
+                    className={`d-none d-md-block overflow-hidden h-100  ${styles.linea}`}>
                 </span>
 
             </Col>

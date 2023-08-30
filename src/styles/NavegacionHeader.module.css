@@ -2,23 +2,8 @@
     background-color: #875A7B;
     z-index: 44;
     overflow: hidden;
-    max-height: 55px;
-
 }
 
-.navBarToggle{
-    position: relative;
-}
-
-.navBarToggle::before{
-    content: "";
-    height: 100%;
-    width: 100%;
-    left: 0%;
-    top: 0%;
-    position: absolute;
-    background-color: rgba(0, 0, 255, 0);
-}
 
 .contenedorFormSearch {
     background-color: white;

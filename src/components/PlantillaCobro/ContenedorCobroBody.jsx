@@ -23,21 +23,23 @@ export const ContenedorCobroBody = React.memo(() => {
 
     return (
         <>
-            <Container fluid ref={referido} className={` ${styles.contenedorCobroBody}`}>
+
+            <Container fluid ref={referido} className={`flex-grow-1 ${styles.contenedorCobroBody}`}>
                 {listaProducto.length == 0 ? <CarritoDeProductoVacio></CarritoDeProductoVacio> :
+
                     <>
                         <ListaDeProductosACobrar
                             listaProducto={listaProducto}
                         >
                         </ListaDeProductosACobrar>
 
-                        <Row>
-                            <TotalPrecioProductos/>
-                        </Row>
+                      
+                            <TotalPrecioProductos />
+                        
                     </>
                 }
-            </Container>
 
+            </Container>
         </>
     )
 })

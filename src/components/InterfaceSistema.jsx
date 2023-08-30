@@ -21,7 +21,7 @@ export const InterfaceSistema = () => {
                     <Row className='flex-grow-0' >
                         <NavegacionHeader></NavegacionHeader>
                     </Row>
-                    <Row className='flex-grow-1   p-0 '>
+                    <Row className='flex-grow-1 p-0 '>
                         <ProductoReducerProvider>
                             <PlantillaCobro></PlantillaCobro>
                             <PlantillaProductos></PlantillaProductos>

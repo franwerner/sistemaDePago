@@ -13,8 +13,8 @@ export const ContenedorCobroHeader = React.memo(() => {
 
     return (
         <>
-            <Container fluid >
-                <Row className={` p-2   ${styles.botonesCrud}`}>
+            <Container  fluid className=" flex-grow-0 p-0 ">
+                <Row className={` p-2 ${styles.botonesCrud}`}>
                     <Col>
                         <BotonEditarProducto alternarMostrar={alternarMostrar} />
                     </Col>
