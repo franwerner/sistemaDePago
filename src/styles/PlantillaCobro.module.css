@@ -45,13 +45,13 @@
 /*Carrito de compras vacio*/
 
 .carrito {
-    font-size: 170px;
+    font-size: 140px;
     color: #DDD;
-    opacity: 40%;
+    opacity: 60%;
 }
 
 .textoCarrito {
-    color: #bdbcbc;
+    color: #55555560;
     z-index: 1;
     position: absolute;
     top: 25%;
