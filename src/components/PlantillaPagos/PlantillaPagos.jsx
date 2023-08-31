@@ -13,17 +13,11 @@ export const PlantillaPagos = () => {
 
     return (
         <>
-<<<<<<< HEAD
-            <Container fluid className="flex-grow-1  ">
-                <Row className="h-100 ">
-                    <Col  className={`d-flex h-100 p-3 flex-column  ${styles.contenedorPlantillaPagos} `}>
-=======
 
 
             <Container fluid className="flex-grow-1  ">
                 <Row className="h-100 ">
                     <Col className={`d-flex h-100  flex-column  ${styles.contenedorPlantillaPagos} `}>
->>>>>>> 905739c51870788cf615f1a0fcd19480c9246aaf
 
                         <PlantillaPagosHeader />
                         <PlantillaPagosBody alternarMostrar={alternarMostrar} />
