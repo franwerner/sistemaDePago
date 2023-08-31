@@ -10,17 +10,11 @@ export const useEjesFinales = (ejeLimitacion) => {
     const { clientX, clientY, esteblecerEstadoDeMovimiento, cambiarEjeX } = useEjeXYDocument(ejeLimitacion)
 
     const establecerEjesFinales = (e) => {
-        
-        e.stopPropagation()
-
-        if (e.type == "mouseup") {
             setEjesFinales({ clientX, clientY })
             cambiarEjeX(false)
-
-        }
-
-        esteblecerEstadoDeMovimiento()
+            esteblecerEstadoDeMovimiento()     
     };
+
 
 
     useEffect(() => {
@@ -28,10 +22,14 @@ export const useEjesFinales = (ejeLimitacion) => {
 
         if (!clientX || !clientY) return
 
+
+
         document.addEventListener("mouseup", establecerEjesFinales)
+        document.addEventListener("mousedown", establecerEjesFinales)
 
         return (() => {
             document.removeEventListener("mouseup", establecerEjesFinales)
+            document.removeEventListener("mousedown", establecerEjesFinales)
         })
 
     }, [clientX, clientY])

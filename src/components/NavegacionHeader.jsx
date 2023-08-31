@@ -94,11 +94,11 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
                     <Navbar.Collapse id="navbarCollapse"
                         className="d-md-flex  justify-content-between w-100">
                         {!mostrar &&
-                            <Nav.Item>
+                            <Nav.Item className="d-flex my-0">
                                 <BuscadorInput></BuscadorInput>
                             </Nav.Item>
                         }
-                        <Nav className="flex-row justify-content-between justify-content-md-end w-100 align-items-center mt-md-0 mt-2 ">
+                        <Nav className="justify-content-between justify-content-md-end  flex-row align-items-center ">
                             <OverlayNavUsuarios></OverlayNavUsuarios>
                             <OverlayNavTickets></OverlayNavTickets>
                             <OverylayNavLock></OverylayNavLock>
