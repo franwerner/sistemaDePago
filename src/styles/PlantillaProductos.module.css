@@ -16,18 +16,19 @@
     background-color: rgb(255, 255, 255);
 }
 
-.producto:hover,
+/* .producto:hover,
 .producto:active {
     transform: scale(1.2) translateY(20px);
     transition: 0.3 all;
     z-index: 1;
     box-shadow: 4px -4px 28px -11px rgba(0, 0, 0, 0.75);
-}
+} */
 
 .contenedorProducto:hover .productoNombre {
     color: #555;
     font-weight: 500;
 }
+
 
 
 .productoNombre {
@@ -65,9 +66,22 @@
 
 /*SECCIONES DE PRODUCTOS*/
 
+.arrowHome{
+    
+    position: absolute;
+    right: -7%;
+    top: 0%;
+    background-color: #d3d3d3
+   
+}
+
+.botonHome {
+  border-left: 2px solid red;
+}
+
 .botonesContainer {
     background-color: #d3d3d3;
-    border-bottom: 4px solid rgb(110, 200, 155);
+    border-bottom: 3px solid rgb(110, 200, 155);
     overflow-x: overlay;
 }
 
@@ -81,30 +95,21 @@
 }
 
 
-.BotonesSeccion {
+.botonesSeccion {
     color: #808080;
     cursor: pointer;
     border-right: 1px solid rgb(193, 191, 191);
+    padding: 12px ;
     background-color: #d3d3d3;
 
 }
 
-.BotonHome {
-    background-color: rgba(57, 57, 57, 0.534);
-}
-
-.BotonesSeccion:hover {
-    background-color: rgba(103, 98, 98, 0.534);
-    color: white;
-}
 
 
-.BotonSeccionPresionado {
-    background-color: rgba(57, 57, 57, 0.534);
-    border-left: 1px solid rgb(112, 111, 111);
-    cursor: pointer;
-    color: white;
-}
+
+
+
+
 
 /*Contenedor De Productos*/
 
