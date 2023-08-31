@@ -119,6 +119,7 @@
     overflow: hidden;
     overflow-y: none;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .contenedorDelProducto {
