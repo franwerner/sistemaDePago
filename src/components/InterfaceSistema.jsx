@@ -27,7 +27,7 @@ export const InterfaceSistema = () => {
 
                             <SeccionCobroYPagos>
 
-                                <Col  className="overflow-hidden  d-flex  flex-column">
+                                <Col className="overflow-hidden   d-flex  flex-column">
                                     <PlantillaCobro />
                                     <PlantillaPagos />
                                 </Col>

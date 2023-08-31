@@ -2,13 +2,11 @@ import styles from "../../styles/PlantillaProductos.module.css"
 import { Col, Container, Row } from "react-bootstrap"
 import React from "react"
 
-const SeccionesBotones = ({ seccionActual, secciones, elegirSeccion }) => {
-
-    const variante = secciones == seccionActual ? "BotonSeccionPresionado" : "BotonesSeccion"
+const SeccionesRestantes = ({ seccionActual, secciones, elegirSeccion }) => {
 
     const btnSeccion = <span
         onClick={() => { elegirSeccion(secciones) }}
-        className={` p-3 ${styles[variante]}   `}>
+        className={` ${styles.botonesSeccion}   `}>
         {secciones}
     </span>
 
@@ -22,6 +20,29 @@ const SeccionesBotones = ({ seccionActual, secciones, elegirSeccion }) => {
     )
 }
 
+const SeccionHome = ({ seccion, onClick }) => {
+
+    const arrowImg = seccion !== "Home" ? <img className={`${styles.arrowHome}`} src="../../../assets/bc-arrow-big.png"></img> : ""
+
+    return (
+        <>
+            <div
+
+                onClick={() => onClick("Home")}
+                className={`px-4 position-relative d-flex ${styles.botonesSeccion}`}>
+
+                {arrowImg}
+
+                <span
+                    className={`fs-4 text-center d-flex align-items-center justify-content-center`}>
+                    <i className="fa-solid  fa-house "></i>
+                </span>
+            </div>
+
+        </>
+    )
+}
+
 export const SeccionesProductos = ({ seccion, elegirSeccion, seccionesProductos }) => {
 
     //ACA REALIZAR UNA LLAMADA A LA BASE DE DATOS EN BASE A LA SECCION PROPORCIONADA O EN BASE AL BUSCADOR INPUT
@@ -30,18 +51,17 @@ export const SeccionesProductos = ({ seccion, elegirSeccion, seccionesProductos 
         elegirSeccion(nombre)
     }
 
-
     return (
         <>
-            <Container fluid className={`d-flex flex-grow-0  ${styles.botonesContainer} p-0`}>
+
+            <Container fluid className={`d-flex flex-grow-0  ${styles.seccionesContainer} p-0`}>
                 <Row>
                     <Col className="d-flex">
-                        <span onClick={() => onClick("Home")}
-                            className={`fs-4 px-4 text-center d-flex align-items-center justify-content-center text-uppercase ${styles.BotonHome}`}>
-                            <i className="fa-solid mx-3 fa-house text-white"></i>
-                        </span>
+
+                        <SeccionHome seccion={seccion} onClick={onClick} />
+
                         {seccionesProductos.map(secProductos =>
-                            <SeccionesBotones key={secProductos.nombre}
+                            <SeccionesRestantes key={secProductos.nombre}
                                 elegirSeccion={onClick}
                                 secciones={secProductos.nombre}
                                 seccionActual={seccion}

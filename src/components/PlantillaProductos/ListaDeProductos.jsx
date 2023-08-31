@@ -177,7 +177,7 @@ const Precio = React.memo(({ precio }) => {
       <OverlayDefault
         overlayCustom={separacion}
         position="top" >
-        <div className={`rounded-1 text-white overflow-hidden text-start ${styles.productoPrecio}`}>
+        <div className={` text-white ${styles.productoPrecio}`}>
           <p className="mx-1">
             $ {separacion}
           </p>
