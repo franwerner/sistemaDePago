@@ -94,8 +94,7 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
                     <Navbar.Collapse id="navbarCollapse"
                         className="d-md-flex  justify-content-between w-100">
                         {!mostrar &&
-                            <Nav.Item className={`d-flex mt-md-0 mt-2 align-items-center ${styles.contenedorFormSearch} rounded`}>
-                                <i className="fa-solid fa-magnifying-glass p-1 mx-2"></i>
+                            <Nav.Item>
                                 <BuscadorInput></BuscadorInput>
                             </Nav.Item>
                         }

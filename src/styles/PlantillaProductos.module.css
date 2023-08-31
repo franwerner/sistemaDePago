@@ -16,13 +16,13 @@
     background-color: rgb(255, 255, 255);
 }
 
-.producto:hover,
+/* .producto:hover,
 .producto:active {
     transform: scale(1.2) translateY(20px);
     transition: 0.3 all;
     z-index: 1;
     box-shadow: 4px -4px 28px -11px rgba(0, 0, 0, 0.75);
-}
+} */
 
 .contenedorProducto:hover .productoNombre {
     color: #555;

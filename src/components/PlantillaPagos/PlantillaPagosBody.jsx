@@ -6,8 +6,8 @@ export const PlantillaPagosBody = React.memo(({alternarMostrar}) => {
         <>
             <Container fluid className={`  flex-grow-1 border  `}>
 
-                <Row className={`text-center h-100 align-items-center justify-content-center d-flex  border-secondary border-2 ${styles.botonPagos}`}>
-                    <Col id="plantilla-pagos" tabIndex={0} onClick={alternarMostrar} className="my-5">
+                <Row className={`text-center h-100 align-items-center justify-content-center d-flex   ${styles.botonPagos}`}>
+                    <Col id="plantilla-pagos" tabIndex={0} onClick={alternarMostrar} >
                         <i className="fa-solid fa-circle-arrow-right "></i>
                         <p className="fw-bolder">Pagos</p>
                     </Col>
