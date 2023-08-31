@@ -141,3 +141,6 @@ git remote : nos sirve para indiciar si es que vamos a tener un servidor remoto 
 
 git add origin : aca indiciamos de donde nosotros obtenemos y mandamos nuestro codigo
 
+git pull --all : sirve para sincronizar todo
+
+git pull origin nombre_rama : para sincronizar una rama en concreto

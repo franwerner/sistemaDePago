@@ -15,7 +15,7 @@ export const PlantillaCobro = () => {
         <>
             <Container fluid className="p-0">
                 <ProductoSeleccionadoProvider>
-                    <Row >
+                    <Row  >
                         <Col className={`d-flex flex-column  ${styles.contenedorCobroPrincipal}`}>
                             <ContenedorCobroHeader />
                             <ContenedorCobroBody />

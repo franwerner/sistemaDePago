@@ -13,8 +13,6 @@ export const PlantillaPagos = () => {
 
     return (
         <>
-
-
             <Container fluid className="flex-grow-1  ">
                 <Row className="h-100 ">
                     <Col className={`d-flex h-100  flex-column  ${styles.contenedorPlantillaPagos} `}>

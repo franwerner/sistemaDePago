@@ -16,7 +16,8 @@ export const useEjeXYDocument = (ejeLimitacion) => {
     useEffect(() => {
 
         const mouseMoveHandler = (e) => {
-          
+    
+
             if (e.clientX <= ejeLimitacion.minimoX || e.clientX >= ejeLimitacion.maximoX) return
 
             cambiarEjeX(e.clientX)
@@ -28,13 +29,11 @@ export const useEjeXYDocument = (ejeLimitacion) => {
 
         if (movimiento === true) {
             document.addEventListener("mousemove", mouseMoveHandler);
-            document.addEventListener("mousedown", mouseMoveHandler)
         }
 
         return () => {
-
             document.removeEventListener("mousemove", mouseMoveHandler);
-            document.removeEventListener("mousedown", mouseMoveHandler);
+
         };
 
     }, [movimiento]);

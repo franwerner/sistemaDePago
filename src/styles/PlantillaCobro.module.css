@@ -1,6 +1,7 @@
 .contenedorCobroBody {
     overflow-y: auto;
    max-height: 100%;
+   transition: 0.1s all;
   
 }
 

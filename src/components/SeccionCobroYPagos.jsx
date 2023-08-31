@@ -33,13 +33,14 @@ export const SeccionCobroYPagos = ({ children }) => {
             <Col md={5} lg={columna}
 
                 style={{ width: clientX }}
-                className={`p-0  h-100 overflow-hidden  d-flex`}>
+                className={`p-0 overflow-hidden  h-100  ${styles.seccionCobroYPagos} d-flex`}>
 
-               
-                    {children}
-          
+
+                {children}
+
 
                 <span onMouseDown={onClickMove}
+                    onMouseUp={onClickMove}
                     className={`d-none d-md-block overflow-hidden h-100  ${styles.linea}`}>
                 </span>
 

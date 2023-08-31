@@ -13,9 +13,10 @@ import { PlantillaPagos } from './PlantillaPagos/PlantillaPagos';
 
 
 export const InterfaceSistema = () => {
+
+    
     return (
         <>
-
             <BuscadorPorductosProvider>
                 <Container style={{ maxHeight: "100vh", overflow: "auto" }} id="interface-sistema" tabIndex={0} className='d-flex m-0 flex-column   vh-100' fluid>
                     <Row className='flex-grow-0 ' >
