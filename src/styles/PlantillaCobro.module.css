@@ -5,7 +5,9 @@
   
 }
 
-
+.seccionCobroYPagos{
+    transition: 2ms all;
+}
 
 .contenedorSinProductos {
     height: 100%;

@@ -22,13 +22,13 @@ const OverylayNavLock = () => {
                 onMouseLeave={alternarMostrar}
                 href="#action2"
                 tabIndex={0}
-                style={{ width: "40px", marginTop: "-9px" }}
-                className=" d-flex justify-content-center  fs-4"
+                style={{width : "30px",marginTop : "-3px"}}
+                className="  fs-5"
             >
 
                 {mostrar ?
-                    <i className={`fa-solid fa-lock-open text-danger  `}></i> :
-                    <i className={`fa-solid fa-lock text-success  `}></i>
+                    <i className={`fa-solid  d-flex  justify-content-center fa-lock-open text-danger  `}></i> :
+                    <i className={`fa-solid  d-flex justify-content-center fa-lock text-success  `}></i>
                 }
 
             </Nav.Link>
@@ -46,7 +46,7 @@ const OverlayNavTickets = () => {
                 overlayCustom={overlayText}
             >
                 <Nav.Link tabIndex={0} href="/AbrirProductosCobrados">
-                    <i className="fa-solid fa-ticket mx-4 text-warning fs-4"></i>
+                    <i className="fa-solid fa-ticket mx-2 d-flex justify-content-center align-items-center text-warning fs-5"></i>
                 </Nav.Link>
             </OverlayDefault>
         </>
@@ -65,7 +65,8 @@ const OverlayNavUsuarios = () => {
             <OverlayDefault
                 overlayCustom={overlayText} >
                 <Nav.Link tabIndex={0}>
-                    <i onClick={alternarMostrar} className={`fa-regular fa-address-card text-white fs-4 }`}></i>
+                    <i onClick={alternarMostrar}
+                        className={`fa-regular fa-address-card d-flex justify-content-center align-items-center text-white fs-5 }`}></i>
                 </Nav.Link>
             </OverlayDefault>
 
@@ -82,15 +83,15 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
 
     return (
         <>
-            <Navbar  expand="md" className={`${styles.navegacionHeader}`}>
+            <Navbar expand="md" className={`${styles.navegacionHeader}`}>
                 <Container fluid>
                     <Navbar.Brand className="w-50 d-flex text-white">
                         Logo
                     </Navbar.Brand>
-                 
-                    <Navbar.Toggle  className={`bg-white ${styles.navBarToggle}`} aria-controls="navbarCollapse" />
-                  
-               
+
+                    <Navbar.Toggle className={`bg-white ${styles.navBarToggle}`} aria-controls="navbarCollapse" />
+
+
                     <Navbar.Collapse id="navbarCollapse"
                         className="d-md-flex  justify-content-between w-100">
                         {!mostrar &&
@@ -98,7 +99,9 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
                                 <BuscadorInput></BuscadorInput>
                             </Nav.Item>
                         }
-                        <Nav className="justify-content-between justify-content-md-end  flex-row align-items-center ">
+                        <Nav
+
+                            className="justify-content-between w-100  justify-content-md-end flex-row align-items-center ">
                             <OverlayNavUsuarios></OverlayNavUsuarios>
                             <OverlayNavTickets></OverlayNavTickets>
                             <OverylayNavLock></OverylayNavLock>
