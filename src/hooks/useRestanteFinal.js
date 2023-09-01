@@ -1,33 +1,35 @@
 import { useContext, useMemo } from "react";
-import { useListadoFinalProducto } from "../hooks/useListadoFinalProducto";
+import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
 import { restoDelPagoContext } from "../context/Contextos";
 
 
 export const useRestanteFinal = () => {
 
-    const { listadoFinal } = useListadoFinalProducto()
+    const { precioFinal } = usePrecioFinalDeLosProductos()
+
+    const { calculoSinTarifa } = precioFinal
 
     const { restoDelPago } = useContext(restoDelPagoContext)
 
     const restaFinal = useMemo(() => {
 
-        const calculoResta = restoDelPago.reduce((acc, { resto = 0 }) => acc - resto, listadoFinal.calculoSinTarifa)
+        const calculoResta = restoDelPago.reduce((acc, { resto = 0 }) => acc - resto, calculoSinTarifa)
 
         const calculoSuma = restoDelPago.reduce((acc, { resto, porcentaje = 0 }) => {
 
             return acc + resto + porcentaje
+
         }, 0)
 
         return { calculoResta, calculoSuma }
 
-    }, [restoDelPago, listadoFinal.calculoSinTarifa])
+    }, [restoDelPago,calculoSinTarifa])
 
 
 
 
     return {
-        restaFinal,
-        listadoFinal,
+        restaFinal
     }
 
 
