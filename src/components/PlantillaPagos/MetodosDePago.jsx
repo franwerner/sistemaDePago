@@ -9,22 +9,20 @@ import { calcularPorcentajeDelMetodoDePago } from "../../helper/calcularPorcenta
 
 
 
-const ListaDeMetodosDePagos = React.memo(({ tarifaActual, agregarResto, restaFinal, eliminarResto, resto }) => {
+const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, eliminarResto, resto }) => {
 
-    const { porcentaje } = tarifaActual
+    const { porcentaje } = tarifa
 
     const { calculoResta } = restaFinal
 
 
+
     const onClick = () => {
-
-        if (calculoResta <= 0 || resto > 0) return;
-
+        
         const resultado = calcularPorcentajeDelMetodoDePago(calculoResta, porcentaje)
 
-
         agregarResto({
-            ...tarifaActual,
+            ...tarifa,
             resto: calculoResta,
             porcentaje: resultado
         })
@@ -33,13 +31,14 @@ const ListaDeMetodosDePagos = React.memo(({ tarifaActual, agregarResto, restaFin
 
     const x = () => {
         if (resto <= 0) return
-        eliminarResto({ ...tarifaActual })
+        eliminarResto({ ...tarifa })
     }
+
     return (
         <>
             <Row tabIndex={1} className={`${styles.metodo} mt-1  border border`}>
                 <Col xs={4} onClick={onClick} className="my-0 border   ">
-                    {tarifaActual.tipoDePago}
+                    {tarifa.tipoDePago}
                 </Col>
                 <Col>
                     {resto}
@@ -77,24 +76,19 @@ export const MetodosDePago = React.memo(() => {
                         const resto = buscar ? buscar.resto + buscar.porcentaje : 0
 
                         return (
-
                             <ListaDeMetodosDePagos
                                 key={tarifa.tipoDePago}
                                 agregarResto={agregarResto}
                                 restaFinal={restaFinal}
-                                tarifaActual={tarifa}
+                                tarifa={tarifa}
                                 resto={resto}
                                 eliminarResto={eliminarResto}
                             >
                             </ListaDeMetodosDePagos>
-
-
                         )
                     })}
                 </Container>
             </Col>
-
-
 
         </>
     );
