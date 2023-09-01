@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Container, Row } from "react-bootstrap";
 import { ContenedorDeTarifas } from "../ContenedorDeTarifas";
 import { BotonTarifas } from "../BotonTarifas";
 import { useEventoMostrar } from "../../hooks/useEventoMostrar";
+import { useEvitarRenderizados } from "../../hooks/useEvitarRenderizados";
 
 export const PlantillaPagosHeader = React.memo(() => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
+
+    const { conteoRenderizados, registrarConteo } = useEvitarRenderizados()
+
+    const onClick = useCallback(() => {
+        alternarMostrar()
+        registrarConteo()
+    }, [])
 
     return (
         <>
@@ -14,14 +22,18 @@ export const PlantillaPagosHeader = React.memo(() => {
                 <Row className="border p-2" >
 
                     <BotonTarifas
-                        alternarMostrar={alternarMostrar}>
+                        alternarMostrar={onClick}>
                     </BotonTarifas>
 
-                    <ContenedorDeTarifas
-                        alternarMostrar={alternarMostrar}
-                        mostrar={mostrar}
-                    ></ContenedorDeTarifas>
-                    
+                    {
+                        conteoRenderizados >= 1 &&
+
+                        <ContenedorDeTarifas
+                            alternarMostrar={alternarMostrar}
+                            mostrar={mostrar}
+                        />
+                    }
+
                 </Row>
             </Container>
 

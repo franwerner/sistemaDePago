@@ -43,10 +43,9 @@ export const ContenedorDeTarifas = React.memo(({ mostrar, alternarMostrar }) => 
 
     const { tarifaActual, listadoDeTarifas, cambiarTarifa } = useContext(TarifaContex)
 
+
     return (
         <>
-
-            {mostrar &&
                 <Modal show={mostrar} onHide={alternarMostrar}>
                     <Modal.Header closeButton>
                         <Modal.Title style={{ color: "#555555" }} className="fw-bolder">{tarifaActual.tipoDePago}</Modal.Title>
@@ -71,7 +70,7 @@ export const ContenedorDeTarifas = React.memo(({ mostrar, alternarMostrar }) => 
                             </tbody>
                         </Table>
                     </Modal.Body>
-                </Modal>}
+                </Modal>
         </>
     )
 })
