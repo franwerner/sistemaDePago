@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { listaUsuariosContext } from "../../context/Contextos"
 import { useEventoMostrar } from "../../hooks/useEventoMostrar"
 import { Table } from "react-bootstrap"
-import { UsuarioASeleccionar } from "./UsuarioASeleccionar"
+import { ContenedorUsuarioSeleccionado } from "./ContenedorUsuarioSeleccionado"
 
 
 export const ListaDeUsuarios = ({ cerrarTodo }) => {
@@ -45,7 +45,7 @@ export const ListaDeUsuarios = ({ cerrarTodo }) => {
                     )}
 
 
-                    <UsuarioASeleccionar
+                    <ContenedorUsuarioSeleccionado
                         cerrarTodo={cerrarTodo}
                         mostrar={mostrar}
                         usuarioSeleccionado={usuarioSeleccionado}

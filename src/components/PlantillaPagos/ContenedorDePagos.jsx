@@ -1,4 +1,4 @@
-import { NavegacionHeader } from "../NavegacionHeader"
+import { NavegacionHeader } from "../NavegacionHeader/NavegacionHeader"
 import { Button, Col, Container, Modal, Row } from "react-bootstrap"
 import { MetodosDePago } from "./MetodosDePago"
 import styles from "../../styles/PlantillaPagos.module.css"

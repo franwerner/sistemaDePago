@@ -31,7 +31,7 @@ export const useValidarUsuarioSeleccionado = () => {
 
             if (error instanceof CustomError) {
 
-                generarError({ ...error })
+                generarError(error)
 
             } else {
                 console.log(error)

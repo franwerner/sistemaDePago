@@ -3,7 +3,7 @@ import { Button, Form, FormControl, Modal } from "react-bootstrap"
 import { useValidarUsuarioSeleccionado } from "../../hooks/useValidarUsuarioSeleccionado"
 
 
-export const UsuarioASeleccionar = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {
+export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {
 
     const { onSubmit, changeForm, form } = useForm({ "contraseña": "" })
 
@@ -18,7 +18,6 @@ export const UsuarioASeleccionar = ({ cerrarTodo, mostrar, usuarioSeleccionado, 
 
 
     const onClick = () => {
-
         const esValido = validar(usuarioSeleccionado, data)
         esValido.message == "validado" && cerrarTodo()
     }

@@ -1,6 +1,6 @@
 
 import { ProductoReducerProvider } from '../context/provider/ProductosReducerProvider';
-import { NavegacionHeader } from './NavegacionHeader';
+import { NavegacionHeader } from '../components/NavegacionHeader/NavegacionHeader';
 import "../index.css"
 import { Col, Container, Row } from 'react-bootstrap';
 import { BuscadorPorductosProvider } from '../context/provider/BuscardorProductosProvider';
