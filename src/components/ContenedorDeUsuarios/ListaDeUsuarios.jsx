@@ -7,6 +7,7 @@ import { ContenedorUsuarioSeleccionado } from "./ContenedorUsuarioSeleccionado"
 
 export const ListaDeUsuarios = ({ cerrarTodo }) => {
 
+    console.log("MODALITO")
     const { listaDeUsuarios } = useContext(listaUsuariosContext)
 
     const { mostrar, alternarMostrar } = useEventoMostrar()

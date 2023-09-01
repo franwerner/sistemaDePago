@@ -8,56 +8,54 @@ import { RestoDelPagoProvider } from "../../context/provider/RestoDelPagoProvide
 
 
 
-const ModalBody = ({ alternarMostrar, mostrar }) => {
-
+const ContenedorDePagoHeader = React.memo(({ alternarMostrar }) => {
     return (
-        <Modal.Body className="flex-grow-1">
+        <Row className={`text-center ${styles.navegacionPagos}`}>
+            <Col className="d-flex p-0">
+                <Button onClick={alternarMostrar}>
+                    Volver
+                </Button>
+            </Col>
+            <Col className="">
+                <p className={`my-1 fs-3 ${styles.textPagos}`}>
+                    Pagos
+                </p>
+            </Col>
+            <Col className="d-flex justify-content-end p-0">
+                <Button >
+                    Validar
+                </Button>
+            </Col>
+        </Row>
 
-            <Container fluid className=" h-100 d-flex flex-column  w-75 ">
+    )
+})
 
-                <Row className={`text-center ${styles.navegacionPagos}`}>
-                    <Col className="d-flex p-0">
-                        <Button onClick={alternarMostrar}>
-                            Volver
-                        </Button>
-                    </Col>
-                    <Col className="">
-                        <p className={`my-1 fs-3 ${styles.textPagos}`}>
-                            Pagos
-                        </p>
-                    </Col>
-                    <Col className="d-flex justify-content-end p-0">
-                        <Button >
-                            Validar
-                        </Button>
-                    </Col>
-                </Row>
 
-                <Row className={`${styles.lineaPunteada}  h-100`}>
+const ContenedorDePagoBody = ({ mostrar }) => {
+    return (
 
-                    <RestoDelPagoProvider>
-                        {
-                            mostrar &&
-                            <>
-                                <MetodosDePago />
-                                <InteraccionMetodosDePagos />
-                            </>
+        <Row className={`${styles.lineaPunteada}  h-100`}>
 
-                        }
+            <RestoDelPagoProvider>
 
-                    </RestoDelPagoProvider>
+                {
+                    mostrar &&
+                    <>
+                        <MetodosDePago />
+                        <InteraccionMetodosDePagos />
+                    </>
+                }
 
-                </Row>
-            </Container>
+            </RestoDelPagoProvider>
 
-        </Modal.Body>
+        </Row>
     )
 }
 
 export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
     const display = mostrar ? "block" : "none"
-
 
     return (
 
@@ -80,9 +78,17 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
                     </Modal.Header>
 
-                    <ModalBody
-                        alternarMostrar={alternarMostrar}
-                        mostrar={mostrar} />
+                    <Modal.Body className="flex-grow-1">
+
+                        <Container fluid className=" h-100 d-flex flex-column  w-75 ">
+
+                            <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
+
+                            <ContenedorDePagoBody mostrar={mostrar} />
+
+                        </Container>
+
+                    </Modal.Body>
 
                 </Modal.Dialog>
 

@@ -2,15 +2,22 @@ import { Col, Container, Row } from "react-bootstrap"
 import styles from "../../styles/PlantillaPagos.module.css"
 import { useEventoMostrar } from "../../hooks/useEventoMostrar"
 import { ContenedorDePagos } from "./ContenedorDePagos"
-import React from "react"
+import React, { useCallback } from "react"
 import { PlantillaPagosHeader } from "./PlantillaPagosHeader"
 import { PlantillaPagosBody } from "./PlantillaPagosBody"
+import { useEvitarRenderizados } from "../../hooks/useEvitarRenderizados"
+
 
 export const PlantillaPagos = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
-   
+    const { conteoRenderizados, registrarConteo } = useEvitarRenderizados()
+
+    const onClick = useCallback(() => {
+        alternarMostrar()
+        registrarConteo()
+    },[])
 
     return (
         <>
@@ -20,11 +27,16 @@ export const PlantillaPagos = () => {
 
                         <PlantillaPagosHeader />
                         <PlantillaPagosBody
-                            alternarMostrar={alternarMostrar} />
+                            alternarMostrar={onClick} />
 
-                        <ContenedorDePagos
-                            mostrar={mostrar}
-                            alternarMostrar={alternarMostrar} />
+                        {
+                            conteoRenderizados >= 1 &&
+                            <ContenedorDePagos
+                                mostrar={mostrar}
+                                alternarMostrar={alternarMostrar} />
+                        }
+
+
 
                     </Col>
                 </Row>

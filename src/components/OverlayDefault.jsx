@@ -6,7 +6,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
         return (
             <OverlayTrigger
                 placement={position}
-                delay={{ show: 250, hide: 300 }}
+                delay={{ show: 100, hide: 200 }}
                 overlay={<Tooltip>{overlayCustom}</Tooltip>}
     
             >

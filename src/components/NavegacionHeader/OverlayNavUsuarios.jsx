@@ -3,6 +3,8 @@ import { Nav } from "react-bootstrap"
 import { ContenedorDeUsuarios } from "../ContenedorDeUsuarios/ContenedorDeUsuarios"
 import { OverlayDefault } from "../OverlayDefault"
 import { useEventoMostrar } from "../../hooks/useEventoMostrar"
+import { useEvitarRenderizados } from "../../hooks/useEvitarRenderizados"
+
 
 export const OverlayNavUsuarios = () => {
 
@@ -10,6 +12,12 @@ export const OverlayNavUsuarios = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
+    const { registrarConteo, conteoRenderizados } = useEvitarRenderizados()
+
+    const onClick = () => {
+        alternarMostrar()
+        registrarConteo()
+    }
 
     return (
         <>
@@ -17,18 +25,19 @@ export const OverlayNavUsuarios = () => {
                 overlayCustom={overlayText} >
                 <Nav.Link tabIndex={0}>
                     <i
-                        onClick={alternarMostrar}
+                        onClick={onClick}
                         className={`fa-regular fa-address-card d-flex justify-content-center align-items-center text-white fs-5 }`}>
 
                     </i>
                 </Nav.Link>
             </OverlayDefault>
 
-            {mostrar &&
+            {conteoRenderizados >= 1 && (
                 <ContenedorDeUsuarios
                     mostrar={mostrar}
-                    alternarMostrar={alternarMostrar} />
-            }
+                    alternarMostrar={alternarMostrar}
+                />
+            )}
         </>
     )
 }

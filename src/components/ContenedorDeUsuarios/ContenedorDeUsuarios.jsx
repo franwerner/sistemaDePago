@@ -1,22 +1,18 @@
 import React, { useContext } from "react"
-import { Button, Modal  } from "react-bootstrap"
-import {  listaUsuariosContext } from "../../context/Contextos"
+import { Button, Modal } from "react-bootstrap"
+import { listaUsuariosContext } from "../../context/Contextos"
 import { ListaDeUsuarios } from "./ListaDeUsuarios"
-
-
-
-
-
-
 
 
 export const ContenedorDeUsuarios = ({ mostrar, alternarMostrar }) => {
 
     const { usuarioActual } = useContext(listaUsuariosContext)
 
+
     return (
         <>
-            <Modal show={mostrar}   onHide={alternarMostrar}>
+
+            <Modal show={mostrar} onHide={alternarMostrar}>
                 <Modal.Header closeButton >
                     <Modal.Title className="d-flex">
                         <p className="mx-2">{usuarioActual.nombre}</p>
