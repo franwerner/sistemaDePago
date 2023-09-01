@@ -1,33 +1,19 @@
 import React, { useContext } from "react"
 import { TarifaContex } from "../context/Contextos"
 import { Modal, Table } from "react-bootstrap"
+import { compararTarifaActual } from "../helper/compararTarifaActual"
 
-import styles from "../styles/ListaDeTarifas.module.css"
 
-const ListaTarifas = React.memo(({ alternarMostrar, tarifaActual }) => {
 
-    const { cambiarTarifa, tarifa } = useContext(TarifaContex)
+const ListaDeTarifas = React.memo(({ alternarMostrar, tarifa, cambiarTarifa, tarifaActual }) => {
 
-    const compararTarifaActual = (tarifas) => {
-
-        if (tarifa.tipoDePago == tarifas.tipoDePago) {
-            return {
-                background: "#88dc65",
-                color: "white"
-            }
-        } else {
-            return {}
-        }
-    }
-
-    const { background, color } = compararTarifaActual(tarifaActual)
-
+    const { background, color } = compararTarifaActual(tarifa, tarifaActual)
 
     return (
         <>
             <tr
                 onClick={() => {
-                    cambiarTarifa(tarifaActual)
+                    cambiarTarifa(tarifa)
                     alternarMostrar()
                 }}
                 className="text-center"
@@ -36,13 +22,13 @@ const ListaTarifas = React.memo(({ alternarMostrar, tarifaActual }) => {
                     background,
                     color
                 }} >
-                    {tarifaActual.tipoDePago}
+                    {tarifa.tipoDePago}
                 </td>
                 <td style={{
                     background,
                     color
                 }}>
-                    {tarifaActual.porcentaje}%
+                    {tarifa.porcentaje}%
                 </td>
             </tr>
 
@@ -51,9 +37,9 @@ const ListaTarifas = React.memo(({ alternarMostrar, tarifaActual }) => {
 })
 
 
-export const ListaDeTarifas = React.memo(({ mostrar, alternarMostrar }) => {
+export const ContenedorDeTarifas = React.memo(({ mostrar, alternarMostrar }) => {
 
-    const { tarifaActual, listadoDeTarifas } = useContext(TarifaContex)
+    const { tarifaActual, listadoDeTarifas, cambiarTarifa } = useContext(TarifaContex)
 
     return (
         <>
@@ -73,7 +59,12 @@ export const ListaDeTarifas = React.memo(({ mostrar, alternarMostrar }) => {
                             </thead>
                             <tbody>
                                 {listadoDeTarifas.map(tarifa =>
-                                    <ListaTarifas key={tarifa.tipoDePago} tarifaActual={tarifaActual} alternarMostrar={alternarMostrar}></ListaTarifas>
+                                    <ListaDeTarifas key={tarifa.tipoDePago}
+                                        cambiarTarifa={cambiarTarifa}
+                                        tarifa={tarifa}
+                                        tarifaActual={tarifaActual}
+                                        alternarMostrar={alternarMostrar}
+                                    ></ListaDeTarifas>
                                 )}
                             </tbody>
                         </Table>

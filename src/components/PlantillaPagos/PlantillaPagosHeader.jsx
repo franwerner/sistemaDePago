@@ -1,7 +1,7 @@
 import React from "react";
-import {Container, Row } from "react-bootstrap";
-import { ListaDeTarifas } from "../ListaDeTarifas";
-import {  BotonTarifas } from "../BotonTarifas";
+import { Container, Row } from "react-bootstrap";
+import { ContenedorDeTarifas } from "../ContenedorDeTarifas";
+import { BotonTarifas } from "../BotonTarifas";
 import { useEventoMostrar } from "../../hooks/useEventoMostrar";
 
 export const PlantillaPagosHeader = React.memo(() => {
@@ -12,9 +12,16 @@ export const PlantillaPagosHeader = React.memo(() => {
         <>
             <Container fluid className="mx-0" >
                 <Row className="border p-2" >
-                   
-                        <BotonTarifas alternarMostrar={alternarMostrar}></BotonTarifas>
-                        <ListaDeTarifas alternarMostrar = {alternarMostrar} mostrar = {mostrar}></ListaDeTarifas>
+
+                    <BotonTarifas
+                        alternarMostrar={alternarMostrar}>
+                    </BotonTarifas>
+
+                    <ContenedorDeTarifas
+                        alternarMostrar={alternarMostrar}
+                        mostrar={mostrar}
+                    ></ContenedorDeTarifas>
+                    
                 </Row>
             </Container>
 

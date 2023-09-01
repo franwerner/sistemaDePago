@@ -3,7 +3,6 @@ import styles from "../../styles/PlantillaPagos.module.css"
 import { useEventoMostrar } from "../../hooks/useEventoMostrar"
 import { ContenedorDePagos } from "./ContenedorDePagos"
 import React from "react"
-import { RestoDelPagoProvider } from "../../context/provider/RestoDelPagoProvider"
 import { PlantillaPagosHeader } from "./PlantillaPagosHeader"
 import { PlantillaPagosBody } from "./PlantillaPagosBody"
 
@@ -18,13 +17,12 @@ export const PlantillaPagos = () => {
                     <Col className={`d-flex h-100  flex-column  ${styles.contenedorPlantillaPagos} `}>
 
                         <PlantillaPagosHeader />
-                        <PlantillaPagosBody alternarMostrar={alternarMostrar} />
+                        <PlantillaPagosBody
+                            alternarMostrar={alternarMostrar} />
 
-                   
-                                <ContenedorDePagos mostrar={mostrar} alternarMostrar={alternarMostrar} />
-                          
-
-           
+                        <ContenedorDePagos
+                            mostrar={mostrar}
+                            alternarMostrar={alternarMostrar} />
 
                     </Col>
                 </Row>
