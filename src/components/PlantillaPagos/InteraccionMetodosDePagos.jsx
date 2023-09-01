@@ -3,15 +3,22 @@ import styles from "../../styles/PlantillaPagos.module.css"
 import { separarNumerosConDecimales } from "../../helper/separarNumerosConDecimales";
 import React from "react";
 import { useRestanteFinal } from "../../hooks/useRestanteFinal";
+import { useListadoFinalProducto } from "../../hooks/useListadoFinalProducto";
 
 
 export const PrecioTotal = () => {
 
-    const { restaFinal,listadoFinal} = useRestanteFinal()
+    const { restaFinal } = useRestanteFinal()
 
-    const {calculoSuma } = restaFinal
+    const { listadoFinal } = useListadoFinalProducto()
 
-    const restaCalculada = calculoSuma == 0 ? listadoFinal.tarifa : calculoSuma
+    const { calculoConTarifa } = listadoFinal
+
+    const { calculoSuma } = restaFinal
+
+    console.log("asd")
+
+    const restaCalculada = calculoSuma == 0 ? calculoConTarifa : calculoSuma
 
 
     return (

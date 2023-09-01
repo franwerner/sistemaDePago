@@ -39,7 +39,8 @@ const reducer = (state, action) => {
             case "Eliminar":
                 return {
                    ...action.metodoDePago,
-                   "resto" : 0
+                   "resto" : 0,
+                   "porcentaje" : 0
                 }
 
         }

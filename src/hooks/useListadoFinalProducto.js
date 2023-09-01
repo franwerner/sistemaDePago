@@ -16,7 +16,7 @@ export const useListadoFinalProducto = () => {
          acc + precioModificado * cantidadSeleccionada, 0)
 
       return {
-         tarifa: (tarifa.tarifa / 100) * calculo + calculo,
+         calculoConTarifa: (tarifa.tarifa / 100) * calculo + calculo,
          calculoSinTarifa: calculo
       }
 
@@ -24,7 +24,6 @@ export const useListadoFinalProducto = () => {
 
 
    return {
-      listadoFinal,
-
+      listadoFinal
    }
 }
