@@ -10,6 +10,7 @@ export const PlantillaPagos = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
+
     return (
         <>
             <Container fluid className="flex-grow-1  ">

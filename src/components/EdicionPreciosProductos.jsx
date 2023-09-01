@@ -14,7 +14,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar }) => {
 
     const { editarProducto } = useContext(productoReducerContext)
 
-    const { precioModificado, cantidadSeleccionada } = seleccion
+    const { precioModificado, cantidadSeleccionada,nombre} = seleccion
 
     const { form, onSubmit, changeForm } = useForm({
         precioForm: precioModificado
@@ -45,7 +45,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar }) => {
                     <Modal.Title  >
                         <div style={{ overflowWrap: "anywhere", minHeight: "150px" }}>
                             <p style={{ color: "#555" }}>
-                                {seleccion.nombre}
+                                {nombre}
                             </p>
 
                             <p className="fs-5 fw-light ">

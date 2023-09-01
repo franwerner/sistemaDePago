@@ -13,11 +13,11 @@ export const PrecioTotal = () => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { calculoConTarifa } = precioFinal
+    const { calculoSinTarifa } = precioFinal
 
     const { calculoSuma } = restaFinal
 
-    const restaCalculada = calculoSuma == 0 ? calculoConTarifa : calculoSuma
+    const restaCalculada = calculoSuma == 0 ? calculoSinTarifa : calculoSuma
 
 
     return (

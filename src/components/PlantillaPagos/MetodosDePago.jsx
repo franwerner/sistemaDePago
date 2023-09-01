@@ -19,6 +19,8 @@ const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, el
 
     const onClick = () => {
 
+        if(calculoResta == 0) return
+
         const resultado = calcularPorcentajeDelMetodoDePago(calculoResta, porcentaje)
 
         agregarResto({
@@ -61,7 +63,6 @@ export const MetodosDePago = React.memo(() => {
     const { agregarResto, restoDelPago, eliminarResto } = useContext(restoDelPagoContext)
 
     const { restaFinal } = useRestanteFinal()
-
 
     return (
         <>

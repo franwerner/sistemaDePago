@@ -9,13 +9,15 @@ const ListaDeTarifas = React.memo(({ alternarMostrar, tarifa, cambiarTarifa, tar
 
     const { background, color } = compararTarifaActual(tarifa, tarifaActual)
 
+    const onClick = () => {
+        cambiarTarifa(tarifa)
+        alternarMostrar()
+    }
+
     return (
         <>
             <tr
-                onClick={() => {
-                    cambiarTarifa(tarifa)
-                    alternarMostrar()
-                }}
+                onClick={onClick}
                 className="text-center"
             >
                 <td style={{

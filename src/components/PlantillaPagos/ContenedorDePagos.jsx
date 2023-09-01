@@ -7,6 +7,7 @@ import React from "react"
 import { RestoDelPagoProvider } from "../../context/provider/RestoDelPagoProvider"
 
 
+
 const ModalBody = ({ alternarMostrar, mostrar }) => {
 
     return (
@@ -68,15 +69,23 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
                 style={{ display }}
             >
                 <Modal.Dialog fullscreen={true}>
+
                     <Modal.Header className="p-0 flex-grow-0 d-block" >
+
                         <Modal.Title>
-                            <NavegacionHeader mostrar={mostrar}></NavegacionHeader>
+
+                            <NavegacionHeader mostrar={mostrar} />
+
                         </Modal.Title>
+
                     </Modal.Header>
 
-                    <ModalBody alternarMostrar={alternarMostrar} mostrar={mostrar} />
+                    <ModalBody
+                        alternarMostrar={alternarMostrar}
+                        mostrar={mostrar} />
 
                 </Modal.Dialog>
+
             </Container>
         </>
 

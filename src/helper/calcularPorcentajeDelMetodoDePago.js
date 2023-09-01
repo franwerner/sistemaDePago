@@ -6,7 +6,7 @@ export const calcularPorcentajeDelMetodoDePago = (numero, porcentaje) => {
 
 
     if (porcentaje <= 0) {
-        return numero
+        return 0
     }
 
     else if (porcentaje >= 0) {

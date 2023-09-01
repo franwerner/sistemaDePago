@@ -51,10 +51,10 @@ const CambiarUsuarioActual = ({ cerrarTodo, mostrar, usuarioSeleccionado, altern
 
     }
 
-   
+
     return (
         <>
-            <Modal  show={mostrar} onHide={alternarMostrar} >
+            <Modal show={mostrar} onHide={alternarMostrar} >
                 <Modal.Header   >
                     <Modal.Title style={{ color: "#555555" }} className="fs-2 text-u" >
                         {usuarioSeleccionado.nombre}
@@ -109,6 +109,8 @@ const Usuarios = React.memo(({ cerrarTodo }) => {
         setUsuarioSeleccionado(usuario)
     }
 
+    console.log("asdsd")
+
     return (
         <>
             <Table striped hover responsive >
@@ -123,10 +125,11 @@ const Usuarios = React.memo(({ cerrarTodo }) => {
                 <tbody>
                     {listaDeUsuarios.map(usuario =>
 
-                        <tr key={usuario.nombre} onClick={() => {
-                            seleccionarUsuario(usuario),
-                                alternarMostrar()
-                        }}>
+                        <tr key={usuario.nombre}
+                            onClick={() => {
+                                seleccionarUsuario(usuario),
+                                    alternarMostrar()
+                            }}>
                             <td>{usuario.nombre}</td>
                             <td>{usuario.apellido}</td>
                             <td>{usuario.telefono}</td>
@@ -135,9 +138,14 @@ const Usuarios = React.memo(({ cerrarTodo }) => {
 
                     )}
 
-                   {mostrar &&
-                    <CambiarUsuarioActual cerrarTodo={cerrarTodo} mostrar={mostrar} usuarioSeleccionado={usuarioSeleccionado} alternarMostrar={alternarMostrar} ></CambiarUsuarioActual>
-                   }
+                   
+                        <CambiarUsuarioActual
+                            cerrarTodo={cerrarTodo}
+                            mostrar={mostrar}
+                            usuarioSeleccionado={usuarioSeleccionado}
+                            alternarMostrar={alternarMostrar}
+                        />
+                 
                 </tbody>
             </Table>
 
@@ -162,7 +170,7 @@ export const ListaUsuarios = ({ mostrar, alternarMostrar }) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Usuarios cerrarTodo={alternarMostrar}></Usuarios>
+                    <Usuarios cerrarTodo={alternarMostrar} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button

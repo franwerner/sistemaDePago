@@ -14,7 +14,7 @@ import { PlantillaPagos } from './PlantillaPagos/PlantillaPagos';
 
 export const InterfaceSistema = () => {
 
-    
+
     return (
         <>
             <BuscadorPorductosProvider>
