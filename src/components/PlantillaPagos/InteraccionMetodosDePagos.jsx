@@ -16,8 +16,6 @@ export const PrecioTotal = () => {
 
     const { calculoSuma } = restaFinal
 
-    console.log("asd")
-
     const restaCalculada = calculoSuma == 0 ? calculoConTarifa : calculoSuma
 
 

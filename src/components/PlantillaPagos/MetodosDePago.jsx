@@ -9,20 +9,23 @@ import { calcularPorcentajeDelMetodoDePago } from "../../helper/calcularPorcenta
 
 
 
-const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, eliminarResto, resto }) => {
+const ListaDeMetodosDePagos = React.memo(({ tarifaActual, agregarResto, restaFinal, eliminarResto, resto }) => {
 
+    const { porcentaje } = tarifaActual
+
+    const { calculoResta } = restaFinal
 
 
     const onClick = () => {
 
-        if (restaFinal.calculoResta <= 0 || resto > 0) return;
+        if (calculoResta <= 0 || resto > 0) return;
 
-        const resultado = calcularPorcentajeDelMetodoDePago(restaFinal.calculoResta, tarifa.tarifa)
+        const resultado = calcularPorcentajeDelMetodoDePago(calculoResta, porcentaje)
 
 
         agregarResto({
-            ...tarifa,
-            resto: restaFinal.calculoResta,
+            ...tarifaActual,
+            resto: calculoResta,
             porcentaje: resultado
         })
 
@@ -30,13 +33,13 @@ const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, el
 
     const x = () => {
         if (resto <= 0) return
-        eliminarResto({ ...tarifa })
+        eliminarResto({ ...tarifaActual })
     }
     return (
         <>
             <Row tabIndex={1} className={`${styles.metodo} mt-1  border border`}>
                 <Col xs={4} onClick={onClick} className="my-0 border   ">
-                    {tarifa.tipoDePago}
+                    {tarifaActual.tipoDePago}
                 </Col>
                 <Col>
                     {resto}
@@ -79,7 +82,7 @@ export const MetodosDePago = React.memo(() => {
                                 key={tarifa.tipoDePago}
                                 agregarResto={agregarResto}
                                 restaFinal={restaFinal}
-                                tarifa={tarifa}
+                                tarifaActual={tarifa}
                                 resto={resto}
                                 eliminarResto={eliminarResto}
                             >

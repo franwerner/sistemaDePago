@@ -4,15 +4,15 @@ import { TarifaContex } from "../Contextos";
 const listadoDeTarifas = [
     {
         "tipoDePago": "Efectivo",
-        "tarifa": 0
+        "porcentaje": 0
     },
     {
         "tipoDePago": "Tajeta",
-        "tarifa": 15
+        "porcentaje": 15
     },
     {
         "tipoDePago": "Dolar",
-        "tarifa": 30
+        "porcentaje": 30
     },
 
 ]
@@ -20,10 +20,10 @@ const listadoDeTarifas = [
 
 export const TarifaProvider = ({ children }) => {
 
-    const [tarifa, setTarifa] = useState(listadoDeTarifas[0])
+    const [tarifaActual, setTarifaActual] = useState(listadoDeTarifas[0])
 
     const cambiarTarifa = (value) => {
-      setTarifa(value)
+        setTarifaActual(value)
     }
 
     return (
@@ -31,7 +31,7 @@ export const TarifaProvider = ({ children }) => {
             <TarifaContex.Provider value={{
                 cambiarTarifa,
                 listadoDeTarifas,
-                tarifa
+                tarifaActual
             }}>
                 {children}
             </TarifaContex.Provider>

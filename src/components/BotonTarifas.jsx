@@ -6,7 +6,7 @@ import { Col, Container, Row } from "react-bootstrap"
 
 export const BotonTarifas = ({ alternarMostrar }) => {
 
-    const { tarifa } = useContext(TarifaContex)
+    const { tarifaActual } = useContext(TarifaContex)
 
     return (
         <>
@@ -15,7 +15,7 @@ export const BotonTarifas = ({ alternarMostrar }) => {
                     <Col className="d-flex justify-content-center align-items-center">
                         <i className={`fa-solid fa-list me-1 fs-5`}></i>
                         <span className="fs-5 "  >
-                            Tar.{tarifa.tipoDePago}
+                            Tar.{tarifaActual.tipoDePago}
                         </span>
                     </Col>
                 </Row>

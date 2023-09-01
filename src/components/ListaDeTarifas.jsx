@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { TarifaContex } from "../context/Contextos"
-import {Modal,Table } from "react-bootstrap"
+import { Modal, Table } from "react-bootstrap"
 
 import styles from "../styles/ListaDeTarifas.module.css"
 
@@ -42,7 +42,7 @@ const ListaTarifas = React.memo(({ alternarMostrar, tarifaActual }) => {
                     background,
                     color
                 }}>
-                    {tarifaActual.tarifa}%
+                    {tarifaActual.porcentaje}%
                 </td>
             </tr>
 
@@ -51,21 +51,17 @@ const ListaTarifas = React.memo(({ alternarMostrar, tarifaActual }) => {
 })
 
 
-export const ListaDeTarifas = React.memo(({mostrar,alternarMostrar}) => {
+export const ListaDeTarifas = React.memo(({ mostrar, alternarMostrar }) => {
 
-    const { tarifa, listadoDeTarifas } = useContext(TarifaContex)
-
-
-
-
+    const { tarifaActual, listadoDeTarifas } = useContext(TarifaContex)
 
     return (
         <>
-            
+
             {mostrar &&
                 <Modal show={mostrar} onHide={alternarMostrar}>
                     <Modal.Header closeButton>
-                        <Modal.Title style={{ color: "#555555" }} className="fw-bolder">{tarifa.tipoDePago}</Modal.Title>
+                        <Modal.Title style={{ color: "#555555" }} className="fw-bolder">{tarifaActual.tipoDePago}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body >
                         <Table hover responsive >
@@ -77,7 +73,7 @@ export const ListaDeTarifas = React.memo(({mostrar,alternarMostrar}) => {
                             </thead>
                             <tbody>
                                 {listadoDeTarifas.map(tarifa =>
-                                    <ListaTarifas key={tarifa.tipoDePago} tarifaActual={tarifa} alternarMostrar={alternarMostrar}></ListaTarifas>
+                                    <ListaTarifas key={tarifa.tipoDePago} tarifaActual={tarifaActual} alternarMostrar={alternarMostrar}></ListaTarifas>
                                 )}
                             </tbody>
                         </Table>

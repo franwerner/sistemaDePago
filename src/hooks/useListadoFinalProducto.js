@@ -7,7 +7,7 @@ export const useListadoFinalProducto = () => {
 
    const { listaProducto } = useContext(productoReducerContext)
 
-   const { tarifa } = useContext(TarifaContex)
+   const { tarifaActual } = useContext(TarifaContex)
 
 
    const listadoFinal = useMemo(() => {
@@ -16,11 +16,11 @@ export const useListadoFinalProducto = () => {
          acc + precioModificado * cantidadSeleccionada, 0)
 
       return {
-         calculoConTarifa: (tarifa.tarifa / 100) * calculo + calculo,
+         calculoConTarifa: (tarifaActual.porcentaje / 100) * calculo + calculo,
          calculoSinTarifa: calculo
       }
 
-   }, [listaProducto, tarifa.tarifa])
+   }, [listaProducto, tarifaActual.porcentaje])
 
 
    return {
