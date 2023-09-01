@@ -10,6 +10,7 @@ export const PlantillaPagos = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
+   
 
     return (
         <>

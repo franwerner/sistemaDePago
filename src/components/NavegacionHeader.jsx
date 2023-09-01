@@ -2,7 +2,7 @@ import { Container, Navbar, Nav } from "react-bootstrap"
 import styles from "../styles/NavegacionHeader.module.css"
 import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import { OverlayDefault } from "./OverlayDefault"
-import { ListaUsuarios } from "./ListaUsuarios"
+import { ContenedorDeUsuarios } from "./ContenedorDeUsuarios/ContenedorDeUsuarios"
 import { BuscadorInput } from "./BuscadorInput"
 import React from "react"
 
@@ -22,7 +22,7 @@ const OverylayNavLock = () => {
                 onMouseLeave={alternarMostrar}
                 href="#action2"
                 tabIndex={0}
-                style={{width : "30px",marginTop : "-3px"}}
+                style={{ width: "30px", marginTop: "-3px" }}
                 className="  fs-5"
             >
 
@@ -40,6 +40,7 @@ const OverylayNavLock = () => {
 const OverlayNavTickets = () => {
 
     const overlayText = "Tickets"
+    
     return (
         <>
             <OverlayDefault
@@ -65,13 +66,18 @@ const OverlayNavUsuarios = () => {
             <OverlayDefault
                 overlayCustom={overlayText} >
                 <Nav.Link tabIndex={0}>
-                    <i onClick={alternarMostrar}
-                        className={`fa-regular fa-address-card d-flex justify-content-center align-items-center text-white fs-5 }`}></i>
+                    <i
+                        onClick={alternarMostrar}
+                        className={`fa-regular fa-address-card d-flex justify-content-center align-items-center text-white fs-5 }`}>
+
+                    </i>
                 </Nav.Link>
             </OverlayDefault>
 
             {mostrar &&
-                <ListaUsuarios mostrar={mostrar} alternarMostrar={alternarMostrar}></ListaUsuarios>
+                <ContenedorDeUsuarios
+                    mostrar={mostrar}
+                    alternarMostrar={alternarMostrar} />
             }
         </>
     )
