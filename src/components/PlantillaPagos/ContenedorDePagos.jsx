@@ -4,8 +4,10 @@ import { MetodosDePago } from "./MetodosDePago"
 import styles from "../../styles/PlantillaPagos.module.css"
 import { InteraccionMetodosDePagos } from "./InteraccionMetodosDePagos"
 import React from "react"
+import { RestoDelPagoProvider } from "../../context/provider/RestoDelPagoProvider"
 
-const ModalBody = React.memo(({ alternarMostrar }) => {
+
+const ModalBody = ({ alternarMostrar, mostrar }) => {
 
     return (
         <Modal.Body className="flex-grow-1">
@@ -31,21 +33,27 @@ const ModalBody = React.memo(({ alternarMostrar }) => {
                 </Row>
 
                 <Row className={`${styles.lineaPunteada}  h-100`}>
-                    
-                    
-                        <MetodosDePago />
-                   
 
-                    <InteraccionMetodosDePagos />
+                    <RestoDelPagoProvider>
+                        {
+                            mostrar &&
+                            <>
+                                <MetodosDePago />
+                                <InteraccionMetodosDePagos />
+                            </>
+
+                        }
+
+                    </RestoDelPagoProvider>
 
                 </Row>
             </Container>
 
         </Modal.Body>
     )
-})
+}
 
-export const ContenedorDePagos = React.memo(({ mostrar, alternarMostrar }) => {
+export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
     const display = mostrar ? "block" : "none"
 
@@ -66,7 +74,7 @@ export const ContenedorDePagos = React.memo(({ mostrar, alternarMostrar }) => {
                         </Modal.Title>
                     </Modal.Header>
 
-                    <ModalBody alternarMostrar={alternarMostrar} />
+                    <ModalBody alternarMostrar={alternarMostrar} mostrar={mostrar} />
 
                 </Modal.Dialog>
             </Container>
@@ -75,4 +83,4 @@ export const ContenedorDePagos = React.memo(({ mostrar, alternarMostrar }) => {
 
     )
 
-})
+}

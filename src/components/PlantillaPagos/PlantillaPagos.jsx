@@ -20,13 +20,11 @@ export const PlantillaPagos = () => {
                         <PlantillaPagosHeader />
                         <PlantillaPagosBody alternarMostrar={alternarMostrar} />
 
-                        <RestoDelPagoProvider>
-                            {
-                                mostrar &&
+                   
                                 <ContenedorDePagos mostrar={mostrar} alternarMostrar={alternarMostrar} />
-                            }
+                          
 
-                        </RestoDelPagoProvider>
+           
 
                     </Col>
                 </Row>

@@ -15,12 +15,16 @@ export const useListadoFinalProducto = () => {
       const calculo = listaProducto.reduce((acc, { precioModificado, cantidadSeleccionada }) =>
          acc + precioModificado * cantidadSeleccionada, 0)
 
-         return (tarifa.tarifa / 100) * calculo + calculo
+      return {
+         tarifa: (tarifa.tarifa / 100) * calculo + calculo,
+         calculoSinTarifa: calculo
+      }
 
    }, [listaProducto, tarifa.tarifa])
 
 
    return {
       listadoFinal,
+
    }
 }

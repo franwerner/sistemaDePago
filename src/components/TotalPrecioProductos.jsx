@@ -10,10 +10,11 @@ import { Row } from "react-bootstrap"
 export const TotalPrecioProductos = React.memo(() => {
 
     const { listadoFinal } = useListadoFinalProducto()
+    
     return (
         <Row className={`mx-0 mt-3   ${styles.preciosTotales}`}>
             <p className={`${styles.precio}   d-inline-block  text-end fs-5 overflow-hidden`}>
-                Total : $ {separarNumerosConDecimales(listadoFinal)}
+                Total : $ {separarNumerosConDecimales(listadoFinal.tarifa)}
             </p>
         </Row>
     )

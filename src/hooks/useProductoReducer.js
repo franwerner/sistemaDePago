@@ -26,6 +26,7 @@ const validarProductoExistente = (state, action) => {
 const reducer = (state, action) => {
 
 
+
     if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
 
     const { producto } = action
@@ -33,7 +34,6 @@ const reducer = (state, action) => {
     const nuevoPrecio = producto.precioModificado
 
     const nuevaCantidad = producto.cantidadSeleccionada
-
 
     return state.map(estado => {
 
@@ -88,6 +88,7 @@ export const productoReducer = () => {
 
     const agregarProducto = (producto) => {
 
+        
         dispatch({ type: "AGREGAR", producto })
     }
 

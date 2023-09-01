@@ -2,8 +2,18 @@
 
 
 
-export const calculadoraPorcentaje = (precio, tarifa) => {
+export const calcularPorcentaje = (numero, porcentaje) => {
 
-    return (tarifa / 100) * precio
-  
+
+
+    if (porcentaje < 0) {
+        return Math.abs((numero * (Math.abs(porcentaje) / 100)) - numero)
+    }
+
+    else if (porcentaje >= 0) {
+
+        return numero * (porcentaje / 100) + numero
+    }
+
+
 }
