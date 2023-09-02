@@ -13,7 +13,7 @@ export const useRestanteFinal = () => {
 
     const restaFinal = useMemo(() => {
 
-        const calculoResta = restoDelPago.reduce((acc, { resto = 0 }) => acc - resto, calculoSinTarifa)
+        const calculoResta = restoDelPago.reduce((acc, { resto = 0 }) => Math.abs(acc - resto), calculoSinTarifa)
 
         const calculoSuma = restoDelPago.reduce((acc, { resto, porcentaje = 0 }) => {
 
