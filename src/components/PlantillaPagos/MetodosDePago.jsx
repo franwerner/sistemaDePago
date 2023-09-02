@@ -36,7 +36,7 @@ const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, el
                     { }
                 </Col>
                 <Col>
-                    Resto : {calcularPorcentaje + resto} 
+                    Resto : {calcularPorcentaje + resto}
                 </Col>
                 <Col>
                     <i onClick={x} className="fa-solid fs-5 fa-circle-xmark"></i>
@@ -48,18 +48,56 @@ const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, el
 })
 
 
+const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, restaFinal, buscador }) => {
+
+    const { calculoResta } = restaFinal
+
+    const { tipoDePago } = tarifaActual
+
+    const onClick = () => {
+
+        // if (calculoResta == 0) return
+
+        agregarResto({
+            tipoDePago,
+            listaDeMetodos: [
+                {
+                    nombre,
+                    "resto": calculoResta
+                }
+            ]
+
+        })
+    }
+
+    return (
+        <>
+            <Row tabIndex={1} className={`${styles.metodo} mt-1  border border`}>
+                <Col onClick={onClick} xs={6} className="border border-danger ">
+                    {nombre}
+                </Col>
+                <Col>
+                    {/* {resto} */}
+                </Col>
+            </Row>
+
+        </>
+    )
+
+})
 
 export const MetodosDePago = React.memo(() => {
 
     const { tarifaActual } = useContext(TarifaContex)
 
+    const { tipoDePago, porcentaje, metodosDePago } = tarifaActual
+
     const { agregarResto, restoDelPago, eliminarResto } = useContext(restoDelPagoContext)
 
     const { restaFinal } = useRestanteFinal()
 
-    // console.log(tarifaActual)
 
-    // console.log(restoDelPago)
+    const buscador = restoDelPago.find(r => r.tipoDePago == tarifaActual.tipoDePago)
 
 
     return (
@@ -68,24 +106,21 @@ export const MetodosDePago = React.memo(() => {
 
                 <Container fluid id="metodos-de-pagos" >
 
-                    {[tarifaActual].map(tarifa => {
-
-                        const buscar = restoDelPago.find(pago => pago.tipoDePago === tarifa.tipoDePago)
-
-                        const resto = buscar ? buscar.resto : 0
-
-                        return (
-                            <ListaDeMetodosDePagos
-                                key={tarifa.tipoDePago}
+                    {
+                        metodosDePago.map(metodo =>
+                            <ListaDeMetodosDePago
+                                key={metodo.id}
                                 agregarResto={agregarResto}
+                                nombre={metodo.nombre}
+                                tarifaActual={tarifaActual}
                                 restaFinal={restaFinal}
-                                tarifa={tarifa}
-                                resto={resto}
-                                eliminarResto={eliminarResto}
+                                buscador={buscador}
                             >
-                            </ListaDeMetodosDePagos>
+
+                            </ListaDeMetodosDePago>
+
                         )
-                    })}
+                    }
                 </Container>
             </Col>
 

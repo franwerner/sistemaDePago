@@ -7,19 +7,53 @@ const listadoDeTarifas = [
         "id": 1,
         "tipoDePago": "Local",
         "porcentaje": 0,
-        "metodosDePago": ["Efectivo"]
+        "metodosDePago": [
+            {
+                "id": 1,
+                "nombre": "Efectivo"
+            }
+        ]
     },
     {
         "id": 2,
-        "tipoDePago": "Tajeta",
+        "tipoDePago": "Tarjeta de debito",
         "porcentaje": 10,
-        "metodosDePago": ["Tarjeta naranja", "Tarjeta de credito", "Tarjeta de debito"]
+        "metodosDePago": [
+            {
+                "id": 1,
+                "nombre": "Tarjeta naranja",
+            },
+            {
+                "id": 2,
+                "nombre": "Tarjeta clover",
+            },
+
+            {
+                "id": 3,
+                "nombre": "Tarjeta cabal ",
+            },
+        ]
     },
     {
         "id": 3,
         "tipoDePago": "Mercado pago",
         "porcentaje": 20,
-        "metodosDePago": ["QR", "Tarjeta", "Transferencia"]
+        "metodosDePago": [
+            {
+                "id": 1,
+                "nombre": "QR",
+            },
+
+            {
+                "id": 2,
+                "nombre": "Tarjeta",
+            },
+
+            {
+                "id": 3,
+                "nombre": "Transferencia",
+            },
+        ]
     },
 
 ]
