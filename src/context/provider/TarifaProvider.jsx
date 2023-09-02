@@ -2,17 +2,24 @@ import { useState } from "react";
 import { TarifaContex } from "../Contextos";
 
 const listadoDeTarifas = [
+
     {
-        "tipoDePago": "Efectivo",
-        "porcentaje": 0
+        "id": 1,
+        "tipoDePago": "Local",
+        "porcentaje": 0,
+        "metodosDePago": ["Efectivo"]
     },
     {
+        "id": 2,
         "tipoDePago": "Tajeta",
-        "porcentaje": 15
+        "porcentaje": 10,
+        "metodosDePago": ["Tarjeta naranja", "Tarjeta de credito", "Tarjeta de debito"]
     },
     {
-        "tipoDePago": "Dolar",
-        "porcentaje": 30
+        "id": 3,
+        "tipoDePago": "Mercado pago",
+        "porcentaje": 20,
+        "metodosDePago": ["QR", "Tarjeta", "Transferencia"]
     },
 
 ]
@@ -20,9 +27,10 @@ const listadoDeTarifas = [
 
 export const TarifaProvider = ({ children }) => {
 
+
     const [tarifaActual, setTarifaActual] = useState(listadoDeTarifas[0])
 
-    const cambiarTarifa = (value) => {
+    const cambiarTarifa = (value = {}) => {
         setTarifaActual(value)
     }
 

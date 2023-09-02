@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
-import { restoDelPagoContext } from "../context/Contextos";
+import { TarifaContex, restoDelPagoContext } from "../context/Contextos";
 
 
 export const useRestanteFinal = () => {
@@ -9,21 +9,27 @@ export const useRestanteFinal = () => {
 
     const { calculoSinTarifa } = precioFinal
 
+    const { tarifaActual } = useContext(TarifaContex)
+
+    const { porcentaje } = tarifaActual
+
     const { restoDelPago } = useContext(restoDelPagoContext)
 
     const restaFinal = useMemo(() => {
 
         const calculoResta = restoDelPago.reduce((acc, { resto = 0 }) => Math.abs(acc - resto), calculoSinTarifa)
 
-        const calculoSuma = restoDelPago.reduce((acc, { resto, porcentaje = 0 }) => {
+        const calculoSuma = restoDelPago.reduce((acc, { resto = 0 }) => {
 
-            return acc + resto + porcentaje
+            const calcularPorcentaje = (acc + resto) * (porcentaje / 100)
+
+            return acc + resto + calcularPorcentaje
 
         }, 0)
 
         return { calculoResta, calculoSuma }
 
-    }, [restoDelPago,calculoSinTarifa])
+    }, [restoDelPago, calculoSinTarifa])
 
 
 

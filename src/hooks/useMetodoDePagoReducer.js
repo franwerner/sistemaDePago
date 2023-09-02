@@ -14,16 +14,16 @@ const validarMetodoIncial = (state, action) => {
 const reducer = (state, action) => {
 
 
-    if(validarMetodoIncial(state,action) == false) return [...state,{...action.metodoDePago}]
+    if (validarMetodoIncial(state, action) == false) return [...state, { ...action.metodoDePago }]
 
 
     return state.map(estado => {
 
-        
+
         if (estado.tipoDePago !== action.metodoDePago.tipoDePago) return estado
 
 
-   
+
         switch (action.type) {
 
             case "Agregar":
@@ -38,9 +38,8 @@ const reducer = (state, action) => {
 
             case "Eliminar":
                 return {
-                   ...action.metodoDePago,
-                   "resto" : 0,
-                   "porcentaje" : 0
+                    ...action.metodoDePago,
+                    "resto": 0,
                 }
 
         }
@@ -57,7 +56,7 @@ export const useMetodoDePagoReducer = () => {
 
 
     const agregarResto = useCallback((metodoDePago) => {
-  
+
         dispatch({ type: "Agregar", metodoDePago })
     }, [])
 
@@ -66,7 +65,7 @@ export const useMetodoDePagoReducer = () => {
     }, [])
 
     const eliminarResto = useCallback((metodoDePago) => {
-     
+
         dispatch({ type: "Eliminar", metodoDePago })
     }, [])
 

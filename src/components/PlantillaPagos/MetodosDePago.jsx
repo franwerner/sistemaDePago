@@ -3,32 +3,23 @@ import styles from "../../styles/PlantillaPagos.module.css"
 import React, { useContext } from "react";
 import { TarifaContex, restoDelPagoContext } from "../../context/Contextos";
 import { useRestanteFinal } from "../../hooks/useRestanteFinal";
-import { calcularPorcentajeDelMetodoDePago } from "../../helper/calcularPorcentajeDelMetodoDePago";
-
-
-
 
 
 const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, eliminarResto, resto }) => {
 
-    const { porcentaje } = tarifa
+    const { tipoDePago, porcentaje } = tarifa
 
     const { calculoResta } = restaFinal
 
-
+    const calcularPorcentaje = (resto) * (porcentaje / 100)
 
     const onClick = () => {
 
-        console.log(calculoResta)
-        
-        if(calculoResta == 0 || resto > 0) return
-
-        const resultado = calcularPorcentajeDelMetodoDePago(calculoResta, porcentaje)
+        if (calculoResta == 0 || resto > 0) return
 
         agregarResto({
-            ...tarifa,
+            tipoDePago,
             resto: calculoResta,
-            porcentaje: resultado
         })
 
     }
@@ -42,10 +33,10 @@ const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, el
         <>
             <Row tabIndex={1} className={`${styles.metodo} mt-1  border border`}>
                 <Col xs={4} onClick={onClick} className="my-0 border   ">
-                    {tarifa.tipoDePago}
+                    { }
                 </Col>
                 <Col>
-                    {resto}
+                    Resto : {calcularPorcentaje + resto} 
                 </Col>
                 <Col>
                     <i onClick={x} className="fa-solid fs-5 fa-circle-xmark"></i>
@@ -60,11 +51,16 @@ const ListaDeMetodosDePagos = React.memo(({ tarifa, agregarResto, restaFinal, el
 
 export const MetodosDePago = React.memo(() => {
 
-    const { listadoDeTarifas } = useContext(TarifaContex)
+    const { tarifaActual } = useContext(TarifaContex)
 
     const { agregarResto, restoDelPago, eliminarResto } = useContext(restoDelPagoContext)
 
     const { restaFinal } = useRestanteFinal()
+
+    // console.log(tarifaActual)
+
+    // console.log(restoDelPago)
+
 
     return (
         <>
@@ -72,11 +68,11 @@ export const MetodosDePago = React.memo(() => {
 
                 <Container fluid id="metodos-de-pagos" >
 
-                    {listadoDeTarifas.map(tarifa => {
+                    {[tarifaActual].map(tarifa => {
 
                         const buscar = restoDelPago.find(pago => pago.tipoDePago === tarifa.tipoDePago)
 
-                        const resto = buscar ? buscar.resto + buscar.porcentaje : 0
+                        const resto = buscar ? buscar.resto : 0
 
                         return (
                             <ListaDeMetodosDePagos
