@@ -4,16 +4,18 @@ import { TarifaContex, restoDelPagoContext } from "../context/Contextos";
 
 
 export const useRestanteFinal = () => {
-
     const { precioFinal } = usePrecioFinalDeLosProductos()
-
-    const { calculoSinTarifa } = precioFinal
 
     const { tarifaActual } = useContext(TarifaContex)
 
+    const { restoDelPago } = useContext(restoDelPagoContext)
+
+    const { calculoSinTarifa } = precioFinal
+
     const { porcentaje } = tarifaActual
 
-    const { restoDelPago } = useContext(restoDelPagoContext)
+
+
 
     const restaFinal = useMemo(() => {
 
