@@ -2,45 +2,41 @@ import { useCallback, useReducer } from "react";
 
 
 
-const validarTarifaDelMetodoInicial = (state, action) => state.some(({ tipoDeTarifa }) => tipoDeTarifa == action.metodoDePago.tipoDeTarifa)
+const validarTarifaDelMetodoInicial = (state, tipoDeTarifa) => state.some(i => {
+    return i.tipoDeTarifa == tipoDeTarifa
+})
 
 
+const reemplazarRestoDelMetodo = (estado, metodo) => {
 
+    const elementoDeLaListaFiltrado = estado.listaDeMetodos.filter(item => item.nombre !== metodo[0].nombre);
 
-const buscarMetodosDePagoExistentes = (estado, listaDeMetodos) => estado.listaDeMetodos.some(item => item.nombre === listaDeMetodos[0].nombre);
+    console.log(elementoDeLaListaFiltrado)
 
-
-const sumarRestaDelMetodo = (estado = {}, listaDeMetodos = []) => {
-
-    const { nombre, resto = 0 } = listaDeMetodos[0]
-
-    const metodoExistente = buscarMetodosDePagoExistentes(estado, listaDeMetodos)
-
-    const metodos = estado.listaDeMetodos.map(item => {
-
-        const objNuevo = { nombre, "resto": resto + item.resto }
-
-        return item.nombre === nombre ? objNuevo : item //Esto si el metodo existe y necesito verificar si es ese el que aprete para sumarle el resto
-
-    })
-
-    return metodoExistente ? metodos : [...estado.listaDeMetodos, listaDeMetodos[0]] //Esto solo se retorna si el metodo de pago es nuevo
-
-
-
+    return [...elementoDeLaListaFiltrado, ...metodo]
 }
 
-const reducer = (state, action) => {
+const eliminarRestoDelMetodo = (estado, metodo) => {
 
-    if (validarTarifaDelMetodoInicial(state, action) == false) return [...state, { ...action.metodoDePago }]
+    const test = estado.listaDeMetodos.filter(({ nombre }) => nombre !== metodo[0].nombre)
+
+    // console.log(test)
+    return [...test]
+}
+
+
+
+
+const reducer = (state, action) => {
 
     const { metodoDePago, type } = action
 
     const { tipoDeTarifa, listaDeMetodos } = metodoDePago
 
 
-    return state.map(estado => {
+    if (validarTarifaDelMetodoInicial(state, tipoDeTarifa) == false) return [...state, { ...action.metodoDePago }]
 
+    return state.map(estado => {
 
 
         if (estado.tipoDeTarifa !== action.metodoDePago.tipoDeTarifa) return estado
@@ -50,7 +46,7 @@ const reducer = (state, action) => {
             case "Agregar":
                 return {
                     tipoDeTarifa,
-                    listaDeMetodos: sumarRestaDelMetodo(estado, listaDeMetodos)
+                    listaDeMetodos: reemplazarRestoDelMetodo(estado, listaDeMetodos)
                 }
 
             case "Modificar":
@@ -60,8 +56,8 @@ const reducer = (state, action) => {
 
             case "Eliminar":
                 return {
-                    ...action.metodoDePago,
-                    "resto": 0,
+                    tipoDeTarifa,
+                    listaDeMetodos: eliminarRestoDelMetodo(estado, listaDeMetodos)
                 }
 
         }

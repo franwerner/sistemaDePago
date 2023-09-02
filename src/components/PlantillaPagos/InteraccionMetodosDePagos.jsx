@@ -13,22 +13,25 @@ export const PrecioTotal = () => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { calculoSinTarifa } = precioFinal
+    const { calculoConTarifa } = precioFinal
 
-    const { calculoSuma } = restaFinal
+    const { calculoSuma, calculoResta } = restaFinal
 
-    const restaCalculada = calculoSuma == 0 ? calculoSinTarifa : calculoSuma
+
+
+    const restaCalculada = calculoSuma == 0 ? calculoConTarifa : calculoSuma
 
 
     return (
         <>
             <Row>
                 <p className={`${styles.PrecioTotal} `}>
-                    $ {separarNumerosConDecimales(restaCalculada)}
+                    $ {separarNumerosConDecimales(calculoResta)}
                 </p>
             </Row>
             <Row>
                 <p className={`${styles.textDeAyuda}`}>Por favor, seleccione un método de pago.</p>
+                {calculoResta}
             </Row>
 
         </>
