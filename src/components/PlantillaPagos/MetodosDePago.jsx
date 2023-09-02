@@ -4,24 +4,30 @@ import React, { useContext } from "react";
 import { TarifaContex, restoDelPagoContext } from "../../context/Contextos";
 import { useRestanteFinal } from "../../hooks/useRestanteFinal";
 
+const verificarResto = (resto) =>{
+
+    return !resto ? 0 : resto.resto 
+    
+}
+
 const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, restaFinal, resto }) => {
 
     const { calculoResta } = restaFinal
 
+    console.log(`Calculo resta : ${calculoResta}`)
+   console.log(resto)
+
     const { tipoDePago } = tarifaActual
 
-    console.log(resto)
-
     const onClick = () => {
-
-        // if (calculoResta == 0) return
+        if (calculoResta == 0) return
 
         agregarResto({
             tipoDeTarifa: tipoDePago,
             listaDeMetodos: [
                 {
                     nombre,
-                    "resto": calculoResta
+                    "resto": calculoResta + verificarResto(resto)
                 }
             ]
 
@@ -35,7 +41,7 @@ const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, r
                     {nombre}
                 </Col>
                 <Col>
-                    {!resto ? "" : resto.resto}
+                    {verificarResto(resto)}
                 </Col>
             </Row>
 

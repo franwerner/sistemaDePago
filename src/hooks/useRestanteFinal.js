@@ -15,23 +15,38 @@ export const useRestanteFinal = () => {
     const { porcentaje } = tarifaActual
 
 
+    
 
 
     const restaFinal = useMemo(() => {
 
-        const calculoResta = restoDelPago.reduce((acc, { resto = 0 }) => Math.abs(acc - resto), calculoSinTarifa)
+      let calculoResta = calculoSinTarifa
 
-        const calculoSuma = restoDelPago.reduce((acc, { resto = 0 }) => {
+        const resultado = restoDelPago.forEach(pago => {
 
-            const calcularPorcentaje = (acc + resto) * (porcentaje / 100)
+            if (!pago.listaDeMetodos) return
 
-            return acc + resto + calcularPorcentaje
+            calculoResta = pago.listaDeMetodos.reduce((acc, { resto = 0 }) => {
+                return Math.abs(acc - resto)
+            }, calculoSinTarifa)
 
-        }, 0)
+        })
+
+
+        const calculoSuma = 0
+
+        // const calculoSuma = restoDelPago.reduce((acc, { resto = 0 }) => {
+
+        //     const calcularPorcentaje = (acc + resto) * (porcentaje / 100)
+
+        //     return acc + resto + calcularPorcentaje
+
+        // }, 0)
 
         return { calculoResta, calculoSuma }
 
     }, [restoDelPago, calculoSinTarifa])
+
 
 
 
