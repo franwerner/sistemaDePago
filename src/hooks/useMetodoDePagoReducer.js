@@ -10,13 +10,13 @@ const validarTarifaDelMetodoInicial = (state, tipoDeTarifa) => state.some(i => {
 const reemplazarRestoDelMetodo = (estado, metodo) => {
 
 
-    const elementoDeLaListaFiltrado = estado.listaDeMetodos.filter(item => item.nombre !== metodo[0].nombre);
+    const elementoDeLaListaFiltrado = estado.metodosDePago.filter(item => item.nombre !== metodo[0].nombre);
     return [...elementoDeLaListaFiltrado, ...metodo]
 }
 
 const eliminarRestoDelMetodo = (estado, metodo) => {
 
-    return [...estado.listaDeMetodos.filter(({ nombre }) => nombre !== metodo[0].nombre)]
+    return [...estado.metodosDePago.filter(({ nombre }) => nombre !== metodo[0].nombre)]
 
 }
 
@@ -27,7 +27,7 @@ const reducer = (state, action) => {
 
     const { metodoDePago, type } = action
 
-    const { tipoDeTarifa, listaDeMetodos } = metodoDePago
+    const { tipoDeTarifa, metodosDePago } = metodoDePago
 
 
     if (validarTarifaDelMetodoInicial(state, tipoDeTarifa) == false) return [...state, { ...action.metodoDePago }]
@@ -41,7 +41,7 @@ const reducer = (state, action) => {
             case "Agregar":
                 return {
                     tipoDeTarifa,
-                    listaDeMetodos: reemplazarRestoDelMetodo(estado, listaDeMetodos)
+                    metodosDePago: reemplazarRestoDelMetodo(estado, metodosDePago)
                 }
 
             case "Modificar":
@@ -52,7 +52,7 @@ const reducer = (state, action) => {
             case "Eliminar":
                 return {
                     tipoDeTarifa,
-                    listaDeMetodos: eliminarRestoDelMetodo(estado, listaDeMetodos)
+                    metodosDePago: eliminarRestoDelMetodo(estado, metodosDePago)
                 }
 
         }
