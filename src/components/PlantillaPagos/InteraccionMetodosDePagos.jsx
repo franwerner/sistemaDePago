@@ -12,6 +12,7 @@ export const PrecioTotal = () => {
 
     const porcentaje = useCalculadoraPorcenje(restosTotales)
 
+
     return (
         <>
             <Row>
@@ -25,6 +26,7 @@ export const PrecioTotal = () => {
                     Suma Totales: {sumaTotal}
                 </p>
             </Row>
+
 
         </>
     )

@@ -8,8 +8,7 @@ const validarTarifaDelMetodoInicial = (state, tipoDeTarifa) => state.some(i => {
 
 
 const reemplazarRestoDelMetodo = (estado, metodo) => {
-
-
+    
     const elementoDeLaListaFiltrado = estado.metodosDePago.filter(item => item.nombre !== metodo[0].nombre);
     return [...elementoDeLaListaFiltrado, ...metodo]
 }

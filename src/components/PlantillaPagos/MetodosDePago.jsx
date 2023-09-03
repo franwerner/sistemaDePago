@@ -72,7 +72,6 @@ export const MetodosDePago = React.memo(() => {
 
     const { restosTotales } = useRestanteFinal()
 
-
     return (
         <>
             <Col xs={4} className={`${styles.metodoDePago} p-3  h-100`}>
