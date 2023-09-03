@@ -1,14 +1,59 @@
 import { NavegacionHeader } from "../NavegacionHeader/NavegacionHeader"
-import { Container, Modal } from "react-bootstrap"
+import { Button, Col, Container, Modal, Row } from "react-bootstrap"
+import { MetodosDePago } from "./MetodosDePago"
+import styles from "../../styles/PlantillaPagos.module.css"
+import { InteraccionMetodosDePagos } from "./InteraccionMetodosDePagos"
 import React from "react"
-import { ContenedorDePagoHeader } from "./ContenedorPagos/ContendorDePagoHeader"
-import { ContenedorDePagoBody } from "./ContenedorPagos/ContendorDePagoBody"
-import styles from "@/styles"
+import { RestoDelPagoProvider } from "../../context/provider/RestoDelPagoProvider"
 
+
+
+const ContenedorDePagoHeader = React.memo(({ alternarMostrar }) => {
+    return (
+        <Row className={`text-center ${styles.navegacionPagos}`}>
+            <Col className="d-flex p-0">
+                <Button onClick={alternarMostrar}>
+                    Volver
+                </Button>
+            </Col>
+            <Col className="">
+                <p className={`my-1 fs-3 ${styles.textPagos}`}>
+                    Pagos
+                </p>
+            </Col>
+            <Col className="d-flex justify-content-end p-0">
+                <Button >
+                    Validar
+                </Button>
+            </Col>
+        </Row>
+
+    )
+})
+
+
+const ContenedorDePagoBody = ({ mostrar }) => {
+    return (
+
+        <Row className={`${styles.lineaPunteada}  h-100`}>
+
+            <RestoDelPagoProvider>
+
+                {
+                    mostrar &&
+                    <>
+                        <MetodosDePago />
+                        <InteraccionMetodosDePagos />
+                    </>
+                }
+
+            </RestoDelPagoProvider>
+
+        </Row>
+    )
+}
 
 export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
-
-    console.log(styles)
 
     const display = mostrar ? "block" : "none"
 

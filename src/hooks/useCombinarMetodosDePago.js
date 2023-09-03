@@ -8,7 +8,7 @@ export const useCombinarMetodosDePago = () => {
 
     const { listaDeRestos } = useContext(restoDelPagoContext)
 
-    const resultadoDelMetodo = buscarMetodosDePago()
+    const resultadoDelMetodo = buscarMetodosDePago(tarifaActual, listaDeRestos)
 
     const { metodosDePago } = tarifaActual
 

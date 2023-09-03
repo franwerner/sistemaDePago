@@ -1,12 +1,7 @@
-import { useContext } from "react";
-import { TarifaContex, restoDelPagoContext } from "../context/Contextos";
 
-export const buscarMetodosDePago = () => {
-    const { listaDeRestos } = useContext(restoDelPagoContext)
+export const buscarMetodosDePago = (tarifaActual, listaDeRestos) => {
     
-    const { tarifaActual } = useContext(TarifaContex)
-
-    if (!listaDeRestos) return []
+    if(!listaDeRestos) return
 
     const { tipoDeTarifa } = tarifaActual
 
