@@ -1,12 +1,12 @@
 
-import { ProductoReducerProvider } from '../context/provider/ProductosReducerProvider';
-import { NavegacionHeader } from '../components/NavegacionHeader/NavegacionHeader';
+import { ProductoReducerProvider } from '@/context/provider/ProductosReducerProvider';
+import { NavegacionHeader } from '@/components/NavegacionHeader/NavegacionHeader';
 import "../index.css"
 import { Col, Container, Row } from 'react-bootstrap';
-import { BuscadorPorductosProvider } from '../context/provider/BuscardorProductosProvider';
+import { BuscadorPorductosProvider } from '@/context/provider/BuscardorProductosProvider';
 import { PlantillaCobro } from './PlantillaCobro/PlantillaCobro';
 import { PlantillaProductos } from './PlantillaProductos/PlantillaProductos';
-import { SeccionCobroYPagos } from "../components/SeccionCobroYPagos"
+import { SeccionCobroYPagos } from "@/components/SeccionCobroYPagos"
 import { PlantillaPagos } from './PlantillaPagos/PlantillaPagos';
 
 

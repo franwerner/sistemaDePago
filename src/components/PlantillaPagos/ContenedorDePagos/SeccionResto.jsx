@@ -1,8 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
-import styles from "../../styles/PlantillaPagos.module.css"
+import styles from "@/styles/PlantillaPagos.module.css"
 import React from "react";
-import { useRestanteFinal } from "../../hooks/useRestanteFinal";
-import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje";
+import { useRestanteFinal } from "@/hooks/useRestanteFinal";
+import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje";
 
 
 
@@ -43,7 +43,7 @@ export const BotonesDeInteraccion = () => {
     )
 }
 
-export const InteraccionMetodosDePagos = React.memo(() => {
+export const SeccionResto = React.memo(() => {
 
 
     return (

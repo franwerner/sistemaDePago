@@ -1,7 +1,7 @@
 import { Form, InputGroup } from "react-bootstrap"
-import { useForm } from "../hooks/useForm"
+import { useForm } from "@/hooks/useForm"
 import { useContext, useEffect, useState } from "react"
-import { buscadorProductosContext } from "../context/Contextos"
+import { buscadorProductosContext } from "@/context/Contextos"
 
 
 export const BuscadorInput = () => {

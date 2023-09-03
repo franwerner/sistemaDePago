@@ -1,8 +1,8 @@
 
-import { useEstablecerLimitesEjes } from "../hooks/useEstablecerLimitesEjes"
-import { useEjesFinales } from "../hooks/useEjesFinales"
-import { useColumna } from "../hooks/useColumna"
-import styles from "../styles/PlantillaCobro.module.css"
+import { useEstablecerLimitesEjes } from "@/hooks/useEstablecerLimitesEjes"
+import { useEjesFinales } from "@/hooks/useEjesFinales"
+import { useColumna } from "@/hooks/useColumna"
+import styles from "@/styles/PlantillaCobro.module.css"
 import { useEffect } from "react"
 import { Col } from "react-bootstrap"
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
-import { TarifaContex } from "../context/Contextos"
+import { TarifaContex } from "@/context/Contextos"
 import { Modal, Table } from "react-bootstrap"
-import { compararTarifaActual } from "../helper/compararTarifaActual"
+import { compararTarifaActual } from "@/helper/compararTarifaActual"
 
 
 

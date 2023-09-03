@@ -1,8 +1,8 @@
 
-import {  usePrecioFinalDeLosProductos } from "../hooks/usePrecioFinalDeLosProductos"
+import {  usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProductos"
 import React from "react"
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
-import styles from "../styles/TotalProductos.module.css"
+import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
+import styles from "@/styles/TotalProductos.module.css"
 import { Row } from "react-bootstrap"
 
 

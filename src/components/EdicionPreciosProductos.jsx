@@ -1,11 +1,11 @@
 
-import { useForm } from "../hooks/useForm"
-import { useComprobarNumeros } from "../hooks/useComprobarNumeros.js"
+import { useForm } from "@/hooks/useForm"
+import { useComprobarNumeros } from "@/hooks/useComprobarNumeros.js"
 import { Modal, Button, Form, FloatingLabel } from "react-bootstrap"
 import React, { useContext } from "react"
-import { productoReducerContext, productoSeleccionadoContext } from "../context/Contextos"
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
-import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje"
+import { productoReducerContext, productoSeleccionadoContext } from "@/context/Contextos"
+import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
+import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje"
 
 
 export const EdicionPreciosProductos = React.memo(({ alternarMostrar }) => {

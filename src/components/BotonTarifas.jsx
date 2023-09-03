@@ -1,7 +1,6 @@
 import { useContext } from "react"
-import { TarifaContex } from "../context/Contextos"
+import { TarifaContex } from "@/context/Contextos"
 import { Col, Container, Row } from "react-bootstrap"
-
 
 
 export const BotonTarifas = ({ alternarMostrar }) => {

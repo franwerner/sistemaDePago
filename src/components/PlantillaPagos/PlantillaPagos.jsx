@@ -1,14 +1,16 @@
 import { Col, Container, Row } from "react-bootstrap"
-import styles from "../../styles/PlantillaPagos.module.css"
-import { useEventoMostrar } from "../../hooks/useEventoMostrar"
-import { ContenedorDePagos } from "./ContenedorDePagos"
+import styles from "@/styles/PlantillaPagos.module.css"
+import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import React, { useCallback } from "react"
 import { PlantillaPagosHeader } from "./PlantillaPagosHeader"
 import { PlantillaPagosBody } from "./PlantillaPagosBody"
-import { useEvitarRenderizados } from "../../hooks/useEvitarRenderizados"
+import { useEvitarRenderizados } from "@/hooks/useEvitarRenderizados"
+import { ContenedorDePagos } from "./ContenedorDePagos/ContenedorDePagos"
+
 
 
 export const PlantillaPagos = () => {
+
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
