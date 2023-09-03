@@ -9,6 +9,7 @@ const validarTarifaDelMetodoInicial = (state, tipoDeTarifa) => state.some(i => {
 
 const reemplazarRestoDelMetodo = (estado, metodo) => {
 
+
     const elementoDeLaListaFiltrado = estado.listaDeMetodos.filter(item => item.nombre !== metodo[0].nombre);
     return [...elementoDeLaListaFiltrado, ...metodo]
 }

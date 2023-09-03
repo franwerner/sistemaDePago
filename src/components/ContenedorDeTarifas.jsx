@@ -24,7 +24,7 @@ const ListaDeTarifas = React.memo(({ alternarMostrar, tarifa, cambiarTarifa, tar
                     background,
                     color
                 }} >
-                    {tarifa.tipoDePago}
+                    {tarifa.tipoDeTarifa}
                 </td>
                 <td style={{
                     background,
@@ -48,7 +48,7 @@ export const ContenedorDeTarifas = React.memo(({ mostrar, alternarMostrar }) => 
         <>
                 <Modal show={mostrar} onHide={alternarMostrar}>
                     <Modal.Header closeButton>
-                        <Modal.Title style={{ color: "#555555" }} className="fw-bolder">{tarifaActual.tipoDePago}</Modal.Title>
+                        <Modal.Title style={{ color: "#555555" }} className="fw-bolder">{tarifaActual.tipoDeTarifa}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body >
                         <Table hover responsive >
@@ -60,7 +60,7 @@ export const ContenedorDeTarifas = React.memo(({ mostrar, alternarMostrar }) => 
                             </thead>
                             <tbody>
                                 {listadoDeTarifas.map(tarifa =>
-                                    <ListaDeTarifas key={tarifa.tipoDePago}
+                                    <ListaDeTarifas key={tarifa.tipoDeTarifa}
                                         cambiarTarifa={cambiarTarifa}
                                         tarifa={tarifa}
                                         tarifaActual={tarifaActual}

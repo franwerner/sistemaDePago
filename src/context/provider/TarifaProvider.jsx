@@ -5,7 +5,7 @@ const listadoDeTarifas = [
 
     {
         "id": 1,
-        "tipoDePago": "Local",
+        "tipoDeTarifa": "Local",
         "porcentaje": 0,
         "metodosDePago": [
             {
@@ -16,7 +16,7 @@ const listadoDeTarifas = [
     },
     {
         "id": 2,
-        "tipoDePago": "Tarjeta de debito",
+        "tipoDeTarifa": "Tarjeta de debito",
         "porcentaje": 10,
         "metodosDePago": [
             {
@@ -36,7 +36,7 @@ const listadoDeTarifas = [
     },
     {
         "id": 3,
-        "tipoDePago": "Mercado pago",
+        "tipoDeTarifa": "Mercado pago",
         "porcentaje": 20,
         "metodosDePago": [
             {

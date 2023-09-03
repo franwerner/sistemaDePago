@@ -10,6 +10,8 @@ export const ProductoSeleccionadoProvider = ({ children }) => {
 
     const seleccionado = useSeleccionProducto(listaProducto)
 
+    //BORRAR ESTE PROVIDER
+
     return (
         <productoSeleccionadoContext.Provider value={{ ...seleccionado }}>
             {children}

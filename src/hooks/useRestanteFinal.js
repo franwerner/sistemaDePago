@@ -21,7 +21,6 @@ export const useRestanteFinal = () => {
 
         let calculoSuma = calculoSinTarifa
 
-
         restoDelPago.forEach(pago => {
 
             if (!pago.listaDeMetodos || calculoSinTarifa == 0) return calculoSinTarifa
@@ -31,8 +30,6 @@ export const useRestanteFinal = () => {
                 return Math.abs(acc - resto)
 
             }, calculoSinTarifa)
-
-
 
             if (!pago.listaDeMetodos) return 0
 
@@ -44,9 +41,6 @@ export const useRestanteFinal = () => {
             }, 0);
 
         })
-
-
-
 
         return { calculoResta, calculoSuma }
 

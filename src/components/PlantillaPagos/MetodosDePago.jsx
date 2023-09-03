@@ -13,11 +13,23 @@ const verificarResto = (resto) => {
 
 }
 
+
+const ordenarListaDeMetodosDePago = (buscarMetodosDePagoDeLaTarifa, metodo) => {
+
+    if (!buscarMetodosDePagoDeLaTarifa) return
+
+    const buscador = buscarMetodosDePagoDeLaTarifa.listaDeMetodos.find(item => item.nombre == metodo.nombre)
+
+    buscador ? { "resto ": buscador.resto } : undefined
+
+    return buscador
+}
+
 const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, restaFinal, resto, eliminarResto }) => {
 
     const { calculoResta } = restaFinal
 
-    const { tipoDePago } = tarifaActual
+    const { tipoDeTarifa } = tarifaActual
 
     const porcentaje = useCalculadoraPorcenje(verificarResto(resto))
 
@@ -34,7 +46,7 @@ const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, r
         if (calculoResta == 0 || verificarResto(resto) > 0) return
 
         agregarResto({
-            tipoDeTarifa: tipoDePago,
+            tipoDeTarifa,
             listaDeMetodos
         })
     }
@@ -43,7 +55,7 @@ const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, r
 
 
         eliminarResto({
-            tipoDeTarifa: tipoDePago,
+            tipoDeTarifa,
             listaDeMetodos
         })
 
@@ -69,16 +81,6 @@ const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, r
 
 })
 
-const ordenarListaDeMetodosDePago = (buscarMetodosDePagoDeLaTarifa, metodo) => {
-
-    if (!buscarMetodosDePagoDeLaTarifa) return
-
-    const buscador = buscarMetodosDePagoDeLaTarifa.listaDeMetodos.find(item => item.nombre == metodo.nombre)
-
-    buscador ? { "resto ": buscador.resto } : undefined
-
-    return buscador
-}
 
 export const MetodosDePago = React.memo(() => {
 
@@ -90,7 +92,9 @@ export const MetodosDePago = React.memo(() => {
 
     const { restaFinal } = useRestanteFinal()
 
-    const buscarMetodosDePagoDeLaTarifa = restoDelPago.find(r => r.tipoDeTarifa == tarifaActual.tipoDePago)
+    const buscarMetodosDePagoDeLaTarifa = restoDelPago.find(r => r.tipoDeTarifa == tarifaActual.tipoDeTarifa)
+
+    // console.log(buscarMetodosDePagoDeLaTarifa)
 
     return (
         <>

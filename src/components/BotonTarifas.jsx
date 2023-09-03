@@ -15,7 +15,7 @@ export const BotonTarifas = ({ alternarMostrar }) => {
                     <Col className="d-flex justify-content-center align-items-center">
                         <i className={`fa-solid fa-list me-1 fs-5`}></i>
                         <span className="fs-5 "  >
-                            Tar.{tarifaActual.tipoDePago}
+                            Tar.{tarifaActual.tipoDeTarifa}
                         </span>
                     </Col>
                 </Row>
