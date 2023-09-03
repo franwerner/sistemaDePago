@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import { TarifaContex, restoDelPagoContext } from "../context/Contextos"
-import { buscarMetodosDePago } from "../helper/buscarMetodosDePago"
+import { TarifaContex, restoDelPagoContext } from "@/context/Contextos"
+import { useBuscarMetodosDePago } from "./useBuscarMetodosDePago"
 
 export const useCombinarMetodosDePago = () => {
 
@@ -8,15 +8,15 @@ export const useCombinarMetodosDePago = () => {
 
     const { listaDeRestos } = useContext(restoDelPagoContext)
 
-    const resultadoDelMetodo = buscarMetodosDePago(tarifaActual, listaDeRestos)
+    const { metodoEncontrado } = useBuscarMetodosDePago()
 
     const { metodosDePago } = tarifaActual
 
     const combinarMetodoDePago = metodosDePago.map(itemA => {
 
-        if (listaDeRestos.length == 0 || !resultadoDelMetodo) return itemA
+        if (listaDeRestos.length == 0 || !metodoEncontrado) return itemA
 
-        const agregado = resultadoDelMetodo.metodosDePago.find(itemB => itemB.nombre == itemA.nombre)
+        const agregado = metodoEncontrado.metodosDePago.find(itemB => itemB.nombre == itemA.nombre)
 
         return agregado ? Object.assign({}, itemA, agregado) : itemA
     })

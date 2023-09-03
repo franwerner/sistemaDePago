@@ -45,13 +45,7 @@ export const useRestanteFinal = () => {
 
         })
 
-        if (Math.sign(restosTotales) == -1) {
-            return - sumaTotal
-        } else {
-            return sumaTotal
-        }
-
-
+        return sumaTotal
 
     }, [calculoSinTarifa, listaDeRestos])
 
