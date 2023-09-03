@@ -3,15 +3,12 @@ import styles from "../../styles/PlantillaPagos.module.css"
 import React from "react";
 import { useRestanteFinal } from "../../hooks/useRestanteFinal";
 import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje";
+import { buscarMetodosDePago } from "../../helper/buscarMetodosDePago";
 
 
-
-export const PrecioTotal = () => {
-
-    const { sumaTotal, restosTotales } = useRestanteFinal()
+const RestoParaUtilizar = ({ restosTotales }) => {
 
     const porcentaje = useCalculadoraPorcenje(restosTotales)
-
 
     return (
         <>
@@ -22,13 +19,43 @@ export const PrecioTotal = () => {
             </Row>
             <Row>
                 <p className={`${styles.textDeAyuda}`}>Por favor, seleccione un método de pago.</p>
-                <p className="bg-danger text-white">
-                    Suma Totales: {sumaTotal}
-                </p>
             </Row>
-
-
         </>
+    )
+};
+
+const Restantes = () => {
+    return (
+        <>
+            <Row>
+
+            </Row>
+        </>
+    );
+};
+
+export const PrecioTotal = () => {
+
+    const { sumaTotal, restosTotales } = useRestanteFinal()
+
+    const metodoActual = buscarMetodosDePago()
+
+    const largo = metodoActual ? metodoActual.metodosDePago.length : 0
+
+    return (
+
+        <Container fluid>
+
+
+            {
+                largo == 0 ? <RestoParaUtilizar
+                    restosTotales={restosTotales}
+                /> :
+                    ""
+            }
+        </Container>
+
+
     )
 }
 
@@ -43,12 +70,12 @@ export const BotonesDeInteraccion = () => {
     )
 }
 
-export const InteraccionMetodosDePagos = React.memo(() => {
+export const SeccionRestante = React.memo(() => {
 
 
     return (
         <>
-            <Col className={`${styles.InteraccionMetodosDePagos}`}>
+            <Col className={`${styles.PagosRestantes}`}>
                 <Container fluid className="p-0 d-flex flex-column h-100">
                     <Row className=" text-center p-5">
                         <PrecioTotal />

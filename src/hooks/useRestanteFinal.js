@@ -10,6 +10,9 @@ export const useRestanteFinal = () => {
 
     const { calculoSinTarifa } = precioFinal
 
+  
+    console.log(listaDeRestos)
+
 
     const restosTotales = useMemo(() => {
 
@@ -45,12 +48,8 @@ export const useRestanteFinal = () => {
 
         })
 
-        if (Math.sign(restosTotales) == -1) {
-            return - sumaTotal
-        } else {
-            return sumaTotal
-        }
-
+      
+        return sumaTotal
 
 
     }, [calculoSinTarifa, listaDeRestos])

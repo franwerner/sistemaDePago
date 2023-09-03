@@ -23,8 +23,7 @@ Pedidos Ya 30%: EFECTIVO,PREPAGO,CUPON
 
  REDUCE A : Este contiene el total de todas las tarifas menos la de la tarifa actual.(Se suman)
 
- REDUCE B : Este contiene el total SOLO de la tarifa actual - REDUCE A.(Se resta)
-
+ REDUCE B : Este contiene el total SOLO d 
  La idea esta en almacenar en un estado, donde se encuentra el provider de los metodos de pago y se almacenan en un array todos las tarifas con metodos de pagos con  valores.
 Entonces cuando se realicen los reduce al momento de agregar un nuevo precio al tarifa actual que esta vacia, no se va a colapsar por los precios anteriores que no  fueron restados.
 

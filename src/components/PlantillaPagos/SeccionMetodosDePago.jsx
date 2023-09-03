@@ -66,7 +66,7 @@ const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) =
 })
 
 
-export const MetodosDePago = React.memo(() => {
+export const SeccionMetodosDePago = React.memo(() => {
 
     const { combinarMetodoDePago } = useCombinarMetodosDePago()
 
