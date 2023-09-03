@@ -10,25 +10,25 @@ import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje";
 
 export const PrecioTotal = () => {
 
-    const { restaFinal } = useRestanteFinal()
+    // const { restaFinal } = useRestanteFinal()
 
-    const { precioFinal } = usePrecioFinalDeLosProductos()
+    // const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { calculoConTarifa } = precioFinal
+    // const { calculoConTarifa } = precioFinal
 
-    const { calculoSuma, calculoResta } = restaFinal
+    // const { calculoSuma, calculoResta } = restaFinal
 
     
 
-    const restaCalculada = calculoSuma == 0 ? calculoConTarifa : calculoSuma
+    // const restaCalculada = calculoSuma == 0 ? calculoConTarifa : calculoSuma
 
 
-    const porcentaje = useCalculadoraPorcenje(calculoResta)
+    // const porcentaje = useCalculadoraPorcenje(calculoResta)
 
 
     return (
         <>
-            <Row>
+            {/* <Row>
                 <p className={`${styles.PrecioTotal} `}>
                     $ {separarNumerosConDecimales(calculoResta + porcentaje)}
                 </p>
@@ -36,7 +36,7 @@ export const PrecioTotal = () => {
             <Row>
                 <p className={`${styles.textDeAyuda}`}>Por favor, seleccione un método de pago.</p>
                 {porcentaje + calculoResta}
-            </Row>
+            </Row> */}
 
         </>
     )

@@ -1,54 +1,70 @@
 import { useContext, useMemo } from "react";
 import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
 import { TarifaContex, restoDelPagoContext } from "../context/Contextos";
-
+import { buscarMetodosDePago } from "../helper/buscarMetodosDePago";
 
 export const useRestanteFinal = () => {
+
     const { precioFinal } = usePrecioFinalDeLosProductos()
+
+    const { listaDeRestos } = useContext(restoDelPagoContext)
 
     const { tarifaActual } = useContext(TarifaContex)
 
-    const { restoDelPago } = useContext(restoDelPagoContext)
+
+    const resultadoDelMetodo = buscarMetodosDePago(tarifaActual, listaDeRestos)
+
+    // console.log(resultadoDelMetodo)
 
     const { calculoSinTarifa } = precioFinal
 
     const { porcentaje } = tarifaActual
 
 
+    const restosTotales = useMemo(() => {
+
+        let restaTotal = calculoSinTarifa;
+
+        listaDeRestos.forEach(lista => {
+            restaTotal -= lista.metodosDePago.reduce((acc, current) => {
+
+                return acc + current.resto;
+            }, 0);
+        });
+
+        return restaTotal;
+
+    }, [calculoSinTarifa, listaDeRestos,porcentaje])
+
+
+    const calculoResta = useMemo(() => {
+
+        if (!resultadoDelMetodo) return calculoSinTarifa
+
+        return resultadoDelMetodo.metodosDePago.reduce((acc, current) => {
+
+            return acc - current.resto
+
+        }, calculoSinTarifa)
+
+    }, [resultadoDelMetodo, calculoSinTarifa])
+
+
     const restaFinal = useMemo(() => {
 
-        let calculoResta = calculoSinTarifa
+        let calculoSuma = 0
 
-        let calculoSuma = calculoSinTarifa
+        return { calculoSuma }
 
-        restoDelPago.forEach(pago => {
+    }, [resultadoDelMetodo, calculoSinTarifa])
 
-            if (!pago.listaDeMetodos || calculoSinTarifa == 0) return calculoSinTarifa
 
-            calculoResta = pago.listaDeMetodos.reduce((acc, { resto = 0 }) => {
-
-                return Math.abs(acc - resto)
-
-            }, calculoSinTarifa)
-
-            if (!pago.listaDeMetodos) return 0
-
-            calculoSuma = pago.listaDeMetodos.reduce((acc, { resto = 0 }) => {
-
-                const calcularPorcentaje = (acc + resto) * (porcentaje / 100)
-
-                return acc + resto + calcularPorcentaje
-            }, 0);
-
-        })
-
-        return { calculoResta, calculoSuma }
-
-    }, [restoDelPago, calculoSinTarifa])
-
+    // console.log(restosTotales)
+    // console.log(calculoResta)
 
     return {
-        restaFinal
+        calculoResta,
+        restosTotales
     }
 
 

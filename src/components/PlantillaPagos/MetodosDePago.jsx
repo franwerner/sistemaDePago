@@ -4,27 +4,33 @@ import React, { useContext } from "react";
 import { TarifaContex, restoDelPagoContext } from "../../context/Contextos";
 import { useRestanteFinal } from "../../hooks/useRestanteFinal";
 import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje";
+import { useCombinarMetodosDePago } from "../../hooks/useCombinarMetodosDePago";
 
-const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, restaFinal, resto = 0, eliminarResto }) => {
+const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, calculoResta, restosTotales }) => {
 
+    const { agregarResto, eliminarResto } = useContext(restoDelPagoContext)
 
-    const { calculoResta } = restaFinal
+    const { tarifaActual } = useContext(TarifaContex)
+
 
     const { tipoDeTarifa } = tarifaActual
 
     const porcentaje = useCalculadoraPorcenje(resto)
 
+    // console.log(resto)
+    // console.log(`restos Total: ${restosTotales}`)
+
     const metodosDePago = [
         {
             nombre,
-            "resto": calculoResta + resto
+            "resto": restosTotales - resto
         }
     ]
 
     const onClick = () => {
 
 
-        if (calculoResta == 0 || resto > 0) return
+        if (calculoResta == 0 || resto > 0 || restosTotales == 0) return
 
         agregarResto({
             tipoDeTarifa,
@@ -65,30 +71,9 @@ const ListaDeMetodosDePago = React.memo(({ nombre, agregarResto, tarifaActual, r
 
 export const MetodosDePago = React.memo(() => {
 
-    const { tarifaActual } = useContext(TarifaContex)
+    const { combinarMetodoDePago } = useCombinarMetodosDePago()
 
-    const { metodosDePago } = tarifaActual
-
-    const { agregarResto, restoDelPago, eliminarResto } = useContext(restoDelPagoContext)
-
-    const { restaFinal } = useRestanteFinal()
-
-    // const buscarMetodosDePagoDeLaTarifa = restoDelPago.find(r => r.tipoDeTarifa == tarifaActual.tipoDeTarifa)
-
-
-
-    const combinados =
-
-        metodosDePago.map(itemA => {
-
-            if (restoDelPago.length == 0) return itemA
-
-            const agregado = restoDelPago[0].metodosDePago.find(itemB => itemB.nombre == itemA.nombre)
-
-            return agregado ? Object.assign({}, itemA, agregado) : itemA
-
-        }
-        )
+    const { calculoResta, restosTotales } = useRestanteFinal()
 
     return (
         <>
@@ -96,20 +81,15 @@ export const MetodosDePago = React.memo(() => {
 
                 <Container fluid id="metodos-de-pagos" >
 
-                    {combinados.map((metodo) => {
-
-
-
+                    {combinarMetodoDePago.map((metodo) => {
                         return (
 
                             <ListaDeMetodosDePago
                                 key={metodo.id}
-                                agregarResto={agregarResto}
+                                calculoResta={calculoResta}
                                 nombre={metodo.nombre}
-                                tarifaActual={tarifaActual}
-                                restaFinal={restaFinal}
                                 resto={metodo.resto}
-                                eliminarResto={eliminarResto}
+                                restosTotales={restosTotales}
                             >
                             </ListaDeMetodosDePago>
 

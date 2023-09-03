@@ -65,7 +65,7 @@ const reducer = (state, action) => {
 
 export const useMetodoDePagoReducer = () => {
 
-    const [restoDelPago, dispatch] = useReducer(reducer, [])
+    const [listaDeRestos, dispatch] = useReducer(reducer, [])
 
 
     const agregarResto = useCallback((metodoDePago) => {
@@ -85,7 +85,7 @@ export const useMetodoDePagoReducer = () => {
 
 
     return {
-        restoDelPago,
+        listaDeRestos,
         agregarResto,
         modificarResto,
         eliminarResto
