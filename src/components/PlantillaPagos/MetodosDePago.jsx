@@ -89,8 +89,6 @@ export const MetodosDePago = React.memo(() => {
     const { agregarResto, restoDelPago, eliminarResto } = useContext(restoDelPagoContext)
 
     const { restaFinal } = useRestanteFinal()
-    const { precioFinal } = usePrecioFinalDeLosProductos()
-    console.log(precioFinal)
 
     const buscarMetodosDePagoDeLaTarifa = restoDelPago.find(r => r.tipoDeTarifa == tarifaActual.tipoDePago)
 
