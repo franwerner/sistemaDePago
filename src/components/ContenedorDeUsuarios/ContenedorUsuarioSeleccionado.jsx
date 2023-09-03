@@ -1,6 +1,6 @@
-import { useForm } from "../../hooks/useForm"
+import { useForm } from "@/hooks/useForm"
 import { Button, Form, FormControl, Modal } from "react-bootstrap"
-import { useValidarUsuarioSeleccionado } from "../../hooks/useValidarUsuarioSeleccionado"
+import { useValidarUsuarioSeleccionado } from "@/hooks/useValidarUsuarioSeleccionado"
 
 
 export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {

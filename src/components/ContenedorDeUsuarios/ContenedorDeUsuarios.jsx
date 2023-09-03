@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { Button, Modal } from "react-bootstrap"
-import { listaUsuariosContext } from "../../context/Contextos"
+import { listaUsuariosContext } from "@/context/Contextos"
 import { ListaDeUsuarios } from "./ListaDeUsuarios"
 
 

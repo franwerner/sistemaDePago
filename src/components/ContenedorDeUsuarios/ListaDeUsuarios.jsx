@@ -1,13 +1,13 @@
 import { useContext, useState } from "react"
-import { listaUsuariosContext } from "../../context/Contextos"
-import { useEventoMostrar } from "../../hooks/useEventoMostrar"
+import { listaUsuariosContext } from "@/context/Contextos"
+import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import { Table } from "react-bootstrap"
 import { ContenedorUsuarioSeleccionado } from "./ContenedorUsuarioSeleccionado"
 
 
 export const ListaDeUsuarios = ({ cerrarTodo }) => {
 
-    console.log("MODALITO")
+  
     const { listaDeUsuarios } = useContext(listaUsuariosContext)
 
     const { mostrar, alternarMostrar } = useEventoMostrar()

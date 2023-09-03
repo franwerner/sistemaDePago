@@ -28,14 +28,14 @@ const RestanteTotal = ({ restosTotales }) => {
 
     return (
         <>
-            <Row>
+            {/* <Row>
                 <p>
                     Restantes : {restosTotales}
                 </p>
                 <p>
                     Adeudo total : {calculoConTarifa}
                 </p>
-            </Row>
+            </Row> */}
         </>
     );
 

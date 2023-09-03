@@ -28,7 +28,7 @@ const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) =
 
     const onClick = () => {
 
-        if (resto > 0 || restosTotales == 0) return
+        if (resto > 0 || restosTotales <= 0) return
 
         agregarResto({
             tipoDeTarifa,

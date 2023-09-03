@@ -1,7 +1,7 @@
 
-import { useEventoMostrar } from "../../hooks/useEventoMostrar"
+import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import { customErrorContext } from "../Contextos"
-import { CustomErrorToast } from "../../components/CustomErrorToast"
+import { CustomErrorToast } from "@/components/CustomErrorToast"
 import { useState } from "react"
 
 
