@@ -10,11 +10,9 @@ export const useRestanteFinal = () => {
 
     const { restoDelPago } = useContext(restoDelPagoContext)
 
-    const { calculoSinTarifa, calculoConTarifa } = precioFinal
+    const { calculoSinTarifa } = precioFinal
 
     const { porcentaje } = tarifaActual
-
-
 
 
     const restaFinal = useMemo(() => {
@@ -23,7 +21,7 @@ export const useRestanteFinal = () => {
 
         restoDelPago.forEach(pago => {
 
-            if (!pago.listaDeMetodos) return calculoSinTarifa
+            if (!pago.listaDeMetodos || calculoSinTarifa == 0) return calculoSinTarifa
 
             calculoResta = pago.listaDeMetodos.reduce((acc, { resto = 0 }) => {
 

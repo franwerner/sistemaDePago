@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { TarifaContex, restoDelPagoContext } from "../../context/Contextos";
 import { useRestanteFinal } from "../../hooks/useRestanteFinal";
 import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje";
+import { usePrecioFinalDeLosProductos } from "../../hooks/usePrecioFinalDeLosProductos";
 
 
 const verificarResto = (resto) => {
@@ -88,6 +89,8 @@ export const MetodosDePago = React.memo(() => {
     const { agregarResto, restoDelPago, eliminarResto } = useContext(restoDelPagoContext)
 
     const { restaFinal } = useRestanteFinal()
+    const { precioFinal } = usePrecioFinalDeLosProductos()
+    console.log(precioFinal)
 
     const buscarMetodosDePagoDeLaTarifa = restoDelPago.find(r => r.tipoDeTarifa == tarifaActual.tipoDePago)
 

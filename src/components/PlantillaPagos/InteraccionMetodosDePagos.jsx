@@ -4,6 +4,7 @@ import { separarNumerosConDecimales } from "../../helper/separarNumerosConDecima
 import React from "react";
 import { useRestanteFinal } from "../../hooks/useRestanteFinal";
 import { usePrecioFinalDeLosProductos } from "../../hooks/usePrecioFinalDeLosProductos";
+import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje";
 
 
 
@@ -17,21 +18,24 @@ export const PrecioTotal = () => {
 
     const { calculoSuma, calculoResta } = restaFinal
 
-
+    
 
     const restaCalculada = calculoSuma == 0 ? calculoConTarifa : calculoSuma
+
+
+    const porcentaje = useCalculadoraPorcenje(calculoResta)
 
 
     return (
         <>
             <Row>
                 <p className={`${styles.PrecioTotal} `}>
-                    $ {separarNumerosConDecimales(calculoResta)}
+                    $ {separarNumerosConDecimales(calculoResta + porcentaje)}
                 </p>
             </Row>
             <Row>
                 <p className={`${styles.textDeAyuda}`}>Por favor, seleccione un método de pago.</p>
-                {calculoResta}
+                {porcentaje + calculoResta}
             </Row>
 
         </>

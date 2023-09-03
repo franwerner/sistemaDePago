@@ -10,18 +10,13 @@ const validarTarifaDelMetodoInicial = (state, tipoDeTarifa) => state.some(i => {
 const reemplazarRestoDelMetodo = (estado, metodo) => {
 
     const elementoDeLaListaFiltrado = estado.listaDeMetodos.filter(item => item.nombre !== metodo[0].nombre);
-
-    console.log(elementoDeLaListaFiltrado)
-
     return [...elementoDeLaListaFiltrado, ...metodo]
 }
 
 const eliminarRestoDelMetodo = (estado, metodo) => {
 
-    const test = estado.listaDeMetodos.filter(({ nombre }) => nombre !== metodo[0].nombre)
+    return [...estado.listaDeMetodos.filter(({ nombre }) => nombre !== metodo[0].nombre)]
 
-    // console.log(test)
-    return [...test]
 }
 
 
@@ -37,7 +32,6 @@ const reducer = (state, action) => {
     if (validarTarifaDelMetodoInicial(state, tipoDeTarifa) == false) return [...state, { ...action.metodoDePago }]
 
     return state.map(estado => {
-
 
         if (estado.tipoDeTarifa !== action.metodoDePago.tipoDeTarifa) return estado
 
