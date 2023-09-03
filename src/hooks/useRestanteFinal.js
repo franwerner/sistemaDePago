@@ -1,7 +1,6 @@
 import { useContext, useMemo } from "react";
 import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
-import { TarifaContex, restoDelPagoContext } from "../context/Contextos";
-import { buscarMetodosDePago } from "../helper/buscarMetodosDePago";
+import { restoDelPagoContext } from "../context/Contextos";
 
 export const useRestanteFinal = () => {
 
@@ -9,16 +8,7 @@ export const useRestanteFinal = () => {
 
     const { listaDeRestos } = useContext(restoDelPagoContext)
 
-    const { tarifaActual } = useContext(TarifaContex)
-
-
-    const resultadoDelMetodo = buscarMetodosDePago(tarifaActual, listaDeRestos)
-
-    // console.log(resultadoDelMetodo)
-
     const { calculoSinTarifa } = precioFinal
-
-    const { porcentaje } = tarifaActual
 
 
     const restosTotales = useMemo(() => {
@@ -26,45 +16,44 @@ export const useRestanteFinal = () => {
         let restaTotal = calculoSinTarifa;
 
         listaDeRestos.forEach(lista => {
+
             restaTotal -= lista.metodosDePago.reduce((acc, current) => {
 
-                return acc + current.resto;
+                return acc + current.resto
             }, 0);
         });
 
         return restaTotal;
 
-    }, [calculoSinTarifa, listaDeRestos,porcentaje])
+    }, [calculoSinTarifa, listaDeRestos])
 
 
-    const calculoResta = useMemo(() => {
-
-        if (!resultadoDelMetodo) return calculoSinTarifa
-
-        return resultadoDelMetodo.metodosDePago.reduce((acc, current) => {
-
-            return acc - current.resto
-
-        }, calculoSinTarifa)
-
-    }, [resultadoDelMetodo, calculoSinTarifa])
 
 
-    const restaFinal = useMemo(() => {
+    const sumaTotal = useMemo(() => {
 
-        let calculoSuma = 0
+        let sumaTotal = 0
 
-        return { calculoSuma }
+        listaDeRestos.forEach(lista => {
 
-    }, [resultadoDelMetodo, calculoSinTarifa])
+            sumaTotal += lista.metodosDePago.reduce((acc, current) => {
+
+                return (acc + current.resto + current.porcentaje)
+
+            }, 0)
+
+        })
+
+        return sumaTotal
 
 
-    // console.log(restosTotales)
-    // console.log(calculoResta)
+
+    }, [calculoSinTarifa, listaDeRestos])
+
 
     return {
-        calculoResta,
-        restosTotales
+        restosTotales,
+        sumaTotal
     }
 
 

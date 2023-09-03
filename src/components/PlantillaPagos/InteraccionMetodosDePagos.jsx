@@ -1,42 +1,30 @@
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "../../styles/PlantillaPagos.module.css"
-import { separarNumerosConDecimales } from "../../helper/separarNumerosConDecimales";
 import React from "react";
 import { useRestanteFinal } from "../../hooks/useRestanteFinal";
-import { usePrecioFinalDeLosProductos } from "../../hooks/usePrecioFinalDeLosProductos";
 import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje";
 
 
 
 export const PrecioTotal = () => {
 
-    // const { restaFinal } = useRestanteFinal()
+    const { sumaTotal, restosTotales } = useRestanteFinal()
 
-    // const { precioFinal } = usePrecioFinalDeLosProductos()
-
-    // const { calculoConTarifa } = precioFinal
-
-    // const { calculoSuma, calculoResta } = restaFinal
-
-    
-
-    // const restaCalculada = calculoSuma == 0 ? calculoConTarifa : calculoSuma
-
-
-    // const porcentaje = useCalculadoraPorcenje(calculoResta)
-
+    const porcentaje = useCalculadoraPorcenje(restosTotales)
 
     return (
         <>
-            {/* <Row>
+            <Row>
                 <p className={`${styles.PrecioTotal} `}>
-                    $ {separarNumerosConDecimales(calculoResta + porcentaje)}
+                    $ {restosTotales + porcentaje}
                 </p>
             </Row>
             <Row>
                 <p className={`${styles.textDeAyuda}`}>Por favor, seleccione un método de pago.</p>
-                {porcentaje + calculoResta}
-            </Row> */}
+                <p className="bg-danger text-white">
+                    Suma Totales: {sumaTotal}
+                </p>
+            </Row>
 
         </>
     )

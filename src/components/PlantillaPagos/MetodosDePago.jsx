@@ -6,40 +6,37 @@ import { useRestanteFinal } from "../../hooks/useRestanteFinal";
 import { useCalculadoraPorcenje } from "../../hooks/useCalcularPorcentaje";
 import { useCombinarMetodosDePago } from "../../hooks/useCombinarMetodosDePago";
 
-const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, calculoResta, restosTotales }) => {
+const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) => {
 
     const { agregarResto, eliminarResto } = useContext(restoDelPagoContext)
 
     const { tarifaActual } = useContext(TarifaContex)
 
-
     const { tipoDeTarifa } = tarifaActual
 
-    const porcentaje = useCalculadoraPorcenje(resto)
+    const porcentajeDelResto = useCalculadoraPorcenje(resto)
 
-    // console.log(resto)
-    // console.log(`restos Total: ${restosTotales}`)
+    const porcentaje = useCalculadoraPorcenje(restosTotales)
 
     const metodosDePago = [
         {
             nombre,
-            "resto": restosTotales - resto
+            "resto": restosTotales,
+            porcentaje
         }
     ]
 
     const onClick = () => {
 
-
-        if (calculoResta == 0 || resto > 0 || restosTotales == 0) return
+        if (resto > 0 || restosTotales == 0) return
 
         agregarResto({
             tipoDeTarifa,
-            metodosDePago
+            metodosDePago,
         })
     }
 
     const remover = () => {
-
 
         eliminarResto({
             tipoDeTarifa,
@@ -55,7 +52,7 @@ const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, calculoResta, rest
                     {nombre}
                 </Col>
                 <Col>
-                    {porcentaje + resto}
+                    {porcentajeDelResto + resto}
                 </Col>
 
                 <Col>
@@ -73,7 +70,8 @@ export const MetodosDePago = React.memo(() => {
 
     const { combinarMetodoDePago } = useCombinarMetodosDePago()
 
-    const { calculoResta, restosTotales } = useRestanteFinal()
+    const { restosTotales } = useRestanteFinal()
+
 
     return (
         <>
@@ -86,7 +84,6 @@ export const MetodosDePago = React.memo(() => {
 
                             <ListaDeMetodosDePago
                                 key={metodo.id}
-                                calculoResta={calculoResta}
                                 nombre={metodo.nombre}
                                 resto={metodo.resto}
                                 restosTotales={restosTotales}
