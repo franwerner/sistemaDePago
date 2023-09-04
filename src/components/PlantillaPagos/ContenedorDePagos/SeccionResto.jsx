@@ -4,6 +4,7 @@ import React from "react";
 import { useRestanteFinal } from "@/hooks/useRestanteFinal";
 import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje";
 import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProductos"
+import { useBuscarMetodosDePago } from "@/hooks//useBuscarMetodosDePago";
 
 const RestoTotal = ({ restosTotales }) => {
 
@@ -22,14 +23,15 @@ const RestoTotal = ({ restosTotales }) => {
 
 };
 
-const CambioTotal = ({ cambioTotal,}) => {
-
-    
-    const {precioFinal} = usePrecioFinalDeLosProductos()
-
-    const {calculoConTarifa} = precioFinal
+const CambioTotal = ({ cambioTotal, restosTotal}) => {
 
 
+    const { precioFinal } = usePrecioFinalDeLosProductos()
+
+    const { calculoConTarifa } = precioFinal
+
+
+    const restante = restosTotal < 0 ? 0 : restosTotal
 
     return (
         <>
@@ -38,6 +40,9 @@ const CambioTotal = ({ cambioTotal,}) => {
                 <Col>
                     <p>
                         Adeudo Total : {calculoConTarifa}
+                    </p>
+                    <p>
+                      restante : {restante}
                     </p>
                 </Col>
 
@@ -70,13 +75,18 @@ export const NumerosTotales = () => {
 
     const { sumaTotal, restosTotales, cambioTotal } = useRestanteFinal()
 
+    const { metodoEncontrado } = useBuscarMetodosDePago()
 
+    const verificarSiHayPagosActivos = metodoEncontrado ? metodoEncontrado.metodosDePago.length : 0
 
     return (
         <>
             <Container fluid>
-                <CambioTotal restosTotal={restosTotales} cambioTotal={cambioTotal} />
-                <RestoTotal restosTotales={restosTotales} />
+                {
+                    verificarSiHayPagosActivos == 0 ?
+                        <RestoTotal restosTotales={restosTotales} /> :
+                        <CambioTotal restosTotal={restosTotales} cambioTotal={cambioTotal} />
+                }
                 <SumaTotalDeLosPagos sumaTotal={sumaTotal} />
             </Container>
 

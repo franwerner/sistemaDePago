@@ -10,6 +10,48 @@ export const useRestanteFinal = () => {
 
     const { calculoSinTarifa } = precioFinal
 
+    const cambioTotal = useMemo(() => {
+
+        let cambioTotal = 0
+
+        listaDeRestos.forEach(lista => {
+
+            cambioTotal = lista.metodosDePago.reduce((acc, current) => {
+
+                return (acc + current.resto)
+
+            }, 0)
+
+        })
+
+        const total = cambioTotal - calculoSinTarifa
+
+        const verificarSiEsNegativo = Math.sign(total) == -1 ? 0 : total
+
+        return verificarSiEsNegativo
+
+    }, [calculoSinTarifa, listaDeRestos])
+
+
+    const sumaTotal = useMemo(() => {
+
+        let sumaTotal = 0
+
+        listaDeRestos.forEach(lista => {
+
+            sumaTotal += lista.metodosDePago.reduce((acc, current) => {
+
+                return (acc + current.resto + current.porcentaje)
+
+            }, 0)
+
+        })
+
+        return sumaTotal - cambioTotal
+
+    }, [calculoSinTarifa, listaDeRestos])
+
+
 
     const restosTotales = useMemo(() => {
 
@@ -31,48 +73,7 @@ export const useRestanteFinal = () => {
 
 
 
-    const sumaTotal = useMemo(() => {
-
-        let sumaTotal = 0
-
-        listaDeRestos.forEach(lista => {
-
-            sumaTotal += lista.metodosDePago.reduce((acc, current) => {
-
-                return (acc + current.resto + current.porcentaje)
-
-            }, 0)
-
-        })
-
-        return sumaTotal
-
-    }, [calculoSinTarifa, listaDeRestos])
-
-    const cambioTotal = useMemo(() => {
-
-        let cambioTotal = 0
-
-        listaDeRestos.forEach(lista => {
-
-            cambioTotal = lista.metodosDePago.reduce((acc, current) => {
-
-                return (acc + current.resto)
-
-            }, 0)
-
-        })
-
-        
-        const total = cambioTotal - calculoSinTarifa
-
-        const verificarSiEsNegativo = Math.sign(total) == -1 ? 0 : total
-
-        return verificarSiEsNegativo
-
-    }, [calculoSinTarifa, listaDeRestos])
-
-
+console.log(restosTotales)
 
     return {
         restosTotales,
