@@ -2,6 +2,7 @@ import { useContext, useMemo } from "react";
 import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
 import { restoDelPagoContext } from "../context/Contextos";
 
+
 export const useRestanteFinal = () => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
@@ -63,7 +64,12 @@ export const useRestanteFinal = () => {
 
         })
 
-        return sumaTotal
+      
+
+      const resultado = Math.abs(sumaTotal)
+
+        return Math.sign(calculoSinTarifa) == -1 ? (-resultado) : resultado
+   
 
     }, [calculoSinTarifa, listaDeRestos])
 

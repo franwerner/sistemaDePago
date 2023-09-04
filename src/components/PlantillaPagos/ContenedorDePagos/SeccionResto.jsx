@@ -53,19 +53,6 @@ const CambioTotal = ({ cambioTotal, sumaTotal, restosTotal }) => {
 
 };
 
-const SumaTotalDeLosPagos = ({ sumaTotal }) => {
-
-    return (
-        <>
-            {/* <Row>
-                <p className={`${styles.textDeAyuda}`}>Por favor, seleccione un método de pago.</p>
-                <p className="bg-danger text-white">
-                    Suma Totales: {sumaTotal}
-                </p>
-            </Row> */}
-        </>
-    );
-};
 
 export const NumerosTotales = () => {
 
@@ -83,7 +70,6 @@ export const NumerosTotales = () => {
                         <RestoTotal restosTotales={restosTotales} /> :
                         <CambioTotal sumaTotal={sumaTotal} restosTotal={restosTotales} cambioTotal={cambioTotal} />
                 }
-                <SumaTotalDeLosPagos sumaTotal={sumaTotal} />
             </Container>
 
         </>

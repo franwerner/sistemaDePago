@@ -7,6 +7,34 @@ import { productoReducerContext, productoSeleccionadoContext } from "@/context/C
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
 import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje"
 
+const verificarSiEsNegativo = (numero) => {
+
+    return Math.sign(numero)
+
+}
+
+
+const EdicionHeader = ({ validarNumero, total, nombre }) => {
+
+    1
+    return (
+        <>
+            <div style={{ overflowWrap: "anywhere", minHeight: "150px" }}>
+                <p style={{ color: "#555" }}>
+                    {nombre}
+                </p>
+
+                <p className="fs-5 fw-light ">
+                    {
+                        validarNumero ? `Total  : ${separarNumerosConDecimales(total)}` : "No es un numero valido"
+                    }
+                </p>
+            </div>
+
+        </>
+    )
+
+}
 
 export const EdicionPreciosProductos = React.memo(({ alternarMostrar }) => {
 
@@ -14,7 +42,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar }) => {
 
     const { editarProducto } = useContext(productoReducerContext)
 
-    const { precioModificado, cantidadSeleccionada,nombre} = seleccion
+    const { precioModificado, cantidadSeleccionada, nombre } = seleccion
 
     const { form, onSubmit, changeForm } = useForm({
         precioForm: precioModificado
@@ -26,15 +54,21 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar }) => {
 
     const { validarNumero } = useComprobarNumeros(form)
 
+
+
     const data = {
         ...seleccion,
-        "precioModificado": parseFloat(precioForm),
-        "cantidadSeleccionada": parseFloat(cantidadForm)
+
+        "precioModificado": parseFloat(Math.sign(precioForm) == -1 ? Math.abs(precioForm) : precioForm),
+
+        "cantidadSeleccionada": parseFloat(Math.sign(precioForm) == -1 ? (-cantidadForm) : cantidadForm)
     }
 
     const porcentaje = useCalculadoraPorcenje(cantidadForm)
 
     const total = porcentaje + (precioForm * cantidadForm)
+
+
 
     return (
         <>
@@ -43,18 +77,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar }) => {
             <Modal onHide={alternarMostrar} show={true} >
                 <Modal.Header>
                     <Modal.Title  >
-                        <div style={{ overflowWrap: "anywhere", minHeight: "150px" }}>
-                            <p style={{ color: "#555" }}>
-                                {nombre}
-                            </p>
-
-                            <p className="fs-5 fw-light ">
-                                {
-                                    validarNumero ? `Total  : ${separarNumerosConDecimales(total)}` : "No es un numero valido"
-                                }
-                            </p>
-                        </div>
-
+                        <EdicionHeader validarNumero={validarNumero} precioForm={precioForm} total={total} nombre={nombre} />
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
