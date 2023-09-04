@@ -3,7 +3,7 @@ import styles from "@/styles/PlantillaPagos.module.css"
 import React, { useContext } from "react";
 import { TarifaContex, restoDelPagoContext } from "@/context/Contextos";
 import { useRestanteFinal } from "@/hooks/useRestanteFinal";
-import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje";
+
 import { useCombinarMetodosDePago } from "@/hooks/useCombinarMetodosDePago";
 
 const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) => {
@@ -14,15 +14,10 @@ const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) =
 
     const { tipoDeTarifa } = tarifaActual
 
-    const porcentajeDelResto = useCalculadoraPorcenje(resto)
-
-    const porcentaje = useCalculadoraPorcenje(restosTotales)
-
     const metodosDePago = [
         {
             nombre,
             "resto": restosTotales,
-            porcentaje
         }
     ]
 
@@ -52,7 +47,7 @@ const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) =
                     {nombre}
                 </Col>
                 <Col>
-                    {porcentajeDelResto + resto}
+                    {resto}
                 </Col>
 
                 <Col>

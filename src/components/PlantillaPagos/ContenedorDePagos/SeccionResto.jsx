@@ -2,19 +2,16 @@ import { Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaPagos.module.css"
 import React from "react";
 import { useRestanteFinal } from "@/hooks/useRestanteFinal";
-import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje";
 import { useBuscarMetodosDePago } from "@/hooks//useBuscarMetodosDePago";
+import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProductos";
 
 const RestoTotal = ({ restosTotales }) => {
-
-    const porcentaje = useCalculadoraPorcenje(restosTotales)
-
 
     return (
         <>
             <Row>
                 <p className={`${styles.PrecioTotal} `}>
-                    $ {restosTotales + porcentaje}
+                    $ {restosTotales}
                 </p>
             </Row>
 
@@ -23,22 +20,26 @@ const RestoTotal = ({ restosTotales }) => {
 
 };
 
-const CambioTotal = ({ cambioTotal, sumaTotal, restosTotal }) => {
+const CambioTotal = ({ cambioTotal, restosTotal }) => {
+
+
 
     const restante = restosTotal < 0 ? 0 : restosTotal
 
-    const porcentaje = useCalculadoraPorcenje(restante)
-   
+    const {precioFinal} = usePrecioFinalDeLosProductos()
+
+    const {calculoConTarifa} = precioFinal
+ 
     return (
         <>
             <Row className="border  ">
 
                 <Col>
                     <p>
-                        Pagos Totales : {sumaTotal}
+                        Adeudo total : {calculoConTarifa}
                     </p>
                     <p>
-                        restante : {porcentaje + restante}
+                        restante : {restosTotal}
                     </p>
                 </Col>
 
@@ -56,7 +57,7 @@ const CambioTotal = ({ cambioTotal, sumaTotal, restosTotal }) => {
 
 export const NumerosTotales = () => {
 
-    const { sumaTotal, restosTotales, cambioTotal } = useRestanteFinal()
+    const {restosTotales, cambioTotal } = useRestanteFinal()
 
     const { metodoEncontrado } = useBuscarMetodosDePago()
 
@@ -68,7 +69,7 @@ export const NumerosTotales = () => {
                 {
                     verificarSiHayPagosActivos == 0 ?
                         <RestoTotal restosTotales={restosTotales} /> :
-                        <CambioTotal sumaTotal={sumaTotal} restosTotal={restosTotales} cambioTotal={cambioTotal} />
+                        <CambioTotal restosTotal={restosTotales} cambioTotal={cambioTotal} />
                 }
             </Container>
 
