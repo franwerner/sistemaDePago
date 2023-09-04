@@ -23,9 +23,6 @@ const RestoTotal = ({ restosTotales }) => {
 const CambioTotal = ({ cambioTotal, restosTotal }) => {
 
 
-
-    const restante = restosTotal < 0 ? 0 : restosTotal
-
     const {precioFinal} = usePrecioFinalDeLosProductos()
 
     const {calculoConTarifa} = precioFinal
@@ -82,7 +79,7 @@ export const BotonesDeInteraccion = () => {
     return (
         <>
             <Col className={`${styles.botonesDeInteraccion}`}>
-                asdadasdasdasdsads
+                {/* asdadasdasdasdsads */}
             </Col>
         </>
     )

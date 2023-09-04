@@ -9,7 +9,7 @@ export const useRestanteFinal = () => {
 
     const { listaDeRestos } = useContext(restoDelPagoContext)
 
-    const { calculoSinTarifa, calculoConTarifa } = precioFinal
+    const { calculoConTarifa } = precioFinal
 
     const { metodoEncontrado } = useBuscarMetodosDePago()
 
@@ -26,7 +26,7 @@ export const useRestanteFinal = () => {
         else if (cambio > calculoConTarifa) return resultado
         else return 0
 
-    }, [calculoSinTarifa, listaDeRestos])
+    }, [calculoConTarifa, listaDeRestos])
 
 
     const restosTotales = useMemo(() => {
@@ -37,7 +37,7 @@ export const useRestanteFinal = () => {
 
         return cambioTotal > 0 ? 0 : restante
 
-    }, [calculoSinTarifa, listaDeRestos])
+    }, [calculoConTarifa, listaDeRestos])
 
 
 
