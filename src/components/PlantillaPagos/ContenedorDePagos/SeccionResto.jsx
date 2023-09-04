@@ -10,6 +10,7 @@ const RestoTotal = ({ restosTotales }) => {
 
     const porcentaje = useCalculadoraPorcenje(restosTotales)
 
+
     return (
         <>
             <Row>
@@ -28,10 +29,15 @@ const CambioTotal = ({ cambioTotal, restosTotal}) => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
+    const restante = restosTotal < 0 ? 0 : restosTotal
+
+    const porcentaje = useCalculadoraPorcenje(restante)
+
+
     const { calculoConTarifa } = precioFinal
 
 
-    const restante = restosTotal < 0 ? 0 : restosTotal
+  
 
     return (
         <>
@@ -42,7 +48,7 @@ const CambioTotal = ({ cambioTotal, restosTotal}) => {
                         Adeudo Total : {calculoConTarifa}
                     </p>
                     <p>
-                      restante : {restante}
+                      restante : {porcentaje + restante}
                     </p>
                 </Col>
 

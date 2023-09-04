@@ -26,6 +26,8 @@ export const useRestanteFinal = () => {
 
         const total = cambioTotal - calculoSinTarifa
 
+        console.log(total)
+
         const verificarSiEsNegativo = Math.sign(total) == -1 ? 0 : total
 
         return verificarSiEsNegativo
@@ -70,10 +72,6 @@ export const useRestanteFinal = () => {
 
     }, [calculoSinTarifa, listaDeRestos])
 
-
-
-
-console.log(restosTotales)
 
     return {
         restosTotales,
