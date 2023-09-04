@@ -21,7 +21,7 @@ const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) =
     const metodosDePago = [
         {
             nombre,
-            "resto": restosTotales,
+            "resto": restosTotales + 1000,
             porcentaje
         }
     ]

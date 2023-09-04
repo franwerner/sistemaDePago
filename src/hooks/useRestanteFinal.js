@@ -49,10 +49,35 @@ export const useRestanteFinal = () => {
 
     }, [calculoSinTarifa, listaDeRestos])
 
+    const cambioTotal = useMemo(() => {
+
+        let cambioTotal = 0
+
+        listaDeRestos.forEach(lista => {
+
+            cambioTotal = lista.metodosDePago.reduce((acc, current) => {
+
+                return (acc + current.resto)
+
+            }, 0)
+
+        })
+
+        
+        const total = cambioTotal - calculoSinTarifa
+
+        const verificarSiEsNegativo = Math.sign(total) == -1 ? 0 : total
+
+        return verificarSiEsNegativo
+
+    }, [calculoSinTarifa, listaDeRestos])
+
+
 
     return {
         restosTotales,
-        sumaTotal
+        sumaTotal,
+        cambioTotal
     }
 
 

@@ -38,8 +38,6 @@ export const PlantillaPagos = () => {
                                 alternarMostrar={alternarMostrar} />
                         }
 
-
-
                     </Col>
                 </Row>
             </Container>

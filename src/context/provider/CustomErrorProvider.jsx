@@ -4,11 +4,6 @@ import { customErrorContext } from "../Contextos"
 import { CustomErrorToast } from "@/components/CustomErrorToast"
 import { useState } from "react"
 
-
-//Para hacer un correcto funcionamiento de CustomErrorProvider, va en conjunto del helper codigoDeErrores
-//Lo que hace es buscar un codigo de error y genera un error si encuentra algun error y se captura en el componente invocado
-//y hace que se genere un Toast con el tipo de error y su codigo 
-
 export const CustomErrorProvider = ({ children }) => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
@@ -20,7 +15,6 @@ export const CustomErrorProvider = ({ children }) => {
         alternarMostrar()
     }
 
-    //BORRAR ESTE PROVIDER
 
     return (
         <>

@@ -1,12 +1,10 @@
 
 
 import { useContext } from "react"
-import { customErrorContext, listaUsuariosContext } from "../context/Contextos"
-import { CustomError } from "../helper/customError"
-import { buscarCodigosDeErrores } from "../helper/codigoDeErrores"
-import { validarUsuarioFetch } from "../helper/endpoints/validarUsuarioFetch"
-
-
+import { customErrorContext, listaUsuariosContext } from "@/context/Contextos"
+import { CustomError } from "@/helper/customError"
+import { buscarCodigosDeErrores } from "@/helper/codigoDeErrores"
+import { validarUsuarioFetch } from "@/helper/endpoints/validarUsuarioFetch"
 
 
 export const useValidarUsuarioSeleccionado = () => {

@@ -3,11 +3,12 @@ import styles from "@/styles/PlantillaPagos.module.css"
 import React from "react";
 import { useRestanteFinal } from "@/hooks/useRestanteFinal";
 import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje";
-import { useBuscarMetodosDePago } from "@/hooks/useBuscarMetodosDePago"
 import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProductos"
 
-const ValorSinAgregar = ({ restosTotales }) => {
+const RestoTotal = ({ restosTotales }) => {
+
     const porcentaje = useCalculadoraPorcenje(restosTotales)
+
     return (
         <>
             <Row>
@@ -21,21 +22,31 @@ const ValorSinAgregar = ({ restosTotales }) => {
 
 };
 
-const RestanteTotal = ({ restosTotales }) => {
+const CambioTotal = ({ cambioTotal,}) => {
 
-    const { precioFinal } = usePrecioFinalDeLosProductos()
-    const { calculoConTarifa } = precioFinal
+    
+    const {precioFinal} = usePrecioFinalDeLosProductos()
+
+    const {calculoConTarifa} = precioFinal
+
+
 
     return (
         <>
-            {/* <Row>
-                <p>
-                    Restantes : {restosTotales}
-                </p>
-                <p>
-                    Adeudo total : {calculoConTarifa}
-                </p>
-            </Row> */}
+            <Row className="border  ">
+
+                <Col>
+                    <p>
+                        Adeudo Total : {calculoConTarifa}
+                    </p>
+                </Col>
+
+                <Col>
+                    <p className="fs-5">
+                        Cambio  : {cambioTotal}
+                    </p>
+                </Col>
+            </Row>
         </>
     );
 
@@ -55,22 +66,18 @@ const SumaTotalDeLosPagos = ({ sumaTotal }) => {
     );
 };
 
-export const PrecioTotal = () => {
+export const NumerosTotales = () => {
 
-    const { sumaTotal, restosTotales } = useRestanteFinal()
+    const { sumaTotal, restosTotales, cambioTotal } = useRestanteFinal()
 
-    const { metodoEncontrado } = useBuscarMetodosDePago()
 
-    const largo = metodoEncontrado ? metodoEncontrado.metodosDePago : -1
 
     return (
         <>
-            <Container>
-                <RestanteTotal restosTotales={restosTotales} />
-                <ValorSinAgregar restosTotales={restosTotales} />
+            <Container fluid>
+                <CambioTotal restosTotal={restosTotales} cambioTotal={cambioTotal} />
+                <RestoTotal restosTotales={restosTotales} />
                 <SumaTotalDeLosPagos sumaTotal={sumaTotal} />
-
-
             </Container>
 
         </>
@@ -95,8 +102,8 @@ export const SeccionResto = React.memo(() => {
         <>
             <Col className={`${styles.InteraccionMetodosDePagos}`}>
                 <Container fluid className="p-0 d-flex flex-column h-100">
-                    <Row className=" text-center p-5">
-                        <PrecioTotal />
+                    <Row className=" text-center p-1">
+                        <NumerosTotales />
                     </Row>
                     <Row className={`flex-grow-1 `}>
                         <BotonesDeInteraccion />
