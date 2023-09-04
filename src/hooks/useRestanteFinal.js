@@ -22,11 +22,9 @@ export const useRestanteFinal = () => {
 
         const resultado = cambio - calculoConTarifa
 
-
         if (Math.sign(calculoConTarifa) == -1) return 0
         else if (cambio > calculoConTarifa) return resultado
         else return 0
-
 
     }, [calculoSinTarifa, listaDeRestos])
 
@@ -36,7 +34,7 @@ export const useRestanteFinal = () => {
         if (!metodoEncontrado) return calculoConTarifa
 
         const restante = metodoEncontrado.metodosDePago.reduce((acc, current) => acc - current.resto, calculoConTarifa)
-        
+
         return cambioTotal > 0 ? 0 : restante
 
     }, [calculoSinTarifa, listaDeRestos])
