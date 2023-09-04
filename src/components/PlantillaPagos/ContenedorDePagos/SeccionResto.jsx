@@ -3,7 +3,6 @@ import styles from "@/styles/PlantillaPagos.module.css"
 import React from "react";
 import { useRestanteFinal } from "@/hooks/useRestanteFinal";
 import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje";
-import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProductos"
 import { useBuscarMetodosDePago } from "@/hooks//useBuscarMetodosDePago";
 
 const RestoTotal = ({ restosTotales }) => {
@@ -24,31 +23,22 @@ const RestoTotal = ({ restosTotales }) => {
 
 };
 
-const CambioTotal = ({ cambioTotal, restosTotal}) => {
-
-
-    const { precioFinal } = usePrecioFinalDeLosProductos()
+const CambioTotal = ({ cambioTotal, sumaTotal, restosTotal }) => {
 
     const restante = restosTotal < 0 ? 0 : restosTotal
 
     const porcentaje = useCalculadoraPorcenje(restante)
-
-
-    const { calculoConTarifa } = precioFinal
-
-
-  
-
+   
     return (
         <>
             <Row className="border  ">
 
                 <Col>
                     <p>
-                        Adeudo Total : {calculoConTarifa}
+                        Pagos Totales : {sumaTotal}
                     </p>
                     <p>
-                      restante : {porcentaje + restante}
+                        restante : {porcentaje + restante}
                     </p>
                 </Col>
 
@@ -67,12 +57,12 @@ const SumaTotalDeLosPagos = ({ sumaTotal }) => {
 
     return (
         <>
-            <Row>
+            {/* <Row>
                 <p className={`${styles.textDeAyuda}`}>Por favor, seleccione un método de pago.</p>
                 <p className="bg-danger text-white">
                     Suma Totales: {sumaTotal}
                 </p>
-            </Row>
+            </Row> */}
         </>
     );
 };
@@ -91,7 +81,7 @@ export const NumerosTotales = () => {
                 {
                     verificarSiHayPagosActivos == 0 ?
                         <RestoTotal restosTotales={restosTotales} /> :
-                        <CambioTotal restosTotal={restosTotales} cambioTotal={cambioTotal} />
+                        <CambioTotal sumaTotal={sumaTotal} restosTotal={restosTotales} cambioTotal={cambioTotal} />
                 }
                 <SumaTotalDeLosPagos sumaTotal={sumaTotal} />
             </Container>

@@ -1,7 +1,7 @@
 
 import { useMemo } from "react"
 import { useContext } from "react"
-import { TarifaContex, productoReducerContext } from "../context/Contextos"
+import { TarifaContex, productoReducerContext } from "@/context/Contextos"
 
 export const usePrecioFinalDeLosProductos = () => {
 
