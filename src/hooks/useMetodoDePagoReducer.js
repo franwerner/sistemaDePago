@@ -1,5 +1,5 @@
 import { useCallback, useReducer } from "react";
-
+import shortid from 'shortid';
 
 
 const validarTarifaDelMetodoInicial = (state, tipoDeTarifa) => state.some(i => {
@@ -7,40 +7,32 @@ const validarTarifaDelMetodoInicial = (state, tipoDeTarifa) => state.some(i => {
 })
 
 
-const reemplazarRestoDelMetodo = (estado, metodo) => {
-    
-    const elementoDeLaListaFiltrado = estado.metodosDePago.filter(item => item.nombre !== metodo[0].nombre);
-    return [...elementoDeLaListaFiltrado, ...metodo]
-}
+const eliminarRestoDelMetodo = (estado, pago) => {
 
-const eliminarRestoDelMetodo = (estado, metodo) => {
-
-    return [...estado.metodosDePago.filter(({ nombre }) => nombre !== metodo[0].nombre)]
+    return [...estado.metodosDePago.filter(({ id }) => id !== pago.id)]
 
 }
-
-
 
 
 const reducer = (state, action) => {
 
-    const { metodoDePago, type } = action
+    const { metodosDePago, type } = action
 
-    const { tipoDeTarifa, metodosDePago } = metodoDePago
+    const { tipoDeTarifa, pago } = metodosDePago
 
-
-    if (validarTarifaDelMetodoInicial(state, tipoDeTarifa) == false) return [...state, { ...action.metodoDePago }]
+    if (validarTarifaDelMetodoInicial(state, tipoDeTarifa) == false) return [...state, { tipoDeTarifa, metodosDePago: [pago] }]
 
     return state.map(estado => {
 
-        if (estado.tipoDeTarifa !== action.metodoDePago.tipoDeTarifa) return estado
+        if (estado.tipoDeTarifa !== metodosDePago.tipoDeTarifa) return estado
 
         switch (type) {
 
             case "Agregar":
                 return {
                     tipoDeTarifa,
-                    metodosDePago: reemplazarRestoDelMetodo(estado, metodosDePago)
+                    metodosDePago: [...estado.metodosDePago, { ...pago, id: shortid.generate() }]
+
                 }
 
             case "Modificar":
@@ -51,12 +43,11 @@ const reducer = (state, action) => {
             case "Eliminar":
                 return {
                     tipoDeTarifa,
-                    metodosDePago: eliminarRestoDelMetodo(estado, metodosDePago)
+                    metodosDePago: eliminarRestoDelMetodo(estado, pago)
                 }
 
         }
     })
-
 }
 
 
@@ -67,18 +58,20 @@ export const useMetodoDePagoReducer = () => {
     const [listaDeRestos, dispatch] = useReducer(reducer, [])
 
 
-    const agregarResto = useCallback((metodoDePago) => {
 
-        dispatch({ type: "Agregar", metodoDePago })
+
+    const agregarResto = useCallback((metodosDePago) => {
+
+        dispatch({ type: "Agregar", metodosDePago })
     }, [])
 
-    const modificarResto = useCallback((metodoDePago) => {
-        dispatch({ type: "Modificar", metodoDePago })
+    const modificarResto = useCallback((metodosDePago) => {
+        dispatch({ type: "Modificar", metodosDePago })
     }, [])
 
-    const eliminarResto = useCallback((metodoDePago) => {
+    const eliminarResto = useCallback((metodosDePago) => {
 
-        dispatch({ type: "Eliminar", metodoDePago })
+        dispatch({ type: "Eliminar", metodosDePago })
     }, [])
 
 

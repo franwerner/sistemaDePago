@@ -55,17 +55,16 @@ const CambioTotal = ({ cambioTotal, restosTotal }) => {
 
 export const NumerosTotales = () => {
 
-    const { metodoEncontrado } = useBuscarMetodosDePago()
+    const  metodoEncontrado  = useBuscarMetodosDePago()
     const { cambioTotal } = useCambioTotal()
     const { restosTotales } = useRestanteTotal()
 
-    const verificarSiHayPagosActivos = metodoEncontrado ? metodoEncontrado.metodosDePago.length : 0
 
     return (
         <>
             <Container fluid>
                 {
-                    verificarSiHayPagosActivos == 0 ?
+                      metodoEncontrado.metodosDePago.length == 0?
                         <RestoTotal restosTotales={restosTotales} /> :
                         <CambioTotal restosTotal={restosTotales} cambioTotal={cambioTotal} />
                 }
@@ -80,7 +79,7 @@ export const BotonesDeInteraccion = () => {
     return (
         <>
             <Col className={`${styles.botonesDeInteraccion}`}>
-                {/* asdadasdasdasdsads */}
+
             </Col>
         </>
     )

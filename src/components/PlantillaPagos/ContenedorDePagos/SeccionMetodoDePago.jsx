@@ -2,67 +2,106 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaPagos.module.css"
 import React, { useContext } from "react";
 import { TarifaContex, restoDelPagoContext } from "@/context/Contextos";
-import { useCombinarMetodosDePago } from "@/hooks/useCombinarMetodosDePago";
 import { useRestanteTotal } from "@/hooks//useRestanteTotal";
+import { useBuscarMetodosDePago } from "@/hooks//useBuscarMetodosDePago";
 
-const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) => {
 
-    const { agregarResto, eliminarResto } = useContext(restoDelPagoContext)
+
+
+const ListaDeMetodosDePagos = ({ nombre, restosTotales, agregarResto }) => {
 
     const { tarifaActual } = useContext(TarifaContex)
 
     const { tipoDeTarifa } = tarifaActual
 
-    const metodosDePago = [
-        {
-            nombre,
-            "resto": restosTotales,
-        }
-    ]
+
+    const pago =
+    {
+        nombre,
+        "resto": restosTotales,
+        id: "INITIAL_ID"
+    }
+
 
     const onClick = () => {
 
-        if (resto > 0 || restosTotales == 0) return
-
         agregarResto({
             tipoDeTarifa,
-            metodosDePago,
+            pago,
         })
     }
 
-    const remover = () => {
 
+    return (
+        <Row className={`${styles.metodo} mt-1 border`}>
+            <Col onClick={onClick} className="border border-danger">
+                {nombre}
+            </Col>
+        </Row>
+    )
+}
+
+
+const Pagos = ({ nombre, resto, id, eliminarResto }) => {
+
+    const { tarifaActual } = useContext(TarifaContex)
+
+    const { tipoDeTarifa } = tarifaActual
+
+    const pago =
+    {
+        nombre,
+        id
+    }
+
+    const remove = () => {
         eliminarResto({
             tipoDeTarifa,
-            metodosDePago
+            pago
         })
-
     }
 
     return (
         <>
-            <Row tabIndex={1} className={`${styles.metodo} mt-1  border border`}>
-                <Col onClick={onClick} xs={4} className="border border-danger ">
+            <Row>
+                <Col>
                     {nombre}
                 </Col>
-                <Col>
+                <Col className="fw-bolder">
                     {resto}
                 </Col>
-
                 <Col>
-                    <Button onClick={remover}>X</Button>
+                    <Button onClick={remove}>X</Button>
                 </Col>
             </Row>
 
         </>
     )
+}
 
-})
 
+const ListaDePagosAgreagos = ({ eliminarResto }) => {
+
+    const  metodoEncontrado  = useBuscarMetodosDePago()
+    
+    return (
+        <>
+
+            {metodoEncontrado.metodosDePago.map(pago =>
+                <Pagos key={pago.id} id={pago.id} nombre={pago.nombre} eliminarResto={eliminarResto} resto={pago.resto} />
+            )}
+        </>
+    )
+}
 
 export const SeccionMetodoDePago = React.memo(() => {
 
-    const { combinarMetodoDePago } = useCombinarMetodosDePago()
+
+    const { agregarResto, eliminarResto, listaDeRestos } = useContext(restoDelPagoContext)
+
+    const { tarifaActual } = useContext(TarifaContex)
+
+    const { metodosDePago } = tarifaActual
 
     const { restosTotales } = useRestanteTotal()
 
@@ -72,23 +111,35 @@ export const SeccionMetodoDePago = React.memo(() => {
 
                 <Container fluid id="metodos-de-pagos" >
 
-                    {combinarMetodoDePago.map((metodo) => {
-                        return (
+                    <ListaDePagosAgreagos eliminarResto={eliminarResto} />
 
-                            <ListaDeMetodosDePago
-                                key={metodo.id}
-                                nombre={metodo.nombre}
-                                resto={metodo.resto}
-                                restosTotales={restosTotales}
-                            >
-                            </ListaDeMetodosDePago>
 
+                    {
+                        metodosDePago.map(metodo =>
+                            <ListaDeMetodosDePagos agregarResto={agregarResto} restosTotales={restosTotales} key={metodo.id} nombre={metodo.nombre} />
                         )
-                    })
                     }
+
                 </Container>
             </Col>
 
         </>
     );
 });
+
+
+
+/*{combinarMetodoDePago.map((metodo) => {
+    return (
+
+        <ListaDeMetodosDePago
+            key={metodo.id}
+            nombre={metodo.nombre}
+            resto={metodo.resto}
+            restosTotales={restosTotales}
+        >
+        </ListaDeMetodosDePago>
+
+    )
+})
+}*/
