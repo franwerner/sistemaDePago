@@ -2,9 +2,8 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaPagos.module.css"
 import React, { useContext } from "react";
 import { TarifaContex, restoDelPagoContext } from "@/context/Contextos";
-import { useRestanteFinal } from "@/hooks/useRestanteFinal";
-
 import { useCombinarMetodosDePago } from "@/hooks/useCombinarMetodosDePago";
+import { useRestanteTotal } from "@/hooks//useRestanteTotal";
 
 const ListaDeMetodosDePago = React.memo(({ nombre, resto = 0, restosTotales }) => {
 
@@ -65,7 +64,7 @@ export const SeccionMetodoDePago = React.memo(() => {
 
     const { combinarMetodoDePago } = useCombinarMetodosDePago()
 
-    const { restosTotales } = useRestanteFinal()
+    const { restosTotales } = useRestanteTotal()
 
     return (
         <>

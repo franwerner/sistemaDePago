@@ -1,9 +1,10 @@
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaPagos.module.css"
 import React from "react";
-import { useRestanteFinal } from "@/hooks/useRestanteFinal";
 import { useBuscarMetodosDePago } from "@/hooks//useBuscarMetodosDePago";
 import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProductos";
+import { useCambioTotal } from "@/hooks//useCambioTotal";
+import { useRestanteTotal } from "@/hooks//useRestanteTotal";
 
 const RestoTotal = ({ restosTotales }) => {
 
@@ -23,10 +24,10 @@ const RestoTotal = ({ restosTotales }) => {
 const CambioTotal = ({ cambioTotal, restosTotal }) => {
 
 
-    const {precioFinal} = usePrecioFinalDeLosProductos()
+    const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const {calculoConTarifa} = precioFinal
- 
+    const { calculoConTarifa } = precioFinal
+
     return (
         <>
             <Row className="border  ">
@@ -54,9 +55,9 @@ const CambioTotal = ({ cambioTotal, restosTotal }) => {
 
 export const NumerosTotales = () => {
 
-    const {restosTotales, cambioTotal } = useRestanteFinal()
-
     const { metodoEncontrado } = useBuscarMetodosDePago()
+    const { cambioTotal } = useCambioTotal()
+    const { restosTotales } = useRestanteTotal()
 
     const verificarSiHayPagosActivos = metodoEncontrado ? metodoEncontrado.metodosDePago.length : 0
 
