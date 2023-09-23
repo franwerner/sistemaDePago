@@ -12,7 +12,7 @@ const filtrarMetodosDePago = (state, id) => {
 const modificacionDelMetodoDePago = (state, pago) => {
 
     const { comma, tipoDeButton } = pago
-"a"
+
     const copiaUltimoSeleccionado = { ...state.ultimoSeleccionado }
 
     const copiaMetodosDePago = [...state.metodosDePago]
