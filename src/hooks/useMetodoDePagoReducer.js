@@ -1,109 +1,10 @@
 import { useCallback, useContext, useReducer } from "react";
 import { TarifaContex } from "@/context/Contextos";
 import { seleccionarUltimoElementoDeUnArray } from "@/helper/seleccionarUltimoElementoDeUnArray";
-import { verificarSiEsNegativo } from "@/helper/verificarSiEsNegativo";
-import { establecerLargoMaximo } from "@/helper/establecerLargoMaximo";
+import { switchModificacionMetodosDePago } from "../helper/switchModificacionMetodosDePago";
 
 const filtrarMetodosDePago = (state, id) => {
     return [...state.metodosDePago.filter(item => item.id !== id)]
-}
-
-
-const modificacionDelMetodoDePago = (state, pago) => {
-
-    const { comma, tipoDeButton } = pago
-
-    const copiaUltimoSeleccionado = { ...state.ultimoSeleccionado }
-
-    const copiaMetodosDePago = [...state.metodosDePago]
-
-    const { resto, id } = copiaUltimoSeleccionado
-
-    const restoStringEntero = parseInt(resto).toString()
-
-    const restoStringDecimales = (resto % 1).toFixed(2)
-
-
-    if (tipoDeButton == "Backspace" && comma == false) {
-
-        const verificacion = verificarSiEsNegativo(resto)
-
-        const largo = verificacion == "Negativo" ? 2 : 1
-
-        const cero = verificacion == "Negativo" ? (-0) : 0
-
-        const verificarLargo = restoStringEntero.length == largo ?
-            cero :
-            parseFloat(restoStringEntero.slice(0, restoStringEntero.length - 1))
-
-        copiaUltimoSeleccionado.resto = isNaN(verificarLargo) ? cero : verificarLargo + parseFloat(restoStringDecimales)
-
-
-    } else if (tipoDeButton == "-") {
-
-        const resultado = verificarSiEsNegativo(resto) == "Negativo" ? resto : (-resto)
-
-        copiaUltimoSeleccionado.resto = resultado
-
-    }
-    else if (tipoDeButton == "+") {
-
-        copiaUltimoSeleccionado.resto = Math.abs(resto)
-
-    }
-    else if (comma && tipoDeButton == "Backspace") {
-
-        copiaUltimoSeleccionado.resto = parseInt(restoStringEntero)
-    }
-
-    else if (comma && !isNaN(tipoDeButton)) {
-
-        const index = restoStringDecimales.indexOf(".")
-
-        const alcance = index == 1 ? 3 : 4
-
-
-        const numero = restoStringDecimales.slice(index + 1, alcance)
-
-        const decimales = `0.${restoStringDecimales == 0 ? tipoDeButton : numero + tipoDeButton}`
-
-        const numeroPositivo = Math.abs(restoStringEntero) + parseFloat(decimales)
-
-        const resultado = verificarSiEsNegativo(restoStringEntero) == "Negativo"
-            ? -(numeroPositivo)
-            : numeroPositivo;
-
-        copiaUltimoSeleccionado.resto = resultado
-
-    }
-
-    else if (!isNaN(tipoDeButton)) {
-
-        const MAX_LONGITUD = 15
-
-        const sumaDeStrings = Math.abs(parseFloat(restoStringEntero + tipoDeButton))
-
-        const resultado = verificarSiEsNegativo(resto) == "Negativo" ? (-sumaDeStrings) : sumaDeStrings
-
-        const largoMaximo =
-            establecerLargoMaximo({
-                numero: resultado,
-                max: MAX_LONGITUD
-            })
-
-        copiaUltimoSeleccionado.resto = largoMaximo + parseFloat(restoStringDecimales)
-
-    }
-
-    const indice = state.metodosDePago.findIndex(item => item.id == id)
-
-    copiaMetodosDePago.splice(indice, 1, copiaUltimoSeleccionado)
-
-    return {
-        ultimoSeleccionado: copiaUltimoSeleccionado,
-        metodosDePago: copiaMetodosDePago
-    }
-
 }
 
 const reducer = (state, action) => {
@@ -131,7 +32,7 @@ const reducer = (state, action) => {
 
             case "Modificar":
 
-                const { ultimoSeleccionado, metodosDePago } = modificacionDelMetodoDePago(state[tipoDeTarifa], pago)
+                const { ultimoSeleccionado, metodosDePago } = switchModificacionMetodosDePago(state[tipoDeTarifa], pago)
 
                 return {
                     ultimoSeleccionado,

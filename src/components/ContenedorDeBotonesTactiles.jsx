@@ -7,10 +7,10 @@ import { restoDelPagoContext } from "../context/Contextos"
 
 
 const listaDeBotonesTactiles = [
-    [1, 2, 3, "+100"],
-    [4, 5, 6, "+250"],
-    [7, 8, 9, "+500"],
-    [["+/-", []], 0, [",", "Comma"], ["X", "Backspace"]]
+    ["1", "2", "3", ["+100", 100]],
+    ["4", "5", "6", ["+250", 250]],
+    ["7", "8", "9", ["+500", 500]],
+    [["+/-", ["signos"]], "0", [",", "Comma"], ["X", "Backspace"]]
 ]
 
 
@@ -27,8 +27,10 @@ export const TipoDeBotton = React.memo(({ tipo, clickeoBotones, accion }) => {
         } else {
             setAlternarSigno("+")
         }
-        const t = Array.isArray(accion) ? alternarSigno : accion
-        clickeoBotones(t)
+
+        const resultado = accion[0] == "signos" ? alternarSigno : accion
+
+        clickeoBotones(resultado)
     }
 
     return (
@@ -44,7 +46,7 @@ export const ContenedorDeBotonesTactiles = () => {
 
     const [comma, setComma] = useState(false)
 
-    const keys = [
+    const keysPress = [
         "backSpace",
         "BracketRight",
         "Comma",
@@ -61,9 +63,8 @@ export const ContenedorDeBotonesTactiles = () => {
         "9",
     ]
 
-
     const clickeoBotones = useCallback((button) => {
-    
+
         if (button == "Comma") setComma(prevComma => !prevComma)
 
         modificarResto({ tipoDeButton: button, comma })
@@ -78,7 +79,7 @@ export const ContenedorDeBotonesTactiles = () => {
         modificarResto({ tipoDeButton: e.key, comma })
     }
 
-    useHotkeys(keys, handleKey, { keyup: true })
+    useHotkeys(keysPress, handleKey, { keyup: true })
 
     return (
         <>
