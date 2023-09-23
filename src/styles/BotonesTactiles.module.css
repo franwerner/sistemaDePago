@@ -1,0 +1,35 @@
+.botonesTactiles button {
+    border: 1px solid #bfbfbf;
+}
+
+
+.botonesTactiles button {
+    width: 85px;
+    height: 85px;
+    background: #c9c5c554;
+    color: #555;
+    font-size: 24px;
+}
+
+
+@media (max-width : 1200px) {
+
+    .botonesTactiles button {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+    }
+
+}
+
+
+
+@media (max-width : 1366px) {
+
+    .botonesTactiles button {
+        width: 65px;
+        height: 65px;
+        font-size: 19px;
+    }
+
+}

@@ -1,0 +1,13 @@
+.containerBotonTarifa {
+    color: #555;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #e2e2e2;
+    border: 1px solid #bfbfbf
+}
+
+.containerBotonTarifa:hover {
+    filter: brightness(105%);
+}
+   
+

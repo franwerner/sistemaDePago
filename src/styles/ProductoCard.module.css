@@ -1,0 +1,31 @@
+.productoNombre {
+    font-size: 12px;
+    word-wrap: break-word;
+    color: #555;
+    margin: 0;
+    font-weight: 500;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+    bottom: 0%;
+
+}
+
+
+
+.productoPrecio p {
+    background-color: #8689b6;
+    font-size: 12px;
+    width: max-content;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    z-index: 2;
+}
+
+
+
+.ImgPhoto i {
+    filter: opacity(30%);
+    font-size: 70px;
+    max-width: 100%;
+    max-height: 100%;
+}

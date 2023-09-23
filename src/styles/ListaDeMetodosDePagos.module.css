@@ -1,0 +1,15 @@
+.metodoDePago {
+    background-color: #c9c5c554;
+    cursor: pointer;
+    font-weight: 500;
+    color: #555;
+    border: 1px solid #bfbfbf;
+
+}
+
+.metodoDePago:hover {
+    filter: brightness(105%);
+    border: 1px solid #bfbfbf;
+    transform: scale(1.01);
+}
+

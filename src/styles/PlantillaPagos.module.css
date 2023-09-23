@@ -1,0 +1,153 @@
+.bodyPlantillaPagos {
+    background-color: #e2e2e2a9;
+
+}
+
+
+
+.contenedorPlantillaPagos {
+    max-width: 75%;
+    background-color: #e2e2e2a9;
+}
+
+
+
+.botonPagos i {
+    font-size: 70px;
+    cursor: pointer;
+}
+
+
+
+.botonPagos p {
+    color: #555;
+}
+
+
+.botonPagos:hover i {
+
+    color: rgb(136, 220, 101);
+    border-radius: 50%;
+
+}
+
+
+/*navegacionPagos*/
+
+.navegacionPagos {
+    border: 2px dotted #ccc;
+    border-bottom: 0;
+}
+
+
+
+
+
+
+/*Contenedor pagos*/
+
+.contendorMetodosDePagoAgregados {
+    max-height: 100%;
+}
+
+
+.textPagos {
+    color: #555;
+    font-weight: 600;
+}
+
+.lineaPunteada {
+    border: 2px dotted #ccc;
+}
+
+.seccionResto {
+    border-left: 2px dotted #ccc;
+    height: 100%;
+}
+
+.textoDeAyuda {
+    color: #555;
+}
+
+
+.restoTotal {
+    color: rgb(110, 200, 155);
+    font-weight: 600;
+    font-size: 55px;
+    text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.6);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.textDeAyuda {
+    color: #555;
+    word-break: break-all;
+}
+
+
+
+
+.restantes {
+    color: "#555";
+}
+
+.restoNumero {
+    color: #6EC89B;
+    font-weight: 600;
+    text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    max-width: 100vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.adeudoTotal {
+    color: "#555";
+    font-size: 18px;
+    max-width: 100vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cambio {
+    color: "#555";
+    font-weight: 500;
+}
+
+.cambioNumero {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+
+.cambioTotalContainer {
+    flex-wrap: wrap;
+}
+
+.numerosTotales {
+    height: 200px;
+    border-bottom: 2px dotted #ccc;
+}
+
+
+
+
+/*MQ*/
+
+@media (max-width : 768px) {
+    .seccionResto {
+        height: auto;
+        border: 0;
+    }
+
+    .restoTotal {
+        font-size: 45px
+    }
+
+    .contenedorPlantillaPagos {
+        max-width: 100%;
+    }
+}

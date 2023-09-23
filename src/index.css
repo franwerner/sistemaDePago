@@ -1,0 +1,56 @@
+body {
+    overflow: overlay;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+
+
+* {
+    font-family: "Montserrat";
+    outline: none;
+    user-select: none;
+    transition: 0s all;
+}
+
+.scrollHidden {
+    overflow: overlay;
+}
+
+.scrollHidden::-webkit-scrollbar {
+    width: 0px;
+}
+
+.scrollBarPersonalizada {
+    overflow: overlay;
+}
+
+.scrollBarPersonalizada::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.scrollBarPersonalizada::-webkit-scrollbar:vertical {
+    width: 8px;
+}
+
+.scrollBarPersonalizada::-webkit-scrollbar-button:increment,
+.scrollBarPersonalizada::-webkit-scrollbar-button {
+    display: none;
+}
+
+.scrollBarPersonalizada::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.scrollBarPersonalizada::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.scrollBarPersonalizada::-webkit-scrollbar-track {
+    border-radius: 10px;
+}

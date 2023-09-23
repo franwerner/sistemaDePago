@@ -1,0 +1,35 @@
+Lista de tarifas con porcentaje incluidos
+
+La idea es que creen tarifas a las cuales le puedan agregar medios de pagos, a su vez para tener un control mayor de que es lo que se pasa y por cual medio de pago.
+
+Luego si quiero agregar la mitad con tarifa local y la otra mitad con tarjeta, debo agregar el monto al 
+metodo de pago, lo añado a una lista de espera, para asi poner el resto del monto con otra tarifa.
+
+Siempre se va tomar en cuenta el monto de la tarifa Local(0%) para realizar los calculos.
+
+Cuanto agrega la segunda mitad, el monto que aparece en pantalla es el monto local + el porcentaje
+
+La parte de la interface de sistema solo es visual, no afecta solo a lo que renderiza el modal de los metodos de pago.
+
+Tarifa local (por defecto) 0% : Efectivo,
+
+Tarjeta 15%: Banco Nacion,Tarjeta Naranja,
+
+MERCADO PAGO 20%: QR,TARJETA,TRANFERENCIA,
+
+Pedidos Ya 30%: EFECTIVO,PREPAGO,CUPON
+
+¿Como manejar todos los precios totales?
+
+ REDUCE A : Este contiene el total de todas las tarifas menos la de la tarifa actual.(Se suman)
+
+ REDUCE B : Este contiene el total SOLO de la tarifa actual - REDUCE A.(Se resta)
+
+ La idea esta en almacenar en un estado, donde se encuentra el provider de los metodos de pago y se almacenan en un array todos las tarifas con metodos de pagos con  valores.
+Entonces cuando se realicen los reduce al momento de agregar un nuevo precio al tarifa actual que esta vacia, no se va a colapsar por los precios anteriores que no  fueron restados.
+
+¿Que hace en caso de que se elimine un producto de la lista de productos?
+Se deberia restar la lista de los precios finales de los productos con el total del REDUCE A y B , lo que de en ese resultado es lo que falta agregar en la tarifa
+ 
+
+

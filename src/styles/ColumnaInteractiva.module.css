@@ -1,0 +1,21 @@
+.columnaInteractiva{
+    transition: 2ms all;
+}
+
+
+.linea {
+    width: 5px;
+    min-height: 5px;
+    background-color: rgb(94, 95, 93);
+    ;
+    z-index: 2;
+    cursor: w-resize;
+}
+
+.linea:hover,
+.linea:active {
+    background-color: rgb(110, 200, 155);
+    filter: brightness(110%);
+    transform: scale(1.2);
+    transition: 0.1 all;
+}
