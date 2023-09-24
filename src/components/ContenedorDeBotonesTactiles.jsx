@@ -1,13 +1,16 @@
 import { Button } from "react-bootstrap"
 import styles from "@/styles/BotonesTactiles.module.css"
 import { useHotkeys } from "react-hotkeys-hook"
-import React, { useCallback,useState } from "react"
+import React, { useCallback } from "react"
+import { useAlternarComas } from "@/hooks/useAlternarComas"
+import { alternarSignos } from "../helper/alternarSignos"
+import { verificarSiEsNegativo } from "../helper/verificarSiEsNegativo"
 
 const listaDeBotonesTactiles = [
     ["1", "2", "3", ["+100", 100]],
     ["4", "5", "6", ["+250", 250]],
     ["7", "8", "9", ["+500", 500]],
-    [["+/-", ["signos"]], "0", [",", "Comma"], ["X", "Backspace"]]
+    ["+/-", "0", [",", "Comma"], ["X", "Backspace"]]
 ]
 
 const keysPress = [
@@ -28,53 +31,46 @@ const keysPress = [
 ]
 
 
-const ButtonTactil = React.memo(({ tipo, clickeoBotones, nombre }) => {
+const ButtonTactil = React.memo(({ tipo, nombre, onClick }) => {
 
-    const [alternarSigno, setAlternarSigno] = useState("-")
-
-
-
-    const onClick = () => {
-
-        const signos = tipo[0] == "signos"
-
-        if (signos && alternarSigno == "+") {
-
-            setAlternarSigno("-")
-        } else {
-            setAlternarSigno("+")
-        }
-
-        const resultado = signos ? alternarSigno : tipo
-
-        clickeoBotones(resultado)
+    const onClickeo = (e) => {
+        onClick(e, tipo)
     }
 
     return (
-        <Button onClick={onClick} variant="dark" className=" fw-bolder rounded-0 ">
+        <Button onClick={onClickeo} name={nombre} variant="dark" className=" fw-bolder rounded-0 ">
             {nombre}
         </Button>
     )
 })
 
-export const ContenedorDeBotonesTactiles = ({ funcionDefault }) => {
+export const ContenedorDeBotonesTactiles = ({ modificadorDefault, numeroDefault }) => {
 
-    const [comma, setComma] = useState(false)
+    const esNegativo = verificarSiEsNegativo(numeroDefault)
 
-    const clickeoBotones = useCallback((button) => {
+    const { alternarComas, comma } = useAlternarComas()
 
-        if (button == "Comma") setComma(prevComma => !prevComma)
+    const onClick = useCallback(({ target }, tipo) => {
 
-        funcionDefault({ tipoDeButton: button, comma })
+        alternarComas(target.name)
+               
+        const signos = target.name == "+/-" ? true : false
 
-    }, [comma, funcionDefault])
+        const resultado = signos ? alternarSignos(esNegativo) : tipo
 
+        modificadorDefault(
+            {
+                tipoDeButton: resultado,
+                comma: comma
+            }
+        )
+    }, [esNegativo, comma])
 
     const handleKey = (e) => {
 
-        if (e.key == ",") setComma(!comma)
+        alternarComas(e.key)
 
-        funcionDefault({ tipoDeButton: e.key, comma })
+        modificadorDefault({ tipoDeButton: e.key, comma: comma })
     }
 
     useHotkeys(keysPress, handleKey, { keyup: true })
@@ -82,7 +78,7 @@ export const ContenedorDeBotonesTactiles = ({ funcionDefault }) => {
     return (
         <>
 
-            <div className={`${styles.botonesTactiles}  my-3`}>
+            <div className={`${styles.botonesTactiles} `}>
                 {
                     listaDeBotonesTactiles.map((contenedor, index) =>
 
@@ -90,11 +86,16 @@ export const ContenedorDeBotonesTactiles = ({ funcionDefault }) => {
 
                             {
                                 contenedor.map((numero, index) =>
+
                                     <ButtonTactil
-                                        nombre={numero[0] == undefined ? numero : numero[0]}
-                                        tipo={numero[1] == undefined ? numero : numero[1]}
-                                        clickeoBotones={clickeoBotones}
+                                        nombre={typeof numero == "string" ? numero : numero[0]}
+                                        tipo={typeof numero == "string" ? numero : numero[1]}
+                                        onClick={onClick}
+
                                         key={index} />
+
+
+
                                 )
                             }
                         </div>

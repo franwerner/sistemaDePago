@@ -3,9 +3,14 @@ import React, { useContext } from "react";
 import { NumerosTotales } from "./NumerosTotales";
 import { ContenedorDeBotonesTactiles } from "@/components//ContenedorDeBotonesTactiles";
 import { restoDelPagoContext } from "@/context/Contextos"
+
+
 export const SeccionResto = () => {
 
-    const { modificarResto } = useContext(restoDelPagoContext)
+    const { modificarResto, pagoActual } = useContext(restoDelPagoContext)
+
+    const { ultimoSeleccionado = { resto: 0 } } = pagoActual
+
     
     return (
         <>
@@ -18,7 +23,7 @@ export const SeccionResto = () => {
                 <Row className={`scrollHidden mx-1 d-none d-md-flex h-100 flex-grow-1  `}>
 
                     <Col className="h-25  d-flex justify-content-center p-0 align-items-center h-100">
-                        <ContenedorDeBotonesTactiles funcionDefault={modificarResto} />
+                        <ContenedorDeBotonesTactiles modificadorDefault={modificarResto} numeroDefault={ultimoSeleccionado.resto} />
                     </Col>
 
                 </Row>
