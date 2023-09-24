@@ -13,6 +13,7 @@ export const useEjeXYDocument = (ejeLimitacion) => {
 
 
 
+
     useEffect(() => {
 
         const mouseMoveHandler = (e) => {

@@ -21,7 +21,7 @@ export const useEstablecerLimitesEjes = () => {
         const ejeX = {
             inicialX: valorIncialWidth,
             maximoX: (valorIncialWidth * 10),
-            minimoX: (valorIncialWidth * 3)
+            minimoX: (valorIncialWidth * 4)
         }
 
         setEjeLimitacion({ ...ejeX, ...ejeY })

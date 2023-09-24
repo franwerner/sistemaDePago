@@ -25,11 +25,11 @@ export const InterfaceSistema = () => {
                         <NavegacionHeader />
                     </Row>
 
-                    <Row className='flex-grow-1 '>
+                    <Row className='flex-grow-1   '>
                         <ProductoReducerProvider>
 
                             <ColumnaInteractiva>
-                                <Col className="overflow-hidden   d-flex  flex-column">
+                                <Col className="overflow-hidden  h-100  d-flex  flex-column">
                                     <PlantillaCobro />
                                     <PlantillaPagos />
                                 </Col>

@@ -40,7 +40,7 @@ export const ProductoCard = React.memo(({ producto }) => {
 
             <Precio precio={precio}></Precio>
 
-            <div className={`border d-flex w-100 justify-content-center position-absolute  h-100  align-items-center flex-grow-1 ${styles.ImgPhoto}`}>
+            <div className={` d-flex  w-100 justify-content-center position-absolute  h-100  align-items-center flex-grow-1 ${styles.ImgPhoto}`}>
                 <i className="fa-solid fa-camera"></i>
             </div>
 

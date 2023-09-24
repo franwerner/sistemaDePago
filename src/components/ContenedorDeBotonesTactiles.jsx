@@ -1,10 +1,7 @@
 import { Button } from "react-bootstrap"
 import styles from "@/styles/BotonesTactiles.module.css"
 import { useHotkeys } from "react-hotkeys-hook"
-import React, { useCallback, useContext, useState } from "react"
-import { restoDelPagoContext } from "../context/Contextos"
-
-
+import React, { useCallback,useState } from "react"
 
 const listaDeBotonesTactiles = [
     ["1", "2", "3", ["+100", 100]],
@@ -13,70 +10,71 @@ const listaDeBotonesTactiles = [
     [["+/-", ["signos"]], "0", [",", "Comma"], ["X", "Backspace"]]
 ]
 
+const keysPress = [
+    "backSpace",
+    "BracketRight",
+    "Comma",
+    "Slash",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+]
 
 
-export const TipoDeBotton = React.memo(({ tipo, clickeoBotones, accion }) => {
+const ButtonTactil = React.memo(({ tipo, clickeoBotones, nombre }) => {
 
     const [alternarSigno, setAlternarSigno] = useState("-")
 
 
+
     const onClick = () => {
 
-        if (tipo == "+/-" && alternarSigno == "+") {
+        const signos = tipo[0] == "signos"
+
+        if (signos && alternarSigno == "+") {
+
             setAlternarSigno("-")
         } else {
             setAlternarSigno("+")
         }
 
-        const resultado = accion[0] == "signos" ? alternarSigno : accion
+        const resultado = signos ? alternarSigno : tipo
 
         clickeoBotones(resultado)
     }
 
     return (
         <Button onClick={onClick} variant="dark" className=" fw-bolder rounded-0 ">
-            {tipo}
+            {nombre}
         </Button>
     )
 })
 
-export const ContenedorDeBotonesTactiles = () => {
-
-    const { modificarResto } = useContext(restoDelPagoContext)
+export const ContenedorDeBotonesTactiles = ({ funcionDefault }) => {
 
     const [comma, setComma] = useState(false)
-
-    const keysPress = [
-        "backSpace",
-        "BracketRight",
-        "Comma",
-        "Slash",
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-    ]
 
     const clickeoBotones = useCallback((button) => {
 
         if (button == "Comma") setComma(prevComma => !prevComma)
 
-        modificarResto({ tipoDeButton: button, comma })
+        funcionDefault({ tipoDeButton: button, comma })
 
-    }, [comma, modificarResto])
+    }, [comma, funcionDefault])
 
 
     const handleKey = (e) => {
 
         if (e.key == ",") setComma(!comma)
 
-        modificarResto({ tipoDeButton: e.key, comma })
+        funcionDefault({ tipoDeButton: e.key, comma })
     }
 
     useHotkeys(keysPress, handleKey, { keyup: true })
@@ -92,9 +90,9 @@ export const ContenedorDeBotonesTactiles = () => {
 
                             {
                                 contenedor.map((numero, index) =>
-                                    <TipoDeBotton
-                                        tipo={numero[0] == undefined ? numero : numero[0]}
-                                        accion={numero[1] == undefined ? numero : numero[1]}
+                                    <ButtonTactil
+                                        nombre={numero[0] == undefined ? numero : numero[0]}
+                                        tipo={numero[1] == undefined ? numero : numero[1]}
                                         clickeoBotones={clickeoBotones}
                                         key={index} />
                                 )

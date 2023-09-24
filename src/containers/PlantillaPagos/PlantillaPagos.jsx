@@ -49,9 +49,18 @@ const PlantillaPagosHeader = React.memo(() => {
 const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
     return (
         <>
-            <Container fluid className={`  rounded-1 flex-grow-1  `}>
-
-                <Row className={`text-center h-100 align-items-center justify-content-center d-flex   ${styles.botonPagos}`}>
+            <Container fluid className={` d-flex flex-column  rounded-1 flex-grow-1  `}>
+                <Row   style={{border : "2px solid #555"}}>
+                    <Col>
+                        <div className="d-flex fs-4  justify-content-center align-items-center">
+                            <i className="fa-solid fa-circle-user"></i>
+                            <p className="my-1 mx-3 fw-light">
+                                Consumidor Final
+                            </p>
+                        </div>
+                    </Col>
+                </Row>
+                <Row style={{border : "2px solid #555"}} className={`text-center h-100 align-items-center justify-content-center  ${styles.botonPagos}`}>
                     <Col id="plantilla-pagos" tabIndex={0} onClick={alternarMostrar} >
                         <i className="fa-solid fa-circle-arrow-right "></i>
                         <p className="fw-bolder">Pagos</p>
@@ -80,7 +89,7 @@ export const PlantillaPagos = () => {
         <>
             <Container fluid className="flex-grow-1  ">
                 <Row className="h-100">
-                    
+
                     <Col className={`d-flex h-100 p-2  flex-column  ${styles.contenedorPlantillaPagos} `}>
 
                         <PlantillaPagosHeader />

@@ -96,6 +96,16 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
     const { validarNumero } = useComprobarNumeros(form)
 
+    const verificarSiValueEsUnNumero = (tipoDeValue) => {
+
+        const value = isNaN(precioFormSinTarifa) ? "" : establecerLargoMaximo({ numero: tipoDeValue, max: MAX_LONGITUD })
+
+        const redondeoValue = parseFloat(value.toFixed(2))
+
+        return redondeoValue
+
+    }
+
     return (
         <>
 
@@ -126,10 +136,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
                                 onFocus={onFocus}
                                 onChange={onChange}
                                 name="precioFormSinTarifa"
-                                value={
-                                    isNaN(precioFormSinTarifa) ? "" :
-                                        establecerLargoMaximo({ numero: precioFormSinTarifa, max: MAX_LONGITUD }) 
-                                }
+                                value={verificarSiValueEsUnNumero(precioFormSinTarifa)}
                                 placeholder="Ingrese el precio"
                             >
                             </Form.Control>
@@ -145,7 +152,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
                                 onFocus={onFocus}
                                 onChange={onChange}
                                 name="precioFormConTarifa"
-                                value={isNaN(precioFormConTarifa) ? "" : establecerLargoMaximo({ numero: precioFormConTarifa, max: MAX_LONGITUD })}
+                                value={verificarSiValueEsUnNumero(precioFormConTarifa)}
                                 placeholder="Ingrese el precio"
                             >
                             </Form.Control>
