@@ -37,20 +37,19 @@ const agregarNumeros = ({ restoStringEntero, tipoDeButton, resto, restoStringDec
 
 const agregarDecimales = ({ restoStringDecimales, tipoDeButton, restoStringEntero }) => {
 
-    const buscarPunto = restoStringDecimales.indexOf(".")
-
-    const limiteDeDecimales = buscarPunto == 1 ? 3 : 4
-
-    const decimalesActuales = restoStringDecimales.slice(buscarPunto + 1, limiteDeDecimales)
-
-    const decimales = `0.${restoStringDecimales == 0 ? tipoDeButton : decimalesActuales + tipoDeButton}`
-
-    const numeroPositivo = Math.abs(restoStringEntero) + parseFloat(decimales)
+    const redondeo = Math.round(restoStringDecimales).toString()
 
     const verificar = verificarSiEsNegativo(restoStringEntero) == "Negativo"
 
-    return verificar ? -(numeroPositivo) : numeroPositivo;
+    const verificarSiEsCero = redondeo == "0" ? redondeo.slice(0, 1) : redondeo
 
+    const suma = verificarSiEsCero + tipoDeButton
+
+    const verificarLargo = redondeo.length >= 2 ? redondeo : suma
+
+    const numeroPositivo = parseFloat(Math.abs(restoStringEntero) + "." + verificarLargo)
+
+    return verificar ? -(numeroPositivo) : numeroPositivo;
 }
 
 const sumarNumeros = ({ tipoDeButton, resto }) => {
@@ -84,6 +83,7 @@ export const switchModificacionMetodosDePago = (state, pago) => {
 
     switch (tipoDeButton) {
         case "Backspace":
+
             if (comma == false) {
                 resultadoFinal = borrarNumeros({ restoStringEntero, restoStringDecimales })
             } else {
@@ -95,6 +95,7 @@ export const switchModificacionMetodosDePago = (state, pago) => {
         case "-":
             resultadoFinal = verificarSiEsNegativo(resto) == "Negativo" ? resto : (-resto)
             break;
+
         case "+":
             resultadoFinal = Math.abs(resto)
             break
@@ -111,8 +112,8 @@ export const switchModificacionMetodosDePago = (state, pago) => {
         case tipoDeButton >= 100 && tipoDeButton:
             resultadoFinal = sumarNumeros({ resto, tipoDeButton })
             break;
-        default:
 
+        default:
             resultadoFinal = resto
     }
 

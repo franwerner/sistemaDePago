@@ -1,5 +1,4 @@
 
 export const obtenerDecimales = (numero) => {
-
-    return numero % 1
+    return Math.abs((numero * 100) % 100)
 }

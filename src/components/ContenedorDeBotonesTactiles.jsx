@@ -61,7 +61,7 @@ export const ContenedorDeBotonesTactiles = ({ modificadorDefault, numeroDefault 
         modificadorDefault(
             {
                 tipoDeButton: resultado,
-                comma: comma
+                comma: comma,
             }
         )
     }, [esNegativo, comma])

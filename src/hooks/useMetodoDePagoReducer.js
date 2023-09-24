@@ -10,12 +10,13 @@ const filtrarMetodosDePago = (state, id) => {
 const reducer = (state, action) => {
 
     const { pago, type, tipoDeTarifa } = action
-
-
+ 
     const configIncial = {
         ultimoSeleccionado: pago,
         metodosDePago: [pago]
     }
+
+
 
     const pagoActual = () => {
 
@@ -32,7 +33,7 @@ const reducer = (state, action) => {
             case "Modificar":
 
                 const { ultimoSeleccionado, metodosDePago } = switchModificacionMetodosDePago(state[tipoDeTarifa], pago)
-
+                
                 return {
                     ultimoSeleccionado,
                     metodosDePago
