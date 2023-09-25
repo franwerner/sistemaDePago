@@ -7,11 +7,13 @@ export const useEjesFinales = (ejeLimitacion) => {
 
     const [ejesFinales, setEjesFinales] = useState({})
 
-    const { clientX, clientY, esteblecerEstadoDeMovimiento, cambiarEjeX } = useEjeXYDocument(ejeLimitacion)
+    const { clientX, clientY, esteblecerEstadoDeMovimiento, cambiarEjeX,cambiarEjeY} = useEjeXYDocument(ejeLimitacion)
 
     const establecerEjesFinales = (e) => {
+        
             setEjesFinales({ clientX, clientY })
             cambiarEjeX(false)
+            cambiarEjeY(false)
             esteblecerEstadoDeMovimiento()     
     };
 

@@ -96,7 +96,7 @@ export const NumerosTotales = React.memo(() => {
                     metodosDePago.length == 0 ?
                         <RestoTotal restosTotales={restosTotales} /> :
                         <Totales restosTotal={restosTotales} cambioTotal={cambioTotal} />
-                }
+                } 
             </Container>
 
         </>

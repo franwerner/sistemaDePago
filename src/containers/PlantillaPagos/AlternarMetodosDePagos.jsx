@@ -5,18 +5,16 @@ import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { useSeleccionarElemento } from "@/hooks//useSeleccionProducto"
 
 
-
 export const AlternarMetodosDePagos = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
     const { seleccion, seleccionarElemento } = useSeleccionarElemento()
 
-
-
     return (
         <>
-            <span className="w-100  d-flex justify-content-end my-2 " >
+            <span className="d-flex justify-content-end my-2">
+
                 <IconClone
                     mostrar={mostrar}
                     alternarMostrar={alternarMostrar} />

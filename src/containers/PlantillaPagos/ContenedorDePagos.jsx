@@ -42,7 +42,7 @@ const ContenedorDePagoBody = ({ mostrar }) => {
 
         <Row
 
-            className={`scrollBarPersonalizada ${styles.lineaPunteada} flex-grow-1 p-0  flex-column flex-md-row h-100`}>
+            className={`${styles.lineaPunteada} flex-grow-1 p-0  scrollBarPersonalizada flex-column flex-md-row h-100`}>
 
             <RestoDelPagoProvider>
 
@@ -50,12 +50,17 @@ const ContenedorDePagoBody = ({ mostrar }) => {
                     mostrar &&
                     <>
 
-                        <Col className={` scrollHidden pt-0 pb-3  h-100 ${styles.contendorMetodosDePagoAgregados}  `} xs={{ order: "2" }} md={{ order: "0" }}>
+                        <Col
+                            className={` scrollHidden pt-0 pb-3  h-100 ${styles.contendorMetodosDePagoAgregados}  `}
+                            xs={{ order: "2" }}
+                            md={{ order: "0" }}>
                             <AlternarMetodosDePagos />
                         </Col>
 
 
-                        <Col xs={{ order: "1", span: "12" }} md={7} className={` p-0 ${styles.seccionResto}`}>
+                        <Col
+                            md={7}
+                            className={` p-0 ${styles.seccionResto}`}>
                             <SeccionResto />
                         </Col>
 
@@ -97,10 +102,10 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
                     </Modal.Header>
 
-                    <Modal.Body className={styles.bodyPlantillaPagos}>
+                    <Modal.Body className={`${styles.bodyPlantillaPagos} p-0 py-3 `}>
 
                         <Container fluid
-                            className={`${styles.contenedorPlantillaPagos} h-100 d-flex  position-relative flex-column  `}>
+                            className={`${styles.contenedorPlantillaPagos} h-100 d-flex overflow-hidden  position-relative flex-column  `}>
 
                             <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
 

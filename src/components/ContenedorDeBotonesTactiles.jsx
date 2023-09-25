@@ -34,6 +34,7 @@ const keysPress = [
 const ButtonTactil = React.memo(({ tipo, nombre, onClick }) => {
 
     const onClickeo = (e) => {
+      
         onClick(e, tipo)
     }
 
@@ -64,7 +65,7 @@ export const ContenedorDeBotonesTactiles = ({ modificadorDefault, numeroDefault 
                 comma: comma,
             }
         )
-    }, [esNegativo, comma])
+    }, [esNegativo, comma,modificadorDefault])
 
     const handleKey = (e) => {
 
@@ -73,7 +74,7 @@ export const ContenedorDeBotonesTactiles = ({ modificadorDefault, numeroDefault 
         modificadorDefault({ tipoDeButton: e.key, comma: comma })
     }
 
-    useHotkeys(keysPress, handleKey, { keyup: true })
+    useHotkeys(keysPress, handleKey, { keyup: true})
 
     return (
         <>

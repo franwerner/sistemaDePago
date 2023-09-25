@@ -1,17 +1,62 @@
 import { Col, Container, Row } from "react-bootstrap";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NumerosTotales } from "./NumerosTotales";
 import { ContenedorDeBotonesTactiles } from "@/components//ContenedorDeBotonesTactiles";
 import { restoDelPagoContext } from "@/context/Contextos"
+import { useEventoMostrar } from "@/hooks//useEventoMostrar";
+import styles from "@/styles/PlantillaPagos.module.css"
+import { IconCalculator } from "@/components//IconCalculator";
 
-
-export const SeccionResto = () => {
+const SeccionRezise = ({ mostrar, alternarMostrar }) => {
 
     const { modificarResto, pagoActual } = useContext(restoDelPagoContext)
 
     const { ultimoSeleccionado = { resto: 0 } } = pagoActual
 
-    
+    useEffect(() => {
+        const resizeWindow = (e) => {
+
+            if (e.currentTarget.innerWidth >= 768 && mostrar) {
+
+                alternarMostrar()
+            }
+        }
+
+        window.addEventListener("resize", resizeWindow)
+        return () => window.removeEventListener("resize", resizeWindow)
+    }, [mostrar])
+
+
+    return (
+        <>
+
+            {
+                mostrar ?
+                    <span
+                        className={`${styles.botonesTactilesResize} position-absolute  d-flex justify-content-center  d-md-none`}>
+                     <div  className={`${styles.contendorDeBotonesTactiles}`}>
+                     <ContenedorDeBotonesTactiles
+                            modificadorDefault={modificarResto}
+                            numeroDefault={ultimoSeleccionado.resto} />
+                     </div>
+                    </span>
+                    :
+                    <span className="d-none d-md-block">
+                        <ContenedorDeBotonesTactiles
+                            modificadorDefault={modificarResto}
+                            numeroDefault={ultimoSeleccionado.resto} />
+
+                    </span>
+            }
+
+        </>
+    )
+}
+
+export const SeccionResto = () => {
+
+    const { alternarMostrar, mostrar } = useEventoMostrar()
+
     return (
         <>
             <Container fluid className=" d-flex flex-column  h-100">
@@ -20,11 +65,18 @@ export const SeccionResto = () => {
                     <NumerosTotales />
                 </Row>
 
-                <Row className={`scrollHidden mx-1 d-none d-md-flex h-100 flex-grow-1  `}>
+                <Row className={`scrollHidden mx-1 h-100  flex-grow-1  `}>
 
-                    <Col className="h-25  d-flex justify-content-center p-0 align-items-center h-100">
-                        <ContenedorDeBotonesTactiles modificadorDefault={modificarResto} numeroDefault={ultimoSeleccionado.resto} />
+                    <Col className="h-25 d-flex justify-content-center p-0 align-items-center h-100">
+
+                        <SeccionRezise
+                            mostrar={mostrar}
+                            alternarMostrar={alternarMostrar} />
                     </Col>
+
+                    <IconCalculator
+                        mostrar={mostrar}
+                        alternarMostrar={alternarMostrar} />
 
                 </Row>
 

@@ -6,7 +6,7 @@ import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales
 import { MetodosDePagosVacios } from "./MetodosDePagosVacios";
 
 
-const PagoAgregado = React.memo(({ metodo, eliminarResto, background, seleccionarElemento }) => {
+export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, seleccionarElemento }) => {
 
     const { nombre, resto } = metodo
 

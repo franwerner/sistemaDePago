@@ -6,7 +6,7 @@
 .botonesTactiles button {
     width: 75px;
     height: 75px;
-    background: #c9c5c554;
+    background: #dbdada;
     color: #555;
     font-size: 24px;
 }
@@ -32,4 +32,13 @@
         font-size: 19px;
     }
 
+}
+
+@media (max-width : 768px){
+    .botonesTactiles button {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+    }
+ 
 }

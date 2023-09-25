@@ -22,12 +22,16 @@
 }
 
 .scrollBarPersonalizada {
-    overflow: overlay;
+    overflow-y: overlay;
+
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar {
-    -webkit-appearance: none;
+    width: 0.5em; /* Ajusta el ancho de la barra de desplazamiento vertical */
+    height: 0.5em; 
 }
+
+
 
 .scrollBarPersonalizada::-webkit-scrollbar:vertical {
     width: 8px;

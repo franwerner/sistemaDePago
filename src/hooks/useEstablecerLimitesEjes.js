@@ -45,8 +45,6 @@ export const useEstablecerLimitesEjes = () => {
         //     minimoX: (valorIncialWidth * 3)
         // }
 
-
-
     }
 
 

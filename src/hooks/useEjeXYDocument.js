@@ -5,9 +5,9 @@ import { useEffect, useState } from "react"
 export const useEjeXYDocument = (ejeLimitacion) => {
 
 
-    const [clientX, setClientX] = useState(false)
+    const [clientX, setClientX] = useState({})
 
-    const [clientY, setClientY] = useState(false)
+    const [clientY, setClientY] = useState({})
 
     const [movimiento, setMovimiento] = useState(false)
 
@@ -17,7 +17,6 @@ export const useEjeXYDocument = (ejeLimitacion) => {
     useEffect(() => {
 
         const mouseMoveHandler = (e) => {
-    
 
             if (e.clientX <= ejeLimitacion.minimoX || e.clientX >= ejeLimitacion.maximoX) return
 
@@ -26,6 +25,8 @@ export const useEjeXYDocument = (ejeLimitacion) => {
             cambiarEjeY(e.clientY)
 
         };
+
+
 
 
         if (movimiento === true) {

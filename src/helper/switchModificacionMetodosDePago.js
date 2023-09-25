@@ -3,27 +3,43 @@ import { obtenerDecimales } from "./obtenerDecimales"
 import { verificarSiEsNegativo } from "./verificarSiEsNegativo"
 
 
-const borrarNumeros = ({ restoStringEntero, restoStringDecimales }) => {
+const borrarEnteros = ({ restoStringEntero, restoStringDecimales, verificarSiRestoEsNegativo }) => {
 
     const restoStringLargo = parseFloat(restoStringEntero.slice(0, restoStringEntero.length - 1))
 
-    const pasearDecimales = parseFloat(restoStringDecimales)
+    const verificarSiEsNaN = isNaN(restoStringLargo) ? "0" : restoStringLargo
 
-    const verificarSiEsNaN = isNaN(restoStringLargo)
+    const agregarPuntoDecimal = `.${restoStringDecimales}`
 
-    return verificarSiEsNaN ? 0 + pasearDecimales : restoStringLargo + pasearDecimales
+    const resultado = verificarSiRestoEsNegativo(verificarSiEsNaN + agregarPuntoDecimal)
+
+    return parseFloat(resultado)
 
 }
 
-const agregarNumeros = ({ restoStringEntero, tipoDeButton, resto, restoStringDecimales }) => {
+const borrarDecimales = ({ restoStringEntero, restoStringDecimales, verificarSiRestoEsNegativo }) => {
+
+    const decimalStringLargo = parseFloat(restoStringDecimales.slice(0, restoStringDecimales.length - 1))
+
+    const verificarSiEsNaN = isNaN(decimalStringLargo) ? "0" : decimalStringLargo
+
+    const agregarPuntoDecimal = `.${"0" + verificarSiEsNaN}`
+
+    const resultado = verificarSiRestoEsNegativo(restoStringEntero + agregarPuntoDecimal)
+
+    return parseFloat(resultado)
+
+}
+
+const agregarNumeros = ({ restoStringEntero, tipoDeButton, verificarSiRestoEsNegativo, restoStringDecimales }) => {
 
     const MAX_LONGITUD = 15
 
-    const sumaDeStrings = Math.abs(parseFloat(restoStringEntero + tipoDeButton))
+    const agregarPuntoDecimal = `.${restoStringDecimales}`
 
-    const verificar = verificarSiEsNegativo(resto) == "Negativo"
+    const sumaDeStrings = parseFloat(restoStringEntero + tipoDeButton)
 
-    const resultado = verificar ? (-sumaDeStrings) : sumaDeStrings
+    const resultado = verificarSiRestoEsNegativo(sumaDeStrings)
 
     const largoMaximo =
         establecerLargoMaximo({
@@ -31,36 +47,30 @@ const agregarNumeros = ({ restoStringEntero, tipoDeButton, resto, restoStringDec
             max: MAX_LONGITUD
         })
 
-    return largoMaximo + parseFloat(restoStringDecimales)
+    return parseFloat(largoMaximo + agregarPuntoDecimal)
 
 }
 
-const agregarDecimales = ({ restoStringDecimales, tipoDeButton, restoStringEntero }) => {
+const agregarDecimales = ({ restoStringDecimales, tipoDeButton, verificarSiRestoEsNegativo, restoStringEntero }) => {
 
-    const redondeo = Math.round(restoStringDecimales).toString()
-
-    const verificar = verificarSiEsNegativo(restoStringEntero) == "Negativo"
-
-    const verificarSiEsCero = redondeo == "0" ? redondeo.slice(0, 1) : redondeo
+    const verificarSiEsCero = restoStringDecimales == "0" ? restoStringDecimales.slice(0, 1) : restoStringDecimales
 
     const suma = verificarSiEsCero + tipoDeButton
 
-    const verificarLargo = redondeo.length >= 2 ? redondeo : suma
+    const verificarLargo = restoStringDecimales.length >= 2 ? restoStringDecimales : suma
 
-    const numeroPositivo = parseFloat(Math.abs(restoStringEntero) + "." + verificarLargo)
+    const agregarPuntoDecimal = `.${verificarLargo}`
 
-    return verificar ? -(numeroPositivo) : numeroPositivo;
+    const numero = parseFloat(restoStringEntero) + agregarPuntoDecimal
+
+    return verificarSiRestoEsNegativo(numero)
 }
 
-const sumarNumeros = ({ tipoDeButton, resto }) => {
+const sumarNumeros = ({ tipoDeButton, verificarSiRestoEsNegativo, resto }) => {
 
-    const numeroPositivo = Math.abs(resto)
+    const suma = resto + tipoDeButton
 
-    const verificar = verificarSiEsNegativo(resto) == "Negativo"
-
-    const suma = numeroPositivo + tipoDeButton
-
-    return verificar ? -(suma) : suma
+    return verificarSiRestoEsNegativo(suma)
 
 }
 
@@ -79,38 +89,56 @@ export const switchModificacionMetodosDePago = (state, pago) => {
 
     const restoStringDecimales = obtenerDecimales(resto).toString()
 
+    const verificarSiRestoEsNegativo = (numero) => {
+
+        const numeroPositivo = Math.abs(numero)
+
+        const restoEsNegativo = verificarSiEsNegativo(resto) == "Negativo"
+
+        return restoEsNegativo ? -(numeroPositivo) : numeroPositivo
+
+    }
+
     let resultadoFinal;
 
     switch (tipoDeButton) {
+        
         case "Backspace":
 
             if (comma == false) {
-                resultadoFinal = borrarNumeros({ restoStringEntero, restoStringDecimales })
+                resultadoFinal = borrarEnteros({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
             } else {
-                resultadoFinal = parseInt(restoStringEntero)
+                resultadoFinal = borrarDecimales({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
             }
 
             break;
 
         case "-":
+
             resultadoFinal = verificarSiEsNegativo(resto) == "Negativo" ? resto : (-resto)
+
             break;
 
         case "+":
+
             resultadoFinal = Math.abs(resto)
+
             break
 
         case tipoDeButton <= 9 && tipoDeButton:
 
             if (comma) {
-                resultadoFinal = agregarDecimales({ restoStringDecimales, restoStringEntero, tipoDeButton })
+                resultadoFinal = agregarDecimales({ restoStringDecimales, verificarSiRestoEsNegativo, restoStringEntero, tipoDeButton })
             } else {
-                resultadoFinal = agregarNumeros({ resto, restoStringDecimales, restoStringEntero, tipoDeButton })
+                resultadoFinal = agregarNumeros({ restoStringDecimales, verificarSiRestoEsNegativo, restoStringEntero, tipoDeButton })
             }
+
             break;
 
         case tipoDeButton >= 100 && tipoDeButton:
-            resultadoFinal = sumarNumeros({ resto, tipoDeButton })
+
+            resultadoFinal = sumarNumeros({ verificarSiRestoEsNegativo, tipoDeButton, resto })
+
             break;
 
         default:

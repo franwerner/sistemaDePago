@@ -50,6 +50,7 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
     return (
         <>
             <Container fluid className={` d-flex flex-column  rounded-1 flex-grow-1  `}>
+           
                 <Row   style={{border : "2px solid #555"}}>
                     <Col>
                         <div className="d-flex fs-4  justify-content-center align-items-center">
@@ -89,7 +90,7 @@ export const PlantillaPagos = () => {
         <>
             <Container fluid className="flex-grow-1  ">
                 <Row className="h-100">
-
+                
                     <Col className={`d-flex h-100 p-2  flex-column  ${styles.contenedorPlantillaPagos} `}>
 
                         <PlantillaPagosHeader />

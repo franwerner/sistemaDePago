@@ -3,6 +3,7 @@ import { useHotkeys } from "react-hotkeys-hook";
 
 export const IconClone = ({ alternarMostrar, mostrar }) => {
 
+
     const rotacion = mostrar ? 0 : 180
 
     const config = {
