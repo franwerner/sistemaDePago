@@ -10,6 +10,7 @@ export const useEjesFinales = ({ ejeLimitacion, target }) => {
     const { clientX, clientY, esteblecerEstadoDeMovimiento, cambiarEjeX, cambiarEjeY } = useEjeXYDocument(ejeLimitacion)
 
     const establecerEjesFinales = (e) => {
+        console.log(e, target.id)
 
         if (e.target.id !== target && e.type == "mousedown") return
 

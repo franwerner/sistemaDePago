@@ -8,6 +8,7 @@ import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
 import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje"
 import { TarifaContex } from "@/context/Contextos"
 import { establecerLargoMaximo } from "@/helper/establecerLargoMaximo"
+import { verificarSiEsNegativo } from "../helper/verificarSiEsNegativo"
 
 
 const EdicionHeader = ({ validarNumero, total, nombre }) => {
@@ -40,7 +41,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
     const [alternarPrecio, setAltenarPrecio] = useState()
 
-    const { precioModificado, nombre } = seleccion
+    const { precioModificado, nombre, cantidadSeleccionada } = seleccion
 
     const MAX_LONGITUD = 15
 
@@ -68,12 +69,15 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
         const targetValue = parseFloat(target.value)
 
+        if (verificarSiEsNegativo(targetValue) == "Negativo") return
+
         const porcentaje = (tarifaActual.porcentaje / 100) * targetValue
 
         if (alternarPrecio) {
 
             updatedForm.precioFormSinTarifa = targetValue - porcentaje
             updatedForm.precioFormConTarifa = targetValue
+
         } else {
 
             updatedForm.precioFormConTarifa = targetValue + porcentaje
@@ -86,13 +90,13 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
     const data = {
         ...seleccion,
         "precioModificado": precioFormSinTarifa,
+        "cantidadSeleccionada": verificarSiEsNegativo(precioFormSinTarifa) == "Negativo" ? -(cantidadSeleccionada) : cantidadSeleccionada
     }
 
     const onClick = () => {
         alternarMostrar(),
             editarProducto(data)
     }
-
 
     const { validarNumero } = useComprobarNumeros(form)
 

@@ -36,11 +36,10 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
 
     const comprobarMetodo = metodo == "Unidades" ? separarNumerosConDecimales(cantidadSeleccionada) : cantidadSeleccionada.toFixed(3)
 
-    const containerRef = useRef(null)
 
     return (
         <>
-            <Row ref={containerRef} className={`flex-nowrap  ${styles.infoDelProducto}`}>
+            <Row className={`flex-nowrap  ${styles.infoDelProducto}`}>
 
                 <Col className={`mx-1 d-flex justify-content-between `}>
 
@@ -108,7 +107,10 @@ export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto, selec
 
         const target = document.activeElement
 
-        if (target.classList.contains("producto-a-cobrar") || target.id == "interface-sistema") {
+        if (target.classList.contains("producto-a-cobrar")
+            || target.id == "interface-sistema"
+            || target.tagName == "BODY") {
+                
             eliminarProducto(seleccion)
         }
 

@@ -19,7 +19,7 @@ export const IconCalculator = ({ alternarMostrar, mostrar }) => {
         <>
             <i
                 onClick={alternarMostrar}
-                style={{ width: "min-content", color, transition: "0.2s all " }}
+                style={{ width: "min-content", color, transition: "0.2s all ", cursor: "pointer" }}
                 className="fa-solid fs-2 fa-calculator">
 
             </i>

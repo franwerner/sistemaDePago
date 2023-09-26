@@ -23,6 +23,7 @@ const validarProductoExistente = (state, action) => {
 
 }
 
+
 const reducer = (state, action) => {
 
 
@@ -50,10 +51,15 @@ const reducer = (state, action) => {
 
             case "ELIMINAR":
 
-                return {
-                    ...estado,
-                    "cantidadSeleccionada": cantidadSeleccionada - 1,
-                };
+
+                if (cantidadSeleccionada <= 0) {
+                    return null
+                } else {
+                    return {
+                        ...estado,
+                        "cantidadSeleccionada": cantidadSeleccionada - 1,
+                    };
+                }
 
             case "EDITAR":
                 return {
@@ -68,10 +74,6 @@ const reducer = (state, action) => {
 
                 return null
 
-            case "SELECCIONAR":
-                return {
-
-                }
 
             default:
                 return state
@@ -86,7 +88,6 @@ const reducer = (state, action) => {
 export const productoReducer = () => {
 
     const [listaProducto, dispatch] = useReducer(reducer, [])
-
 
 
     const agregarProducto = (producto) => {
