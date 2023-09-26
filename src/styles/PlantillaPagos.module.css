@@ -143,7 +143,7 @@
 
 
 .botonesTactilesResize .contendorDeBotonesTactiles {
-    animation: showChildren 0.6s ease-in backwards;
+    animation: showChildren 0.8s ease-in backwards;
     z-index: 0;
     box-shadow: 10px 10px 19px -2px rgba(118, 132, 163, 0.75);
     width: fit-content;
@@ -153,11 +153,17 @@
 @keyframes showChildren {
     0% {
         opacity: 0;
-        z-index: -2;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.75;
     }
 
     100% {
-        z-index: 100;
         opacity: 1;
     }
 }

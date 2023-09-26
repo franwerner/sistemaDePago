@@ -55,9 +55,9 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
     const onFocus = ({ target }) => {
 
-        const res = target.name == "precioFormSinTarifa" ? false : true
+        const resultado = target.name == "precioFormSinTarifa" ? false : true
 
-        setAltenarPrecio(res)
+        setAltenarPrecio(resultado)
 
     }
 
@@ -98,11 +98,11 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
     const verificarSiValueEsUnNumero = (tipoDeValue) => {
 
-        const value = isNaN(precioFormSinTarifa) ? "" : establecerLargoMaximo({ numero: tipoDeValue, max: MAX_LONGITUD })
+        const value = isNaN(tipoDeValue) ? "" : establecerLargoMaximo({ numero: tipoDeValue, max: MAX_LONGITUD })
 
-        const redondeoValue = parseFloat(value.toFixed(2))
+        const resultado = value == "" ? value : parseFloat(value.toFixed(2))
 
-        return redondeoValue
+        return resultado
 
     }
 
