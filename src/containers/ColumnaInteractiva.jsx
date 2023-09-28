@@ -13,7 +13,7 @@ export const ColumnaInteractiva = ({ children }) => {
 
     return (
         <>
-            <Col md={5}
+            <Col md={5} lg = {4}
                 className={`p-0 overflow-hidden  h-100  ${styles.columnaInteractiva} d-flex`}>
 
 

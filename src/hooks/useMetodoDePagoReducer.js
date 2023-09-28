@@ -97,6 +97,7 @@ export const useMetodoDePagoReducer = () => {
 
     return {
         pagoActual,
+        listaDePagos,
         agregarResto,
         modificarResto,
         eliminarResto,

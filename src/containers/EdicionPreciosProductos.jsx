@@ -41,7 +41,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
     const [alternarPrecio, setAltenarPrecio] = useState()
 
-    const { precioModificado, nombre, cantidadSeleccionada } = seleccion
+    const { precioModificado, nombre } = seleccion
 
     const MAX_LONGITUD = 15
 
@@ -69,19 +69,15 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
         const targetValue = parseFloat(target.value)
 
-        if (verificarSiEsNegativo(targetValue) == "Negativo") return
+        if(verificarSiEsNegativo(targetValue) == "Negativo") return
 
-        const porcentaje = (tarifaActual.porcentaje / 100) * targetValue
 
         if (alternarPrecio) {
-
-            updatedForm.precioFormSinTarifa = targetValue - porcentaje
-            updatedForm.precioFormConTarifa = targetValue
-
+            updatedForm.precioFormConTarifa = targetValue;
+            updatedForm.precioFormSinTarifa = parseFloat((targetValue / (1 + tarifaActual.porcentaje / 100)).toFixed(2));
         } else {
-
-            updatedForm.precioFormConTarifa = targetValue + porcentaje
-            updatedForm.precioFormSinTarifa = targetValue
+            updatedForm.precioFormSinTarifa = targetValue;
+            updatedForm.precioFormConTarifa = parseFloat((targetValue * (1 + tarifaActual.porcentaje / 100)).toFixed(2));
         }
 
         establecerFormulario(updatedForm)
@@ -90,13 +86,13 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
     const data = {
         ...seleccion,
         "precioModificado": precioFormSinTarifa,
-        "cantidadSeleccionada": verificarSiEsNegativo(precioFormSinTarifa) == "Negativo" ? -(cantidadSeleccionada) : cantidadSeleccionada
     }
 
     const onClick = () => {
         alternarMostrar(),
             editarProducto(data)
     }
+
 
     const { validarNumero } = useComprobarNumeros(form)
 

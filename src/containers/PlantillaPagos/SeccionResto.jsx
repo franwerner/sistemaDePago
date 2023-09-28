@@ -6,6 +6,7 @@ import { restoDelPagoContext } from "@/context/Contextos"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import styles from "@/styles/PlantillaPagos.module.css"
 import { IconCalculator } from "@/components//IconCalculator";
+import { useSumaDeTodosLosRestos } from "@/hooks//useSumaDeTodosLosRestos";
 
 const SeccionRezise = ({ mostrar, alternarMostrar }) => {
 
@@ -75,6 +76,7 @@ export const SeccionResto = () => {
 
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
+    useSumaDeTodosLosRestos()
     return (
         <>
             <Container fluid className=" d-flex flex-column  h-100">

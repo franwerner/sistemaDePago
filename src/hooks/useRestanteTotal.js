@@ -16,7 +16,7 @@ export const useRestanteTotal = () => {
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
-    const { calculoConTarifa } = precioFinal
+    const { calculoConTarifa} = precioFinal
 
     const { cambioTotal } = useCambioTotal()
 

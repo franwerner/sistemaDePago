@@ -39,7 +39,7 @@ const Totales = ({ cambioTotal, restosTotal }) => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { calculoConTarifa } = precioFinal
+    const { calculoConTarifa,calculoSinTarifa} = precioFinal
 
     return (
         <>
@@ -70,7 +70,7 @@ const Totales = ({ cambioTotal, restosTotal }) => {
 
             <Row>
                 <p className={`${styles.adeudoTotal} text-start  my-4 `}>
-                    Adeudo total  $ {separarNumerosConDecimales(calculoConTarifa)}
+                    Adeudo total  $ {separarNumerosConDecimales(calculoSinTarifa) } + porcentaje
                 </p>
             </Row>
         </>

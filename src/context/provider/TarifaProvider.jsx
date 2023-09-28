@@ -107,9 +107,19 @@ const listadoDeTarifas = [
             },
         ]
     },
+    {
+        "id": 4,
+        "tipoDeTarifa": "Empleado",
+        "porcentaje": -10,
+        "metodosDePago": [
+            {
+                "id": 1,
+                "nombre": "Efectivo"
+            }
+        ]
+    }
 
 ]
-
 
 export const TarifaProvider = ({ children }) => {
 
