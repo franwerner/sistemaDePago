@@ -1,32 +1,35 @@
 import { useContext, useMemo } from "react";
 import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
 import { restoDelPagoContext } from "@/context/Contextos";
-import { useCambioTotal } from "./useCambioTotal";
 
-
-const calcularRestosTotales = (calculoConTarifa, pagoActual) => {
-
-    return pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, calculoConTarifa)
-
-}
 
 export const useRestanteTotal = () => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { pagoActual } = useContext(restoDelPagoContext)
+    const { listaDePagos, pagoActual } = useContext(restoDelPagoContext)
 
-    const { calculoConTarifa} = precioFinal
+    const { calculoSinTarifa } = precioFinal
 
-    const { cambioTotal } = useCambioTotal()
+    const dependeciaString = JSON.stringify(pagoActual.metodosDePago)
 
-    const restosTotales = useMemo(() => {
 
-        if (cambioTotal > 0 || pagoActual == undefined) return 0
+    const restoTotal = useMemo(() => {
 
-        return calcularRestosTotales(calculoConTarifa, pagoActual)
-    }, [calculoConTarifa, pagoActual])
+        const sumaDeMetodosAgreagos = Object.entries(listaDePagos).map(([key, value]) => {
+            return value.metodosDePago.reduce((acc, current) => acc - current.resto, 0)
+        })
 
-    return { restosTotales }
+        const sumaDeRestos = sumaDeMetodosAgreagos.reduce((acc, current) => acc + current, calculoSinTarifa)
+
+        if (pagoActual.cambio > 0 || pagoActual == undefined) return 0
+
+        return sumaDeRestos
+
+    }, [calculoSinTarifa, dependeciaString])
+
+    return {
+        restoTotal
+    }
 
 }

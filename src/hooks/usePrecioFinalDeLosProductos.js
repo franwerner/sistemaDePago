@@ -15,9 +15,11 @@ export const usePrecioFinalDeLosProductos = () => {
       const calculo = listaProducto.reduce((acc, { precioModificado, cantidadSeleccionada }) =>
          acc + precioModificado * cantidadSeleccionada, 0)
 
+      const restoDelPorcentaje = (tarifaActual.porcentaje / 100) * calculo
       return {
-         calculoConTarifa: (tarifaActual.porcentaje / 100) * calculo + calculo,
-         calculoSinTarifa: calculo
+         calculoConTarifa: restoDelPorcentaje + calculo,
+         calculoSinTarifa: calculo,
+         restoDelPorcentaje
       }
 
    }, [listaProducto, tarifaActual.porcentaje])

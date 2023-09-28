@@ -1,5 +1,4 @@
 
-import { useCambioTotal } from "@/hooks//useCambioTotal"
 import { useRestanteTotal } from "@/hooks//useRestanteTotal"
 import React, { useContext } from "react"
 import { Col, Container, Row } from "react-bootstrap";
@@ -9,8 +8,7 @@ import { usePrecioFinalDeLosProductos } from "@/hooks//usePrecioFinalDeLosProduc
 import { restoDelPagoContext } from "@/context//Contextos";
 
 
-
-const RestoTotal = ({ restosTotales }) => {
+const RestoTotal = ({ restoTotal }) => {
 
     return (
         <>
@@ -18,7 +16,7 @@ const RestoTotal = ({ restosTotales }) => {
 
                 <Col>
                     <p className={`${styles.restoTotal}  my-2 overflow-hidden`}>
-                        $ {separarNumerosConDecimales(restosTotales)}
+                        $ {separarNumerosConDecimales(restoTotal)}
                     </p>
 
                     <p className={styles.textoDeAyuda} >
@@ -35,11 +33,11 @@ const RestoTotal = ({ restosTotales }) => {
 
 
 
-const Totales = ({ cambioTotal, restosTotal }) => {
+const Totales = ({ cambioTotal, restoTotal }) => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { calculoConTarifa,calculoSinTarifa} = precioFinal
+    const { restoDelPorcentaje, calculoSinTarifa } = precioFinal
 
     return (
         <>
@@ -52,7 +50,7 @@ const Totales = ({ cambioTotal, restosTotal }) => {
                         </p>
 
                         <p className={`${styles.restoNumero} `}>
-                            $ {separarNumerosConDecimales(restosTotal)}
+                            $ {separarNumerosConDecimales(restoTotal)}
                         </p>
 
                     </div>
@@ -70,7 +68,10 @@ const Totales = ({ cambioTotal, restosTotal }) => {
 
             <Row>
                 <p className={`${styles.adeudoTotal} text-start  my-4 `}>
-                    Adeudo total  $ {separarNumerosConDecimales(calculoSinTarifa) } + porcentaje
+                    Adeudo total  $ {separarNumerosConDecimales(calculoSinTarifa)}
+                </p>
+                <p className="text-start fw-light ">
+                    Porcentaje : $  {separarNumerosConDecimales(restoDelPorcentaje)}
                 </p>
             </Row>
         </>
@@ -81,9 +82,7 @@ const Totales = ({ cambioTotal, restosTotal }) => {
 
 export const NumerosTotales = React.memo(() => {
 
-    const { cambioTotal } = useCambioTotal()
-
-    const { restosTotales } = useRestanteTotal()
+    const { restoTotal } = useRestanteTotal()
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
@@ -94,9 +93,9 @@ export const NumerosTotales = React.memo(() => {
             <Container className={`${styles.numerosTotales}`} fluid>
                 {
                     metodosDePago.length == 0 ?
-                        <RestoTotal restosTotales={restosTotales} /> :
-                        <Totales restosTotal={restosTotales} cambioTotal={cambioTotal} />
-                } 
+                        <RestoTotal restoTotal={restoTotal} /> :
+                        <Totales restoTotal={restoTotal} cambioTotal={pagoActual.cambio} />
+                }
             </Container>
 
         </>

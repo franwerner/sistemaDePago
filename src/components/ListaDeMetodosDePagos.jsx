@@ -6,14 +6,15 @@ import { Container, Row } from "react-bootstrap"
 import shortid from "shortid"
 
 
-const MetodosDePagos = React.memo(({ nombre, restosTotales, agregarResto }) => {
+
+const MetodosDePagos = React.memo(({ nombre, restoTotal, agregarResto }) => {
 
     const onClick = () => {
 
         agregarResto(
             {
                 nombre,
-                "resto": restosTotales
+                "resto": restoTotal
                 , id: shortid.generate()
             }
         )
@@ -38,7 +39,7 @@ export const ListaDeMetodosDePagos = () => {
 
     const { metodosDePago } = tarifaActual
 
-    const { restosTotales } = useRestanteTotal()
+    const { restoTotal } = useRestanteTotal()
 
 
 
@@ -52,7 +53,7 @@ export const ListaDeMetodosDePagos = () => {
                     metodosDePago.map(metodo =>
                         <MetodosDePagos
                             agregarResto={agregarResto}
-                            restosTotales={restosTotales}
+                            restoTotal={restoTotal}
                             key={metodo.id}
                             nombre={metodo.nombre}
                         />
