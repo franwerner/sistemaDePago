@@ -85,8 +85,6 @@ export const NumerosTotales = React.memo(() => {
 
     const cambioTotal = useCalcularCambio()
 
-    console.log(pagoActual.metodosDePago)
-
     const { metodosDePago } = pagoActual
 
     return (

@@ -8,6 +8,16 @@ const filtrarMetodosDePago = (state, id) => {
     return [...state.metodosDePago.filter(item => item.id !== id)]
 }
 
+const agregarPorcentaje = (state, pago) => {
+
+    return [...state.metodosDePago.map(metodo => {
+        if (metodo.id == pago.id) return { ...metodo, porcentaje: pago.porcentaje }
+        else return metodo
+    })]
+
+
+}
+
 const reducer = (state, action) => {
 
     const { pago, type, tipoDeTarifa } = action
@@ -44,6 +54,15 @@ const reducer = (state, action) => {
                 return {
                     metodosDePago: filtrado,
                     ultimoSeleccionado: seleccionarUltimoElementoDeUnArray(filtrado)
+                }
+
+            case "Porcentaje":
+
+                const aplicarPorcentaje = agregarPorcentaje(state[tipoDeTarifa], pago)
+
+                return {
+                    ...state[tipoDeTarifa],
+                    metodosDePago: aplicarPorcentaje
                 }
 
             case "Seleccionar":
@@ -95,6 +114,12 @@ export const useMetodoDePagoReducer = () => {
         dispatch({ type: "Seleccionar", pago, tipoDeTarifa })
     }, [tipoDeTarifa, pagoActual.metodosDePago.length])
 
+    const aplicarPorcentaje = useCallback((pago) => {
+
+        dispatch({ type: "Porcentaje", pago, tipoDeTarifa })
+
+    }, [tipoDeTarifa, pagoActual.metodosDePago.length])
+
 
     return {
         pagoActual,
@@ -103,7 +128,7 @@ export const useMetodoDePagoReducer = () => {
         modificarResto,
         eliminarResto,
         seleccionarElemento,
-
+        aplicarPorcentaje
     }
 
 };

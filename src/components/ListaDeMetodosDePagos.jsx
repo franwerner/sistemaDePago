@@ -15,7 +15,8 @@ const MetodosDePagos = React.memo(({ nombre, restoTotal, agregarResto }) => {
             {
                 nombre,
                 "resto": restoTotal
-                , id: shortid.generate()
+                , id: shortid.generate(),
+                porcentaje : 0
             }
         )
     }

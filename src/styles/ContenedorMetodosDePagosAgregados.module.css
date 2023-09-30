@@ -13,6 +13,7 @@
 
 .pagoResto {
     text-overflow: ellipsis;
+    max-width: min-content;
 }
 
 .metodoAgregadoSeleccionado {
