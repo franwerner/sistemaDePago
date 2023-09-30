@@ -41,8 +41,6 @@ export const ListaDeMetodosDePagos = () => {
 
     const { restoTotal } = useRestanteTotal()
 
-
-
     return (
         <>
             <Container

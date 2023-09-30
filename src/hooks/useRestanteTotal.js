@@ -7,26 +7,20 @@ export const useRestanteTotal = () => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { listaDePagos, pagoActual } = useContext(restoDelPagoContext)
+    const { pagoActual } = useContext(restoDelPagoContext)
 
-    const { calculoSinTarifa } = precioFinal
+    const { calculoConTarifa } = precioFinal
 
     const dependeciaString = JSON.stringify(pagoActual.metodosDePago)
 
 
     const restoTotal = useMemo(() => {
 
-        const sumaDeMetodosAgreagos = Object.entries(listaDePagos).map(([key, value]) => {
-            return value.metodosDePago.reduce((acc, current) => acc - current.resto, 0)
-        })
+        const sumaDeRestos = pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, calculoConTarifa)
 
-        const sumaDeRestos = sumaDeMetodosAgreagos.reduce((acc, current) => acc + current, calculoSinTarifa)
+        return Math.sign(sumaDeRestos) == -1 ? 0 : sumaDeRestos
 
-        if (pagoActual.cambio > 0 || pagoActual == undefined) return 0
-
-        return sumaDeRestos
-
-    }, [calculoSinTarifa, dependeciaString])
+    }, [calculoConTarifa, dependeciaString])
 
     return {
         restoTotal

@@ -1,10 +1,28 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Dropdown, Row } from "react-bootstrap";
 import styles from "@/styles/ContenedorMetodosDePagosAgregados.module.css"
 import React, { useContext } from "react";
 import { restoDelPagoContext } from "@/context/Contextos";
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
 import { MetodosDePagosVacios } from "./MetodosDePagosVacios";
 
+const DropwDownDeTarifas = ({resto}) => {
+
+  return (
+    <Dropdown>
+
+    <Dropdown.Toggle variant="none">
+        {separarNumerosConDecimales(resto)}
+    </Dropdown.Toggle>
+
+    <Dropdown.Menu>
+        <Dropdown.Item>
+            Test
+        </Dropdown.Item>
+    </Dropdown.Menu>
+</Dropdown>
+  )
+
+}
 
 export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, seleccionarElemento }) => {
 
@@ -25,6 +43,7 @@ export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, sel
 
 
 
+
     return (
         <>
             <Row onClick={onClickSeleccion}
@@ -38,9 +57,9 @@ export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, sel
 
                 <Col className="fw-bolder w-100 my-0  ">
 
-                    <p className={`my-1 text-end overflow-hidden ${styles.pagoResto}`}>
-                        {separarNumerosConDecimales(resto)}
-                    </p>
+                    <DropwDownDeTarifas resto = {resto} />
+
+
 
                 </Col>
                 <Col className="text-center">

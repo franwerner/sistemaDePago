@@ -1,9 +1,8 @@
-import { useCallback, useContext, useMemo, useReducer } from "react";
+import { useCallback, useContext, useReducer } from "react";
 import { TarifaContex } from "@/context/Contextos";
 import { seleccionarUltimoElementoDeUnArray } from "@/helper/seleccionarUltimoElementoDeUnArray";
 import { switchModificacionMetodosDePago } from "@/helper/switchModificacionMetodosDePago";
-import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
-import { useCalcularCambio } from "./useCalcularCambio";
+import { useSumarMetodosDePagoAgregados } from "./useSumarMetodosDePagoAgregados";
 
 const filtrarMetodosDePago = (state, id) => {
     return [...state.metodosDePago.filter(item => item.id !== id)]
@@ -73,10 +72,9 @@ export const useMetodoDePagoReducer = () => {
 
     const pagoEncontrado = listaDePagos[tipoDeTarifa]
 
-    const cambio = useCalcularCambio({ pagoEncontrado })
+    const ajustePagoEncontrado = useSumarMetodosDePagoAgregados({ pagoEncontrado })
 
-    const pagoActual = !pagoEncontrado ? { metodosDePago: [], cambio: 0 } : { ...pagoEncontrado, cambio }
-
+    const pagoActual = !pagoEncontrado ? { metodosDePago: [] } : { ...pagoEncontrado, metodosDePago: ajustePagoEncontrado }
 
     const agregarResto = useCallback((pago) => {
         dispatch({ type: "Agregar", pago, tipoDeTarifa })

@@ -19,7 +19,6 @@ export const usePrecioFinalDeLosProductos = () => {
       return {
          calculoConTarifa: restoDelPorcentaje + calculo,
          calculoSinTarifa: calculo,
-         restoDelPorcentaje
       }
 
    }, [listaProducto, tarifaActual.porcentaje])

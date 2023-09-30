@@ -6,7 +6,7 @@ import styles from "@/styles/PlantillaPagos.module.css"
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
 import { usePrecioFinalDeLosProductos } from "@/hooks//usePrecioFinalDeLosProductos";
 import { restoDelPagoContext } from "@/context//Contextos";
-
+import { useCalcularCambio } from "@/hooks//useCalcularCambioTotal";
 
 const RestoTotal = ({ restoTotal }) => {
 
@@ -37,7 +37,7 @@ const Totales = ({ cambioTotal, restoTotal }) => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { restoDelPorcentaje, calculoSinTarifa } = precioFinal
+    const { calculoConTarifa } = precioFinal
 
     return (
         <>
@@ -68,10 +68,7 @@ const Totales = ({ cambioTotal, restoTotal }) => {
 
             <Row>
                 <p className={`${styles.adeudoTotal} text-start  my-4 `}>
-                    Adeudo total  $ {separarNumerosConDecimales(calculoSinTarifa)}
-                </p>
-                <p className="text-start fw-light ">
-                    Porcentaje : $  {separarNumerosConDecimales(restoDelPorcentaje)}
+                    Adeudo total  $ {separarNumerosConDecimales(calculoConTarifa)}
                 </p>
             </Row>
         </>
@@ -86,6 +83,10 @@ export const NumerosTotales = React.memo(() => {
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
+    const cambioTotal = useCalcularCambio()
+
+    console.log(pagoActual.metodosDePago)
+
     const { metodosDePago } = pagoActual
 
     return (
@@ -94,7 +95,9 @@ export const NumerosTotales = React.memo(() => {
                 {
                     metodosDePago.length == 0 ?
                         <RestoTotal restoTotal={restoTotal} /> :
-                        <Totales restoTotal={restoTotal} cambioTotal={pagoActual.cambio} />
+                        <Totales
+                            restoTotal={restoTotal}
+                            cambioTotal={cambioTotal} />
                 }
             </Container>
 
