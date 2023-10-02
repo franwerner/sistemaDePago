@@ -12,12 +12,11 @@ export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
 
     let restoInicial = calculoConTarifa
 
-
     return useMemo(() => {
 
         if (pagoEncontrado == undefined) return
 
-        const a = pagoEncontrado.metodosDePago.map((current) => {
+        const pagos = pagoEncontrado.metodosDePago.map((current) => {
 
             const restoParaValidar = Math.min(restoInicial, current.resto);
 
@@ -25,11 +24,11 @@ export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
 
             return {
                 ...current,
-                "restoParaValidar": Math.sign(restoParaValidar) == -1 ? 0 : restoParaValidar,
+                "restoParaValidar": current.resto <= 0 ? current.resto : restoParaValidar
             };
         });
 
-        return a
+        return pagos
 
     }, [dependeciaString, calculoConTarifa]);
 

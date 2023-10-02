@@ -40,7 +40,7 @@ const Total = () => {
 
     return (
         <>
-            <div className={`${styles.total} text-end me-2  mt-3 fs-4`}>
+            <div className={`${styles.total} text-end me-2  fs-4`}>
                 ${separarNumerosConDecimales(totalAValidar)}
             </div>
         </>
@@ -53,9 +53,11 @@ export const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, 
         <>
             <Modal show={mostrar} onHide={alternarMostrar}>
                 <Modal.Header closeButton>
-        
-                    <Modal.Title className={`fs-3 fw-bolder ${styles.titulo}`}>
-                        Validar pago
+
+                    <Modal.Title >
+                        <span className={`fs-3 fw-bolder ${styles.titulo}`}>
+                            Validar pago
+                        </span>
                     </Modal.Title>
 
                 </Modal.Header>
@@ -105,7 +107,7 @@ export const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, 
 
                 <Modal.Footer>
 
-                    <Button variant="outline-dark" className="w-100 fs-5" onClick={restablecerTodo}>
+                    <Button variant="outline-dark" className="w-100 fw-bolder fs-5" onClick={restablecerTodo}>
                         Validar
                     </Button>
 

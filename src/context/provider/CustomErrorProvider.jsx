@@ -19,7 +19,7 @@ export const CustomErrorProvider = ({ children }) => {
     return (
         <>
             <customErrorContext.Provider value={{
-                generarError
+                generarError,
             }} >
                 {children}
                 <CustomErrorToast

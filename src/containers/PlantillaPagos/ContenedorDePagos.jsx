@@ -2,7 +2,6 @@ import { NavegacionHeader } from "@/Components/NavegacionHeader"
 import { Col, Container, Modal, Row } from "react-bootstrap"
 import React, { useContext } from "react"
 import styles from "@/styles/PlantillaPagos.module.css"
-import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider"
 import { SeccionResto } from "./SeccionResto"
 import { BotonValidacionPagos } from "@/components//BotonValidacionPagos"
 import { BotonVolver } from "@/components//BotonVolver"
@@ -11,6 +10,7 @@ import { ModalDeDetellaDePago } from "@/components//ModalDetalleDePago"
 import { productoReducerContext, restoDelPagoContext } from "@/context//Contextos"
 import { useRestanteTotal } from "@/hooks//useRestanteTotal"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
+import { ModalDeMensajesPersonalizados } from "@/components//ModalDeMensajesPersonalizados"
 
 
 
@@ -28,9 +28,15 @@ const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const onClick = () => {
 
-        if (restoTotal > 0 || listaProducto.length == 0) return
+        try {
+            if (restoTotal > 0 || listaProducto.length === 0) return
 
-        alternarMostrar()
+            alternarMostrar()
+
+        } catch (error) {
+
+        }
+
 
     }
 
@@ -43,13 +49,16 @@ const ValidacionDePagos = ({ cerrarTodo }) => {
 
     }
 
-    const background = restoTotal == 0 ? true : false
+    const background = restoTotal == 0 && listaProducto.length > 0 ? true : false
 
     return (
         <>
+<ModalDeMensajesPersonalizados>
+    
+</ModalDeMensajesPersonalizados>
 
             {
-                mostrar && <ModalDeDetellaDePago
+                background && <ModalDeDetellaDePago
                     restablecerTodo={restablecerTodo}
                     alternarMostrar={alternarMostrar}
                     mostrar={mostrar}
@@ -165,13 +174,9 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
                             fluid
                             className={`${styles.contenedorPlantillaPagos} h-100 d-flex overflow-hidden  position-relative flex-column  `}>
 
-                            <RestoDelPagoProvider>
+                            <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
 
-                                <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
-
-                                <ContenedorDePagoBody mostrar={mostrar} />
-
-                            </RestoDelPagoProvider>
+                            <ContenedorDePagoBody mostrar={mostrar} />
 
                         </Container>
 

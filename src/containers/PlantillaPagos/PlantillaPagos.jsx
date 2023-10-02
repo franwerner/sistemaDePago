@@ -6,6 +6,7 @@ import { useEvitarRenderizados } from "@/hooks/useEvitarRenderizados"
 import { ContenedorDePagos } from "./ContenedorDePagos"
 import { BotonTarifas } from "@/components//BotonTarifas"
 import { ListadoDeTarifas } from "@/components/ListadoDeTarifas"
+import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider"
 
 
 
@@ -76,6 +77,7 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
 
 export const PlantillaPagos = () => {
 
+
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
     return (
@@ -89,15 +91,15 @@ export const PlantillaPagos = () => {
                         <PlantillaPagosBody
                             alternarMostrar={alternarMostrar} />
 
+                        <RestoDelPagoProvider>
+                            {
+                                mostrar &&
 
-                        {
-                            mostrar &&
-                            <ContenedorDePagos
-                                mostrar={mostrar}
-                                alternarMostrar={alternarMostrar} />
-                        }
-
-
+                                <ContenedorDePagos
+                                    mostrar={mostrar}
+                                    alternarMostrar={alternarMostrar} />
+                            }
+                        </RestoDelPagoProvider>
 
                     </Col>
                 </Row>

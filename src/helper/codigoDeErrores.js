@@ -1,6 +1,4 @@
-
-import { CustomError } from "./customError"
-
+import { CustomError } from "@/ContructoresJS/customError"
 
 const listaDeErrores = [
     { "codigo": 1, "motivo": "Error al verificar el usuario" },
@@ -10,6 +8,7 @@ const listaDeErrores = [
 
 export const buscarCodigosDeErrores = (datos = {}) => {
 
+    //Esto solo se usa para tareas asyncronas/backend
 
     if (!datos.error) return
 

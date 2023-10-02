@@ -8,6 +8,7 @@
         "@/context/*": ["src/context*"],
         "@/components/*": ["src/components*"],
         "@/containers/*": ["src/containers*"],
+        "@/containers/*": ["src/ContructoresJS*"],
         "@/src/*": ["*"],
       }
     }
