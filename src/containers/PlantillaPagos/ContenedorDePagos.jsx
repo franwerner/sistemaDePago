@@ -1,12 +1,72 @@
 import { NavegacionHeader } from "@/Components/NavegacionHeader"
 import { Col, Container, Modal, Row } from "react-bootstrap"
-import React from "react"
+import React, { useContext } from "react"
 import styles from "@/styles/PlantillaPagos.module.css"
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider"
 import { SeccionResto } from "./SeccionResto"
 import { BotonValidacionPagos } from "@/components//BotonValidacionPagos"
 import { BotonVolver } from "@/components//BotonVolver"
 import { AlternarMetodosDePagos } from "./alternarMetodosDePagos"
+import { ModalDeDetellaDePago } from "@/components//ModalDetalleDePago"
+import { productoReducerContext, restoDelPagoContext } from "@/context//Contextos"
+import { useRestanteTotal } from "@/hooks//useRestanteTotal"
+import { useEventoMostrar } from "@/hooks//useEventoMostrar"
+
+
+
+const ValidacionDePagos = ({ cerrarTodo }) => {
+
+    const { listaProducto, restablecerProductos } = useContext(productoReducerContext)
+
+    const { pagoActual, restablecerPagos } = useContext(restoDelPagoContext)
+
+    const { metodosDePago } = pagoActual
+
+    const { restoTotal } = useRestanteTotal()
+
+    const { alternarMostrar, mostrar } = useEventoMostrar()
+
+    const onClick = () => {
+
+        if (restoTotal > 0 || listaProducto.length == 0) return
+
+        alternarMostrar()
+
+    }
+
+    const restablecerTodo = () => {
+
+        restablecerProductos()
+        alternarMostrar()
+        restablecerPagos()
+        cerrarTodo()
+
+    }
+
+    const background = restoTotal == 0 ? true : false
+
+    return (
+        <>
+
+            {
+                mostrar && <ModalDeDetellaDePago
+                    restablecerTodo={restablecerTodo}
+                    alternarMostrar={alternarMostrar}
+                    mostrar={mostrar}
+                    metodosDePago={metodosDePago}
+                />
+            }
+
+            <Col className="d-flex justify-content-center justify-content-md-end p-3">
+
+                <BotonValidacionPagos
+                    background={background}
+                    functionClick={onClick} />
+
+            </Col>
+        </>
+    )
+}
 
 const ContenedorDePagoHeader = React.memo(({ alternarMostrar }) => {
 
@@ -24,11 +84,8 @@ const ContenedorDePagoHeader = React.memo(({ alternarMostrar }) => {
                 </p>
             </Col>
 
-            <Col className="d-flex justify-content-center justify-content-md-end p-3">
+            <ValidacionDePagos cerrarTodo={alternarMostrar} />
 
-                <BotonValidacionPagos />
-
-            </Col>
         </Row>
 
     )
@@ -44,30 +101,29 @@ const ContenedorDePagoBody = ({ mostrar }) => {
 
             className={`${styles.lineaPunteada} flex-grow-1 p-0  scrollBarPersonalizada flex-column flex-md-row h-100`}>
 
-            <RestoDelPagoProvider>
 
-                {
-                    mostrar &&
-                    <>
+            {
+                mostrar &&
+                <>
 
-                        <Col
-                            className={` scrollHidden pt-0 pb-3  h-100 ${styles.contendorMetodosDePagoAgregados}  `}
-                            xs={{ order: "2" }}
-                            md={{ order: "0" }}>
-                            <AlternarMetodosDePagos />
-                        </Col>
+                    <Col
+                        className={` scrollHidden pt-0 pb-3  h-100 ${styles.contendorMetodosDePagoAgregados}  `}
+                        xs={{ order: "2" }}
+                        md={{ order: "0" }}>
+                        <AlternarMetodosDePagos />
+                    </Col>
 
 
-                        <Col
-                            md={7}
-                            className={` p-0 ${styles.seccionResto}`}>
-                            <SeccionResto />
-                        </Col>
+                    <Col
+                        md={7}
+                        className={` p-0 ${styles.seccionResto}`}>
+                        <SeccionResto />
+                    </Col>
 
-                    </>
-                }
+                </>
+            }
 
-            </RestoDelPagoProvider>
+
         </Row>
 
     )
@@ -80,7 +136,7 @@ const ContenedorDePagoBody = ({ mostrar }) => {
 export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
     const display = mostrar ? "block" : "none"
-
+    //CAMBIAR A OTRA COSA QUE NO SEA UN MODAL.
     return (
 
         <>
@@ -104,13 +160,18 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
                     <Modal.Body className={`${styles.bodyPlantillaPagos} p-0 py-3 `}>
 
-                        <Container fluid
+
+                        <Container
+                            fluid
                             className={`${styles.contenedorPlantillaPagos} h-100 d-flex overflow-hidden  position-relative flex-column  `}>
 
-                            <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
+                            <RestoDelPagoProvider>
 
-                            <ContenedorDePagoBody mostrar={mostrar} />
+                                <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
 
+                                <ContenedorDePagoBody mostrar={mostrar} />
+
+                            </RestoDelPagoProvider>
 
                         </Container>
 
@@ -118,7 +179,7 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
                 </Modal.Dialog>
 
-            </Container>
+            </Container >
         </>
 
 

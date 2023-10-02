@@ -1,12 +1,10 @@
 import { Button, Dropdown, FloatingLabel, Form } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
-import React, { useEffect, useRef } from "react"
+import React, { } from "react"
 
 export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, functionEjecutable, }) => {
 
     const { changeForm, form, onSubmit } = useForm({ porcentajeForm: "" })
-
-    const formRef = useRef(null)
 
     const { porcentajeForm } = form
 
@@ -24,20 +22,11 @@ export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, funct
         functionEjecutable(redondearNumero)
     }
 
-    useEffect(() => {
-
-        if (!formRef.current) return
-
-        formRef.current.focus()
-
-    }, [formRef])
-
 
     return (
         <>
             <Dropdown
                 drop="down-centered"
-                align={"end"}
                 autoClose={"outside"}
             >
 
@@ -62,9 +51,7 @@ export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, funct
                                 controlId="porcentajeControl"
                                 label="Porcentaje">
                                 <Form.Control
-                                    ref={formRef}
                                     autoComplete="off"
-                                    autoCorrect="true"
                                     onChange={changeForm}
                                     name="porcentajeForm"
                                     type="numero"
@@ -75,7 +62,8 @@ export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, funct
                         </Form>
 
                     </Dropdown.ItemText>
-                    <Dropdown.Divider></Dropdown.Divider>
+
+                    <Dropdown.Divider />
 
                     <Dropdown.ItemText
                         style={{ fontSize: "14px" }}
@@ -88,7 +76,7 @@ export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, funct
                             type="submit"
                             form="porcentajeControl"
                             onClick={onClick}
-                            variant="light">
+                            variant="outline-light">
                             Aplicar
                         </Button>
                     </Dropdown.ItemText>

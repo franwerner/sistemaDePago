@@ -50,8 +50,8 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
     return (
         <>
             <Container fluid className={` d-flex flex-column  rounded-1 flex-grow-1  `}>
-           
-                <Row   style={{border : "2px solid #555"}}>
+
+                <Row style={{ border: "2px solid #555" }}>
                     <Col>
                         <div className="d-flex fs-4  justify-content-center align-items-center">
                             <i className="fa-solid fa-circle-user"></i>
@@ -61,7 +61,7 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
                         </div>
                     </Col>
                 </Row>
-                <Row style={{border : "2px solid #555"}} className={`text-center h-100 align-items-center justify-content-center  ${styles.botonPagos}`}>
+                <Row style={{ border: "2px solid #555" }} className={`text-center h-100 align-items-center justify-content-center  ${styles.botonPagos}`}>
                     <Col id="plantilla-pagos" tabIndex={0} onClick={alternarMostrar} >
                         <i className="fa-solid fa-circle-arrow-right "></i>
                         <p className="fw-bolder">Pagos</p>
@@ -76,33 +76,28 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
 
 export const PlantillaPagos = () => {
 
-
     const { mostrar, alternarMostrar } = useEventoMostrar()
-
-    const { conteoRenderizados, registrarConteo } = useEvitarRenderizados()
-
-    const onClick = useCallback(() => {
-        alternarMostrar()
-        registrarConteo()
-    }, [])
 
     return (
         <>
             <Container fluid className="flex-grow-1  ">
                 <Row className="h-100">
-                
+
                     <Col className={`d-flex h-100 p-2  flex-column  ${styles.contenedorPlantillaPagos} `}>
 
                         <PlantillaPagosHeader />
                         <PlantillaPagosBody
-                            alternarMostrar={onClick} />
+                            alternarMostrar={alternarMostrar} />
+
 
                         {
-                            conteoRenderizados >= 1 &&
+                            mostrar &&
                             <ContenedorDePagos
                                 mostrar={mostrar}
                                 alternarMostrar={alternarMostrar} />
                         }
+
+
 
                     </Col>
                 </Row>

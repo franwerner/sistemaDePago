@@ -65,6 +65,12 @@ const reducer = (state, action) => {
                     metodosDePago: aplicarPorcentaje
                 }
 
+            case "Restablecer":
+
+                return {
+                    metodosDePago: []
+                }
+
             case "Seleccionar":
                 return {
                     ...state[tipoDeTarifa],
@@ -95,6 +101,8 @@ export const useMetodoDePagoReducer = () => {
 
     const pagoActual = !pagoEncontrado ? { metodosDePago: [] } : { ...pagoEncontrado, metodosDePago: ajustePagoEncontrado }
 
+    const dependenciaCallback = [tipoDeTarifa, pagoActual.metodosDePago.length]
+
     const agregarResto = useCallback((pago) => {
         dispatch({ type: "Agregar", pago, tipoDeTarifa })
     }, [tipoDeTarifa])
@@ -104,21 +112,28 @@ export const useMetodoDePagoReducer = () => {
 
         dispatch({ type: "Modificar", pago, tipoDeTarifa })
 
-    }, [tipoDeTarifa, pagoActual.metodosDePago.length])
+    }, dependenciaCallback)
 
     const eliminarResto = useCallback((pago) => {
         dispatch({ type: "Eliminar", pago, tipoDeTarifa })
-    }, [tipoDeTarifa, pagoActual.metodosDePago.length])
+    }, dependenciaCallback)
 
     const seleccionarElemento = useCallback((pago) => {
         dispatch({ type: "Seleccionar", pago, tipoDeTarifa })
-    }, [tipoDeTarifa, pagoActual.metodosDePago.length])
+    }, dependenciaCallback)
 
     const aplicarPorcentaje = useCallback((pago) => {
 
         dispatch({ type: "Porcentaje", pago, tipoDeTarifa })
 
-    }, [tipoDeTarifa, pagoActual.metodosDePago.length])
+    }, dependenciaCallback)
+
+
+    const restablecerPagos = useCallback((pago) => {
+
+        dispatch({ type: "Restablecer", pago, tipoDeTarifa })
+
+    }, dependenciaCallback)
 
 
     return {
@@ -128,7 +143,8 @@ export const useMetodoDePagoReducer = () => {
         modificarResto,
         eliminarResto,
         seleccionarElemento,
-        aplicarPorcentaje
+        aplicarPorcentaje,
+        restablecerPagos
     }
 
 };

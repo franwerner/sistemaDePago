@@ -2,7 +2,6 @@ import { useContext, useMemo } from "react";
 import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
 import { restoDelPagoContext } from "@/context/Contextos";
 
-
 export const useRestanteTotal = () => {
 
     const { precioFinal } = usePrecioFinalDeLosProductos()

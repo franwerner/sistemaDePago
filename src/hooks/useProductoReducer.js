@@ -27,13 +27,11 @@ const validarProductoExistente = (state, action) => {
 const reducer = (state, action) => {
 
 
-    const { producto } = action
+    const { producto, type } = action
 
-    const nuevoPrecio = producto.precioModificado
+    if (type == "RESTABLECER") return []
 
-    const nuevaCantidad = producto.cantidadSeleccionada
-
-    if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
+    else if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
 
     return state.map(estado => {
 
@@ -41,7 +39,7 @@ const reducer = (state, action) => {
 
         const { cantidadSeleccionada } = estado
 
-        switch (action.type) {
+        switch (type) {
             case "AGREGAR":
 
                 return {
@@ -64,11 +62,12 @@ const reducer = (state, action) => {
             case "EDITAR":
                 return {
                     ...estado,
-                    "cantidadSeleccionada": nuevaCantidad,
-                    "precioModificado": nuevoPrecio,
+                    "cantidadSeleccionada": producto.cantidadSeleccionada,
+                    "precioModificado": producto.precioModificado,
                     "editado": true
 
                 };
+
 
             case "BORRAR":
 
@@ -89,9 +88,7 @@ export const productoReducer = () => {
 
     const [listaProducto, dispatch] = useReducer(reducer, [])
 
-
     const agregarProducto = (producto) => {
-
 
         dispatch({ type: "AGREGAR", producto })
     }
@@ -119,9 +116,10 @@ export const productoReducer = () => {
         dispatch({ type: "BORRAR", producto })
     }
 
-    const selecionarProducto = useCallback(() => {
-        dispatch({ type: "SELECCIONAR", producto })
-    }, [])
+
+    const restablecerProductos = () => {
+        dispatch({ type: "RESTABLECER", })
+    }
 
     return {
         agregarProducto,
@@ -129,6 +127,6 @@ export const productoReducer = () => {
         listaProducto,
         editarProducto,
         borrarProducto,
-        selecionarProducto
+        restablecerProductos
     }
 }
