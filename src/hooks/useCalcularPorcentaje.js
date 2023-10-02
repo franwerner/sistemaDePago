@@ -2,8 +2,6 @@ import { useContext } from "react"
 import { TarifaContex } from "../context/Contextos"
 
 
-
-
 export const useCalculadoraPorcenje = (precio) => {
 
     const { tarifaActual } = useContext(TarifaContex)

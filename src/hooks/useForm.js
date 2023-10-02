@@ -20,6 +20,7 @@ export const useForm = (intialInput = {}) => {
 
     const onSubmit = (evento) => {
         evento.preventDefault()
+        setForm(intialInput)
     }
 
     return {

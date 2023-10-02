@@ -102,7 +102,7 @@ export const switchModificacionMetodosDePago = (state, pago) => {
     let resultadoFinal;
 
     switch (tipoDeButton) {
-        
+
         case "Backspace":
 
             if (comma == false) {

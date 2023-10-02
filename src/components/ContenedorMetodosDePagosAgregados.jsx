@@ -1,90 +1,15 @@
-import { Button, Col, Container, Dropdown, FloatingLabel, Row, Form } from "react-bootstrap";
+import { Col, Container, Row, } from "react-bootstrap";
 import styles from "@/styles/ContenedorMetodosDePagosAgregados.module.css"
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import { restoDelPagoContext } from "@/context/Contextos";
 import { MetodosDePagosVacios } from "./MetodosDePagosVacios";
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales";
-import { useEventoMostrar } from "@/hooks/useEventoMostrar";
-import { FormularioDeAplicacionDePorcentaje } from "./FormularioDeAplicacionDePorcentaje";
-import { useForm } from "../hooks/useForm";
+import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales";
+import { DropwDownDeAplicacionDePorcentaje } from "./DropwDownDeAplicacionDePorcentaje";
 
-
-
-const DropwDown = ({ numero, children, functionInicial }) => {
-
-    const { changeForm, form, onSubmit } = useForm({ porcentaje: "" })
-
-    const { porcentaje } = form
-
-    const determinarSiPorcentajeEsNegativo = (numero) => Math.sign(porcentaje) == -1 ? -(Math.abs(numero)) : numero
-
-    const evaluarPorcentaje = (porcentaje >= 100 || porcentaje <= -100 ? determinarSiPorcentajeEsNegativo(100) : porcentaje)
-
-    const calcularPorcentaje = () => (evaluarPorcentaje / 100) * numero
-
-    const verificarSiPorcentaje = isNaN(porcentaje) || porcentaje.length == 0 ? 0 : calcularPorcentaje()
-
-    const onClick = () => {
-        functionInicial(parseFloat(porcentaje))
-    }
-
-
-    return (
-        <>
-            <Dropdown
-
-                drop="down-centered"
-                align={"end"}
-                autoClose={"outside"}
-                className=" w-100"
-
-            >
-                <Button variant="none">{children}</Button>
-
-                <Dropdown.Toggle
-                    className="position-absolute"
-                    split
-                    variant="none" />
-
-                <Dropdown.Menu >
-                    <Dropdown.Item>
-
-                        <Form onSubmit={onSubmit}>
-                            <FloatingLabel
-                                controlId="porcentajeControl"
-                                label="Porcentaje">
-                                <Form.Control
-                                    autoFocus
-                                    onChange={changeForm}
-                                    name="porcentaje"
-                                    type="numero"
-                                    placeholder="0-100"
-                                    value={evaluarPorcentaje} />
-
-                            </FloatingLabel>
-                        </Form>
-
-                    </Dropdown.Item>
-                    <Dropdown.Divider></Dropdown.Divider>
-                    <Dropdown.Item className="text-center">
-                        <Button
-                            onClick={onClick}
-                            variant="outline-dark">
-                            Aplicar
-                        </Button>
-                    </Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-
-        </>
-    )
-}
 
 export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, seleccionarElemento, aplicarPorcentaje }) => {
 
-    const { nombre, resto, id } = metodo
-
-    const { alternarMostrar, mostrar } = useEventoMostrar()
+    const { nombre, resto, id, porcentaje } = metodo
 
     const onClickRemove = () => {
         eliminarResto(metodo)
@@ -98,20 +23,18 @@ export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, sel
 
     }
 
-    const onClick = (porcentaje) => {
+    const onClick = useCallback((porcentaje) => {
 
         aplicarPorcentaje({
             porcentaje,
             id
         })
 
-    }
+    }, [aplicarPorcentaje])
 
 
     return (
         <>
-
-
             <Row onClick={onClickSeleccion}
                 className={` mt-1 border p-4 ${styles[background]} ${styles.metodoAgregado}`}>
 
@@ -121,14 +44,17 @@ export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, sel
                     </p>
                 </Col>
 
-                <Col className="fw-bolder w-100 my-0">
+                <Col className=" d-flex w-100 my-1">
 
-                    <DropwDown
-                        numero={resto}
-                        functionInicial={onClick}
-                    >
+                    <p className={`w-100 p-0 my-0 overflow-hidden ${styles.pagoResto}`}>
                         {separarNumerosConDecimales(resto)}
-                    </DropwDown>
+                    </p>
+
+                    <DropwDownDeAplicacionDePorcentaje
+                        functionEjecutable={onClick}
+                        porcentaje={porcentaje}
+                    >
+                    </DropwDownDeAplicacionDePorcentaje>
 
                 </Col>
                 <Col className="text-center">
@@ -138,9 +64,6 @@ export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, sel
                     </i>
                 </Col>
             </Row>
-
-
-
         </>
     )
 })

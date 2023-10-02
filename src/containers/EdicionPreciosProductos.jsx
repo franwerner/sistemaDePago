@@ -69,8 +69,7 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
         const targetValue = parseFloat(target.value)
 
-        if(verificarSiEsNegativo(targetValue) == "Negativo") return
-
+        if (verificarSiEsNegativo(targetValue) == "Negativo") return
 
         if (alternarPrecio) {
             updatedForm.precioFormConTarifa = targetValue;
