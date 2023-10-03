@@ -51,6 +51,7 @@ export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, funct
                                 controlId="porcentajeControl"
                                 label="Porcentaje">
                                 <Form.Control
+                                tabIndex={1}
                                     autoComplete="off"
                                     onChange={changeForm}
                                     name="porcentajeForm"

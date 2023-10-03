@@ -196,7 +196,9 @@
     }
 }
 
+
 @media (max-width : 300px) {
+
     .contenedorPlantillaPagos {
         max-width: 100%;
     }

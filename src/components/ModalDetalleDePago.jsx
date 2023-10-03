@@ -51,7 +51,8 @@ export const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, 
 
     return (
         <>
-            <Modal show={mostrar} onHide={alternarMostrar}>
+            <Modal
+                show={mostrar} onHide={alternarMostrar}>
                 <Modal.Header closeButton>
 
                     <Modal.Title >
@@ -62,7 +63,9 @@ export const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, 
 
                 </Modal.Header>
 
-                <Modal.Body >
+                <Modal.Body
+                >
+
                     <div
                         className={`scrollBarPersonalizada ${styles.contenedorTabla}`}>
                         <Table

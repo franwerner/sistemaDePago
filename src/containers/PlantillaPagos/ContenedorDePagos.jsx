@@ -53,9 +53,9 @@ const ValidacionDePagos = ({ cerrarTodo }) => {
 
     return (
         <>
-<ModalDeMensajesPersonalizados>
-    
-</ModalDeMensajesPersonalizados>
+            <ModalDeMensajesPersonalizados>
+
+            </ModalDeMensajesPersonalizados>
 
             {
                 background && <ModalDeDetellaDePago
@@ -144,47 +144,43 @@ const ContenedorDePagoBody = ({ mostrar }) => {
 
 export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
-    const display = mostrar ? "block" : "none"
-    //CAMBIAR A OTRA COSA QUE NO SEA UN MODAL.
     return (
 
         <>
-            <Container fluid
+            <Modal
                 tabIndex={1}
                 id="modal-pagos"
-                className="modal  p-0 show vh-100"
-                style={{ display }}
+                className="p-0 vh-100"
+                show={mostrar}
+                fullscreen={true}
             >
-                <Modal.Dialog fullscreen={true}>
 
-                    <Modal.Header className="p-0 d-block" >
+                <Modal.Header className="p-0 d-block" >
 
-                        <Modal.Title>
+                    <Modal.Title>
 
-                            <NavegacionHeader mostrar={mostrar} />
+                        <NavegacionHeader mostrar={mostrar} />
 
-                        </Modal.Title>
+                    </Modal.Title>
 
-                    </Modal.Header>
+                </Modal.Header>
 
-                    <Modal.Body className={`${styles.bodyPlantillaPagos} p-0 py-3 `}>
+                <Modal.Body className={`${styles.bodyPlantillaPagos} p-0 py-3 `}>
 
 
-                        <Container
-                            fluid
-                            className={`${styles.contenedorPlantillaPagos} h-100 d-flex overflow-hidden  position-relative flex-column  `}>
+                    <Container
+                        fluid
+                        className={`${styles.contenedorPlantillaPagos} h-100 d-flex overflow-hidden  position-relative flex-column  `}>
 
-                            <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
+                        <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
 
-                            <ContenedorDePagoBody mostrar={mostrar} />
+                        <ContenedorDePagoBody mostrar={mostrar} />
 
-                        </Container>
+                    </Container>
 
-                    </Modal.Body>
+                </Modal.Body>
 
-                </Modal.Dialog>
-
-            </Container >
+            </Modal >
         </>
 
 

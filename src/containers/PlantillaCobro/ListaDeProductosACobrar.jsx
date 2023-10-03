@@ -106,7 +106,7 @@ export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto, selec
     const handleShortcut = () => {
 
         const target = document.activeElement
-
+        
         if (target.classList.contains("producto-a-cobrar")
             || target.id == "interface-sistema"
             || target.tagName == "BODY") {

@@ -9,8 +9,11 @@ export const IconClone = ({ alternarMostrar, mostrar }) => {
     const config = {
         preventDefault: true
     }
+
     const pressKey = () => {
+
         alternarMostrar()
+
     }
 
     useHotkeys("tab", pressKey, config)

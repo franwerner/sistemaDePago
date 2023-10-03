@@ -62,8 +62,13 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
                         </div>
                     </Col>
                 </Row>
-                <Row style={{ border: "2px solid #555" }} className={`text-center h-100 align-items-center justify-content-center  ${styles.botonPagos}`}>
-                    <Col id="plantilla-pagos" tabIndex={0} onClick={alternarMostrar} >
+                <Row
+                    style={{ border: "2px solid #555" }}
+                    className={`text-center h-100 align-items-center justify-content-center  ${styles.botonPagos}`}>
+                    <Col
+                        id="plantilla-pagos"
+                        tabIndex={0}
+                        onClick={alternarMostrar} >
                         <i className="fa-solid fa-circle-arrow-right "></i>
                         <p className="fw-bolder">Pagos</p>
                     </Col>
@@ -75,7 +80,7 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
 });
 
 
-export const PlantillaPagos = () => {
+export const PlantillaPagos = React.memo(() => {
 
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
@@ -107,4 +112,4 @@ export const PlantillaPagos = () => {
 
         </>
     )
-}
+})

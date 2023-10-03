@@ -4,10 +4,11 @@ import { PlantillaCobroHeader } from "./PlantillaCobroHeader"
 import { Col, Container, Row } from "react-bootstrap"
 import styles from "@/styles/PlantillaCobro.module.css"
 import { useSeleccionarElemento } from "@/hooks//useSeleccionProducto"
+import React from "react"
 
 
 
-export const PlantillaCobro = () => {
+export const PlantillaCobro = React.memo(() => {
 
     const { borrarSeleccion, seleccion, seleccionarElemento } = useSeleccionarElemento()
 
@@ -32,4 +33,4 @@ export const PlantillaCobro = () => {
 
         </>
     )
-}
+})
