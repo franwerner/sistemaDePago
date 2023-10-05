@@ -4,7 +4,9 @@ export const obtenerFecha = () => {
 
     const dia = fecha.getDay() + 1
 
-    const mes = fecha.toLocaleString("es-ES", { month: "long" })
+    const mes = fecha.getMonth()
+
+    const año = fecha.getFullYear()
 
     const hora = fecha.getHours()
 
@@ -18,7 +20,9 @@ export const obtenerFecha = () => {
         hora,
         minutos,
         segundos,
-        mes
+        mes,
+        año
+
     }
 
 };

@@ -19,17 +19,17 @@ export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
         const pagos = pagoEncontrado.metodosDePago.map((current) => {
 
             const restoParaValidar = Math.min(restoInicial, current.resto);
-
+     
             restoInicial -= current.resto
 
             return {
                 ...current,
-                "restoParaValidar": current.resto <= 0 ? current.resto : restoParaValidar
+                "restoParaValidar": current.resto <= 0 ? current.resto : restoParaValidar < 0 ? 0 : restoParaValidar
             };
         });
 
         return pagos
 
-    }, [dependeciaString, calculoConTarifa]);
+    }, [dependeciaString]);
 
 };

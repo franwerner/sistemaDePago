@@ -43,20 +43,23 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
         // alternarMostrar()
         // restablecerPagos()
         // cerrarTodo()
+        console.clear()
 
     }
 
-    const background = restoTotal == 0 && listaProducto.length > 0 ? true : false
+    const detalle = restoTotal == 0 && listaProducto.length > 0 ? true : false
 
     return (
         <>
 
-            <TicketDeVenta>
+            {
+                mostrar && <TicketDeVenta />
+            }
 
-            </TicketDeVenta>
+
 
             {
-                background && <ModalDeDetellaDePago
+                detalle && <ModalDeDetellaDePago
                     restablecerTodo={restablecerTodo}
                     alternarMostrar={alternarMostrar}
                     mostrar={mostrar}
@@ -67,7 +70,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
             <Col className="d-flex justify-content-center justify-content-md-end p-3">
 
                 <BotonValidacionPagos
-                    background={background}
+                    background={detalle}
                     functionClick={onClick} />
 
             </Col>

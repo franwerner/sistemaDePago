@@ -10,7 +10,7 @@ const Metodo = ({ nombre, porcentaje, restoParaValidar, indice }) => {
     const total = restoParaValidar + calcularPorcentaje({ numero: restoParaValidar, porcentaje })
 
     return (
-        <>
+
             <tr>
                 <td className="">
                     {indice}
@@ -29,8 +29,6 @@ const Metodo = ({ nombre, porcentaje, restoParaValidar, indice }) => {
                 </td>
             </tr>
 
-
-        </>
     )
 }
 

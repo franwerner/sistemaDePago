@@ -19,6 +19,7 @@ export const InterfaceSistema = () => {
     return (
         <>
             <BuscadorPorductosProvider>
+
                 <Container
                     style={{ maxHeight: "100vh" }}
                     id="interface-sistema" tabIndex={0}
@@ -29,15 +30,11 @@ export const InterfaceSistema = () => {
                         <NavegacionHeader mostrar={mostrar} />
                     </Row>
 
+                    <Row
+                        style={{ overflowY: "auto" }}
+                        className='h-100 flex-grow-1 p-0'>
 
-                    <main
-                        style={{ overflowY: "auto", overflowX: "hidden" }}
-                        className='h-100  flex-grow-1 p-0 '>
-
-                        <Row
-
-                            className='h-100  p-0'>
-
+                        <main className='h-100 p-0 '>
 
 
                             <ProductoReducerProvider>
@@ -53,10 +50,11 @@ export const InterfaceSistema = () => {
 
                             </ProductoReducerProvider>
 
-                        </Row>
+                        </main>
+                    </Row>
 
-                    </main>
                 </Container>
+
             </BuscadorPorductosProvider >
 
         </>
