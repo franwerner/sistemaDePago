@@ -11,7 +11,7 @@ export const ColumnaInteractiva = React.memo(({ children }) => {
 
     return (
         <>
-            <Col md={5} lg = {4}
+            <Col xs = {12} md={6} lg = {4}
                 className={`p-0 overflow-hidden  h-100  ${styles.columnaInteractiva} d-flex`}>
 
 

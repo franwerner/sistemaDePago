@@ -12,7 +12,8 @@ export const AlternarMetodosDePagos = () => {
     const { seleccion, seleccionarElemento } = useSeleccionarElemento()
 
     return (
-        <>
+        <section id="metodos-de-pagos">
+
             <span className="d-flex justify-content-end my-2">
 
                 <IconClone
@@ -31,7 +32,7 @@ export const AlternarMetodosDePagos = () => {
                 <ListaDeMetodosDePagos />
             </span>
 
-        </>
+        </section>
 
     )
 }

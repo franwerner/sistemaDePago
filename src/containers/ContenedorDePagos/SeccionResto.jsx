@@ -4,7 +4,7 @@ import { NumerosTotales } from "./NumerosTotales";
 import { ContenedorDeBotonesTactiles } from "@/components//ContenedorDeBotonesTactiles";
 import { restoDelPagoContext } from "@/context/Contextos"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
-import styles from "@/styles/PlantillaPagos.module.css"
+import styles from "@/styles/ContenedorDePagos.module.css"
 import { IconCalculator } from "@/components//IconCalculator";
 
 const SeccionRezise = ({ mostrar, alternarMostrar }) => {
@@ -59,7 +59,7 @@ const SeccionRezise = ({ mostrar, alternarMostrar }) => {
             {
                 widthWindow &&
                 <span
-                    style={{ left: "0%"}}
+                    style={{ left: "0%" }}
                     className="mt-5 position-absolute mx-3 ">
                     <IconCalculator
                         mostrar={mostrar}
@@ -76,12 +76,16 @@ export const SeccionResto = () => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <>
+        <section
+            id="seccion-resto"
+            className="h-100">
+
             <Container fluid className=" d-flex flex-column  h-100">
 
-                <Row className="  text-center ">
+                <Row className="text-center">
                     <NumerosTotales />
                 </Row>
+
 
                 <Row className={`scrollHidden mx-1 h-100  flex-grow-1  `}>
 
@@ -90,11 +94,12 @@ export const SeccionResto = () => {
                             mostrar={mostrar}
                             alternarMostrar={alternarMostrar} />
                     </Col>
+
                 </Row>
 
             </Container>
 
-        </>
+        </section>
     );
 }
 

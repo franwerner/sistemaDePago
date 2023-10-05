@@ -3,7 +3,7 @@ import styles from "@/styles/PlantillaPagos.module.css"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import React, { useCallback } from "react"
 import { useEvitarRenderizados } from "@/hooks/useEvitarRenderizados"
-import { ContenedorDePagos } from "./ContenedorDePagos"
+import { ContenedorDePagos } from "./ContenedorDePagos/ContenedorDePagos"
 import { BotonTarifas } from "@/components//BotonTarifas"
 import { ListadoDeTarifas } from "@/components/ListadoDeTarifas"
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider"
@@ -80,14 +80,14 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
 });
 
 
-export const PlantillaPagos = React.memo(() => {
+export const PlantillaPagos = React.memo(({ alternarMostrar }) => {
 
 
-    const { mostrar, alternarMostrar } = useEventoMostrar()
 
     return (
-        <>
-            <Container fluid className="flex-grow-1  ">
+        <section id="seccion-pagos"
+            className="h-100 ">
+            <Container fluid className="flex-grow-1 h-100 ">
                 <Row className="h-100">
 
                     <Col className={`d-flex h-100 p-2  flex-column  ${styles.contenedorPlantillaPagos} `}>
@@ -96,20 +96,11 @@ export const PlantillaPagos = React.memo(() => {
                         <PlantillaPagosBody
                             alternarMostrar={alternarMostrar} />
 
-                        <RestoDelPagoProvider>
-                            {
-                                mostrar &&
-
-                                <ContenedorDePagos
-                                    mostrar={mostrar}
-                                    alternarMostrar={alternarMostrar} />
-                            }
-                        </RestoDelPagoProvider>
-
                     </Col>
                 </Row>
             </Container>
 
-        </>
+
+        </section>
     )
 })

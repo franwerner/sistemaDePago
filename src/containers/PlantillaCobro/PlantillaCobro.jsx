@@ -13,7 +13,8 @@ export const PlantillaCobro = React.memo(() => {
     const { borrarSeleccion, seleccion, seleccionarElemento } = useSeleccionarElemento()
 
     return (
-        <>
+        <section id="seccion-cobro" className="w-100">
+
             <Container fluid className="p-0">
 
                 <Row  >
@@ -31,6 +32,6 @@ export const PlantillaCobro = React.memo(() => {
 
             </Container>
 
-        </>
+        </section>
     )
 })

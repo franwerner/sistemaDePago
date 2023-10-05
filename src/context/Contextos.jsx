@@ -6,7 +6,7 @@ export const TarifaContex = createContext()
 
 export const listaUsuariosContext = createContext()
 
-export const customErrorContext = createContext()
+export const customToastNotificacion = createContext()
 
 export const buscadorProductosContext = createContext()
 

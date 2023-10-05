@@ -1,0 +1,55 @@
+.ticket {
+/* display: table;
+position: absolute;
+background-color: white; */
+display: none;
+   
+}
+
+.tabla {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+@media print {
+
+
+    body * {
+        visibility: hidden;
+    }
+
+    .ticket *,
+    .ticket {
+        visibility: visible;
+        display: table;
+
+    }
+
+    .ticket thead {
+        width: 100%;
+    }
+
+    .ticket tbody {
+        width: 100%;
+    }
+
+    .ticket tr {
+        display: table-row;
+    }
+
+    .ticket thead {
+        display: table-header-group;
+    }
+
+    .ticket td,
+    .ticket th {
+        display: table-cell;
+    }
+}
+
+@page {
+    size: auto;
+    margin: 1cm;
+    margin-top: 0;
+    margin-bottom: 0;
+}

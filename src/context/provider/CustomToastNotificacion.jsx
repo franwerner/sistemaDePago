@@ -1,10 +1,10 @@
 
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
-import { customErrorContext } from "../Contextos"
+import { customToastNotificacion } from "../Contextos"
 import { CustomErrorToast } from "@/components/CustomErrorToast"
 import { useState } from "react"
 
-export const CustomErrorProvider = ({ children }) => {
+export const CustomToastNotificacion = ({ children }) => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
@@ -18,7 +18,7 @@ export const CustomErrorProvider = ({ children }) => {
 
     return (
         <>
-            <customErrorContext.Provider value={{
+            <customToastNotificacion.Provider value={{
                 generarError,
             }} >
                 {children}
@@ -28,7 +28,7 @@ export const CustomErrorProvider = ({ children }) => {
                     alternarMostrar={alternarMostrar}
                 >
                 </CustomErrorToast>
-            </customErrorContext.Provider>
+            </customToastNotificacion.Provider>
         </>
     )
 }

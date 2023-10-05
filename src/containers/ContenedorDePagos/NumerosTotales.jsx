@@ -2,7 +2,7 @@
 import { useRestanteTotal } from "@/hooks//useRestanteTotal"
 import React, { useContext } from "react"
 import { Col, Container, Row } from "react-bootstrap";
-import styles from "@/styles/PlantillaPagos.module.css"
+import styles from "@/styles/ContenedorDePagos.module.css"
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
 import { usePrecioFinalDeLosProductos } from "@/hooks//usePrecioFinalDeLosProductos";
 import { restoDelPagoContext } from "@/context//Contextos";

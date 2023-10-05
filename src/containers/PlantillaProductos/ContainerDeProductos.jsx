@@ -145,13 +145,6 @@ const rotiseria = [
 ]
 
 
-const peteracos = [
-    {
-        "nombre": "Pete tizo 2x1",
-        "precio": 454444444444444444444444444444444444444444447,
-        "metodo": "Kilogramos"
-    },
-]
 
 
 
@@ -159,15 +152,10 @@ const peteracos = [
 const secciones = {
     "Kiosco": kiosco,
     "Panaderia": panaderia,
-    "Home": [...panaderia, ...kiosco, ...peteracos, ...rotiseria, ...helados],
+    "Home": [...panaderia, ...kiosco, ...rotiseria, ...helados],
     "Helados": helados,
     "Rotiseria": rotiseria,
-    "Peteracos": peteracos
 };
-
-
-
-
 
 
 export const ContainerDeProductos = ({ seccion }) => {
@@ -188,7 +176,7 @@ export const ContainerDeProductos = ({ seccion }) => {
                     <Col style={{ maxHeight: "0px" }} className={` flex-wrap d-flex justify-content-center justify-content-md-start`} >
 
                         {c.map(lista =>
-                        
+
                             <div className={`mx-2 flex-column d-flex my-2 overflow-hidden position-relative  ${styles.producto}`}
                                 key={lista.nombre}
                                 onClick={() => agregarProducto(lista)}

@@ -12,9 +12,20 @@ export const PlantillaProductos = React.memo(() => {
 
     return (
         <>
-            <Col className={` d-flex flex-column  p-0 ${styles.PlantillaProductos}`}>
-                <SeccionesProductos seccion={seccion} elegirSeccion={elegirSeccion} seccionesProductos={seccionesProductos}></SeccionesProductos>
-                <ContainerDeProductos seccion={seccion}></ContainerDeProductos>
+            <Col className={` d-flex flex-column p-0 ${styles.PlantillaProductos}`}>
+
+                <section id="navegacion-secciones">
+                    <SeccionesProductos
+                        seccion={seccion}
+                        elegirSeccion={elegirSeccion}
+                        seccionesProductos={seccionesProductos} />
+                </section>
+
+                <section
+                    id="contenedor-de-productos"
+                    className="h-100 d-flex " >
+                    <ContainerDeProductos seccion={seccion} />
+                </section>
 
             </Col>
 

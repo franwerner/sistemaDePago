@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import "bootstrap/dist/css/bootstrap.min.css"
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { CustomErrorProvider } from './context/provider/CustomErrorProvider'
+import {CustomToastNotificacion } from './context/provider/CustomToastNotificacion.jsx'
 import { InterfaceSistema } from './containers/InterfaceSistema.jsx'
 
 
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <CustomErrorProvider>
+    <CustomToastNotificacion>
       
       <App>
         <RouterProvider router={router}>
@@ -28,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </RouterProvider>
       </App>
 
-    </CustomErrorProvider>
+    </CustomToastNotificacion>
 
   </React.StrictMode>,
 )

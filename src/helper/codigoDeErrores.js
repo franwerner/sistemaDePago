@@ -1,14 +1,15 @@
 import { CustomError } from "@/ContructoresJS/customError"
 
 const listaDeErrores = [
-    { "codigo": 1, "motivo": "Error al verificar el usuario" },
+
+    { "codigo": 1, "motivo": "La contraseña es incorrecta" },
 
 ]
 
 
 export const buscarCodigosDeErrores = (datos = {}) => {
 
-    //Esto solo se usa para tareas asyncronas/backend
+    console.log(datos)
 
     if (!datos.error) return
 

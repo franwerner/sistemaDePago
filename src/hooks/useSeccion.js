@@ -14,9 +14,7 @@ const seccionesProductos = [
     {
         "nombre" : "Rotiseria"
     },
-    {
-        "nombre" : "Peteracos"
-    }
+
 ]
 
 //Aca se realizaria una llamada a la base de datos que va a pedir toda las secciones disponibles

@@ -1,0 +1,172 @@
+.navegacionPagos {
+    border: 2px dotted #ccc;
+    border-bottom: 0;
+}
+
+.contendorPagosPrincipal {
+    background-color: #e2e2e2a9;
+}
+
+.contenedorPagos {
+    max-width: 75%;
+    background-color: #e2e2e2a9;
+}
+
+
+.contendorMetodosDePagoAgregados {
+    max-height: 100%;
+}
+
+
+.textPagos {
+    color: #555;
+    font-weight: 600;
+}
+
+.lineaPunteada {
+    border: 2px dotted #ccc;
+}
+
+.seccionResto {
+    border-left: 2px dotted #ccc;
+    height: 100%;
+}
+
+.textoDeAyuda {
+    color: #555;
+}
+
+
+.restoTotal {
+    color: rgb(110, 200, 155);
+    font-weight: 600;
+    font-size: 55px;
+    text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.6);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.textDeAyuda {
+    color: #555;
+    word-break: break-all;
+}
+
+
+
+
+.restantes {
+    color: "#555";
+}
+
+.restoNumero {
+    color: #6EC89B;
+    font-weight: 600;
+    text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    max-width: 100vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.adeudoTotal {
+    color: "#555";
+    font-size: 18px;
+    max-width: 100vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cambio {
+    color: "#555";
+    font-weight: 500;
+}
+
+.cambioNumero {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+
+.cambioTotalContainer {
+    flex-wrap: wrap;
+}
+
+.numerosTotales {
+    height: 200px;
+    border-bottom: 2px dotted #ccc;
+}
+
+
+
+.botonesTactilesResize {
+    top: 2%;
+    left: 0%;
+    width: 0%;
+    animation: expandWidth 0.4s ease forwards;
+}
+
+
+.botonesTactilesResize .contendorDeBotonesTactiles {
+    animation: showChildren 0.8s ease-in backwards;
+    z-index: 0;
+    box-shadow: 10px 10px 19px -2px rgba(118, 132, 163, 0.75);
+    width: fit-content;
+    opacity: initial;
+}
+
+@keyframes showChildren {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.75;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes expandWidth {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/*MQ*/
+
+@media (max-width : 768px) {
+    .seccionResto {
+        height: auto;
+        border: 0;
+    }
+
+    .restoTotal {
+        font-size: 45px
+    }
+
+    .contenedorPagos {
+        max-width: 90%;
+    }
+}
+
+
+@media (max-width : 300px) {
+
+    .contenedorPagos {
+        max-width: 100%;
+    }
+}

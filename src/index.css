@@ -1,5 +1,3 @@
-
-
 @font-face {
     font-family: "Montserrat";
     src: url(fonts/Montserrat-VariableFont_wght.ttf);
@@ -13,8 +11,9 @@
     transition: 0s all;
 }
 
-body::-webkit-scrollbar{
-display: none;
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 .scrollHidden {
@@ -31,8 +30,9 @@ display: none;
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar {
-    width: 0.5em; /* Ajusta el ancho de la barra de desplazamiento vertical */
-    height: 0.5em; 
+    width: 0.5em;
+    /* Ajusta el ancho de la barra de desplazamiento vertical */
+    height: 0.5em;
 }
 
 

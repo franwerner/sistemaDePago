@@ -34,7 +34,6 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
 
     const porcentaje = useCalculadoraPorcenje(precioModificado)
 
-    const comprobarMetodo = metodo == "Unidades" ? separarNumerosConDecimales(cantidadSeleccionada) : cantidadSeleccionada.toFixed(3)
 
 
     return (
@@ -44,7 +43,7 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
                 <Col className={`mx-1 d-flex justify-content-between `}>
 
                     <p className="fw-bolder text-secondary me-3">
-                        {comprobarMetodo}
+                        {separarNumerosConDecimales(cantidadSeleccionada)}
                     </p>
 
                     <div className="d-flex">
@@ -105,14 +104,7 @@ export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto, selec
 
     const handleShortcut = () => {
 
-        const target = document.activeElement
-        
-        if (target.classList.contains("producto-a-cobrar")
-            || target.id == "interface-sistema"
-            || target.tagName == "BODY") {
-                
-            eliminarProducto(seleccion)
-        }
+        eliminarProducto(seleccion)
 
     };
 

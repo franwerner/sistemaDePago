@@ -1,0 +1,8 @@
+Maximo de numero : 15
+Maximo de letras con espacios : 32
+
+
+
+/*Cosas a tener en cuenta*/
+Se debera agregar un idea genera aleatoriamente a cada producto, para una mayor identificacion.
+
