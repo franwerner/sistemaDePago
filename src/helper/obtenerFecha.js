@@ -4,7 +4,7 @@ export const obtenerFecha = () => {
 
     const dia = fecha.getDay() + 1
 
-    const mes = fecha.getMonth()
+    const mes = fecha.getMonth() + 1
 
     const año = fecha.getFullYear()
 

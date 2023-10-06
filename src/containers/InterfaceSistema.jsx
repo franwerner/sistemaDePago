@@ -1,12 +1,8 @@
 
 import { ProductoReducerProvider } from '@/context/provider/ProductosReducerProvider';
 import "../index.css"
-import { Col, Container, Row } from 'react-bootstrap';
+import {Container, Row } from 'react-bootstrap';
 import { BuscadorPorductosProvider } from '@/context/provider/BuscardorProductosProvider';
-import { PlantillaCobro } from './PlantillaCobro/PlantillaCobro';
-import { PlantillaProductos } from './PlantillaProductos/PlantillaProductos';
-import { ColumnaInteractiva } from './ColumnaInteractiva';
-import { PlantillaPagos } from './PlantillaPagos';
 import { NavegacionHeader } from '@/components/NavegacionHeader';
 import { ContenedorDePagos } from './ContenedorDePagos/ContenedorDePagos';
 import { useEventoMostrar } from '../hooks/useEventoMostrar';

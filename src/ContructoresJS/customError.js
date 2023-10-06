@@ -1,9 +1,10 @@
 
 export class CustomError extends Error {
-    constructor(codigo,motivo) {
-      super(codigo,motivo)
-      this.codigo = codigo
-      this.motivo = motivo
-    }
-  
+  constructor(codigo, motivo, tipo) {
+    super(codigo, motivo, tipo)
+    this.codigo = codigo
+    this.motivo = motivo
+    this.tipo = tipo
   }
+
+}

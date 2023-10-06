@@ -1,22 +1,20 @@
 import { CustomError } from "@/ContructoresJS/customError"
 
 const listaDeErrores = [
-
-    { "codigo": 1, "motivo": "La contraseña es incorrecta" },
+    { codigo: 1, motivo: "Contraseña incorrecta, por favor vuelve a intentarlo", tipo: "Error" },
+    {codigo : 2,motivo : "Debe tener al menos un producto en la lista y el resto en $ 0,00",tipo : "Informativo"}
 
 ]
 
 
-export const buscarCodigosDeErrores = (datos = {}) => {
+export const buscarCodigosDeErrores = (datos = {}) => { //Esto sirve para cualquier mensaje de interaccion con el backEnd
 
-    console.log(datos)
+    if (!datos.codigo) return
 
-    if (!datos.error) return
+    const error = listaDeErrores.find((err) => err.codigo === datos.codigo)
 
-    const error = listaDeErrores.find((err) => err.codigo === datos.error.codigo)
+    const { codigo, motivo, tipo } = error
 
-    const { codigo, motivo } = error
-
-    throw new CustomError(codigo, motivo)
+    throw new CustomError(codigo, motivo, tipo)
 
 }

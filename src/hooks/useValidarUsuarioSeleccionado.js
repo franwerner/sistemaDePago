@@ -1,17 +1,20 @@
 
 
 import { useContext } from "react"
-import { customToastNotificacion, listaUsuariosContext } from "@/context/Contextos"
+import { customToastNotificacionContext, listaUsuariosContext } from "@/context/Contextos"
 import { buscarCodigosDeErrores } from "@/helper/codigoDeErrores"
 import { validarUsuarioFetch } from "@/helper/endpoints/validarUsuarioFetch"
 import { CustomError } from "@/ContructoresJS/customError"
+
 
 
 export const useValidarUsuarioSeleccionado = () => {
 
     const { cambiarUsuario } = useContext(listaUsuariosContext)
 
-    const { generarError } = useContext(customToastNotificacion)
+    const { generarAlerta } = useContext(customToastNotificacionContext)
+
+    console.log("validarUsuario")
 
     const validar = async (usuarioSeleccionado, data) => {
 
@@ -29,7 +32,7 @@ export const useValidarUsuarioSeleccionado = () => {
 
             if (error instanceof CustomError) {
 
-                generarError(error)
+                generarAlerta(error)
 
             } else {
                 console.log(error)

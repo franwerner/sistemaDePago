@@ -1,0 +1,60 @@
+.icon {
+    width: min-content;
+    max-height: 80px;
+}
+
+.lineaTemporal {
+    position: absolute;
+    overflow: hidden;
+    bottom: 0%;
+    width: 100%;
+    border-radius: 30px;
+    height: 3px;
+    left: 0%;
+    animation: lineaTemporalAnimation 4s linear 0s forwards;
+    background-color: white;
+}
+
+
+
+.toastContainer {
+    background-color: white;
+    overflow: hidden;
+    transform: translateX(100%);
+    animation: toastAnimation 5s cubic-bezier(0.68, -0.55, 0.265, 1.35) 0s;
+
+
+}
+
+@keyframes toastAnimation {
+
+    0% {
+        transform: translateX(100%);
+    }
+
+    20% {
+        transform: translateX(0%);
+    }
+
+    75% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translate(100%);
+    }
+
+}
+
+
+@keyframes lineaTemporalAnimation {
+    from {
+        width: 100%;
+        opacity: 0.8;
+    }
+
+    to {
+        width: 0%;
+        opacity: 1;
+    }
+}

@@ -6,13 +6,14 @@ const listaDeMensajes = [
 ]
 
 
-export const buscarCodigoDeMensajes = (datos = {}) => {
+export const buscarCodigoDeMensajes = (datos = {}) => { //Esto sirve para cualquier mensaje de interaccion con el frontEnd
 
-    if (!datos.mensaje) return
 
-    const mensaje = listaDeMensajes.find((msj) => msj.codigo === datos.mensaje.codigo)
+    if (!datos.codigo) return
 
-    const { codigo, motivo } = error
+    const mensaje = listaDeMensajes.find((msj) => msj.codigo === datos.codigo)
+
+    const { codigo, motivo } = mensaje
 
     throw new CustomError(codigo, motivo)
 
