@@ -4,9 +4,8 @@ import { TicketDeVenta } from "@/components//TicketDeVenta"
 import { productoReducerContext, restoDelPagoContext } from "@/context//Contextos"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { useRestanteTotal } from "@/hooks//useRestanteTotal"
-import { useCallback, useContext, } from "react"
+import {useContext, } from "react"
 import { Col } from "react-bootstrap"
-
 
 export const ValidacionDePagos = ({ cerrarTodo }) => {
 

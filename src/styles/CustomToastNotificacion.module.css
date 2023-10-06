@@ -1,7 +1,7 @@
 .icon {
     width: min-content;
-    max-height: 80px;
 }
+
 
 .lineaTemporal {
     position: absolute;
@@ -22,7 +22,7 @@
     background-color: white;
     overflow: hidden;
     transform: translateX(100%);
-    animation: toastAnimation 5s cubic-bezier(0.68, -0.55, 0.265, 1.35) 0s;
+    /* animation: toastAnimation 5s cubic-bezier(0.68, -0.55, 0.265, 1.35) 0s; */
 
 
 }

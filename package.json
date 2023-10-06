@@ -20,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "^4.4.1",
     "react-router-dom": "^6.15.0",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "sweetalert2": "^11.7.31"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

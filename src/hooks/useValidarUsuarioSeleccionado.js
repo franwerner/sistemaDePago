@@ -1,12 +1,11 @@
-import {useContext } from "react"
-import { customToastNotificacionContext, listaUsuariosContext } from "@/context/Contextos"
+import { useContext } from "react"
+import { listaUsuariosContext } from "@/context/Contextos"
 import { validarUsuarioFetch } from "@/helper/endpoints/validarUsuarioFetch"
+import { buscarCodigoDeMensajes } from "@/helper/buscarCodigoDeMensajes"
 
 export const useValidarUsuarioSeleccionado = () => {
 
     const { cambiarUsuario } = useContext(listaUsuariosContext)
-
-    const { generarAlerta, buscarCodigoDeMensajes, CustomMensaje } = useContext(customToastNotificacionContext)
 
     const validar = async (data) => {
 
@@ -22,14 +21,11 @@ export const useValidarUsuarioSeleccionado = () => {
 
         } catch (error) {
 
-            if (error instanceof CustomMensaje) {
-                generarAlerta(error)
-            }
+            return { "message": "denegado" }
 
         }
 
     }
-
 
     return validar
 

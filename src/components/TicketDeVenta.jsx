@@ -139,6 +139,8 @@ const InformacionAdicional = () => {
 
 export const TicketDeVenta = () => {
 
+    
+
     return (
         <Container fluid className={`p-0 ${styles.ticket} `}>
 
