@@ -73,14 +73,14 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
 
                 <section
                     id="interface-pagos"
-                    className='h-100 p-0'>
+                    className='h-100 p-0 overflow-hidden'>
 
                     <Col
                         className={`${styles.contendorPagosPrincipal} h-100  py-3`}>
 
                         <Container
                             fluid
-                            className={`${styles.contenedorPagos} h-100 d-flex p-0 overflow-hidden position-relative flex-column  `}>
+                            className={`${styles.contenedorPagos} h-100 d-flex p-0  position-relative flex-column  `}>
 
                             <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
 

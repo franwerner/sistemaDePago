@@ -1,5 +1,6 @@
 
 export const validarUsuarioFetch = async (usuario) => {
+
     try {
         const body = {
             method: "POST",
@@ -7,18 +8,17 @@ export const validarUsuarioFetch = async (usuario) => {
             body: JSON.stringify(usuario)
         }
 
-        const apiResponse = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+        const apiResponse = await fetch("https://jsonplaceholder.typiscode.com/todos/1")
+
+        if (!apiResponse.ok) throw new Error
 
         const responsee = await apiResponse.json()
 
-        const response = { "codigo": 1 }
-        
-        return {
-            response
-        }
+        return responsee
 
     } catch (error) {
-        console.log(error)
+
+        return { codigo: "1B" }
     }
 
 }

@@ -16,7 +16,8 @@ export const ContenedorDeUsuarios = ({ mostrar, alternarMostrar }) => {
                 show={mostrar}
                 onHide={alternarMostrar}>
 
-                <Modal.Header closeButton >
+                <Modal.Header closeButton>
+
                     <Modal.Title
                         style={{ color: "#555" }}
                         className="d-flex fw-bolder align-items-center overflow-hidden">
@@ -27,7 +28,7 @@ export const ContenedorDeUsuarios = ({ mostrar, alternarMostrar }) => {
                     </Modal.Title>
 
                 </Modal.Header>
-                
+
                 <Modal.Body>
                     <ListaDeUsuarios cerrarTodo={alternarMostrar} />
                 </Modal.Body>

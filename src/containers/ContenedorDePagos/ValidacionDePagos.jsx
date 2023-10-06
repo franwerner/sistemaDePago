@@ -4,21 +4,15 @@ import { TicketDeVenta } from "@/components//TicketDeVenta"
 import { productoReducerContext, restoDelPagoContext } from "@/context//Contextos"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { useRestanteTotal } from "@/hooks//useRestanteTotal"
-import { useCallback, useContext, useState } from "react"
+import { useCallback, useContext, } from "react"
 import { Col } from "react-bootstrap"
-import { GeneracionDeAlertas } from "../GeneracionDeAlertas"
+
 
 export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const { listaProducto, restablecerProductos } = useContext(productoReducerContext)
 
     const { pagoActual, restablecerPagos } = useContext(restoDelPagoContext)
-
-    const [alternarCodigo, setAlternarCodigo] = useState(0)
-
-    const code = useCallback(() => {
-        setAlternarCodigo(0)
-    }, [])
 
     const { metodosDePago } = pagoActual
 
@@ -28,8 +22,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const onClick = () => {
 
-
-        if (restoTotal > 0 || listaProducto.length === 0) return setAlternarCodigo(2)
+        if (restoTotal > 0 || listaProducto.length === 0) return
 
         alternarMostrar()
 
@@ -48,12 +41,9 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const detalle = restoTotal == 0 && listaProducto.length > 0 ? true : false
 
-    console.log(alternarCodigo)
-
     return (
         <>
-        
-                <GeneracionDeAlertas code={code} codigo={alternarCodigo} />
+
 
             {
                 mostrar && <TicketDeVenta />

@@ -7,7 +7,7 @@ export const CustomToastNotificaciones = ({ alerta, alternarMostrar, mostrar }) 
 
     return (
         <ToastContainer
-            className="d-flex position-absolute w-100 p-3 justify-content-end overflow-hidden"
+            className="d-flex position-absolute w-100 p-3 justify-content-end "
             position="top-start">
 
             <Toast
@@ -19,7 +19,7 @@ export const CustomToastNotificaciones = ({ alerta, alternarMostrar, mostrar }) 
 
                 <Toast.Header className="w-100 text-end p-0 px-3 pt-2 d-flex justify-content-end border-0" />
 
-                <Toast.Body className=" p-0 px-1" >
+                <Toast.Body className=" p-0 bg-light px-1" >
 
                     <Container fluid className="p-0 ">
 

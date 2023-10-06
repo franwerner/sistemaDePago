@@ -1,50 +1,37 @@
-
-
-import { useContext } from "react"
+import {useContext } from "react"
 import { customToastNotificacionContext, listaUsuariosContext } from "@/context/Contextos"
-import { buscarCodigosDeErrores } from "@/helper/codigoDeErrores"
 import { validarUsuarioFetch } from "@/helper/endpoints/validarUsuarioFetch"
-import { CustomError } from "@/ContructoresJS/customError"
-
-
 
 export const useValidarUsuarioSeleccionado = () => {
 
     const { cambiarUsuario } = useContext(listaUsuariosContext)
 
-    const { generarAlerta } = useContext(customToastNotificacionContext)
+    const { generarAlerta, buscarCodigoDeMensajes, CustomMensaje } = useContext(customToastNotificacionContext)
 
-    console.log("validarUsuario")
-
-    const validar = async (usuarioSeleccionado, data) => {
+    const validar = async (data) => {
 
         try {
 
-            const { response } = await validarUsuarioFetch(data)
+            const response = await validarUsuarioFetch(data)
 
-            buscarCodigosDeErrores(response)
+            buscarCodigoDeMensajes(response)
 
-            cambiarUsuario(usuarioSeleccionado)
+            cambiarUsuario(data)
 
             return { "message": "validado" }
 
         } catch (error) {
 
-            if (error instanceof CustomError) {
-
+            if (error instanceof CustomMensaje) {
                 generarAlerta(error)
-
-            } else {
-                console.log(error)
             }
 
-            return { "message": "error" }
-
         }
+
     }
 
-    return {
-        validar
-    }
+
+    return validar
+
 
 }

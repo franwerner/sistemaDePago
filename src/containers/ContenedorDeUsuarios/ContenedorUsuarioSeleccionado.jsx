@@ -1,82 +1,99 @@
 import { useForm } from "@/hooks/useForm"
-import { Button, Form, FormControl, Modal, Toast, ToastContainer } from "react-bootstrap"
+import { Button, Form, FormControl, Modal } from "react-bootstrap"
 import { useValidarUsuarioSeleccionado } from "@/hooks/useValidarUsuarioSeleccionado"
+import React, { useCallback } from "react"
 
 
-
-
-export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {
-
+const ModalUsuario = React.memo(({ validarUsuario, mostrar, alternarMostrar, usuario }) => {
 
     const { onSubmit, changeForm, form } = useForm({ "contraseña": "" })
 
     const { contraseña } = form
 
-    const data = {
-        "usuario": usuarioSeleccionado.nombre,
-        contraseña
-    }
-
-    const { validar } = useValidarUsuarioSeleccionado()
-
 
     const onClick = () => {
-        const esValido = validar(usuarioSeleccionado, data)
-        esValido.message == "validado" && cerrarTodo()
+
+        validarUsuario(contraseña)
     }
 
 
     return (
-        <>
-        
-            <Modal show={mostrar} onHide={alternarMostrar} >
-                <Modal.Header   >
 
-                    <Modal.Title style={{ color: "#555555" }} className="fs-2 text-u" >
-                        {usuarioSeleccionado.nombre}
-                    </Modal.Title>
+        <Modal show={mostrar} onHide={alternarMostrar} >
+            <Modal.Header   >
 
-                </Modal.Header>
+                <Modal.Title style={{ color: "#555555" }} className="fs-2 text-u" >
+                    {usuario}
+                </Modal.Title>
 
-                <Modal.Body>
+            </Modal.Header>
 
-                    <Form onSubmit={onSubmit}>
+            <Modal.Body>
 
-                        <FormControl
-                            className="fs-2 text-secondary text-center"
-                            type="password"
-                            value={contraseña}
-                            maxLength={8}
-                            name="contraseña"
-                            onChange={changeForm}
-                            placeholder="Ingrese la contraseña"
-                            autoComplete="mew-password"
-                        >
+                <Form onSubmit={onSubmit}>
 
-                        </FormControl>
+                    <FormControl
+                        className="fs-2 text-secondary text-center"
+                        type="password"
+                        value={contraseña}
+                        maxLength={8}
+                        name="contraseña"
+                        onChange={changeForm}
+                        placeholder="Ingrese la contraseña"
+                        autoComplete="mew-password"
+                    >
 
-                    </Form>
+                    </FormControl>
 
-                </Modal.Body>
+                </Form>
 
-                <Modal.Footer>
+            </Modal.Body>
 
-                    <Button
-                        variant="outline-primary"
-                        className="fs-5 fw-bolder"
-                        onClick={onClick}>
-                        Cambiar
-                    </Button>
+            <Modal.Footer>
 
-                    <Button
-                        variant="outline-danger"
-                        className="fs-5 fw-bolder"
-                        onClick={alternarMostrar}>
-                        Cerrar
-                    </Button>
+                <Button
+                    variant="outline-primary"
+                    className="fs-5 fw-bolder"
+                    onClick={onClick}>
+                    Cambiar
+                </Button>
 
-                </Modal.Footer>
-            </Modal>
-        </>
+                <Button
+                    variant="outline-danger"
+                    className="fs-5 fw-bolder"
+                    onClick={alternarMostrar}>
+                    Cerrar
+                </Button>
+
+            </Modal.Footer>
+        </Modal>
+    )
+
+
+})
+
+export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {
+
+    const { nombre } = usuarioSeleccionado
+
+    const validar = useValidarUsuarioSeleccionado()
+
+    const validarUsuario = useCallback((contraseña) => {
+
+        (async () => {
+            const esValido = await validar({ contraseña, "usuario": nombre })
+
+            esValido && cerrarTodo()
+        })()
+
+    }, [])
+
+    return (
+        <ModalUsuario
+            usuario={nombre}
+            validarUsuario={validarUsuario}
+            mostrar={mostrar}
+            alternarMostrar={alternarMostrar}
+        />
     )
 }
