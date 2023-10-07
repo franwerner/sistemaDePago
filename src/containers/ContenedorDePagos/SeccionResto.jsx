@@ -60,7 +60,7 @@ const SeccionRezise = ({ mostrar, alternarMostrar }) => {
                 widthWindow &&
                 <span
                     style={{ left: "0%" }}
-                    className="mt-5 position-absolute mx-3 ">
+                    className="mt-5 position-absolute d-md-none mx-3 ">
                     <IconCalculator
                         mostrar={mostrar}
                         alternarMostrar={alternarMostrar} />

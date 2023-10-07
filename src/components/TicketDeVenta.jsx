@@ -14,7 +14,7 @@ import { agregarCeroEnLaHora } from "../helper/agregarCeroEnLaHora";
 const RowTotales = ({ nombre, texto }) => {
 
     return (
-        <Row className={`${styles.rowTotal} text-break d-flex justify-content-between  `}>
+        <Row className={`${styles.rowTotal} d-flex justify-content-between  `}>
             <Col className="text-end  mx-2 fw-bold">
                 <p className="m-0">
                     {nombre}:
@@ -74,7 +74,7 @@ const ListaDeProductos = () => {
                             xs={12}
                             className="p-0 mx-1 text-start">
 
-                            <p className={`${styles.nombreDelProducto} lh-1 fw-semibold m-0`} >{nombre}</p>
+                            <p className={`${styles.nombreDelProducto}  fw-semibold m-0`} >{nombre}</p>
 
                         </Col>
 
@@ -146,7 +146,7 @@ export const TicketDeVenta = () => {
 
 
     return (
-        <Container fluid className={`p-0 position-absolute w-100 ${styles.ticket} `}>
+        <Container fluid className={`p-0 position-absolute lh-1 w-100 ${styles.ticket} `}>
 
 
             <Row className="justify-content-center align-items-center text-center">

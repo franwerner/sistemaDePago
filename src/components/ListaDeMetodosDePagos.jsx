@@ -43,7 +43,7 @@ export const ListaDeMetodosDePagos = () => {
     const { restoTotal } = useRestanteTotal()
 
     return (
-        <>
+
             <Container
                 fluid
                 id="metodos-de-pagos">
@@ -59,6 +59,6 @@ export const ListaDeMetodosDePagos = () => {
                     )
                 }
             </Container>
-        </>
+
     )
 }
