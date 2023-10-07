@@ -2,9 +2,10 @@ import { BotonValidacionPagos } from "@/components//BotonValidacionPagos"
 import { ModalDeDetellaDePago } from "@/components//ModalDetalleDePago"
 import { TicketDeVenta } from "@/components//TicketDeVenta"
 import { productoReducerContext, restoDelPagoContext } from "@/context//Contextos"
+import { buscarCodigoDeMensajes } from "@/helper//buscarCodigoDeMensajes"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { useRestanteTotal } from "@/hooks//useRestanteTotal"
-import {useContext, } from "react"
+import { useContext, } from "react"
 import { Col } from "react-bootstrap"
 
 export const ValidacionDePagos = ({ cerrarTodo }) => {
@@ -21,7 +22,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const onClick = () => {
 
-        if (restoTotal > 0 || listaProducto.length === 0) return
+        if (restoTotal > 0 || listaProducto.length === 0) return buscarCodigoDeMensajes({ codigo: "2F" })
 
         alternarMostrar()
 
@@ -29,12 +30,13 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const restablecerTodo = () => {
 
+
         window.print()
-        restablecerProductos()
-        alternarMostrar()
-        restablecerPagos()
-        cerrarTodo()
-        console.clear()
+        // restablecerProductos()
+        // alternarMostrar()
+        // restablecerPagos()
+        // cerrarTodo()
+        buscarCodigoDeMensajes({ codigo: "3F" })
 
     }
 
@@ -43,10 +45,10 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
     return (
         <>
 
-
-            {
+<TicketDeVenta />
+            {/* {
                 mostrar && <TicketDeVenta />
-            }
+            } */}
 
 
 

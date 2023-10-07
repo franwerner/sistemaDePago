@@ -20,9 +20,9 @@ export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSele
 
     const onClick = async () => {
 
-        const esValido = await validar(usuarioSeleccionado, data)
+        const esValido = await validar(data)
 
-        esValido.message == "validado" && cerrarTodo()
+        esValido == "Validado" && cerrarTodo()
     }
 
 
@@ -31,8 +31,11 @@ export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSele
     return (
         <>
 
-            <Modal show={mostrar} onHide={alternarMostrar} >
-                <Modal.Header   >
+            <Modal
+                show={mostrar}
+                onHide={alternarMostrar}
+                backdrop={false}  >
+                <Modal.Header closeButton  >
 
                     <Modal.Title style={{ color: "#555555" }} className="fs-2 text-u" >
                         {usuarioSeleccionado.nombre}
@@ -45,7 +48,7 @@ export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSele
                     <Form onSubmit={onSubmit}>
 
                         <FormControl
-                            className="fs-2 text-secondary text-center"
+                            className="fs-4 text-secondary text-center"
                             type="password"
                             value={contraseña}
                             maxLength={8}
@@ -64,17 +67,10 @@ export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSele
                 <Modal.Footer>
 
                     <Button
-                        variant="outline-primary"
-                        className="fs-5 fw-bolder"
+                        variant="outline-success"
+                        className="fw-bolder"
                         onClick={onClick}>
                         Cambiar
-                    </Button>
-
-                    <Button
-                        variant="outline-danger"
-                        className="fs-5 fw-bolder"
-                        onClick={alternarMostrar}>
-                        Cerrar
                     </Button>
 
                 </Modal.Footer>

@@ -8,7 +8,7 @@ export const validarUsuarioFetch = async (usuario) => {
             body: JSON.stringify(usuario)
         }
 
-        const apiResponse = await fetch("https://jsonplaceholder.typiscode.com/todos/1")
+        const apiResponse = await fetch("https://jsonplaceholder.typisscode.com/todos/1")
 
         if (!apiResponse.ok) throw new Error
 

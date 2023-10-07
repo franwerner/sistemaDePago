@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap"
+import { Button, Col, Container, Row } from "react-bootstrap"
 import styles from "@/styles/PlantillaPagos.module.css"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import React, { useCallback } from "react"
@@ -7,6 +7,7 @@ import { ContenedorDePagos } from "./ContenedorDePagos/ContenedorDePagos"
 import { BotonTarifas } from "@/components//BotonTarifas"
 import { ListadoDeTarifas } from "@/components/ListadoDeTarifas"
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider"
+import { BotonesContendorPrincipal } from "../components/BotonesContendorPrincipal"
 
 
 
@@ -47,10 +48,12 @@ const PlantillaPagosHeader = React.memo(() => {
     );
 });
 
-const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
+const PlantillaPagosBody = React.memo(({ alternarMostrarContenedor, alternarMostrar }) => {
     return (
         <>
-            <Container fluid className={` d-flex flex-column  rounded-1 flex-grow-1  `}>
+            <Container
+                fluid
+                className="d-flex flex-column  rounded-1 flex-grow-1 ">
 
                 <Row style={{ border: "2px solid #555" }}>
                     <Col>
@@ -64,13 +67,18 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
                 </Row>
                 <Row
                     style={{ border: "2px solid #555" }}
-                    className={`text-center h-100 align-items-center justify-content-center  ${styles.botonPagos}`}>
+                    className={`text-center h-100 align-items-center d-none d-md-flex justify-content-center  ${styles.botonPagos}`}>
                     <Col
                         id="plantilla-pagos"
                         tabIndex={0}
-                        onClick={alternarMostrar} >
+                        onClick={alternarMostrarContenedor} >
                         <i className="fa-solid fa-circle-arrow-right "></i>
                         <p className="fw-bolder">Pagos</p>
+                    </Col>
+                </Row>
+                <Row className="d-md-none p-0  h-100 position-relative">
+                    <Col className="d-flex h-100 position-absolute align-items-end p-0">
+                        <BotonesContendorPrincipal alternarMostrar={alternarMostrar} />
                     </Col>
                 </Row>
             </Container>
@@ -80,7 +88,7 @@ const PlantillaPagosBody = React.memo(({ alternarMostrar }) => {
 });
 
 
-export const PlantillaPagos = React.memo(({ alternarMostrar }) => {
+export const PlantillaPagos = React.memo(({ alternarMostrarContenedor, alternarMostrar }) => {
 
 
 
@@ -90,11 +98,12 @@ export const PlantillaPagos = React.memo(({ alternarMostrar }) => {
             <Container fluid className="flex-grow-1 h-100 ">
                 <Row className="h-100">
 
-                    <Col className={`d-flex h-100 p-2  flex-column  ${styles.contenedorPlantillaPagos} `}>
+                    <Col className={`d-flex h-100 p-0 p-md-2  flex-column  ${styles.contenedorPlantillaPagos} `}>
 
                         <PlantillaPagosHeader />
                         <PlantillaPagosBody
-                            alternarMostrar={alternarMostrar} />
+                            alternarMostrar={alternarMostrar}
+                            alternarMostrarContenedor={alternarMostrarContenedor} />
 
                     </Col>
                 </Row>

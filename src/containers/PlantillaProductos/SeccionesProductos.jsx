@@ -43,7 +43,7 @@ const SeccionHome = ({ seccion, onClick }) => {
     )
 }
 
-export const SeccionesProductos = ({ seccion, elegirSeccion, seccionesProductos }) => {
+export const SeccionesProductos = React.memo(({ seccion, elegirSeccion, seccionesProductos }) => {
 
     //ACA REALIZAR UNA LLAMADA A LA BASE DE DATOS EN BASE A LA SECCION PROPORCIONADA O EN BASE AL BUSCADOR INPUT
 
@@ -52,26 +52,22 @@ export const SeccionesProductos = ({ seccion, elegirSeccion, seccionesProductos 
     }
 
     return (
-        <>
 
-            <Container fluid className={`d-flex flex-grow-0  ${styles.seccionesContainer} p-0`}>
-                <Row>
-                    <Col className="d-flex">
+        <Row className={`d-flex flex-grow-0 ${styles.seccionesContainer} p-0`}>
+            <Col className="d-flex h-100 w-100 p-0">
 
-                        <SeccionHome seccion={seccion} onClick={onClick} />
+                <SeccionHome seccion={seccion} onClick={onClick} />
 
-                        {seccionesProductos.map(secProductos =>
-                            <SeccionesRestantes key={secProductos.nombre}
-                                elegirSeccion={onClick}
-                                secciones={secProductos.nombre}
-                                seccionActual={seccion}
-                            />
-                        )}
-                    </Col>
-                </Row>
+                {seccionesProductos.map(secProductos =>
+                    <SeccionesRestantes key={secProductos.nombre}
+                        elegirSeccion={onClick}
+                        secciones={secProductos.nombre}
+                        seccionActual={seccion}
+                    />
+                )}
+            </Col>
+        </Row>
 
-            </Container>
-        </>
     )
-}
+})
 

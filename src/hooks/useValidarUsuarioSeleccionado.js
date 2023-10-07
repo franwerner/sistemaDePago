@@ -8,21 +8,14 @@ export const useValidarUsuarioSeleccionado = () => {
     const { cambiarUsuario } = useContext(listaUsuariosContext)
 
     const validar = async (data) => {
+   
+        const response = await validarUsuarioFetch(data)
 
-        try {
+        const mensaje = buscarCodigoDeMensajes(response)
 
-            const response = await validarUsuarioFetch(data)
-
-            buscarCodigoDeMensajes(response)
-
+        if (!mensaje) {
             cambiarUsuario(data)
-
-            return { "message": "validado" }
-
-        } catch (error) {
-
-            return { "message": "denegado" }
-
+            return "Validado"
         }
 
     }

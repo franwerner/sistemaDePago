@@ -1,7 +1,7 @@
 
 import { ProductoReducerProvider } from '@/context/provider/ProductosReducerProvider';
 import "../index.css"
-import {Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { BuscadorPorductosProvider } from '@/context/provider/BuscardorProductosProvider';
 import { NavegacionHeader } from '@/components/NavegacionHeader';
 import { ContenedorDePagos } from './ContenedorDePagos/ContenedorDePagos';
@@ -31,13 +31,14 @@ export const InterfaceSistema = () => {
                         className='h-100 flex-grow-1 p-0'>
 
                         <main className='h-100 p-0 '>
+                    
 
 
                             <ProductoReducerProvider>
 
                                 <ContenedorPrincipal
-                                    mostrar={mostrar}
-                                    alternarMostrar={alternarMostrar} />
+                                    mostrarContenedor={mostrar}
+                                    alternarMostrarContenedor={alternarMostrar} />
 
                                 <ContenedorDePagos
                                     mostrar={mostrar}

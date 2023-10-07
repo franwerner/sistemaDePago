@@ -9,7 +9,6 @@ import React from "react"
 
 
 export const PlantillaCobro = React.memo(() => {
-
     const { borrarSeleccion, seleccion, seleccionarElemento } = useSeleccionarElemento()
 
     return (

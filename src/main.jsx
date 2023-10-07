@@ -7,7 +7,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { InterfaceSistema } from './containers/InterfaceSistema.jsx'
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",

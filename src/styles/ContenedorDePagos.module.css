@@ -106,19 +106,20 @@
     top: 2%;
     left: 0%;
     width: 0%;
-    animation: expandWidth 0.4s ease forwards;
+    height: 0%;
+    animation: expandWidth 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
 
 .botonesTactilesResize .contendorDeBotonesTactiles {
-    animation: showChildren 0.8s ease-in backwards;
+    animation: animationCalculadora 0.8s ease-in backwards;
     z-index: 0;
     box-shadow: 10px 10px 19px -2px rgba(118, 132, 163, 0.75);
     width: fit-content;
     opacity: initial;
 }
 
-@keyframes showChildren {
+@keyframes animationCalculadora {
     0% {
         opacity: 0;
     }
@@ -140,9 +141,11 @@
 @keyframes expandWidth {
     0% {
         width: 0%;
+
     }
 
     100% {
+
         width: 100%;
     }
 }

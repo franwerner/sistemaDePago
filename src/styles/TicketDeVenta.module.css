@@ -1,13 +1,14 @@
 .ticket {
-    position: absolute;
-    visibility: hidden;
+    visibility: visible;
+    z-index: 13123;
+    background-color: white;
+    border-bottom: var(--border-dashed);
 }
-
 
 :root {
-    --borde-tabla: 0.3px dashed rgba(192, 188, 188, 0.753);
+    --border-dashed: 0.3px dashed rgba(192, 188, 188, 0.753);
+    --color-parrafo: "#555"
 }
-
 
 
 @media print {
@@ -20,44 +21,85 @@
     .ticket *,
     .ticket {
         visibility: visible;
-        position: relative;
-        font-size: 6px;
-        /*6 PREDETERMINADO*/
+        font-size: 14px;
     }
 
-    .tabla * {
-        border: 0;
-        padding: 0;
+    /*Numero de Ticket*/
+    .numeroDeTicket {
+        font-size: 18px;
     }
 
 
-    .ticket thead {
-        border-bottom: var(--borde-tabla);
-    }
-
-    .tabla {
-        border-top: var(--borde-tabla);
-        border-bottom: var(--borde-tabla);
-    }
-
-    .totales {
-        border-bottom: var(--borde-tabla);
-    }
+    /*Informacio Adicional*/
 
     .informacionAdicional {
-        border-top: var(--borde-tabla);
+        border-top: var(--border-dashed);
+
+    }
+
+    .informacionAdicional p {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--color-parrafo);
     }
 
     .cajero {
-        font-size: 8px;
+        font-size: 15px;
     }
 
-    .numeroDeTicket {
-        font-size: 10px;
+    /*Lista De Productos*/
+
+    .listaDeProductos {
+        border-bottom: var(--border-dashed);
+        border-top: var(--border-dashed);
+        word-break: break-all;
     }
 
-    .contenedorDeTabla{
-       margin-bottom: -12px;
+    .nombreDelProducto {
+        color: var(--color-parrafo);
+    }
+
+    .contenedorCantidad {
+        margin-top: -12px;
+    }
+
+    .contenedorCantidad p:nth-child(1) {
+        word-break: normal;
+    }
+
+    .contenedorCantidad p:nth-child(2) {
+        color: var(--color-parrafo);
+        font-weight: 500;
+    }
+
+    .totalDelProducto {
+        border-bottom: var(--border-dashed);
+        width: fit-content;
+    }
+
+    .totalDelProducto span:nth-child(2) {
+        color: var(--color-parrafo);
+        font-weight: 500;
+    }
+
+
+    /*Totales Finales*/
+    .totales {
+        border-bottom: var(--border-dashed);
+    }
+
+    .rowTotal {
+        word-break: break-all;
+    }
+
+    .rowTotal div:nth-child(1) {
+        max-width: 60%;
+    }
+
+    .rowTotal div:nth-child(2) {
+        max-width: 40%;
+        font-weight: 500;
+        color: var(--color-parrafo);
     }
 
 }
@@ -65,7 +107,6 @@
 
 @page {
     size: auto;
-    margin: 1cm;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0cm;
+    margin-top: -2cm;
 }

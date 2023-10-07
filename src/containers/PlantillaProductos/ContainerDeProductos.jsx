@@ -1,8 +1,9 @@
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaProductos.module.css"
 import { buscadorProductosContext, productoReducerContext } from "@/context//Contextos";
-import { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductoCard } from "@/components//ProductoCard";
+import { BotonesContendorPrincipal } from "@/components//BotonesContendorPrincipal";
 
 
 
@@ -158,7 +159,7 @@ const secciones = {
 };
 
 
-export const ContainerDeProductos = ({ seccion }) => {
+export const ContainerDeProductos = React.memo(({ seccion }) => {
 
     const { productoARenderizar } = useContext(buscadorProductosContext)
     const { agregarProducto } = useContext(productoReducerContext)
@@ -169,27 +170,52 @@ export const ContainerDeProductos = ({ seccion }) => {
 
     })
 
+
+
     return (
-        <>
-            <Container fluid className={`scrollHidden ${styles.contenedorProductos}   flex-grow-1`}>
-                <Row>
-                    <Col style={{ maxHeight: "0px" }} className={` flex-wrap d-flex justify-content-center justify-content-md-start`} >
 
-                        {c.map(lista =>
+            <Row style={{maxHeight : "100%"}} className="p-0 flex-grow-1  flex-wrap h-100 d-flex">
 
-                            <div className={`mx-2 flex-column d-flex my-2 overflow-hidden position-relative  ${styles.producto}`}
-                                key={lista.nombre}
-                                onClick={() => agregarProducto(lista)}
-                            >
-                                <ProductoCard producto={lista}></ProductoCard>
-                            </div>
+                <Col className={`flex-wrap d-flex justify-content-center overflow-hidden justify-content-md-start`} >
 
-                        )}
+                    {secciones[seccion].map(lista =>
 
-                    </Col>
-                </Row >
+                        <div className={`mx-2 flex-column d-flex my-2  position-relative  ${styles.producto}`}
+                            key={lista.nombre}
+                            onClick={() => agregarProducto(lista)}
+                        >
+                            <ProductoCard producto={lista}></ProductoCard>
+                        </div>
 
-            </Container >
-        </>
+                    )}
+                </Col>
+            </Row>
     )
-}
+})
+
+
+{/* <Container fluid className={`scrollHidden ${styles.contenedorProductos}   flex-grow-1`}>
+
+<Row className="h-100 bg-danger">
+    <Col style={{ maxHeight: "0px" }} className={` h-100 flex-wrap d-flex justify-content-center justify-content-md-start`} >
+
+        {c.map(lista =>
+
+            <div className={`mx-2 flex-column border border-danger d-flex my-2 overflow-hidden position-relative  ${styles.producto}`}
+                key={lista.nombre}
+                onClick={() => agregarProducto(lista)}
+            >
+                <ProductoCard producto={lista}></ProductoCard>
+            </div>
+
+        )}
+
+
+
+    </Col>
+
+</Row >
+
+
+
+</Container > */}

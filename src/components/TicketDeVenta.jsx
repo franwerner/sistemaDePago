@@ -4,10 +4,30 @@ import { productoReducerContext } from "@/context/Contextos";
 import { obtenerFecha } from "@/helper/obtenerFecha";
 import { useCalcularTotalAValidar } from "@/hooks/useCalcularTotalAValidar";
 import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProductos";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales";
 import { useCalcularCambio } from "@/hooks/useCalcularCambioTotal";
 import { agregarCeroEnLaHora } from "../helper/agregarCeroEnLaHora";
+
+
+
+const RowTotales = ({ nombre, texto }) => {
+
+    return (
+        <Row className={`${styles.rowTotal} text-break d-flex justify-content-between  `}>
+            <Col className="text-end  mx-2 fw-bold">
+                <p className="m-0">
+                    {nombre}:
+                </p>
+            </Col>
+            <Col className="text-end " xs={"auto"}>
+                <p className="m-0">
+                    {texto}
+                </p>
+            </Col>
+        </Row>
+    )
+}
 
 const Totales = () => {
 
@@ -22,86 +42,75 @@ const Totales = () => {
     const porcentajeAplicado = ((totalAValidar - calculoSinTarifa) / calculoSinTarifa) * 100
 
 
-
     return (
 
-        <Container fluid className="p-0">
+        <Container className="mt-1">
 
-            <Row className="d-flex justify-content-end">
-                <Col xs={2} className="text-end fw-semibold">
-                    Base:
-                </Col>
-                <Col className="mx-3 text-end " style={{ minWidth: "90px" }} xs={"auto"}>
-                    $ {separarNumerosConDecimales(calculoSinTarifa)}
-                </Col>
-            </Row>
-
-            <Row className="d-flex justify-content-end">
-                <Col xs={2} className="text-end fw-semibold">
-                    P/A:
-                </Col>
-                <Col className="mx-3  text-end" style={{ minWidth: "90px" }} xs={"auto"}>
-                    {`(${(porcentajeAplicado).toFixed(2)})%`}
-                </Col>
-            </Row>
-
-            <Row className="d-flex justify-content-end">
-                <Col xs={2} className="text-end fw-semibold">
-                    Total:
-                </Col>
-                <Col className="mx-3  text-end" style={{ minWidth: "90px" }} xs={"auto"}>
-                    $ {separarNumerosConDecimales(totalAValidar)}
-                </Col>
-            </Row>
-
-
-            <Row className="d-flex justify-content-end">
-                <Col xs={2} className="text-end fw-semibold ">
-                    Cambio:
-                </Col>
-                <Col className="mx-3  text-end" style={{ minWidth: "90px" }} xs={"auto"}>
-                    $ {separarNumerosConDecimales(cambio)}
-                </Col>
-            </Row>
+            <RowTotales nombre={"Base"} texto={`$ ${separarNumerosConDecimales(calculoSinTarifa)}`} />
+            <RowTotales nombre={"P/A"} texto={`$ (${(porcentajeAplicado).toFixed(2)}%)`} />
+            <RowTotales nombre={"Total"} texto={`$ ${separarNumerosConDecimales(totalAValidar)}`} />
+            <RowTotales nombre={"Cambio"} texto={`$ ${separarNumerosConDecimales(cambio)}`} />
 
         </Container>
 
     )
 }
 
-const Tabla = () => {
+const ListaDeProductos = () => {
     const { listaProducto } = useContext(productoReducerContext)
+
     return (
-        <Col className={styles.contenedorDeTabla}>
 
-            <Table className={`${styles.tabla}`}>
-                <thead >
-                    <tr>
-                        <th className="text-start p-1 px-1" >Productos</th>
-                        <th className="text-end p-1 ">Cant.</th>
-                        <th className="text-end p-1 ">Precio</th>
-                        <th className="text-end p-1">Importe</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        listaProducto.map(({ nombre, cantidadSeleccionada, precioModificado }, index) =>
+        <Col className={`${styles.listaDeProductos} py-2`}>
+            {listaProducto.map(({ cantidadSeleccionada, precioModificado, nombre }, index) =>
+                <Container
+                    key={index}
+                    fluid
+                    className=" overflow-hidden">
 
-                            <tr key={index} className="p-0">
-                                <td style={{ minWidth: "100px" }} className="text-start  p-0 px-1">{nombre}</td>
-                                <td className="text-end p-0 px-1">{separarNumerosConDecimales(cantidadSeleccionada)}</td>
-                                <td className="text-end p-0 px-1 ">$ {separarNumerosConDecimales(precioModificado)}</td>
-                                <td className="text-end p-0 px-1 ">$ {separarNumerosConDecimales(precioModificado * cantidadSeleccionada)}</td>
-                            </tr>
+                    <Row className="position-relative">
 
-                        )
-                    }
+                        <Col
+                            xs={12}
+                            className="p-0 mx-1 text-start">
 
-                </tbody>
-            </Table>
+                            <p className={`${styles.nombreDelProducto} lh-1 fw-semibold m-0`} >{nombre}</p>
+
+                        </Col>
+
+                        <Col className=" d-flex justify-content-between p-0  py-1 align-items-center">
+
+                            <div
+                                className={`${styles.contenedorCantidad} d-flex w-50 justify-content-center `}>
+
+                                <p className="fw-bold m-0 mx-1 me-1 ">
+                                    x{cantidadSeleccionada}
+                                </p>
+
+                                <p className="m-0">{separarNumerosConDecimales(precioModificado)}</p>
+
+                            </div>
+
+                            <div className="d-flex justify-content-end w-50">
+
+                                <p className={`${styles.totalDelProducto} m-0   text-end`} >
+
+                                    <span className="fw-bold">Total</span> : <span>{separarNumerosConDecimales(precioModificado * cantidadSeleccionada)}</span>
+
+                                </p>
+
+                            </div>
+
+                        </Col>
+
+                    </Row>
+
+                </Container>
+            )}
 
         </Col>
     )
+
 }
 
 const InformacionAdicional = () => {
@@ -109,24 +118,19 @@ const InformacionAdicional = () => {
     const { mes, dia, hora, minutos, segundos, año } = obtenerFecha()
 
     return (
-        <Container fluid className=" m-0 my-1">
-            <Row className="d-flex justify-content-center ">
-                <h3 className={`${styles.cajero} fw-normal m-0`}>
-                    Cajero : Franco
-                </h3>
-            </Row>
+        <Container className={`m-0 my-1`}>
             <Row>
-                <Col className="d-flex align-items-center justify-content-center">
+                <Col className="mx-1 text-start">
 
-                    <p className="m-0">
+                    <p className="m-0 me-1  ">
                         Fecha : {dia}/{mes}/{año}
                     </p>
 
-                </Col>
-                <Col>
-                    <p className="m-0">
+
+                    <p className="m-0  ">
                         Hora : {agregarCeroEnLaHora(hora)}:{agregarCeroEnLaHora(minutos)}:{agregarCeroEnLaHora(segundos)}
                     </p>
+
                 </Col>
             </Row>
 
@@ -139,10 +143,10 @@ const InformacionAdicional = () => {
 
 export const TicketDeVenta = () => {
 
-    
+
 
     return (
-        <Container fluid className={`p-0 ${styles.ticket} `}>
+        <Container fluid className={`p-0 position-absolute w-100 ${styles.ticket} `}>
 
 
             <Row className="justify-content-center align-items-center text-center">
@@ -158,7 +162,7 @@ export const TicketDeVenta = () => {
             </Row>
 
             <Row>
-                <Tabla />
+                <ListaDeProductos />
             </Row>
 
             <Row className={`${styles.totales} pb-1`}>
@@ -168,7 +172,7 @@ export const TicketDeVenta = () => {
 
             <Row className="pt-2 text-center">
                 <h4 className="text-center ">
-                    *Ticket no válido como factura.
+                    *Comprobante no válido como factura.
                 </h4>
             </Row>
 
