@@ -170,7 +170,7 @@ export const TicketDeVenta = () => {
             </Row>
 
 
-            <Row className="pt-2 text-center">
+            <Row  className={`${styles.mensajeInformativo} pt-2 `}>
                 <h4 className="text-center ">
                     *Comprobante no válido como factura.
                 </h4>

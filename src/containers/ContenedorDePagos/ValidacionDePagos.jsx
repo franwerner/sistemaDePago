@@ -45,10 +45,9 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
     return (
         <>
 
-<TicketDeVenta />
-            {/* {
+            {
                 mostrar && <TicketDeVenta />
-            } */}
+            }
 
 
 

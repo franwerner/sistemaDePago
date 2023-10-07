@@ -3,6 +3,11 @@
     src: url(fonts/Montserrat-VariableFont_wght.ttf);
 }
 
+:root {
+    --color-Verde : "#6EC89B"
+}
+
+
 
 * {
     font-family: "Montserrat";

@@ -3,13 +3,9 @@ import styles from "@/styles/PlantillaPagos.module.css"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import React, { useCallback } from "react"
 import { useEvitarRenderizados } from "@/hooks/useEvitarRenderizados"
-import { ContenedorDePagos } from "./ContenedorDePagos/ContenedorDePagos"
 import { BotonTarifas } from "@/components//BotonTarifas"
 import { ListadoDeTarifas } from "@/components/ListadoDeTarifas"
-import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider"
 import { BotonesContendorPrincipal } from "../components/BotonesContendorPrincipal"
-
-
 
 
 const PlantillaPagosHeader = React.memo(() => {
@@ -50,46 +46,48 @@ const PlantillaPagosHeader = React.memo(() => {
 
 const PlantillaPagosBody = React.memo(({ alternarMostrarContenedor, alternarMostrar }) => {
     return (
-        <>
-            <Container
-                fluid
-                className="d-flex flex-column  rounded-1 flex-grow-1 ">
+        <Container
+            fluid
+            className="d-flex flex-column  rounded-1 flex-grow-1 ">
 
-                <Row style={{ border: "2px solid #555" }}>
-                    <Col>
-                        <div className="d-flex fs-4  justify-content-center align-items-center">
-                            <i className="fa-solid fa-circle-user"></i>
-                            <p className="my-1 mx-3 fw-light">
-                                Consumidor Final
-                            </p>
-                        </div>
-                    </Col>
-                </Row>
-                <Row
-                    style={{ border: "2px solid #555" }}
-                    className={`text-center h-100 align-items-center d-none d-md-flex justify-content-center  ${styles.botonPagos}`}>
-                    <Col
-                        id="plantilla-pagos"
-                        tabIndex={0}
-                        onClick={alternarMostrarContenedor} >
-                        <i className="fa-solid fa-circle-arrow-right "></i>
-                        <p className="fw-bolder">Pagos</p>
-                    </Col>
-                </Row>
-                <Row className="d-md-none p-0  h-100 position-relative">
-                    <Col className="d-flex h-100 position-absolute align-items-end p-0">
-                        <BotonesContendorPrincipal alternarMostrar={alternarMostrar} />
-                    </Col>
-                </Row>
-            </Container>
+            <Row style={{ border: "2px solid #555" }}>
+                <Col>
+                    <div className="d-flex fs-4  justify-content-center align-items-center">
+                        <i className="fa-solid fa-circle-user"></i>
+                        <p className="my-1 mx-3 fw-light">
+                            Consumidor Final
+                        </p>
+                    </div>
+                </Col>
+            </Row>
 
-        </>
+            <Row
+                style={{ border: "2px solid #555" }}
+                className={`text-center h-100 align-items-center d-none d-md-flex justify-content-center  ${styles.botonPagos}`}>
+                <Col
+                    tabIndex={0}
+                    onClick={alternarMostrarContenedor} >
+                    <i className="fa-solid fa-circle-arrow-right "></i>
+                    <p className="fw-bolder">Pagos</p>
+                </Col>
+            </Row>
+
+            <Row className="d-md-none p-0  h-100 position-relative">
+                <Col className="d-flex h-100 position-absolute align-items-end p-0">
+                    <BotonesContendorPrincipal
+                        alternarMostrarContenedor={alternarMostrarContenedor}
+                        alternarMostrar={alternarMostrar}
+                        mostrar={false} />
+                </Col>
+            </Row>
+
+        </Container>
+
     );
 });
 
 
 export const PlantillaPagos = React.memo(({ alternarMostrarContenedor, alternarMostrar }) => {
-
 
 
     return (

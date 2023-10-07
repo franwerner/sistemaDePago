@@ -1,6 +1,5 @@
 .ticket {
-    visibility: visible;
-    z-index: 13123;
+    visibility: hidden;
     background-color: white;
     border-bottom: var(--border-dashed);
 }
@@ -102,11 +101,15 @@
         color: var(--color-parrafo);
     }
 
+    .mensajeInformativo h4{
+        font-size: 13px;
+    }
+
 }
 
 
 @page {
     size: auto;
     margin: 0cm;
-    margin-top: -2cm;
+    margin-top: -1.5cm;
 }

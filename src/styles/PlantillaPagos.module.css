@@ -1,3 +1,6 @@
+
+
+
 .botonPagos i {
     font-size: 70px;
     cursor: pointer;
@@ -10,13 +13,13 @@
 }
 
 
-.botonPagos:hover i {
+.botonPagos :first-child:hover {
 
-    color: rgb(136, 220, 101);
+
     border-radius: 50%;
 
 }
 
 .contenedorPlantillaPagos {
     background-color: #e2e2e2a9;
-}
+}https://www.youtube.com/watch?v=op6xKXMxTKI

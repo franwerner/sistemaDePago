@@ -53,8 +53,8 @@ export const SeccionesProductos = React.memo(({ seccion, elegirSeccion, seccione
 
     return (
 
-        <Row className={`d-flex flex-grow-0 ${styles.seccionesContainer} p-0`}>
-            <Col className="d-flex h-100 w-100 p-0">
+        <Row className={`d-flex ${styles.seccionesContainer} p-0`}>
+            <Col style={{ overflowX: "overlay" }} className="d-flex  w-100 p-0 mx-2">
 
                 <SeccionHome seccion={seccion} onClick={onClick} />
 

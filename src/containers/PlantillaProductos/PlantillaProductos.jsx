@@ -7,36 +7,38 @@ import { SeccionesProductos } from "./SeccionesProductos";
 import React from "react";
 import { BotonesContendorPrincipal } from "@/components//BotonesContendorPrincipal";
 
-export const PlantillaProductos = React.memo(({ mostrar }) => {
+export const PlantillaProductos = React.memo(({ alternarMostrar, alternarMostrarContenedor }) => {
 
     const { seccion, elegirSeccion, seccionesProductos } = useSeccion()
 
-    const onHide = mostrar ? "d-flex" : "d-none"
-
     return (
-        <Col className={` d-flex flex-column h-100 p-0 scrollHidden overflow-hidden ${styles.PlantillaProductos}`}>
+        <section className="h-100 overflow-hidden w-100" id={"seccion-productos"}>
 
-            <Container fluid className="p-0 d-flex scrollHidden h-100   flex-column">
+            <Col className={`${styles.contendorPlantillaProductos} h-100  d-flex flex-column `}>
 
-                <SeccionesProductos
-                    seccion={seccion}
-                    elegirSeccion={elegirSeccion}
-                    seccionesProductos={seccionesProductos} />
+                <Container fluid className="p-0  d-flex scrollXHidden h-100 flex-column">
+
+                    <SeccionesProductos
+                        seccion={seccion}
+                        elegirSeccion={elegirSeccion}
+                        seccionesProductos={seccionesProductos} />
+
+                    <ContainerDeProductos seccion={seccion} />
 
 
+                    <Row className="d-md-none  align-items-end position-relative flex-grow-1 " >
+                        <Col className="d-flex ">
+                            <BotonesContendorPrincipal
+                                mostrar={true}
+                                alternarMostrarContenedor={alternarMostrarContenedor}
+                                alternarMostrar={alternarMostrar} />
+                        </Col>
+                    </Row>
 
-                <ContainerDeProductos seccion={seccion} />
+                </Container>
+            </Col>
 
-
-                <Row>
-                    <Col className="d-flex">
-                        <BotonesContendorPrincipal />
-                    </Col>
-                </Row>
-
-            </Container>
-        </Col>
-
+        </section>
     );
 
 });
