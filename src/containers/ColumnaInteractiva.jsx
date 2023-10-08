@@ -1,6 +1,3 @@
-import { useEstablecerLimitesEjes } from "@/hooks/useEstablecerLimitesEjes"
-import { useEjesFinales } from "@/hooks/useEjesFinales"
-import { useColumna } from "@/hooks/useColumna"
 import styles from "@/styles/ColumnaInteractiva.module.css"
 import React, { useEffect } from "react"
 import { Col } from "react-bootstrap"

@@ -1,9 +1,8 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaProductos.module.css"
-import { buscadorProductosContext, productoReducerContext } from "@/context//Contextos";
-import React, { useContext, useEffect } from "react";
+import { productoReducerContext } from "@/context//Contextos";
+import React, { useContext, } from "react";
 import { ProductoCard } from "@/components//ProductoCard";
-import { BotonesContendorPrincipal } from "@/components//BotonesContendorPrincipal";
 
 
 
@@ -165,14 +164,14 @@ export const ContainerDeProductos = React.memo(({ seccion }) => {
 
     return (
 
-        <Row className="p-0  scrollHidden  ">
+        <Row className="p-0 scrollHidden ">
 
             <Col className={`flex-wrap d-flex justify-content-center justify-content-md-start`} >
 
-                {secciones[seccion].map(lista =>
+                {secciones[seccion].map((lista, index) =>
 
                     <div className={`mx-2 flex-column d-flex my-2  position-relative  ${styles.producto}`}
-                        key={lista.nombre}
+                        key={index}
                         onClick={() => agregarProducto(lista)}
                     >
                         <ProductoCard producto={lista}></ProductoCard>

@@ -13,7 +13,7 @@ export const PlantillaProductos = React.memo(({ alternarMostrar, alternarMostrar
     const { seccion, elegirSeccion, seccionesProductos } = useSeccion()
 
     return (
-        <section className="h-100 overflow-hidden w-100" id={"seccion-productos"}>
+        <section className="overflow-hidden w-100" id={"seccion-productos"}>
 
             <Col className={`${styles.contendorPlantillaProductos} h-100  d-flex flex-column `}>
 
