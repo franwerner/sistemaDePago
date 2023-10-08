@@ -1,15 +1,28 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "paths": {
-        "@/styles/*": ["src/styles*"],
-        "@/hooks/*": ["src/hooks*"],
-        "@/helper/*": ["src/helper*"],
-        "@/context/*": ["src/context*"],
-        "@/components/*": ["src/components*"],
-        "@/containers/*": ["src/containers*"],
-        "@/ContructoresJS/*": ["src/ContructoresJS*"],
-        "@/src/*": ["*"],
-      }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/styles/*": [
+        "src/styles*"
+      ],
+      "@/hooks/*": [
+        "src/hooks*"
+      ],
+      "@/helper/*": [
+        "src/helper*"
+      ],
+      "@/context/*": [
+        "src/context*"
+      ],
+      "@/components/*": [
+        "src/components*"
+      ],
+      "@/containers/*": [
+        "src/containers*"
+      ],
+      "@/ContructoresJS/*": [
+        "src/ContructoresJS*"
+      ],
     }
   }
+}

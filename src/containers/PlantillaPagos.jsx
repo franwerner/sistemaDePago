@@ -6,6 +6,8 @@ import { useEvitarRenderizados } from "@/hooks/useEvitarRenderizados"
 import { BotonTarifas } from "@/components//BotonTarifas"
 import { ListadoDeTarifas } from "@/components/ListadoDeTarifas"
 import { BotonesContendorPrincipal } from "../components/BotonesContendorPrincipal"
+import { BotonPagos } from "../components/BotonPagos"
+import { BotonProductoYRevision } from "../components/BotonProductoYRevision"
 
 
 const PlantillaPagosHeader = React.memo(() => {
@@ -48,9 +50,9 @@ const PlantillaPagosBody = React.memo(({ alternarMostrarContenedor, alternarMost
     return (
         <Container
             fluid
-            className="d-flex flex-column  rounded-1 flex-grow-1 ">
+            className="d-flex flex-column p-0    rounded-1 flex-grow-1 ">
 
-            <Row style={{ border: "2px solid #555" }}>
+            <Row>
                 <Col>
                     <div className="d-flex fs-4  justify-content-center align-items-center">
                         <i className="fa-solid fa-circle-user"></i>
@@ -62,20 +64,19 @@ const PlantillaPagosBody = React.memo(({ alternarMostrarContenedor, alternarMost
             </Row>
 
             <Row
-                style={{ border: "2px solid #555" }}
                 className={`text-center h-100 align-items-center d-none d-md-flex justify-content-center  ${styles.botonPagos}`}>
                 <Col
-                    tabIndex={0}
                     onClick={alternarMostrarContenedor} >
                     <i className="fa-solid fa-circle-arrow-right "></i>
                     <p className="fw-bolder">Pagos</p>
                 </Col>
             </Row>
 
-            <Row className="d-md-none p-0  h-100 position-relative">
-                <Col className="d-flex h-100 position-absolute align-items-end p-0">
-                    <BotonesContendorPrincipal
-                        alternarMostrarContenedor={alternarMostrarContenedor}
+            <Row className="d-md-none h-100  ">
+                <Col className="d-flex justify-content-center align-items-end p-0 ">
+                    <BotonPagos
+                        alternarMostrarContenedor={alternarMostrarContenedor} />
+                    <BotonProductoYRevision
                         alternarMostrar={alternarMostrar}
                         mostrar={false} />
                 </Col>

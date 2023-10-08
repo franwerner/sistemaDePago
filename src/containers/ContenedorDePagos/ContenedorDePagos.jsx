@@ -13,16 +13,16 @@ const ContenedorDePagoHeader = React.memo(({ alternarMostrar }) => {
 
     return (
         <section id="navegacion-pagos"
-            className={` ${styles.navegacionPagos} px-2 flex-grow-0`}>
+            className={` ${styles.navegacionPagos} overflow-hidden px-1 `}>
             <Row className="text-center"
             >
-                <Col className="d-flex p-3 justify-content-center justify-content-md-start">
+                <Col className="d-flex p-0  justify-content-start">
 
                     <BotonVolver alternarMostrar={alternarMostrar} />
                 </Col>
 
-                <Col className="align-items-center d-none d-sm-flex  justify-content-center">
-                    <p className={`my-2  fs-3 ${styles.textPagos}`}>
+                <Col className="align-items-center d-none d-md-flex  justify-content-center">
+                    <p className={`my-2 fs-3 ${styles.textPagos}`}>
                         Pagos
                     </p>
                 </Col>
@@ -40,9 +40,11 @@ const ContenedorDePagoBody = () => {
     return (
 
         <section id="seccion-pagos-principal"
-            className={`h-100  flex-grow-1 w-100 overflow-hidden px-2 ${styles.lineaPunteada}  `}>
+            className={`h-100  px-2 ${styles.lineaPunteada}  `}>
 
-            <Row className="p-0 d-flex flex-column flex-md-row  h-100">
+            <Row
+                xs={{ order: "2" }}
+                className="px-1 d-flex flex-column flex-md-row  h-100">
 
                 <Col
                     className={` scrollHidden pt-0 pb-3  h-100 ${styles.contendorMetodosDePagoAgregados}  `}
@@ -76,15 +78,19 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
                     className='h-100 p-0 overflow-hidden'>
 
                     <Col
-                        className={`${styles.contendorPagosPrincipal} h-100  py-3`}>
+                        className={`${styles.contendorPagosPrincipal} h-100  py-md-3`}>
 
                         <Container
                             fluid
                             className={`${styles.contenedorPagos} h-100 d-flex p-0  position-relative flex-column  `}>
 
-                            <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
+                            <Col xs={{ order: "2" }} md={{ order: "0" }} className="flex-grow-0">
+                                <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
+                            </Col>
 
-                            <ContenedorDePagoBody />
+                            <Col className="flex-grow-1 overflow-hidden h-100">
+                                <ContenedorDePagoBody />
+                            </Col>
 
                         </Container>
 

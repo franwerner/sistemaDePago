@@ -3,11 +3,6 @@
     src: url(fonts/Montserrat-VariableFont_wght.ttf);
 }
 
-:root {
-    --color-Verde : "#6EC89B"
-}
-
-
 
 * {
     font-family: "Montserrat";
@@ -22,10 +17,6 @@ body::-webkit-scrollbar {
 }
 
 
-.scrollXHidden::-webkit-scrollbar {
-    height: 0px;
-    width: 0px;
-}
 
 .scrollHidden {
     overflow: overlay;
@@ -33,6 +24,7 @@ body::-webkit-scrollbar {
 
 .scrollHidden::-webkit-scrollbar {
     width: 0px;
+    height: 0px;
 }
 
 .scrollBarPersonalizada {
@@ -46,10 +38,8 @@ body::-webkit-scrollbar {
     height: 0.5em;
 }
 
-
-
 .scrollBarPersonalizada::-webkit-scrollbar:vertical {
-    width: 8px;
+    width: 5px;
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar-button:increment,
@@ -58,13 +48,13 @@ body::-webkit-scrollbar {
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar:horizontal {
-    height: 10px;
+    height: 5px;
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar-thumb {
     background-color: #797979;
     border-radius: 20px;
-    border: 2px solid #f1f2f3;
+    border: 2px solid transparent;
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar-track {

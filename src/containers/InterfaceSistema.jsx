@@ -13,7 +13,6 @@ export const InterfaceSistema = () => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <>
             <BuscadorPorductosProvider>
 
                 <Container
@@ -53,8 +52,6 @@ export const InterfaceSistema = () => {
                 </Container>
 
             </BuscadorPorductosProvider >
-
-        </>
     )
 }
 

@@ -5,7 +5,8 @@ import { ContainerDeProductos } from "./ContainerDeProductos";
 import { useSeccion } from "@/hooks/useSeccion";
 import { SeccionesProductos } from "./SeccionesProductos";
 import React from "react";
-import { BotonesContendorPrincipal } from "@/components//BotonesContendorPrincipal";
+import { BotonPagos } from "@/components//BotonPagos";
+import { BotonProductoYRevision } from "@/components//BotonProductoYRevision";
 
 export const PlantillaProductos = React.memo(({ alternarMostrar, alternarMostrarContenedor }) => {
 
@@ -16,7 +17,7 @@ export const PlantillaProductos = React.memo(({ alternarMostrar, alternarMostrar
 
             <Col className={`${styles.contendorPlantillaProductos} h-100  d-flex flex-column `}>
 
-                <Container fluid className="p-0  d-flex scrollXHidden h-100 flex-column">
+                <Container fluid className="p-0  d-flex h-100 flex-column">
 
                     <SeccionesProductos
                         seccion={seccion}
@@ -26,13 +27,11 @@ export const PlantillaProductos = React.memo(({ alternarMostrar, alternarMostrar
                     <ContainerDeProductos seccion={seccion} />
 
 
-                    <Row className="d-md-none  align-items-end position-relative flex-grow-1 " >
-                        <Col className="d-flex ">
-                            <BotonesContendorPrincipal
-                                mostrar={true}
-                                alternarMostrarContenedor={alternarMostrarContenedor}
-                                alternarMostrar={alternarMostrar} />
-                        </Col>
+                    <Row className=" d-md-none  align-items-end position-relative flex-grow-1 " >
+                            <BotonPagos alternarMostrarContenedor={alternarMostrarContenedor} />
+                            <BotonProductoYRevision
+                                alternarMostrar={alternarMostrar}
+                                mostrar={true} />
                     </Row>
 
                 </Container>

@@ -30,7 +30,6 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const restablecerTodo = () => {
 
-
         window.print()
         // restablecerProductos()
         // alternarMostrar()
@@ -60,7 +59,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
                 />
             }
 
-            <Col className="d-flex justify-content-center justify-content-md-end p-3">
+            <Col className="d-flex  p-0 m-0  justify-content-end ">
 
                 <BotonValidacionPagos
                     background={detalle}

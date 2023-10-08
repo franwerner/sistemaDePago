@@ -11,23 +11,23 @@ const Metodo = ({ nombre, porcentaje, restoParaValidar, indice }) => {
 
     return (
 
-            <tr>
-                <td className="">
-                    {indice}
-                </td>
-                <td>
-                    {nombre}
-                </td>
-                <td>
-                    {separarNumerosConDecimales(restoParaValidar)}
-                </td>
-                <td className="overflow-hidden">
-                    {porcentaje}%
-                </td>
-                <td>
-                    {separarNumerosConDecimales(total)}
-                </td>
-            </tr>
+        <tr>
+            <td className="">
+                {indice}
+            </td>
+            <td>
+                {nombre}
+            </td>
+            <td>
+                {separarNumerosConDecimales(restoParaValidar)}
+            </td>
+            <td className="overflow-hidden">
+                {porcentaje}%
+            </td>
+            <td>
+                {separarNumerosConDecimales(total)}
+            </td>
+        </tr>
 
     )
 }
@@ -50,7 +50,8 @@ export const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, 
     return (
         <>
             <Modal
-                show={mostrar} onHide={alternarMostrar}>
+                show={mostrar}
+                onHide={alternarMostrar}>
                 <Modal.Header closeButton>
 
                     <Modal.Title >

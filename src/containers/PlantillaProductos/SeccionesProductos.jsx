@@ -1,66 +1,73 @@
 import styles from "@/styles/PlantillaProductos.module.css"
-import { Col, Container, Row } from "react-bootstrap"
+import { Col, Row } from "react-bootstrap"
 import React from "react"
+
 
 const SeccionesRestantes = ({ seccionActual, secciones, elegirSeccion }) => {
 
-    const btnSeccion = <span
-        onClick={() => { elegirSeccion(secciones) }}
-        className={` ${styles.botonesSeccion}   `}>
-        {secciones}
-    </span>
+    const onClick = () => {
+        elegirSeccion(secciones)
+    }
+
+    const analizarSiEsLaSeccionActual = secciones == seccionActual || seccionActual == "Home" && true
 
     return (
-        <>
-            {
-                seccionActual == "Home" ? btnSeccion : secciones == seccionActual ? btnSeccion : ""
-            }
 
-        </>
+        analizarSiEsLaSeccionActual && <span
+            onClick={onClick}
+            className={` ${styles.botonesSeccion}   `}>
+            {secciones}
+        </span>
     )
+
+
 }
 
-const SeccionHome = ({ seccion, onClick }) => {
+const SeccionHome = ({ seccion, elegirSeccion }) => {
 
-    const arrowImg = seccion !== "Home" ? <img className={`${styles.arrowHome}`} src="../../../assets/bc-arrow-big.png"></img> : ""
+
+
+    const onClick = () => {
+        elegirSeccion("Home")
+    }
+
+    const analizarSiEsHome = seccion !== "Home" && true
 
     return (
-        <>
-            <div
+        <div
+            onClick={onClick}
+            className={`px-4 position-relative d-flex ${styles.botonesSeccion}`}>
 
-                onClick={() => onClick("Home")}
-                className={`px-4 position-relative d-flex ${styles.botonesSeccion}`}>
+            {
+                analizarSiEsHome &&
+                <img className={`${styles.arrowHome}`} src="https://i.ibb.co/hDp2P6v/bc-arrow-big.png" />
+            }
 
-                {arrowImg}
+            <span
+                className={`fs-4 text-center d-flex align-items-center justify-content-center`}>
+                <i className="fa-solid  fa-house "></i>
+            </span>
+        </div>
 
-                <span
-                    className={`fs-4 text-center d-flex align-items-center justify-content-center`}>
-                    <i className="fa-solid  fa-house "></i>
-                </span>
-            </div>
-
-        </>
     )
 }
 
 export const SeccionesProductos = React.memo(({ seccion, elegirSeccion, seccionesProductos }) => {
 
-    //ACA REALIZAR UNA LLAMADA A LA BASE DE DATOS EN BASE A LA SECCION PROPORCIONADA O EN BASE AL BUSCADOR INPUT
-
-    const onClick = (nombre) => {
-        elegirSeccion(nombre)
-    }
-
     return (
 
         <Row className={`d-flex ${styles.seccionesContainer} p-0`}>
-            <Col style={{ overflowX: "overlay" }} className="d-flex  w-100 p-0 mx-2">
+            <Col className="d-flex scrollBarPersonalizada  w-100 p-0 mx-2">
 
-                <SeccionHome seccion={seccion} onClick={onClick} />
+                <SeccionHome
+                    seccion={seccion}
+                    elegirSeccion={elegirSeccion} />
 
-                {seccionesProductos.map(secProductos =>
-                    <SeccionesRestantes key={secProductos.nombre}
-                        elegirSeccion={onClick}
+                {seccionesProductos.map((secProductos, index) =>
+
+                    <SeccionesRestantes
+                        key={index}
+                        elegirSeccion={elegirSeccion}
                         secciones={secProductos.nombre}
                         seccionActual={seccion}
                     />

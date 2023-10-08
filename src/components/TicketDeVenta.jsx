@@ -65,37 +65,35 @@ const ListaDeProductos = () => {
             {listaProducto.map(({ cantidadSeleccionada, precioModificado, nombre }, index) =>
                 <Container
                     key={index}
-                    fluid
-                    className=" overflow-hidden">
+                    className="overflow-hidden">
 
                     <Row className="position-relative">
 
                         <Col
                             xs={12}
                             className="p-0 mx-1 text-start">
-
                             <p className={`${styles.nombreDelProducto}  fw-semibold m-0`} >{nombre}</p>
 
                         </Col>
 
-                        <Col className=" d-flex justify-content-between p-0  py-1 align-items-center">
+                        <Col className=" d-flex justify-content-between p-0  align-items-center">
 
                             <div
-                                className={`${styles.contenedorCantidad} d-flex w-50 justify-content-center `}>
+                                className={`${styles.contenedorCantidad} d-flex  w-50 justify-content-center `}>
 
-                                <p className="fw-bold m-0 mx-1 me-1 ">
-                                    x{cantidadSeleccionada}
+                                <p className="fw-bold text-nowrap text-end w-25 m-0 mx-1 me-1 ">
+                                    {cantidadSeleccionada} x
                                 </p>
 
-                                <p className="m-0">{separarNumerosConDecimales(precioModificado)}</p>
+                                <p className="m-0 text-start w-50">{separarNumerosConDecimales(precioModificado)}</p>
 
                             </div>
 
-                            <div className="d-flex justify-content-end w-50">
+                            <div className="d-flex justify-content-end h-100 align-items-center al  w-50">
 
-                                <p className={`${styles.totalDelProducto} m-0   text-end`} >
+                                <p className={`${styles.totalDelProducto} m-0 fw-semibold pb-1 text-end`} >
 
-                                    <span className="fw-bold">Total</span> : <span>{separarNumerosConDecimales(precioModificado * cantidadSeleccionada)}</span>
+                                    $ {separarNumerosConDecimales(precioModificado * cantidadSeleccionada)}
 
                                 </p>
 
@@ -146,7 +144,7 @@ export const TicketDeVenta = () => {
 
 
     return (
-        <Container fluid className={`p-0 position-absolute lh-1 w-100 ${styles.ticket} `}>
+        <Container fluid className={` p-0 position-absolute lh-1 w-100 ${styles.ticket} `}>
 
 
             <Row className="justify-content-center align-items-center text-center">
@@ -170,7 +168,7 @@ export const TicketDeVenta = () => {
             </Row>
 
 
-            <Row  className={`${styles.mensajeInformativo} pt-2 `}>
+            <Row className={`${styles.mensajeInformativo} pt-2 `}>
                 <h4 className="text-center ">
                     *Comprobante no válido como factura.
                 </h4>
