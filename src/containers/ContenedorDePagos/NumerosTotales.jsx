@@ -11,22 +11,19 @@ import { useCalcularCambio } from "@/hooks//useCalcularCambioTotal";
 const RestoTotal = ({ restoTotal }) => {
 
     return (
-        <>
-            <Row className={`align-items-center h-100`}>
+        <Row className="align-items-center h-100">
 
-                <Col>
-                    <p className={`${styles.restoTotal}  my-2 overflow-hidden`}>
-                        $ {separarNumerosConDecimales(restoTotal)}
-                    </p>
+            <Col>
+                <p className={`${styles.restoTotal} text-truncate my-2 `}>
+                    $ {separarNumerosConDecimales(restoTotal)}
+                </p>
 
-                    <p className={styles.textoDeAyuda} >
-                        Por favor, seleccione un método de pago.
-                    </p>
-                </Col>
+                <p className={`${styles.textoDeAyuda} text-wrap`} >
+                    Por favor, seleccione un método de pago.
+                </p>
+            </Col>
 
-            </Row>
-
-        </>
+        </Row>
     );
 
 };
@@ -42,14 +39,15 @@ const Totales = ({ cambioTotal, restoTotal }) => {
     return (
         <>
             <Row>
-                <Col className={`${styles.cambioTotalContainer} my-3 fs-4 d-flex justify-content-between`}>
-                    <div className="d-flex text-start overflow-hidden align-items-center ">
+                <Col className="flex-wrap  my-3 fs-4 d-flex justify-content-between">
+
+                    <div className="d-flex text-start overflow-hidden  align-items-center ">
 
                         <p className={`${styles.restantes} me-1 `}>
                             Restantes
                         </p>
 
-                        <p className={`${styles.restoNumero} `}>
+                        <p className={`${styles.restoNumero} text-truncate`}>
                             $ {separarNumerosConDecimales(restoTotal)}
                         </p>
 
@@ -59,7 +57,7 @@ const Totales = ({ cambioTotal, restoTotal }) => {
                         <p className="me-1 text-start">
                             Cambio
                         </p>
-                        <p className={styles.cambioNumero} >
+                        <p className="text-truncate">
                             $ {separarNumerosConDecimales(cambioTotal)}
                         </p>
                     </div>
@@ -67,7 +65,7 @@ const Totales = ({ cambioTotal, restoTotal }) => {
             </Row>
 
             <Row>
-                <p className={`${styles.adeudoTotal} text-start  my-4 `}>
+                <p className={`${styles.adeudoTotal} text-start  my-4 text-truncate `}>
                     Adeudo total  $ {separarNumerosConDecimales(calculoConTarifa)}
                 </p>
             </Row>
@@ -88,17 +86,15 @@ export const NumerosTotales = React.memo(() => {
     const { metodosDePago } = pagoActual
 
     return (
-        <>
-            <Container className={`${styles.numerosTotales}`} fluid>
-                {
-                    metodosDePago.length == 0 ?
-                        <RestoTotal restoTotal={restoTotal} /> :
-                        <Totales
-                            restoTotal={restoTotal}
-                            cambioTotal={cambioTotal} />
-                }
-            </Container>
+        <Container className={`${styles.numerosTotales}`} fluid>
+            {
+                metodosDePago.length == 0 ?
+                    <RestoTotal restoTotal={restoTotal} /> :
+                    <Totales
+                        restoTotal={restoTotal}
+                        cambioTotal={cambioTotal} />
+            }
+        </Container>
 
-        </>
     )
 })

@@ -1,9 +1,7 @@
-import { } from "@/Components/NavegacionHeader"
 import { Col, Container, Row } from "react-bootstrap"
 import React, { } from "react"
 import styles from "@/styles/ContenedorDePagos.module.css"
 import { SeccionResto } from "./SeccionResto"
-import { BotonVolver } from "@/components//BotonVolver"
 import { AlternarMetodosDePagos } from "./alternarMetodosDePagos"
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider"
 import { ValidacionDePagos } from "./ValidacionDePagos"
@@ -14,11 +12,20 @@ const ContenedorDePagoHeader = React.memo(({ alternarMostrar }) => {
     return (
         <section id="navegacion-pagos"
             className={` ${styles.navegacionPagos} overflow-hidden px-1 `}>
-            <Row className="text-center"
-            >
-                <Col className="d-flex p-0  justify-content-start">
 
-                    <BotonVolver alternarMostrar={alternarMostrar} />
+            <Row className="text-center">
+
+                <Col className="d-flex p-0  justify-content-start">
+                    <div
+                        style={{ background: "#D3D3D3", cursor: "pointer" }}
+                        className="fs-5 text-white fw-bolder py-4 py-md-0 my-md-2 px-3  mx-md-5 d-flex align-items-center justify-content-center flex-grow-1 flex-md-grow-0  "
+
+                        onClick={alternarMostrar}>
+                        <i className="fa-solid me-1 fa-angles-left"></i>
+                        <span>
+                            Volver
+                        </span>
+                    </div>
                 </Col>
 
                 <Col className="align-items-center d-none d-md-flex  justify-content-center">
@@ -30,6 +37,7 @@ const ContenedorDePagoHeader = React.memo(({ alternarMostrar }) => {
                 <ValidacionDePagos cerrarTodo={alternarMostrar} />
 
             </Row>
+
         </section>
     )
 })
@@ -42,20 +50,19 @@ const ContenedorDePagoBody = () => {
         <section id="seccion-pagos-principal"
             className={`h-100  px-2 ${styles.lineaPunteada}  `}>
 
-            <Row
-                xs={{ order: "2" }}
-                className="px-1 d-flex flex-column flex-md-row  h-100">
+            <Row className="px-1 d-flex flex-column flex-md-row  h-100">
 
                 <Col
-                    className={` scrollHidden pt-0 pb-3  h-100 ${styles.contendorMetodosDePagoAgregados}  `}
+                    className={` scrollHidden pt-0 pb-3 ${styles.contendorMetodosDePagoAgregados}  `}
                     xs={{ order: "2" }}
                     md={{ order: "0" }}>
                     <AlternarMetodosDePagos />
+
                 </Col>
 
                 <Col
                     md={7}
-                    className={` p-0 ${styles.seccionResto}`}>
+                    className={` p-0 ${styles.seccionResto} h-auto`}>
                     <SeccionResto />
                 </Col>
 

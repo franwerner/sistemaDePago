@@ -1,5 +1,11 @@
+:root {
+    --lineaPunteada: 2px dotted #ccc;
+    --colorGris: "#555"
+}
+
+
 .navegacionPagos {
-    border: 2px dotted #ccc;
+    border: var(--lineaPunteada);
     border-bottom: 0;
 }
 
@@ -21,86 +27,60 @@
 
 
 .textPagos {
-    color: #555;
+    color: var(--colorGris);
     font-weight: 600;
 }
 
 .lineaPunteada {
-    border: 2px dotted #ccc;
+    border: var(--lineaPunteada);
 }
 
 .seccionResto {
-    border-left: 2px dotted #ccc;
+    border-left: var(--lineaPunteada);
     height: 100%;
 }
 
 .textoDeAyuda {
-    color: #555;
+    color: var(--colorGris);
 }
 
 
 .restoTotal {
-    color: rgb(110, 200, 155);
+    color: #6EC89B;
     font-weight: 600;
     font-size: 55px;
     text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.6);
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 
 .textDeAyuda {
-    color: #555;
-    word-break: break-all;
+    color: var(--colorGris);
 }
 
-
-
-
 .restantes {
-    color: "#555";
+    color: var(--colorGris);
 }
 
 .restoNumero {
     color: #6EC89B;
     font-weight: 600;
     text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.6);
-    white-space: nowrap;
-    max-width: 100vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .adeudoTotal {
-    color: "#555";
+    color: var(--colorGris);
     font-size: 18px;
-    max-width: 100vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .cambio {
-    color: "#555";
+    color: var(--colorGris);
     font-weight: 500;
-}
-
-.cambioNumero {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-
-}
-
-.cambioTotalContainer {
-    flex-wrap: wrap;
 }
 
 .numerosTotales {
     height: 200px;
-    border-bottom: 2px dotted #ccc;
+    border-bottom: var(--lineaPunteada);
 }
-
 
 
 .botonesTactilesResize {
@@ -110,7 +90,6 @@
     height: 0%;
     animation: expandWidth 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
-
 
 .botonesTactilesResize .contendorDeBotonesTactiles {
     animation: animationCalculadora 0.8s ease-in backwards;
@@ -155,7 +134,6 @@
 
 @media (max-width : 766px) {
     .seccionResto {
-        height: auto;
         border: 0;
     }
 
@@ -169,7 +147,7 @@
 
     .navegacionPagos {
         border-top: 0px;
-        border-bottom: 2px dotted #ccc;
+        border-bottom: var(--lineaPunteada);
 
     }
 }

@@ -12,7 +12,7 @@ const Metodo = ({ nombre, porcentaje, restoParaValidar, indice }) => {
     return (
 
         <tr>
-            <td className="">
+            <td >
                 {indice}
             </td>
             <td>
@@ -37,11 +37,11 @@ const Total = () => {
     const { totalAValidar } = useCalcularTotalAValidar()
 
     return (
-        <>
-            <div className={`${styles.total} text-end me-2  fs-4`}>
+
+            <div className={`${styles.total} text-end me-2 overflow-hidden text-nowrap mw-100  fs-4`}>
                 ${separarNumerosConDecimales(totalAValidar)}
             </div>
-        </>
+
     )
 }
 

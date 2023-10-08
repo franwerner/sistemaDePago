@@ -11,10 +11,6 @@
     padding-bottom: 10px;
 }
 
-.pagoResto {
-    text-overflow: ellipsis;
-    max-width: min-content;
-}
 
 .metodoAgregadoSeleccionado {
     background-color: #f3f3f3;

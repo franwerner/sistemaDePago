@@ -10,7 +10,7 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
 
     return (
         <>
-            <Navbar expand="md" className={`${styles.navegacionHeader}`}>
+            <Navbar expand="md" className={`overflow-hidden ${styles.navegacionHeader}`}>
                 <Container fluid>
                     <Navbar.Brand className="w-50 d-flex text-white">
                         Logo

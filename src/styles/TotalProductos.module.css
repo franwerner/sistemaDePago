@@ -1,15 +1,5 @@
-.preciosTotales {
-    overflow: hidden;
-    white-space: nowrap;
-    color: #555555;
-    font-weight: 600;
-
-}
-
 .precio {
-    width: min-content;
-    text-overflow: ellipsis;
-    position: relative;
+    color: #555555;
 }
 
 .precio::before {

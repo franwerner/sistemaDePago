@@ -1,73 +1,11 @@
-.contenedorCobroBody {
-    overflow-y: auto;
-   max-height: 100%;
-   transition: 0.1s all;
-  
-}
-
-
-.contenedorSinProductos {
-    height: 100%;
-}
-
 .contenedorCobroPrincipal {
     height: 50vh;
     border-bottom: 4px solid  rgb(110, 200, 155);
 }
 
-/*Carrito de compras vacio*/
-
-.carrito {
-    font-size: 140px;
-    color: #DDD;
-    opacity: 60%;
-}
-
-.textoCarrito {
-    color: #55555560;
-    z-index: 1;
-    position: absolute;
-    top: 25%;
-
-}
-
-
-/*Botones Header*/
-.botonesCrud div {
-    display: flex;
-    justify-content: center;
-}
-
-.botonesCrud span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: #7D80AB;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #555;
-    font-size: 20px;
-}
-
-
-.botonesCrud span:hover {
-    background-color: white;
-    color: #7D80AB;
-    cursor: pointer;
-}
-
-.seleccionNombre {
-    min-width: 100px;
-}
 
 /*Productos*/
 .productosACobrar {
-    position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    overflow-y: none;
     cursor: pointer;
     font-size: 14px;
 }
@@ -94,12 +32,6 @@
 
 .precioTotalDelProducto {
     color: #555555;
-}
-
-.precioTotalDelProducto {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 

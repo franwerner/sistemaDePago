@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import styles from "@/styles/PlantillaCobro.module.css"
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
 import { Col, Container, Row } from "react-bootstrap"
@@ -17,13 +17,11 @@ const ContenidoDelProductoArriba = React.memo(({ producto }) => {
     const porcentaje = useCalculadoraPorcenje(nuevoPrecio)
 
     return (
-        <>
 
-            <Row className="" >
+            <Row >
                 <Col className={`me-1 fw-bolder ${styles.nombreDelProducto}`}>{nombre}</Col>
-                <Col className={`fw-bolder text-end  ${styles.precioTotalDelProducto}`}>{`$ ${separarNumerosConDecimales(porcentaje + nuevoPrecio)}`}</Col>
+                <Col className={`fw-bolder text-end  ${styles.precioTotalDelProducto} flex-nowrap text-truncate`}>{`$ ${separarNumerosConDecimales(porcentaje + nuevoPrecio)}`}</Col>
             </Row>
-        </>
     )
 
 })
@@ -78,19 +76,17 @@ const Producto = React.memo(({ seleccionarElemento, producto, background }) => {
 
 
     return (
-        <>
-            <Row
-                tabIndex={0}
-                onClick={onClick}
-                className={`producto-a-cobrar ${styles.contenedorDelProducto}`}
-                ref={referencia}
-            >
-                <Container fluid className={`${background} my-1 ${styles.productosACobrar} `}>
-                    <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
-                    <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
-                </Container>
-            </Row>
-        </>
+        <Row
+            tabIndex={0}
+            onClick={onClick}
+            className={`producto-a-cobrar ${styles.contenedorDelProducto}`}
+            ref={referencia}
+        >
+            <Container fluid className={`${background} my-1 ${styles.productosACobrar} position-relative text-nowrap overflow-hidden`}>
+                <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
+                <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
+            </Container>
+        </Row>
     )
 })
 

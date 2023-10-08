@@ -44,9 +44,9 @@ export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, sel
                     </p>
                 </Col>
 
-                <Col className=" d-flex w-100 my-1">
+                <Col className=" d-flex  my-1">
 
-                    <p className={`w-100 p-0 my-0 overflow-hidden ${styles.pagoResto}`}>
+                    <p className=" p-0 my-0 text-truncate ">
                         {separarNumerosConDecimales(resto)}
                     </p>
 

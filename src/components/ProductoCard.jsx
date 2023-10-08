@@ -13,25 +13,24 @@ const Precio = React.memo(({ precio }) => {
 
     const separacion = separarNumerosConDecimales(resultado)
     return (
-        <><div className={` text-white d-flex justify-content-end ${styles.productoPrecio}`}>
+        <div className={` text-white d-flex justify-content-end z-1 ${styles.productoPrecio}`}>
             <OverlayDefault
                 overlayCustom={separacion}
                 position="top" >
 
-                <p className="rounded-1 m-1 px-1">
+                <p className="rounded-1 text-truncate  m-1 px-1">
                     $ {separacion}
                 </p>
 
             </OverlayDefault>
         </div>
-        </>
+
     )
 
 })
 
 
 export const ProductoCard = React.memo(({ producto }) => {
-
 
     const { precio, nombre } = producto
 
@@ -44,7 +43,7 @@ export const ProductoCard = React.memo(({ producto }) => {
                 <i className="fa-solid fa-camera"></i>
             </div>
 
-            <p className={`text-center overflow-hidden position-absolute w-100 ${styles.productoNombre}`} >
+            <p className={`text-center overflow-hidden position-absolute text-break w-100 ${styles.productoNombre}`} >
                 {nombre}
             </p>
 

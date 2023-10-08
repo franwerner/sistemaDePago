@@ -1,0 +1,12 @@
+.carrito {
+    font-size: 140px;
+    color: #DDD;
+    opacity: 60%;
+}
+
+.textoCarrito {
+    color: #55555560;
+    z-index: 1;
+    top: 25%;
+
+}

@@ -12,9 +12,4 @@
 .total {
     color: #6EC89B;
     font-weight: 600;
-    white-space: nowrap;
-    max-width: 100vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
 }

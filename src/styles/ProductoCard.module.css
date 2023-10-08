@@ -1,6 +1,5 @@
 .productoNombre {
     font-size: 12px;
-    word-wrap: break-word;
     color: #555;
     margin: 0;
     font-weight: 500;
@@ -14,11 +13,6 @@
 .productoPrecio p {
     background-color: #8689b6;
     font-size: 12px;
-    width: max-content;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    z-index: 2;
 }
 
 

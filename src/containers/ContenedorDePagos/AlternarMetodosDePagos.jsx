@@ -1,9 +1,48 @@
+import { ContenedorDeBotonesTactiles } from "@/components//ContenedorDeBotonesTactiles"
 import { ContenedorMetodosDePagosAgregados } from "@/components//ContenedorMetodosDePagosAgregados"
+import { IconCalculator } from "@/components//IconCalculator"
 import { IconClone } from "@/components//IconClone"
 import { ListaDeMetodosDePagos } from "@/components//ListaDeMetodosDePagos"
+import { restoDelPagoContext } from "@/context//Contextos"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { useSeleccionarElemento } from "@/hooks//useSeleccionProducto"
+import styles from "@/styles/ContenedorDePagos.module.css"
+import { useContext } from "react"
 
+const BotonesTactilesResponsive = () => {
+
+    const { mostrar, alternarMostrar } = useEventoMostrar()
+
+    const { modificarResto, pagoActual } = useContext(restoDelPagoContext)
+
+    const { ultimoSeleccionado = { resto: 0 } } = pagoActual
+
+
+    return (
+        <>
+
+            {
+                mostrar &&
+                <span
+                    className={`${styles.botonesTactilesResize} position-absolute  d-flex justify-content-center  d-md-none`}>
+                    <div className={`${styles.contendorDeBotonesTactiles}`}>
+                        <ContenedorDeBotonesTactiles
+                            modificadorDefault={modificarResto}
+                            numeroDefault={ultimoSeleccionado.resto} />
+                    </div>
+                </span>
+
+            }
+
+
+            <IconCalculator
+                mostrar={mostrar}
+                alternarMostrar={alternarMostrar} />
+
+        </>
+    )
+
+}
 
 export const AlternarMetodosDePagos = () => {
 
@@ -14,23 +53,34 @@ export const AlternarMetodosDePagos = () => {
     return (
         <section id="metodos-de-pagos">
 
-            <span className="d-flex justify-content-end my-2">
+            <div className="d-flex justify-content-between   align-items-center my-2">
 
-                <IconClone
-                    mostrar={mostrar}
-                    alternarMostrar={alternarMostrar} />
+                <span className=" d-md-none ">
+                    <BotonesTactilesResponsive />
+                </span>
 
-            </span>
 
-            <span className={`${mostrar ? "d-block" : "d-none"}`}>
+                <span className=" flex-grow-1 text-end">
+                    <IconClone
+                        mostrar={mostrar}
+                        alternarMostrar={alternarMostrar} />
+                </span>
+
+            </div>
+
+            {
+                mostrar &&
                 <ContenedorMetodosDePagosAgregados
                     seleccionarElemento={seleccionarElemento}
                     seleccion={seleccion} />
-            </span>
+            }
 
-            <span className={` ${mostrar ? "d-none" : "d-block"}`}>
+            {
+                !mostrar &&
                 <ListaDeMetodosDePagos />
-            </span>
+            }
+
+
 
         </section>
 
