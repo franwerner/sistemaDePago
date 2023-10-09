@@ -4,7 +4,6 @@ export const diferenciarCeros = (cero) => {
         return true
     }
     else {
-
         return false
     }
 }

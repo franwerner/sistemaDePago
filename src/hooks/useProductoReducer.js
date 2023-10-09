@@ -88,10 +88,10 @@ export const productoReducer = () => {
 
     const [listaProducto, dispatch] = useReducer(reducer, [])
 
-    const agregarProducto = (producto) => {
+    const agregarProducto = useCallback((producto) => {
 
         dispatch({ type: "AGREGAR", producto })
-    }
+    }, [])
 
     const eliminarProducto = useCallback((producto) => {
 

@@ -93,9 +93,7 @@ export const switchModificacionMetodosDePago = (state, pago) => {
 
         const numeroPositivo = Math.abs(numero)
 
-        const restoEsNegativo = verificarSiEsNegativo(resto) == "Negativo"
-
-        return restoEsNegativo ? -(numeroPositivo) : numeroPositivo
+        return verificarSiEsNegativo(resto) ? -(numeroPositivo) : numeroPositivo
 
     }
 
@@ -115,7 +113,7 @@ export const switchModificacionMetodosDePago = (state, pago) => {
 
         case "-":
 
-            resultadoFinal = verificarSiEsNegativo(resto) == "Negativo" ? resto : (-resto)
+            resultadoFinal = verificarSiEsNegativo(resto) ? resto : (-resto)
 
             break;
 

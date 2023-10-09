@@ -1,5 +1,5 @@
 
-import { Col, Container, Row } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import styles from "@/styles/PlantillaCobro.module.css"
 import { useSeleccionarElemento } from "@/hooks//useSeleccionProducto"
 import React, { useContext, useEffect, useRef } from "react"
@@ -41,6 +41,7 @@ export const PlantillaCobro = React.memo(() => {
                 fluid
                 ref={referido}
                 className={` scrollBarPersonalizada ${styles.contenedorCobroPrincipal}`} >
+
                 {listaProducto.length == 0 ? <CarritoDeProductoVacio /> :
 
                     <>

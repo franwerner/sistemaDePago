@@ -1,30 +1,19 @@
-import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
-import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje"
 import React from "react"
 import { OverlayDefault } from "./OverlayDefault"
 import styles from "@/styles/ProductoCard.module.css"
+import { CalcularPorcentajeMemoizado } from "../hooks/useCalcularPorcentaje"
 
-const CalculaPorcentaje = React.memo(({ precio }) => {
-
-    const porcentaje = useCalculadoraPorcenje(precio)
-
-    const resultado = porcentaje + precio
-
-    const separacion = separarNumerosConDecimales(resultado)
-
-    return separacion
-})
 
 const Precio = React.memo(({ precio }) => {
 
     return (
         <div className={` text-white d-flex justify-content-end z-1 ${styles.productoPrecio}`}>
             <OverlayDefault
-                overlayCustom={<CalculaPorcentaje precio={precio} />}
+                overlayCustom={<CalcularPorcentajeMemoizado n1={precio} n2={precio} />}
                 position="top" >
 
                 <p className="rounded-1 text-truncate  m-1 px-1">
-                    $ <CalculaPorcentaje precio={precio} />
+                    $ <CalcularPorcentajeMemoizado n1={precio} n2={precio} />
                 </p>
 
             </OverlayDefault>

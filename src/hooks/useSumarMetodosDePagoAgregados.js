@@ -4,9 +4,7 @@ import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
 
 export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
 
-    const { precioFinal } = usePrecioFinalDeLosProductos()
-
-    const { calculoConTarifa } = precioFinal
+    const { calculoConTarifa  } = usePrecioFinalDeLosProductos()
 
     const dependeciaString = JSON.stringify(pagoEncontrado == undefined ? "" : pagoEncontrado.metodosDePago)
 

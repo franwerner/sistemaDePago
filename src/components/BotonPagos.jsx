@@ -1,23 +1,12 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import { usePrecioFinalDeLosProductos } from "../hooks/usePrecioFinalDeLosProductos";
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales";
+import { PrecioFinalMemoizado } from "../hooks/usePrecioFinalDeLosProductos";
 
 
 
 export const BotonPagos = React.memo(({ alternarMostrarContenedor }) => {
 
 
-    const Total = () => {
-
-        const { precioFinal } = usePrecioFinalDeLosProductos()
-
-        const { calculoConTarifa } = precioFinal
-
-        return (
-            separarNumerosConDecimales(calculoConTarifa)
-        )
-    }
 
     return (
         <Col
@@ -29,7 +18,7 @@ export const BotonPagos = React.memo(({ alternarMostrarContenedor }) => {
                 Pagos
             </p>
             <p style={{ fontSize: "15px" }} className="m-0 ">
-                $ <Total />
+                $ <PrecioFinalMemoizado/>
             </p>
 
         </Col>

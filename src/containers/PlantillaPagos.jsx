@@ -9,7 +9,7 @@ import { BotonPagos } from "../components/BotonPagos"
 import { BotonProductoYRevision } from "../components/BotonProductoYRevision"
 
 
-const PlantillaPagosHeader = React.memo(() => {
+const PlantillaPagosHeader = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
@@ -40,9 +40,9 @@ const PlantillaPagosHeader = React.memo(() => {
             </Row>
         </Container>
     );
-});
+}
 
-const PlantillaPagosBody = React.memo(({ alternarMostrarContenedor, alternarMostrar }) => {
+const PlantillaPagosBody = ({ alternarMostrarContenedor, alternarMostrar }) => {
     return (
         <Container
             fluid
@@ -79,7 +79,7 @@ const PlantillaPagosBody = React.memo(({ alternarMostrarContenedor, alternarMost
         </Container>
 
     );
-});
+}
 
 
 export const PlantillaPagos = React.memo(({ alternarMostrarContenedor, alternarMostrar }) => {

@@ -25,8 +25,6 @@ const SeccionesRestantes = ({ seccionActual, secciones, elegirSeccion }) => {
 
 const SeccionHome = ({ seccion, elegirSeccion }) => {
 
-
-
     const onClick = () => {
         elegirSeccion("Home")
     }

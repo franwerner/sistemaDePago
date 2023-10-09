@@ -8,9 +8,9 @@ import { Row } from "react-bootstrap"
 
 
 const ObtenerPrecioTotal = () => {
-    const { precioFinal } = usePrecioFinalDeLosProductos()
+    const { calculoConTarifa } = usePrecioFinalDeLosProductos()
 
-    return separarNumerosConDecimales(precioFinal.calculoConTarifa)
+    return separarNumerosConDecimales(calculoConTarifa)
 }
 
 

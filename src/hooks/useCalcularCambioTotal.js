@@ -1,6 +1,7 @@
 import { useContext, useMemo } from "react";
 import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
 import { restoDelPagoContext } from "@/context/Contextos";
+import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales";
 
 export const useCalcularCambio = () => {
 
@@ -8,11 +9,9 @@ export const useCalcularCambio = () => {
 
     const dependeciaString = JSON.stringify(pagoActual.metodosDePago)
 
-    const { precioFinal } = usePrecioFinalDeLosProductos()
+    const { calculoConTarifa } = usePrecioFinalDeLosProductos()
 
-    const { calculoConTarifa } = precioFinal
-
-    return useMemo(() => {
+    const cambioTotal = useMemo(() => {
 
         if (!pagoActual) return 0
 
@@ -24,4 +23,15 @@ export const useCalcularCambio = () => {
 
     }, [dependeciaString])
 
+    return {
+        cambioTotal
+    }
+
+}
+
+export const CambioTotalMemoizado = () => {
+
+    const { cambioTotal } = useCalcularCambio()
+
+    return separarNumerosConDecimales(cambioTotal)
 }

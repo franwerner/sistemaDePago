@@ -1,8 +1,7 @@
-
 import { useForm } from "@/hooks/useForm"
 import { useComprobarNumeros } from "@/hooks/useComprobarNumeros.js"
-import { Modal, Button, Form, FloatingLabel } from "react-bootstrap"
-import React, { useContext, useState } from "react"
+import { Modal, Button, Form, FloatingLabel, Container, Col, Row } from "react-bootstrap"
+import React, { useContext } from "react"
 import { productoReducerContext } from "@/context/Contextos"
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
 import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje"
@@ -14,21 +13,25 @@ import { verificarSiEsNegativo } from "../helper/verificarSiEsNegativo"
 const EdicionHeader = ({ validarNumero, total, nombre }) => {
 
     return (
-        <>
-            <div style={{ overflowWrap: "anywhere", minHeight: "150px" }}>
-                <p style={{ color: "#555" }}>
-                    {nombre}
-                </p>
 
-                <p className="fs-5 fw-light ">
-                    {
-                        validarNumero ? `Precio : ${separarNumerosConDecimales(total)}` : "No es un numero valido"
-                    }
-                </p>
+        <Container fluid style={{ minHeight: "150px" }}>
+            <Row >
+                <Col xs={"auto"} className="w-100">
+                    <p className="text-break" style={{ color: "#555" }}>
+                        {nombre}asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
+                    </p>
+                </Col>
 
-            </div>
+                <Col>
+                    <p className="fs-5  text-break fw-light ">
+                        {
+                            validarNumero ? `Precio : $ ${separarNumerosConDecimales(total + 1231231231235454545454545454545454545454545)} ` : "No es un numero valido"
+                        }
+                    </p>
 
-        </>
+                </Col>
+            </Row>
+        </Container>
     )
 
 }
@@ -38,8 +41,6 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
     const { tarifaActual } = useContext(TarifaContex)
 
     const { editarProducto } = useContext(productoReducerContext)
-
-    const [alternarPrecio, setAltenarPrecio] = useState()
 
     const { precioModificado, nombre } = seleccion
 
@@ -54,14 +55,6 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
     const { precioFormSinTarifa, precioFormConTarifa } = form
 
-    const onFocus = ({ target }) => {
-
-        const resultado = target.name == "precioFormSinTarifa" ? false : true
-
-        setAltenarPrecio(resultado)
-
-    }
-
 
     const onChange = ({ target }) => {
 
@@ -69,9 +62,9 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
 
         const targetValue = parseFloat(target.value)
 
-        if (verificarSiEsNegativo(targetValue) == "Negativo") return
+        if (verificarSiEsNegativo(targetValue)) return
 
-        if (alternarPrecio) {
+        if (target.name == "precioFormConTarifa") {
             updatedForm.precioFormConTarifa = targetValue;
             updatedForm.precioFormSinTarifa = parseFloat((targetValue / (1 + tarifaActual.porcentaje / 100)).toFixed(2));
         } else {
@@ -106,77 +99,66 @@ export const EdicionPreciosProductos = React.memo(({ alternarMostrar, mostrar, s
     }
 
     return (
-        <>
+        <Modal
+            onHide={alternarMostrar}
+            show={true} >
+            <Modal.Header>
+                <Modal.Title  >
+                    <EdicionHeader
+                        validarNumero={validarNumero}
+                        total={precioFormConTarifa}
+                        nombre={nombre} />
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
 
+                <Form
+                    onSubmit={onSubmit}
+                    className="d-flex justify-content-center">
+                    <FloatingLabel
+                        controlId="floatingPrecio"
+                        className="w-100 me-1"
+                        label="Precio sin tarifa">
 
-            <Modal
-                onHide={alternarMostrar}
-                show={mostrar} >
-                <Modal.Header>
-                    <Modal.Title  >
-                        <EdicionHeader
-                            validarNumero={validarNumero}
-                            total={precioFormConTarifa}
-                            nombre={nombre} />
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+                        <Form.Control
+                            type="number"
+                            onChange={onChange}
+                            name="precioFormSinTarifa"
+                            value={verificarSiValueEsUnNumero(precioFormSinTarifa)}
+                            placeholder="Ingrese el precio"
+                        >
+                        </Form.Control>
+                    </FloatingLabel>
 
-                    <Form
-                        onSubmit={onSubmit}
-                        className="d-flex justify-content-center">
-                        <FloatingLabel
-                            controlId="floatingPrecio"
-                            className="w-100 me-1"
-                            label="Precio sin tarifa">
+                    <FloatingLabel
+                        controlId="floatingPrecio"
+                        className="w-100 me-1"
+                        label="Precio con tarifa">
 
-                            <Form.Control
-                                type="number"
-                                onFocus={onFocus}
-                                onChange={onChange}
-                                name="precioFormSinTarifa"
-                                value={verificarSiValueEsUnNumero(precioFormSinTarifa)}
-                                placeholder="Ingrese el precio"
-                            >
-                            </Form.Control>
-                        </FloatingLabel>
+                        <Form.Control
+                            type="number"
+                            onChange={onChange}
+                            name="precioFormConTarifa"
+                            value={verificarSiValueEsUnNumero(precioFormConTarifa)}
+                            placeholder="Ingrese el precio"
+                        >
+                        </Form.Control>
+                    </FloatingLabel>
 
-                        <FloatingLabel
-                            controlId="floatingPrecio"
-                            className="w-100 me-1"
-                            label="Precio con tarifa">
+                </Form>
 
-                            <Form.Control
-                                type="number"
-                                onFocus={onFocus}
-                                onChange={onChange}
-                                name="precioFormConTarifa"
-                                value={verificarSiValueEsUnNumero(precioFormConTarifa)}
-                                placeholder="Ingrese el precio"
-                            >
-                            </Form.Control>
-                        </FloatingLabel>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button
+                    className="w-100"
+                    variant="outline-dark"
+                    disabled={!validarNumero}
+                    onClick={onClick}>
+                    Guardar cambios
+                </Button>
+            </Modal.Footer>
 
-                    </Form>
-
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button
-                        variant="outline-danger"
-                        onClick={alternarMostrar}>
-                        Cerrar
-                    </Button>
-                    <Button
-                        variant="primary"
-                        disabled={!validarNumero}
-                        onClick={onClick}>
-                        Guardar cambios
-                    </Button>
-                </Modal.Footer>
-
-            </Modal>
-
-        </>
+        </Modal>
     )
 })
 

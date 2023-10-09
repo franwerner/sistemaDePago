@@ -7,7 +7,8 @@ import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProduct
 import { Col, Container, Row } from "react-bootstrap";
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales";
 import { useCalcularCambio } from "@/hooks/useCalcularCambioTotal";
-import { agregarCeroEnLaHora } from "@/helper/agregarCeroEnLaHora";
+import { AgregarCeroEnNumeroDeUnDigito } from "../helper/AgregarCeroEnNumeroDeUnDigito";
+
 
 
 
@@ -33,11 +34,9 @@ const Totales = () => {
 
     const { totalAValidar } = useCalcularTotalAValidar()
 
-    const { precioFinal } = usePrecioFinalDeLosProductos()
+    const { calculoSinTarifa } = usePrecioFinalDeLosProductos()
 
-    const cambio = useCalcularCambio()
-
-    const { calculoSinTarifa } = precioFinal
+    const { cambioTotal } = useCalcularCambio()
 
     const porcentajeAplicado = ((totalAValidar - calculoSinTarifa) / calculoSinTarifa) * 100
 
@@ -49,7 +48,7 @@ const Totales = () => {
             <RowTotales nombre={"Base"} texto={`$ ${separarNumerosConDecimales(calculoSinTarifa)}`} />
             <RowTotales nombre={"P/A"} texto={`$ (${(porcentajeAplicado).toFixed(2)}%)`} />
             <RowTotales nombre={"Total"} texto={`$ ${separarNumerosConDecimales(totalAValidar)}`} />
-            <RowTotales nombre={"Cambio"} texto={`$ ${separarNumerosConDecimales(cambio)}`} />
+            <RowTotales nombre={"Cambio"} texto={`$ ${separarNumerosConDecimales(cambioTotal)}`} />
 
         </Container>
 
@@ -120,13 +119,13 @@ const InformacionAdicional = () => {
             <Row>
                 <Col className="mx-1 text-start">
 
-                    <p className="m-0 me-1  ">
-                        Fecha : {dia}/{mes}/{año}
+                    <p className="m-0  my-1  ">
+                        Fecha : {AgregarCeroEnNumeroDeUnDigito(dia)}/{AgregarCeroEnNumeroDeUnDigito(mes)}/{año}
                     </p>
 
 
-                    <p className="m-0  ">
-                        Hora : {agregarCeroEnLaHora(hora)}:{agregarCeroEnLaHora(minutos)}:{agregarCeroEnLaHora(segundos)}
+                    <p className="m-0  my-1 ">
+                        Hora : {AgregarCeroEnNumeroDeUnDigito(hora)}:{AgregarCeroEnNumeroDeUnDigito(minutos)}:{AgregarCeroEnNumeroDeUnDigito(segundos)}
                     </p>
 
                 </Col>

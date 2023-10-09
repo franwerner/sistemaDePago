@@ -3,25 +3,22 @@ import React, { useEffect, useRef } from "react"
 import styles from "@/styles/PlantillaCobro.module.css"
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
 import { Col, Container, Row } from "react-bootstrap"
-import { useCalculadoraPorcenje } from "@/hooks/useCalcularPorcentaje"
 import { useHotkeys } from "react-hotkeys-hook"
+import { CalcularPorcentajeMemoizado } from "@/hooks//useCalcularPorcentaje"
 
 
 const ContenidoDelProductoArriba = React.memo(({ producto }) => {
-
 
     const { nombre, cantidadSeleccionada, precioModificado } = producto
 
     const nuevoPrecio = precioModificado * cantidadSeleccionada
 
-    const porcentaje = useCalculadoraPorcenje(nuevoPrecio)
-
     return (
 
-            <Row >
-                <Col className={`me-1 fw-bolder ${styles.nombreDelProducto}`}>{nombre}</Col>
-                <Col className={`fw-bolder text-end  ${styles.precioTotalDelProducto} flex-nowrap text-truncate`}>{`$ ${separarNumerosConDecimales(porcentaje + nuevoPrecio)}`}</Col>
-            </Row>
+        <Row >
+            <Col className={`me-1 fw-bolder ${styles.nombreDelProducto}`}>{nombre}</Col>
+            <Col className={`fw-bolder text-end  ${styles.precioTotalDelProducto} flex-nowrap text-truncate`}>$ <CalcularPorcentajeMemoizado n1={nuevoPrecio} n2={nuevoPrecio} /></Col>
+        </Row>
     )
 
 })
@@ -30,32 +27,29 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
 
     const { cantidadSeleccionada, precioModificado, metodo } = producto
 
-    const porcentaje = useCalculadoraPorcenje(precioModificado)
-
-
 
     return (
-        <>
-            <Row className={`flex-nowrap  ${styles.infoDelProducto}`}>
+        <Row className={`flex-nowrap  ${styles.infoDelProducto}`}>
 
-                <Col className={`mx-1 d-flex justify-content-between `}>
+            <Col className={`mx-1 d-flex justify-content-between `}>
 
-                    <p className="fw-bolder text-secondary me-3">
-                        {separarNumerosConDecimales(cantidadSeleccionada)}
-                    </p>
+                <p className="fw-bolder text-secondary me-3">
+                    {separarNumerosConDecimales(cantidadSeleccionada)}
+                </p>
 
-                    <div className="d-flex">
-                        <p   >{metodo} en </p>
-                        <div className=" d-flex  mx-1 ">
-                            <p> {`$ ${separarNumerosConDecimales(precioModificado + porcentaje)}`}</p>
-                            <p>/{metodo}</p>
-                        </div>
+                <div className="d-flex">
+                    <p>{metodo} en </p>
+                    <div className=" d-flex  mx-1 ">
+                        <p>
+                            $ <CalcularPorcentajeMemoizado n1={precioModificado} n2={precioModificado} />
+                        </p>
+                        <p>/{metodo}</p>
                     </div>
+                </div>
 
-                </Col>
+            </Col>
 
-            </Row>
-        </>
+        </Row>
     )
 
 })
@@ -83,8 +77,8 @@ const Producto = React.memo(({ seleccionarElemento, producto, background }) => {
             ref={referencia}
         >
             <Container fluid className={`${background} my-1 ${styles.productosACobrar} position-relative text-nowrap overflow-hidden`}>
-                <ContenidoDelProductoArriba producto={producto}></ContenidoDelProductoArriba>
-                <ContenidoDelProductoAbajo producto={producto}></ContenidoDelProductoAbajo>
+                <ContenidoDelProductoArriba producto={producto} />
+                <ContenidoDelProductoAbajo producto={producto} />
             </Container>
         </Row>
     )
@@ -107,26 +101,21 @@ export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto, selec
     useHotkeys("backSpace,", handleShortcut, config)
 
 
-    return (
-        <>
+    const establecerBackground = (lista) => {
+        const background = seleccion.nombre == lista.nombre ? `${styles.contendorCobroProductoSeleccionado}` : `${styles.contenedorCobroProductoNoSeleccionado}`
+        return background
+    }
 
-            {listaProducto.map(lista => {
 
-                const background = seleccion.nombre == lista.nombre ? `${styles.contendorCobroProductoSeleccionado}` : `${styles.contenedorCobroProductoNoSeleccionado}`
+    return listaProducto.map(lista =>
 
-                return (
-                    <Producto
-                        key={lista.nombre}
-                        producto={lista}
-                        seleccionarElemento={seleccionarElemento}
-                        background={background}
-                    >
-                    </Producto>
-                )
-            }
-            )}
+        <Producto
+            key={lista.nombre}
+            producto={lista}
+            seleccionarElemento={seleccionarElemento}
+            background={establecerBackground(lista)}
+        />
 
-        </>
     )
 
 }

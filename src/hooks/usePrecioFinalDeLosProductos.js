@@ -2,6 +2,7 @@
 import { useMemo } from "react"
 import { useContext } from "react"
 import { TarifaContex, productoReducerContext } from "@/context/Contextos"
+import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
 
 export const usePrecioFinalDeLosProductos = () => {
 
@@ -25,6 +26,18 @@ export const usePrecioFinalDeLosProductos = () => {
 
 
    return {
-      precioFinal
+      ...precioFinal
    }
 }
+
+
+
+export const PrecioFinalMemoizado = () => {
+
+   const { calculoConTarifa } = usePrecioFinalDeLosProductos()
+
+   return separarNumerosConDecimales(calculoConTarifa)
+}
+
+
+

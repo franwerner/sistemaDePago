@@ -1,21 +1,21 @@
 
-import { useRestanteTotal } from "@/hooks//useRestanteTotal"
+import { RestanteTotalMemoizando } from "@/hooks//useRestanteTotal"
 import React, { useContext } from "react"
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/ContenedorDePagos.module.css"
-import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
-import { usePrecioFinalDeLosProductos } from "@/hooks//usePrecioFinalDeLosProductos";
+import { PrecioFinalMemoizado } from "@/hooks//usePrecioFinalDeLosProductos";
 import { restoDelPagoContext } from "@/context//Contextos";
-import { useCalcularCambio } from "@/hooks//useCalcularCambioTotal";
+import { CambioTotalMemoizado } from "@/hooks//useCalcularCambioTotal";
 
-const RestoTotal = ({ restoTotal }) => {
+
+const RestoTotal = () => {
 
     return (
         <Row className="align-items-center h-100">
 
             <Col>
                 <p className={`${styles.restoTotal} text-truncate my-2 `}>
-                    $ {separarNumerosConDecimales(restoTotal)}
+                    $ <RestanteTotalMemoizando />
                 </p>
 
                 <p className={`${styles.textoDeAyuda} text-wrap`} >
@@ -30,11 +30,7 @@ const RestoTotal = ({ restoTotal }) => {
 
 
 
-const Totales = ({ cambioTotal, restoTotal }) => {
-
-    const { precioFinal } = usePrecioFinalDeLosProductos()
-
-    const { calculoConTarifa } = precioFinal
+const Totales = React.memo(() => {
 
     return (
         <>
@@ -48,7 +44,7 @@ const Totales = ({ cambioTotal, restoTotal }) => {
                         </p>
 
                         <p className={`${styles.restoNumero} text-truncate`}>
-                            $ {separarNumerosConDecimales(restoTotal)}
+                            $ <RestanteTotalMemoizando />
                         </p>
 
                     </div>
@@ -58,7 +54,7 @@ const Totales = ({ cambioTotal, restoTotal }) => {
                             Cambio
                         </p>
                         <p className="text-truncate">
-                            $ {separarNumerosConDecimales(cambioTotal)}
+                            $ <CambioTotalMemoizado />
                         </p>
                     </div>
                 </Col>
@@ -66,22 +62,18 @@ const Totales = ({ cambioTotal, restoTotal }) => {
 
             <Row>
                 <p className={`${styles.adeudoTotal} text-start  my-4 text-truncate `}>
-                    Adeudo total  $ {separarNumerosConDecimales(calculoConTarifa)}
+                    Adeudo total  $ <PrecioFinalMemoizado />
                 </p>
             </Row>
         </>
     );
 
-};
+})
 
 
 export const NumerosTotales = React.memo(() => {
 
-    const { restoTotal } = useRestanteTotal()
-
     const { pagoActual } = useContext(restoDelPagoContext)
-
-    const cambioTotal = useCalcularCambio()
 
     const { metodosDePago } = pagoActual
 
@@ -89,10 +81,8 @@ export const NumerosTotales = React.memo(() => {
         <Container className={`${styles.numerosTotales}`} fluid>
             {
                 metodosDePago.length == 0 ?
-                    <RestoTotal restoTotal={restoTotal} /> :
-                    <Totales
-                        restoTotal={restoTotal}
-                        cambioTotal={cambioTotal} />
+                    <RestoTotal /> :
+                    <Totales />
             }
         </Container>
 
