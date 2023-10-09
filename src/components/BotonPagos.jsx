@@ -1,5 +1,5 @@
 import React from "react";
-import {Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { usePrecioFinalDeLosProductos } from "../hooks/usePrecioFinalDeLosProductos";
 import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales";
 
@@ -21,7 +21,7 @@ export const BotonPagos = React.memo(({ alternarMostrarContenedor }) => {
 
     return (
         <Col
-            style={{ background: "#D3D3D3", fontSize: "18px",cursor : "pointer"}}
+            style={{ background: "#D3D3D3", fontSize: "18px", cursor: "pointer" }}
             className="w-100 scrollHidden text-white text-center p-3 fw-bolder"
             onClick={alternarMostrarContenedor}>
 

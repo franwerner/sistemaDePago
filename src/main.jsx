@@ -4,13 +4,13 @@ import App from './App.jsx'
 import './index.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { InterfaceSistema } from './containers/InterfaceSistema.jsx'
+import { PuntoDeVenta } from './containers/PuntoDeVenta.jsx'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <InterfaceSistema></InterfaceSistema>,
+    element: <PuntoDeVenta></PuntoDeVenta>,
     errorElement: <h1>Ruta no existente</h1>
   },
 

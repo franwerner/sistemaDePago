@@ -34,88 +34,72 @@ export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, sel
 
 
     return (
-        <>
-            <Row onClick={onClickSeleccion}
-                className={` mt-1 border p-4 ${styles[background]} ${styles.metodoAgregado}`}>
+        <Row onClick={onClickSeleccion}
+            className={` mt-1 border p-4 ${styles[background]} ${styles.metodoAgregado}`}>
 
-                <Col className=" text-center  ">
-                    <p className="my-1">
-                        {nombre}
-                    </p>
-                </Col>
+            <Col className=" text-center  ">
+                <p className="my-1">
+                    {nombre}
+                </p>
+            </Col>
 
-                <Col className=" d-flex  my-1">
+            <Col className=" d-flex  my-1">
 
-                    <p className=" p-0 my-0 text-truncate ">
-                        {separarNumerosConDecimales(resto)}
-                    </p>
+                <p className=" p-0 my-0 text-truncate ">
+                    {separarNumerosConDecimales(resto)}
+                </p>
 
-                    <DropwDownDeAplicacionDePorcentaje
-                        functionEjecutable={onClick}
-                        porcentaje={porcentaje}
-                    >
-                    </DropwDownDeAplicacionDePorcentaje>
+                <DropwDownDeAplicacionDePorcentaje
+                    functionEjecutable={onClick}
+                    porcentaje={porcentaje}
+                >
+                </DropwDownDeAplicacionDePorcentaje>
 
-                </Col>
-                <Col className="text-center">
+            </Col>
+            <Col className="text-center">
 
-                    <i onClick={onClickRemove}
-                        className={`${styles.circleXMark} fa-solid my-1 fs-4 fa-circle-xmark`}>
-                    </i>
-                </Col>
-            </Row>
-        </>
+                <i onClick={onClickRemove}
+                    className={`${styles.circleXMark} fa-solid my-1 fs-4 fa-circle-xmark`}>
+                </i>
+            </Col>
+        </Row>
     )
 })
 
-const ListaDePagosAgregados = React.memo(({ eliminarResto, ultimoSeleccionado, metodosDePago, seleccionarElemento, aplicarPorcentaje }) => {
-
-    return (
-        <>
-            {metodosDePago.map(metodo => {
-                const background = ultimoSeleccionado.id == metodo.id ? "metodoAgregadoSeleccionado" : ""
-
-                return (
-                    <PagoAgregado
-                        key={metodo.id}
-                        aplicarPorcentaje={aplicarPorcentaje}
-                        eliminarResto={eliminarResto}
-                        background={background}
-                        seleccionarElemento={seleccionarElemento}
-                        metodo={metodo}
-                    />
-                )
-            }
-
-            )}
-
-        </>
-    )
-})
-
-
-export const ContenedorMetodosDePagosAgregados = () => {
+const ListaDePagosAgregados = () => {
 
     const { eliminarResto, pagoActual, seleccionarElemento, aplicarPorcentaje } = useContext(restoDelPagoContext)
 
     const { metodosDePago, ultimoSeleccionado } = pagoActual
 
-    return (
-        <Container
-            fluid>
-            {
-                metodosDePago.length == 0 ?
-                    <MetodosDePagosVacios />
-                    :
-                    <ListaDePagosAgregados
-                        eliminarResto={eliminarResto}
-                        metodosDePago={metodosDePago}
-                        ultimoSeleccionado={ultimoSeleccionado}
-                        seleccionarElemento={seleccionarElemento}
-                        aplicarPorcentaje={aplicarPorcentaje}
-                    />
-            }
+    const obtenerBackground = (metodo) => {
+        return ultimoSeleccionado.id == metodo.id ? "metodoAgregadoSeleccionado" : ""
+    }
 
+    return metodosDePago.map(metodo =>
+
+        <PagoAgregado
+            key={metodo.id}
+            aplicarPorcentaje={aplicarPorcentaje}
+            eliminarResto={eliminarResto}
+            background={obtenerBackground(metodo)}
+            seleccionarElemento={seleccionarElemento}
+            metodo={metodo}
+        />
+
+    )
+
+}
+
+
+export const ContenedorMetodosDePagosAgregados = () => {
+
+    const { pagoActual } = useContext(restoDelPagoContext)
+
+    return (
+        <Container fluid>
+
+            {pagoActual.metodosDePago.length == 0 ? <MetodosDePagosVacios /> : <ListaDePagosAgregados />}
 
         </Container>
 

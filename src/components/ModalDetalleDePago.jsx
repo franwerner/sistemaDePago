@@ -38,84 +38,86 @@ const Total = () => {
 
     return (
 
-            <div className={`${styles.total} text-end me-2 overflow-hidden text-nowrap mw-100  fs-4`}>
-                ${separarNumerosConDecimales(totalAValidar)}
-            </div>
+        <div className={`${styles.total} text-end me-2 overflow-hidden text-nowrap mw-100  fs-4`}>
+            ${separarNumerosConDecimales(totalAValidar)}
+        </div>
 
+    )
+}
+
+const TablaDetalleDePago = ({ metodosDePago }) => {
+
+    return (
+        <Table
+            striped
+            responsive>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Metodo</th>
+                    <th>Resto</th>
+                    <th>Porcentaje</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody >
+                {
+                    metodosDePago.map(({ nombre, porcentaje, restoParaValidar, id }, indice) => {
+
+                        return (
+                            <Metodo
+                                key={id}
+                                indice={indice + 1}
+                                nombre={nombre}
+                                porcentaje={porcentaje}
+                                restoParaValidar={restoParaValidar}
+                            />
+                        )
+                    }
+
+                    )
+                }
+            </tbody>
+
+        </Table>
     )
 }
 
 export const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, restablecerTodo }) => {
 
     return (
-        <>
-            <Modal
-                show={mostrar}
-                onHide={alternarMostrar}>
-                <Modal.Header closeButton>
+        <Modal
+            show={mostrar}
+            onHide={alternarMostrar}>
+            <Modal.Header closeButton>
 
-                    <Modal.Title >
-                        <span className={`fs-3 fw-bolder ${styles.titulo}`}>
-                            Validar pago
-                        </span>
-                    </Modal.Title>
+                <Modal.Title >
+                    <span className={`fs-3 fw-bolder ${styles.titulo}`}>
+                        Validar pago
+                    </span>
+                </Modal.Title>
 
-                </Modal.Header>
+            </Modal.Header>
 
-                <Modal.Body
-                >
+            <Modal.Body>
 
-                    <div
-                        className={`scrollBarPersonalizada ${styles.contenedorTabla}`}>
-                        <Table
-                            striped
-                            responsive>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Metodo</th>
-                                    <th>Resto</th>
-                                    <th>Porcentaje</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody >
-                                {
-                                    metodosDePago.map(({ nombre, porcentaje, restoParaValidar, id }, indice) => {
+                <div
+                    className={`scrollBarPersonalizada ${styles.contenedorTabla}`}>
+                    <TablaDetalleDePago metodosDePago={metodosDePago} />
+                </div>
 
-                                        return (
-                                            <Metodo
-                                                key={id}
-                                                indice={indice + 1}
-                                                nombre={nombre}
-                                                porcentaje={porcentaje}
-                                                restoParaValidar={restoParaValidar}
-                                            />
-                                        )
-                                    }
+                <Total />
 
-                                    )
-                                }
-                            </tbody>
+            </Modal.Body>
 
-                        </Table>
-                    </div>
+            <Modal.Footer>
 
-                    <Total />
+                <Button variant="outline-dark" className="w-100 fw-bolder fs-5" onClick={restablecerTodo}>
+                    Validar
+                </Button>
 
-
-
-                </Modal.Body>
-
-                <Modal.Footer>
-
-                    <Button variant="outline-dark" className="w-100 fw-bolder fs-5" onClick={restablecerTodo}>
-                        Validar
-                    </Button>
-
-                </Modal.Footer>
-            </Modal>
-        </>
+            </Modal.Footer>
+        </Modal>
     )
 }
 

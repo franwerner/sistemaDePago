@@ -28,10 +28,10 @@ export const PlantillaProductos = React.memo(({ alternarMostrar, alternarMostrar
 
 
                     <Row className=" d-md-none  align-items-end position-relative flex-grow-1 " >
-                            <BotonPagos alternarMostrarContenedor={alternarMostrarContenedor} />
-                            <BotonProductoYRevision
-                                alternarMostrar={alternarMostrar}
-                                mostrar={true} />
+                        <BotonPagos alternarMostrarContenedor={alternarMostrarContenedor} />
+                        <BotonProductoYRevision
+                            alternarMostrar={alternarMostrar}
+                            mostrar={true} />
                     </Row>
 
                 </Container>

@@ -1,9 +1,10 @@
 import { Nav } from "react-bootstrap"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import { OverlayDefault } from "./OverlayDefault"
+import React from "react"
 
 
-export const OverylayNavLock = () => {
+export const OverylayNavLock = React.memo(() => {
 
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
@@ -32,4 +33,4 @@ export const OverylayNavLock = () => {
         </OverlayDefault>
     )
 
-}
+})

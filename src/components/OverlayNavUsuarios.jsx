@@ -4,9 +4,10 @@ import { ContenedorDeUsuarios } from "../containers/ContenedorDeUsuarios/Contene
 import { OverlayDefault } from "./OverlayDefault"
 import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import { useEvitarRenderizados } from "../hooks/useEvitarRenderizados"
+import React from "react"
 
 
-export const OverlayNavUsuarios = () => {
+export const OverlayNavUsuarios = React.memo(() => {
 
     const overlayText = "Cambiar Usuario"
 
@@ -40,4 +41,4 @@ export const OverlayNavUsuarios = () => {
             )}
         </>
     )
-}
+})

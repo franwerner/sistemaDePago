@@ -1,30 +1,11 @@
 import { Form, InputGroup } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
-import { useContext, useEffect, useState } from "react"
-import { buscadorProductosContext } from "@/context/Contextos"
-
 
 export const BuscadorInput = () => {
 
     const { form, onSubmit, changeForm } = useForm({ "buscador": "" })
 
     const { buscador } = form
-
-    const { establecerPruductoARenderizar, productoARenderizar } = useContext(buscadorProductosContext)
-
-    const [timer, setTimer] = useState(null);
-
-    //ESTO PASARLO A UN CUSTOM HOOK MAS TARDE
-
-    useEffect(() => {
-
-        if (buscador == "") establecerPruductoARenderizar(false)
-        else {
-            establecerPruductoARenderizar(buscador)
-        }
-
-    }, [buscador]);
-
 
     return (
         <>

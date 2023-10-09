@@ -6,6 +6,4 @@ export const TarifaContex = createContext()
 
 export const listaUsuariosContext = createContext()
 
-export const buscadorProductosContext = createContext()
-
 export const restoDelPagoContext = createContext();

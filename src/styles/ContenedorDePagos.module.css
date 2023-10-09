@@ -3,12 +3,22 @@
     --colorGris: "#555"
 }
 
-
+/*Navegacion pagos*/
 .navegacionPagos {
     border: var(--lineaPunteada);
     border-bottom: 0;
 }
 
+.botonVolver {
+    cursor: pointer;
+    background-color: #D3D3D3;
+}
+
+.botonDetalle {
+    cursor: pointer;
+}
+
+/**/
 
 .contendorPagosPrincipal {
     background-color: #e2e2e2a9;
@@ -21,17 +31,12 @@
 }
 
 
-.contendorMetodosDePagoAgregados {
-    max-height: 100%;
-}
-
-
 .textPagos {
     color: var(--colorGris);
     font-weight: 600;
 }
 
-.lineaPunteada {
+.contenedorDePagoBody {
     border: var(--lineaPunteada);
 }
 
@@ -141,22 +146,25 @@
         font-size: 45px
     }
 
-    .contenedorPagos {
-        max-width: 90%;
-    }
-
+    .contenedorDePagoBody,
     .navegacionPagos {
-        border-top: 0px;
-        border-bottom: var(--lineaPunteada);
+        border: 0;
 
     }
-}
-
-
-@media (max-width : 768px) {
 
     .contenedorPagos {
         max-width: 100%;
+    }
+
+
+
+}
+
+@media (min-width : 768px) {
+
+    .botonDetalle,
+    .botonVolver {
+        border-radius: 4px;
     }
 
 }

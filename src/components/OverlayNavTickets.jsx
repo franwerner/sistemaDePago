@@ -1,7 +1,8 @@
 import { Nav } from "react-bootstrap"
 import { OverlayDefault } from "./OverlayDefault"
+import React from "react"
 
-export const OverlayNavTickets = () => {
+export const OverlayNavTickets = React.memo(() => {
 
     const overlayText = "Tickets"
 
@@ -16,4 +17,4 @@ export const OverlayNavTickets = () => {
             </OverlayDefault>
         </>
     )
-}
+})

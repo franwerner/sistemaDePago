@@ -37,7 +37,10 @@ export const PlantillaCobro = React.memo(() => {
 
     return (
         <section id="seccion-cobro" >
-            <Container fluid ref={referido} className={` scrollBarPersonalizada ${styles.contenedorCobroPrincipal}`} >
+            <Container
+                fluid
+                ref={referido}
+                className={` scrollBarPersonalizada ${styles.contenedorCobroPrincipal}`} >
                 {listaProducto.length == 0 ? <CarritoDeProductoVacio /> :
 
                     <>

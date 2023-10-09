@@ -1,11 +1,10 @@
-import { Button, Col, Container, Row } from "react-bootstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import styles from "@/styles/PlantillaPagos.module.css"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import React, { useCallback } from "react"
 import { useEvitarRenderizados } from "@/hooks/useEvitarRenderizados"
 import { BotonTarifas } from "@/components//BotonTarifas"
 import { ListadoDeTarifas } from "@/components/ListadoDeTarifas"
-import { BotonesContendorPrincipal } from "../components/BotonesContendorPrincipal"
 import { BotonPagos } from "../components/BotonPagos"
 import { BotonProductoYRevision } from "../components/BotonProductoYRevision"
 
@@ -22,27 +21,24 @@ const PlantillaPagosHeader = React.memo(() => {
     }, [])
 
     return (
-        <>
-            <Container fluid className="mx-0 " >
-                <Row className="border mb-2 " >
+        <Container fluid className="mx-0 " >
+            <Row className="border mb-2 " >
 
-                    <BotonTarifas
-                        alternarMostrar={onClick}>
-                    </BotonTarifas>
+                <BotonTarifas
+                    alternarMostrar={onClick}>
+                </BotonTarifas>
 
-                    {
-                        conteoRenderizados >= 1 &&
+                {
+                    conteoRenderizados >= 1 &&
 
-                        <ListadoDeTarifas
-                            alternarMostrar={alternarMostrar}
-                            mostrar={mostrar}
-                        />
-                    }
+                    <ListadoDeTarifas
+                        alternarMostrar={alternarMostrar}
+                        mostrar={mostrar}
+                    />
+                }
 
-                </Row>
-            </Container>
-
-        </>
+            </Row>
+        </Container>
     );
 });
 
@@ -73,13 +69,11 @@ const PlantillaPagosBody = React.memo(({ alternarMostrarContenedor, alternarMost
             </Row>
 
             <Row className="d-md-none h-100  ">
-                <Col className="d-flex justify-content-center align-items-end p-0 ">
-                    <BotonPagos
-                        alternarMostrarContenedor={alternarMostrarContenedor} />
-                    <BotonProductoYRevision
-                        alternarMostrar={alternarMostrar}
-                        mostrar={false} />
-                </Col>
+                <BotonPagos
+                    alternarMostrarContenedor={alternarMostrarContenedor} />
+                <BotonProductoYRevision
+                    alternarMostrar={alternarMostrar}
+                    mostrar={false} />
             </Row>
 
         </Container>

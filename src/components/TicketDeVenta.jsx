@@ -7,7 +7,7 @@ import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProduct
 import { Col, Container, Row } from "react-bootstrap";
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales";
 import { useCalcularCambio } from "@/hooks/useCalcularCambioTotal";
-import { agregarCeroEnLaHora } from "../helper/agregarCeroEnLaHora";
+import { agregarCeroEnLaHora } from "@/helper/agregarCeroEnLaHora";
 
 
 
@@ -141,10 +141,8 @@ const InformacionAdicional = () => {
 
 export const TicketDeVenta = () => {
 
-
-
     return (
-        <Container fluid className={` p-0 position-absolute lh-1 w-100 ${styles.ticket} `}>
+        <Container className={` p-2 position-absolute  lh-1 w-100 ${styles.ticket} `}>
 
 
             <Row className="justify-content-center align-items-center text-center">

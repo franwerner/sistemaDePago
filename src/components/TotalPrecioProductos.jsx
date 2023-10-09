@@ -7,16 +7,19 @@ import { Row } from "react-bootstrap"
 
 
 
-export const TotalPrecioProductos = React.memo(() => {
-
+const ObtenerPrecioTotal = () => {
     const { precioFinal } = usePrecioFinalDeLosProductos()
 
-    const { calculoConTarifa } = precioFinal
+    return separarNumerosConDecimales(precioFinal.calculoConTarifa)
+}
+
+
+export const TotalPrecioProductos = React.memo(() => {
 
     return (
         <Row className="mx-0 mt-3 overflow-hidden ">
             <p className={`${styles.precio} position-relative text-nowrap fw-semibold  d-inline-block  text-end text-truncate p-0 fs-5`}>
-                Total : $ {separarNumerosConDecimales(calculoConTarifa)}
+                Total : $ <ObtenerPrecioTotal />
             </p>
         </Row>
     )
