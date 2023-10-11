@@ -1,9 +1,6 @@
-
 import { establecerLargoMaximo } from "./establecerLargoMaximo"
 import { obtenerDecimales } from "./obtenerDecimales"
 import { verificarSiEsNegativo } from "./verificarSiEsNegativo"
-
-
 
 const borrarEnteros = ({ restoStringEntero, restoStringDecimales, verificarSiRestoEsNegativo }) => {
 
@@ -77,65 +74,56 @@ const sumarNumeros = ({ numero, verificarSiRestoEsNegativo, resto }) => {
 
 export const switchDefault = (resto, btn) => {
 
-    return () => {
-        const { comma, tipoDeButton } = btn
+    const { comma, tipoDeButton } = btn
 
-        const buscarSignoMas = tipoDeButton.indexOf("+")
+    const buscarSignoMas = tipoDeButton.indexOf("+")
 
-        const verificarSiEsNull = resto == null ? 0 : resto
+    const restoStringEntero = parseInt(resto).toString()
 
-        const restoStringEntero = parseInt(verificarSiEsNull).toString()
+    const restoStringDecimales = obtenerDecimales(resto).toString()
 
-        const restoStringDecimales = obtenerDecimales(verificarSiEsNull).toString()
+    const verificarSiRestoEsNegativo = (numero) => {
 
-        const verificarSiRestoEsNegativo = (numero) => {
+        const numeroPositivo = Math.abs(numero)
 
-            const numeroPositivo = Math.abs(numero)
+        return verificarSiEsNegativo(resto) ? -(numeroPositivo) : numeroPositivo
+    }
 
-            return verificarSiEsNegativo(resto) ? -(numeroPositivo) : numeroPositivo
+    switch (tipoDeButton) {
 
-        }
+        case "Backspace":
 
-        switch (tipoDeButton) {
+            if (comma == false) {
 
-            case "Backspace":
+                return borrarEnteros({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
 
-                if (comma == false) {
+            } else {
+                return borrarDecimales({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
+            }
 
-                    return borrarEnteros({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
+        case "-":
 
-                } else {
-                    return borrarDecimales({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
-                }
+            return verificarSiEsNegativo(resto) ? resto : (-resto)
 
-            case "-":
+        case "+":
 
-                return verificarSiEsNegativo(verificarSiEsNull) ? verificarSiEsNull : (-verificarSiEsNull)
+            return Math.abs(resto)
 
-            case "+":
+        case buscarSignoMas == -1 && tipoDeButton <= 9 && tipoDeButton:
+            if (comma) {
+                return agregarDecimales({ restoStringDecimales, verificarSiRestoEsNegativo, restoStringEntero, tipoDeButton })
+            } else {
+                return agregarNumeros({ restoStringDecimales, verificarSiRestoEsNegativo, restoStringEntero, tipoDeButton })
+            }
 
-                return Math.abs(verificarSiEsNull)
+        case buscarSignoMas == 0 && tipoDeButton:
 
-            case buscarSignoMas == -1 && tipoDeButton:
+            const numero = parseFloat(tipoDeButton.slice(1))
 
-                if (comma) {
-                    return agregarDecimales({ restoStringDecimales, verificarSiRestoEsNegativo, restoStringEntero, tipoDeButton })
-                } else {
-                    return agregarNumeros({ restoStringDecimales, verificarSiRestoEsNegativo, restoStringEntero, tipoDeButton })
-                }
+            return sumarNumeros({ verificarSiRestoEsNegativo, numero, resto })
 
-
-
-            case buscarSignoMas == 0 && tipoDeButton:
-
-                const numero = parseFloat(tipoDeButton.slice(1))
-
-                return sumarNumeros({ verificarSiRestoEsNegativo, numero, resto })
-
-            default:
-
-                return resto
-        }
+        default:
+            return resto
     }
 
 }
