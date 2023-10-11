@@ -40,7 +40,10 @@ const ButtonTactil = React.memo(({ tipo, nombre, onClick }) => {
     }
 
     return (
-        <Button onClick={onClickeo} name={nombre} variant="dark" className=" fw-bolder rounded-0 ">
+        <Button onClick={onClickeo}
+            name={nombre}
+            variant="dark"
+            className=" fw-bolder rounded-0 ">
             {nombre}
         </Button>
     )

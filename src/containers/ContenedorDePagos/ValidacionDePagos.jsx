@@ -8,6 +8,23 @@ import { useContext, } from "react"
 import { Col } from "react-bootstrap"
 import styles from "@/styles/ContenedorDePagos.module.css"
 
+const DetalleButton = ({ onClick, detalle }) => {
+
+    const background = detalle ? "#6EC89B" : "#D3D3D3"
+
+    return (
+        <div
+            onClick={onClick}
+            style={{ background }}
+            className={`${styles.botonDetalle} fs-5 text-white fw-bolder mx-1  py-md-0 my-md-2 px-3 d-flex align-items-center justify-content-center  py-4 mx-md-5 flex-grow-1 flex-md-grow-0 `}>
+            <span className="me-1">
+                Detalle
+            </span>
+            <i className="fa-solid fa-angles-right"></i>
+        </div>
+    )
+}
+
 export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const { listaProducto, restablecerProductos } = useContext(productoReducerContext)
@@ -22,7 +39,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const onClick = () => {
 
-        if (restoTotal > 0 || listaProducto.length === 0) return buscarCodigoDeMensajes({ codigo: "2F" })
+        if (restoTotal > 0 || listaProducto.length === 0 || metodosDePago.length == 0) return buscarCodigoDeMensajes({ codigo: "2F" })
 
         alternarMostrar()
 
@@ -39,7 +56,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     }
 
-    const detalle = restoTotal == 0 && listaProducto.length > 0 ? true : false
+    const detalle = restoTotal == 0 && listaProducto.length > 0 && metodosDePago.length > 0 ? true : false
 
     return (
 
@@ -63,19 +80,3 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
     )
 }
 
-const DetalleButton = ({ onClick, detalle }) => {
-
-    const background = detalle ? "#6EC89B" : "#D3D3D3"
-
-    return (
-        <div
-            onClick={onClick}
-            style={{ background }}
-            className={`${styles.botonDetalle} fs-5 text-white fw-bolder mx-1  py-md-0 my-md-2 px-3 d-flex align-items-center justify-content-center  py-4 mx-md-5 flex-grow-1 flex-md-grow-0 `}>
-            <span className="me-1">
-                Detalle
-            </span>
-            <i className="fa-solid fa-angles-right"></i>
-        </div>
-    )
-}

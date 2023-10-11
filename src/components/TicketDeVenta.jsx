@@ -40,13 +40,14 @@ const Totales = () => {
 
     const porcentajeAplicado = ((totalAValidar - calculoSinTarifa) / calculoSinTarifa) * 100
 
-
+    const verificarSiPorcentajeEsNan = isNaN(porcentajeAplicado) ? 0 : porcentajeAplicado
+    
     return (
 
         <Container className="mt-1">
 
             <RowTotales nombre={"Base"} texto={`$ ${separarNumerosConDecimales(calculoSinTarifa)}`} />
-            <RowTotales nombre={"P/A"} texto={`$ (${(porcentajeAplicado).toFixed(2)}%)`} />
+            <RowTotales nombre={"P/A"} texto={`$ (${(verificarSiPorcentajeEsNan).toFixed(2)}%)`} />
             <RowTotales nombre={"Total"} texto={`$ ${separarNumerosConDecimales(totalAValidar)}`} />
             <RowTotales nombre={"Cambio"} texto={`$ ${separarNumerosConDecimales(cambioTotal)}`} />
 

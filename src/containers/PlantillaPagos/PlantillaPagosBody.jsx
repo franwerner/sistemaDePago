@@ -20,7 +20,7 @@ const ButtonTaciles = () => {
     return (
         <Col className={`${styles.contenedorBotonesTactiales} d-flex justify-content-center  align-items-center  p-0 `}>
             <ContenedorDeBotonesTactiles
-                numeroDefault={ultimoSeleccionado.resto}
+                numeroDefault={ultimoSeleccionado.cantidadSeleccionada}
                 modificadorDefault={modificarProducto}
                 arrayButtons={listaDeBotonesTactiles} />
         </Col>

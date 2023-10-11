@@ -2,7 +2,38 @@ import { Button, Dropdown, FloatingLabel, Form } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
 import React, { } from "react"
 
-export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, functionEjecutable, }) => {
+const DropwDownForm = ({ onSubmit, onClick, changeForm, evaluarPorcentaje }) => {
+
+    return (
+        <Dropdown.ItemText
+            className="fw-normal">
+            <Form
+                id="porcentajeControl"
+                onSubmit={(e) => {
+                    onSubmit(e)
+                    onClick()
+                }}>
+                <FloatingLabel
+                    controlId="porcentajeControl"
+                    label="Porcentaje">
+                    <Form.Control
+                        tabIndex={1}
+                        autoComplete="off"
+                        onChange={changeForm}
+                        name="porcentajeForm"
+                        type="number"
+                        placeholder="0-100"
+                        value={evaluarPorcentaje} />
+
+                </FloatingLabel>
+            </Form>
+
+        </Dropdown.ItemText>
+    )
+}
+
+
+export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, aplicarPorcentaje, }) => {
 
     const { changeForm, form, onSubmit } = useForm({ porcentajeForm: "" })
 
@@ -14,76 +45,56 @@ export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, funct
 
     const onClick = () => {
 
-
         if (isNaN(evaluarPorcentaje) || evaluarPorcentaje > 100 || evaluarPorcentaje.length == 0) return
 
         const redondearNumero = Math.round(evaluarPorcentaje * 100) / 100
 
-        functionEjecutable(redondearNumero)
+        aplicarPorcentaje(redondearNumero)
     }
 
 
     return (
-        <>
-            <Dropdown
-                drop="down-centered"
-                autoClose={"outside"}
+
+        <Dropdown
+            drop="down-centered"
+            autoClose={"outside"}
+        >
+
+            <Dropdown.Toggle
+                variant="none"
+                split
+                style={{ top: "-20%" }}
+                className="position-absolute"
             >
+            </Dropdown.Toggle>
 
-                <Dropdown.Toggle
-                    variant="none"
-                    split
-                    style={{ top: "-20%" }}
-                    className="position-absolute"
-                >
-                </Dropdown.Toggle>
+            <Dropdown.Menu variant="dark" >
 
-                <Dropdown.Menu variant="dark" >
-                    <Dropdown.ItemText
-                        className="fw-normal">
-                        <Form
-                            id="porcentajeControl"
-                            onSubmit={(e) => {
-                                onSubmit(e)
-                                onClick()
-                            }}>
-                            <FloatingLabel
-                                controlId="porcentajeControl"
-                                label="Porcentaje">
-                                <Form.Control
-                                tabIndex={1}
-                                    autoComplete="off"
-                                    onChange={changeForm}
-                                    name="porcentajeForm"
-                                    type="number"
-                                    placeholder="0-100"
-                                    value={evaluarPorcentaje} />
+                <DropwDownForm
+                    onClick={onClick}
+                    onSubmit={onSubmit}
+                    changeForm={changeForm}
+                    evaluarPorcentaje={evaluarPorcentaje} />
 
-                            </FloatingLabel>
-                        </Form>
+                <Dropdown.Divider />
 
-                    </Dropdown.ItemText>
+                <Dropdown.ItemText
+                    style={{ fontSize: "14px" }}
+                    className="text-center fw-normal">
+                    Porcentaje {porcentaje}%
+                </Dropdown.ItemText>
 
-                    <Dropdown.Divider />
+                <Dropdown.ItemText className="text-center p-0">
+                    <Button
+                        type="submit"
+                        form="porcentajeControl"
+                        onClick={onClick}
+                        variant="outline-light">
+                        Aplicar
+                    </Button>
+                </Dropdown.ItemText>
+            </Dropdown.Menu>
+        </Dropdown>
 
-                    <Dropdown.ItemText
-                        style={{ fontSize: "14px" }}
-                        className="text-center fw-normal">
-                        Porcentaje {porcentaje}%
-                    </Dropdown.ItemText>
-
-                    <Dropdown.ItemText className="text-center p-0">
-                        <Button
-                            type="submit"
-                            form="porcentajeControl"
-                            onClick={onClick}
-                            variant="outline-light">
-                            Aplicar
-                        </Button>
-                    </Dropdown.ItemText>
-                </Dropdown.Menu>
-            </Dropdown>
-
-        </>
     )
 })

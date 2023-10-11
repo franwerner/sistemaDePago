@@ -50,7 +50,7 @@ export const PagoAgregado = React.memo(({ metodo, eliminarResto, background, sel
                 </p>
 
                 <DropwDownDeAplicacionDePorcentaje
-                    functionEjecutable={onClick}
+                    aplicarPorcentaje={onClick}
                     porcentaje={porcentaje}
                 >
                 </DropwDownDeAplicacionDePorcentaje>
