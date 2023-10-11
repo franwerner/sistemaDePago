@@ -4,42 +4,9 @@
 
 
 .botonesTactiles button {
-    width: 75px;
-    height: 75px;
     background: #dbdada;
     color: #555;
-    font-size: 24px;
-    opacity: 0.9    ;
+    opacity: 0.9;
 }
 
 
-@media (max-width : 1200px) {
-
-    .botonesTactiles button {
-        width: 60px;
-        height: 60px;
-        font-size: 18px;
-    }
-
-}
-
-
-
-@media (max-width : 1366px) {
-
-    .botonesTactiles button {
-        width: 65px;
-        height: 65px;
-        font-size: 19px;
-    }
-
-}
-
-@media (max-width : 768px){
-    .botonesTactiles button {
-        width: 60px;
-        height: 60px;
-        font-size: 18px;
-    }
- 
-}

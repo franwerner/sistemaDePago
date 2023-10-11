@@ -10,7 +10,7 @@ export const ColumnaInteractiva = React.memo(({ children, mostrar }) => {
 
     return (
         <>
-            <Col xs={12} md={6} lg={4}
+            <Col xs={12} md={6} lg={6} xl={5} xxl={4}
                 className={`p-0 overflow-hidden  h-100  ${styles.columnaInteractiva} ${onHide}`}>
 
 

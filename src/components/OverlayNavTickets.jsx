@@ -12,7 +12,7 @@ export const OverlayNavTickets = React.memo(() => {
                 overlayCustom={overlayText}
             >
                 <Nav.Link tabIndex={0}>
-                    <i className="fa-solid fa-ticket mx-2 d-flex justify-content-center align-items-center text-warning fs-5"></i>
+                    <i className="fa-solid fa-ticket mx-2 d-flex justify-content-center text-warning align-items-center  fs-5"></i>
                 </Nav.Link>
             </OverlayDefault>
         </>

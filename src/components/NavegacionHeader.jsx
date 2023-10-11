@@ -11,11 +11,13 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
 
     return (
         <Navbar
-            expand="md"
+            expand="sm"
             className={`overflow-hidden ${styles.navegacionHeader}`}>
             <Container fluid>
-                <Navbar.Brand className="w-50 d-flex text-white">
-                    Logo
+                <Navbar.Brand className="w-50 d-flex justify-content-start text-white">
+                    <p className="p-0 m-0">
+                        Logo
+                    </p>
                 </Navbar.Brand>
 
                 <Navbar.Toggle
@@ -25,17 +27,16 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
 
                 <Navbar.Collapse
                     id="navbarCollapse"
-                    className="d-md-flex  justify-content-between w-100">
-                    {!mostrar &&
-                        <Nav.Item className="d-flex my-0 w-100">
-                            <BuscadorInput></BuscadorInput>
-                        </Nav.Item>
-                    }
-                    <Nav
-                        className="justify-content-between w-100  justify-content-md-end flex-row align-items-center ">
-                        <OverlayNavUsuarios></OverlayNavUsuarios>
-                        <OverlayNavTickets></OverlayNavTickets>
-                        <OverylayNavLock></OverylayNavLock>
+                    className="d-md-flex  justify-content-between w-100 ">
+                    <Nav className="justify-content-between justify-content-sm-end w-100  flex-row align-items-center ">
+                        {!mostrar &&
+                            <Nav.Item className="d-flex justify-content-start justify-content-md-start me-2 my-1  my-0 w-100">
+                                <BuscadorInput />
+                            </Nav.Item>
+                        }
+                        <OverlayNavUsuarios/>
+                        <OverlayNavTickets/>
+                        <OverylayNavLock/>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

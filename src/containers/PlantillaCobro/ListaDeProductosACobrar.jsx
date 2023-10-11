@@ -54,17 +54,15 @@ const ContenidoDelProductoAbajo = React.memo(({ producto }) => {
 
 })
 
-const Producto = React.memo(({ seleccionarElemento, producto, background }) => {
+const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
 
     const onClick = () => {
-        seleccionarElemento(producto)
+        seleccionarProducto(producto)
     }
 
     const referencia = useRef(null)
 
-
     useEffect(() => {
-        seleccionarElemento(producto)
         referencia.current.focus()
     }, [producto])
 
@@ -76,7 +74,7 @@ const Producto = React.memo(({ seleccionarElemento, producto, background }) => {
             className={`producto-a-cobrar ${styles.contenedorDelProducto}`}
             ref={referencia}
         >
-            <Container fluid className={`${background} my-1 ${styles.productosACobrar} position-relative text-nowrap overflow-hidden`}>
+            <Container fluid className={`${styles[background]} my-1 ${styles.productosACobrar} position-relative text-nowrap overflow-hidden`}>
                 <ContenidoDelProductoArriba producto={producto} />
                 <ContenidoDelProductoAbajo producto={producto} />
             </Container>
@@ -85,35 +83,24 @@ const Producto = React.memo(({ seleccionarElemento, producto, background }) => {
 })
 
 
-export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto, seleccion, seleccionarElemento }) => {
+export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto, ultimoSeleccionado, seleccionarProducto }) => {
 
 
     const config = {
         keyup: true
     }
 
-    const handleShortcut = () => {
-
-        eliminarProducto(seleccion)
-
-    };
-
-    useHotkeys("backSpace,", handleShortcut, config)
-
-
-    const establecerBackground = (lista) => {
-        const background = seleccion.nombre == lista.nombre ? `${styles.contendorCobroProductoSeleccionado}` : `${styles.contenedorCobroProductoNoSeleccionado}`
-        return background
+    const verificarUltimoSeleccionado = (lista) => {
+        return ultimoSeleccionado.nombre == lista.nombre ? "contendorCobroProductoSeleccionado" : "contenedorCobroProductoNoSeleccionado"
     }
-
 
     return listaProducto.map(lista =>
 
         <Producto
             key={lista.nombre}
             producto={lista}
-            seleccionarElemento={seleccionarElemento}
-            background={establecerBackground(lista)}
+            seleccionarProducto={seleccionarProducto}
+            background={(verificarUltimoSeleccionado(lista))}
         />
 
     )

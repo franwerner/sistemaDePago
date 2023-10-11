@@ -4,6 +4,7 @@
     border-bottom: var(--border-dashed);
     left: 0%;
     top: 0%;
+
 }
 
 :root {
@@ -22,8 +23,7 @@
     .ticket *,
     .ticket {
         visibility: visible;
-        font-size: 14px;
-        padding-right: 2px;
+        font-size: 12px;
     }
 
     /*Numero de Ticket*/
@@ -60,10 +60,6 @@
     .nombreDelProducto {
         font-size: 13px;
         color: var(--color-parrafo);
-    }
-
-    .contenedorCantidad {
-
     }
 
     .contenedorCantidad p:nth-child(2) {

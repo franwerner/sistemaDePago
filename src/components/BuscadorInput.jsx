@@ -8,24 +8,23 @@ export const BuscadorInput = () => {
     const { buscador } = form
 
     return (
-        <>
-            <Form
+        <Form
+            className=""
+            onSubmit={onSubmit}>
 
-                onSubmit={onSubmit}>
-
-                <InputGroup>
-                    <InputGroup.Text className="text-center bg-white" style={{ maxHeight: "32px" }}>
-                        <i className="fa-solid fa-magnifying-glass "></i>
-                    </InputGroup.Text>
-                    <Form.Control type="search"
-                        value={buscador}
-                        name="buscador"
-                        className="border-0"
-                        onChange={changeForm}
-                        placeholder="Buscar productos..."
-                        aria-label="Search" style={{ boxShadow: "none", borderColor: "white", maxHeight: "32px" }} />
-                </InputGroup>
-            </Form>
-        </>
+            <InputGroup >
+                <InputGroup.Text className="text-center bg-white" >
+                    <i className="fa-solid fa-magnifying-glass "></i>
+                </InputGroup.Text>
+                <Form.Control type="search"
+                    value={buscador}
+                    name="buscador"
+                    className="border-0 border-ligth"
+                    onChange={changeForm}
+                    placeholder="Buscar productos..."
+                    autoComplete="off"
+                    aria-label="Search" style={{ boxShadow: "none" }} />
+            </InputGroup>
+        </Form>
     )
 }

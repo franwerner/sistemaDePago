@@ -7,11 +7,12 @@ import { alternarSignos } from "../helper/alternarSignos"
 import { verificarSiEsNegativo } from "../helper/verificarSiEsNegativo"
 
 const listaDeBotonesTactiles = [
-    ["1", "2", "3", ["+100", 100]],
-    ["4", "5", "6", ["+250", 250]],
-    ["7", "8", "9", ["+500", 500]],
+    ["1", "2", "3", ["+100", "+100"]],
+    ["4", "5", "6", ["+250", "+250"]],
+    ["7", "8", "9", ["+500", "+500"]],
     ["+/-", "0", [",", "Comma"], ["X", "Backspace"]]
 ]
+
 
 const keysPress = [
     "backSpace",
@@ -34,7 +35,7 @@ const keysPress = [
 const ButtonTactil = React.memo(({ tipo, nombre, onClick }) => {
 
     const onClickeo = (e) => {
-      
+
         onClick(e, tipo)
     }
 
@@ -45,7 +46,7 @@ const ButtonTactil = React.memo(({ tipo, nombre, onClick }) => {
     )
 })
 
-export const ContenedorDeBotonesTactiles = ({ modificadorDefault, numeroDefault }) => {
+export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, numeroDefault, arrayButtons = listaDeBotonesTactiles }) => {
 
     const esNegativo = verificarSiEsNegativo(numeroDefault)
 
@@ -54,7 +55,7 @@ export const ContenedorDeBotonesTactiles = ({ modificadorDefault, numeroDefault 
     const onClick = useCallback(({ target }, tipo) => {
 
         alternarComas(target.name)
-               
+
         const signos = target.name == "+/-" ? true : false
 
         const resultado = signos ? alternarSignos(esNegativo) : tipo
@@ -65,7 +66,7 @@ export const ContenedorDeBotonesTactiles = ({ modificadorDefault, numeroDefault 
                 comma: comma,
             }
         )
-    }, [esNegativo, comma,modificadorDefault])
+    }, [esNegativo, comma, modificadorDefault])
 
     const handleKey = (e) => {
 
@@ -74,37 +75,37 @@ export const ContenedorDeBotonesTactiles = ({ modificadorDefault, numeroDefault 
         modificadorDefault({ tipoDeButton: e.key, comma: comma })
     }
 
-    useHotkeys(keysPress, handleKey, { keyup: true})
+    useHotkeys(keysPress, handleKey, { keyup: true })
 
     return (
-        <>
 
-            <div className={`${styles.botonesTactiles} `}>
-                {
-                    listaDeBotonesTactiles.map((contenedor, index) =>
+        <div className={`${styles.botonesTactiles} `}>
+            {
+                arrayButtons.map((contenedor, index) =>
 
-                        <div key={index}>
+                    <div key={index}>
 
-                            {
-                                contenedor.map((numero, index) =>
+                        {
+                            contenedor.map((numero, index) =>
 
-                                    <ButtonTactil
-                                        nombre={typeof numero == "string" ? numero : numero[0]}
-                                        tipo={typeof numero == "string" ? numero : numero[1]}
-                                        onClick={onClick}
-
-                                        key={index} />
+                                <ButtonTactil
+                                    nombre={typeof numero == "string" ? numero : numero[0]}
+                                    tipo={typeof numero == "string" ? numero : numero[1]}
+                                    onClick={onClick}
+                                    key={index} />
 
 
 
-                                )
-                            }
-                        </div>
-                    )
-                }
+                            )
+                        }
+                    </div>
+                )
+            }
 
-            </div>
+        </div>
 
-        </>
     )
-}
+})
+
+
+

@@ -80,8 +80,12 @@ const ListaDeProductos = () => {
                             <div
                                 className={`${styles.contenedorCantidad} d-flex  w-50 justify-content-center `}>
 
-                                <p className="fw-bold text-nowrap text-end w-25 m-0 mx-1 me-1 ">
-                                    {cantidadSeleccionada} x
+                                <p style={{minWidth : "45px"}} className="fw-bold text-wrap  text-end  m-0  ">
+                                    {parseFloat(cantidadSeleccionada).toFixed(2)} 
+                                </p>
+
+                                <p className="fw-bold mx-1">
+                                   x
                                 </p>
 
                                 <p className="m-0 text-start w-50">{separarNumerosConDecimales(precioModificado)}</p>
@@ -141,7 +145,7 @@ const InformacionAdicional = () => {
 export const TicketDeVenta = () => {
 
     return (
-        <Container className={` p-2 position-absolute  lh-1 w-100 ${styles.ticket} `}>
+        <Container className={`position-absolute px-3 lh-1 w-100 ${styles.ticket} `}>
 
 
             <Row className="justify-content-center align-items-center text-center">
@@ -165,8 +169,8 @@ export const TicketDeVenta = () => {
             </Row>
 
 
-            <Row className={`${styles.mensajeInformativo} pt-2 `}>
-                <h4 className="text-center ">
+            <Row className={`${styles.mensajeInformativo} d-flex pt-2 `}>
+                <h4 className="text-center mx-0 ">
                     *Comprobante no válido como factura.
                 </h4>
             </Row>

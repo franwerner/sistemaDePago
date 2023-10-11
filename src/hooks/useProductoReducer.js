@@ -1,132 +1,139 @@
 
 import { useCallback, useReducer } from 'react';
 import { verificarPropiedadesDeUnObjecto } from '../helper/verificarPropiedadesDeUnObjecto';
+import { switchModificacionesProductos } from "@/helper/switchModificacionMetodosDePago"
 
-
-const agregarNuevasPropiedades = (action) => {
+const agregarNuevasPropiedades = (producto) => {
 
     const objectoPorDefecto = {
         "editado": false,
         "cantidadSeleccionada": 1,
-        "precioModificado": action.producto.precio
+        "precioModificado": producto.precio,
     }
 
-    return { ...objectoPorDefecto, ...action.producto }
+    return { ...objectoPorDefecto, ...producto }
 }
 
 
-const validarProductoExistente = (state, action) => {
-
-    const productoExistente = state.some(({ nombre }) => nombre == action.producto.nombre)
-
+const validarProductoExistente = (state, producto) => {
+    const productoExistente = state.some(({ nombre }) => nombre == producto.nombre)
     return productoExistente
 
 }
 
+const agregar = (state, producto) => {
+    const updatedState = state.map((estado) => {
+        if (estado.nombre === producto.nombre) {
+            return { ...estado, cantidadSeleccionada: estado.cantidadSeleccionada + 1 };
+        } else {
+            return estado;
+        }
+    });
 
-const reducer = (state, action) => {
+    return updatedState;
+};
 
+const buscarElementoSeleccionado = (state, producto) => {
 
-    const { producto, type } = action
+    return state.find(item => item.nombre == producto.nombre)
+}
 
-    if (type == "RESTABLECER") return []
+const filtarProductosConCantidadCero = (lista) => {
+    return lista.filter(item => item.cantidadSeleccionada !== 0)
+}
 
-    else if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
+const reducer = ([estado, ultimoSeleccionado], { producto, type }) => {
 
-    return state.map(estado => {
+    const productoActual = () => {
 
-        if (estado.nombre !== action.producto.nombre) return estado
-
-        const { cantidadSeleccionada } = estado
-
-        switch (type) {
-            case "AGREGAR":
-
-                return {
-                    ...estado,
-                    "cantidadSeleccionada": cantidadSeleccionada + 1,
-                };
-
-            case "ELIMINAR":
-
-
-                if (cantidadSeleccionada <= 0) {
-                    return null
-                } else {
-                    return {
-                        ...estado,
-                        "cantidadSeleccionada": cantidadSeleccionada - 1,
-                    };
-                }
-
-            case "EDITAR":
-                return {
-                    ...estado,
-                    "cantidadSeleccionada": producto.cantidadSeleccionada,
-                    "precioModificado": producto.precioModificado,
-                    "editado": true
-
-                };
-
-
-            case "BORRAR":
-
-                return null
-
-
-            default:
-                return state
-
-
+        if (validarProductoExistente(estado, producto) === false && producto.precio) {
+            return [[...estado, agregarNuevasPropiedades(producto)], { ...agregarNuevasPropiedades(producto) }];
         }
 
-    }).filter(estado => estado !== null)
+        switch (type) {
 
-}
+            case "AGREGAR":
+                return [
+                    [...agregar(estado, producto)],
+                    { ...buscarElementoSeleccionado(estado, producto) }
+                ];
+
+            case "MODIFICAR":
+
+                if (estado.length == 0) return [estado, ultimoSeleccionado]
+                else {
+                    return switchModificacionesProductos(estado, ultimoSeleccionado, producto)
+                }
+
+            case "SELECCIONAR":
+                return [
+                    estado,
+                    { ...producto }
+                ]
+
+            case "RESTABLECER":
+
+                return [[], {}]
+
+            default:
+                return [estado, ultimoSeleccionado];
+        }
+
+    }
+
+    const newState = productoActual()
+
+    const lista = filtarProductosConCantidadCero(newState[0])
+
+    const largo = lista.length - 1
+
+    const ultimo = newState[1].cantidadSeleccionada == 0 ? { ...lista[largo] } : newState[1]
+
+    return [lista, ultimo]
+};
+
+
+
 
 export const productoReducer = () => {
 
-    const [listaProducto, dispatch] = useReducer(reducer, [])
+    const [listaProducto, dispatch] = useReducer(reducer, [[], {}])
+
 
     const agregarProducto = useCallback((producto) => {
 
         dispatch({ type: "AGREGAR", producto })
     }, [])
 
-    const eliminarProducto = useCallback((producto) => {
-
-        if (verificarPropiedadesDeUnObjecto(producto)) return
-
-        dispatch({ type: "ELIMINAR", producto })
-
-    }, [])
-
-    const editarProducto = (producto) => {
+    const editarProducto = useCallback((producto) => {
 
         if (!producto.nombre) return
 
         dispatch({ type: "EDITAR", producto })
 
-    }
+    }, [])
 
-    const borrarProducto = (producto) => {
+    const modificarProducto = useCallback((producto) => {
 
-        if (verificarPropiedadesDeUnObjecto(producto)) return
+        dispatch({ type: "MODIFICAR", producto })
 
-        dispatch({ type: "BORRAR", producto })
-    }
+    }, [])
 
+    const restablecerProductos = useCallback((producto = {}) => {
+        dispatch({ type: "RESTABLECER", producto })
+    }, [])
 
-    const restablecerProductos = () => {
-        dispatch({ type: "RESTABLECER", })
-    }
+    const seleccionarProducto = useCallback((producto) => {
+        dispatch({ type: "SELECCIONAR", producto })
+    }, [])
 
     return {
+        seleccionarProducto,
+        modificarProducto,
         agregarProducto,
-        eliminarProducto,
-        listaProducto,
+        listaProducto: listaProducto[0],
+        ultimoSeleccionado: listaProducto[1],
         editarProducto,
-        borrarProducto,
         restablecerProductos
     }
 }

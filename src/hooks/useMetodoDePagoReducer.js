@@ -82,6 +82,7 @@ const reducer = (state, action) => {
         }
     }
 
+   
     return { ...state, [tipoDeTarifa]: { ...pagoActual() } }
 }
 
@@ -98,6 +99,7 @@ export const useMetodoDePagoReducer = () => {
     const pagoEncontrado = listaDePagos[tipoDeTarifa]
 
     const ajustePagoEncontrado = useSumarMetodosDePagoAgregados({ pagoEncontrado })
+
 
     const pagoActual = !pagoEncontrado ? { metodosDePago: [] } : { ...pagoEncontrado, metodosDePago: ajustePagoEncontrado }
 

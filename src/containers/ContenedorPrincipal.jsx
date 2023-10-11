@@ -1,7 +1,7 @@
 import { Button, Col } from "react-bootstrap";
 import { ColumnaInteractiva } from "./ColumnaInteractiva";
 import { PlantillaCobro } from "./PlantillaCobro/PlantillaCobro";
-import { PlantillaPagos } from "./PlantillaPagos";
+import { PlantillaPagos } from "./PlantillaPagos/PlantillaPagos";
 import { PlantillaProductos } from "./PlantillaProductos/PlantillaProductos";
 import { useEventoMostrar } from "../hooks/useEventoMostrar";
 import { useEffect } from "react";

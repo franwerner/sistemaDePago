@@ -1,83 +1,30 @@
-import { establecerLargoMaximo } from "./establecerLargoMaximo"
-import { obtenerDecimales } from "./obtenerDecimales"
-import { verificarSiEsNegativo } from "./verificarSiEsNegativo"
+import { switchDefault } from "./switchButonTactilDefault"
 
 
-const borrarEnteros = ({ restoStringEntero, restoStringDecimales, verificarSiRestoEsNegativo }) => {
 
-    const restoStringLargo = parseFloat(restoStringEntero.slice(0, restoStringEntero.length - 1))
 
-    const verificarSiEsNaN = isNaN(restoStringLargo) ? "0" : restoStringLargo
+export const switchModificacionesProductos = (state, ultimoSeleccionado, btn) => {
 
-    const agregarPuntoDecimal = `.${restoStringDecimales}`
+    const copiaState = [...state]
 
-    const resultado = verificarSiRestoEsNegativo(verificarSiEsNaN + agregarPuntoDecimal)
+    const copiaUltimoSeleccionado = { ...ultimoSeleccionado }
 
-    return parseFloat(resultado)
+    const { cantidadSeleccionada } = copiaUltimoSeleccionado
 
-}
+    copiaUltimoSeleccionado.cantidadSeleccionada = switchDefault(cantidadSeleccionada, btn)({ newCase: btn })
 
-const borrarDecimales = ({ restoStringEntero, restoStringDecimales, verificarSiRestoEsNegativo }) => {
+    const indice = copiaState.findIndex(item => item.nombre == copiaUltimoSeleccionado.nombre)
 
-    const decimalStringLargo = parseFloat(restoStringDecimales.slice(0, restoStringDecimales.length - 1))
+    copiaState.splice(indice, 1, copiaUltimoSeleccionado)
 
-    const verificarSiEsNaN = isNaN(decimalStringLargo) ? "0" : decimalStringLargo
-
-    const agregarPuntoDecimal = `.${"0" + verificarSiEsNaN}`
-
-    const resultado = verificarSiRestoEsNegativo(restoStringEntero + agregarPuntoDecimal)
-
-    return parseFloat(resultado)
+    return [
+        [...copiaState],
+        copiaUltimoSeleccionado
+    ]
 
 }
 
-const agregarNumeros = ({ restoStringEntero, tipoDeButton, verificarSiRestoEsNegativo, restoStringDecimales }) => {
-
-    const MAX_LONGITUD = 15
-
-    const agregarPuntoDecimal = `.${restoStringDecimales}`
-
-    const sumaDeStrings = parseFloat(restoStringEntero + tipoDeButton)
-
-    const resultado = verificarSiRestoEsNegativo(sumaDeStrings)
-
-    const largoMaximo =
-        establecerLargoMaximo({
-            numero: resultado,
-            max: MAX_LONGITUD
-        })
-
-    return parseFloat(largoMaximo + agregarPuntoDecimal)
-
-}
-
-const agregarDecimales = ({ restoStringDecimales, tipoDeButton, verificarSiRestoEsNegativo, restoStringEntero }) => {
-
-    const verificarSiEsCero = restoStringDecimales == "0" ? restoStringDecimales.slice(0, 1) : restoStringDecimales
-
-    const suma = verificarSiEsCero + tipoDeButton
-
-    const verificarLargo = restoStringDecimales.length >= 2 ? restoStringDecimales : suma
-
-    const agregarPuntoDecimal = `.${verificarLargo}`
-
-    const numero = parseFloat(restoStringEntero) + agregarPuntoDecimal
-
-    return verificarSiRestoEsNegativo(numero)
-}
-
-const sumarNumeros = ({ tipoDeButton, verificarSiRestoEsNegativo, resto }) => {
-
-    const suma = resto + tipoDeButton
-
-    return verificarSiRestoEsNegativo(suma)
-
-}
-
-
-export const switchModificacionMetodosDePago = (state, pago) => {
-
-    const { comma, tipoDeButton } = pago
+export const switchModificacionMetodosDePago = (state, btn) => {
 
     const copiaUltimoSeleccionado = { ...state.ultimoSeleccionado }
 
@@ -85,63 +32,7 @@ export const switchModificacionMetodosDePago = (state, pago) => {
 
     const { resto, id } = copiaUltimoSeleccionado
 
-    const restoStringEntero = parseInt(resto).toString()
-
-    const restoStringDecimales = obtenerDecimales(resto).toString()
-
-    const verificarSiRestoEsNegativo = (numero) => {
-
-        const numeroPositivo = Math.abs(numero)
-
-        return verificarSiEsNegativo(resto) ? -(numeroPositivo) : numeroPositivo
-
-    }
-
-    let resultadoFinal;
-
-    switch (tipoDeButton) {
-
-        case "Backspace":
-
-            if (comma == false) {
-                resultadoFinal = borrarEnteros({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
-            } else {
-                resultadoFinal = borrarDecimales({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
-            }
-
-            break;
-
-        case "-":
-
-            resultadoFinal = verificarSiEsNegativo(resto) ? resto : (-resto)
-
-            break;
-
-        case "+":
-
-            resultadoFinal = Math.abs(resto)
-
-            break
-
-        case tipoDeButton <= 9 && tipoDeButton:
-
-            if (comma) {
-                resultadoFinal = agregarDecimales({ restoStringDecimales, verificarSiRestoEsNegativo, restoStringEntero, tipoDeButton })
-            } else {
-                resultadoFinal = agregarNumeros({ restoStringDecimales, verificarSiRestoEsNegativo, restoStringEntero, tipoDeButton })
-            }
-
-            break;
-
-        case tipoDeButton >= 100 && tipoDeButton:
-
-            resultadoFinal = sumarNumeros({ verificarSiRestoEsNegativo, tipoDeButton, resto })
-
-            break;
-
-        default:
-            resultadoFinal = resto
-    }
+    const resultadoFinal = switchDefault(resto, btn)()
 
     copiaUltimoSeleccionado.resto = resultadoFinal
 
@@ -155,4 +46,3 @@ export const switchModificacionMetodosDePago = (state, pago) => {
     }
 }
 
-    ;

@@ -61,7 +61,10 @@ export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
                             fluid
                             className={`${styles.contenedorPagos} h-100 d-flex p-0  position-relative flex-column  `}>
 
-                            <Col xs={{ order: "2" }} md={{ order: "0" }} className="flex-grow-0">
+                            <Col
+                                xs={{ order: "2" }}
+                                md={{ order: "0" }}
+                                className="flex-grow-0">
                                 <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
                             </Col>
 

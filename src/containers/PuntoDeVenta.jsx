@@ -16,7 +16,7 @@ export const PuntoDeVenta = () => {
             className='d-flex scrollHidden  flex-column vh-100'
             fluid>
 
-            <Row>
+            <Row className='flex-grow-0'>
                 <NavegacionHeader mostrar={mostrar} />
             </Row>
 

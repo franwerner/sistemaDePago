@@ -1,6 +1,6 @@
 :root {
     --lineaPunteada: 2px dotted #ccc;
-    --colorGris: "#555"
+    --colorGris: #555
 }
 
 /*Navegacion pagos*/
@@ -88,12 +88,19 @@
 }
 
 
+
 .botonesTactilesResize {
     top: 2%;
     left: 0%;
     width: 0%;
     height: 0%;
     animation: expandWidth 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.contendorDeBotonesTactiles button{
+    width: 75px;
+    height: 75px;
+    font-size: 20px;
 }
 
 .botonesTactilesResize .contendorDeBotonesTactiles {
@@ -165,6 +172,26 @@
     .botonDetalle,
     .botonVolver {
         border-radius: 4px;
+    }
+
+}
+
+
+@media (max-width : 1366px) {
+
+    .contendorDeBotonesTactiles button {
+        width: 65px;
+        height: 65px;
+        font-size: 19px;
+    }
+
+}
+
+@media (max-width : 768px) {
+    .contendorDeBotonesTactiles button {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
     }
 
 }

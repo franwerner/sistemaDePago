@@ -9,16 +9,21 @@ export const useRestanteTotal = () => {
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
-
-
     const dependeciaString = JSON.stringify(pagoActual.metodosDePago)
-
 
     const restoTotal = useMemo(() => {
 
         const sumaDeRestos = pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, calculoConTarifa)
 
-        return Math.sign(sumaDeRestos) == -1 ? 0 : sumaDeRestos
+        const esNegativo = Math.sign(calculoConTarifa) == -1
+
+        if(!esNegativo){
+            return Math.sign(sumaDeRestos) == -1 ? 0 : sumaDeRestos
+        }else{
+            return sumaDeRestos
+        }
+    
+
 
     }, [calculoConTarifa, dependeciaString])
 

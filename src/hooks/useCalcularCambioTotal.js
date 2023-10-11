@@ -13,7 +13,8 @@ export const useCalcularCambio = () => {
 
     const cambioTotal = useMemo(() => {
 
-        if (!pagoActual) return 0
+
+        if (!pagoActual || Math.sign(calculoConTarifa) == -1) return 0
 
         const cambio = pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, calculoConTarifa)
 

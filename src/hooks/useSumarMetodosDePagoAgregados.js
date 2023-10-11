@@ -4,7 +4,7 @@ import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
 
 export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
 
-    const { calculoConTarifa  } = usePrecioFinalDeLosProductos()
+    const { calculoConTarifa } = usePrecioFinalDeLosProductos()
 
     const dependeciaString = JSON.stringify(pagoEncontrado == undefined ? "" : pagoEncontrado.metodosDePago)
 
@@ -17,7 +17,6 @@ export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
         const pagos = pagoEncontrado.metodosDePago.map((current) => {
 
             const restoParaValidar = Math.min(restoInicial, current.resto);
-
             restoInicial -= current.resto
 
             return {

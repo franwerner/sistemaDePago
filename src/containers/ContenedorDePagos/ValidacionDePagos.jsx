@@ -31,10 +31,10 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
     const restablecerTodo = () => {
 
         window.print()
-        // restablecerProductos()
-        // alternarMostrar()
-        // restablecerPagos()
-        // cerrarTodo()
+        restablecerProductos()
+        alternarMostrar()
+        restablecerPagos()
+        cerrarTodo()
         buscarCodigoDeMensajes({ codigo: "3F" })
 
     }
@@ -70,7 +70,7 @@ const DetalleButton = ({ onClick, detalle }) => {
     return (
         <div
             onClick={onClick}
-            style={{ background}}
+            style={{ background }}
             className={`${styles.botonDetalle} fs-5 text-white fw-bolder mx-1  py-md-0 my-md-2 px-3 d-flex align-items-center justify-content-center  py-4 mx-md-5 flex-grow-1 flex-md-grow-0 `}>
             <span className="me-1">
                 Detalle
