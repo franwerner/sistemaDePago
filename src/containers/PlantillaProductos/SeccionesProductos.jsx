@@ -55,7 +55,7 @@ export const SeccionesProductos = React.memo(({ seccion, elegirSeccion, seccione
     return (
 
         <Row className={`d-flex m-0  ${styles.seccionesContainer} p-0`}>
-            <Col style={{ overflowY: "hidden" }} className="d-flex scrollBarPersonalizada  w-100 p-0 mx-2">
+            <Col style={{ overflowY: "hidden" }} className="d-flex scrollBarPersonalizada p-0 w-100 ">
 
                 <SeccionHome
                     seccion={seccion}

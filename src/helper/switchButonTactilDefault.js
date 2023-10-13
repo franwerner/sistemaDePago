@@ -128,3 +128,129 @@ export const switchDefault = (resto, btn) => {
 
 }
 
+class SwitchBotonesTactiles {
+
+    constructor(resto, tipo, comma) {
+        this.resto = resto
+        this.tipo = tipo
+        this.comma = comma
+    }
+
+    switchBtn() {
+
+        const buscarSignoMas = this.tipo.indexOf("+")
+
+        const restoStringEntero = parseInt(this.resto).toString()
+
+        const restoStringDecimales = obtenerDecimales(this.resto).toString()
+
+
+        switch (this.tipo) {
+            case "+": {
+                return Math.abs(this.resto)
+            }
+
+            case "-": {
+                return Math.abs(resto)
+            }
+
+            case "Backspace":
+
+                if (this.comma == false) {
+
+                    return this.borrarEnteros({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
+
+                } else {
+                    return this.borrarDecimales({ restoStringEntero, verificarSiRestoEsNegativo, restoStringDecimales })
+                }
+        }
+
+    }
+
+    verificarSiRestoEsNegativo = (numero) => {
+
+        const numeroPositivo = Math.abs(numero)
+
+        return verificarSiEsNegativo(this.resto) ? -(numeroPositivo) : numeroPositivo
+    }
+
+
+    borrarEnteros = ({ restoStringEntero, restoStringDecimales}) => {
+
+        const restoStringLargo = parseFloat(restoStringEntero.slice(0, restoStringEntero.length - 1))
+
+        const verificarSiEsNaN = isNaN(restoStringLargo) ? "0" : restoStringLargo
+
+        const agregarPuntoDecimal = `.${restoStringDecimales}`
+
+        const resultado = this.verificarSiRestoEsNegativo(verificarSiEsNaN + agregarPuntoDecimal)
+
+        return parseFloat(resultado)
+
+    }
+
+    borrarDecimales = ({ restoStringEntero, restoStringDecimales, verificarSiRestoEsNegativo }) => {
+
+        const decimalStringLargo = parseFloat(restoStringDecimales.slice(0, restoStringDecimales.length - 1))
+
+        const verificarSiEsNaN = isNaN(decimalStringLargo) ? "0" : decimalStringLargo
+
+        const agregarPuntoDecimal = `.${"0" + verificarSiEsNaN}`
+
+        const resultado = this.verificarSiRestoEsNegativo(restoStringEntero + agregarPuntoDecimal)
+
+        return parseFloat(resultado)
+
+    }
+
+    agregarNumeros = ({ restoStringEntero, tipoDeButton, verificarSiRestoEsNegativo, restoStringDecimales }) => {
+
+        const MAX_LONGITUD = 15
+
+        const agregarPuntoDecimal = `.${restoStringDecimales}`
+
+        const sumaDeStrings = parseFloat(restoStringEntero + tipoDeButton)
+
+        const resultado = this.verificarSiRestoEsNegativo(sumaDeStrings)
+
+        const largoMaximo =
+            establecerLargoMaximo({
+                numero: resultado,
+                max: MAX_LONGITUD
+            })
+
+        return parseFloat(largoMaximo + agregarPuntoDecimal)
+
+    }
+
+    agregarDecimales = ({ restoStringDecimales, tipoDeButton, verificarSiRestoEsNegativo, restoStringEntero }) => {
+
+        const verificarSiEsCero = restoStringDecimales == "0" ? restoStringDecimales.slice(0, 1) : restoStringDecimales
+
+        const suma = verificarSiEsCero + tipoDeButton
+
+        const verificarLargo = restoStringDecimales.length >= 2 ? restoStringDecimales : suma
+
+        const agregarPuntoDecimal = `.${verificarLargo}`
+
+        const numero = parseFloat(restoStringEntero) + agregarPuntoDecimal
+
+        return this.verificarSiRestoEsNegativo(numero)
+    }
+
+    sumarNumeros = ({ numero, verificarSiRestoEsNegativo, resto }) => {
+
+        const suma = resto + numero
+
+        return this.verificarSiRestoEsNegativo(suma)
+    }
+
+}
+
+
+class ModificacionesMetodosDePago extends SwitchBotonesTactiles {
+    constructor() {
+        super(tipo)
+    }
+
+}

@@ -23,11 +23,10 @@
 .botonDetalleActivo {
     cursor: pointer;
     background-color: #6EC89B;
-    border-radius: 4px;
 }
 
 .botonDetalleActivo {
-    animation: buttonEffect 1s infinite alternate ease-in-out;
+    animation: buttonEffect 0.5s infinite alternate ease-in-out;
 }
 
 @keyframes buttonEffect {
@@ -196,19 +195,21 @@
 @media (min-width : 768px) {
 
     .botonVolver,
-    .botonDetalle {
+    .botonDetalle,
+    .botonDetalleActivo {
         border-radius: 4px;
     }
 
 
+
     @keyframes buttonEffect {
         0% {
-            transform: translateY(0%);
+            transform: scale(0.9);
             opacity: 0.8;
         }
 
         100% {
-            transform: translateY(-4px);
+            transform: scale(1);
             opacity: 0.8;
         }
     }

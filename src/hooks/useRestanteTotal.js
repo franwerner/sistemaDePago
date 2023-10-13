@@ -17,12 +17,12 @@ export const useRestanteTotal = () => {
 
         const esNegativo = Math.sign(calculoConTarifa) == -1
 
-        if(!esNegativo){
+        if (!esNegativo) {
             return Math.sign(sumaDeRestos) == -1 ? 0 : sumaDeRestos
-        }else{
+        } else {
             return sumaDeRestos
         }
-    
+
 
 
     }, [calculoConTarifa, dependeciaString])
