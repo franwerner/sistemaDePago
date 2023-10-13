@@ -20,9 +20,9 @@ export const PuntoDeVenta = () => {
                 <NavegacionHeader mostrar={mostrar} />
             </Row>
 
-            <Row className=' overflow-auto flex-grow-1 p-0'>
+            <Row className=' overflow-auto flex-grow-1 p-0 m'>
 
-                <main className='h-100 p-0 '>
+                <main className='h-100 w-100 p-0 '>
 
                     <ProductoReducerProvider>
 

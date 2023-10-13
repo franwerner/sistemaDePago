@@ -22,7 +22,7 @@ const PlantillaPagosHeader = () => {
 
     return (
         <Container fluid className="mx-0 " >
-            <Row className="border mb-2 " >
+            <Row className="border" >
 
                 <BotonTarifas
                     alternarMostrar={onClick}>

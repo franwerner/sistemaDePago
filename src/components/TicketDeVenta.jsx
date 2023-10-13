@@ -95,7 +95,7 @@ const ListaDeProductos = () => {
 
                             <div className="d-flex justify-content-end h-100 align-items-center al  w-50">
 
-                                <p className={`${styles.totalDelProducto} m-0 fw-semibold pb-1 text-end`} >
+                                <p className={`${styles.totalDelProducto} m-0 fw-semibold mx-2 pb-1 text-end`} >
 
                                     $ {separarNumerosConDecimales(precioModificado * cantidadSeleccionada)}
 
@@ -165,12 +165,12 @@ export const TicketDeVenta = () => {
                 <ListaDeProductos />
             </Row>
 
-            <Row className={`${styles.totales} pb-1`}>
+            <Row className={`${styles.totales} pb-1 mx-1`}>
                 <Totales />
             </Row>
 
 
-            <Row className={`${styles.mensajeInformativo} d-flex pt-2 `}>
+            <Row className={`${styles.mensajeInformativo} px-0 d-flex pt-2 `}>
                 <h4 className="text-center mx-0 ">
                     *Comprobante no válido como factura.
                 </h4>

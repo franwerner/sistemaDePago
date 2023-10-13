@@ -176,8 +176,8 @@ export const ContainerDeProductos = React.memo(({ seccion }) => {
     const seccionActual = secciones[seccion]
 
     return (
-        <Row className="p-0 scrollHidden">
-            <Col className={`flex-wrap d-flex justify-content-center justify-content-md-start`}>
+        <Row className={`${styles.ContainerDeProductos} p-0 scrollHidden m-0`}>
+            <Col className={`flex-wrap d-flex h-100 justify-content-center justify-content-md-start`}>
                 {seccionActual.map((producto, index) =>
                     <ProductoMemoizado
                         key={index}

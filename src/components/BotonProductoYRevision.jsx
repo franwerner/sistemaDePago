@@ -19,8 +19,8 @@ export const BotonProductoYRevision = ({ alternarMostrar, mostrar }) => {
 
     return (
         <Col onClick={alternarMostrar}
-            style={{ background: "#6EC89B", fontSize: "18px", cursor: "pointer" }}
-            className=' w-100 p-3  text-white fw-bolder text-center'>
+            style={{ background: "#6EC89B", fontSize: "18px", cursor: "pointer"}}
+            className=' w-100 p-3  text-center h-100 text-white fw-bolder '>
 
             <p className="m-0">
                 {textoButton}

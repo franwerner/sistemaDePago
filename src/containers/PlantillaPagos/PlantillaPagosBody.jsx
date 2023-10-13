@@ -18,7 +18,7 @@ const ButtonTaciles = () => {
     const { modificarProducto, ultimoSeleccionado } = useContext(productoReducerContext)
 
     return (
-        <Col className={`${styles.contenedorBotonesTactiales} d-flex justify-content-center  align-items-center  p-0 `}>
+        <Col className={`${styles.contenedorBotonesTactiales}  d-flex justify-content-center  align-items-center  p-0 `}>
             <ContenedorDeBotonesTactiles
                 numeroDefault={ultimoSeleccionado.cantidadSeleccionada}
                 modificadorDefault={modificarProducto}
@@ -32,9 +32,9 @@ export const PlantillaPagosBody = ({ alternarMostrarContenedor, alternarMostrar 
     return (
         <Container
             fluid
-            className="scrollHidden d-flex flex-column h-100 rounded-1  ">
+            className="d-flex  overflow-hidden flex-column h-100 rounded-1  ">
 
-            <Row className="flex-grow-1 d-flex ">
+            <Row className="flex-grow-1 d-flex  scrollHidden ">
 
                 <Col sm={4} className="d-none  d-md-block ">
 
@@ -54,7 +54,7 @@ export const PlantillaPagosBody = ({ alternarMostrarContenedor, alternarMostrar 
             </Row>
 
 
-            <Row className="d-md-none d-flex flex-grow-0  ">
+            <Row className="d-md-none border  flex-grow-0  ">
                 <BotonPagos
                     alternarMostrarContenedor={alternarMostrarContenedor} />
                 <BotonProductoYRevision

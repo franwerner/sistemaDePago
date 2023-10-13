@@ -48,10 +48,10 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
     const restablecerTodo = () => {
 
         window.print()
-        restablecerProductos()
-        alternarMostrar()
-        restablecerPagos()
-        cerrarTodo()
+        // restablecerProductos()
+        // alternarMostrar()
+        // restablecerPagos()
+        // cerrarTodo()
         buscarCodigoDeMensajes({ codigo: "3F" })
 
     }

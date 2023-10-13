@@ -62,7 +62,7 @@
         color: var(--color-parrafo);
     }
 
-    .contenedorCantidad p:nth-child(2) {
+    .contenedorCantidad p:nth-child(3) {
         color: var(--color-parrafo);
         font-weight: 500;
     }

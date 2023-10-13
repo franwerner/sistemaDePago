@@ -1,8 +1,20 @@
 .contenedorCobroPrincipal {
     height: 50vh;
-    border-bottom: 4px solid  rgb(110, 200, 155);
+    border-bottom: 4px solid rgb(110, 200, 155);
 }
 
+@media (max-height : 700px) {
+    .contenedorCobroPrincipal {
+        height: 30vh;
+    }
+}
+
+
+@media (max-height : 899px) {
+    .contenedorCobroPrincipal {
+        height: 40vh;
+    }
+}
 
 /*Productos*/
 .productosACobrar {

@@ -13,9 +13,9 @@ export const PlantillaProductos = React.memo(({ alternarMostrar, alternarMostrar
     const { seccion, elegirSeccion, seccionesProductos } = useSeccion()
 
     return (
-        <section className="overflow-hidden w-100" id={"seccion-productos"}>
+        <section className=" overflow-hidden h-100 w-100" id={"seccion-productos"}>
 
-            <Col className={`${styles.contendorPlantillaProductos} h-100  d-flex flex-column `}>
+            <Col className={`${styles.contendorPlantillaProductos} h-100   d-flex flex-column `}>
 
                 <Container fluid className="p-0  d-flex h-100 flex-column">
 
@@ -27,7 +27,7 @@ export const PlantillaProductos = React.memo(({ alternarMostrar, alternarMostrar
                     <ContainerDeProductos seccion={seccion} />
 
 
-                    <Row className=" d-md-none  align-items-end position-relative flex-grow-1 " >
+                    <Row className=" border m-0 flex-grow-0 d-md-none align-items-end d-flex  " >
                         <BotonPagos alternarMostrarContenedor={alternarMostrarContenedor} />
                         <BotonProductoYRevision
                             alternarMostrar={alternarMostrar}

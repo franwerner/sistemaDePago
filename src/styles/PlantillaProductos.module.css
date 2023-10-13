@@ -15,6 +15,20 @@
 
 }
 
+.ContainerDeProductos{
+
+}
+
+@media (max-width : 1200px){
+    .ContainerDeProductos {
+        flex-grow: 1;
+        height: 100%;
+    }
+}
+
+
+
+
 /*SECCIONES DE PRODUCTOS*/
 
 .arrowHome {
