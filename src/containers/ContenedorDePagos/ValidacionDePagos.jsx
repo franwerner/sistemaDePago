@@ -8,15 +8,14 @@ import { useContext, } from "react"
 import { Col } from "react-bootstrap"
 import styles from "@/styles/ContenedorDePagos.module.css"
 
-const DetalleButton = ({ onClick, detalle }) => {
+const DetalleButton = ({ onClick, isValidated }) => {
 
-    const background = detalle ? "#6EC89B" : "#D3D3D3"
+    const btn = isValidated ? "botonDetalleActivo" : "botonDetalle"
 
     return (
         <div
             onClick={onClick}
-            style={{ background }}
-            className={`${styles.botonDetalle} fs-5 text-white fw-bolder mx-1  py-md-0 my-md-2 px-3 d-flex align-items-center justify-content-center  py-4 mx-md-5 flex-grow-1 flex-md-grow-0 `}>
+            className={`${styles[btn]} fs-5 text-white fw-bolder mx-1  py-md-0 my-md-2 px-3 d-flex align-items-center justify-content-center  py-4 mx-md-5 flex-grow-1 flex-md-grow-0 `}>
             <span className="me-1">
                 Detalle
             </span>
@@ -56,7 +55,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     }
 
-    const detalle = restoTotal == 0 && listaProducto.length > 0 && metodosDePago.length > 0 ? true : false
+    const isValidated = restoTotal == 0 && listaProducto.length > 0 && metodosDePago.length > 0 ? true : false
 
     return (
 
@@ -65,7 +64,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
             {mostrar && <TicketDeVenta />}
 
             {
-                detalle && <ModalDeDetellaDePago
+                isValidated && <ModalDeDetellaDePago
                     restablecerTodo={restablecerTodo}
                     alternarMostrar={alternarMostrar}
                     mostrar={mostrar}
@@ -75,7 +74,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
             <DetalleButton
                 onClick={onClick}
-                detalle={detalle} />
+                isValidated={isValidated} />
         </Col>
     )
 }

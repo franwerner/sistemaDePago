@@ -1,5 +1,6 @@
-.columnaInteractiva{
+.columnaInteractiva {
     transition: 2ms all;
+    min-width: 600px;
 }
 
 
@@ -18,4 +19,15 @@
     filter: brightness(110%);
     transform: scale(1.2);
     transition: 0.1 all;
+}
+
+
+@media (max-width: 767px) {
+    .columnaInteractiva {
+        min-width: 100%;
+    }
+
+    .linea {
+        display: none;
+    }
 }

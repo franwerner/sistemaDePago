@@ -10,30 +10,25 @@
 
 }
 
+.producto:active {
+    border: 3px solid #ade993d5;
+}
+
+.producto:active p:nth-child(1) {
+    background-color: #ade993d5;
+}
+
 .contendorPlantillaProductos {
     background-color: #f5f0f0;
 
 }
-
-.ContainerDeProductos{
-
-}
-
-@media (max-width : 1200px){
-    .ContainerDeProductos {
-        flex-grow: 1;
-        height: 100%;
-    }
-}
-
-
 
 
 /*SECCIONES DE PRODUCTOS*/
 
 .arrowHome {
     position: absolute;
-    right: -7%;
+    right: -21%;
     top: 0%;
     background-color: #d3d3d3
 }
@@ -48,10 +43,17 @@
 }
 
 
-
 .botonesSeccion {
     cursor: pointer;
     border-right: 1px solid rgb(193, 191, 191);
-    padding: 12px;
+    padding: 10px;
     background-color: #d3d3d3;
+}
+
+
+@media (max-width : 1200px) {
+    .ContainerDeProductos {
+        flex-grow: 1;
+        height: 100%;
+    }
 }

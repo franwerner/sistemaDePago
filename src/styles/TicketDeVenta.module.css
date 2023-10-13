@@ -62,6 +62,9 @@
         color: var(--color-parrafo);
     }
 
+    .contenedorCantidad p:nth-child(1){
+       min-width: 45px;
+    }
     .contenedorCantidad p:nth-child(3) {
         color: var(--color-parrafo);
         font-weight: 500;

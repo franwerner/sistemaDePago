@@ -4,82 +4,84 @@
 }
 
 
+.botonPagos i {
+    color: #555;
+    border: 1px solid transparent;
+
+}
+
+.botonPagos i:hover {
+    color: #6Ec89B;
+    box-shadow: 2px 2px 0px 0px rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    animation: buttonEffect 0.8s infinite alternate ease-in-out;
+}
+
+
+
+@keyframes buttonEffect {
+    0% {
+        transform: translateY(0%);
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-6px);
+        opacity: 0.6;
+    }
+}
+
 
 .botonPagos p {
     color: #555;
 }
 
-
-.botonPagos :first-child:hover {
-
-
-    border-radius: 50%;
-
-}
-
 .contenedorPlantillaPagos {
-    background-color: #e2e2e2a9;
+    background-color: #e2e2e2;
 }
-
 
 
 .contenedorBotonesTactiales button {
-    width: 70px;
-    height: 70px;
-    font-size: 20px;
+    width: 69.6px;
+    height: 65.5px;
+    font-size: 23px;
+    transition: 0.3s all;
+    background-color: transparent;
+}
+
+.textoConsumidorFinal {
+    height: 33.5%;
+    border: 1px solid #bfbfbf;
+    color: #555
+}
+
+.contenedorDeBotonpagos {
+    border: 1px solid #bfbfbf
 }
 
 
-@media (max-width : 1360px) {
+@media (max-height : 900px) {
     .contenedorBotonesTactiales button {
-        width: 60px;
-        height: 60px;
-        font-size: 20px;
+        height: 55.5px;
     }
-
-
 }
 
 
-@media (max-width : 768px) {
+@media (max-height : 700px) {
     .contenedorBotonesTactiales button {
-        width: 70px;
-        height: 70px;
-        font-size: 20px;
-    }
-
-
-}
-
-@media (max-height: 900px) {
-    .contenedorBotonesTactiales button {
-        width: 55px;
-        height: 55px;
-    }
-
-}
-
-@media (max-height : 990px) and (max-width : 768px) {
-    .contenedorBotonesTactiales button {
-        width: 60px;
-        height: 60px;
-        font-size: 20px;
-    }
-
-}
-
-@media (max-width: 1366px) and (max-height: 768px) {
-
-    .contenedorBotonesTactiales button {
-        width: 60px;
         height: 50px;
     }
 }
 
 
-@media (max-width : 820px) and (max-height : 1180px){
+@media (max-width : 280px) {
     .contenedorBotonesTactiales button {
-        width: 60px;
-        height: 60px;
+        height: 50px;
+        width: 50px;
+        font-size: 20px;
     }
 }

@@ -82,7 +82,7 @@ export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, num
 
     return (
 
-        <div className={`${styles.botonesTactiles} `}>
+        <div className={`${styles.botonesTactiles}  `}>
             {
                 arrayButtons.map((contenedor, index) =>
 

@@ -25,8 +25,8 @@ export const OverylayNavLock = React.memo(() => {
             >
 
                 {mostrar ?
-                    <i className={`fa-solid  d-flex  justify-content-center fa-lock-open text-danger  `}></i> :
-                    <i style={{ color: "#2e8b57" }} className={`fa-solid  d-flex justify-content-center fa-lock `}></i>
+                    <i className={`fa-solid  d-flex  justify-content-center fa-lock-open text-success  `}></i> :
+                    <i  className={`fa-solid  d-flex justify-content-center text-danger fa-lock `}></i>
                 }
 
             </Nav.Link>

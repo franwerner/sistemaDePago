@@ -3,10 +3,10 @@ import { BotonProductoYRevision } from "@/components//BotonProductoYRevision";
 import { ContenedorDeBotonesTactiles } from "@/components//ContenedorDeBotonesTactiles";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaPagos.module.css"
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { productoReducerContext } from "@/context//Contextos";
 
-const ButtonTaciles = () => {
+const ButtonTaciles = React.memo(() => {
 
     const listaDeBotonesTactiles = [
         ["1", "2", "3", ["+2", "+2"]],
@@ -18,35 +18,49 @@ const ButtonTaciles = () => {
     const { modificarProducto, ultimoSeleccionado } = useContext(productoReducerContext)
 
     return (
-        <Col className={`${styles.contenedorBotonesTactiales}  d-flex justify-content-center  align-items-center  p-0 `}>
+        <Col className={`${styles.contenedorBotonesTactiales} justify-content-center  d-flex  p-0 `}>
             <ContenedorDeBotonesTactiles
                 numeroDefault={ultimoSeleccionado.cantidadSeleccionada}
                 modificadorDefault={modificarProducto}
                 arrayButtons={listaDeBotonesTactiles} />
         </Col>
     )
-}
+})
 
 
 export const PlantillaPagosBody = ({ alternarMostrarContenedor, alternarMostrar }) => {
     return (
         <Container
             fluid
-            className="d-flex  overflow-hidden flex-column h-100 rounded-1  ">
+            className=" p-0  rounded-1 h-100 d-flex overflow-hidden  flex-column  ">
 
-            <Row className="flex-grow-1 d-flex  scrollHidden ">
+            <Row className="d-flex p-0 m-0  flex-grow-0 my-2 mx-2 h-100">
 
-                <Col sm={4} className="d-none  d-md-block ">
+                <Col className="d-none h-100 d-md-flex flex-column ">
 
-                    <Row className="h-100 align-items-center text-center">
-                        <div
-                            className={` ${styles.botonPagos}`}
-                            onClick={alternarMostrarContenedor}>
-                            <i className="fa-solid fa-circle-arrow-right "></i>
-                            <p className="fw-bolder">Pagos</p>
+                    <Row className={`${styles.textoConsumidorFinal}`}>
+
+                        <div className="justify-content-evenly fw-semibold p-0 align-items-center d-flex" >
+
+                            <div className="border border-white d-flex justify-content-center bg-white rounded-circle">
+                                <i className="fa-solid fa-user-secret p-2 fs-4"></i>
+                            </div>
+
+                            <p className="m-0">Consumidor Final Anònimo</p>
+
                         </div>
+
                     </Row>
 
+                    <Row className={`${styles.contenedorDeBotonpagos} h-100`} >
+                        <div
+                            className={`d-flex align-items-center flex-column justify-content-center ${styles.botonPagos}`}
+                            onClick={alternarMostrarContenedor}>
+                            <i className="fa-solid fa-circle-arrow-right "></i>
+                            <p className="fw-bolder ">Pagos</p>
+                        </div>
+
+                    </Row>
                 </Col>
 
                 <ButtonTaciles />
@@ -54,7 +68,7 @@ export const PlantillaPagosBody = ({ alternarMostrarContenedor, alternarMostrar 
             </Row>
 
 
-            <Row className="d-md-none border  flex-grow-0  ">
+            <Row className="d-md-none border w-100 d-flex m-0">
                 <BotonPagos
                     alternarMostrarContenedor={alternarMostrarContenedor} />
                 <BotonProductoYRevision

@@ -133,7 +133,7 @@ export const productoReducer = () => {
     }, [])
 
     const modificarProducto = useCallback((producto) => {
-
+        
         dispatch({ type: "MODIFICAR", producto })
 
     }, [])

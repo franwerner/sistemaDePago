@@ -21,8 +21,8 @@ const PlantillaPagosHeader = () => {
     }, [])
 
     return (
-        <Container fluid className="mx-0 " >
-            <Row className="border" >
+        <Container fluid className=" flex-grow-0 p-0 " >
+            <Row className="m-2 mb-0" >
 
                 <BotonTarifas
                     alternarMostrar={onClick}>
@@ -49,11 +49,11 @@ export const PlantillaPagos = React.memo(({ alternarMostrarContenedor, alternarM
 
     return (
         <section id="seccion-pagos"
-            className="h-100 scrollHidden  ">
-            <Container fluid className="flex-grow-1  h-100 ">
-                <Row className="h-100 ">
+            className=" flex-grow-0">
+            <Container fluid className={`h-100 ${styles.contenedorPlantillaPagos}`}>
+                <Row className="h-100">
 
-                    <Col className={`d-flex h-100 p-0 p-md-2  flex-column  ${styles.contenedorPlantillaPagos} `}>
+                    <Col className="d-flex  p-0 h-100 flex-column">
 
                         <PlantillaPagosHeader />
                         <PlantillaPagosBody

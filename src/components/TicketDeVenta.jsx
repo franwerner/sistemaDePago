@@ -21,7 +21,7 @@ const RowTotales = ({ nombre, texto }) => {
                     {nombre}:
                 </p>
             </Col>
-            <Col className="text-end " xs={"auto"}>
+            <Col className="text-end mx-2 " xs={"auto"}>
                 <p className="m-0">
                     {texto}
                 </p>
@@ -41,7 +41,7 @@ const Totales = () => {
     const porcentajeAplicado = ((totalAValidar - calculoSinTarifa) / calculoSinTarifa) * 100
 
     const verificarSiPorcentajeEsNan = isNaN(porcentajeAplicado) ? 0 : porcentajeAplicado
-    
+
     return (
 
         <Container className="mt-1">
@@ -65,7 +65,7 @@ const ListaDeProductos = () => {
             {listaProducto.map(({ cantidadSeleccionada, precioModificado, nombre }, index) =>
                 <Container
                     key={index}
-                    className="overflow-hidden">
+                    className="overflow-hidden py-1">
 
                     <Row className="position-relative">
 
@@ -81,21 +81,21 @@ const ListaDeProductos = () => {
                             <div
                                 className={`${styles.contenedorCantidad} d-flex  w-50 justify-content-center `}>
 
-                                <p style={{minWidth : "45px"}} className="fw-bold text-wrap  text-end  m-0  ">
-                                    {parseFloat(cantidadSeleccionada).toFixed(2)} 
+                                <p  className="fw-bold text-wrap  text-end  m-0  ">
+                                    {parseFloat(cantidadSeleccionada).toFixed(2)}
                                 </p>
 
-                                <p className="fw-bold mx-1">
-                                   x
+                                <p className="fw-bold m-0 mx-1">
+                                    x
                                 </p>
 
                                 <p className="m-0 text-start w-50">{separarNumerosConDecimales(precioModificado)}</p>
 
                             </div>
 
-                            <div className="d-flex justify-content-end h-100 align-items-center al  w-50">
+                            <div className="d-flex justify-content-end  align-items-center   w-50">
 
-                                <p className={`${styles.totalDelProducto} m-0 fw-semibold mx-2 pb-1 text-end`} >
+                                <p className={`${styles.totalDelProducto} m-0 fw-semibold mx-2  text-end`} >
 
                                     $ {separarNumerosConDecimales(precioModificado * cantidadSeleccionada)}
 
@@ -165,7 +165,7 @@ export const TicketDeVenta = () => {
                 <ListaDeProductos />
             </Row>
 
-            <Row className={`${styles.totales} pb-1 mx-1`}>
+            <Row className={`${styles.totales} pb-1`}>
                 <Totales />
             </Row>
 

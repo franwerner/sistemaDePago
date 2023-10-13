@@ -34,7 +34,7 @@ const SeccionHome = ({ seccion, elegirSeccion }) => {
     return (
         <div
             onClick={onClick}
-            className={`px-4 position-relative d-flex ${styles.botonesSeccion}`}>
+            className={`px-3 position-relative d-flex ${styles.botonesSeccion}`}>
 
             {
                 analizarSiEsHome &&
@@ -54,7 +54,7 @@ export const SeccionesProductos = React.memo(({ seccion, elegirSeccion, seccione
 
     return (
 
-        <Row className={`d-flex  ${styles.seccionesContainer} p-0`}>
+        <Row className={`d-flex m-0  ${styles.seccionesContainer} p-0`}>
             <Col style={{ overflowY: "hidden" }} className="d-flex scrollBarPersonalizada  w-100 p-0 mx-2">
 
                 <SeccionHome

@@ -15,7 +15,29 @@
 }
 
 .botonDetalle {
+    background-color: #D3D3D3;
+    cursor: not-allowed;
+}
+
+
+.botonDetalleActivo {
     cursor: pointer;
+    background-color: #6EC89B;
+    border-radius: 4px;
+}
+
+.botonDetalleActivo {
+    animation: buttonEffect 1s infinite alternate ease-in-out;
+}
+
+@keyframes buttonEffect {
+    to {
+        opacity: 0.9;
+    }
+
+    from {
+        opacity: 0.7;
+    }
 }
 
 /**/
@@ -97,7 +119,7 @@
     animation: expandWidth 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
-.contendorDeBotonesTactiles button{
+.contendorDeBotonesTactiles button {
     width: 75px;
     height: 75px;
     font-size: 20px;
@@ -163,15 +185,32 @@
         max-width: 100%;
     }
 
-
+    .contendorDeBotonesTactiles button {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+    }
 
 }
 
 @media (min-width : 768px) {
 
-    .botonDetalle,
-    .botonVolver {
+    .botonVolver,
+    .botonDetalle {
         border-radius: 4px;
+    }
+
+
+    @keyframes buttonEffect {
+        0% {
+            transform: translateY(0%);
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: translateY(-4px);
+            opacity: 0.8;
+        }
     }
 
 }
@@ -183,15 +222,6 @@
         width: 65px;
         height: 65px;
         font-size: 19px;
-    }
-
-}
-
-@media (max-width : 768px) {
-    .contendorDeBotonesTactiles button {
-        width: 60px;
-        height: 60px;
-        font-size: 20px;
     }
 
 }
