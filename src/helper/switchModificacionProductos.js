@@ -1,21 +1,26 @@
-import { switchDefault } from "./switchButonTactilDefault"
+import { ModificacionProductos } from "./contructores/ModificacionProductos"
+import { PosicionadorDeIndices } from "./contructores/posicionadorDeIndices"
+
+
 
 export const switchModificacionesProductos = (state, ultimoSeleccionado, btn) => {
 
     const copiaState = [...state]
 
+    const { tipoDeButton, comma } = btn
+
     const copiaUltimoSeleccionado = { ...ultimoSeleccionado }
 
     const { cantidadSeleccionada } = copiaUltimoSeleccionado
 
-    copiaUltimoSeleccionado.cantidadSeleccionada = switchDefault(cantidadSeleccionada, btn)
+    const resultadoFinal = new ModificacionProductos(cantidadSeleccionada, tipoDeButton, comma).switchBtn()
 
-    const indice = copiaState.findIndex(item => item.nombre == copiaUltimoSeleccionado.nombre)
+    copiaUltimoSeleccionado.cantidadSeleccionada = resultadoFinal
 
-    copiaState.splice(indice, 1, copiaUltimoSeleccionado)
+    const posicionar = new PosicionadorDeIndices(copiaState, copiaUltimoSeleccionado, "nombre").posicionar()
 
     return [
-        [...copiaState],
+        [...posicionar],
         copiaUltimoSeleccionado
     ]
 

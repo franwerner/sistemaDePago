@@ -3,8 +3,6 @@ import { useState, useCallback } from "react"
 
 export const useSeleccionarElemento = () => {
 
-
-
     const [seleccion, setSeleccion] = useState({})
 
 

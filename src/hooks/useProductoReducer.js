@@ -38,22 +38,6 @@ const buscarElementoSeleccionado = (state, producto) => {
     return state.find(item => item.nombre == producto.nombre)
 }
 
-const mapeoDeProductos = ({ lista, ultimo }) => {
-
-    return lista.map(item => {
-        return item.nombre == ultimo.nombre && item.cantidadSeleccionada == 0 ? undefined : item
-
-    })
-
-}
-
-const filtradoDeCantidadEnCero = ({ lista, ultimo, producto, ultimoSeleccionado }) => {
-
-    if (ultimo.cantidadSeleccionada == 0 && ultimoSeleccionado.cantidadSeleccionada == 0 && producto.tipoDeButton == "Backspace") {
-        return mapeoDeProductos({ lista, ultimo }).filter(item => item !== undefined)
-    }
-    else return lista
-}
 
 const reducer = ([estado, ultimoSeleccionado], { producto, type }) => {
 
@@ -96,17 +80,9 @@ const reducer = ([estado, ultimoSeleccionado], { producto, type }) => {
 
     const newState = productoActual()
 
-    const lista = newState[0]
+    const filtrado = newState[0].filter(item => item.cantidadSeleccionada !== null)
 
-    const ultimo = newState[1]
-
-    const filtrado = filtradoDeCantidadEnCero({ lista, ultimo, producto, ultimoSeleccionado })
-
-    const largo = lista.length
-
-    const largo2 = filtrado.length
-
-    const ultimoSelecc = largo2 < largo ? { ...filtrado[largo2 - 1] } : newState[1]
+    const ultimoSelecc = type !== "SELECCIONAR" && filtrado.length < estado.length ? { ...filtrado[filtrado.length - 1] } : newState[1]
 
     return [filtrado, ultimoSelecc]
 };
@@ -133,7 +109,7 @@ export const productoReducer = () => {
     }, [])
 
     const modificarProducto = useCallback((producto) => {
-        
+
         dispatch({ type: "MODIFICAR", producto })
 
     }, [])
