@@ -6,7 +6,10 @@ export const useAlternarComas = () => {
 
     const alternarComas = (button) => {
 
-        button == "," ? setComma(!comma) : comma
+        if (button == "," || button == "Comma") {
+
+            setComma(prev => !prev)
+        }
 
     }
 

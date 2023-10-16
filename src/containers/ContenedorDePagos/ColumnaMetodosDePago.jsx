@@ -13,10 +13,7 @@ export const BotonesTactilesResponsive = React.memo(() => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
-    const { modificarResto, pagoActual } = useContext(restoDelPagoContext)
-
-    const { ultimoSeleccionado = { resto: 0 } } = pagoActual
-
+    const { modificarResto } = useContext(restoDelPagoContext)
 
     return (
         <>
@@ -27,8 +24,7 @@ export const BotonesTactilesResponsive = React.memo(() => {
                     className={`${styles.botonesTactilesResize} position-absolute  d-flex justify-content-center  d-md-none`}>
                     <div className={`${styles.contendorDeBotonesTactiles}`}>
                         <ContenedorDeBotonesTactiles
-                            modificadorDefault={modificarResto}
-                            numeroDefault={ultimoSeleccionado.resto} />
+                            modificadorDefault={modificarResto} />
                     </div>
                 </span>
 

@@ -6,21 +6,20 @@ import styles from "@/styles/PlantillaPagos.module.css"
 import React, { useContext } from "react";
 import { productoReducerContext } from "@/context//Contextos";
 
+const listaDeBotonesTactiles = [
+    ["1", "2", "3", ["+2", "+2"]],
+    ["4", "5", "6", ["+5", "+5"]],
+    ["7", "8", "9", ["+10", "+10"]],
+    ["+/-", "0", [",", "Comma"], ["X", "Backspace"]]
+]
+
 const ButtonTaciles = React.memo(() => {
 
-    const listaDeBotonesTactiles = [
-        ["1", "2", "3", ["+2", "+2"]],
-        ["4", "5", "6", ["+5", "+5"]],
-        ["7", "8", "9", ["+10", "+10"]],
-        ["+/-", "0", [",", "Comma"], ["X", "Backspace"]]
-    ]
-
-    const { modificarProducto, ultimoSeleccionado } = useContext(productoReducerContext)
+    const { modificarProducto } = useContext(productoReducerContext)
 
     return (
         <Col className={`${styles.contenedorBotonesTactiales} justify-content-center  d-flex  p-0 `}>
             <ContenedorDeBotonesTactiles
-                numeroDefault={ultimoSeleccionado.cantidadSeleccionada}
                 modificadorDefault={modificarProducto}
                 arrayButtons={listaDeBotonesTactiles} />
         </Col>

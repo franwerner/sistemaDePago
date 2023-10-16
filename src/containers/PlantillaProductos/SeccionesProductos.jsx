@@ -15,7 +15,7 @@ const SeccionesRestantes = ({ seccionActual, secciones, elegirSeccion }) => {
 
         analizarSiEsLaSeccionActual && <span
             onClick={onClick}
-            className={` ${styles.botonesSeccion}   `}>
+            className={`my-1 ${styles.botonesSeccion}   `}>
             {secciones}
         </span>
     )

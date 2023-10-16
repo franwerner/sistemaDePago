@@ -11,7 +11,7 @@ import { TotalPrecioProductos } from "@/components//TotalPrecioProductos"
 
 export const PlantillaCobro = React.memo(() => {
 
-    const { listaProducto, eliminarProducto, seleccionarProducto, ultimoSeleccionado } = useContext(productoReducerContext)
+    const { listaProducto, seleccionarProducto, ultimoSeleccionado } = useContext(productoReducerContext)
 
     const referido = useRef(null)
     useEffect(() => {
@@ -37,7 +37,6 @@ export const PlantillaCobro = React.memo(() => {
                         <ListaDeProductosACobrar
                             seleccionarProducto={seleccionarProducto}
                             listaProducto={listaProducto}
-                            eliminarProducto={eliminarProducto}
                             ultimoSeleccionado={ultimoSeleccionado}
                         />
 

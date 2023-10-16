@@ -1,10 +1,9 @@
 import { Button } from "react-bootstrap"
 import styles from "@/styles/BotonesTactiles.module.css"
 import { useHotkeys } from "react-hotkeys-hook"
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { useAlternarComas } from "@/hooks/useAlternarComas"
-import { alternarSignos } from "../helper/alternarSignos"
-import { verificarSiEsNegativo } from "../helper/verificarSiEsNegativo"
+import { VerificarSiEsUnOperador } from "../helper/VerificarSiEsUnOperador"
 
 const listaDeBotonesTactiles = [
     ["1", "2", "3", ["+100", "+100"]],
@@ -32,15 +31,13 @@ const keysPress = [
 ]
 
 
-const ButtonTactil = React.memo(({ tipo, nombre, onClick }) => {
+const ButtonTactil = React.memo(({ nombre, onClick, tipo }) => {
 
-    const onClickeo = (e) => {
-
-        onClick(e, tipo)
+    const click = () => {
+        onClick(tipo)
     }
-
     return (
-        <Button onClick={onClickeo}
+        <Button onClick={click}
             name={nombre}
             variant="dark"
             className=" fw-bolder rounded-0 ">
@@ -49,33 +46,43 @@ const ButtonTactil = React.memo(({ tipo, nombre, onClick }) => {
     )
 })
 
-export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, numeroDefault, arrayButtons = listaDeBotonesTactiles }) => {
 
-    const esNegativo = verificarSiEsNegativo(numeroDefault)
+export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, arrayButtons = listaDeBotonesTactiles }) => {
+
 
     const { alternarComas, comma } = useAlternarComas()
 
-    const onClick = useCallback(({ target }, tipo) => {
+    const [actualButton, setButton] = useState("")
 
-        alternarComas(target.name)
+    useEffect(() => {
 
-        const signos = target.name == "+/-" ? true : false
-
-        const resultado = signos ? alternarSignos(esNegativo) : tipo
+        if (actualButton.length == 0) return
 
         modificadorDefault(
             {
-                tipoDeButton: resultado,
+                tipoDeButton: actualButton,
                 comma: comma,
             }
         )
-    }, [esNegativo, comma, modificadorDefault])
+        setButton("")
+
+    }, [comma, actualButton])
+
+    const onClick = useCallback(tipo => {
+
+        alternarComas(tipo)
+        setButton(tipo)
+
+    }, [])
 
     const handleKey = (e) => {
 
+        const verificacion = VerificarSiEsUnOperador(e.key) ? "+/-" : e.key
+
         alternarComas(e.key)
 
-        modificadorDefault({ tipoDeButton: e.key, comma: comma })
+        setButton(verificacion)
+
     }
 
     useHotkeys(keysPress, handleKey, { keyup: true })
@@ -96,9 +103,6 @@ export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, num
                                     tipo={typeof numero == "string" ? numero : numero[1]}
                                     onClick={onClick}
                                     key={index} />
-
-
-
                             )
                         }
                     </div>

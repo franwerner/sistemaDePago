@@ -5,6 +5,8 @@ import { PlantillaPagos } from "./PlantillaPagos/PlantillaPagos";
 import { PlantillaProductos } from "./PlantillaProductos/PlantillaProductos";
 import { useEventoMostrar } from "../hooks/useEventoMostrar";
 import { useAltenarModoResponsive } from "../hooks/useAltenarModoResponsive";
+import { useTouchMove } from "../hooks/useTouchMove";
+import { useEffect } from "react";
 
 
 export const ContenedorPrincipal = ({ mostrarContenedor, alternarMostrarContenedor }) => {
@@ -13,7 +15,18 @@ export const ContenedorPrincipal = ({ mostrarContenedor, alternarMostrarContened
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     useAltenarModoResponsive({ mostrar, alternarMostrar })
-    const onHide = mostrar ? "d-flex" : "d-none"
+
+    useEffect(() => {
+        const { touchEnd, touchStart } = useTouchMove(alternarMostrar)
+
+        window.addEventListener("touchend", touchEnd)
+        window.addEventListener("touchstart", touchStart)
+
+        return () => {
+            window.removeEventListener("touchend", touchEnd);
+            window.removeEventListener("touchstart", touchStart);
+        };
+    }, [])
 
     return (
         <>

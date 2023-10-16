@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from "react"
 import styles from "@/styles/PlantillaCobro.module.css"
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales"
 import { Col, Container, Row } from "react-bootstrap"
-import { useHotkeys } from "react-hotkeys-hook"
 import { CalcularPorcentajeMemoizado } from "@/hooks//useCalcularPorcentaje"
 
 
@@ -83,12 +82,7 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
 })
 
 
-export const ListaDeProductosACobrar = ({ listaProducto, eliminarProducto, ultimoSeleccionado, seleccionarProducto }) => {
-
-
-    const config = {
-        keyup: true
-    }
+export const ListaDeProductosACobrar = ({ listaProducto, ultimoSeleccionado, seleccionarProducto }) => {
 
     const verificarUltimoSeleccionado = (lista) => {
         return ultimoSeleccionado.nombre == lista.nombre ? "contendorCobroProductoSeleccionado" : "contenedorCobroProductoNoSeleccionado"

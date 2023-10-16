@@ -4,7 +4,7 @@ import styles from "@/styles/PlantillaProductos.module.css"
 import { ContainerDeProductos } from "./ContainerDeProductos";
 import { useSeccion } from "@/hooks/useSeccion";
 import { SeccionesProductos } from "./SeccionesProductos";
-import React from "react";
+import React, { useEffect } from "react";
 import { BotonPagos } from "@/components//BotonPagos";
 import { BotonProductoYRevision } from "@/components//BotonProductoYRevision";
 

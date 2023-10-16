@@ -6,16 +6,13 @@ import styles from "@/styles/ContenedorDePagos.module.css"
 
 export const BotonTacil = () => {
 
-    const { modificarResto, pagoActual } = useContext(restoDelPagoContext)
-
-    const { ultimoSeleccionado = { resto: 0 } } = pagoActual
+    const { modificarResto } = useContext(restoDelPagoContext)
 
     return (
         <Col className=" d-flex align-items-center justify-content-center h-100">
             <span className={`d-none d-md-block ${styles.contendorDeBotonesTactiles}`}>
                 <ContenedorDeBotonesTactiles
-                    modificadorDefault={modificarResto}
-                    numeroDefault={ultimoSeleccionado.resto} />
+                    modificadorDefault={modificarResto} />
 
             </span>
         </Col>
