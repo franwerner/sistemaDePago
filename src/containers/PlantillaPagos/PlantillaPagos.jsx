@@ -48,9 +48,7 @@ export const PlantillaPagos = React.memo(({ alternarMostrarContenedor, alternarM
 
 
     return (
-        <section id="seccion-pagos"
-            className=" flex-grow-0">
-            <Container fluid className={`h-100 ${styles.contenedorPlantillaPagos}`}>
+            <Container fluid className={`flex-grow-0  ${styles.contenedorPlantillaPagos}`}>
                 <Row className="h-100">
 
                     <Col className="d-flex  p-0 h-100 flex-column">
@@ -63,9 +61,6 @@ export const PlantillaPagos = React.memo(({ alternarMostrarContenedor, alternarM
                     </Col>
                 </Row>
             </Container>
-
-
-        </section>
     )
 })
 

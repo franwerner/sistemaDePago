@@ -13,22 +13,23 @@ export const PuntoDeVenta = () => {
 
     return (
         <Container
-            className='d-flex scrollHidden  flex-column vh-100'
+            className='d-flex scrollHidden  flex-column vh-100  p-0'
             fluid>
 
-            <Row className='flex-grow-0'>
+            <Row className='flex-grow-0 px-1'>
                 <NavegacionHeader mostrar={mostrar} />
             </Row>
 
-            <Row className=' overflow-auto flex-grow-1 p-0 m'>
-
-                <main className='h-100 w-100 p-0 '>
+            <Row className=' overflow-auto flex-grow-1 p-0 m-0 h-100'>
 
                     <ProductoReducerProvider>
 
-                        <ContenedorPrincipal
-                            mostrarContenedor={mostrar}
-                            alternarMostrarContenedor={alternarMostrar} />
+                        {!mostrar &&
+                            <ContenedorPrincipal
+                                mostrarContendor={mostrar}
+                                alternarMostrarContenedor={alternarMostrar} />
+                        }
+
 
                         <ContenedorDePagos
                             mostrar={mostrar}
@@ -37,7 +38,6 @@ export const PuntoDeVenta = () => {
 
                     </ProductoReducerProvider>
 
-                </main>
             </Row>
 
         </Container>

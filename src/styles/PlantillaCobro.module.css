@@ -1,5 +1,6 @@
 .contenedorCobroPrincipal {
     border-bottom: 4px solid rgb(110, 200, 155);
+    overflow-x: hidden;
 }
 
 

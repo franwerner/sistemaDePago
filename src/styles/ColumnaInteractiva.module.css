@@ -1,6 +1,6 @@
 .columnaInteractiva {
-    transition: 2ms all;
     min-width: 600px;
+    border-right: 3px solid #555;
 }
 
 

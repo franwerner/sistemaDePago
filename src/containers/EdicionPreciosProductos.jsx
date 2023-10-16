@@ -18,7 +18,7 @@ const EdicionHeader = ({ validarNumero, total, nombre }) => {
             <Row >
                 <Col xs={"auto"} className="w-100">
                     <p className="text-break" style={{ color: "#555" }}>
-                        {nombre}asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
+                        {nombre}
                     </p>
                 </Col>
 

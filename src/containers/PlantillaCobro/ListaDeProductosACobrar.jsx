@@ -70,7 +70,7 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
         <Row
             tabIndex={0}
             onClick={onClick}
-            className={`producto-a-cobrar ${styles.contenedorDelProducto}`}
+            className={`producto-a-cobrar  ${styles.contenedorDelProducto}`}
             ref={referencia}
         >
             <Container fluid className={`${styles[background]} my-1 ${styles.productosACobrar} position-relative text-nowrap overflow-hidden`}>

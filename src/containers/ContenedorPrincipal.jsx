@@ -1,67 +1,83 @@
-import { Col } from "react-bootstrap";
-import { ColumnaInteractiva } from "./ColumnaInteractiva";
+import { Col, Container, Row } from "react-bootstrap";
+import styles from "@/styles/ColumnaInteractiva.module.css"
 import { PlantillaCobro } from "./PlantillaCobro/PlantillaCobro";
 import { PlantillaPagos } from "./PlantillaPagos/PlantillaPagos";
 import { PlantillaProductos } from "./PlantillaProductos/PlantillaProductos";
 import { useEventoMostrar } from "../hooks/useEventoMostrar";
 import { useAltenarModoResponsive } from "../hooks/useAltenarModoResponsive";
-import { useTouchMove } from "../hooks/useTouchMove";
-import { useEffect } from "react";
+import HocTouchEvents from "../components/HocTouchEvents";
+import React, { useEffect } from "react";
+import { BotonPagos } from "../components/BotonPagos";
+import { BotonProductoYRevision } from "../components/BotonProductoYRevision";
 
+const ContenedorPrincipalBody = React.memo(({ mostrar, alternarMostrar, alternarMostrarContenedor }) => {
 
-export const ContenedorPrincipal = ({ mostrarContenedor, alternarMostrarContenedor }) => {
+    const onHide = !mostrar ? "d-flex" : "d-none"
 
+    return (
+        <Row className="h-100 overflow-hidden flex-grow-1 w-100 p-0 m-0">
+
+            <Col style={{ maxWidth: "600px" }} className={`${onHide} ${styles.columnaInteractiva} overflow-hidden h-100 w-100 p-0  d-flex flex-column`}>
+
+                <PlantillaCobro />
+                <PlantillaPagos
+                    alternarMostrar={alternarMostrar}
+                    alternarMostrarContenedor={alternarMostrarContenedor} />
+            </Col>
+
+            <PlantillaProductos
+                alternarMostrarContenedor={alternarMostrarContenedor}
+                alternarMostrar={alternarMostrar} />
+        </Row>
+    )
+
+})
+
+const ContenedorPrincipalFooter = React.memo(({ alternarMostrar, alternarMostrarContenedor, mostrarContendor }) => {
+
+    return (
+        <Row className="d-md-none">
+            <BotonPagos
+                alternarMostrarContenedor={alternarMostrarContenedor} />
+            <BotonProductoYRevision
+                alternarMostrar={alternarMostrar}
+                mostrar={mostrarContendor} />
+        </Row>
+
+    )
+})
+
+const ContenedorPrincipalWrapper = ({ mostrarContendor, alternarMostrarContenedor, touchAplicado }) => {
 
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     useAltenarModoResponsive({ mostrar, alternarMostrar })
 
     useEffect(() => {
-        const { touchEnd, touchStart } = useTouchMove(alternarMostrar)
 
-        window.addEventListener("touchend", touchEnd)
-        window.addEventListener("touchstart", touchStart)
+        touchAplicado == "end" && alternarMostrar()
 
-        return () => {
-            window.removeEventListener("touchend", touchEnd);
-            window.removeEventListener("touchstart", touchStart);
-        };
-    }, [])
+    }, [touchAplicado])
+
 
     return (
-        <>
+        <Container
+            fluid
+            className='h-100 d-flex w-100 flex-column overflow-hidden p-0' >
 
+            <ContenedorPrincipalBody
+                mostrar={mostrar}
+                alternarMostrar={alternarMostrar}
+                alternarMostrarContenedor={alternarMostrar} />
 
-            {
-                !mostrarContenedor &&
-
-                <section
-                    id="interface-cobros"
-                    className='h-100  p-0 d-flex' >
-
-
-                    <ColumnaInteractiva mostrar={mostrar}>
-                        <Col className="overflow-hidden  d-flex  flex-column">
-                            <PlantillaCobro />
-                            <PlantillaPagos
-                                alternarMostrar={alternarMostrar}
-                                alternarMostrarContenedor={alternarMostrarContenedor} />
-                        </Col>
-                    </ColumnaInteractiva>
-
-                    <PlantillaProductos
-                        alternarMostrarContenedor={alternarMostrarContenedor}
-                        alternarMostrar={alternarMostrar} />
-
-
-                </section>
-
-
-
-            }
-
-        </>
-
+            <ContenedorPrincipalFooter
+                mostrarContendor={mostrarContendor}
+                alternarMostrarContenedor={alternarMostrarContenedor}
+                alternarMostrar={alternarMostrar} />
+        </Container>
     )
 
 };
+
+export const ContenedorPrincipal = HocTouchEvents(ContenedorPrincipalWrapper)
+

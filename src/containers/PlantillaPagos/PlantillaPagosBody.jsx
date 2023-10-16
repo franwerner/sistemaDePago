@@ -1,5 +1,3 @@
-import { BotonPagos } from "@/components//BotonPagos";
-import { BotonProductoYRevision } from "@/components//BotonProductoYRevision";
 import { ContenedorDeBotonesTactiles } from "@/components//ContenedorDeBotonesTactiles";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaPagos.module.css"
@@ -27,7 +25,7 @@ const ButtonTaciles = React.memo(() => {
 })
 
 
-export const PlantillaPagosBody = ({ alternarMostrarContenedor, alternarMostrar }) => {
+export const PlantillaPagosBody = ({ alternarMostrarContenedor}) => {
     return (
         <Container
             fluid
@@ -64,15 +62,6 @@ export const PlantillaPagosBody = ({ alternarMostrarContenedor, alternarMostrar 
 
                 <ButtonTaciles />
 
-            </Row>
-
-
-            <Row className="d-md-none border w-100 d-flex m-0">
-                <BotonPagos
-                    alternarMostrarContenedor={alternarMostrarContenedor} />
-                <BotonProductoYRevision
-                    alternarMostrar={alternarMostrar}
-                    mostrar={false} />
             </Row>
 
         </Container>
