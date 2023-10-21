@@ -1,6 +1,7 @@
 
 import { useCallback, useReducer } from 'react';
-import { switchModificacionesProductos } from '../helper/switchModificacionProductos';
+import switchModificacionesProductos from '../helper/switchModificacionProductos';
+
 
 
 const agregarNuevasPropiedades = (producto) => {

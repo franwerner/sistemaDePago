@@ -1,5 +1,5 @@
 
-export const validarUsuarioFetch = async (usuario) => {
+const validarUsuarioFetch = async (usuario) => {
 
     try {
         const body = {
@@ -23,3 +23,4 @@ export const validarUsuarioFetch = async (usuario) => {
 
 }
 
+export default validarUsuarioFetch

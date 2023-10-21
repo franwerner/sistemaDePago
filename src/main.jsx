@@ -9,7 +9,7 @@ import { PuntoDeVenta } from './containers/PuntoDeVenta.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/pos",
     element: <PuntoDeVenta></PuntoDeVenta>,
     errorElement: <h1>Ruta no existente</h1>
   },

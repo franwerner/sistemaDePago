@@ -4,7 +4,7 @@ import { listaUsuariosContext } from "@/context/Contextos"
 import { ListaDeUsuarios } from "./ListaDeUsuarios"
 
 
-export const ContenedorDeUsuarios = ({ mostrar, alternarMostrar }) => {
+const ContenedorDeUsuarios = ({ mostrar, alternarMostrar }) => {
 
     const { usuarioActual } = useContext(listaUsuariosContext)
 
@@ -37,3 +37,5 @@ export const ContenedorDeUsuarios = ({ mostrar, alternarMostrar }) => {
         </>
     )
 }
+
+export default ContenedorDeUsuarios

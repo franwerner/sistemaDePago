@@ -1,11 +1,11 @@
 
 import { Nav } from "react-bootstrap"
-import { ContenedorDeUsuarios } from "../containers/ContenedorDeUsuarios/ContenedorDeUsuarios"
 import { OverlayDefault } from "./OverlayDefault"
 import { useEventoMostrar } from "../hooks/useEventoMostrar"
-import { useEvitarRenderizados } from "../hooks/useEvitarRenderizados"
-import React from "react"
+import React, { lazy } from "react"
+import { SuspenseLoading } from "./SuspenseLoading"
 
+const ContenedorDeUsuarios = lazy(() => import("../containers/ContenedorDeUsuarios/ContenedorDeUsuarios"))
 
 export const OverlayNavUsuarios = React.memo(() => {
 
@@ -13,11 +13,10 @@ export const OverlayNavUsuarios = React.memo(() => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
-    const { registrarConteo, conteoRenderizados } = useEvitarRenderizados()
+
 
     const onClick = () => {
         alternarMostrar()
-        registrarConteo()
     }
 
     return (
@@ -33,11 +32,13 @@ export const OverlayNavUsuarios = React.memo(() => {
                 </Nav.Link>
             </OverlayDefault>
 
-            {conteoRenderizados >= 1 && (
-                <ContenedorDeUsuarios
-                    mostrar={mostrar}
-                    alternarMostrar={alternarMostrar}
-                />
+            {mostrar && (
+                <SuspenseLoading>
+                    <ContenedorDeUsuarios
+                        mostrar={mostrar}
+                        alternarMostrar={alternarMostrar}
+                    />
+                </SuspenseLoading>
             )}
         </>
     )

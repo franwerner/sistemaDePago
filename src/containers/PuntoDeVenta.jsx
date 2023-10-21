@@ -3,9 +3,13 @@ import { ProductoReducerProvider } from '@/context/provider/ProductosReducerProv
 import "../index.css"
 import { Container, Row } from 'react-bootstrap';
 import { NavegacionHeader } from '@/components/NavegacionHeader';
-import { ContenedorDePagos } from './ContenedorDePagos/ContenedorDePagos';
 import { useEventoMostrar } from '../hooks/useEventoMostrar';
-import { ContenedorPrincipal } from './ContenedorPrincipal';
+import ContenedorPrincipal from './ContenedorPrincipal/ContenedorPrincipal';
+import { lazy } from 'react';
+import { RestoDelPagoProvider } from '../context/provider/RestoDelPagoProvider';
+import { SuspenseLoading } from '../components/SuspenseLoading';
+const ContenedorDePagos = lazy(() => import("./ContenedorDePagos/ContenedorDePagos"))
+
 
 export const PuntoDeVenta = () => {
 
@@ -22,25 +26,31 @@ export const PuntoDeVenta = () => {
 
             <Row className=' overflow-auto flex-grow-1 p-0 m-0 h-100'>
 
-                    <ProductoReducerProvider>
+                <ProductoReducerProvider>
 
-                        {!mostrar &&
-                            <ContenedorPrincipal
-                                mostrarContendor={mostrar}
-                                alternarMostrarContenedor={alternarMostrar} />
+                    {!mostrar &&
+                        <ContenedorPrincipal
+                            mostrarContendor={mostrar}
+                            alternarMostrarContenedor={alternarMostrar} />
+                    }
+
+                    <RestoDelPagoProvider>
+                        {mostrar &&
+                            <SuspenseLoading>
+
+                                <ContenedorDePagos
+                                    alternarMostrar={alternarMostrar} />
+
+                            </SuspenseLoading>
                         }
 
+                    </RestoDelPagoProvider>
 
-                        <ContenedorDePagos
-                            mostrar={mostrar}
-                            alternarMostrar={alternarMostrar} />
-
-
-                    </ProductoReducerProvider>
+                </ProductoReducerProvider>
 
             </Row>
 
-        </Container>
+        </Container >
     )
 }
 

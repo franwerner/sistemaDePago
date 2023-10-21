@@ -83,7 +83,7 @@ const TablaDetalleDePago = ({ metodosDePago }) => {
     )
 }
 
-export const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, restablecerTodo }) => {
+ const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, restablecerTodo }) => {
 
     return (
         <Modal
@@ -121,3 +121,4 @@ export const ModalDeDetellaDePago = ({ mostrar, alternarMostrar, metodosDePago, 
     )
 }
 
+export default ModalDeDetellaDePago

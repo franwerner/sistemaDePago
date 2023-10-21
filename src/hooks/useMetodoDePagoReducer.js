@@ -1,8 +1,8 @@
 import { useCallback, useContext, useReducer } from "react";
 import { TarifaContex } from "@/context/Contextos";
 import { seleccionarUltimoElementoDeUnArray } from "@/helper/seleccionarUltimoElementoDeUnArray";
-import { switchModificacionMetodosDePago } from "@/helper/switchModificacionMetodosDePago";
 import { useSumarMetodosDePagoAgregados } from "./useSumarMetodosDePagoAgregados";
+import switchModificacionMetodosDePago from "../helper/switchModificacionMetodosDePago";
 
 const filtrarMetodosDePago = (state, id) => {
     return [...state.metodosDePago.filter(item => item.id !== id)]
@@ -82,7 +82,7 @@ const reducer = (state, action) => {
         }
     }
 
-   
+
     return { ...state, [tipoDeTarifa]: { ...pagoActual() } }
 }
 

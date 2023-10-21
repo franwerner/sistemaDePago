@@ -6,9 +6,9 @@ import { useAlternarComas } from "@/hooks/useAlternarComas"
 import { VerificarSiEsUnOperador } from "../helper/VerificarSiEsUnOperador"
 
 const listaDeBotonesTactiles = [
-    ["1", "2", "3", ["+100", "+100"]],
-    ["4", "5", "6", ["+250", "+250"]],
-    ["7", "8", "9", ["+500", "+500"]],
+    ["1", "2", "3", "+100"],
+    ["4", "5", "6", "+250"],
+    ["7", "8", "9", "+500"],
     ["+/-", "0", [",", "Comma"], ["X", "Backspace"]]
 ]
 
@@ -31,7 +31,7 @@ const keysPress = [
 ]
 
 
-const ButtonTactil = React.memo(({ nombre, onClick, tipo }) => {
+const Buttons = React.memo(({ nombre, onClick, tipo }) => {
 
     const click = () => {
         onClick(tipo)
@@ -40,12 +40,39 @@ const ButtonTactil = React.memo(({ nombre, onClick, tipo }) => {
         <Button onClick={click}
             name={nombre}
             variant="dark"
-            className=" fw-bolder rounded-0 ">
+            className=" fw-bolder rounded-0  ">
             {nombre}
         </Button>
     )
 })
 
+const BotonesTactiles = React.memo(({ onClick, arrayButtons }) => {
+
+    return (
+        <div className={`${styles.botonesTactiles} w-100 `}>
+            {
+                arrayButtons.map((contenedor, index) =>
+
+                    <div className="w-100 d-flex" key={index}>
+
+                        {
+                            contenedor.map((numero, index) =>
+
+                                <Buttons
+                                    nombre={typeof numero == "string" ? numero : numero[0]}
+                                    tipo={typeof numero == "string" ? numero : numero[1]}
+                                    onClick={onClick}
+                                    key={index} />
+                            )
+                        }
+                    </div>
+                )
+            }
+
+        </div>
+
+    )
+})
 
 export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, arrayButtons = listaDeBotonesTactiles }) => {
 
@@ -88,31 +115,8 @@ export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, arr
     useHotkeys(keysPress, handleKey, { keyup: true })
 
     return (
-
-        <div className={`${styles.botonesTactiles}  `}>
-            {
-                arrayButtons.map((contenedor, index) =>
-
-                    <div key={index}>
-
-                        {
-                            contenedor.map((numero, index) =>
-
-                                <ButtonTactil
-                                    nombre={typeof numero == "string" ? numero : numero[0]}
-                                    tipo={typeof numero == "string" ? numero : numero[1]}
-                                    onClick={onClick}
-                                    key={index} />
-                            )
-                        }
-                    </div>
-                )
-            }
-
-        </div>
-
+        <BotonesTactiles arrayButtons={arrayButtons} onClick={onClick} />
     )
 })
-
 
 

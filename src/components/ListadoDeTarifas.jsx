@@ -66,7 +66,7 @@ const TablaDeTarifas = ({alternarMostrar}) => {
 }
 
 
-export const ListadoDeTarifas = ({ mostrar, alternarMostrar }) => {
+ const ListadoDeTarifas = ({ mostrar, alternarMostrar }) => {
 
     const { tarifaActual } = useContext(TarifaContex)
 
@@ -83,3 +83,5 @@ export const ListadoDeTarifas = ({ mostrar, alternarMostrar }) => {
         </Modal>
     )
 }
+
+export default ListadoDeTarifas

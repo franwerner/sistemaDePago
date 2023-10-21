@@ -38,7 +38,7 @@ const SeccionHome = ({ seccion, elegirSeccion }) => {
 
             {
                 analizarSiEsHome &&
-                <img className={`${styles.arrowHome}`} src="https://i.ibb.co/hDp2P6v/bc-arrow-big.png" />
+                <img  className={`${styles.arrowHome}`} src="https://i.ibb.co/hDp2P6v/bc-arrow-big.png" />
             }
 
             <span

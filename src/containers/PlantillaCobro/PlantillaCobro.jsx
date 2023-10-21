@@ -1,11 +1,13 @@
 
 import { Container } from "react-bootstrap"
 import styles from "@/styles/PlantillaCobro.module.css"
-import React, { useContext, useEffect, useRef } from "react"
+import React, { lazy, useContext, useEffect, useRef } from "react"
 import { productoReducerContext } from "@/context//Contextos"
 import { CarritoDeProductoVacio } from "@/components//CarritoDeProductoVacio"
-import { ListaDeProductosACobrar } from "./ListaDeProductosACobrar"
-import { TotalPrecioProductos } from "@/components//TotalPrecioProductos"
+import { SuspenseLoading } from "@/components//SuspenseLoading"
+
+const ListaDeProductosACobrar = lazy(() => import("./ListaDeProductosACobrar"))
+const TotalPrecioProductos = lazy(() => import("@/components//TotalPrecioProductos"))
 
 
 
@@ -34,13 +36,16 @@ export const PlantillaCobro = React.memo(() => {
             {listaProducto.length == 0 ? <CarritoDeProductoVacio /> :
 
                 <>
-                    <ListaDeProductosACobrar
-                        seleccionarProducto={seleccionarProducto}
-                        listaProducto={listaProducto}
-                        ultimoSeleccionado={ultimoSeleccionado}
-                    />
+                    <SuspenseLoading>
+                        <ListaDeProductosACobrar
+                            seleccionarProducto={seleccionarProducto}
+                            listaProducto={listaProducto}
+                            ultimoSeleccionado={ultimoSeleccionado}
+                        />
 
-                    <TotalPrecioProductos />
+
+                        <TotalPrecioProductos />
+                    </SuspenseLoading>
 
                 </>
             }

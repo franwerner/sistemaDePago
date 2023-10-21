@@ -23,7 +23,7 @@ const Precio = React.memo(({ precio }) => {
 })
 
 
-export const ProductoCard = React.memo(({ producto }) => {
+ const ProductoCard = React.memo(({ producto }) => {
 
     const { precio, nombre } = producto
 
@@ -43,3 +43,6 @@ export const ProductoCard = React.memo(({ producto }) => {
         </>
     )
 })
+
+
+export default ProductoCard

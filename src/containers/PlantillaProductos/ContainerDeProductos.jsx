@@ -1,10 +1,10 @@
 import { Col, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaProductos.module.css"
 import { productoReducerContext } from "@/context//Contextos";
-import React, { useContext, useMemo, } from "react";
-import { ProductoCard } from "@/components//ProductoCard";
+import React, { Suspense, lazy, useContext} from "react";
+import { SuspenseLoading } from "@/components//SuspenseLoading";
 
-
+const ProductoCard = lazy(()=> import("@/components//ProductoCard"))
 
 
 
@@ -144,11 +144,6 @@ const rotiseria = [
     }
 ]
 
-
-
-
-
-
 const secciones = {
     "Kiosco": kiosco,
     "Panaderia": panaderia,
@@ -164,7 +159,9 @@ const ProductoMemoizado = React.memo(({ agregarProducto, producto }) => {
             className={`mx-2 flex-column d-flex my-2 position-relative ${styles.producto}`}
             onClick={() => agregarProducto(producto)}
         >
-            <ProductoCard producto={producto} />
+           <SuspenseLoading>
+           <ProductoCard producto={producto} />
+           </SuspenseLoading>
         </div>
     )
 })

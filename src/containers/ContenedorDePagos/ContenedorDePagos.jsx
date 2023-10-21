@@ -1,7 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap"
 import React, { } from "react"
 import styles from "@/styles/ContenedorDePagos.module.css"
-import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider"
 import { ValidacionDePagos } from "./ValidacionDePagos"
 import { ContenedorDePagoBody } from "./ContenedorDePagoBody"
 
@@ -42,48 +41,39 @@ const ContenedorDePagoHeader = React.memo(({ alternarMostrar }) => {
 
 
 
-export const ContenedorDePagos = ({ mostrar, alternarMostrar }) => {
+const ContenedorDePagos = ({ alternarMostrar }) => {
 
     return (
+        <section
+            id="interface-pagos"
+            className='h-100 p-0 overflow-hidden'>
 
-        <RestoDelPagoProvider>
-            {
-                mostrar &&
+            <Col
+                className={`${styles.contendorPagosPrincipal} h-100  py-md-3`}>
 
-                <section
-                    id="interface-pagos"
-                    className='h-100 p-0 overflow-hidden'>
+                <Container
+                    fluid
+                    className={`${styles.contenedorPagos} h-100 d-flex p-0  position-relative flex-column  `}>
 
                     <Col
-                        className={`${styles.contendorPagosPrincipal} h-100  py-md-3`}>
-
-                        <Container
-                            fluid
-                            className={`${styles.contenedorPagos} h-100 d-flex p-0  position-relative flex-column  `}>
-
-                            <Col
-                                xs={{ order: "2" }}
-                                md={{ order: "0" }}
-                                className="flex-grow-0">
-                                <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
-                            </Col>
-
-                            <Col className="flex-grow-1 overflow-hidden h-100">
-                                <ContenedorDePagoBody />
-                            </Col>
-
-                        </Container>
-
+                        xs={{ order: "2" }}
+                        md={{ order: "0" }}
+                        className="flex-grow-0">
+                        <ContenedorDePagoHeader alternarMostrar={alternarMostrar} />
                     </Col>
 
-                </section>
-            }
+                    <Col className="flex-grow-1 overflow-hidden h-100">
+                        <ContenedorDePagoBody />
+                    </Col>
 
-        </RestoDelPagoProvider>
+                </Container>
 
+            </Col>
 
-
+        </section>
 
     )
 
 }
+
+export default ContenedorDePagos

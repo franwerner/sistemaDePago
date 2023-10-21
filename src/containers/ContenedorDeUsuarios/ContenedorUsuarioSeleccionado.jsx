@@ -2,8 +2,7 @@ import { useForm } from "@/hooks/useForm"
 import { Button, Form, FormControl, Modal } from "react-bootstrap"
 import { useValidarUsuarioSeleccionado } from "@/hooks/useValidarUsuarioSeleccionado"
 
-
-export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {
+ const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSeleccionado, alternarMostrar }) => {
 
 
     const { onSubmit, changeForm, form } = useForm({ "contraseña": "" })
@@ -17,10 +16,10 @@ export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSele
 
     const validar = useValidarUsuarioSeleccionado()
 
-
     const onClick = async () => {
 
         const esValido = await validar(data)
+        
 
         esValido == "Validado" && cerrarTodo()
     }
@@ -78,3 +77,6 @@ export const ContenedorUsuarioSeleccionado = ({ cerrarTodo, mostrar, usuarioSele
         </>
     )
 }
+
+
+export default ContenedorUsuarioSeleccionado

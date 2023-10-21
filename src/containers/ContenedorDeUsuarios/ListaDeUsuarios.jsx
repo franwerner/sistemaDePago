@@ -1,10 +1,11 @@
-import React, { useCallback, useContext, useState } from "react"
+import React, { lazy, useCallback, useContext, useState } from "react"
 import { listaUsuariosContext } from "@/context/Contextos"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import { Table } from "react-bootstrap"
-import { ContenedorUsuarioSeleccionado } from "./ContenedorUsuarioSeleccionado"
-import { useEvitarRenderizados } from "@/hooks//useEvitarRenderizados"
 import { compararDatoSeleccionado } from "@/helper/compararDatoSeleccionado"
+import { SuspenseLoading } from "@/components//SuspenseLoading"
+
+const ContenedorUsuarioSeleccionado = lazy(() => import("./ContenedorUsuarioSeleccionado"))
 
 const Usuarios = React.memo(({ seleccionarUsuario, usuario, usuarioActual }) => {
 
@@ -32,17 +33,13 @@ const Usuarios = React.memo(({ seleccionarUsuario, usuario, usuarioActual }) => 
 
 export const ListaDeUsuarios = ({ cerrarTodo }) => {
 
-
     const { listaDeUsuarios, usuarioActual } = useContext(listaUsuariosContext)
-
-    const { conteoRenderizados, registrarConteo } = useEvitarRenderizados()
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState("")
 
     const onClick = useCallback((usuario) => {
-        registrarConteo()
         alternarMostrar()
         setUsuarioSeleccionado(usuario)
     }, [])
@@ -78,13 +75,15 @@ export const ListaDeUsuarios = ({ cerrarTodo }) => {
 
 
             {
-                conteoRenderizados >= 1 &&
-                <ContenedorUsuarioSeleccionado
-                    cerrarTodo={cerrarTodo}
-                    mostrar={mostrar}
-                    usuarioSeleccionado={usuarioSeleccionado}
-                    alternarMostrar={alternarMostrar}
-                />
+                mostrar &&
+                <SuspenseLoading>
+                    <ContenedorUsuarioSeleccionado
+                        cerrarTodo={cerrarTodo}
+                        mostrar={mostrar}
+                        usuarioSeleccionado={usuarioSeleccionado}
+                        alternarMostrar={alternarMostrar}
+                    />
+                </SuspenseLoading>
             }
 
         </>

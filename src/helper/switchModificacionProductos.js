@@ -1,9 +1,9 @@
-import { ModificacionProductos } from "./contructores/ModificacionProductos"
+import { ModificacionProductos } from "./contructores/modificacionProductos"
 import { PosicionadorDeIndices } from "./contructores/posicionadorDeIndices"
 
 
 
-export const switchModificacionesProductos = (state, ultimoSeleccionado, btn) => {
+ const switchModificacionesProductos = (state, ultimoSeleccionado, btn) => {
 
     const copiaState = [...state]
 
@@ -25,3 +25,6 @@ export const switchModificacionesProductos = (state, ultimoSeleccionado, btn) =>
     ]
 
 }
+
+
+export default switchModificacionesProductos

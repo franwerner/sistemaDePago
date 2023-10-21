@@ -143,7 +143,7 @@ const InformacionAdicional = () => {
 
 
 
-export const TicketDeVenta = () => {
+ const TicketDeVenta = () => {
 
     return (
         <Container className={`position-absolute px-3 lh-1 w-100 ${styles.ticket} `}>
@@ -181,3 +181,5 @@ export const TicketDeVenta = () => {
     )
 
 };
+
+export default TicketDeVenta

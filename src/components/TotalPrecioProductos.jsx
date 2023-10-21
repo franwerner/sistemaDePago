@@ -5,7 +5,7 @@ import { PrecioFinalMemoizado } from "../hooks/usePrecioFinalDeLosProductos"
 
 
 
-export const TotalPrecioProductos = React.memo(() => {
+const TotalPrecioProductos = React.memo(() => {
 
     return (
         <Row className="mx-0 mt-3 overflow-hidden ">
@@ -15,3 +15,6 @@ export const TotalPrecioProductos = React.memo(() => {
         </Row>
     )
 })
+
+
+export default TotalPrecioProductos

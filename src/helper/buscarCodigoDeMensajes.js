@@ -9,7 +9,7 @@ const listaDeErrores = [
 
 ]
 
-export const buscarCodigoDeMensajes = (datos = {}) => { //Esto sirve para cualquier mensaje de interaccion con el backEnd
+const buscarCodigoDeMensajes =  (datos = {}) => {
 
     if (!datos.codigo) return
 
@@ -47,3 +47,4 @@ export const buscarCodigoDeMensajes = (datos = {}) => { //Esto sirve para cualqu
 
 
 }
+export default buscarCodigoDeMensajes

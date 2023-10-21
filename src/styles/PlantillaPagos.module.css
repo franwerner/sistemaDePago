@@ -44,44 +44,39 @@
     background-color: #e2e2e2;
 }
 
-
 .contenedorBotonesTactiales button {
-    width: 69.6px;
-    height: 65.5px;
+    flex: 1;
+    min-height: 70px;
+    min-width: 55px;
+    height: 100%;
     font-size: 23px;
     transition: 0.3s all;
     background-color: transparent;
 }
 
 .textoConsumidorFinal {
-    height: 33.5%;
+    height: 33%;
     border: 1px solid #bfbfbf;
     color: #555
+}
+
+.textoConsumidorFinal p {
+    font-size: 15px;
 }
 
 .contenedorDeBotonpagos {
     border: 1px solid #bfbfbf
 }
 
-
 @media (max-height : 900px) {
     .contenedorBotonesTactiales button {
-        height: 55.5px;
+        min-height: 55.5px;
     }
 }
 
 
 @media (max-height : 700px) {
     .contenedorBotonesTactiales button {
-        height: 50px;
-    }
-}
-
-
-@media (max-width : 300px) {
-    .contenedorBotonesTactiales button {
-        height: 50px;
-        width: 50px;
-        font-size: 20px;
+        min-height: 50px;
     }
 }

@@ -1,14 +1,16 @@
 import { useContext } from "react"
 import { listaUsuariosContext } from "@/context/Contextos"
-import { validarUsuarioFetch } from "@/helper/endpoints/validarUsuarioFetch"
-import { buscarCodigoDeMensajes } from "@/helper/buscarCodigoDeMensajes"
+import { cargaDiferida } from "../helper/cargaDiferida"
+
+const buscarCodigoDeMensajes =  cargaDiferida(() => import("@/helper//buscarCodigoDeMensajes"))
+const validarUsuarioFetch =  cargaDiferida(() => import("@/helper/endpoints/validarUsuarioFetch"))
 
 export const useValidarUsuarioSeleccionado = () => {
 
     const { cambiarUsuario } = useContext(listaUsuariosContext)
 
     const validar = async (data) => {
-   
+
         const response = await validarUsuarioFetch(data)
 
         const mensaje = buscarCodigoDeMensajes(response)

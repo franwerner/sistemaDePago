@@ -25,7 +25,7 @@ const EdicionHeader = ({ validarNumero, total, nombre }) => {
                 <Col>
                     <p className="fs-5  text-break fw-light ">
                         {
-                            validarNumero ? `Precio : $ ${separarNumerosConDecimales(total + 1231231231235454545454545454545454545454545)} ` : "No es un numero valido"
+                            validarNumero ? `Precio : $ ${separarNumerosConDecimales(total)} ` : "No es un numero valido"
                         }
                     </p>
 

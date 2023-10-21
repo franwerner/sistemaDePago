@@ -7,7 +7,6 @@ import { productoReducerContext } from "../context/Contextos";
 export const BotonProductoYRevision = ({ alternarMostrar, mostrar }) => {
 
     const textoButton = mostrar ? "Revisión" : "Productos"
-
     const TotalLongitudProductos = () => {
 
         const { listaProducto } = useContext(productoReducerContext)

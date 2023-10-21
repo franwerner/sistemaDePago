@@ -1,12 +1,13 @@
-import { ModalDeDetellaDePago } from "@/components//ModalDetalleDePago"
-import { TicketDeVenta } from "@/components//TicketDeVenta"
 import { productoReducerContext, restoDelPagoContext } from "@/context//Contextos"
-import { buscarCodigoDeMensajes } from "@/helper//buscarCodigoDeMensajes"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { useRestanteTotal } from "@/hooks//useRestanteTotal"
-import { useContext, } from "react"
+import { lazy, useContext, } from "react"
 import { Col } from "react-bootstrap"
 import styles from "@/styles/ContenedorDePagos.module.css"
+import { SuspenseLoading } from "@/components//SuspenseLoading"
+const TicketDeVenta = lazy(() => import("@/components//TicketDeVenta"))
+const ModalDeDetellaDePago = lazy(() => import("@/components//ModalDetalleDePago"))
+const buscarCodigoDeMensajes = await import("@/helper//buscarCodigoDeMensajes").then(module => module.default)
 
 const DetalleButton = ({ onClick, isValidated }) => {
 
@@ -36,7 +37,7 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
-    const onClick = () => {
+    const onClick = async () => {
 
         if (restoTotal > 0 || listaProducto.length === 0 || metodosDePago.length == 0) return buscarCodigoDeMensajes({ codigo: "2F" })
 
@@ -61,15 +62,21 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
         <Col className="d-flex p-0 m-0 justify-content-end ">
 
-            {mostrar && <TicketDeVenta />}
+            {mostrar &&
+                <SuspenseLoading>
+                    <TicketDeVenta />
+                </SuspenseLoading>
+            }
 
             {
-                isValidated && <ModalDeDetellaDePago
-                    restablecerTodo={restablecerTodo}
-                    alternarMostrar={alternarMostrar}
-                    mostrar={mostrar}
-                    metodosDePago={metodosDePago}
-                />
+                isValidated && <SuspenseLoading>
+                    <ModalDeDetellaDePago
+                        restablecerTodo={restablecerTodo}
+                        alternarMostrar={alternarMostrar}
+                        mostrar={mostrar}
+                        metodosDePago={metodosDePago}
+                    />
+                </SuspenseLoading>
             }
 
             <DetalleButton

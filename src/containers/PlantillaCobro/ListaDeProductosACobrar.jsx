@@ -82,7 +82,7 @@ const Producto = React.memo(({ seleccionarProducto, producto, background }) => {
 })
 
 
-export const ListaDeProductosACobrar = ({ listaProducto, ultimoSeleccionado, seleccionarProducto }) => {
+ const ListaDeProductosACobrar = ({ listaProducto, ultimoSeleccionado, seleccionarProducto }) => {
 
     const verificarUltimoSeleccionado = (lista) => {
         return ultimoSeleccionado.nombre == lista.nombre ? "contendorCobroProductoSeleccionado" : "contenedorCobroProductoNoSeleccionado"
@@ -100,3 +100,5 @@ export const ListaDeProductosACobrar = ({ listaProducto, ultimoSeleccionado, sel
     )
 
 }
+
+export default ListaDeProductosACobrar

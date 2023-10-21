@@ -3,7 +3,7 @@ import { SwitchBotonesTactiles } from "./contructores/switchBotonesTactiles"
 
 
 
-export const switchModificacionMetodosDePago = (state, btn) => {
+ const switchModificacionMetodosDePago = (state, btn) => {
 
     const copiaUltimoSeleccionado = { ...state.ultimoSeleccionado }
 
@@ -24,4 +24,5 @@ export const switchModificacionMetodosDePago = (state, btn) => {
         metodosDePago: posicionar
     }
 }
+export default switchModificacionMetodosDePago
 
