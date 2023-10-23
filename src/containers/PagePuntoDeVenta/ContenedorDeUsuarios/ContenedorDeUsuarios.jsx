@@ -10,8 +10,6 @@ const ContenedorDeUsuarios = ({ mostrar, alternarMostrar }) => {
 
 
     return (
-        <>
-
             <Modal
                 show={mostrar}
                 onHide={alternarMostrar}>
@@ -34,7 +32,6 @@ const ContenedorDeUsuarios = ({ mostrar, alternarMostrar }) => {
                 </Modal.Body>
 
             </Modal>
-        </>
     )
 }
 

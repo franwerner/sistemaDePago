@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 
 
 export const useForm = (intialInput = {}) => {
@@ -6,13 +6,12 @@ export const useForm = (intialInput = {}) => {
     const [form, setForm] = useState(intialInput)
 
 
-
-    const changeForm = ({ target }) => {
+    const changeForm = useCallback(({ target }) => {
         const { name, value } = target
 
         setForm({ ...form, [name]: value })
 
-    }
+    },[])
 
     const establecerFormulario = (inputs) => {
         setForm(inputs)

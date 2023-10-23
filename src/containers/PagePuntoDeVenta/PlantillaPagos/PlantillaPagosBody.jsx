@@ -1,8 +1,11 @@
-import { ContenedorDeBotonesTactiles } from "@/components//ContenedorDeBotonesTactiles";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PlantillaPagos.module.css"
-import React, { useContext } from "react";
+import React, { lazy, useContext } from "react";
 import { productoReducerContext } from "@/context//Contextos";
+import { SuspenseLoading } from "@/components//SuspenseLoading";
+
+const ContenedorDeBotonesTactiles = lazy(() => import("@/components//ContenedorDeBotonesTactiles"))
+
 
 const listaDeBotonesTactiles = [
     ["1", "2", "3", "+2"],
@@ -16,10 +19,12 @@ const ButtonTaciles = React.memo(() => {
     const { modificarProducto } = useContext(productoReducerContext)
 
     return (
-        <Col className={`${styles.contenedorBotonesTactiales} justify-content-center   px-5 w-100 d-flex  p-md-0 `}>
-            <ContenedorDeBotonesTactiles
-                modificadorDefault={modificarProducto}
-                arrayButtons={listaDeBotonesTactiles} />
+        <Col className={`${styles.contenedorBotonesTactiales} justify-content-center  px-5 w-100 d-flex  p-md-0 `}>
+            <SuspenseLoading>
+                <ContenedorDeBotonesTactiles
+                    modificadorDefault={modificarProducto}
+                    arrayButtons={listaDeBotonesTactiles} />
+            </SuspenseLoading>
         </Col>
     )
 })
@@ -33,7 +38,7 @@ export const PlantillaPagosBody = ({ alternarMostrarContenedor }) => {
 
             <Row className="d-flex p-0 m-0  flex-grow-0 my-2 mx-2 h-100">
 
-                <Col className="d-none h-100 d-md-flex flex-column ">
+                <Col  className="d-none h-100 d-md-flex flex-column ">
 
                     <Row className={`${styles.textoConsumidorFinal}`}>
 

@@ -1,0 +1,12 @@
+.iconEyeContainer {
+    position: absolute;
+    top: 55%;
+    left: 93%;
+    transform: translate(-50%, -50%);
+}
+
+
+.iconEyeContainer i {
+    color: #555;
+
+}

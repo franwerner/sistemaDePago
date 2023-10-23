@@ -50,7 +50,7 @@ const SeccionHome = ({ seccion, elegirSeccion }) => {
     )
 }
 
-export const SeccionesProductos = React.memo(({ seccion, elegirSeccion, seccionesProductos }) => {
+ const SeccionesProductos = React.memo(({ seccion, elegirSeccion, seccionesProductos }) => {
 
     return (
 
@@ -76,3 +76,4 @@ export const SeccionesProductos = React.memo(({ seccion, elegirSeccion, seccione
     )
 })
 
+export default SeccionesProductos

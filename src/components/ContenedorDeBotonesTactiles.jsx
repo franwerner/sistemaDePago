@@ -74,7 +74,7 @@ const BotonesTactiles = React.memo(({ onClick, arrayButtons }) => {
     )
 })
 
-export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, arrayButtons = listaDeBotonesTactiles }) => {
+ const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, arrayButtons = listaDeBotonesTactiles }) => {
 
 
     const { alternarComas, comma } = useAlternarComas()
@@ -120,3 +120,4 @@ export const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, arr
 })
 
 
+export default ContenedorDeBotonesTactiles

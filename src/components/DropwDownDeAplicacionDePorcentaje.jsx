@@ -33,7 +33,7 @@ const DropwDownForm = ({ onSubmit, onClick, changeForm, evaluarPorcentaje }) => 
 }
 
 
-export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, aplicarPorcentaje, }) => {
+ const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, aplicarPorcentaje, }) => {
 
     const { changeForm, form, onSubmit } = useForm({ porcentajeForm: "" })
 
@@ -98,3 +98,6 @@ export const DropwDownDeAplicacionDePorcentaje = React.memo(({ porcentaje, aplic
 
     )
 })
+
+
+export default DropwDownDeAplicacionDePorcentaje

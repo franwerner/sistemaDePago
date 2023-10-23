@@ -5,7 +5,7 @@ import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import React, { lazy } from "react"
 import { SuspenseLoading } from "./SuspenseLoading"
 
-const ContenedorDeUsuarios = lazy(() => import("../containers/ContenedorDeUsuarios/ContenedorDeUsuarios"))
+const ContenedorDeUsuarios = lazy(() => import("../containers/PagePuntoDeVenta/ContenedorDeUsuarios/ContenedorDeUsuarios"))
 
 export const OverlayNavUsuarios = React.memo(() => {
 

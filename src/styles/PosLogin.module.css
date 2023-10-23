@@ -1,0 +1,61 @@
+.posLoginContainer {
+    background-color: #ececec;
+}
+
+.posLoginContainer * {
+    transition: 0.3s all;
+}
+
+.posLoginContainer>div:first-child {
+    box-shadow: 14px 5px 25px -5px rgba(189, 183, 189, 1);
+    min-height: 400px;
+    max-height: 450px;
+    max-width: 600px;
+}
+
+.lockContainer {
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 17px;
+    background-color: #5d6fd0;
+}
+
+.lockContainer i {
+    font-size: 60px
+}
+
+.userPhotoContainer {
+    top: -50px;
+}
+
+.userPhotoContainer div {
+    height: 140px;
+    width: 140px;
+    border: 6px solid #ececec;
+    min-width: 140px;
+}
+
+
+.userPhotoContainer img {
+    object-fit: cover;
+
+}
+
+.userPhotoContainer i {
+    font-size: 60px;
+    color: #555;
+}
+
+.userPhotoContainer::after {
+    content: "";
+    position: absolute;
+    z-index: 4100;
+    width: 141px;
+    height: 141px;
+    border: 6px solid #ececec;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.botonIngresar {
+    background: #5d6fd0 !important
+}

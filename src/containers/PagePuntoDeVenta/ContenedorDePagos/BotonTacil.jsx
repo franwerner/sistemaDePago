@@ -1,5 +1,5 @@
 import React, { useContext, } from "react";
-import { ContenedorDeBotonesTactiles } from "@/components//ContenedorDeBotonesTactiles";
+import ContenedorDeBotonesTactiles from "@/components//ContenedorDeBotonesTactiles";
 import { restoDelPagoContext } from "@/context/Contextos"
 import { Col } from "react-bootstrap";
 import styles from "@/styles/ContenedorDePagos.module.css"

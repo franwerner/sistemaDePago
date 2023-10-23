@@ -44,6 +44,10 @@
     background-color: #e2e2e2;
 }
 
+.contenedorBotonesTactiales {
+    min-height: 50%;
+}
+
 .contenedorBotonesTactiales button {
     flex: 1;
     min-height: 70px;

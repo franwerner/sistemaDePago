@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap"
 import styles from "@/styles/CarritoProductoVacio.module.css"
 
-export const CarritoDeProductoVacio = () => {
+const CarritoDeProductoVacio = () => {
     return (
             <Row className={`h-100 `}>
                 <Col className="d-flex flex-column aling-items-center justify-content-center h-100 ">
@@ -11,3 +11,5 @@ export const CarritoDeProductoVacio = () => {
             </Row>
     )
 }
+
+export default CarritoDeProductoVacio

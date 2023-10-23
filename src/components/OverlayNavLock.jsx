@@ -1,7 +1,7 @@
-import { Nav } from "react-bootstrap"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import { OverlayDefault } from "./OverlayDefault"
 import React from "react"
+import {NavLink } from "react-router-dom"
 
 
 export const OverylayNavLock = React.memo(() => {
@@ -12,24 +12,26 @@ export const OverylayNavLock = React.memo(() => {
     const overlayText = "Cerrar session"
 
     return (
+
         <OverlayDefault
             overlayCustom={overlayText}
         >
-            <Nav.Link
+            <NavLink
                 onMouseEnter={alternarMostrar}
                 onMouseLeave={alternarMostrar}
-                href="#action2"
                 tabIndex={0}
+                to={"/pos/login"}
                 style={{ width: "30px", marginTop: "-3px" }}
-                className=" fs-5"
-            >
+                className="fs-5"
 
+            >
                 {mostrar ?
                     <i className={`fa-solid  d-flex  justify-content-center fa-lock-open text-success  `}></i> :
-                    <i  className={`fa-solid  d-flex justify-content-center text-danger fa-lock `}></i>
+                    <i className={`fa-solid  d-flex justify-content-center text-danger fa-lock `}></i>
                 }
 
-            </Nav.Link>
+
+            </NavLink>
         </OverlayDefault>
     )
 

@@ -3,13 +3,11 @@ import { Container } from "react-bootstrap"
 import styles from "@/styles/PlantillaCobro.module.css"
 import React, { lazy, useContext, useEffect, useRef } from "react"
 import { productoReducerContext } from "@/context//Contextos"
-import { CarritoDeProductoVacio } from "@/components//CarritoDeProductoVacio"
 import { SuspenseLoading } from "@/components//SuspenseLoading"
 
 const ListaDeProductosACobrar = lazy(() => import("./ListaDeProductosACobrar"))
 const TotalPrecioProductos = lazy(() => import("@/components//TotalPrecioProductos"))
-
-
+const CarritoDeProductoVacio = lazy(() => import("@/components//CarritoDeProductoVacio"))
 
 export const PlantillaCobro = React.memo(() => {
 
@@ -33,10 +31,10 @@ export const PlantillaCobro = React.memo(() => {
             ref={referido}
             className={` scrollBarPersonalizada  px-1 p-0 flex-grow-1 h-100 ${styles.contenedorCobroPrincipal}`} >
 
-            {listaProducto.length == 0 ? <CarritoDeProductoVacio /> :
+            <SuspenseLoading>
+                {listaProducto.length == 0 ? <CarritoDeProductoVacio /> :
 
-                <>
-                    <SuspenseLoading>
+                    <>
                         <ListaDeProductosACobrar
                             seleccionarProducto={seleccionarProducto}
                             listaProducto={listaProducto}
@@ -45,10 +43,12 @@ export const PlantillaCobro = React.memo(() => {
 
 
                         <TotalPrecioProductos />
-                    </SuspenseLoading>
 
-                </>
-            }
+
+                    </>
+
+                }
+            </SuspenseLoading>
 
         </Container>
 

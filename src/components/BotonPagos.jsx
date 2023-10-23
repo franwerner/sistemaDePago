@@ -4,7 +4,7 @@ import { PrecioFinalMemoizado } from "../hooks/usePrecioFinalDeLosProductos";
 
 
 
-export const BotonPagos = React.memo(({ alternarMostrarContenedor }) => {
+const BotonPagos = React.memo(({ alternarMostrarContenedor }) => {
 
 
 
@@ -25,3 +25,6 @@ export const BotonPagos = React.memo(({ alternarMostrarContenedor }) => {
     );
 
 });
+
+
+export default BotonPagos

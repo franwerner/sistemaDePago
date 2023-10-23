@@ -1,6 +1,6 @@
 import React from "react";
 
-export const MetodosDePagosVacios = React.memo(() => {
+const MetodosDePagosVacios = React.memo(() => {
 
     return (
         <div className="text-center my-5 ">
@@ -15,3 +15,5 @@ export const MetodosDePagosVacios = React.memo(() => {
     );
 
 });
+
+export default MetodosDePagosVacios

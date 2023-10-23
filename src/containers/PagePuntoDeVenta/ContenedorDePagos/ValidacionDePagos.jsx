@@ -5,9 +5,11 @@ import { lazy, useContext, } from "react"
 import { Col } from "react-bootstrap"
 import styles from "@/styles/ContenedorDePagos.module.css"
 import { SuspenseLoading } from "@/components//SuspenseLoading"
+import { cargaDiferida } from "@/helper//cargaDiferida"
+
 const TicketDeVenta = lazy(() => import("@/components//TicketDeVenta"))
 const ModalDeDetellaDePago = lazy(() => import("@/components//ModalDetalleDePago"))
-const buscarCodigoDeMensajes = await import("@/helper//buscarCodigoDeMensajes").then(module => module.default)
+const buscarCodigoDeMensajes = cargaDiferida(() => import("@/helper//buscarCodigoDeMensajes"))
 
 const DetalleButton = ({ onClick, isValidated }) => {
 
@@ -45,14 +47,15 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
 
     }
 
-    const restablecerTodo = () => {
+    const restablecerTodo = async () => {
 
         window.print()
-        // restablecerProductos()
-        // alternarMostrar()
-        // restablecerPagos()
-        // cerrarTodo()
-        buscarCodigoDeMensajes({ codigo: "3F" })
+        await buscarCodigoDeMensajes({ codigo: "3F" })
+        restablecerProductos()
+        alternarMostrar()
+        restablecerPagos()
+        cerrarTodo()
+
 
     }
 
@@ -61,27 +64,28 @@ export const ValidacionDePagos = ({ cerrarTodo }) => {
     return (
 
         <Col className="d-flex p-0 m-0 justify-content-end ">
+            <SuspenseLoading>
+                {mostrar &&
 
-            {mostrar &&
-                <SuspenseLoading>
                     <TicketDeVenta />
-                </SuspenseLoading>
-            }
 
-            {
-                isValidated && <SuspenseLoading>
+                }
+
+                {
+                    isValidated &&
                     <ModalDeDetellaDePago
                         restablecerTodo={restablecerTodo}
                         alternarMostrar={alternarMostrar}
                         mostrar={mostrar}
                         metodosDePago={metodosDePago}
                     />
-                </SuspenseLoading>
-            }
 
-            <DetalleButton
-                onClick={onClick}
-                isValidated={isValidated} />
+                }
+
+                <DetalleButton
+                    onClick={onClick}
+                    isValidated={isValidated} />
+            </SuspenseLoading>
         </Col>
     )
 }

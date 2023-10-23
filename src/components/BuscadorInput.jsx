@@ -1,7 +1,7 @@
 import { Form, InputGroup } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
 
-export const BuscadorInput = () => {
+ const BuscadorInput = () => {
 
     const { form, onSubmit, changeForm } = useForm({ "buscador": "" })
 
@@ -28,3 +28,5 @@ export const BuscadorInput = () => {
         </Form>
     )
 }
+
+export default BuscadorInput
