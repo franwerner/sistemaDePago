@@ -1,28 +1,38 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { PosLogin } from './screens/PosLogin';
+import { Link, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
 import { lazy } from 'react';
 import { SuspenseLoading } from './components/SuspenseLoading';
 
 const ErrorPage = lazy(() => import('./components/ErrorPage'))
 const PuntoDeVenta = lazy(() => import("./screens/PuntoDeVenta"))
+const Seleccion = lazy(() => import("./screens/Seleccion"))
+const Empleado = lazy(() => import("./screens/Empleado"))
+
 
 const router = createBrowserRouter([
   {
-    path: "pos/login",
-    element: <PosLogin />,
+    path: "/empleado",
+    element: <SuspenseLoading><Empleado /></SuspenseLoading>,
     errorElement: <ErrorPage />,
-    // children : [
-    //   {
-    //     path : "/:id",
-    //     element : <h1>hola</h1>
-    //   }
-    // ]
-
   },
   {
     path: "/pos",
     element: <SuspenseLoading><PuntoDeVenta /></SuspenseLoading>,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/",
+    element: <Link to={"/empleado"}>Ir login</Link>,
+    errorElement: <ErrorPage />,
+
+  },
+  {
+    path: "/seleccion",
+    element: <Seleccion />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path : "/caja",
   }
 ]);
 

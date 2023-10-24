@@ -3,7 +3,7 @@ import styles from "@/styles/PosLogin.module.css"
 import { LoginContainer } from "@/containers/pageLogin/LoginContainer"
 
 
-export const PosLogin = () => {
+ const Empleado = () => {
 
 
 
@@ -29,3 +29,5 @@ export const PosLogin = () => {
     )
 
 }
+
+export default Empleado

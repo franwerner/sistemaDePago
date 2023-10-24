@@ -20,7 +20,7 @@ export const OverylayNavLock = React.memo(() => {
                 onMouseEnter={alternarMostrar}
                 onMouseLeave={alternarMostrar}
                 tabIndex={0}
-                to={"/pos/login"}
+                to={"/empleado"}
                 style={{ width: "30px", marginTop: "-3px" }}
                 className="fs-5"
 

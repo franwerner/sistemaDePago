@@ -37,7 +37,7 @@ export const NavegacionHeader = React.memo(({ mostrar }) => {
                                 </SuspenseLoading>
                             </Nav.Item>
                         }
-                        <OverlayNavUsuarios />
+                        {/* <OverlayNavUsuarios /> */}
                         <OverlayNavTickets />
                         <OverylayNavLock />
                     </Nav>
