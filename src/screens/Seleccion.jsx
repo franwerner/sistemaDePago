@@ -1,63 +1,52 @@
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import styles from "@/styles/Seleccion.module.css"
-import { Link } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
+import CardSeleccionDeNavegacion from "@/components/CardSeleccionDeNavegacion";
 
 const cards = [
     {
         tipo: "Sucursales",
-        link: "https://i.ibb.co/3SzxDLb/png-transparent-store-branches-illustration-removebg-preview.png",
-    },
-
-    {
-        tipo: "Sucursales",
-        link: "https://i.ibb.co/3SzxDLb/png-transparent-store-branches-illustration-removebg-preview.png",
+        src: "https://i.ibb.co/3SzxDLb/png-transparent-store-branches-illustration-removebg-preview.png",
+        color: "#ff785d",
+        link: "/sucursales"
     },
     {
-        tipo: "Sucursales",
-        link: "https://i.ibb.co/3SzxDLb/png-transparent-store-branches-illustration-removebg-preview.png",
+        tipo: "Empleados",
+        src: "https://png.pngtree.com/png-vector/20220901/ourmid/pngtree-company-employee-avatar-icon-wearing-a-suit-png-image_6133899.png",
+        color: "#555",
+        link: "/empleado"
     },
     {
-        tipo: "Sucursales",
-        link: "https://i.ibb.co/3SzxDLb/png-transparent-store-branches-illustration-removebg-preview.png",
+        tipo: "Punto de venta",
+        src: "https://i.ibb.co/PwvyCyf/png-transparent-computer-icons-cashier-cash-register-icon-s-cashier-miscellaneous-angle-material-rem.png",
+        color: "#66cce0",
+        link: "/pos"
+    },
+    {
+        tipo: "Config. de Caja",
+        src: "https://i.ibb.co/Jt5zLMy/png-transparent-point-of-sale-computer-icons-sales-computer-software-others-service-payment-logo-Pho.png",
+        color: "#fce04e",
+        link: "/pos/config"
     },
 ]
 
-const CardSeleccion = ({ link, tipo }) => {
-
-    return (
-        <Card className={`${styles.cardSeleccion} mx-2`} style={{ width: '18rem' }}>
-
-            <Card.Body style={{ borderTop: "8px solid red" }} className={`d-flex  rounded justify-content-center flex-column`}>
-                <Card.Img variant="top" src={link} />
-                <Card.Title className="fw-bolder text-center" style={{ color: "#555" }}>{tipo}</Card.Title>
-                {/* <Button variant="primary">Go somewhere</Button> */}
-                <Link to={"/empleado"}>
-                    ir
-                </Link>
-            </Card.Body>
-        </Card>
-    )
-}
 
 const Seleccion = () => {
     return (
-        <Container className=" p-0 d-flex justify-content-center flex-column align-items-center vh-100" fluid>
+        <Container className="scrollHidden p-0 d-flex justify-content-center flex-column align-items-center vh-100" fluid>
 
-            <Row>
-                Selecciona una seccion
-            </Row>
+            <Row className="w-100 h-100 p-0 d-flex justify-content-center align-items-center m-0">
 
-            <Row className="h-100 w-100 p-0 d-flex justify-content-center align-items-center m-0">
-
-                <Col className=" p-0  d-flex justify-content-center  flex-wrap ">
+                <Col className=" p-0 mt-2 mt-md-0  d-flex justify-content-center  flex-wrap ">
 
                     {
-                        cards.map(({ link, tipo }) =>
+                        cards.map(({ link, tipo, color, src }) =>
 
-                            <CardSeleccion
+                            <CardSeleccionDeNavegacion
                                 key={tipo}
+                                color={color}
                                 tipo={tipo}
-                                link={link} />
+                                link={link}
+                                src={src}
+                            />
 
                         )
                     }
@@ -71,5 +60,3 @@ const Seleccion = () => {
 
 
 export default Seleccion
-
-{/* <img width={120} height={120} src="https://i.ibb.co/3SzxDLb/png-transparent-store-branches-illustration-removebg-preview.png"></img> */ }

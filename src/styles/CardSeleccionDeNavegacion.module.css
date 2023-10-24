@@ -1,0 +1,47 @@
+.cardSeleccion {
+    cursor: pointer;
+    transition: 0.3s all;
+    width: 14rem;
+    height: 16rem;
+    color: #555;
+}
+
+.enterAnimation img {
+    transition: all 0.6s ; 
+    transform: translateY(-5px);
+}
+
+.cardSeleccion img {
+    object-fit: contain;
+
+}
+.enterAnimation,.enterAnimation:active{
+    z-index: 12;
+    opacity: 1;
+    box-shadow: 14px 10px 17px -9px rgba(0, 0, 0, 0.75);
+    transform: scale(1.1);
+}
+
+.leaveAnimation {
+    opacity: 0.7;
+    transform: scale(1);
+    transition: 0.5s all ;
+}
+
+
+
+
+@media (max-width : 768px) {
+    .cardSeleccion {
+        width: 13rem;
+        height: 15rem;
+    }
+}
+
+@media (max-width : 576px){
+    .cardSeleccion {
+        width: 10.5rem;
+        height: 15rem;
+    }
+}
+

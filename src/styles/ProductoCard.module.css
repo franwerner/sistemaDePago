@@ -1,25 +1,23 @@
-.productoNombre {
-    font-size: 12px;
+.cardContainer{
+width: 12rem;
+max-height: 14rem;
+height: 14rem;
+cursor: pointer;
+
+}
+
+
+.cardContainer p:nth-child(1) {
+    font-size: 15px;
+    color: #9E6999
+}
+
+.cardContainer div:nth-child(2){
+    background-color: #9E6999;
+    
+}
+
+
+.cardPrecio{
     color: #555;
-    margin: 0;
-    font-weight: 500;
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
-    bottom: 0%;
-
-}
-
-
-
-.productoPrecio p {
-    background-color: #8689b6;
-    font-size: 12px;
-}
-
-
-
-.ImgPhoto i {
-    filter: opacity(30%);
-    font-size: 70px;
-    max-width: 100%;
-    max-height: 100%;
 }

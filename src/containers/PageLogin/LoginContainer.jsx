@@ -43,11 +43,18 @@ export const LoginContainer = () => {
 
     return (
 
+
         <Container fluid className="h-100 d-flex justify-content-center align-items-center flex-column ">
 
             <Row className={`${styles.userPhotoContainer}  position-absolute`}>
                 <div className=" bg-white d-flex justify-content-center align-items-center overflow-hidden rounded-circle">
-                    <img height={140} width={140} src={usuarioSeleccionado.foto} />
+                    <img
+                        height={140}
+                        width={140}
+                        srcSet={usuarioSeleccionado.foto}
+                        loading="lazy"
+                        decoding="async"
+                        src={usuarioSeleccionado.foto} />
                     {/* <i className="fa-regular  fa-user "></i> */}
                 </div>
             </Row>

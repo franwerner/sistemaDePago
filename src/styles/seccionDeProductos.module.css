@@ -1,0 +1,26 @@
+.containerDeSecciones {
+    position: relative;
+    padding: 10px;
+    z-index: 10;
+    background-color: white;
+    height: 90px;
+}
+
+.containerDeSecciones i{
+    cursor: pointer;
+    color: #555;
+    opacity: 0.7;
+}
+
+.containerDeSecciones i:hover {
+    opacity: 1;
+    transition: 0.4s;
+}
+
+
+@media (max-width : 1200px) {
+    .ContainerDeProductos {
+        flex-grow: 1;
+        height: 100%;
+    }
+}

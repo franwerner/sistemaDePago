@@ -1,61 +1,23 @@
+import NavBarPos from "@/components//NavBarPos";
+import OffCavansNavegacion from "@/components//OffCavansNavegacion";
+import { Col, Container, Row } from "react-bootstrap";
+import ContenedorDeSecciones from "../containers/PagePos/ContenedorDeSecciones/ContenedorDeSecciones";
 
-import { ProductoReducerProvider } from '@/context/provider/ProductosReducerProvider';
-import "../index.css"
-import { Container, Row } from 'react-bootstrap';
-import { NavegacionHeader } from '@/components/NavegacionHeader';
-import { useEventoMostrar } from '@/hooks/useEventoMostrar';
-import ContenedorPrincipal from '@/containers/PagePuntoDeVenta/ContenedorPrincipal/ContenedorPrincipal';
-import { lazy } from 'react';
-import { RestoDelPagoProvider } from '@/context/provider/RestoDelPagoProvider';
-import { SuspenseLoading } from '@/components/SuspenseLoading';
-import { TarifaProvider } from '@/context/provider/TarifaProvider';
-const ContenedorDePagos = lazy(() => import("@/containers/PagePuntoDeVenta/ContenedorDePagos/ContenedorDePagos"))
-
-
- const PuntoDeVenta = () => {
-
-    const { alternarMostrar, mostrar } = useEventoMostrar()
+const PuntoDeVenta = () => {
     return (
-        <TarifaProvider>
+        <Container fluid className="vh-100  p-0">
+            <Row className="h-100  m-0">
+                <Col style={{ minWidth: "300px",zIndex : "20"}}  xs={2} className="shadow overflow-hidden  p-0">
+                    <OffCavansNavegacion />
+                </Col>
+                <Col className="h-100 d-flex  flex-column p-0">
+                    <NavBarPos />
+                    <ContenedorDeSecciones />
+                </Col>
+            </Row>
 
-            <Container
-                className='d-flex scrollHidden  flex-column vh-100  p-0'
-                fluid>
-
-                <Row className='flex-grow-0 px-1'>
-                    <NavegacionHeader mostrar={mostrar} />
-                </Row>
-
-                <Row className=' overflow-auto flex-grow-1 p-0 m-0 h-100'>
-
-                    <ProductoReducerProvider>
-
-                        {!mostrar &&
-                            <ContenedorPrincipal
-                                mostrarContendor={mostrar}
-                                alternarMostrarContenedor={alternarMostrar} />
-                        }
-
-                        <RestoDelPagoProvider>
-                            {mostrar &&
-                                <SuspenseLoading>
-
-                                    <ContenedorDePagos
-                                        alternarMostrar={alternarMostrar} />
-
-                                </SuspenseLoading>
-                            }
-
-                        </RestoDelPagoProvider>
-
-                    </ProductoReducerProvider>
-
-                </Row>
-
-            </Container >
-        </TarifaProvider>
-    )
-}
-
+        </Container>
+    );
+};
 
 export default PuntoDeVenta

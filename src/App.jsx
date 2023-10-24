@@ -2,9 +2,10 @@ import { Link, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
 import { lazy } from 'react';
 import { SuspenseLoading } from './components/SuspenseLoading';
+import { seccionProducto } from './router/PuntoDeVentaRouter';
 
 const ErrorPage = lazy(() => import('./components/ErrorPage'))
-const PuntoDeVenta = lazy(() => import("./screens/PuntoDeVenta"))
+const PuntoDeVentaold = lazy(() => import("./screens/PuntoDeVentaold"))
 const Seleccion = lazy(() => import("./screens/Seleccion"))
 const Empleado = lazy(() => import("./screens/Empleado"))
 
@@ -16,8 +17,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/pos",
-    element: <SuspenseLoading><PuntoDeVenta /></SuspenseLoading>,
+    path: "/puntoDeVentaold",
+    element: <SuspenseLoading><PuntoDeVentaold /></SuspenseLoading>,
     errorElement: <ErrorPage />,
   },
   {
@@ -28,12 +29,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/seleccion",
-    element: <Seleccion />,
+    element: <SuspenseLoading><Seleccion /></SuspenseLoading>,
     errorElement: <ErrorPage />,
   },
   {
-    path : "/caja",
-  }
+    path: "/caja",
+  },
+
+  { ...seccionProducto }
+
+
 ]);
 
 function App() {
