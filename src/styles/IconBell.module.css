@@ -1,0 +1,16 @@
+.iconContainer span {
+    width: 25px;
+    height: 25px;
+    right: 10%;
+    top: -35%;
+    background: #746af4;
+
+}
+
+.iconContainer {
+    cursor: pointer;
+}
+
+.iconContainer i {
+    font-size: 30px;
+}
