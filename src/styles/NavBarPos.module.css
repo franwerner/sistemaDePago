@@ -1,0 +1,29 @@
+.navBarContainer {
+    min-height: 60px;
+    max-height: 120px;
+}
+
+.imgContainer{
+    min-width: 80px;
+}
+
+.imgContainer img {
+    object-fit: cover;
+}
+
+.iconBars {
+    font-size: 40px;
+    cursor: pointer;
+    color: #555;
+}
+
+.iconBars:active {
+    transform: scale(1.1);
+}
+
+
+@media (max-width : 360px){
+    .imgContainer, .imgContainer img {
+       display: none;
+    }
+}

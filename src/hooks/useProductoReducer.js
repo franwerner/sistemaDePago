@@ -1,135 +1,123 @@
 
 import { useCallback, useReducer } from 'react';
-import switchModificacionesProductos from '../helper/switchModificacionProductos';
 
-
-
-const agregarNuevasPropiedades = (producto) => {
+const agregarNuevasPropiedades = (action) => {
 
     const objectoPorDefecto = {
         "editado": false,
-        "cantidadSeleccionada": 1,
-        "precioModificado": producto.precio,
+        "cantidad": 1,
+        "descuento": 0,
+        "precioModificado": action.producto.precio
     }
 
-    return { ...objectoPorDefecto, ...producto }
+    return { ...objectoPorDefecto, ...action.producto }
 }
 
 
-const validarProductoExistente = (state, producto) => {
-    const productoExistente = state.some(({ nombre }) => nombre == producto.nombre)
+const validarProductoExistente = (state, action) => {
+
+    const productoExistente = state.some(({ nombre }) => nombre == action.producto.nombre)
+
     return productoExistente
 
 }
 
-const agregar = (state, producto) => {
-    const updatedState = state.map((estado) => {
-        if (estado.nombre === producto.nombre) {
-            return { ...estado, cantidadSeleccionada: estado.cantidadSeleccionada + 1 };
-        } else {
-            return estado;
-        }
-    });
 
-    return updatedState;
-};
+const reducer = (state, action) => {
 
-const buscarElementoSeleccionado = (state, producto) => {
+    const { producto } = action
 
-    return state.find(item => item.nombre == producto.nombre)
-}
+    const nuevoPrecio = producto.precioModificado
+
+    if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
 
 
-const reducer = ([estado, ultimoSeleccionado], { producto, type }) => {
+    return state.map(estado => {
 
-    const productoActual = () => {
+        if (estado.nombre !== action.producto.nombre) return estado
 
-        if (validarProductoExistente(estado, producto) === false && producto.precio) {
-            return [[...estado, agregarNuevasPropiedades(producto)], { ...agregarNuevasPropiedades(producto) }];
-        }
+        const { cantidad } = estado
 
-        switch (type) {
-
+        switch (action.type) {
             case "AGREGAR":
-                return [
-                    [...agregar(estado, producto)],
-                    { ...buscarElementoSeleccionado(estado, producto) }
-                ];
 
-            case "MODIFICAR":
+                return {
+                    ...estado,
+                    "cantidad": cantidad + 1,
+                };
 
-                if (estado.length == 0) return [estado, ultimoSeleccionado]
-                else {
-                    return switchModificacionesProductos(estado, ultimoSeleccionado, producto)
+            case "CANTIDAD":
+                return {
+                    ...estado,
+                    "cantidad": producto.cantidad
                 }
 
-            case "SELECCIONAR":
-                return [
-                    estado,
-                    { ...producto }
-                ]
+            case "PRECIO":
+                return {
+                    ...estado,
+                    "precioModificado": nuevoPrecio,
+                    "editado": true
 
-            case "RESTABLECER":
+                };
 
-                return [[], {}]
+            case "DESCUENTO":
+                return {
+                    ...estado,
+                    "descuento": producto.descuento
+                }
+
+            case "BORRAR":
+
+                return null
+
 
             default:
-                return [estado, ultimoSeleccionado];
+                return state
+
+
         }
 
-    }
+    }).filter(estado => estado !== null)
 
-    const newState = productoActual()
-
-    const filtrado = newState[0].filter(item => item.cantidadSeleccionada !== null)
-
-    const ultimoSelecc = type !== "SELECCIONAR" && filtrado.length < estado.length ? { ...filtrado[filtrado.length - 1] } : newState[1]
-
-    return [filtrado, ultimoSelecc]
-};
-
-
-
+}
 
 export const productoReducer = () => {
 
-    const [listaProducto, dispatch] = useReducer(reducer, [[], {}])
+    const [listaProducto, dispatch] = useReducer(reducer, [])
 
 
-    const agregarProducto = useCallback((producto) => {
+    const agregarProducto = (producto) => {
 
         dispatch({ type: "AGREGAR", producto })
-    }, [])
+    }
 
-    const editarProducto = useCallback((producto) => {
+    const modificarCantidad = useCallback((producto) => {
 
-        if (!producto.nombre) return
-
-        dispatch({ type: "EDITAR", producto })
+        dispatch({ type: "CANTIDAD", producto })
 
     }, [])
 
-    const modificarProducto = useCallback((producto) => {
 
-        dispatch({ type: "MODIFICAR", producto })
+    const modificarPrecio = useCallback((producto) => {
+
+        dispatch({ type: "PRECIO", producto })
 
     }, [])
 
-    const restablecerProductos = useCallback((producto = {}) => {
-        dispatch({ type: "RESTABLECER", producto })
-    }, [])
+    const borrarProducto = (producto) => {
+        dispatch({ type: "BORRAR", producto })
+    }
 
-    const seleccionarProducto = useCallback((producto) => {
-        dispatch({ type: "SELECCIONAR", producto })
-    }, [])
+    const aplicarDescuento = (producto) => {
+        dispatch({ type: "DESCUENTO", producto })
+    }
 
     return {
-        seleccionarProducto,
-        modificarProducto,
         agregarProducto,
-        listaProducto: listaProducto[0],
-        ultimoSeleccionado: listaProducto[1],
-        editarProducto,
-        restablecerProductos
+        modificarCantidad,
+        listaProducto,
+        modificarPrecio,
+        borrarProducto,
+        aplicarDescuento
     }
 }

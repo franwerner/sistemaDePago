@@ -5,7 +5,6 @@ import { SuspenseLoading } from './components/SuspenseLoading';
 import { seccionProducto } from './router/PuntoDeVentaRouter';
 
 const ErrorPage = lazy(() => import('./components/ErrorPage'))
-const PuntoDeVentaold = lazy(() => import("./screens/PuntoDeVentaold"))
 const Seleccion = lazy(() => import("./screens/Seleccion"))
 const Empleado = lazy(() => import("./screens/Empleado"))
 
@@ -14,11 +13,6 @@ const router = createBrowserRouter([
   {
     path: "/empleado",
     element: <SuspenseLoading><Empleado /></SuspenseLoading>,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/puntoDeVentaold",
-    element: <SuspenseLoading><PuntoDeVentaold /></SuspenseLoading>,
     errorElement: <ErrorPage />,
   },
   {

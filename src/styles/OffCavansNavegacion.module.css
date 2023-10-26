@@ -6,34 +6,23 @@
     transition: 0.3s all;
 }
 
-.seccionesMenu:hover {
-    border: 1px solid rgb(114, 102, 240);
-    transform: scale(1.1);
-    transition: 0.3s all;
+
+.seccionesMenu:hover > div {
+  transform: scale(1.1);
+  transition: 0.3s all;
 }
 
+.seccionesMenu > div {
+  transform: scale(1);
+  transition: 0.3s all;
+}
 
 .seccionElegida {
     background: linear-gradient(109.6deg, rgb(114, 102, 240) 11.2%, rgb(164, 69, 255) 91.1%);
     color: white;
-    animation: escala 0.4s ease-in;
-
 }
 
-@keyframes escala {
-    0% {
-        transform: scale(1.1)
-      }
-      50% {
-        transform: scale(1.05)
-      }
-      100% {
-        transform: scale(1)
-      }
-  }
-
-.seccionElegida:hover {
-    border: 1px solid transparent;
-    opacity: 1;
-    transform: scale(1);
+.seccionElegida:hover > div {
+  transform: scale(1);
 }
+

@@ -2,7 +2,7 @@ import { Col, Container, Offcanvas, OffcanvasTitle, Row } from "react-bootstrap"
 import { useEventoMostrar } from "../hooks/useEventoMostrar"
 import styles from "@/styles/OffCavansNavegacion.module.css"
 import React from "react"
-import { Link, useLocation} from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const ListaDeMenu = [
     {
@@ -26,8 +26,8 @@ const ListaDeMenu = [
         icon: "fa-solid fa-cubes"
     },
     {
-       nombre : "Venta",
-       icon : "fa-solid fa-cart-shopping"
+        nombre: "Venta",
+        icon: "fa-solid fa-cart-shopping"
     }
 
 ]
@@ -66,42 +66,40 @@ const ListadoDeSecciones = React.memo(({ nombre, icon }) => {
 })
 
 
-const OffCavansNavegacion = () => {
+const OffCavansNavegacion = ({ alternarMostrar, mostrar }) => {
 
-    const { mostrar, alternarMostrar } = useEventoMostrar()
 
 
     return (
-        <Offcanvas
-            responsive="sm"
-            onHide={alternarMostrar}
-            show={!mostrar}
-            scroll={true}
-            backdrop={false}>
-            <Offcanvas.Header closeButton>
-            </Offcanvas.Header>
-            <OffcanvasTitle className="p-2 text-center ">
-                <p
-                    style={{ letterSpacing: "2px", color: "#555" }}
-                    className="my-2 text-nowrap fs-3">Urban Vog<
-                        span style={{ color: "#746AF4" }}>ue</span>
-                </p>
-            </OffcanvasTitle>
-            <Offcanvas.Body className=" mx-3">
-                <Container className="my-5 ">
-                    {
-                        ListaDeMenu.map(({ nombre, icon }) =>
-                            <ListadoDeSecciones
-                                key={nombre}
-                                nombre={nombre}
-                                icon={icon} />
-                        )
-                    }
+            <Offcanvas
+                responsive="lg"
+                onHide={alternarMostrar}
+                show={mostrar}
+                scroll={true}
+                backdrop={false}>
+                <Offcanvas.Header closeButton>
+                </Offcanvas.Header>
+                <OffcanvasTitle className="p-2 text-center ">
+                    <p
+                        style={{ letterSpacing: "2px", color: "#555" }}
+                        className="my-2 text-nowrap fs-3">Urban Vog
+                        < span style={{ color: "#746AF4" }}>ue</span>
+                    </p>
+                </OffcanvasTitle>
+                <Offcanvas.Body className="scrollBarPersonalizada   mx-3">
+                    <Container className="my-5 ">
+                        {
+                            ListaDeMenu.map(({ nombre, icon }) =>
+                                <ListadoDeSecciones
+                                    key={nombre}
+                                    nombre={nombre}
+                                    icon={icon} />
+                            )
+                        }
 
-                </Container>
-            </Offcanvas.Body>
-        </Offcanvas>
-
+                    </Container>
+                </Offcanvas.Body>
+            </Offcanvas>
     )
 }
 

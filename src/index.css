@@ -9,9 +9,15 @@
     outline: none;
     user-select: none;
     transition: 0s all;
-    
+
 }
 
+
+
+
+.scroll-x-hidden {
+    overflow-x: hidden;
+}
 
 body::-webkit-scrollbar {
     display: none;
@@ -58,4 +64,27 @@ body::-webkit-scrollbar {
 
 .scrollBarPersonalizada::-webkit-scrollbar-track {
     border-radius: 10px;
+}
+
+/*INPUT GLOBALES*/
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=date] {
+    -moz-appearance: textfield;
 }

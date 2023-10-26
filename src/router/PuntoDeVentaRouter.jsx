@@ -4,7 +4,7 @@ import ErrorPage from '../components/ErrorPage';
 
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
-
+const SeccionDeVenta = lazy(()=> import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/SeccionDeVenta"))
 
 export const seccionProducto = {
     path: "/pos",
@@ -33,7 +33,7 @@ export const seccionProducto = {
         },
         {
             path: "venta",
-            element: <h1>4</h1>
+            element: <SeccionDeVenta/>
         }
     ]
 }

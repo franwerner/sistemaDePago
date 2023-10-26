@@ -1,44 +1,46 @@
 
 import styles from "@/styles/seccionDeProductos.module.css"
-import { lazy } from "react";
+import { lazy, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const DropwDownFilter = lazy(() => import("@/components/DropDownFilter"))
 const BuscadorInput = lazy(() => import("@/components/BuscadorInput"))
 
-const seccionesProductos = [
-    {
-        "nombre": "Panaderia"
-    },
-    {
-        "nombre": "Kiosco"
-    },
-    {
-        "nombre": "Helados"
-    },
+const FiltradoDeFilas = () => {
 
-]
+    return (
+        <>
+            <i className="fa-solid fs-4 fa-list"></i>
+            <i className="fa-solid fs-4 mx-1 fa-table-cells-large"></i>
+            <i className="fa-solid fs-4 fa-table-cells"></i>
+        </>
+    )
+}
 
-
-
-
-const ContainerDeSecciones = ({ elegirSeccion = () => { } }) => {
+const ContainerDeSecciones = () => {
 
     return (
         <Col className=" w-100 d-flex  justify-content-start m-0 align-items-center">
 
-            <Container fluid className="h-100 ">
+            <Container fluid className="h-100 p-0 ">
                 <Row className="m-0 h-100">
 
-                    <Col className="d-flex justify-content-evenly  align-items-center">
+                    <Col className="d-flex justify-content-evenly p-0 align-items-center">
 
                         <DropwDownFilter />
 
-                        <i className="fa-solid fs-4 fa-list"></i>
-                        <i className="fa-solid fs-4 fa-table-cells-large"></i>
-                        <i className="fa-solid fs-4 fa-table-cells"></i>
+                        <Link to={"?"}>
+                            <i className="fa-solid fs-4 fa-filter-circle-xmark"></i>
+                        </Link>
+
                     </Col>
-                    <Col xs={"auto"} className="p-0 d-flex justify-content-end align-items-center">
+
+                    <Col className="d-flex justify-content-evenly p-0 align-items-center ">
+                        <FiltradoDeFilas />
+                    </Col>
+
+                    <Col xs={12} md={"auto"} className="p-0 d-flex justify-content-center justify-content-md-end align-items-center">
                         <BuscadorInput />
                     </Col>
                 </Row>

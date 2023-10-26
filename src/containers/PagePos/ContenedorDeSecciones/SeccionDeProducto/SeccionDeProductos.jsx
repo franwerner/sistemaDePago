@@ -7,7 +7,6 @@ import ContainerDeProductos from "./ContainerDeProductos";
 
 const SeccionDeProductos = () => {
 
-
     return (
         <>
             <Row className={`${styles.containerDeSecciones} w-100  shadow m-0 p-0    `}>
