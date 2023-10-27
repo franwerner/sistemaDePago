@@ -14,3 +14,21 @@
 .iconContainer i {
     font-size: 30px;
 }
+
+
+@media (max-width : 568px ){
+
+
+.iconContainer span {
+    width: 20px;
+    font-size: 14px;
+    height: 20px;
+    right: 5%;
+    
+}
+
+.iconContainer i {
+    font-size: 25px;
+}
+  
+}

@@ -8,9 +8,9 @@ import { LoginContainer } from "@/containers/pageLogin/LoginContainer"
 
 
     return (
-        <Container fluid className={`${styles.posLoginContainer} d-flex justify-content-center align-items-center vh-100  `}>
+        <Container fluid className={`${styles.posLoginContainer}  d-flex justify-content-center align-items-center vh-100  `}>
 
-            <Row className=" bg-white h-50 rounded-4">
+            <Row className=" bg-white h-50 rounded-4 animate__animated animate__bounceInLeft  ">
 
                 <Col xs={3} md={4} className="p-0 d-none d-sm-block  h-100 ">
                     <div className={`${styles.lockContainer} p-5 h-100  d-flex justify-content-center align-items-center`}>

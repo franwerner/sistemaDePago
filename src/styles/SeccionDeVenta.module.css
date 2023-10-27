@@ -1,14 +1,23 @@
 .botonCarrito {
-    background-color: #746AF4;
-    border-color: #746AF4 ;
-    color: white
+    background-color: #746AF4 !important;
+    color: white !important
 }
 
-.botonCarrito:hover {
-    color : #555
+
+.botonCarrito:active {
+  transform: scale(1.1);
+}
+
+
+.columnaInputCantidad input{
+    max-width: 120px;
 }
 
 /*TABLA DE VENTAS*/
+
+.tablaDeVentas * {
+    font-size: 12px;
+}
 
 .tablaDeVentas thead {
     position: relative;
@@ -16,19 +25,19 @@
 }
 
 .tdDescuento input {
-    max-width: 60px;
-    min-width: 60px;
+    min-width: 45px;
+    max-width: 45px;
 }
 
-.tdPrecio  input{
-  max-width: 60px;
-  min-width: 60px;   
+.tdPrecio p{
+    max-width: 90px;
 }
+
 
 
 .tdCantidad input {
-    min-width: 40px;
-    max-width: 60px;
+    min-width: 25px;
+    max-width: 45px;
 }
 
 .tdCantidad button i {
@@ -42,7 +51,6 @@
 .tdNombre {
     max-width: 200px;
     min-width: 200px;
-    font-size: 15px;
 }
 
 .tdTotal {
@@ -60,7 +68,3 @@
  transform: scale(1.1);
 }
 
-.tdPorcentaje input {
-    max-width: 120px;
-    min-width: 60px;
-}

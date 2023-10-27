@@ -9,7 +9,7 @@ const PuntoDeVenta = () => {
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
     return (
-        <Container fluid className="vh-100  p-0">
+        <Container fluid className="vh-100 animate__animated animate__bounceInLeft   p-0">
             <Row  className="h-100  m-0">
                 <Col
                     style={{ minWidth: "300px", zIndex: "20" }}

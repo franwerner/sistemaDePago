@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import React, { useContext } from "react"
 import { TarifaContex } from "../context/Contextos"
 import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
 
@@ -11,10 +11,10 @@ export const useCalculadoraPorcenje = (numero) => {
 
 }
 
-export const CalcularPorcentajeMemoizado = ({ n1, n2 = 0 }) => {//n2 sirve para indicar en el prop si queremos sumarle el numero sin porcentaje.
+export const CalcularPorcentajeMemoizado = React.memo(({ n1, n2 = 0 }) => {//n2 sirve para indicar en el prop si queremos sumarle el numero sin porcentaje.
 
     const porcentaje = useCalculadoraPorcenje(n1)
 
     return separarNumerosConDecimales(porcentaje + n2)
 
-}
+})

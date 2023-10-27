@@ -1,7 +1,7 @@
 import { useForm } from "@/hooks//useForm"
 import React, { useEffect } from "react"
 import { Form } from "react-bootstrap"
-
+import styles from "@/styles/SeccionDeVenta.module.css"
 
 const TdDescuento = React.memo(({ aplicarDescuento, descuento, nombre }) => {
 
@@ -20,17 +20,18 @@ const TdDescuento = React.memo(({ aplicarDescuento, descuento, nombre }) => {
     }, [evaluarPorcentaje])
 
     return (
-        <div className="d-flex justify-content-center">
-            <Form.Control
+        <td className={`${styles.tdDescuento}`}>
+       <div className="d-flex justify-content-center ">
+       <Form.Control
                 onChange={changeForm}
                 name="descuento"
-                value={evaluarPorcentaje}
+                value={descuento}
                 aria-describedby="descuentoTabla"
                 type="number"
-                className="text-center"
+                className="text-center p-1"
             />
-        </div>
-
+       </div>
+        </td>
     )
 })
 

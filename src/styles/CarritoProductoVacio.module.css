@@ -1,12 +1,10 @@
 .carrito {
     font-size: 90px;
-    color: #555;
-    opacity: 15%;
+    color: #bdbaba;
 }
 
 .textoCarrito {
     z-index: 1;
     top: 25%;
-    color: #555;
-    opacity: 15%;
+    color: #bdbaba;
 }

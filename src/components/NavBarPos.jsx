@@ -17,21 +17,22 @@ const NavBarPos = React.memo(({ alternarMostrar }) => {
 
 
                     <i
-                    style={{left : 0}}
-                    onClick={alternarMostrar} 
-                    className={`${styles.iconBars} fa-brands position-absolute text-start p-2 mx-4 d-lg-none fa-microsoft`}></i>
+                        onClick={alternarMostrar}
+                        className={`${styles.iconBars} fa-brands position-absolute text-start p-2  mx-4 d-lg-none fa-microsoft`}></i>
 
 
                     <IconBell />
                     <IconMessage />
 
-                    <div className={`${styles.imgContainer} bg-danger border overflow-hidden rounded-circle`}>
-
-                        <img
-                            height={80}
-                            width={80}
-                            loading="lazy"
-                            src="https://img.freepik.com/foto-gratis/primer-plano-hombre-negocios-serio-camisa-blanca-mirando-camara-pie-confiado_1258-26762.jpg" />
+                    <div className={`${styles.imgContainer} shadow-sm bg-danger border border-secondary rounded-circle overflow-hidden`}>
+                        {/* <i className="fs-3  position-absolute fa-solid fa-user"></i> */}
+                      
+                            <img
+                                height={60}
+                                width={60}
+                                loading="lazy"
+                                src="https://img.freepik.com/foto-gratis/primer-plano-hombre-negocios-serio-camisa-blanca-mirando-camara-pie-confiado_1258-26762.jpg" />
+             
                     </div>
 
                     <div className="d-flex  text-break flex-column mx-1">
@@ -41,6 +42,7 @@ const NavBarPos = React.memo(({ alternarMostrar }) => {
                         <p
                             className="m-0 text-start"
                             style={{ fontSize: "14px" }}>Empleado</p>
+                         
                     </div>
 
                 </Nav>

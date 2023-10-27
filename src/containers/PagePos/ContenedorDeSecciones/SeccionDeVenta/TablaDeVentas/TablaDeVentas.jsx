@@ -4,6 +4,7 @@ import { productoReducerContext } from "@/context/Contextos";
 import styles from "@/styles/SeccionDeVenta.module.css"
 import ListadoDeVentas from "./ListadoDeVentas";
 
+
 const TheadTabla = React.memo(() => {
 
     return <thead className="align-middle">
@@ -19,7 +20,7 @@ const TheadTabla = React.memo(() => {
     </thead>
 })
 
-const TablaDeVentas = () => {
+const TablaDeVentas = React.memo(() => {
 
     const { listaProducto, modificarPrecio, modificarCantidad, borrarProducto, aplicarDescuento } = useContext(productoReducerContext)
 
@@ -47,6 +48,6 @@ const TablaDeVentas = () => {
 
         </Table>
     );
-};
+})
 
 export default TablaDeVentas

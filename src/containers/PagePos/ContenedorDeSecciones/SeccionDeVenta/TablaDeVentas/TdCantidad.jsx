@@ -3,6 +3,7 @@ import React, { useCallback, useEffect } from "react"
 import BotonRestar from "@/components/BotonRestar"
 import BotonSumar from "@/components/BotonSumar"
 import { Form } from "react-bootstrap"
+import styles from "@/styles/SeccionDeVenta.module.css"
 
 const TdCantidad = React.memo(({ cantidad, nombre, modificarCantidad }) => {
 
@@ -16,29 +17,32 @@ const TdCantidad = React.memo(({ cantidad, nombre, modificarCantidad }) => {
 
     useEffect(() => {
 
+        if (cantidad == form.cantidad) return
+
         const verificacion = form.cantidad.length == 0 || isNaN(form.cantidad) ? 0 : parseFloat(form.cantidad)
 
         modificarCantidad({ nombre, cantidad: verificacion })
 
     }, [form.cantidad])
 
-
     return (
-        <>
+        <td className={`${styles.tdCantidad} `}>
 
-            <BotonRestar restarCantidad={modificacionForm} />
+            <div className="d-flex m-0 p-0">
+                <BotonRestar restarCantidad={modificacionForm} />
 
-            <Form.Control
-                onChange={changeForm}
-                name="cantidad"
-                aria-describedby="cantidadTable"
-                type="number"
-                value={form.cantidad}
-                className="mx-1 px-1 text-center"
-            />
+                <Form.Control
+                    onChange={changeForm}
+                    name="cantidad"
+                    aria-describedby="cantidadTable"
+                    type="number"
+                    value={cantidad}
+                    className="mx-1 px-1 text-center"
+                />
 
-            <BotonSumar sumarCantidad={modificacionForm} />
-        </>
+                <BotonSumar sumarCantidad={modificacionForm} />
+            </div>
+        </td>
 
     )
 })

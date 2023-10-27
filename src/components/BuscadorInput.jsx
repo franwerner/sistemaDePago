@@ -9,7 +9,7 @@ const BuscadorInput = () => {
 
     return (
         <Form
-            className=""
+            className="w-100"
             onSubmit={onSubmit}>
 
             <InputGroup >

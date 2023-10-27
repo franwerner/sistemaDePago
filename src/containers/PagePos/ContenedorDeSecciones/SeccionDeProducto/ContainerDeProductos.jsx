@@ -156,7 +156,7 @@ const ProductoMemoizado = React.memo(({ agregarProducto, producto }) => {
 
     const onClick = useCallback((e) => {
         e.target.tagName !== "I" && agregarProducto(producto)
-    }, [])
+    }, [producto])
 
     return (
         <ProductoCard agregarProducto={onClick} producto={producto} />

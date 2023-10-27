@@ -5,7 +5,6 @@ export const useForm = (intialInput = {}) => {
 
     const [form, setForm] = useState(intialInput)
 
-
     const changeForm = useCallback(({ target }) => {
         const { name, value } = target
 

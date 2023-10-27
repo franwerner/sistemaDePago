@@ -13,7 +13,7 @@ const SeccionDeProductos = () => {
                 <ContainerDeSecciones />
             </Row>
 
-            <Row className={`${styles.ContainerDeProductos} flex-grow-1 scrollBarPersonalizada  h-100 p-0 m-0`}>
+            <Row className={`${styles.ContainerDeProductos} flex-grow-1  scrollBarPersonalizada  h-100 p-0 m-0`}>
                 <ContainerDeProductos />
             </Row>
         </>

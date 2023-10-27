@@ -29,7 +29,7 @@ const ProductoCard = React.memo(({ producto, agregarProducto }) => {
                 <CardFavorito />
             </Card.Title>
             <Card.Img
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "contain", minHeight: "90px" }}
                 width={90}
                 loading="lazy"
                 decoding="async"
@@ -37,7 +37,7 @@ const ProductoCard = React.memo(({ producto, agregarProducto }) => {
 
             <Card.Body className=" p-0 m-0 d-flex flex-column  h-100 align-items-center ">
 
-                <p  style={{maxHeight : "40px",whiteSpace : "pre-line"}} className="fw-light m-0 text-center text-dark text-truncate flex-grow-1 w-100">{nombre}</p>
+                <p style={{ maxHeight: "40px", whiteSpace: "pre-line" }} className="fw-light m-0 text-center text-dark text-truncate flex-grow-1 w-100">{nombre}</p>
                 <p className={`${styles.cardPrecio} fw-semibold  text-truncate m-0`}>$<CalcularPorcentajeMemoizado n1={precio} n2={precio} />/{metodo}</p>
 
             </Card.Body>

@@ -11,7 +11,7 @@ const ContenedorDeSecciones = React.memo(() => {
 
 
     return (
-        <Container fluid className="p-0 overflow-auto d-flex flex-column flex-grow-1 h-100  ">
+        <Container fluid className="p-0 overflow-hidden d-flex flex-column flex-grow-1 h-100  ">
             <ProductoReducerProvider>
                 <TarifaProvider>
                     <SuspenseLoading>

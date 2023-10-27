@@ -6,6 +6,9 @@ cursor: pointer;
 
 }
 
+.cardContainer:active {
+    border: 1px solid rgb(112, 245, 194);
+}
 
 .cardContainer p:nth-child(1) {
     font-size: 15px;

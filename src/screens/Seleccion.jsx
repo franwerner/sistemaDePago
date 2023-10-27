@@ -31,7 +31,7 @@ const cards = [
 
 const Seleccion = () => {
     return (
-        <Container className="scrollHidden p-0 d-flex justify-content-center flex-column align-items-center vh-100" fluid>
+        <Container className="scrollHidden p-0 d-flex a justify-content-center flex-column align-items-center vh-100" fluid>
 
             <Row className="w-100 h-100 p-0 d-flex justify-content-center align-items-center m-0">
 

@@ -1,31 +1,27 @@
-import { useForm } from "@/hooks//useForm"
-import React, { useEffect } from "react"
-import { Form } from "react-bootstrap"
+import DropwDownPrecio from "@/components//DropDownPrecio"
+import { CalcularPorcentajeMemoizado } from "@/hooks//useCalcularPorcentaje"
+import React from "react"
+import styles from "@/styles/SeccionDeVenta.module.css"
+
+
+
 
 const TdPrecio = React.memo(({ precioModificado, modificarPrecio, nombre }) => {
 
-    const { changeForm, form } = useForm({ precio: precioModificado })
 
-    useEffect(() => {
-
-        const verificacion = form.precio.length == 0 || isNaN(form.precio) ? 0 : Math.abs(form.precio)
-
-        modificarPrecio({ nombre, precioModificado: verificacion })
-
-    }, [form.precio])
 
     return (
-        <div className="d-flex justify-content-center">
-            <Form.Control
-                onChange={changeForm}
-                aria-describedby="precioTable"
-                type="number"
-                name="precio"
-                value={Math.abs(form.precio) == 0 ? "" : Math.abs(form.precio)}
-                className="px-1 text-center"
-            />
-        </div>
+        <td  className={`${styles.tdPrecio} text-center p-0`}>
+            <DropwDownPrecio
+                modificarPrecio={modificarPrecio}
+                nombre={nombre} >
+                <CalcularPorcentajeMemoizado
+                    n1={precioModificado}
+                    n2={precioModificado} /> 
+            </DropwDownPrecio>
+        </td>
     )
 })
 
 export default TdPrecio
+
