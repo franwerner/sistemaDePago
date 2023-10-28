@@ -3,7 +3,7 @@ import { RestanteTotalMemoizando } from "@/hooks//useRestanteTotal"
 import React, { useContext } from "react"
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/ContenedorDePagos.module.css"
-import { PrecioFinalMemoizado } from "@/hooks//usePrecioFinalDeLosProductos";
+import { PrecioFinalMemoizado } from "@/hooks//useSumaTotalDeProductos";
 import { restoDelPagoContext } from "@/context//Contextos";
 import { CambioTotalMemoizado } from "@/hooks//useCalcularCambioTotal";
 

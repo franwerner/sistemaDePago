@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "@/styles/TotalProductos.module.css"
 import { Row } from "react-bootstrap"
-import { PrecioFinalMemoizado } from "../hooks/usePrecioFinalDeLosProductos"
+import { PrecioFinalMemoizado } from "../hooks/useSumaTotalDeProductos"
 
 
 

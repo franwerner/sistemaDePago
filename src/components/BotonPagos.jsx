@@ -1,6 +1,6 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import { PrecioFinalMemoizado } from "../hooks/usePrecioFinalDeLosProductos";
+import { PrecioFinalMemoizado } from "../hooks/useSumaTotalDeProductos";
 
 
 

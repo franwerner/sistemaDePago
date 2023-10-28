@@ -14,6 +14,11 @@
 
 
 
+.zoom:active {
+
+    transform: scale(1.1);
+    transition: 0.1s all;
+}
 
 .scroll-x-hidden {
     overflow-x: hidden;

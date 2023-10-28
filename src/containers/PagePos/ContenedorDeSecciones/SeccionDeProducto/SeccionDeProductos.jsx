@@ -9,7 +9,7 @@ const SeccionDeProductos = () => {
 
     return (
         <>
-            <Row className={`${styles.containerDeSecciones} w-100  shadow m-0 p-0    `}>
+            <Row className={`${styles.containerDeSecciones} w-100 overflow-hidden  shadow m-0 p-0    `}>
                 <ContainerDeSecciones />
             </Row>
 

@@ -1,14 +1,26 @@
 .pinchoTicket p {
 
     height: 20px;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #656567;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid #ffffff;
+
 
 }
 
-.pinchoTicket div {
+.pinchoTicket{
     position: absolute;
-    left: -2%;
+    left: -4.5%;
+    top: -1%;
     background-color: #ffffff00;
 }
+
+.ticketHeader {
+    background-color: #746AF4;
+}
+
+.detalleDeTicket {
+
+}
+
+

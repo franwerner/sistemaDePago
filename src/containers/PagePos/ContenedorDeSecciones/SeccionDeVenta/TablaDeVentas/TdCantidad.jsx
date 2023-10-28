@@ -19,14 +19,14 @@ const TdCantidad = React.memo(({ cantidad, nombre, modificarCantidad }) => {
 
         if (cantidad == form.cantidad) return
 
-        const verificacion = form.cantidad.length == 0 || isNaN(form.cantidad) ? 0 : parseFloat(form.cantidad)
+        const verificacion = form.cantidad.length == 0 || isNaN(form.cantidad) ? "" : parseFloat(form.cantidad)
 
         modificarCantidad({ nombre, cantidad: verificacion })
 
     }, [form.cantidad])
 
     return (
-        <td className={`${styles.tdCantidad} `}>
+        <td className={`${styles.tdCantidad} d-flex justify-content-center`}>
 
             <div className="d-flex m-0 p-0">
                 <BotonRestar restarCantidad={modificacionForm} />

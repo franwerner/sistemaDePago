@@ -14,6 +14,9 @@ export const obtenerFecha = () => {
 
     const segundos = fecha.getSeconds()
 
+    const opciones = { month: 'long' };
+    const nombreMes = new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
+
 
     return {
         dia,
@@ -21,7 +24,8 @@ export const obtenerFecha = () => {
         minutos,
         segundos,
         mes,
-        año
+        año,
+        nombreMes
 
     }
 

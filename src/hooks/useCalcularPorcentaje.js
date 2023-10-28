@@ -14,7 +14,7 @@ export const useCalculadoraPorcenje = (numero) => {
 export const CalcularPorcentajeMemoizado = React.memo(({ n1, n2 = 0 }) => {//n2 sirve para indicar en el prop si queremos sumarle el numero sin porcentaje.
 
     const porcentaje = useCalculadoraPorcenje(n1)
-
+    
     return separarNumerosConDecimales(porcentaje + n2)
 
 })

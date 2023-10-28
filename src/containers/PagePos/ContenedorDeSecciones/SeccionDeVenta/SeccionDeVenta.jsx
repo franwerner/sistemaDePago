@@ -2,14 +2,16 @@ import { Row } from "react-bootstrap";
 import ContenedorDeCarrito from "./ContenedorDeCarrito";
 import ContenedorDeNav from "./ContenedorDeNav";
 
-const SeccionDeVeta = () => {
+const SeccionDeVenta = () => {
     return (
         <>
-            <Row style={{ minHeight: "90px",maxHeight : "90px" }} className="shadow h-100  m-0">
+            <Row
+                style={{ minHeight: "70px", maxHeight: "80px" }}
+                className="shadow m-0">
                 <ContenedorDeNav />
             </Row>
 
-            <Row  className="m-0 overflow-hidden h-100 w-100 shadow p-2">
+            <Row className="m-0 overflow-hidden p-3 h-100 w-100 shadow ">
                 <ContenedorDeCarrito />
             </Row>
         </>
@@ -19,4 +21,4 @@ const SeccionDeVeta = () => {
 };
 
 
-export default SeccionDeVeta
+export default SeccionDeVenta

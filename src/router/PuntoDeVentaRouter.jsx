@@ -1,7 +1,6 @@
 import { lazy } from 'react';
 import { SuspenseLoading } from '../components/SuspenseLoading';
 import ErrorPage from '../components/ErrorPage';
-
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
 const SeccionDeVenta = lazy(()=> import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/SeccionDeVenta"))

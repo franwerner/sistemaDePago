@@ -1,14 +1,13 @@
 import { useMemo } from "react";
-import { usePrecioFinalDeLosProductos } from "./usePrecioFinalDeLosProductos";
-
+import { useSumaTotalDeProductos } from "./useSumaTotalDeProductos";
 
 export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
 
-    const { calculoConTarifa } = usePrecioFinalDeLosProductos()
+    const sumaDeProductos = useSumaTotalDeProductos()
 
     const dependeciaString = JSON.stringify(pagoEncontrado == undefined ? "" : pagoEncontrado.metodosDePago)
 
-    let restoInicial = calculoConTarifa
+    let restoInicial = sumaDeProductos
 
     return useMemo(() => {
 
@@ -27,6 +26,6 @@ export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
 
         return pagos
 
-    }, [dependeciaString, calculoConTarifa]);
+    }, [dependeciaString, sumaDeProductos]);
 
 };

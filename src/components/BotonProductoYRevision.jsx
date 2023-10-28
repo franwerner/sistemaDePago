@@ -2,7 +2,6 @@ import { useContext, } from "react";
 import { Col } from "react-bootstrap";
 import { productoReducerContext } from "../context/Contextos";
 
-
 const BotonProductoYRevision = ({ alternarMostrar, mostrar }) => {
 
     const textoButton = mostrar ? "Revisión" : "Productos"
@@ -18,7 +17,7 @@ const BotonProductoYRevision = ({ alternarMostrar, mostrar }) => {
     return (
         <Col onClick={alternarMostrar}
             style={{ background: "#6EC89B", fontSize: "18px", cursor: "pointer", minWidth: "50%" }}
-            className=' w-100 p-3  text-center h-100 text-white fw-bolder '>
+            className=' w-100  p-3  text-center h-100 text-white fw-bolder '>
 
             <p className="m-0">
                 {textoButton}

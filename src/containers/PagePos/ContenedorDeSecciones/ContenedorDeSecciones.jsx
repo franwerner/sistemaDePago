@@ -1,6 +1,7 @@
 
 import { SuspenseLoading } from "@/components//SuspenseLoading";
 import { ProductoReducerProvider } from "@/context//provider/ProductosReducerProvider";
+import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider";
 import { TarifaProvider } from "@/context//provider/TarifaProvider";
 import React from "react";
 import { Container } from "react-bootstrap";
@@ -12,16 +13,22 @@ const ContenedorDeSecciones = React.memo(() => {
 
     return (
         <Container fluid className="p-0 overflow-hidden d-flex flex-column flex-grow-1 h-100  ">
+            <TarifaProvider>
+
             <ProductoReducerProvider>
-                <TarifaProvider>
+
+                <RestoDelPagoProvider>
+
                     <SuspenseLoading>
                         <Outlet />
                     </SuspenseLoading>
 
-                </TarifaProvider>
+                </RestoDelPagoProvider>
 
             </ProductoReducerProvider>
-            </Container>
+            
+        </TarifaProvider>
+        </Container >
     );
 })
 
