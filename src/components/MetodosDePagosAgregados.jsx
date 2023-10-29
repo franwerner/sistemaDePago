@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef } from "react"
 import { restoDelPagoContext } from "../context/Contextos"
-import { Col, Container, FloatingLabel, Form, Stack } from "react-bootstrap"
+import {Container, Form, Stack } from "react-bootstrap"
 import React from "react"
+import styles from "@/styles/MetodosDePagosAgregados.module.css"
 import { useForm } from "../hooks/useForm"
 
 const RestoForm = React.memo(({ resto, modificarResto, id }) => {
@@ -30,9 +31,8 @@ const RestoForm = React.memo(({ resto, modificarResto, id }) => {
             value={valiarResto}
             ref={ref}
             name="resto"
-            className="w-50 shadow-sm border-0 border-bottom rounded-2"
+            className={`${styles.formResto} border-0 px-3 border-bottom`}
             type="number"
-            style={{ background: "#ffffff", boxShadow: "" }}
             placeholder=" " />
     )
 })
@@ -46,15 +46,14 @@ const ListaDeMetodosDePagosAgregados = ({ resto, nombre, modificarResto, elimina
 
     return (
         <Stack
-            style={{ background: "#f1f1f1" }}
             direction="horizontal"
-            className="d-flex shadow-sm aling-items-center justify-content-between border p-3 p-xxl-4 mx-4 my-1 my-md-2">
-            <p className="m-0">{nombre}</p>
+            className={`${styles.metodoDePagoAgregado} d-flex shadow-sm aling-items-center justify-content-between border border-2 p-3 p-xxl-4 mx-4 my-1 my-md-2`}>
+            <p className="m-0 text-secondary fw-bolder">{nombre}</p>
             <RestoForm
                 resto={resto}
                 id={id}
                 modificarResto={modificarResto} />
-            <i onClick={onClick} className="fa-regular fs-5 fa-circle-xmark"></i>
+            <i onClick={onClick} className={`${styles.iconMark} fa-regular zoom  fs-4 fa-circle-xmark`}></i>
         </Stack>
     )
 }

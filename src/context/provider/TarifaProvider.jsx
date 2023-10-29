@@ -10,6 +10,7 @@ const listadoDeTarifas = [
         "metodosDePago": [
             {
                 "id": 1,
+                "tipo": "efectivo",
                 "nombre": "Efectivo"
             }
         ]
@@ -21,67 +22,82 @@ const listadoDeTarifas = [
         "metodosDePago": [
             {
                 "id": 1,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta naranja",
             },
             {
                 "id": 2,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta clover",
             },
 
             {
                 "id": 3,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta cabal ",
             },
             {
                 "id": 11,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta naranja",
             },
             {
                 "id": 21,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta clover",
             },
 
             {
                 "id": 31,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta cabal ",
             },
             {
                 "id": 12,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta naranja",
             },
             {
                 "id": 22,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta clover",
             },
 
             {
                 "id": 32,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta cabal ",
             },
             {
                 "id": 13,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta naranja",
             },
             {
                 "id": 23,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta clover",
             },
 
             {
                 "id": 33,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta cabal ",
             },
             {
                 "id": 14,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta naranja",
             },
             {
                 "id": 24,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta clover",
             },
 
             {
                 "id": 34,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta cabal ",
             },
         ]
@@ -93,16 +109,19 @@ const listadoDeTarifas = [
         "metodosDePago": [
             {
                 "id": 1,
+                "tipo": "qr",
                 "nombre": "QR",
             },
 
             {
                 "id": 2,
+                "tipo": "tarjeta",
                 "nombre": "Tarjeta",
             },
 
             {
                 "id": 3,
+                "tipo": "transferencia",
                 "nombre": "Transferencia",
             },
         ]
@@ -114,6 +133,7 @@ const listadoDeTarifas = [
         "metodosDePago": [
             {
                 "id": 1,
+                "tipo": "efectivo",
                 "nombre": "Efectivo"
             }
         ]

@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap"
-import styles from "@/styles/BotonesTactiles.module.css"
+
 import { useHotkeys } from "react-hotkeys-hook"
 import React, { useCallback, useEffect, useState } from "react"
 import { useAlternarComas } from "@/hooks/useAlternarComas"
@@ -39,8 +39,9 @@ const Buttons = React.memo(({ nombre, onClick, tipo }) => {
     return (
         <Button onClick={click}
             name={nombre}
-            variant="dark"
-            className=" fw-bolder rounded-0  ">
+            style={{minWidth : "90px",height : "70px"}}
+            variant="secondary"
+            className="fw-bolder border-white rounded-0  ">
             {nombre}
         </Button>
     )
@@ -49,7 +50,7 @@ const Buttons = React.memo(({ nombre, onClick, tipo }) => {
 const BotonesTactiles = React.memo(({ onClick, arrayButtons }) => {
 
     return (
-        <div className={`${styles.botonesTactiles} w-100 `}>
+        <div className={`${""} w-100 `}>
             {
                 arrayButtons.map((contenedor, index) =>
 
@@ -74,7 +75,7 @@ const BotonesTactiles = React.memo(({ onClick, arrayButtons }) => {
     )
 })
 
- const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault, arrayButtons = listaDeBotonesTactiles }) => {
+const ContenedorDeBotonesTactiles = React.memo(({ modificadorDefault = () => { }, arrayButtons = listaDeBotonesTactiles }) => {
 
 
     const { alternarComas, comma } = useAlternarComas()

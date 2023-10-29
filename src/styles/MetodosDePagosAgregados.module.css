@@ -1,0 +1,27 @@
+.formResto {
+
+    color: #555;
+    max-width: 200px;
+    border-radius: 0;
+}
+
+.formResto:focus {
+    box-shadow: 0px 0px 2px 3px rgba(115, 106, 244, 0.466) !important;
+    border-radius: 4px;
+}
+
+
+.iconMark {
+    cursor: no-drop;
+    color : #555
+}
+
+.iconMark:active{
+    color: rgb(209, 75, 75);
+}
+
+
+.metodoDePagoAgregado p {
+    min-width: 100px;
+    max-width: 100px;
+}
