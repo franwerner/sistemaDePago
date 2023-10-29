@@ -1,23 +1,9 @@
-.botonCarrito {
-    background-color: #746AF4 !important;
-    color: white !important
-}
-
-
-.botonCarrito:active {
-  transform: scale(1.1);
-}
-
-
-.columnaInputCantidad input{
+.columnaInputCantidad input {
     max-width: 120px;
 }
 
 /*TABLA DE VENTAS*/
 
-.tablaDeVentas * {
-    font-size: 12px;
-}
 
 .tablaDeVentas thead {
     position: relative;
@@ -29,11 +15,9 @@
     max-width: 45px;
 }
 
-.tdPrecio p{
+.tdPrecio p {
     max-width: 90px;
 }
-
-
 
 .tdCantidad input {
     min-width: 25px;
@@ -44,13 +28,9 @@
     background-color: #746AF4;
 }
 
-.tdCantidad button:active {
-    transform: scale(1.1);
-}
 
 .tdNombre {
     max-width: 200px;
-    min-width: 200px;
 }
 
 .tdTotal {
@@ -64,7 +44,61 @@
     cursor: not-allowed;
 }
 
-.tdIconTrash:active{
- transform: scale(1.1);
+
+@media (max-width : 1366px) {
+    .tablaDeVentas * {
+        font-size: 12px;
+    }
+
 }
 
+
+/*Ticket*/
+.pinchoTicket p {
+    height: 20px;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid #ffffff;
+
+
+}
+
+.pinchoTicket {
+    position: absolute;
+    left: -5%;
+    top: -1%;
+    background-color: #ffffff00;
+}
+
+.ticketHeader {
+    background-color: #746AF4;
+    font-size: 20px;
+}
+
+.detalleDeTicket * {
+    color: #555;
+}
+
+@media (max-width : 1366px) {
+    .ticketHeader {
+        font-size: 14px;
+    }
+}
+
+@media (max-width : 1680px) {
+    .ticketHeader {
+        font-size: 16px;
+    }
+}
+
+/*SECCION DE VENTA PAGOS*/
+
+.seccionVentaPagos {
+    width: 100%;
+}
+
+@media (max-width : 768px) {
+    .seccionVentaPagos {
+        width: 100%;
+    }
+}

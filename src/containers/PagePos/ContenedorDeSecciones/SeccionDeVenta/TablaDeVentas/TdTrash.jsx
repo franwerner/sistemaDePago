@@ -4,10 +4,10 @@ import React from "react";
 export const TdTrash = React.memo(({ borrarProducto, nombre }) => {
     return (
 
-        <td>
+        <td className="p-0 text-center"  >
             <i
                 onClick={() => borrarProducto({ nombre })}
-                className={`${styles.tdIconTrash}  fa-regular fa-trash-can fs-5`}></i>
+                className={`${styles.tdIconTrash} zoom  fa-regular fa-trash-can fs-5`}></i>
         </td>
     );
 })

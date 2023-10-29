@@ -1,30 +1,25 @@
-import React from "react";
-import { Col } from "react-bootstrap";
-import { PrecioFinalMemoizado } from "../hooks/useSumaTotalDeProductos";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import TotalAVender from "./TotalAVenderMemoizado";
 
 
 
-const BotonPagos = React.memo(({ alternarMostrarContenedor }) => {
-
-
-
+export const BotonPagos = () => {
     return (
-        <Col
-            style={{ background: "#D3D3D3", fontSize: "18px", cursor: "pointer"}}
-            className=" text-white p-3 text-center  fw-bolder"
-            onClick={alternarMostrarContenedor}>
+        <Link 
+        style={{textDecoration : "none"}}
+        to={"pagos"}>
+            <Button
+                style={{ background: "#746AF4" }}
+                className="d-flex text-white w-100  border-0 fw-semibold rounded-3 justify-content-between rounded-1 p-2  align-items-center ">
+                <p className="m-0 mx-2  text-uppercase mx-2">
+                    pagos
+                </p>
+                <p className="m-0 mx-2 text-truncate">
+                    $/ {<TotalAVender />}
+                </p>
+            </Button>
+        </Link>
 
-            <p className="m-0  ">
-                Pagos
-            </p>
-            <p style={{ fontSize: "15px" }} className="m-0 text-truncate ">
-                $ <PrecioFinalMemoizado/>
-            </p>
-
-        </Col>
     );
-
-});
-
-
-export default BotonPagos
+};

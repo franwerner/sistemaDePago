@@ -8,11 +8,18 @@
     font-family: "Montserrat";
     outline: none;
     user-select: none;
-    transition: 0s all;
-
+    transition: 0.3s all;
+letter-spacing: 1px;
 }
 
+.text-shadow {
+    color: #555;
+    text-shadow: 4px 4px 4px rgba(0,0,0,0.38);
+}
 
+.test-shadow{
+    box-shadow: 6px -3px 19px -7px rgba(0,0,0,0.75);
+}
 
 .zoom:active {
 

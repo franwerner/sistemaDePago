@@ -1,12 +1,14 @@
 import { Col } from "react-bootstrap";
 import { productoReducerContext } from "@/context//Contextos";
-import { lazy, useContext } from "react";
-import Ticket from "@/components//Ticket/Ticket";
+import React, { lazy, useContext } from "react";
+import Ticket from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeVenta/Ticket/Ticket";
 
 const CarritoDeProductoVacio = lazy(() => import("@/components//CarritoDeProductoVacio"))
 const TablaDeVentas = lazy(() => import("./TablaDeVentas/TablaDeVentas"))
 
-const ContenedorDeCarrito = () => {
+
+
+const ContenedorDeCarrito = React.memo(() => {
 
     const { listaProducto } = useContext(productoReducerContext)
     return (
@@ -20,7 +22,7 @@ const ContenedorDeCarrito = () => {
 
             </Col>
             <Col
-                style={{ marginLeft: "15px",minWidth : "300px"}}
+                style={{ marginLeft: "15px", minWidth: "330px" }}
                 className="d-none  overflow-hidden d-md-block shadow  h-100   p-0"
                 xs={3}>
 
@@ -29,7 +31,7 @@ const ContenedorDeCarrito = () => {
             </Col>
         </>
     );
-};
+})
 
 
 export default ContenedorDeCarrito

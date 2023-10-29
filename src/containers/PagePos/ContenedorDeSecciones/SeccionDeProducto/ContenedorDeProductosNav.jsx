@@ -1,4 +1,5 @@
 
+import { DropDownDeTarifas } from "@/components//DropDownDeTarifas";
 import styles from "@/styles/seccionDeProductos.module.css"
 import { lazy, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
@@ -18,7 +19,7 @@ const FiltradoDeFilas = () => {
     )
 }
 
-const ContainerDeSecciones = () => {
+const ContenedorDeProductosNav = () => {
 
     return (
         <Col className=" w-100 d-flex  justify-content-start m-0 align-items-center">
@@ -27,7 +28,6 @@ const ContainerDeSecciones = () => {
                 <Row className="m-0 h-100">
 
                     <Col className="d-flex justify-content-evenly p-0 align-items-center">
-
                         <DropwDownFilter />
 
                         <Link to={"?"}>
@@ -50,4 +50,4 @@ const ContainerDeSecciones = () => {
     );
 };
 
-export default ContainerDeSecciones
+export default ContenedorDeProductosNav

@@ -1,6 +1,4 @@
-
 import { useCallback, useReducer } from 'react';
-import { verificarSiEsNegativo } from '../helper/verificarSiEsNegativo';
 
 const agregarNuevasPropiedades = (action) => {
 
@@ -28,7 +26,7 @@ const reducer = (state, action) => {
 
     const { producto } = action
 
-    const nuevoPrecio = producto.precioModificado
+    if (action.type == "BORRAR LISTADO") return []
 
     if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
 
@@ -54,7 +52,7 @@ const reducer = (state, action) => {
             case "PRECIO":
                 return {
                     ...estado,
-                    "precioModificado": nuevoPrecio,
+                    "precioModificado": producto.precioModificado,
                     "editado": true
 
                 };
@@ -110,12 +108,17 @@ export const productoReducer = () => {
         dispatch({ type: "DESCUENTO", producto })
     }, [])
 
+    const borrarListado = useCallback(() => {
+        dispatch({ type: "BORRAR LISTADO" })
+    }, [])
+
     return {
         agregarProducto,
         modificarCantidad,
         listaProducto,
         modificarPrecio,
         borrarProducto,
-        aplicarDescuento
+        aplicarDescuento,
+        borrarListado,
     }
 }

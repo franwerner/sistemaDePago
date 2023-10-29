@@ -16,18 +16,17 @@ const MetodosDePagos = React.memo(({ nombre, restoTotal, agregarResto }) => {
                 nombre,
                 "resto": restoTotal
                 , id: shortid.generate(),
-                porcentaje : 0
             }
         )
     }
 
 
     return (
-        <Row onClick={onClick} className={`${styles.metodoDePago} d-flex justify-content-center p-4 mt-1`}>
-            <p className=" align-items-center  my-0">
+        <div onClick={onClick} className={`${styles.metodoDePago} d-flex shadow-sm justify-content-start p-4 mx-4 my-1 my-md-2`}>
+            <p className=" align-items-center m-0 my-0">
                 {nombre}
             </p>
-        </Row>
+        </div>
     )
 })
 
@@ -44,21 +43,23 @@ export const ListaDeMetodosDePagos = () => {
 
     return (
 
-            <Container
-                fluid
-                id="metodos-de-pagos">
+        <Container
+            fluid
+            className="p-0"
+            id="metodos-de-pagos">
 
-                {
-                    metodosDePago.map(metodo =>
-                        <MetodosDePagos
-                            agregarResto={agregarResto}
-                            restoTotal={restoTotal}
-                            key={metodo.id}
-                            nombre={metodo.nombre}
-                        />
-                    )
-                }
-            </Container>
+            {
+                metodosDePago.map(metodo =>
+                    <MetodosDePagos
+                        agregarResto={agregarResto}
+                        restoTotal={restoTotal}
+                        key={metodo.id}
+                        nombre={metodo.nombre}
+                    />
+                )
+            }
+      
+        </Container>
 
     )
 }

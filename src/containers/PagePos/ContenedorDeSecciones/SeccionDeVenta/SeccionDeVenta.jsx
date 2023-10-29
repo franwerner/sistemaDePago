@@ -1,6 +1,6 @@
 import { Row } from "react-bootstrap";
 import ContenedorDeCarrito from "./ContenedorDeCarrito";
-import ContenedorDeNav from "./ContenedorDeNav";
+import ContenedorDeSeccionesNav from "./ContenedorDeSeccionesNav";
 
 const SeccionDeVenta = () => {
     return (
@@ -8,7 +8,7 @@ const SeccionDeVenta = () => {
             <Row
                 style={{ minHeight: "70px", maxHeight: "80px" }}
                 className="shadow m-0">
-                <ContenedorDeNav />
+                <ContenedorDeSeccionesNav />
             </Row>
 
             <Row className="m-0 overflow-hidden p-3 h-100 w-100 shadow ">

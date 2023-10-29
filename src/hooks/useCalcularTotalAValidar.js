@@ -12,9 +12,7 @@ export const useCalcularTotalAValidar = () => {
 
         return pagoActual.metodosDePago.reduce((acc, current) => {
 
-            const porcentaje = calcularPorcentaje({ porcentaje: current.porcentaje, numero: current.restoParaValidar })
-
-            const total = acc + (porcentaje + current.restoParaValidar)
+            const total = acc + current.restoParaValidar
 
             return total
 

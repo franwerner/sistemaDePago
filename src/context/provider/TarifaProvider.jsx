@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { TarifaContex } from "../Contextos";
 
 const listadoDeTarifas = [
@@ -126,9 +126,9 @@ export const TarifaProvider = ({ children }) => {
 
     const [tarifaActual, setTarifaActual] = useState(listadoDeTarifas[0])
 
-    const cambiarTarifa = (value = {}) => {
+    const cambiarTarifa = useCallback((value = {}) => {
         setTarifaActual(value)
-    }
+    }, [])
 
     return (
         <>

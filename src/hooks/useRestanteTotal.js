@@ -1,11 +1,13 @@
 import { useContext, useMemo } from "react";
-import { usePrecioFinalDeLosProductos } from "./useSumaTotalDeProductos";
+import { useSumaTotalDeProductos } from "./useSumaTotalDeProductos";
 import { restoDelPagoContext } from "@/context/Contextos";
 import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales";
+import { useCalcularDescuento } from "./useCalcularDescuento";
 
 export const useRestanteTotal = () => {
 
-    const sumaDeProductos = usePrecioFinalDeLosProductos()
+    const sumaDeProductos = useSumaTotalDeProductos()
+    const descuento = useCalcularDescuento()
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
@@ -13,7 +15,7 @@ export const useRestanteTotal = () => {
 
     const restoTotal = useMemo(() => {
 
-        const sumaDeRestos = pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, sumaDeProductos)
+        const sumaDeRestos = pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, (sumaDeProductos - descuento))
 
         const esNegativo = Math.sign(sumaDeProductos) == -1
 

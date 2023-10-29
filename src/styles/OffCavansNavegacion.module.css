@@ -1,28 +1,48 @@
 .seccionesMenu {
-    padding: 10px;
-    cursor: pointer;
-    color: #3b3b3b;
-    border: 1px solid transparent;
-    transition: 0.3s all;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.3s all;
+  padding: 10px;
 }
 
-
-.seccionesMenu:hover > div {
-  transform: scale(1.1);
-  transition: 0.3s all;
+.iconDesactivado {
+  color: #3b3b3b;
 }
 
-.seccionesMenu > div {
-  transform: scale(1);
-  transition: 0.3s all;
+.iconActivado {
+  color: white;
+}
+
+.iconActivado i:nth-child(2) {
+  transform: rotate(180deg);
+  transition: 0.5s all;
+}
+
+.iconDesactivado i:nth-child(2) {
+  transform: rotate(0deg);
+  transition: 0.5s all;
 }
 
 .seccionElegida {
-    background: linear-gradient(109.6deg, rgb(114, 102, 240) 11.2%, rgb(164, 69, 255) 91.1%);
-    color: white;
+  padding: 10px;
+  background: linear-gradient(109.6deg, rgb(114, 102, 240) 11.2%, rgb(164, 69, 255) 91.1%);
+  animation: changeBackground 0.5s linear;
 }
 
-.seccionElegida:hover > div {
-  transform: scale(1);
+@keyframes changeBackground {
+  0% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
+.nombreDeRuta:hover {
+  transform: scale(1.1);
+}
+
+.seccionElegida div:nth-child(1) {
+  color: white;
+}

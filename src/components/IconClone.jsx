@@ -19,14 +19,10 @@ export const IconClone = ({ alternarMostrar, mostrar }) => {
     useHotkeys("tab", pressKey, config)
 
     return (
-        <>
 
             <i style={{ rotate: `${rotacion}deg` }}
                 onClick={alternarMostrar}
                 className={`${styles.clone} fa-solid   fa-clone `}>
             </i>
-
-
-        </>
     );
 };

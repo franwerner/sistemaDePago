@@ -1,21 +1,20 @@
 import { useCallback, useContext, useReducer } from "react";
 import { TarifaContex } from "@/context/Contextos";
-import { seleccionarUltimoElementoDeUnArray } from "@/helper/seleccionarUltimoElementoDeUnArray";
-import { useSumarMetodosDePagoAgregados } from "./useSumarMetodosDePagoAgregados";
-import switchModificacionMetodosDePago from "../helper/switchModificacionMetodosDePago";
+import { useSumarMetodosDePagoAgregados } from "./useSumarMetodosDePagoAgregados"
 
-const filtrarMetodosDePago = (state, id) => {
-    return [...state.metodosDePago.filter(item => item.id !== id)]
+
+const moficiarResto = (state, pago) => {
+
+
+    return state.metodosDePago.map(item => {
+        if (item.id == pago.id) return { ...item, resto: pago.resto }
+        else return item
+    })
 }
 
-const agregarPorcentaje = (state, pago) => {
+const filtrarMetodosDePago = (state, id) => {
 
-    return [...state.metodosDePago.map(metodo => {
-        if (metodo.id == pago.id) return { ...metodo, porcentaje: pago.porcentaje }
-        else return metodo
-    })]
-
-
+    return [...state.metodosDePago.filter(item => item.id !== id)]
 }
 
 const reducer = (state, action) => {
@@ -23,7 +22,6 @@ const reducer = (state, action) => {
     const { pago, type, tipoDeTarifa } = action
 
     const configIncial = {
-        ultimoSeleccionado: pago,
         metodosDePago: [pago]
     }
 
@@ -36,15 +34,14 @@ const reducer = (state, action) => {
             case "Agregar":
                 return {
                     metodosDePago: [...state[tipoDeTarifa].metodosDePago, { ...pago }],
-                    ultimoSeleccionado: pago
+
                 }
 
             case "Modificar":
 
-                const { ultimoSeleccionado, metodosDePago } = switchModificacionMetodosDePago(state[tipoDeTarifa], pago)
-
+                const metodosDePago = moficiarResto(state[tipoDeTarifa], pago)
+                console.log(metodosDePago)
                 return {
-                    ultimoSeleccionado,
                     metodosDePago
                 }
 
@@ -53,28 +50,12 @@ const reducer = (state, action) => {
                 const filtrado = filtrarMetodosDePago(state[tipoDeTarifa], pago.id)
                 return {
                     metodosDePago: filtrado,
-                    ultimoSeleccionado: seleccionarUltimoElementoDeUnArray(filtrado)
-                }
-
-            case "Porcentaje":
-
-                const aplicarPorcentaje = agregarPorcentaje(state[tipoDeTarifa], pago)
-
-                return {
-                    ...state[tipoDeTarifa],
-                    metodosDePago: aplicarPorcentaje
                 }
 
             case "Restablecer":
 
                 return {
                     metodosDePago: []
-                }
-
-            case "Seleccionar":
-                return {
-                    ...state[tipoDeTarifa],
-                    ultimoSeleccionado: pago
                 }
 
             default: undefined
@@ -100,7 +81,6 @@ export const useMetodoDePagoReducer = () => {
 
     const ajustePagoEncontrado = useSumarMetodosDePagoAgregados({ pagoEncontrado })
 
-
     const pagoActual = !pagoEncontrado ? { metodosDePago: [] } : { ...pagoEncontrado, metodosDePago: ajustePagoEncontrado }
 
     const dependenciaCallback = [tipoDeTarifa, pagoActual.metodosDePago.length]
@@ -110,6 +90,7 @@ export const useMetodoDePagoReducer = () => {
     }, [tipoDeTarifa])
 
     const modificarResto = useCallback((pago) => {
+
         if (pagoEncontrado == undefined || pagoEncontrado.metodosDePago.length == 0) return
 
         dispatch({ type: "Modificar", pago, tipoDeTarifa })
@@ -117,19 +98,9 @@ export const useMetodoDePagoReducer = () => {
     }, dependenciaCallback)
 
     const eliminarResto = useCallback((pago) => {
+
         dispatch({ type: "Eliminar", pago, tipoDeTarifa })
     }, dependenciaCallback)
-
-    const seleccionarElemento = useCallback((pago) => {
-        dispatch({ type: "Seleccionar", pago, tipoDeTarifa })
-    }, dependenciaCallback)
-
-    const aplicarPorcentaje = useCallback((pago) => {
-
-        dispatch({ type: "Porcentaje", pago, tipoDeTarifa })
-
-    }, dependenciaCallback)
-
 
     const restablecerPagos = useCallback((pago) => {
 
@@ -144,8 +115,6 @@ export const useMetodoDePagoReducer = () => {
         agregarResto,
         modificarResto,
         eliminarResto,
-        seleccionarElemento,
-        aplicarPorcentaje,
         restablecerPagos
     }
 
