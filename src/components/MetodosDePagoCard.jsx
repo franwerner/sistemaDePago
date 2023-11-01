@@ -1,10 +1,8 @@
 import styles from "@/styles/MetodosDePagoCard.module.css"
-import React, { useEffect } from "react"
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react"
 import { Button, Card, Form } from "react-bootstrap"
 import { useForm } from "../hooks/useForm"
 import { useRestanteTotal } from "../hooks/useRestanteTotal"
-import { obtenerDecimales } from "../helper/obtenerDecimales"
-
 
 const iconType = {
     "efectivo": "fa-solid fa-money-bill",
@@ -23,7 +21,6 @@ const CardTitulo = React.memo(({ resto, id, nombre, modificarResto }) => {
         if (restoTotal > 0 || restoTotal < 0) {
             modificarResto({ resto: resto + restoTotal, id, nombre })
         }
-
 
     }
 
@@ -54,13 +51,19 @@ const CardBodyRestante = React.memo(({ tipo, nombre }) => {
 })
 
 
-const RestoForm = React.memo(({ modificarResto, id, nombre, resto = 0 }) => {
+const RestoForm = React.memo(forwardRef(({ modificarResto, id, nombre, resto = 0 }, ref) => {
 
     const { form, changeForm } = useForm({ resto })
 
+    const inputRef = useRef(null)
 
+    useImperativeHandle(ref, () => ({
+        focusInput: () => inputRef.current.focus(),
+        blurInput: () => inputRef.current.blur()
+    }))
 
     useEffect(() => {
+
         const valiarResto = form.resto.length == 0 || isNaN(form.resto) ? "" : parseFloat(form.resto)
 
         modificarResto({ resto: valiarResto, id, nombre })
@@ -69,6 +72,8 @@ const RestoForm = React.memo(({ modificarResto, id, nombre, resto = 0 }) => {
 
     return (
         <Form.Control
+            ref={inputRef}
+            tabIndex={1}
             onChange={changeForm}
             value={resto.length == 0 ? resto : Math.floor(resto * 100) / 100}
             name="resto"
@@ -76,7 +81,7 @@ const RestoForm = React.memo(({ modificarResto, id, nombre, resto = 0 }) => {
             type="number"
             placeholder="" />
     )
-})
+}))
 
 
 
@@ -94,7 +99,7 @@ const CardFooter = React.memo(({ modificarResto, nombre, id }) => {
                 onClick={onClick}
                 type="reset"
                 variant="none"
-                className="border-0 zoom text-uppercase" >
+                className="border-0 p-0 zoom text-uppercase" >
                 Restablecer
             </Button>
         </Card.Footer>
@@ -103,11 +108,24 @@ const CardFooter = React.memo(({ modificarResto, nombre, id }) => {
 
 
 
-const MetodosDePagosCard = React.memo(({ tipo, nombre, modificarResto, id, resto }) => {
+const MetodosDePagosCard = ({ tipo, nombre, modificarResto, id, resto }) => {
+
+    const pagosCardRef = useRef(null)
+
+    const onMouseEvents = () => {
+        pagosCardRef.current.focusInput()
+    }
+
+    const onMouseLeave = () => {
+        pagosCardRef.current.blurInput()
+    }
 
     return (
         <Card
-            className={`${styles.cardContainer} shadow m-2 overflow-hidden`}>
+            onMouseLeave={onMouseLeave}
+            onClick={onMouseEvents}
+            onMouseEnter={onMouseEvents}
+            className={`${styles.cardContainer} shadow  overflow-hidden`}>
 
             <Card.Body className=" p-0 m-0 d-flex flex-column justify-content-center  h-100 align-items-center ">
 
@@ -122,11 +140,11 @@ const MetodosDePagosCard = React.memo(({ tipo, nombre, modificarResto, id, resto
                     nombre={nombre} />
 
                 <RestoForm
+                    ref={pagosCardRef}
                     id={id}
                     resto={resto}
                     nombre={nombre}
                     modificarResto={modificarResto} />
-
             </Card.Body>
 
             <CardFooter
@@ -136,6 +154,6 @@ const MetodosDePagosCard = React.memo(({ tipo, nombre, modificarResto, id, resto
         </Card >
     )
 
-})
+}
 
-export default MetodosDePagosCard
+export default React.memo(MetodosDePagosCard)

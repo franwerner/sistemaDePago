@@ -1,18 +1,22 @@
 import { Row } from "react-bootstrap";
-import ContenedorDeCarrito from "./ContenedorDeCarrito";
 import ContenedorDeSeccionesNav from "./ContenedorDeSeccionesNav";
+import ContenedorSeccionVenta from "./ContenedorSeccionVenta";
+import { hocTouchYReponsive } from "@/components//HocTouchYReponsive";
 
-const SeccionDeVenta = () => {
+const SeccionDeVenta = ({ containerRef,alternarMostrar,mostrar}) => {
+
     return (
         <>
             <Row
                 style={{ minHeight: "70px", maxHeight: "80px" }}
                 className="shadow m-0">
-                <ContenedorDeSeccionesNav />
+                <ContenedorDeSeccionesNav alternarMostrar={alternarMostrar} />
             </Row>
 
-            <Row className="m-0 overflow-hidden p-3 h-100 w-100 shadow ">
-                <ContenedorDeCarrito />
+            <Row
+                ref={containerRef}
+                className="m-0 overflow-hidden  justify-content-center  p-3 h-100 w-100 shadow ">
+                <ContenedorSeccionVenta mostrar={mostrar} />
             </Row>
         </>
     );
@@ -21,4 +25,5 @@ const SeccionDeVenta = () => {
 };
 
 
-export default SeccionDeVenta
+
+export default hocTouchYReponsive(SeccionDeVenta)

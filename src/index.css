@@ -31,6 +31,15 @@ letter-spacing: 1px;
     overflow-x: hidden;
 }
 
+.scroll-y-hidden {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.scroll-y-hidden::-webkit-scrollbar{
+    display: none;
+}
+
 body::-webkit-scrollbar {
     display: none;
 }

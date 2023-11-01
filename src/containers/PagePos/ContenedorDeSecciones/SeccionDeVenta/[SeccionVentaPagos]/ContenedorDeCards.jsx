@@ -1,9 +1,7 @@
 import MetodosDePagosCard from "@/components//MetodosDePagoCard";
 import { TarifaContex, restoDelPagoContext } from "@/context//Contextos";
-import { useContext } from "react";
-import { Stack } from "react-bootstrap";
-
-
+import { useContext} from "react";
+import {Stack } from "react-bootstrap";
 
 const ContenedorDeCards = () => {
 
@@ -36,7 +34,6 @@ const ContenedorDeCards = () => {
                         tipo={item.tipo} />
                 )
             }
-
         </Stack>
 
     );

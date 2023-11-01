@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-export const useAltenarModoResponsive = ({ mostrar, alternarMostrar }) => {
-
+export const useAltenarModoResponsive = ({alternarMostrar,mostrar} ) => {
+    
     useEffect(() => {
 
         const desactivarMostrar = (e) => {
@@ -17,5 +17,6 @@ export const useAltenarModoResponsive = ({ mostrar, alternarMostrar }) => {
         return () => removeEventListener("resize", desactivarMostrar)
 
     }, [mostrar])
+
 
 };

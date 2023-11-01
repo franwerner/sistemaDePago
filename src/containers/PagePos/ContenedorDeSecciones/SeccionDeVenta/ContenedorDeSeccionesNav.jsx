@@ -1,14 +1,19 @@
 import BuscadorInput from "@/components//BuscadorInput";
+import React, { lazy } from "react";
 import { Col } from "react-bootstrap";
 
-const ContenedorDeSeccionesNav = () => {
+const BotonRotacion = lazy(() => import("@/components//BotonRotacion"))
+
+const ContenedorDeSeccionesNav = React.memo(({ alternarMostrar }) => {
 
 
     return (
         <>
-            {/* <Col className="d-flex align-items-center">
-           
-            </Col> */}
+            <Col
+                xs="auto"
+                className="d-flex d-md-none position-relative align-items-center">
+                <BotonRotacion alternarMostrar={alternarMostrar} />
+            </Col>
 
 
             <Col className="p-0 d-flex mx-3 bg-dangerd-flex justify-content-center align-items-center">
@@ -16,6 +21,6 @@ const ContenedorDeSeccionesNav = () => {
             </Col>
         </>
     )
-}
+})
 
 export default ContenedorDeSeccionesNav

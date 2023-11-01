@@ -1,7 +1,7 @@
 .cardContainer {
-    width: 23vh;
+    width: 21vh;
     min-width: 200px;
-    height: 30vh;
+    height: 27vh;
     min-height: 270px;
     border: 0px solid #555;
     cursor: pointer;
@@ -42,3 +42,5 @@
     color: #555;
     max-width: 200px;
 }
+
+

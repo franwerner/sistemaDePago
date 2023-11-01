@@ -9,12 +9,12 @@ const SeccionVentaPagos = () => {
     return (
         <>
             <Row className="m-0  p-3 shadow">
-                <ContenedorNavVentaPagos/>
+                <ContenedorNavVentaPagos />
             </Row>
 
-            <Row className={`${styles.seccionVentaPagos} scrollBarPersonalizada m-0 h-100`}>
+            <Row className={`${styles.seccionVentaPagos} m-0 scrollBarPersonalizada h-100`}>
 
-                <Col className="p-5 shadow d-flex justify-content-center">
+                <Col className="p-3 h-100 d-flex justify-content-center">
                     <ContenedorDeCards />
                 </Col>
             </Row>
