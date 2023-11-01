@@ -26,18 +26,8 @@
 .seccionElegida {
   padding: 10px;
   background: linear-gradient(109.6deg, rgb(114, 102, 240) 11.2%, rgb(164, 69, 255) 91.1%);
-  animation: changeBackground 0.5s linear;
 }
 
-@keyframes changeBackground {
-  0% {
-    opacity: 0.3;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
 
 .nombreDeRuta:hover {
   transform: scale(1.1);

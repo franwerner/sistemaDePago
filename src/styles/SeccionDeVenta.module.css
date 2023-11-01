@@ -93,12 +93,13 @@
 
 /*SECCION DE VENTA PAGOS*/
 
-.seccionVentaPagos {
-    width: 100%;
+
+.btnValidado,.btnValidado:hover {
+    background: #746AF4 !important;
 }
 
-@media (max-width : 768px) {
-    .seccionVentaPagos {
-        width: 100%;
-    }
+
+.btnNoValidado:hover,.btnNoValidado {
+    background-color: #6C757d !important;
 }
+

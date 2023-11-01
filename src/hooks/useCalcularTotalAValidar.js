@@ -8,7 +8,7 @@ export const useCalcularTotalAValidar = () => {
 
     const dependeciaString = JSON.stringify(pagoActual.metodosDePago)
 
-    const totalAValidar = useMemo(() => {
+    return useMemo(() => {
 
         return pagoActual.metodosDePago.reduce((acc, current) => {
 
@@ -20,8 +20,8 @@ export const useCalcularTotalAValidar = () => {
 
     }, [dependeciaString])
 
-    return {
-        totalAValidar
-    }
+   
+        
+  
 
 };

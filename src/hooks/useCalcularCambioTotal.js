@@ -11,7 +11,7 @@ export const useCalcularCambio = () => {
 
     const sumaDePructos = useSumaTotalDeProductos()
 
-    const cambioTotal = useMemo(() => {
+    return useMemo(() => {
 
 
         if (!pagoActual || Math.sign(sumaDePructos) == -1) return 0
@@ -24,15 +24,12 @@ export const useCalcularCambio = () => {
 
     }, [dependeciaString])
 
-    return {
-        cambioTotal
-    }
 
 }
 
 export const CambioTotalMemoizado = () => {
 
-    const { cambioTotal } = useCalcularCambio()
+    const cambio = useCalcularCambio()
 
-    return separarNumerosConDecimales(cambioTotal)
+    return separarNumerosConDecimales(cambio)
 }

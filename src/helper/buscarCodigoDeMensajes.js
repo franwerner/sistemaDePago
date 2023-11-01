@@ -1,6 +1,7 @@
-
 import Swal from 'sweetalert2'
-const listaDeErrores = [
+
+
+const listDeMensajes = [
 
     { codigo: "1B", motivo: "Contraseña incorrecta, por favor vuelve a intentarlo", tipo: "warning" },
     { codigo: "2F", motivo: "Debe tener al menos un producto en la lista y el resto en $ 0,00", tipo: "warning" },
@@ -9,11 +10,11 @@ const listaDeErrores = [
 
 ]
 
-const buscarCodigoDeMensajes =  (datos = {}) => {
+const buscarCodigoDeMensajes = (datos = {}) => {
 
     if (!datos.codigo) return
 
-    const mensaje = listaDeErrores.find((mensaje) => mensaje.codigo === datos.codigo)
+    const mensaje = listDeMensajes.find((mensaje) => mensaje.codigo === datos.codigo)
 
     if (mensaje) {
 
@@ -31,11 +32,7 @@ const buscarCodigoDeMensajes =  (datos = {}) => {
             currentProgressStep: true,
             showCloseButton: true,
             showConfirmButton: false,
-            didOpen: (toast) => {
-                toast.addEventListener("mouseenter", Swal.stopTimer)
-                toast.addEventListener("mouseleave", Swal.resumeTimer)
-            },
-            timer: 2000
+            timer: 2500
         })
 
         return true

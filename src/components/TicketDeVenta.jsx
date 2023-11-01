@@ -3,114 +3,106 @@ import { useContext } from "react";
 import { productoReducerContext } from "@/context/Contextos";
 import { obtenerFecha } from "@/helper/obtenerFecha";
 import { useCalcularTotalAValidar } from "@/hooks/useCalcularTotalAValidar";
-import { usePrecioFinalDeLosProductos } from "@/hooks/usePrecioFinalDeLosProductos";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Stack } from "react-bootstrap";
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales";
 import { useCalcularCambio } from "@/hooks/useCalcularCambioTotal";
 import { AgregarCeroEnNumeroDeUnDigito } from "../helper/AgregarCeroEnNumeroDeUnDigito";
+import { useSumaTotalDeProductos } from "../hooks/useSumaTotalDeProductos";
+import { useCalcularDescuento } from "../hooks/useCalcularDescuento";
+import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje";
 
 
+const DestallesTotales = ({ nombre, texto }) => {
 
-
-const RowTotales = ({ nombre, texto }) => {
 
     return (
-        <Row className={`${styles.rowTotal} d-flex justify-content-between  `}>
-            <Col className="text-end  mx-2 fw-bold">
-                <p className="m-0">
-                    {nombre}:
-                </p>
-            </Col>
-            <Col className="text-end mx-2 " xs={"auto"}>
-                <p className="m-0">
-                    {texto}
-                </p>
-            </Col>
-        </Row>
+        <Stack
+            direction="horizontal"
+            gap={4}
+            className={`${styles.DetallesTotales}  justify-content-end  `}>
+
+            <p
+                className="m-0 fw-semibold text-end">
+                {nombre}:
+            </p>
+
+            <p
+                className="m-0">
+                {texto}
+            </p>
+
+        </Stack>
     )
 }
 
 const Totales = () => {
 
-    const { totalAValidar } = useCalcularTotalAValidar()
+    const suma = useSumaTotalDeProductos()
 
-    const { calculoSinTarifa } = usePrecioFinalDeLosProductos()
+    const descuento = useCalcularDescuento()
 
-    const { cambioTotal } = useCalcularCambio()
-
-    const porcentajeAplicado = ((totalAValidar - calculoSinTarifa) / calculoSinTarifa) * 100
-
-    const verificarSiPorcentajeEsNan = isNaN(porcentajeAplicado) ? 0 : porcentajeAplicado
+    const cambio = useCalcularCambio()
 
     return (
 
-        <Container className="mt-1">
+        <Col
+            style={{ wordBreak: "break-all" }}
+            className="mt-1 px-2">
 
-            <RowTotales nombre={"Base"} texto={`$ ${separarNumerosConDecimales(calculoSinTarifa)}`} />
-            <RowTotales nombre={"P/A"} texto={`$ (${(verificarSiPorcentajeEsNan).toFixed(2)}%)`} />
-            <RowTotales nombre={"Total"} texto={`$ ${separarNumerosConDecimales(totalAValidar)}`} />
-            <RowTotales nombre={"Cambio"} texto={`$ ${separarNumerosConDecimales(cambioTotal)}`} />
+            <DestallesTotales nombre={"Base"} texto={`$ ${separarNumerosConDecimales(suma)}`} />
+            <DestallesTotales nombre={"Descuento"} texto={`$ ${separarNumerosConDecimales(descuento)}`} />
+            <DestallesTotales nombre={"Total"} texto={`$ ${separarNumerosConDecimales(suma - descuento)}`} />
+            <DestallesTotales nombre={"Cambio"} texto={`$ ${separarNumerosConDecimales(cambio)}`} />
 
-        </Container>
+        </Col>
 
     )
 }
 
-const ListaDeProductos = () => {
-    const { listaProducto } = useContext(productoReducerContext)
+
+
+
+const ListaDeProductos = ({ nombre, cantidad, precioModificado }) => {
+
+    const porcentaje = useCalculadoraPorcenje(precioModificado) + precioModificado
 
     return (
+        <>
+            <div
+                className=" mt-1 text-start">
+                <p className={`${styles.nombreDelProducto}  fw-semibold m-0`} >{nombre}</p>
 
-        <Col className={`${styles.listaDeProductos} py-2`}>
-            {listaProducto.map(({ cantidadSeleccionada, precioModificado, nombre }, index) =>
-                <Container
-                    key={index}
-                    className="overflow-hidden py-1">
+            </div>
 
-                    <Row className="position-relative">
+            <Stack
+                className="justify-content-between align-items-center mb-1 w-100"
+                direction="horizontal">
 
-                        <Col
-                            xs={12}
-                            className="p-0 mx-1 text-start">
-                            <p className={`${styles.nombreDelProducto}  fw-semibold m-0`} >{nombre}</p>
+                <div className={`${styles.contenedorCantidad} d-flex  justify-content-center `}>
+                    <p className="fw-bold text-wrap  text-end  m-0  ">
+                        {parseFloat(cantidad).toFixed(2)}
+                    </p>
 
-                        </Col>
+                    <p className="fw-bold m-0 mx-1">
+                        x
+                    </p>
 
-                        <Col className=" d-flex justify-content-between p-0  align-items-center">
+                    <p className="m-0 text-start ">{separarNumerosConDecimales(porcentaje)}</p>
+                </div>
 
-                            <div
-                                className={`${styles.contenedorCantidad} d-flex  w-50 justify-content-center `}>
 
-                                <p  className="fw-bold text-wrap  text-end  m-0  ">
-                                    {parseFloat(cantidadSeleccionada).toFixed(2)}
-                                </p>
 
-                                <p className="fw-bold m-0 mx-1">
-                                    x
-                                </p>
+                <div className="d-flex justify-content-end  align-items-center  ">
 
-                                <p className="m-0 text-start w-50">{separarNumerosConDecimales(precioModificado)}</p>
+                    <p className={`${styles.totalDelProducto} m-0 fw-semibold mx-2   text-end`} >
 
-                            </div>
+                        $ {separarNumerosConDecimales(porcentaje * cantidad)}
 
-                            <div className="d-flex justify-content-end  align-items-center   w-50">
+                    </p>
 
-                                <p className={`${styles.totalDelProducto} m-0 fw-semibold mx-2  text-end`} >
-
-                                    $ {separarNumerosConDecimales(precioModificado * cantidadSeleccionada)}
-
-                                </p>
-
-                            </div>
-
-                        </Col>
-
-                    </Row>
-
-                </Container>
-            )}
-
-        </Col>
+                </div>
+            </Stack>
+        </>
     )
 
 }
@@ -120,60 +112,67 @@ const InformacionAdicional = () => {
     const { mes, dia, hora, minutos, segundos, año } = obtenerFecha()
 
     return (
-        <Container className={`m-0 my-1`}>
-            <Row>
-                <Col className="mx-1 text-start">
+        <Stack
+            direction="horizontal"
+            gap={0}
+            className="justify-content-between px-4">
 
-                    <p className="m-0  my-1  ">
-                        Fecha : {AgregarCeroEnNumeroDeUnDigito(dia)}/{AgregarCeroEnNumeroDeUnDigito(mes)}/{año}
-                    </p>
+            <p className="m-0  my-1  ">
+                Fecha : {AgregarCeroEnNumeroDeUnDigito(dia)}/{AgregarCeroEnNumeroDeUnDigito(mes)}/{año}
+            </p>
 
 
-                    <p className="m-0  my-1 ">
-                        Hora : {AgregarCeroEnNumeroDeUnDigito(hora)}:{AgregarCeroEnNumeroDeUnDigito(minutos)}:{AgregarCeroEnNumeroDeUnDigito(segundos)}
-                    </p>
+            <p className="m-0  my-1 ">
+                Hora : {AgregarCeroEnNumeroDeUnDigito(hora)}:{AgregarCeroEnNumeroDeUnDigito(minutos)}:{AgregarCeroEnNumeroDeUnDigito(segundos)}
+            </p>
 
-                </Col>
-            </Row>
-
-        </Container>
-
+        </Stack>
     )
 }
 
 
 
- const TicketDeVenta = () => {
+const TicketDeVenta = () => {
+
+    const { listaProducto } = useContext(productoReducerContext)
 
     return (
-        <Container className={`position-absolute px-3 lh-1 w-100 ${styles.ticket} `}>
+        <Container className={`position-absolute p-0 lh-1 w-100 ${styles.ticket} `}>
 
 
-            <Row className="justify-content-center align-items-center text-center">
+            <Row className="justify-content-center m-0 align-items-center text-center">
                 <h2 className={`${styles.numeroDeTicket} text-uppercase m-0 py-1`}>
                     n° de ticket 0001-00001
                 </h2>
             </Row>
 
-            <Row className={styles.informacionAdicional}>
-
+            <Row className={`${styles.informacionAdicional} m-0`}>
                 <InformacionAdicional />
-
             </Row>
 
-            <Row>
-                <ListaDeProductos />
+            <Row className={`${styles.listaDeProductos}  m-0 `}>
+                <Col className="overflow-hidden px-3 py-1">
+                    {listaProducto.map(({ cantidad, precioModificado, nombre }, index) =>
+                        <ListaDeProductos
+                            key={index}
+                            nombre={nombre}
+                            precioModificado={precioModificado}
+                            cantidad={cantidad} />
+                    )}
+                </Col>
             </Row>
 
-            <Row className={`${styles.totales} pb-1`}>
+            <Row className={`${styles.totales} m-0 pb-1`}>
                 <Totales />
             </Row>
 
 
-            <Row className={`${styles.mensajeInformativo} px-0 d-flex pt-2 `}>
-                <h4 className="text-center mx-0 ">
-                    *Comprobante no válido como factura.
-                </h4>
+            <Row className={`${styles.mensajeInformativo}   m-0 d-flex pt-2 `}>
+                <Col className="p-0 px-2">
+                    <h4 className="text-center mx-0 ">
+                        *Comprobante no válido como factura.
+                    </h4>
+                </Col>
             </Row>
 
         </Container>

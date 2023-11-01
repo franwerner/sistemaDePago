@@ -1,0 +1,44 @@
+.cardContainer {
+    width: 23vh;
+    min-width: 200px;
+    height: 30vh;
+    min-height: 270px;
+    border: 0px solid #555;
+    cursor: pointer;
+    color: #555;
+    opacity: 0.5;
+}
+
+.cardTitulo {
+    top: 0%;
+}
+
+.cardTitulo i {
+    color: #555;
+}
+
+.cardContainer:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.cardContainer:hover .iconContainer {
+    transform: translateY(-5%);
+}
+
+.iconContainer {
+    height: 90px;
+    width: 90px;
+    font-size: 80px;
+    color: #9E6999;
+}
+
+.qr {
+    border: 2px solid #9E6999;
+}
+
+
+.formResto {
+    color: #555;
+    max-width: 200px;
+}

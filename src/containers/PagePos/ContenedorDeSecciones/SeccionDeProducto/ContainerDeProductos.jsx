@@ -1,8 +1,7 @@
-import { SuspenseLoading } from "@/components//SuspenseLoading";
 import { productoReducerContext } from "@/context//Contextos";
 import { obtenerSearchParams } from "@/helper//obtenerSearchParams";
 import React, { lazy, useCallback, useContext } from "react";
-import { Col } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 const ProductoCard = lazy(() => import("@/components//ProductoCard"))
 
@@ -177,14 +176,14 @@ const ContainerDeProductos = () => {
 
     return (
 
-        <Col className={`flex-wrap d-flex  justify-content-center h-50 justify-content-md-start`}>
+        <Stack direction="horizontal" className="flex-wrap  justify-content-center justify-content-md-start">
             {seccionActual.map((producto, index) =>
                 <ProductoMemoizado
                     key={index}
                     producto={producto}
                     agregarProducto={agregarProducto} />
             )}
-        </Col>
+        </Stack>
 
     );
 };

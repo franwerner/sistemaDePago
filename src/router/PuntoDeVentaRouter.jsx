@@ -4,7 +4,7 @@ import ErrorPage from '../components/ErrorPage';
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
 const SeccionDeVenta = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/SeccionDeVenta"))
-const SeccionVentaPagos = lazy(()=> import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/SeccionVentaPagos/SeccionVentaPagos'))
+const SeccionVentaPagos = lazy(()=> import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[SeccionVentaPagos]/SeccionVentaPagos'))
 
 export const seccionProducto = {
     path: "/pos",

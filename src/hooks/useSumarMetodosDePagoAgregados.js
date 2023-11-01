@@ -5,7 +5,6 @@ export const useSumarMetodosDePagoAgregados = ({ pagoEncontrado }) => {
 
     const sumaDeProductos = useSumaTotalDeProductos()
 
-    
     const dependeciaString = JSON.stringify(pagoEncontrado == undefined ? "" : pagoEncontrado.metodosDePago)
 
     let restoInicial = sumaDeProductos

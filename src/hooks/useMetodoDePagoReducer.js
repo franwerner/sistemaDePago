@@ -1,21 +1,26 @@
 import { useCallback, useContext, useReducer } from "react";
 import { TarifaContex } from "@/context/Contextos";
-import { useSumarMetodosDePagoAgregados } from "./useSumarMetodosDePagoAgregados"
 
 
-const moficiarResto = (state, pago) => {
+const verificarSiExiste = (state, pago) => {
+
+    const verificar = state.metodosDePago.some(item => item.id == pago.id)
+
+    return verificar
+
+}
+
+
+const modificiarResto = (state, pago) => {
 
 
     return state.metodosDePago.map(item => {
         if (item.id == pago.id) return { ...item, resto: pago.resto }
         else return item
     })
+
 }
 
-const filtrarMetodosDePago = (state, id) => {
-
-    return [...state.metodosDePago.filter(item => item.id !== id)]
-}
 
 const reducer = (state, action) => {
 
@@ -29,27 +34,17 @@ const reducer = (state, action) => {
 
         if (state[tipoDeTarifa] == undefined) return configIncial
 
+
         switch (type) {
-
-            case "Agregar":
-                return {
-                    metodosDePago: [...state[tipoDeTarifa].metodosDePago, { ...pago }],
-
-                }
 
             case "Modificar":
 
-                const metodosDePago = moficiarResto(state[tipoDeTarifa], pago)
-                console.log(metodosDePago)
+                const verificar = verificarSiExiste(state[tipoDeTarifa], pago)
+
+                const metodosDePago = verificar ? modificiarResto(state[tipoDeTarifa], pago) : [...state[tipoDeTarifa].metodosDePago, pago]
+
                 return {
                     metodosDePago
-                }
-
-            case "Eliminar":
-
-                const filtrado = filtrarMetodosDePago(state[tipoDeTarifa], pago.id)
-                return {
-                    metodosDePago: filtrado,
                 }
 
             case "Restablecer":
@@ -68,7 +63,6 @@ const reducer = (state, action) => {
 }
 
 
-
 export const useMetodoDePagoReducer = () => {
 
     const [listaDePagos, dispatch] = useReducer(reducer, {})
@@ -79,9 +73,7 @@ export const useMetodoDePagoReducer = () => {
 
     const pagoEncontrado = listaDePagos[tipoDeTarifa]
 
-    const ajustePagoEncontrado = useSumarMetodosDePagoAgregados({ pagoEncontrado })
-
-    const pagoActual = !pagoEncontrado ? { metodosDePago: [] } : { ...pagoEncontrado, metodosDePago: ajustePagoEncontrado }
+    const pagoActual = !pagoEncontrado ? { metodosDePago: [] } : pagoEncontrado
 
     const dependenciaCallback = [tipoDeTarifa, pagoActual.metodosDePago.length]
 
@@ -91,15 +83,8 @@ export const useMetodoDePagoReducer = () => {
 
     const modificarResto = useCallback((pago) => {
 
-        if (pagoEncontrado == undefined || pagoEncontrado.metodosDePago.length == 0) return
-
         dispatch({ type: "Modificar", pago, tipoDeTarifa })
 
-    }, dependenciaCallback)
-
-    const eliminarResto = useCallback((pago) => {
-
-        dispatch({ type: "Eliminar", pago, tipoDeTarifa })
     }, dependenciaCallback)
 
     const restablecerPagos = useCallback((pago) => {
@@ -114,8 +99,6 @@ export const useMetodoDePagoReducer = () => {
         listaDePagos,
         agregarResto,
         modificarResto,
-        eliminarResto,
-        restablecerPagos
+        restablecerPagos,
     }
-
-};
+}

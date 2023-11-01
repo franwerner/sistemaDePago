@@ -1,5 +1,5 @@
 
-import { useMetodoDePagoReducer } from "../../hooks/useMetodoDePagoReducer";
+import { useMetodoDePagoReducer } from "@/hooks/useMetodoDePagoReducer";
 import { restoDelPagoContext } from "../Contextos"
 
 

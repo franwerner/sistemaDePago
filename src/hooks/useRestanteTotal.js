@@ -7,13 +7,14 @@ import { useCalcularDescuento } from "./useCalcularDescuento";
 export const useRestanteTotal = () => {
 
     const sumaDeProductos = useSumaTotalDeProductos()
+
     const descuento = useCalcularDescuento()
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
     const dependeciaString = JSON.stringify(pagoActual.metodosDePago)
 
-    const restoTotal = useMemo(() => {
+    return useMemo(() => {
 
         const sumaDeRestos = pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, (sumaDeProductos - descuento))
 
@@ -29,14 +30,13 @@ export const useRestanteTotal = () => {
 
     }, [sumaDeProductos, dependeciaString])
 
-    return {
-        restoTotal
-    }
 
 }
 
 
 export const RestanteTotalMemoizando = () => {
-    const { restoTotal } = useRestanteTotal()
-    return separarNumerosConDecimales(restoTotal)
+
+    const resto = useRestanteTotal()
+
+    return separarNumerosConDecimales(resto)
 }

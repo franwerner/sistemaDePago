@@ -8,6 +8,7 @@ cursor: pointer;
 
 .cardContainer:active {
     border: 1px solid rgb(112, 245, 194);
+    transition: 0s all;
 }
 
 .cardContainer p:nth-child(1) {
