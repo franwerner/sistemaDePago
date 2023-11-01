@@ -1,8 +1,11 @@
+import CarritoDeComprasIndicador from "@/components//CarritoDeComprasIndicador";
 import { productoReducerContext } from "@/context//Contextos";
 import { obtenerSearchParams } from "@/helper//obtenerSearchParams";
 import React, { lazy, useCallback, useContext } from "react";
 import { Stack } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import styles from "@/styles/seccionDeProductos.module.css"
+
 const ProductoCard = lazy(() => import("@/components//ProductoCard"))
 
 
@@ -164,7 +167,8 @@ const ProductoMemoizado = React.memo(({ agregarProducto, producto }) => {
 
 
 
-const ContainerDeProductos = () => {
+const ContainerDeProductos = ({ containerRef }) => {
+
 
     const { agregarProducto } = useContext(productoReducerContext)
 
@@ -174,9 +178,19 @@ const ContainerDeProductos = () => {
 
     const seccionActual = !secciones[seccionSlice] ? secciones["home"] : secciones[seccionSlice]
 
+    const onClick = () => {
+        containerRef.current.scrollTop = 0
+    }
+
     return (
 
-        <Stack direction="horizontal" className="flex-wrap  justify-content-center justify-content-md-start">
+        <Stack direction="horizontal" className="flex-wrap position-relative  justify-content-center justify-content-md-start">
+            <div
+                onClick={onClick}
+                className={`${styles.contenedorDeCarritoIndicador} position-fixed border bg-white zoom border-2 border-dark  p-1 rounded-circle `}>
+                <CarritoDeComprasIndicador />
+            </div>
+
             {seccionActual.map((producto, index) =>
                 <ProductoMemoizado
                     key={index}
@@ -186,6 +200,6 @@ const ContainerDeProductos = () => {
         </Stack>
 
     );
-};
+}
 
 export default ContainerDeProductos

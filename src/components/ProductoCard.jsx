@@ -22,7 +22,9 @@ const ProductoCard = React.memo(({ producto, agregarProducto }) => {
     const { precio, nombre, metodo } = producto
 
     return (
-        <Card onClick={agregarProducto} className={`${styles.cardContainer} m-2 overflow-hidden`}>
+        <Card
+            onClick={agregarProducto}
+            className={`${styles.cardContainer} m-2 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
                 <p className="m-2 mx-3">#1231</p>
@@ -37,8 +39,13 @@ const ProductoCard = React.memo(({ producto, agregarProducto }) => {
 
             <Card.Body className=" p-0 m-0 d-flex flex-column  h-100 align-items-center ">
 
-                <p style={{ maxHeight: "40px", whiteSpace: "pre-line" }} className="fw-light m-0 text-center text-dark text-truncate flex-grow-1 w-100">{nombre}</p>
-                <p className={`${styles.cardPrecio} fw-semibold  text-truncate m-0`}>$<CalcularPorcentajeMemoizado n1={precio} n2={precio} />/{metodo}</p>
+
+                <p style={{ maxHeight: "69px", whiteSpace: "pre-line" }}
+                    className="fw-light m-0 text-center text-dark w-100 text-truncate">{nombre}</p>
+
+                <p className={`${styles.cardPrecio} fw-semibold  text-truncate m-0`}>
+                    $<CalcularPorcentajeMemoizado n1={precio} n2={precio} />/{metodo}
+                </p>
 
             </Card.Body>
 

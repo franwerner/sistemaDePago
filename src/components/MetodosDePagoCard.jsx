@@ -62,6 +62,7 @@ const RestoForm = React.memo(forwardRef(({ modificarResto, id, nombre, resto = 0
         blurInput: () => inputRef.current.blur()
     }))
 
+
     useEffect(() => {
 
         const valiarResto = form.resto.length == 0 || isNaN(form.resto) ? "" : parseFloat(form.resto)

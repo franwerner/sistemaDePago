@@ -1,0 +1,25 @@
+.animationBg {
+    animation-name: animationBg;
+    animation-duration: 0.3s;
+   
+}
+
+@keyframes animationBg {
+    0% {
+        background-color: #ada9e4;
+        transform: scale(1.1);
+    }
+
+    100% {
+        background-color: #746AF4;
+        transform: scale(1);
+    }
+}
+
+.carritoBg {
+    background-color: #746AF4;
+    top: -30%;
+    left: -10%;
+    width: 25px;
+    height: 25px;
+}

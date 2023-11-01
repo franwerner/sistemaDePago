@@ -10,6 +10,7 @@
     user-select: none;
     transition: 0.3s all;
 letter-spacing: 1px;
+scroll-behavior: smooth;
 }
 
 .text-shadow {
