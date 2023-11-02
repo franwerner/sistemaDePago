@@ -20,14 +20,17 @@ const CarritoDeComprasIndicador = React.memo(() => {
 
         ref.current.addEventListener("animationend", removeAnimation)
 
-        return () => ref.current.removeEventListener("animationend", removeAnimation)
+        return () => {
+            if (!ref.current) return
+            ref.current.removeEventListener("animationend", removeAnimation)
 
+        }
     }, [listaProducto.length])
 
     return (
         <>
             <span
-                ref={ref} 
+                ref={ref}
                 className={`${styles.carritoBg} position-absolute fw-bolder d-flex justify-content-center aling-items-center  text-white  rounded-circle`}>
                 {listaProducto.length}
             </span>
