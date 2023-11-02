@@ -26,9 +26,9 @@ const TdCantidad = React.memo(({ cantidad, nombre, modificarCantidad }) => {
     }, [form.cantidad])
 
     return (
-        <td className={`${styles.tdCantidad} d-flex justify-content-center`}>
+        <td className={`${styles.tdCantidad} `}>
 
-            <div className="d-flex m-0 p-0">
+            <div className="d-flex align-items-center justify-content-center">
                 <BotonRestar restarCantidad={modificacionForm} />
 
                 <Form.Control
@@ -41,7 +41,9 @@ const TdCantidad = React.memo(({ cantidad, nombre, modificarCantidad }) => {
                 />
 
                 <BotonSumar sumarCantidad={modificacionForm} />
+
             </div>
+
         </td>
 
     )

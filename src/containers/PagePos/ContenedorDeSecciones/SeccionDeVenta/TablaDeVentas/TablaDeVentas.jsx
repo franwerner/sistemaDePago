@@ -11,7 +11,7 @@ const TheadTabla = React.memo(() => {
         <tr className="shadow ">
             <th className="px-3">Item</th>
             <th className="text-center">Metodo</th>
-            <th className="text-center">Cantidad</th>
+            <th className="text-center ">Cantidad</th>
             <th className="text-center">Precio</th>
             <th className="text-center">Descuento</th>
             <th className="text-center">Total</th>

@@ -20,9 +20,13 @@ const CarritoDeComprasIndicador = React.memo(() => {
 
         ref.current.addEventListener("animationend", removeAnimation)
 
+<<<<<<< HEAD
         return () => {
             if (!ref.current) return
             ref.current.removeEventListener("animationend", removeAnimation)
+=======
+        return () => ref.current && ref.current.removeEventListener("animationend", removeAnimation)
+>>>>>>> 155165adf74273fe861a669e422ba141f80f0437
 
         }
     }, [listaProducto.length])
