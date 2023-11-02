@@ -58,7 +58,7 @@ export const AccordionSeccionesOffCavans = React.memo(({ nombre, icon, subRutas,
                 style={{ textDecoration: "none" }}
                 to={`${nombre.toLocaleLowerCase()}`}>
 
-                <Card.Header className={`border-0 rounded-3 ${styles[pathname.match(nombreLowerCase) ? "seccionElegida" : "seccionesMenu"]}`}>
+                <Card.Header className={`border-0 rounded-3 p-0 ${styles[pathname.match(nombreLowerCase) ? "seccionElegida" : "seccionesMenu"]}`}>
                     <ContextAcordion eventKey={index} >
                         <Stack className={`${styles.nombreDeRuta}`} direction="horizontal">
                             <i
