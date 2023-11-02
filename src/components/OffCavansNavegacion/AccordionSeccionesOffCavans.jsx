@@ -74,13 +74,13 @@ export const AccordionSeccionesOffCavans = React.memo(({ nombre, icon, subRutas,
 
         <Card className="my-5 border-0">
 
-            <Card.Header className={`border-0 rounded-3 p-0 ${styles[pathname.match(nombreLowerCase) ? "seccionElegida" : "seccionesMenu"]}`}>
 
-                <Link
-                    style={{ textDecoration: "none" }}
-                    to={nombreLowerCase}>
+            <Link
+                style={{ textDecoration: "none" }}
+                to={nombreLowerCase}>
 
                 <Card.Header className={`border-0 rounded-3 p-0 ${styles[pathname.match(nombreLowerCase) ? "seccionElegida" : "seccionesMenu"]}`}>
+
                     <ContextAcordion eventKey={index} >
 
                         <BotonRuta
@@ -88,10 +88,10 @@ export const AccordionSeccionesOffCavans = React.memo(({ nombre, icon, subRutas,
                             icon={icon} />
 
                     </ContextAcordion>
+                </Card.Header>
+            </Link>
 
-                </Link>
 
-            </Card.Header>
 
             <Accordion.Collapse
                 eventKey={index}>
