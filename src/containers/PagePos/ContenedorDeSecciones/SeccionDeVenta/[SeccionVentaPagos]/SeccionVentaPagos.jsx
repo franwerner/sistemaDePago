@@ -13,8 +13,7 @@ const SeccionVentaPagos = () => {
             </Row>
 
             <Row className={`${styles.seccionVentaPagos} m-0 scrollBarPersonalizada h-100`}>
-
-                <Col className="p-3 h-100 d-flex justify-content-center">
+                <Col className="p-3 d-flex justify-content-center">
                     <ContenedorDeCards />
                 </Col>
             </Row>

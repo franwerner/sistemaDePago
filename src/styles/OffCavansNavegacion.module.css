@@ -1,9 +1,10 @@
 .seccionesMenu {
   cursor: pointer;
+  color: #3b3b3b;
   background-color: white;
-  transition: 0.3s all;
-  padding: 10px;
+
 }
+
 
 .iconDesactivado {
   color: #3b3b3b;
@@ -24,14 +25,15 @@
 }
 
 .seccionElegida {
-  padding: 10px;
   background: linear-gradient(109.6deg, rgb(114, 102, 240) 11.2%, rgb(164, 69, 255) 91.1%);
 }
 
 
-.nombreDeRuta:hover {
+.seccionesMenu:hover  .nombreDeRuta {
   transform: scale(1.1);
 }
+
+
 
 .seccionElegida div:nth-child(1) {
   color: white;

@@ -8,18 +8,18 @@
     font-family: "Montserrat";
     outline: none;
     user-select: none;
-    transition: 0.3s all;
-letter-spacing: 1px;
-scroll-behavior: smooth;
+    transition: 0.150s all;
+    letter-spacing: 1px;
+    scroll-behavior: smooth;
 }
 
 .text-shadow {
     color: #555;
-    text-shadow: 4px 4px 4px rgba(0,0,0,0.38);
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.38);
 }
 
-.test-shadow{
-    box-shadow: 6px -3px 19px -7px rgba(0,0,0,0.75);
+.test-shadow {
+    box-shadow: 6px -3px 19px -7px rgba(0, 0, 0, 0.75);
 }
 
 .zoom:active {
@@ -37,7 +37,7 @@ scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
-.scroll-y-hidden::-webkit-scrollbar{
+.scroll-y-hidden::-webkit-scrollbar {
     display: none;
 }
 

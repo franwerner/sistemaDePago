@@ -1,10 +1,13 @@
 import { lazy } from 'react';
 import { SuspenseLoading } from '../components/SuspenseLoading';
 import ErrorPage from '../components/ErrorPage';
+
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
 const SeccionDeVenta = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/SeccionDeVenta"))
-const SeccionVentaPagos = lazy(()=> import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[SeccionVentaPagos]/SeccionVentaPagos'))
+const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[SeccionVentaPagos]/SeccionVentaPagos'))
+const SeccionDeCaja = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/SeccionDeCaja"))
+
 
 export const seccionProducto = {
     path: "/pos",
@@ -21,7 +24,7 @@ export const seccionProducto = {
         },
         {
             path: "caja",
-            element: <h1>2</h1>
+            element: <SeccionDeCaja />
         },
         {
             path: "clientes",
