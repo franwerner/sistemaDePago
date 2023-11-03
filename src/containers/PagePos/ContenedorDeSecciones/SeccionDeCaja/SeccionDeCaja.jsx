@@ -1,9 +1,19 @@
+import { Row } from "react-bootstrap"
+import { SeccionDeCajaNav } from "./SeccionDeCajaNav"
+import { SeccionDeCajaContenedor } from "./SeccionDeCajaContedor/SeccionDeCajaContenedor"
 
 
 const SeccionDeCaja = () => {
     return (
         <>
-            <h1>Holaa</h1>
+            <Row
+                style={{ minHeight: "90px" }}
+                className="shadow m-0">
+                <SeccionDeCajaNav />
+            </Row>
+            <Row className="p-md-5 m-0 h-100 ">
+                <SeccionDeCajaContenedor />
+            </Row>
         </>
     )
 }
