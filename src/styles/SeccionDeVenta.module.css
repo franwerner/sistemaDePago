@@ -22,12 +22,12 @@
 .tdCantidad input {
     min-width: 25px;
     max-width: 45px;
+
 }
 
 .tdCantidad button i {
     background-color: #746AF4;
 }
-
 
 .tdNombre {
     max-width: 200px;
@@ -36,7 +36,6 @@
 .tdTotal {
     max-width: 110px;
     min-width: 110px;
-
 }
 
 .tdIconTrash {
@@ -44,12 +43,10 @@
     cursor: not-allowed;
 }
 
-
 @media (max-width : 1366px) {
     .tablaDeVentas * {
         font-size: 12px;
     }
-
 }
 
 
@@ -59,8 +56,6 @@
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
     border-top: 20px solid #ffffff;
-
-
 }
 
 .pinchoTicket {
@@ -94,12 +89,13 @@
 /*SECCION DE VENTA PAGOS*/
 
 
-.btnValidado,.btnValidado:hover {
+.btnValidado,
+.btnValidado:hover {
     background: #746AF4 !important;
 }
 
 
-.btnNoValidado:hover,.btnNoValidado {
+.btnNoValidado:hover,
+.btnNoValidado {
     background-color: #6C757d !important;
 }
-

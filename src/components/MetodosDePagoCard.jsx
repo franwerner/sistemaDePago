@@ -112,17 +112,23 @@ const CardFooter = React.memo(({ modificarResto, nombre, id }) => {
 const MetodosDePagosCard = ({ tipo, nombre, modificarResto, id, resto }) => {
 
     const pagosCardRef = useRef(null)
+    const cardRef = useRef(null)
+
 
     const onMouseEvents = () => {
+        cardRef.current.focus()
         pagosCardRef.current.focusInput()
     }
 
     const onMouseLeave = () => {
+        if (!pagosCardRef.current) return
         pagosCardRef.current.blurInput()
     }
 
     return (
         <Card
+            ref={cardRef}
+            tabIndex={1}
             onMouseLeave={onMouseLeave}
             onClick={onMouseEvents}
             onMouseEnter={onMouseEvents}

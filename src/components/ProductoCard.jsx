@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import styles from "@/styles/ProductoCard.module.css"
 import { CalcularPorcentajeMemoizado } from "../hooks/useCalcularPorcentaje"
 import { Card } from "react-bootstrap"
@@ -20,9 +20,17 @@ const CardFavorito = () => {
 const ProductoCard = React.memo(({ producto, agregarProducto }) => {
 
     const { precio, nombre, metodo } = producto
+    const cardRef = useRef(null)
+
+    const onMouseEnter = () => {
+        cardRef.current.focus()
+    }
 
     return (
         <Card
+            tabIndex={1}
+            ref={cardRef}
+            onMouseEnter={onMouseEnter}
             onClick={agregarProducto}
             className={`${styles.cardContainer} m-2 overflow-hidden`}>
 

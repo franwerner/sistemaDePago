@@ -4,11 +4,10 @@ import ContenedorSeccionVenta from "./ContenedorSeccionVenta";
 import { hocTouchYReponsive } from "@/components//HocTouchYReponsive";
 
 const SeccionDeVenta = ({ containerRef,alternarMostrar,mostrar}) => {
-
     return (
         <>
             <Row
-                style={{ minHeight: "70px", maxHeight: "80px" }}
+                style={{height : "90px"}}
                 className="shadow m-0">
                 <ContenedorDeSeccionesNav alternarMostrar={alternarMostrar} />
             </Row>
