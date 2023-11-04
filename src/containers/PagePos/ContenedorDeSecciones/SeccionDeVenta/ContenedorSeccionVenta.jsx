@@ -14,7 +14,7 @@ const TablaDeVentas = lazy(() => import("./TablaDeVentas/TablaDeVentas"))
 const ContenedorSeccionVenta = React.memo(({ mostrar }) => {
 
     const { listaProducto } = useContext(productoReducerContext)
-    
+
     const contenedorStats = {
         marginLeft: mostrar ? "0px" : "15px",
         display: mostrar ? "d-flex" : "d-none",

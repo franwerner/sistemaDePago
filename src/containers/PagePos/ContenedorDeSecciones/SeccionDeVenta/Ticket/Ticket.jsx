@@ -1,13 +1,47 @@
 import styles from "@/styles/SeccionDeVenta.module.css"
-import { Container, Row, Stack } from "react-bootstrap"
-import React from "react"
+import { Button, Container, Row, Stack } from "react-bootstrap"
+import React, { useContext } from "react"
 import { DetellaDeTicket } from "./DetallateDeTicket"
 import { TicketHeader } from "./TicketHeader"
 import { TicketBody } from "./TicketBody"
+import TotalAVender from "@/components//TotalAVenderMemoizado"
+import { Link } from "react-router-dom"
+import { productoReducerContext } from "@/context//Contextos"
 
-import { BotonTrashItems } from "@/components/BotonTrashItems"
-import { BotonPagos } from "@/components//BotonPagos"
+const BotonTrashItems = () => {
 
+    const { listaProducto, borrarListado } = useContext(productoReducerContext)
+
+    return <Button
+        variant="secondary"
+        className="d-flex text-white  fw-semibold justify-content-between  rounded-3   p-2  align-items-center ">
+        <p className="m-0 mx-2 text-truncate">
+            {listaProducto.length} ítems en el carrito
+        </p>
+        <i
+            style={{ cursor: "no-drop" }}
+            onMouseUp={borrarListado}
+            className="fa-regular zoom mx-2 fs-4 fa-trash-can"></i>
+    </Button>
+
+}
+
+const BotonPagos = () => {
+    return <Link
+        style={{ textDecoration: "none" }}
+        to={"pagos"}>
+        <Button
+            style={{ background: "#746AF4" }}
+            className="d-flex text-white w-100  bg-hoverdark border-0 fw-semibold rounded-3 justify-content-between rounded-1 p-2  align-items-center ">
+            <p className="m-0 mx-2  text-uppercase mx-2">
+                pagos
+            </p>
+            <p className="m-0 mx-2 text-truncate">
+                $/ {<TotalAVender />}
+            </p>
+        </Button>
+    </Link>
+}
 
 
 const Ticket = React.memo(() => {

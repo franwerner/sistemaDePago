@@ -7,7 +7,7 @@ const SeccionDeCaja = () => {
     return (
         <>
             <Row
-                style={{ minHeight: "40px" }}
+                style={{ minHeight: "50px" }}
                 className="shadow m-0">
                 <SeccionDeCajaNav />
             </Row>

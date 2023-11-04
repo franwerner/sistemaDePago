@@ -1,0 +1,28 @@
+import { useRef } from "react";
+
+export const useFocusMouseElements = () => {
+
+    const refFocusElement = useRef(null)
+
+    const onMouseEnter = () => {
+        refFocusElement.current.focus()
+    }
+
+    const onMouseLeave = () => {
+        refFocusElement.current.blur()
+    }
+
+    const onClick = () => {
+        refFocusElement.current.focus()
+    }
+
+    return {
+        refFocusElement,
+        onMouseEnter,
+        onMouseLeave,
+        onClick
+    }
+};
+
+
+

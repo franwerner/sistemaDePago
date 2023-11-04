@@ -1,4 +1,4 @@
-import FormularioLoginEmpleado from "@/components//FormularioLoginEmpleado";
+import FormularioLoginEmpleado from "@/containers//PageLogin/FormularioLoginEmpleado";
 import { useCallback, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import styles from "@/styles/PosLogin.module.css"

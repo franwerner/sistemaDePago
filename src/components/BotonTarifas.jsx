@@ -13,6 +13,7 @@ const ObtenerTarifa = () => {
 export const BotonTarifas = React.memo(() => {
 
     const { alternarMostrar, mostrar } = useEventoMostrar()
+    
     return (
         <Container className={`rounded-1 ${styles.containerBotonTarifa} overflow-hidden`} fluid>
             <Row onClick={alternarMostrar}>

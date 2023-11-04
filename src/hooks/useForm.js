@@ -8,15 +8,12 @@ export const useForm = (intialInput = {}) => {
     const changeForm = useCallback(({ target }) => {
         const { name, value } = target
 
-        setForm({ ...form, [name]: value })
+        setForm(form => ({ ...form, [name]: value }))
 
-    },[])
-
-    const establecerFormulario = (inputs) => {
-        setForm(inputs)
-    }
+    }, [])
 
     const onSubmit = (evento) => {
+
         evento.preventDefault()
         setForm(intialInput)
     }
@@ -25,6 +22,5 @@ export const useForm = (intialInput = {}) => {
         onSubmit,
         changeForm,
         form,
-        establecerFormulario
     }
 }

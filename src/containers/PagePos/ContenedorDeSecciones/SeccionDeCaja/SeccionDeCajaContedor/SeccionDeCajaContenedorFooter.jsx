@@ -7,12 +7,11 @@ import { lazy } from "react"
 const InterfaceDeRetiroYIngresoEfectivo = lazy(() => import("@/components//InterfaceDeRetiroYIngresoEfectivo"))
 
 const opcionesBoton = {
-    retiro: { nombre: "Retirar", icon: "fa-arrow-turn-down" },
-    ingreso: { nombre: "Ingresar", icon: "fa-arrow-turn-up" }
+    retirar: { nombre: "Retirar", icon: "fa-arrow-turn-down" },
+    ingresar: { nombre: "Ingresar", icon: "fa-arrow-turn-up" }
 }
 
 const BotonEfectivo = ({ tipo }) => {
-
     const { alternarMostrar, mostrar } = useEventoMostrar();
 
     return (
@@ -60,8 +59,8 @@ export const SeccionDeCajaContenedorFooter = () => {
                     gap={2}
                     className={`${styles.botonesDeEfectivo} h-100 justify-content-center align-items-lg-end`}>
 
-                    <BotonEfectivo tipo="retiro" />
-                    <BotonEfectivo tipo="ingreso" />
+                    <BotonEfectivo tipo="retirar" />
+                    <BotonEfectivo tipo="ingresar" />
 
                 </Stack>
             </Col>

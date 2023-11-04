@@ -1,11 +1,14 @@
 import { Form, InputGroup } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
+import { useFocusMouseElements } from "../hooks/useFocusMouseElements"
 
 const BuscadorInput = () => {
 
     const { form, onSubmit, changeForm } = useForm({ "buscador": "" })
 
     const { buscador } = form
+
+    const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
 
     return (
         <Form
@@ -17,6 +20,9 @@ const BuscadorInput = () => {
                     <i className="fa-solid fa-magnifying-glass "></i>
                 </InputGroup.Text>
                 <Form.Control type="search"
+                    ref={refFocusElement}
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
                     value={buscador}
                     name="buscador"
                     className="border-0 border-bottom rounded-0"

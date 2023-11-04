@@ -1,8 +1,9 @@
 import { Col, FloatingLabel, Form } from "react-bootstrap";
-import { useForm } from "../hooks/useForm";
-import { useEventoMostrar } from "../hooks/useEventoMostrar";
-import { EyeInput } from "./EyeInput";
+import { useForm } from "../../hooks/useForm";
+import { useEventoMostrar } from "../../hooks/useEventoMostrar";
+import { EyeInput } from "../../components/EyeInput";
 import React, { useEffect } from "react";
+import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
 
 
 const usuariosDataBase = [
@@ -56,6 +57,8 @@ const FormularioLoginEmpleado = React.memo(({ alternarUsuario }) => {
 
     const { form, changeForm, onSubmit } = useForm({ password: "", empleado: "" })
 
+    const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
+
     useEffect(() => {
 
         if (form.empleado.length == 0) return
@@ -71,11 +74,16 @@ const FormularioLoginEmpleado = React.memo(({ alternarUsuario }) => {
 
             <Col xs={12} >
 
-                <Form onSubmit={onSubmit} className="position-relative">
+                <Form
+                    onSubmit={onSubmit}
+                    className="position-relative">
 
                     <FloatingLabel controlId="floatingPassword"
                         label="Contraseña">
                         <Form.Control
+                            ref={refFocusElement}
+                            onMouseEnter={onMouseEnter}
+                            onMouseLeave={onMouseLeave}
                             style={{ boxShadow: "none" }}
                             onChange={changeForm}
                             value={form.password}

@@ -114,7 +114,6 @@ const MetodosDePagosCard = ({ tipo, nombre, modificarResto, id, resto }) => {
     const pagosCardRef = useRef(null)
     const cardRef = useRef(null)
 
-
     const onMouseEvents = () => {
         cardRef.current.focus()
         pagosCardRef.current.focusInput()
