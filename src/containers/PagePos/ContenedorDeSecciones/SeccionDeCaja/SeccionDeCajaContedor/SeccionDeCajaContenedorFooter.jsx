@@ -47,7 +47,7 @@ export const SeccionDeCajaContenedorFooter = () => {
                         <p>=Saldo Total de cierre</p>
                         <p className="my-0">Diferencia</p>
                     </div>
-                    <div className="border-start fw-medium text-nowrap mx-1 px-3 ">
+                    <div className="border-start fw-medium mx-1 px-3 ">
                         <p>$ {separarNumerosConDecimales(123213)}</p>
                         <p>$ {separarNumerosConDecimales(12323)}</p>
                         <p className="my-0">$ {separarNumerosConDecimales(0)}</p>

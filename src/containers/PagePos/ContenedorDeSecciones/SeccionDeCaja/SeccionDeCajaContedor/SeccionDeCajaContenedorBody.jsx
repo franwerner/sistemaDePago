@@ -17,9 +17,9 @@ export const SeccionDeCajaContenedorBody = () => {
                         <p>Punto de venta</p>
                         <p className="my-0">Apertura</p>
                     </div>
-                    <div className="border-start  mx-1 px-3 ">
-                        <p>Franco Werner</p>
-                        <p>Provincias unidas 1922</p>
+                    <div className="border-start overflow-hidden text-truncate  mx-1 px-3 ">
+                        <p className="text-truncate">Franco Werner</p>
+                        <p className="text-truncate">Provincias unidas 1922</p>
                         <p className="my-0 text-dark fw-light">3/11/2023 17:01:56</p>
                     </div>
 

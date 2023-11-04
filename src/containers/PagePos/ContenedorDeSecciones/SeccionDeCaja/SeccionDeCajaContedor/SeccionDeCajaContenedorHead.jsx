@@ -8,7 +8,9 @@ export const SeccionDeCajaContenedorHead = () => {
         <Row className="border-bottom flex-grow-0 d-flex justify-content-end">
 
             <Col
-                xs="auto"
+                xs="6"
+                md="4"
+                lg={"auto"}
                 className={`${styles.botonesDeNavegacion} bg-white p-1  d-flex align-items-center  border-end border-start `}>
                 <i className="fa-solid fa-basket-shopping p-2 fs-3"></i>
                 <div className="overflow-hidden">
@@ -18,7 +20,9 @@ export const SeccionDeCajaContenedorHead = () => {
             </Col>
 
             <Col
-                xs="auto"
+                xs="6"
+                md="4"
+                lg={"auto"}
                 className={`${styles.botonesDeNavegacion} bg-white p-1  d-flex align-items-center border-start`}>
                 <i className="fa-solid fa-dollar-sign p-2 fs-2"></i>
                 <div className="overflow-hidden">

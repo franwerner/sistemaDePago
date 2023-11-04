@@ -1,4 +1,8 @@
-/*SeccionDeCajaContenedor*/
+/*SeccionDeCajaNav*/
+
+.botonFinDeSession {
+    background-color: #746AF4 !important;
+}
 
 
 .botonesDeNavegacion {
@@ -40,9 +44,10 @@
     transform: translateY(1px);
 }
 
-.botonesDeEfectivo div:nth-child(1),.botonesDeEfectivo div:nth-child(2) {
+.botonesDeEfectivo div:nth-child(1),
+.botonesDeEfectivo div:nth-child(2) {
     cursor: pointer;
- min-width: 230px
+    min-width: 230px
 }
 
 
