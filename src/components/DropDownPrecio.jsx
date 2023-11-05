@@ -16,14 +16,6 @@ const DropwDownButton = () => {
 
 const FormDropwDown = ({ changeForm, precio }) => {
 
-
-
-  // useEffect(() => {
-
-
-
-  // }, [form.precio])
-  // 
   return (
     <>
       <FloatingLabel

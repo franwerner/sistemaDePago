@@ -5,7 +5,7 @@ import { ContenedorNavVentaPagos } from "./ContenedorNavVentaPagos";
 
 
 const SeccionVentaPagos = () => {
-
+    
     return (
         <>
             <Row className="m-0  p-3 shadow">

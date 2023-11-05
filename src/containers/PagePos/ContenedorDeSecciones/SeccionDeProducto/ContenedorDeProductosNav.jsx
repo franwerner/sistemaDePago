@@ -1,12 +1,11 @@
-
-import { DropDownDeTarifas } from "@/components//DropDownDeTarifas";
 import styles from "@/styles/seccionDeProductos.module.css"
-import { lazy, useState } from "react";
+import { lazy } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import DropwDownItemsProductos from "./DropwDownFilterProductos";
 
-const DropwDownFilter = lazy(() => import("@/components/DropDownFilter"))
 const BuscadorInput = lazy(() => import("@/components/BuscadorInput"))
+
 
 const FiltradoDeFilas = () => {
 
@@ -28,7 +27,8 @@ const ContenedorDeProductosNav = () => {
                 <Row className="m-0 h-100">
 
                     <Col className="d-flex justify-content-evenly p-0 align-items-center">
-                        <DropwDownFilter />
+
+                        <DropwDownItemsProductos />
 
                         <Link to={"?"}>
                             <i className="fa-solid fs-4 fa-filter-circle-xmark"></i>

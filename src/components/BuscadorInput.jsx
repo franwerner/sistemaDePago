@@ -2,7 +2,7 @@ import { Form, InputGroup } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
 import { useFocusMouseElements } from "../hooks/useFocusMouseElements"
 
-const BuscadorInput = () => {
+const BuscadorInput = ({ texto }) => {
 
     const { form, onSubmit, changeForm } = useForm({ "buscador": "" })
 
@@ -27,7 +27,7 @@ const BuscadorInput = () => {
                     name="buscador"
                     className="border-0 border-bottom rounded-0"
                     onChange={changeForm}
-                    placeholder="Buscar productos..."
+                    placeholder={`Buscar ${texto}....`}
                     autoComplete="off"
                     aria-label="Search" style={{ boxShadow: "none" }} />
             </InputGroup>

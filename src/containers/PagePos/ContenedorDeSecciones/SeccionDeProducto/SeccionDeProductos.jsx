@@ -6,7 +6,7 @@ import ContainerDeProductos from "./ContainerDeProductos";
 import ContenedorDeProductosNav from "./ContenedorDeProductosNav";
 
 const SeccionDeProductos = () => {
-
+  
     const containerRef = useRef(null)
 
     return (

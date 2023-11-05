@@ -1,4 +1,4 @@
-/*SeccionDeCajaNav*/
+/*SeccionDeCaja*/
 
 .botonFinDeSession {
     background-color: #746AF4 !important;
@@ -65,3 +65,19 @@
 .botonesDeEfectivo i {
     color: #8689B6;
 }
+
+/*Seccion Pedidos*/
+
+.tablaDePedidos thead {
+    height: 60px !important;
+}
+
+.tablaDePedidos tbody tr {
+    height: 50px;
+    cursor: pointer;
+}
+
+.tablaDePedidos tbody tr th {
+    max-width: 200px;
+}
+

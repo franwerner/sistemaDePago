@@ -2,11 +2,10 @@ import styles from "@/styles/TicketDeVenta.module.css"
 import { useContext } from "react";
 import { productoReducerContext } from "@/context/Contextos";
 import { obtenerFecha } from "@/helper/obtenerFecha";
-import { useCalcularTotalAValidar } from "@/hooks/useCalcularTotalAValidar";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales";
 import { useCalcularCambio } from "@/hooks/useCalcularCambioTotal";
-import { AgregarCeroEnNumeroDeUnDigito } from "../helper/AgregarCeroEnNumeroDeUnDigito";
+import { AgregarCerosANumeros } from "../helper/AgregarCerosANumeros";
 import { useSumaTotalDeProductos } from "../hooks/useSumaTotalDeProductos";
 import { useCalcularDescuento } from "../hooks/useCalcularDescuento";
 import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje";
@@ -118,12 +117,12 @@ const InformacionAdicional = () => {
             className="justify-content-between px-4">
 
             <p className="m-0  my-1  ">
-                Fecha : {AgregarCeroEnNumeroDeUnDigito(dia)}/{AgregarCeroEnNumeroDeUnDigito(mes)}/{año}
+                Fecha : {AgregarCerosANumeros({ numero: dia, digitos: 2 })}/{AgregarCerosANumeros({ numero: mes, digitos: 2 })}/{año}
             </p>
 
 
             <p className="m-0  my-1 ">
-                Hora : {AgregarCeroEnNumeroDeUnDigito(hora)}:{AgregarCeroEnNumeroDeUnDigito(minutos)}:{AgregarCeroEnNumeroDeUnDigito(segundos)}
+                Hora : {AgregarCerosANumeros({ numero: hora, digitos: 2 })}:{AgregarCerosANumeros({ numero: minutos, digitos: 2 })}:{AgregarCerosANumeros({ numero: segundos, digitos: 2 })}
             </p>
 
         </Stack>

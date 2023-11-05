@@ -1,5 +1,4 @@
  const SeccionDeCajasPagos = () =>{
-    
     return (
         <>
         <h1>Holaa</h1>

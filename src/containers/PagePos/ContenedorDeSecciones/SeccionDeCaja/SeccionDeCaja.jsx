@@ -4,6 +4,8 @@ import { SeccionDeCajaContenedor } from "./SeccionDeCajaContedor/SeccionDeCajaCo
 
 
 const SeccionDeCaja = () => {
+
+    
     return (
         <>
             <Row
