@@ -20,8 +20,8 @@ const NavBarPos = React.memo(({ alternarMostrar }) => {
                         onClick={alternarMostrar}
                         className={`${styles.iconBars} fa-brands position-absolute text-start p-2  mx-4 d-lg-none fa-microsoft`}></i>
 
-
                     <IconBell />
+
                     <IconMessage />
 
                     <div className={`${styles.imgContainer} shadow-sm  d-flex justify-content-center align-items-center position-relative border border-secondary rounded-circle overflow-hidden`}>
@@ -44,7 +44,6 @@ const NavBarPos = React.memo(({ alternarMostrar }) => {
                         <p
                             className="m-0 text-start"
                             style={{ fontSize: "14px" }}>Empleado</p>
-
                     </div>
 
                 </Nav>

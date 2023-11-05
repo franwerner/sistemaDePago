@@ -58,17 +58,14 @@ const Formulario = ({ signo }) => {
 
     const { changeForm, form, onSubmit } = useForm({ importe: "", motivo: "" })
 
-
     const transformarImporte = () => {
 
         const verificacion = verificarSiEsNegativo(form.importe) ? form.importe : -(form.importe)
 
         const transformacion = signo == "negativo" ? verificacion : Math.abs(form.importe)
 
-        return transformacion == 0 ? "" : transformacion
+        return transformacion == 0 || isNaN(transformacion) ? "" : transformacion
     }
-
-
 
     return (
 

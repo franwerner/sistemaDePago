@@ -16,7 +16,7 @@ const ListaDeMenu = [
     {
         nombre: "Caja",
         icon: "fa-solid fa-cash-register",
-        subRutas: []
+        subRutas: ["pagos","pedidos"]
     },
     {
         nombre: "Clientes",

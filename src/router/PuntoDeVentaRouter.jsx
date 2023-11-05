@@ -5,9 +5,10 @@ import ErrorPage from '../components/ErrorPage';
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
 const SeccionDeVenta = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/SeccionDeVenta"))
-const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[SeccionVentaPagos]/SeccionVentaPagos'))
+const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[Pagos]/SeccionVentaPagos'))
 const SeccionDeCaja = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/SeccionDeCaja"))
-
+const SeccionDeCajaPagos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pagos]/SeccionDeCajaPagos"))
+const SeccionDeCajaPedidos = lazy(()=> import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pedidos]/SeccionDeCajaPedidos'))
 
 export const seccionProducto = {
     path: "/pos",
@@ -27,6 +28,14 @@ export const seccionProducto = {
             element: <SeccionDeCaja />
         },
         {
+            path: "caja/pagos",
+            element: <SeccionDeCajaPagos />
+        },
+        {
+            path: "caja/pedidos",
+            element: <SeccionDeCajaPedidos />
+        },
+        {
             path: "clientes",
             element: <h1>3</h1>
         },
@@ -40,7 +49,8 @@ export const seccionProducto = {
         },
         {
             path: "venta/pagos",
-            element: <SeccionVentaPagos />
+            element: <SeccionVentaPagos />,
+
         }
     ]
 }

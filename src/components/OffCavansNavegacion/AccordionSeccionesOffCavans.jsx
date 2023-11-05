@@ -1,5 +1,5 @@
 import React from "react"
-import { Accordion, AccordionContext, Button, Card, Stack, useAccordionButton } from "react-bootstrap"
+import { Accordion, AccordionContext, Card, Stack, useAccordionButton } from "react-bootstrap"
 import { Link, useLocation } from "react-router-dom"
 import styles from "@/styles/OffCavansNavegacion.module.css"
 import { useContext } from "react"
@@ -20,7 +20,7 @@ const SeccionSubRutas = React.memo(({ subruta, ruta }) => {
                 style={{ color: verificarSubRuta }}
                 gap={2}
                 direction="horizontal"
-                className="align-items-center"
+                className={`${styles.subRutas}`}
             >
                 <i className="fa-solid  fa-minus"></i>
                 <p className="m-0 text-uppercase">{subruta}</p>

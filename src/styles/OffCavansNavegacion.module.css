@@ -28,6 +28,10 @@
   background: linear-gradient(109.6deg, rgb(114, 102, 240) 11.2%, rgb(164, 69, 255) 91.1%);
 }
 
+.subRutas {
+  font-size: 14px;
+}
+
 
 .seccionesMenu:hover  .nombreDeRuta {
   transform: scale(1.1);
