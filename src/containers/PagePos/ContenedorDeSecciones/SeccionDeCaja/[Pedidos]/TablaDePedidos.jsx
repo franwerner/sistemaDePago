@@ -52,6 +52,7 @@ const TablaTbody = ({ empleado, hora, cliente, total, estado, ticket }) => {
                 <ModalDetalleDePedido
                     mostrar={mostrar}
                     ticket={ticket}
+                    estado = {estado}
                     alternarMostrar={alternarMostrar} />
             }
         </>

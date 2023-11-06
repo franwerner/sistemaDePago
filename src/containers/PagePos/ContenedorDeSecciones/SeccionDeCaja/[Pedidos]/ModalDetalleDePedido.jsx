@@ -3,7 +3,9 @@ import { Button, Modal } from "react-bootstrap";
 
 
 
-const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket }) => {
+const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket, estado }) => {
+
+
     return (
         <Modal
             show={mostrar}
@@ -16,11 +18,11 @@ const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket }) => {
                         -
                         <p className="m-0">{AgregarCerosANumeros({ numero: ticket.orden, digitos: 5 })}</p>
                     </div>
-                    <Button
+                    {estado == "Pagado" && <Button
                         className="border-0 p-2 bg-hoverdark"
                         style={{ background: "#746AF4" }}>
                         Devolver Producto
-                    </Button>
+                    </Button>}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>Modal body content</Modal.Body>
