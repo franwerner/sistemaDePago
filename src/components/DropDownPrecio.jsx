@@ -1,20 +1,16 @@
-import React, { useEffect } from "react";
-import { Button, Dropdown, DropdownButton, FloatingLabel, Form } from "react-bootstrap";
+import React from "react";
+import { Button, Dropdown, FloatingLabel, Form } from "react-bootstrap";
 import { useForm } from "../hooks/useForm";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
-
-
-const DropwDownButton = () => {
-  return (
-    <>
-
-    </>
-  )
-}
+import { useFocusMouseElements } from "../hooks/useFocusMouseElements";
 
 
 
 const FormDropwDown = ({ changeForm, precio }) => {
+
+
+  const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
+
 
   return (
     <>
@@ -22,6 +18,9 @@ const FormDropwDown = ({ changeForm, precio }) => {
         controlId="porcentajeControl"
         label="Nuevo Precio">
         <Form.Control
+          ref={refFocusElement}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
           autoComplete="off"
           placeholder=""
           tabIndex={1}

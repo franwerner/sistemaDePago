@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import { productoReducerContext } from "@/context/Contextos";
 import styles from "@/styles/SeccionDeVenta.module.css"
 import ListadoDeVentas from "./ListadoDeVentas";
+import { SuspenseLoading } from "@/components//SuspenseLoading";
 
 
 const TheadTabla = React.memo(() => {
@@ -25,28 +26,30 @@ const TablaDeVentas = React.memo(() => {
     const { listaProducto, modificarPrecio, modificarCantidad, borrarProducto, aplicarDescuento } = useContext(productoReducerContext)
 
     return (
-        <Table className={`${styles.tablaDeVentas} `} hover>
-            <TheadTabla />
-            <tbody className="align-middle overflow-hidden">
-                {
-                    listaProducto.map(({ cantidad, metodo, nombre, precioModificado, descuento }, index) =>
-                        <ListadoDeVentas
-                            key={index}
-                            aplicarDescuento={aplicarDescuento}
-                            borrarProducto={borrarProducto}
-                            modificarPrecio={modificarPrecio}
-                            modificarCantidad={modificarCantidad}
-                            descuento={descuento}
-                            metodo={metodo}
-                            precioModificado={precioModificado}
-                            nombre={nombre}
-                            cantidad={cantidad}
-                        />)
+        <SuspenseLoading>
+            <Table className={`${styles.tablaDeVentas} `} hover>
+                <TheadTabla />
+                <tbody className="align-middle overflow-hidden">
+                    {
+                        listaProducto.map(({ cantidad, metodo, nombre, precioModificado, descuento }, index) =>
+                            <ListadoDeVentas
+                                key={index}
+                                aplicarDescuento={aplicarDescuento}
+                                borrarProducto={borrarProducto}
+                                modificarPrecio={modificarPrecio}
+                                modificarCantidad={modificarCantidad}
+                                descuento={descuento}
+                                metodo={metodo}
+                                precioModificado={precioModificado}
+                                nombre={nombre}
+                                cantidad={cantidad}
+                            />)
 
-                }
-            </tbody>
+                    }
+                </tbody>
 
-        </Table>
+            </Table>
+        </SuspenseLoading>
     );
 })
 

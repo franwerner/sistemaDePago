@@ -4,10 +4,13 @@ import BotonRestar from "@/components/BotonRestar"
 import BotonSumar from "@/components/BotonSumar"
 import { Form } from "react-bootstrap"
 import styles from "@/styles/SeccionDeVenta.module.css"
+import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
 
 const TdCantidad = React.memo(({ cantidad, nombre, modificarCantidad }) => {
 
     const { changeForm, form } = useForm({ cantidad })
+
+    const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
 
     const modificacionForm = useCallback((numero) => {
         const resultado = cantidad + (numero)
@@ -32,6 +35,9 @@ const TdCantidad = React.memo(({ cantidad, nombre, modificarCantidad }) => {
                 <BotonRestar restarCantidad={modificacionForm} />
 
                 <Form.Control
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
+                    ref={refFocusElement}
                     onChange={changeForm}
                     name="cantidad"
                     aria-describedby="cantidadTable"

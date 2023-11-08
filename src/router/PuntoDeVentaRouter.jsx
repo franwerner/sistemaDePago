@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { SuspenseLoading } from '../components/SuspenseLoading';
 import ErrorPage from '../components/ErrorPage';
+import { useNavigate } from 'react-router-dom';
 
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
@@ -8,7 +9,9 @@ const SeccionDeVenta = lazy(() => import("@/containers/PagePos/ContenedorDeSecci
 const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[Pagos]/SeccionVentaPagos'))
 const SeccionDeCaja = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/SeccionDeCaja"))
 const SeccionDeCajaPagos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pagos]/SeccionDeCajaPagos"))
-const SeccionDeCajaPedidos = lazy(()=> import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pedidos]/SeccionDeCajaPedidos'))
+const SeccionDeCajaPedidos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pedidos]/SeccionDeCajaPedidos'))
+
+
 
 export const seccionProducto = {
     path: "/pos",
@@ -28,11 +31,11 @@ export const seccionProducto = {
             element: <SeccionDeCaja />
         },
         {
-            path: "caja/pagos",
+            path: "caja/pagos/:id",
             element: <SeccionDeCajaPagos />
         },
         {
-            path: "caja/pedidos",
+            path: "caja/pedidos/:id",
             element: <SeccionDeCajaPedidos />
         },
         {

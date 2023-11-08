@@ -1,33 +1,41 @@
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros";
 import { Button, Modal } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import styles from "@/styles/SeccionDeCaja.module.css"
-import TablaListaDeMetodosDePago from "./TablaListaDeMetodosDePago";
 import TablaListaDeProductos from "./TablaListaDeProductos";
-import { SeccionExtra } from "./SeccionExtra";
+import { SuspenseLoading } from "@/components//SuspenseLoading";
 
-const botonesNavegacion = ["Productos", "Pagos", "Extra"]
+const TablaListaDeMetodosDePago = lazy(() => import("./TablaListaDeMetodosDePago"))
+const SeccionExtra = lazy(() => import("./SeccionExtra"))
+const NotaDelPedido = lazy(() => import("./NotaDelPedido"))
+
+const botonesNavegacion = ["Productos", "Pagos", "Extra","Nota"]
 
 const componentes = {
     Productos: <TablaListaDeProductos />,
     Pagos: <TablaListaDeMetodosDePago />,
-    Extra: <SeccionExtra/>,
+    Extra: <SeccionExtra />,
+    Nota: <NotaDelPedido />
 };
 
-const BodyButtons = React.memo(({ nombre, onAlternarSecion }) => {
+const BodyButtons = React.memo(({ nombre, onAlternarSeccion }) => {
 
     const onClick = () => {
-        onAlternarSecion(nombre)
+        onAlternarSeccion(nombre)
     }
 
-    return <span className={`${styles.botonesNavegacion} text-uppercase fw-meidum`} onClick={onClick}>{nombre}</span>
+    return <span
+        className={`${styles.botonesNavegacion} text-uppercase fw-meidum`}
+        onClick={onClick}>
+        {nombre}
+    </span>
 })
 
 const ModalBody = () => {
 
     const [seccion, alterSeccion] = useState("Productos")
 
-    const onAlternarSecion = (btnName) => {
+    const onAlternarSeccion = (btnName) => {
         alterSeccion(btnName)
     }
 
@@ -41,15 +49,16 @@ const ModalBody = () => {
                             className={`${styles[item == seccion && "btnSeleccionado"]}`}>
                             <BodyButtons
                                 nombre={item}
-                                onAlternarSecion={onAlternarSecion} />
+                                onAlternarSeccion={onAlternarSeccion} />
                         </div>
                     )
                 }
             </div>
 
-            <div
-                className={`${styles.contenedorDeSecciones} scrollBarPersonalizada shadow`}>
-                {componentes[seccion]}
+            <div  className={`${styles.contenedorDeSecciones}  h-100 scrollBarPersonalizada shadow`}>
+                <SuspenseLoading>
+                    {componentes[seccion]}
+                </SuspenseLoading>
             </div>
 
 
@@ -67,6 +76,7 @@ const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket, estado }) => {
             size="lg"
             className="h-100 scrollHidden"
             onHide={alternarMostrar}>
+
             <Modal.Header className="shadow" closeButton>
                 <Modal.Title className="d-flex align-items-center w-100 justify-content-between">
 
@@ -76,12 +86,11 @@ const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket, estado }) => {
                         -
                         <p className="m-0">{AgregarCerosANumeros({ numero: ticket.orden, digitos: 5 })}</p>
                     </div>
-
-
                 </Modal.Title>
-
             </Modal.Header>
+
             <ModalBody />
+
             <Modal.Footer >
                 {estado == "Pagado" &&
                     <Button
@@ -90,6 +99,7 @@ const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket, estado }) => {
                         Devolver Producto
                     </Button>}
             </Modal.Footer>
+
         </Modal>
     );
 };

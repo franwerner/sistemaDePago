@@ -12,7 +12,7 @@ const TBody = ({ monto, tipo }) => {
     return (
         <tr className="text-center">
             <th className="text-uppercase fw-normal">{tipo}</th>
-            <th className="fw-medium text-nowrap">$ {separarNumerosConDecimales(monto)}</th>
+            <th className="fw-semibold text-nowrap">$ {separarNumerosConDecimales(monto)}</th>
         </tr>
     )
 }

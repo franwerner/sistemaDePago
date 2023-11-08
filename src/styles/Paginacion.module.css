@@ -1,0 +1,11 @@
+
+.navPaginacion {
+    text-decoration: #9E6999 !important;
+}
+
+.navPaginacion i:hover {
+    cursor: pointer;
+    color: white !important;
+    background-color: #a09ca06c;
+    border-radius: 50%;
+}

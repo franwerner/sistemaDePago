@@ -6,7 +6,6 @@ import React from "react";
 
 const SeccionDeVenta = ({ containerRef,alternarMostrar,mostrar}) => {
     
-   
     return (
         <>
             <Row

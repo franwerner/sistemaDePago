@@ -1,7 +1,16 @@
- const SeccionDeCajasPagos = () =>{
+import { Row } from "react-bootstrap"
+import { SeccionDeCajaPagosNav } from "./SeccionDeCajaPagosNav"
+import { SeccionDeCajaPagosBody } from "./SeccionDeCajaPagosBody"
+
+const SeccionDeCajasPagos = () => {
     return (
         <>
-        <h1>Holaa</h1>
+            <Row className="shadow d-flex justify-content-between  p-3">
+                <SeccionDeCajaPagosNav />
+            </Row>
+            <Row>
+                <SeccionDeCajaPagosBody />
+            </Row>
         </>
     )
 }

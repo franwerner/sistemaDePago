@@ -1,6 +1,6 @@
 import { Col } from "react-bootstrap";
 import { productoReducerContext } from "@/context//Contextos";
-import React, {  lazy, useContext } from "react";
+import React, { lazy, useContext } from "react";
 import Ticket from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeVenta/Ticket/Ticket";
 import CarritoDeProductoVacio from "@/components//CarritoDeProductoVacio";
 
@@ -15,7 +15,6 @@ const ContenedorSeccionVenta = React.memo(({ mostrar }) => {
         display: mostrar ? "d-flex" : "d-none",
         display2: mostrar ? "d-none" : "d-block"
     }
-
     return (
         <>
 

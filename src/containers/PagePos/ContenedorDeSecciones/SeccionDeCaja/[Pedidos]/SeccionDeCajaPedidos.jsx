@@ -3,11 +3,10 @@ import SeccionDeCajaPedidosNav from "./SeccionDeCajaPedidosNav"
 import TablaDePedidos from "./TablaDePedidos"
 
 const SeccionDeCajaPedidos = () => {
+
     return (
         <>
-            <Row
-                style={{ height: "60px" }}
-                className="shadow m-0" >
+            <Row className="shadow m-0 p-2 p-md-3 d-flex justify-content-between" >
                 <SeccionDeCajaPedidosNav />
             </Row>
 

@@ -96,11 +96,19 @@
     cursor: pointer;
 }
 
-.btnSeleccionado{
+.btnSeleccionado {
     border-bottom: 4px solid #928cec;
 }
 
 .contenedorDeSecciones {
     max-height: 350px;
     min-height: 100px;
+}
+
+.precioModificado {
+    cursor: pointer;
+}
+
+.precioModificado:hover {
+    background-color: #eae7e761;
 }
