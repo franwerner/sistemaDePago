@@ -21,12 +21,12 @@ export const useRestanteTotal = () => {
         const esNegativo = Math.sign(sumaDeProductos) == -1
 
         if (!esNegativo) {
+          
             return Math.sign(sumaDeRestos) == -1 ? 0 : sumaDeRestos
         } else {
-            return sumaDeRestos
+
+            return sumaDeRestos > 0 ? 0 : sumaDeRestos
         }
-
-
 
     }, [sumaDeProductos, dependeciaString])
 

@@ -1,26 +1,34 @@
-import { restoDelPagoContext } from "@/context/Contextos";
 import { useContext, useMemo } from "react";
+import { useSumaTotalDeProductos } from "./useSumaTotalDeProductos";
+import { restoDelPagoContext } from "../context/Contextos";
 
 export const useCalcularTotalAValidar = () => {
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
-    const dependeciaString = JSON.stringify(pagoActual.metodosDePago)
+    const sumaDeProductos = useSumaTotalDeProductos()
+
+    let restoInicial = sumaDeProductos
 
     return useMemo(() => {
 
-        return pagoActual.metodosDePago.reduce((acc, current) => {
+        if (pagoActual == undefined) return
 
-            const total = acc + current.restoParaValidar
+        const pagos = pagoActual.metodosDePago.map((current) => {
 
-            return total
+            const restoParaValidar = Math.min(restoInicial, current.resto);
 
-        }, 0)
+            restoInicial -= current.resto
 
-    }, [dependeciaString])
+            return {
+                ...current,
+                "restoParaValidar": current.resto <= 0 ? (current.resto) : (restoParaValidar < 0 ? 0 : restoParaValidar)
+            };
+        });
 
-   
-        
-  
+        return pagos
+
+    }, [pagoActual, sumaDeProductos]);
+
 
 };

@@ -12,7 +12,12 @@ const listadoDeTarifas = [
                 "id": 1,
                 "tipo": "efectivo",
                 "nombre": "Efectivo"
-            }
+            },
+            {
+                "id": 2,
+                "tipo": "tarjeta",
+                "nombre": "Tarjeta naranja",
+            },
         ]
     },
     {

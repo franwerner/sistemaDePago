@@ -16,7 +16,10 @@ export const useCalcularCambio = () => {
 
         if (!pagoActual || Math.sign(sumaDePructos) == -1) return 0
 
-        const cambio = pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, sumaDePructos)
+        const cambio = pagoActual.metodosDePago.reduce((acc, current) => {
+            if (current.tipo !== "efectivo") return acc
+            return acc - current.resto
+        }, sumaDePructos)
 
         const verificarSiEsNegativo = Math.sign(cambio) == -1 ? cambio : 0
 

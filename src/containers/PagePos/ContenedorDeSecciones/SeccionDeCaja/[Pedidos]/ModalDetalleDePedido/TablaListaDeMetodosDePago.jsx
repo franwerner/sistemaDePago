@@ -19,7 +19,7 @@ const TBody = ({ monto, tipo }) => {
 
 const TablaListaDeMetodosDePago = () => {
     return (
-        <Table hover className=" animate__animated  animate__bounceInLeft ">
+        <Table hover >
             <thead className=" align-middle text-center  ">
                 <tr>
                     <th className="p-3">Tipo</th>

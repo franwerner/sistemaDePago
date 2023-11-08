@@ -119,7 +119,7 @@ export const AccordionSeccionesOffCavans = React.memo(({ nombre, icon, subRutas,
                             <SeccionSubRutas
                                 ruta={nombre}
                                 subruta={item}
-                                key={item} />
+                                key={item.tipo} />
                         )
                     }
                 </Card.Body>

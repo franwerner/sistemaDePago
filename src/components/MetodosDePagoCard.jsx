@@ -51,7 +51,7 @@ const CardBodyRestante = React.memo(({ tipo, nombre }) => {
 })
 
 
-const RestoForm = React.memo(forwardRef(({ modificarResto, id, nombre, resto = 0 }, ref) => {
+const RestoForm = React.memo(forwardRef(({ modificarResto, id, nombre, resto = 0, tipo }, ref) => {
 
     const { form, changeForm } = useForm({ resto })
 
@@ -67,16 +67,18 @@ const RestoForm = React.memo(forwardRef(({ modificarResto, id, nombre, resto = 0
 
         const valiarResto = form.resto.length == 0 || isNaN(form.resto) ? "" : parseFloat(form.resto)
 
-        modificarResto({ resto: valiarResto, id, nombre })
+        modificarResto({ resto: valiarResto, id, nombre, tipo })
 
     }, [form.resto])
+
+    const calculo = resto.length == 0 ? resto : Math.floor(resto * 100) / 100
 
     return (
         <Form.Control
             ref={inputRef}
             tabIndex={1}
             onChange={changeForm}
-            value={resto.length == 0 ? resto : Math.floor(resto * 100) / 100}
+            value={calculo}
             name="resto"
             className={`${styles.formResto} w-50 text-center px-3 `}
             type="number"
@@ -146,6 +148,7 @@ const MetodosDePagosCard = ({ tipo, nombre, modificarResto, id, resto }) => {
                     nombre={nombre} />
 
                 <RestoForm
+                    tipo={tipo}
                     ref={pagosCardRef}
                     id={id}
                     resto={resto}

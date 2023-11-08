@@ -21,13 +21,13 @@ export const Paginacion = ({ parametro, largo, url }) => {
         <Stack
             direction="horizontal"
             gap={3}
-            className={`${styles.navPaginacion} rounded-4`}>
+            className={`${styles.navPaginacion} text-truncate rounded-4`}>
 
             <Link to={`/${url}/${leftNav}`}>
                 <i className="fa-solid zoom text-black fa-chevron-left p-2"></i>
             </Link>
 
-            <p className="m-0 fw-medium">{parametro} / {largo}</p>
+            <p style={{minWidth : "60px"}} className="m-0 fw-medium text-center">{parametro} / {largo}</p>
 
             <Link to={`/${url}/${parsearParametro + 1}`}>
                 <i className="fa-solid zoom text-black fa-chevron-right p-2"></i>

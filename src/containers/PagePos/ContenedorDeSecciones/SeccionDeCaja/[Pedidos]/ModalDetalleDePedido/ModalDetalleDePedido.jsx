@@ -9,7 +9,7 @@ const TablaListaDeMetodosDePago = lazy(() => import("./TablaListaDeMetodosDePago
 const SeccionExtra = lazy(() => import("./SeccionExtra"))
 const NotaDelPedido = lazy(() => import("./NotaDelPedido"))
 
-const botonesNavegacion = ["Productos", "Pagos", "Extra","Nota"]
+const botonesNavegacion = ["Productos", "Pagos", "Extra", "Nota"]
 
 const componentes = {
     Productos: <TablaListaDeProductos />,
@@ -55,7 +55,7 @@ const ModalBody = () => {
                 }
             </div>
 
-            <div  className={`${styles.contenedorDeSecciones}  h-100 scrollBarPersonalizada shadow`}>
+            <div className={`${styles.contenedorDeSecciones}  h-100 scrollBarPersonalizada shadow`}>
                 <SuspenseLoading>
                     {componentes[seccion]}
                 </SuspenseLoading>

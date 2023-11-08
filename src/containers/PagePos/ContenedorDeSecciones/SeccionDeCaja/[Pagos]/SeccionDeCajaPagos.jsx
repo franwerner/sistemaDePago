@@ -8,7 +8,7 @@ const SeccionDeCajasPagos = () => {
             <Row className="shadow d-flex justify-content-between  p-3">
                 <SeccionDeCajaPagosNav />
             </Row>
-            <Row>
+            <Row className="shadow w-75 m-auto my-4 h-100">
                 <SeccionDeCajaPagosBody />
             </Row>
         </>

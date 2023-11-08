@@ -1,5 +1,6 @@
 import MetodosDePagosCard from "@/components//MetodosDePagoCard";
 import { TarifaContex, restoDelPagoContext } from "@/context//Contextos";
+import { useCalcularTotalAValidar } from "@/hooks//useCalcularTotalAValidar";
 import { useContext} from "react";
 import {Stack } from "react-bootstrap";
 
