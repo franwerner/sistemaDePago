@@ -1,22 +1,24 @@
 import BuscadorInput from "@/components//BuscadorInput"
-import { Suspense, lazy } from "react"
+import DropDownOrdenDefault from "@/components//DropDownOrdenDefault"
 import { Col, Dropdown } from "react-bootstrap"
-
-const DropDownOrdenDefault = lazy(() => import("@/components/DropDownOrdenDefault"))
 
 
 const DropwDownPedidos = () => {
 
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <>
+
             <DropDownOrdenDefault>
                 <Dropdown.Item>Hora</Dropdown.Item>
                 <Dropdown.Item>Empleado</Dropdown.Item>
                 <Dropdown.Item>Numero de orden</Dropdown.Item>
                 <Dropdown.Item>Estado</Dropdown.Item>
+                <Dropdown.Item>Cliente</Dropdown.Item>
             </DropDownOrdenDefault>
-        </Suspense>
+
+        </>
+
     )
 }
 

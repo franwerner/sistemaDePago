@@ -3,9 +3,6 @@ import SeccionDeCajaPedidosNav from "./SeccionDeCajaPedidosNav"
 import TablaDePedidos from "./TablaDePedidos"
 
 const SeccionDeCajaPedidos = () => {
-
-    console.log("#a")
-    
     return (
         <>
             <Row

@@ -3,8 +3,8 @@ import { lazy } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DropwDownItemsProductos from "./DropwDownFilterProductos";
+import BuscadorInput from "@/components//BuscadorInput";
 
-const BuscadorInput = lazy(() => import("@/components/BuscadorInput"))
 
 
 const FiltradoDeFilas = () => {
@@ -41,7 +41,7 @@ const ContenedorDeProductosNav = () => {
                     </Col>
 
                     <Col xs={12} md={"auto"} className="p-0 d-flex justify-content-center justify-content-md-end align-items-center">
-                        <BuscadorInput />
+                        <BuscadorInput texto={"productos"} />
                     </Col>
                 </Row>
             </Container>

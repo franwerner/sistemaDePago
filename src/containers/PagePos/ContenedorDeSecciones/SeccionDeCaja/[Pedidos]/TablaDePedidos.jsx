@@ -5,7 +5,7 @@ import styles from "@/styles/SeccionDeCaja.module.css"
 import React, { lazy } from "react"
 import { Col, Table } from "react-bootstrap"
 
-const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDePedido"))
+const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDePedido/ModalDetalleDePedido"))
 
 const theadTest = [
     { id: 1, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", "ticket": { caja: 1, orden: 1 } },
@@ -47,14 +47,18 @@ const TablaTbody = ({ empleado, hora, cliente, total, estado, ticket }) => {
                     </div>
                 </th>
             </tr>
+
             {
                 mostrar &&
+
                 <ModalDetalleDePedido
                     mostrar={mostrar}
                     ticket={ticket}
-                    estado = {estado}
+                    estado={estado}
                     alternarMostrar={alternarMostrar} />
+
             }
+
         </>
 
 

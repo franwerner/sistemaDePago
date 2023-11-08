@@ -1,10 +1,8 @@
+import DropDownFilterDefault from "@/components//DropDownFilterDefault"
+import ModalDeSecciones from "@/components//ModalDeSecciones"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { lazy } from "react"
 import { Dropdown } from "react-bootstrap"
-
-const DropDownFilterDefault = lazy(() => import("@/components//DropDownFilterDefault"))
-
-const ModalDeSecciones = lazy(() => import("@/components//ModalDeSecciones"))
 
 const SeccionesDropwItem = () => {
 

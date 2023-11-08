@@ -1,12 +1,11 @@
 import CarritoDeComprasIndicador from "@/components//CarritoDeComprasIndicador";
 import { productoReducerContext } from "@/context//Contextos";
 import { obtenerSearchParams } from "@/helper//obtenerSearchParams";
-import React, { lazy, useCallback, useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import { Stack } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import styles from "@/styles/seccionDeProductos.module.css"
-
-const ProductoCard = lazy(() => import("@/components//ProductoCard"))
+import ProductoCard from "@/components//ProductoCard";
 
 
 const kiosco = [
@@ -161,7 +160,9 @@ const ProductoMemoizado = React.memo(({ agregarProducto, producto }) => {
     }, [producto])
 
     return (
-        <ProductoCard agregarProducto={onClick} producto={producto} />
+        <ProductoCard
+            agregarProducto={onClick}
+            producto={producto} />
     )
 })
 

@@ -1,15 +1,10 @@
 import { Col } from "react-bootstrap";
 import { productoReducerContext } from "@/context//Contextos";
-import React, { lazy, useContext } from "react";
+import React, {  lazy, useContext } from "react";
 import Ticket from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeVenta/Ticket/Ticket";
+import CarritoDeProductoVacio from "@/components//CarritoDeProductoVacio";
 
-
-const CarritoDeProductoVacio = lazy(() => import("@/components//CarritoDeProductoVacio"))
 const TablaDeVentas = lazy(() => import("./TablaDeVentas/TablaDeVentas"))
-
-
-
-
 
 const ContenedorSeccionVenta = React.memo(({ mostrar }) => {
 
@@ -25,11 +20,8 @@ const ContenedorSeccionVenta = React.memo(({ mostrar }) => {
         <>
 
             <Col className={`${contenedorStats.display2} m-0 p-0 shadow h-100  scrollBarPersonalizada `}>
-                {
-                    listaProducto.length == 0 ?
-                        <CarritoDeProductoVacio /> :
-                        <TablaDeVentas />
-                }
+
+                {listaProducto.length === 0 ? <CarritoDeProductoVacio /> : <TablaDeVentas />}
 
             </Col>
 

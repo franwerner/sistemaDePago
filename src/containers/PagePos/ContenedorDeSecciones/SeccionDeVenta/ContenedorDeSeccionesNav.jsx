@@ -1,12 +1,10 @@
+import BotonRotacion from "@/components//BotonRotacion";
 import BuscadorInput from "@/components//BuscadorInput";
 import React, { lazy } from "react";
 import { Col } from "react-bootstrap";
 
-const BotonRotacion = lazy(() => import("@/components//BotonRotacion"))
 
 const ContenedorDeSeccionesNav = React.memo(({ alternarMostrar }) => {
-
-
     return (
         <>
             <Col
@@ -17,7 +15,7 @@ const ContenedorDeSeccionesNav = React.memo(({ alternarMostrar }) => {
 
 
             <Col className="p-0 d-flex mx-3 bg-dangerd-flex justify-content-center align-items-center">
-                <BuscadorInput />
+                <BuscadorInput texto={"productos"} />
             </Col>
         </>
     )

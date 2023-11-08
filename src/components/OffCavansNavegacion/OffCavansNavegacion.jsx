@@ -16,7 +16,7 @@ const ListaDeMenu = [
     {
         nombre: "Caja",
         icon: "fa-solid fa-cash-register",
-        subRutas: ["pagos","pedidos"]
+        subRutas: ["caja","pagos", "pedidos"]
     },
     {
         nombre: "Clientes",
@@ -31,7 +31,7 @@ const ListaDeMenu = [
     {
         nombre: "Venta",
         icon: "fa-solid fa-cart-shopping",
-        subRutas: ["pagos"]
+        subRutas: ["venta","pagos"]
     }
 
 ]
@@ -51,7 +51,7 @@ const OffCavansNavegacion = ({ alternarMostrar, mostrar }) => {
             </Offcanvas.Header>
             <OffcanvasTitle className="p-2 text-center ">
                 <p
-                    style={{ letterSpacing: "2px", color: "#555" }}
+                    style={{ color: "#555" }}
                     className="my-2  fs-3">Urban Vog
                     < span style={{ color: "#746AF4" }}>ue</span>
                 </p>

@@ -9,15 +9,24 @@ const SeccionSubRutas = React.memo(({ subruta, ruta }) => {
 
     const { pathname } = useLocation()
 
-    const verificarSubRuta = pathname.match(subruta.toLocaleLowerCase()) ? "#746AF4" : "#555"
+    const rutasArray = pathname.split("/").filter(item => item.length !== 0)
+
+    const rutaLowerCase = ruta.toLocaleLowerCase()
+
+    const verificarRuta = rutasArray.length == 2 && subruta == rutaLowerCase
+
+    const verificarSubRuta = rutasArray[2] == subruta
+
+    const colorRuta = verificarRuta || verificarSubRuta ? "#746AF4" : "#555"
+
+    const link = rutaLowerCase == subruta ? "" : subruta
 
     return (
         <Link
             style={{ textDecoration: "none" }}
-            to={`${ruta.toLocaleLowerCase()}/${subruta}`}>
-
+            to={`${rutaLowerCase}/${link}`}>
             <Stack
-                style={{ color: verificarSubRuta }}
+                style={{ color: colorRuta }}
                 gap={2}
                 direction="horizontal"
                 className={`${styles.subRutas}`}
@@ -68,7 +77,6 @@ export const AccordionSeccionesOffCavans = React.memo(({ nombre, icon, subRutas,
     const nombreLowerCase = nombre.toLocaleLowerCase()
 
     const { pathname } = useLocation()
-
 
     return (
 

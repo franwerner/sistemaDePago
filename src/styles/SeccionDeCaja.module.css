@@ -87,7 +87,20 @@
 }
 
 @media (max-width : 768px) {
-    .tablaDePedidos  {
+    .tablaDePedidos {
         font-size: 13px;
     }
+}
+
+.botonesNavegacion {
+    cursor: pointer;
+}
+
+.btnSeleccionado{
+    border-bottom: 4px solid #928cec;
+}
+
+.contenedorDeSecciones {
+    max-height: 350px;
+    min-height: 100px;
 }

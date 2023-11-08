@@ -2,8 +2,11 @@ import { Row } from "react-bootstrap";
 import ContenedorDeSeccionesNav from "./ContenedorDeSeccionesNav";
 import ContenedorSeccionVenta from "./ContenedorSeccionVenta";
 import { hocTouchYReponsive } from "@/components//HocTouchYReponsive";
+import React from "react";
 
 const SeccionDeVenta = ({ containerRef,alternarMostrar,mostrar}) => {
+    
+   
     return (
         <>
             <Row
