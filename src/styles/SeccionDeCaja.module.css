@@ -112,3 +112,7 @@
 .precioModificado:hover {
     background-color: #eae7e761;
 }
+
+.test {
+    background-color: rgba(218, 217, 217, 0.211) !important;
+}

@@ -16,7 +16,7 @@ const ListaDeMenu = [
     {
         nombre: "Caja",
         icon: "fa-solid fa-cash-register",
-        subRutas: [{ tipo: "caja", parametro: false }, { tipo: "pagos", parametro: true }, { tipo: "pedidos", parametro: true }]
+        subRutas: [{ tipo: "caja", parametro: false }, { tipo: "pagos", parametro: false }, { tipo: "pedidos", parametro: true }]
     },
     {
         nombre: "Clientes",

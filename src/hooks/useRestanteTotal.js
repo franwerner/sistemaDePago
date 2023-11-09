@@ -25,7 +25,7 @@ export const useRestanteTotal = () => {
             return Math.sign(sumaDeRestos) == -1 ? 0 : sumaDeRestos
         } else {
 
-            return sumaDeRestos > 0 ? 0 : sumaDeRestos
+            return sumaDeRestos 
         }
 
     }, [sumaDeProductos, dependeciaString])

@@ -31,7 +31,7 @@ export const seccionProducto = {
             element: <SeccionDeCaja />
         },
         {
-            path: "caja/pagos/:id",
+            path: "caja/pagos",
             element: <SeccionDeCajaPagos />
         },
         {

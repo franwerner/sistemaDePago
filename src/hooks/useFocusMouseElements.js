@@ -12,7 +12,8 @@ export const useFocusMouseElements = () => {
         refFocusElement.current.blur()
     }
 
-    const onClick = () => {
+    const onClick = (e) => {
+        console.log(e)
         refFocusElement.current.focus()
     }
 
