@@ -1,0 +1,12 @@
+$primary: #746AF4;
+$ligthdark : #555;
+
+
+$theme-colors: (
+  "primary": $primary,
+  "ligthdark": $ligthdark,
+);
+
+
+
+@import "../node_modules/bootstrap/scss/bootstrap";
