@@ -77,7 +77,7 @@ export const ContenedorNavVentaPagos = () => {
                     <Button
                         variant="secondary"
                         style={{ minWidth: "130px" }}
-                        className=" zoom shadow text-white fs-4">
+                        className=" zoom shadow text-white bg-secondary fs-4">
                         <i className="fa-solid m-0 fa-angles-left"></i>
                         Volver
                     </Button>

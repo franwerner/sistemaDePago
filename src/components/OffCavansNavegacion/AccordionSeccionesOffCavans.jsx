@@ -19,13 +19,14 @@ const SeccionSubRutas = React.memo(({ subruta, ruta }) => {
 
     const verificarSubRuta = rutasArray[2] == tipo
 
-    const colorRuta = verificarRuta || verificarSubRuta ? "#746AF4" : "#555"
+    const colorRuta = verificarRuta || verificarSubRuta ? "primary" : "ligthdark"
 
     const link = rutaLowerCase == tipo ? "" : tipo
 
     return (
         <Link
-            style={{ textDecoration: "none" }}
+        style={{textDecoration: "none"}}
+           className={`text-${colorRuta}`}
             to={`${rutaLowerCase}/${link}${parametro ? "/1" : ""}`}>
             <Stack
                 style={{ color: colorRuta }}

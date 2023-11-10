@@ -13,6 +13,9 @@ export const SeccionDeCajaPagosNav = () => {
                     <Dropdown.Item>
                         Metodo
                     </Dropdown.Item>
+                    <Dropdown.Item>
+                        
+                    </Dropdown.Item>
                 </DropDownOrdenDefault>
             </Col>
         </>

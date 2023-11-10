@@ -1,8 +1,10 @@
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
-import { Accordion, Col, Stack } from "react-bootstrap";
+import { Accordion, AccordionContext, Card, Col, Form, Stack, useAccordionButton } from "react-bootstrap";
 import styles from "@/styles/SeccionDeCaja.module.css"
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros";
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
+import { useEventoMostrar } from "@/hooks//useEventoMostrar";
+import React, { useContext } from "react";
 
 const nroDeCaja = 1
 
@@ -10,111 +12,78 @@ const metodosDePagosTest = [
     { id: 1, nombre: "qr rebanking", tipo: "qr", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 3000 },
     { id: 2, nombre: "tarjeta naranja", tipo: "tarjeta", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 6900 },
     { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-    { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
-
 ]
 
-const AccordionPagos = ({ monto, orden }) => {
+
+const ContextAcordion = React.memo(({ children, eventKey, callback }) => {
+
+    const { activeEventKey } = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionButton(eventKey, () => callback && callback(eventKey));
+
+    const iconConfig = activeEventKey == eventKey ? "iconActivado" : "iconDesactivado"
+
+    return (
+        <div
+            onClick={decoratedOnClick}
+            className={`${styles[iconConfig]}  p-3 text-start border-0 align-items-center d-flex justify-content-between`}
+        >
+            {children}
+            <i className={` fa-solid fa-angle-up  p-0`}></i>
+        </div>
+    )
+})
+
+
+const AccordionBody = ({ monto, orden }) => {
+
+    const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
         <Stack
             direction="horizontal"
-            className="justify-content-between">
+            className={`${styles.accordioBodyPagos} border-bottom mt-1 justify-content-between`}>
             <div className="d-flex align-items-center">
-                <i className="fa-solid me-3  fa-minus"></i>
-                <p className="m-0">
+
+                <Form.Check type="checkbox" className={`${styles.test} mx-1`} />
+
+                <p className="m-0 fw-medium">
                     {AgregarCerosANumeros({ numero: orden, digitos: 5 })}
                     -
                     {AgregarCerosANumeros({ numero: nroDeCaja, digitos: 4 })}
                 </p>
             </div>
-            <p className="m-0 p-1 fw-medium">$ {separarNumerosConDecimales(monto)}</p>
+            <p className="m-0 p-1 fw-medium text-dark text-truncate">$ {separarNumerosConDecimales(monto)}</p>
         </Stack>
     )
 
 }
 
-const AccordionItem = ({ children, eventKey }) => {
-
-    const { refFocusElement } = useFocusMouseElements()
-
-    const onClick = () => {
-
-        refFocusElement.current.focus()
-    }
-
-    return (
-        <Accordion.Item
-            tabIndex={eventKey}
-            eventKey={eventKey}
-            onClick={onClick}
-            ref={refFocusElement}
-            className={styles.test}
-        >
-            {children}
-        </Accordion.Item>
-    )
-}
-
 export const SeccionDeCajaPagosBody = () => {
 
-
-
-
     return (
-        <Col className="p-0">
+        <Col className={`${styles.accordionContenedor} p-0`}>
             <Accordion
-                className=""
+                className="mx-md-5 m-0  my-md-4"
                 flush>
                 {
                     metodosDePagosTest.map((item, index) =>
 
-                        <AccordionItem key={index} eventKey={index}>
+                        <Card className="p-0 mt-2 shadow" key={item.id}>
+                            <Card.Header className="p-0">
+                                <ContextAcordion eventKey={index} />
+                            </Card.Header>
 
-                            <Accordion.Header className={styles.test}>
-                                <Stack
-                                    direction="horizontal"
-                                    className="justify-content-between w-100">
-                                    <div className="d-flex">
-                                        <p className="fw-medium text-uppercase m-0">{item.nombre}</p>
-                                        <p className="m-0 px-3">({item.pagos.length})</p>
-                                    </div>
-                                    <p className="m-0">$ {separarNumerosConDecimales(item.total)}</p>
-
-                                </Stack>
-                            </Accordion.Header>
-
-                            <Accordion.Body>
-                                {
-                                    item.pagos.map(item =>
-                                        <AccordionPagos
-                                            key={item.id}
-                                            orden={item.orden}
-                                            monto={item.monto} />
-                                    )
-                                }
-                            </Accordion.Body>
-
-                        </AccordionItem>
+                            <Accordion.Collapse eventKey={index}>
+                                <Card.Body>
+                                    {
+                                        item.pagos.map(item =>
+                                            <AccordionBody key={item.id} orden={item.orden} monto={item.monto} />
+                                        )
+                                    }
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
                     )
                 }
             </Accordion>

@@ -14,7 +14,7 @@ const BotonTrashItems = () => {
 
     return <Button
         variant="secondary"
-        className="d-flex text-white  fw-semibold justify-content-between  rounded-3   p-2  align-items-center ">
+        className="d-flex text-white  fw-semibold justify-content-between bg-secondary  rounded-3   p-2  align-items-center ">
         <p className="m-0 mx-2 text-truncate">
             {listaProducto.length} ítems en el carrito
         </p>
@@ -31,8 +31,9 @@ const BotonPagos = () => {
         style={{ textDecoration: "none" }}
         to={"pagos"}>
         <Button
+            variant="primary"
             style={{ background: "#746AF4" }}
-            className="d-flex text-white w-100  bg-hoverdark border-0 fw-semibold rounded-3 justify-content-between rounded-1 p-2  align-items-center ">
+            className="d-flex text-white w-100  border-0 fw-semibold rounded-3 justify-content-between rounded-1 p-2  align-items-center ">
             <p className="m-0 mx-2  text-uppercase mx-2">
                 pagos
             </p>
