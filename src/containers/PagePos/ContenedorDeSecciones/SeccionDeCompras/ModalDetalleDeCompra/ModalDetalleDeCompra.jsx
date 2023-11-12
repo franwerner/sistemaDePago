@@ -7,7 +7,7 @@ import { SuspenseLoading } from "@/components//SuspenseLoading";
 
 const TablaListaDeMetodosDePago = lazy(() => import("./TablaListaDeMetodosDePago"))
 const SeccionExtra = lazy(() => import("./SeccionExtra"))
-const NotaDelPedido = lazy(() => import("./NotaDelPedido"))
+const NotaDelPedido = lazy(() => import("./NotaDeLaCompra"))
 
 const botonesNavegacion = ["Productos", "Pagos", "Extra", "Nota"]
 
@@ -68,7 +68,7 @@ const ModalBody = () => {
 
 
 
-const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket, estado }) => {
+const ModalDetalleDeCompra = ({ alternarMostrar, mostrar, ticket, estado }) => {
 
     return (
         <Modal
@@ -94,8 +94,8 @@ const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket, estado }) => {
             <Modal.Footer >
                 {estado == "Pagado" &&
                     <Button
-                        className="border-0 w-100 p-2 bg-hoverdark"
-                        style={{ background: "#746AF4" }}>
+                        variant="outline-primary"
+                        className="fw-bold w-100 p-2">
                         Devolver Producto
                     </Button>}
             </Modal.Footer>
@@ -105,4 +105,4 @@ const ModalDetalleDePedido = ({ alternarMostrar, mostrar, ticket, estado }) => {
 };
 
 
-export default ModalDetalleDePedido
+export default ModalDetalleDeCompra

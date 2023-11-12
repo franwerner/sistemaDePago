@@ -50,7 +50,7 @@ const Ticket = React.memo(() => {
     return (
 
         <Container className={`h-100 p-0 overflow-hidden pb-3 d-flex flex-column `}>
-            <Row className={`${styles.ticketHeader} position-relative m-0 p-0`}>
+            <Row className={`${styles.ticketHeader} bg-primary position-relative m-0 p-0`}>
                 <TicketHeader />
             </Row>
 

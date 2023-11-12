@@ -11,23 +11,23 @@ const SeccionSubRutas = React.memo(({ subruta, ruta }) => {
 
     const { pathname } = useLocation()
 
-    const rutasArray = pathname.split("/").filter(item => item.length !== 0)
+    const rutasArray = pathname.split("/").filter(item => item.length !== 0 && isNaN(item))
 
     const rutaLowerCase = ruta.toLocaleLowerCase()
 
     const verificarRuta = rutasArray.length == 2 && tipo == rutaLowerCase
 
-    const verificarSubRuta = rutasArray[2] == tipo
+    const verificarSubRuta = rutasArray.includes(tipo) && rutaLowerCase !== tipo
 
     const colorRuta = verificarRuta || verificarSubRuta ? "primary" : "ligthdark"
 
-    const link = rutaLowerCase == tipo ? "" : tipo
+    const link = rutaLowerCase == tipo ? "" : `/${tipo}`
 
     return (
         <Link
-        style={{textDecoration: "none"}}
-           className={`text-${colorRuta}`}
-            to={`${rutaLowerCase}/${link}${parametro ? "/1" : ""}`}>
+            style={{ textDecoration: "none" }}
+            className={`text-${colorRuta}`}
+            to={`${rutaLowerCase}${link}${parametro ? "/1" : ""}`}>
             <Stack
                 style={{ color: colorRuta }}
                 gap={2}
@@ -51,12 +51,11 @@ const ContextAcordion = React.memo(({ children, eventKey, callback, rutaActual }
 
     useEffect(() => {
 
-        if (rutaActual == null) return
+        if (rutaActual && activeEventKey !== eventKey) {
+            decoratedOnClick()
+        }
 
-        decoratedOnClick()
-
-    }, [])
-
+    }, [rutaActual, activeEventKey])
     return (
         <div
             onClick={decoratedOnClick}

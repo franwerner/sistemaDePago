@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { SuspenseLoading } from '../components/SuspenseLoading';
 import ErrorPage from '../components/ErrorPage';
-import { useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
@@ -9,11 +9,10 @@ const SeccionDeVenta = lazy(() => import("@/containers/PagePos/ContenedorDeSecci
 const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[Pagos]/SeccionVentaPagos'))
 const SeccionDeCaja = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/SeccionDeCaja"))
 const SeccionDeCajaPagos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pagos]/SeccionDeCajaPagos"))
-const SeccionDeCajaPedidos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pedidos]/SeccionDeCajaPedidos'))
+const SeccionDeCompras = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCompras/SeccionDeCompras"))
 
 
-
-export const seccionProducto = {
+export const PuntoDeVentaRouter = {
     path: "/pos",
     element: <SuspenseLoading><PuntoDeVenta /></SuspenseLoading>,
     errorElement: <ErrorPage />,
@@ -24,7 +23,11 @@ export const seccionProducto = {
         },
         {
             path: "compras",
-            element: <h1>1</h1>
+            loader: () => redirect("/pos/compras/1")
+        },
+        {
+            path: "compras/:id",
+            element: <SeccionDeCompras />
         },
         {
             path: "caja",
@@ -33,10 +36,6 @@ export const seccionProducto = {
         {
             path: "caja/pagos",
             element: <SeccionDeCajaPagos />
-        },
-        {
-            path: "caja/pedidos/:id",
-            element: <SeccionDeCajaPedidos />
         },
         {
             path: "clientes",

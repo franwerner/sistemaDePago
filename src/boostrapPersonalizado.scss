@@ -1,12 +1,29 @@
 $primary: #746AF4;
 $ligthdark : #555;
+$success : #6Ec89B;
+$danger : #eb636B;
 
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
 
 $theme-colors: (
   "primary": $primary,
   "ligthdark": $ligthdark,
+  "success" : $success,
+  "danger" : $danger
 );
 
+.btn-primary {
+  color: white !important;
+}
 
+.btn-outline-primary:hover {
+  color: white !important;
+}
+
+.bg-primary {
+  color: white !important;
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap";

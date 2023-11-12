@@ -4,7 +4,6 @@ import { RestanteTotalMemoizando, useRestanteTotal } from "@/hooks//useRestanteT
 import { lazy, useContext } from "react";
 import { Button, Col, Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "@/styles/seccionDeVenta.module.css"
 import buscarCodigoDeMensajes from "@/helper//buscarCodigoDeMensajes";
 import TotalAVender from "@/components//TotalAVenderMemoizado";
 const TicketDeVenta = lazy(() => import("@/components/TicketDeVenta"))
@@ -43,8 +42,7 @@ const BotonValidar = () => {
 
     }
 
-    const className = validacion ? "btnValidado" : "btnNoValidado"
-
+    const className = validacion ? "primary" : "secondary"
 
     return (
         <>
@@ -52,8 +50,7 @@ const BotonValidar = () => {
             <Button
                 onClick={onClick}
                 style={{ minWidth: "140px" }}
-                variant="none"
-                className={`${styles[className]} zoom border-0 shadow text-white fs-4`}>
+                className={`zoom bg-${className} border-0 shadow text-white fs-4`}>
                 Validar
                 <i className="fa-solid border-0 fa-angles-right"></i>
 

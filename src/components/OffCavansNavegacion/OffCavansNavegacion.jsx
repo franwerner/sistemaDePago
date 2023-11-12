@@ -11,12 +11,12 @@ const ListaDeMenu = [
     {
         nombre: "Compras",
         icon: "fa fa-bag-shopping",
-        subRutas: [{ tipo: "compras", parametro: false }]
+        subRutas: [{ tipo: "compras", parametro: true }]
     },
     {
         nombre: "Caja",
         icon: "fa-solid fa-cash-register",
-        subRutas: [{ tipo: "caja", parametro: false }, { tipo: "pagos", parametro: false }, { tipo: "pedidos", parametro: true }]
+        subRutas: [{ tipo: "caja", parametro: false }, { tipo: "pagos", parametro: false }]
     },
     {
         nombre: "Clientes",

@@ -39,7 +39,7 @@ export const DropDownDeTarifas = () => {
         <Dropdown
             className="d-flex  w-100 justify-content-center">
             <Dropdown.Toggle
-                className="w-100 fw-semibold text-truncate text-uppercase"
+                className="w-100 border border-2 text-truncate text-uppercase"
                 variant="outline-secondary">
                 Tar.{tarifaActual.tipoDeTarifa}
             </Dropdown.Toggle>

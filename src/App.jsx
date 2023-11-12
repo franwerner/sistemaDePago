@@ -2,7 +2,7 @@ import { Link, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
 import { lazy } from 'react';
 import { SuspenseLoading } from './components/SuspenseLoading';
-import { seccionProducto } from './router/PuntoDeVentaRouter';
+import { PuntoDeVentaRouter } from './router/PuntoDeVentaRouter';
 
 const ErrorPage = lazy(() => import('./components/ErrorPage'))
 const Seleccion = lazy(() => import("./screens/Seleccion"))
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     path: "/caja",
   },
 
-  { ...seccionProducto }
+  { ...PuntoDeVentaRouter }
 
 
 ]);

@@ -2,10 +2,10 @@ import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros"
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import styles from "@/styles/SeccionDeCaja.module.css"
-import React, { lazy } from "react"
+import React, { Suspense, lazy } from "react"
 import { Col, Table } from "react-bootstrap"
 
-const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDePedido/ModalDetalleDePedido"))
+const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
 
 const theadTest = [
     { id: 1, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", "ticket": { caja: 1, orden: 1 } },
@@ -15,50 +15,53 @@ const theadTest = [
     { id: 5, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", "ticket": { caja: 1, orden: 5 } }
 ]
 
+const TrTablaBody = React.memo(({ empleado, hora, cliente, total, estado, ticket, alternarMostrar }) => {
 
-const TablaTbody = ({ empleado, hora, cliente, total, estado, ticket }) => {
+    const verificarEstado = estado == "Pagado" ? "success" : "danger"
 
-    const verificarEstado = estado == "Pagado" ? "#6EC89B" : "#eb636b"
+    return (
+        <tr onClick={alternarMostrar}>
+            <th className="text-truncate fw-normal">{empleado}</th>
+            <th className="text-truncate fw-normal">{hora}</th>
+
+            <th className="text-truncate fw-normal">
+                <div className="d-flex justify-content-center align-items-center">
+                    <p className="m-0">{AgregarCerosANumeros({ numero: ticket.caja, digitos: 4 })}</p>
+                    -
+                    <p className="m-0">{AgregarCerosANumeros({ numero: ticket.orden, digitos: 5 })}</p>
+                </div>
+            </th>
+
+            <th className="text-truncate fw-normal">{cliente}</th>
+            <th className="text-truncate fw-semibold">$ {separarNumerosConDecimales(total)}</th>
+            <th className="text-truncate fw-normal">
+                <div
+                    className={`bg-${verificarEstado} rounded-4 text-white fw-semibold p-1 `}>
+                    <p className="m-0">{estado}</p>
+                </div>
+            </th>
+        </tr>
+    )
+})
+
+const TablaTbody = (props) => {
 
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
         <>
+            <TrTablaBody {...props} alternarMostrar={alternarMostrar} />
 
-            <tr onClick={alternarMostrar}>
-                <th className="text-truncate fw-normal">{empleado}</th>
-                <th className="text-truncate fw-normal">{hora}</th>
-
-                <th className="text-truncate fw-normal">
-                    <div className="d-flex justify-content-center align-items-center">
-                        <p className="m-0">{AgregarCerosANumeros({ numero: ticket.caja, digitos: 4 })}</p>
-                        -
-                        <p className="m-0">{AgregarCerosANumeros({ numero: ticket.orden, digitos: 5 })}</p>
-                    </div>
-                </th>
-
-                <th className="text-truncate fw-normal">{cliente}</th>
-                <th className="text-truncate fw-semibold">$ {separarNumerosConDecimales(total)}</th>
-                <th className="text-truncate fw-normal">
-                    <div
-                        style={{ background: verificarEstado }}
-                        className="rounded-4 text-white fw-semibold p-1 ">
-                        <p className="m-0">{estado}</p>
-                    </div>
-                </th>
-            </tr>
-
-            {
-                mostrar &&
-
-                <ModalDetalleDePedido
-                    mostrar={mostrar}
-                    ticket={ticket}
-                    estado={estado}
-                    alternarMostrar={alternarMostrar} />
-
-            }
-
+            {mostrar && (
+                <Suspense fallback={""}>
+                    <ModalDetalleDePedido
+                        mostrar={mostrar}
+                        ticket={props.ticket}
+                        estado={props.estado}
+                        alternarMostrar={alternarMostrar}
+                    />
+                </Suspense>
+            )}
         </>
 
 
@@ -66,7 +69,7 @@ const TablaTbody = ({ empleado, hora, cliente, total, estado, ticket }) => {
     )
 }
 
-const TablaDePedidos = () => {
+const TablaDeCompras = () => {
 
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
@@ -96,4 +99,4 @@ const TablaDePedidos = () => {
 }
 
 
-export default TablaDePedidos
+export default TablaDeCompras

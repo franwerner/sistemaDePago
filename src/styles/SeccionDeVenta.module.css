@@ -25,9 +25,6 @@
 
 }
 
-.tdCantidad button i {
-    background-color: #746AF4;
-}
 
 .tdNombre {
     max-width: 200px;
@@ -66,7 +63,6 @@
 }
 
 .ticketHeader {
-    background-color: #746AF4;
     font-size: 20px;
 }
 
@@ -88,14 +84,3 @@
 
 /*SECCION DE VENTA PAGOS*/
 
-
-.btnValidado,
-.btnValidado:hover {
-    background: #746AF4 !important;
-}
-
-
-.btnNoValidado:hover,
-.btnNoValidado {
-    background-color: #6C757d !important;
-}

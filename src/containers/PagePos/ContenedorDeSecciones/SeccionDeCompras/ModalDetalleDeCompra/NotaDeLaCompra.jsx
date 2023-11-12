@@ -17,7 +17,7 @@ const NotaEscrita = ({ texto }) => {
 
 }
 
-const NotaDelPedido = () => {
+const NotaDeLaCompra = () => {
 
     return (
         <div className="d-flex justify-content-center align-items-center p-5 ">
@@ -26,4 +26,4 @@ const NotaDelPedido = () => {
     );
 };
 
-export default NotaDelPedido
+export default NotaDeLaCompra
