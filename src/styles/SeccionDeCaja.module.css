@@ -115,21 +115,32 @@
 
 /*Seccion Pagos*/
 
-.accordioBodyPagos div {
-    cursor: pointer;
-}
 
 .accordionContenedor {
     color: #555;
     background-color: #d0d0d01f;
+ 
+}
+
+.accordionContenedor div {
+    cursor: pointer;
+}
+
+.accordioBodyPagos {
+    cursor: pointer;
+    
 }
 
 .iconActivado {
-    background-color: rgb(173, 153, 153);
+    background-color:#736af4e1;
+    color: white;
+}
+
+.iconActivado:hover {
+    background-color:#736af4e1;
 }
 
 .iconActivado i {
-    color: white;
     rotate: 180deg;
 }
 
