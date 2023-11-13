@@ -33,13 +33,10 @@ export const algoritmoDeOrden = (array = []) => {
 
 
         for (let i = 0; i < propiedadesLista.length; i++) {
-            const prop = propiedadesLista[i];
-            const valorA = valoresA[i];
-            const valorB = valoresB[i];
 
-            if (valorA !== valorB) {
-                return lista[prop] === '>' ? ordenarMayor(a, b, prop) : ordenarMenor(a, b, prop);
-            }
+            const prop = propiedadesLista[i];
+
+            return lista[prop] === '>' ? ordenarMayor(a, b, prop) : ordenarMenor(a, b, prop);
         }
 
         return 0
