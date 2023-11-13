@@ -9,8 +9,6 @@ import { Col, Table } from "react-bootstrap"
 
 const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
 
-const listaDeOrden = ["estado", "cliente", "hora", "empleado", "orden", "total"]
-
 const theadTest = [
     { id: 1, "empleado": "Aranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", orden: 1 },
     { id: 2, "empleado": "ABanco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 2 },
@@ -78,7 +76,7 @@ const TablaDeCompras = () => {
 
     const { queryParams } = useContext(QueryParamsContext)
 
-    const { iniciarSort } = algoritmoDeOrden(listaDeOrden, queryParams)
+    const { iniciarSort } = algoritmoDeOrden(queryParams)
 
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">

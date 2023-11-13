@@ -1,19 +1,20 @@
 
-export const algoritmoDeOrden = (listaDePropiedades = [],parametros = {}) => {
+export const algoritmoDeOrden = (parametros = {}) => {
 
-    const filtradoDeParametros = Object.entries(parametros).filter(([key, _]) => listaDePropiedades.includes(key))
 
-    const organizarPrioridad = filtradoDeParametros.sort(([__, valueA], [_, valueB]) => {
+    const parametrosArray = Object.entries(parametros)
+
+    const organizarPrioridad = parametrosArray.sort(([__, valueA], [_, valueB]) => {
 
         const regExpN = /\d+/g
 
         const prioridadB = valueB.match(regExpN)
+
         const prioridadA = valueA.match(regExpN)
 
         return (prioridadA ? prioridadA[0] : 0) - (prioridadB ? prioridadB[0] : 0)
     })
 
-    const parametrosActuales = Object.fromEntries(organizarPrioridad)
 
     const ordernAscendente = (a = "", b = "") => {
         if (isNaN(a) || isNaN(b)) {
@@ -27,7 +28,7 @@ export const algoritmoDeOrden = (listaDePropiedades = [],parametros = {}) => {
         if (isNaN(a) || isNaN(b)) {
             return a.localeCompare(b)
         }
-        
+
         return a - b
     }
 
@@ -43,8 +44,9 @@ export const algoritmoDeOrden = (listaDePropiedades = [],parametros = {}) => {
                 const itemA = a[prop]
                 const itemB = b[prop]
 
+                const parametrosActual = parametros[prop] ? parametros[prop] : ""
 
-                const comparacion = parametrosActuales[prop].match(">") ? ordernAscendente(itemA, itemB) : ordenDescendente(itemA, itemB);
+                const comparacion = parametrosActual.match(">") ? ordernAscendente(itemA, itemB) : ordenDescendente(itemA, itemB);
 
                 if (comparacion !== 0) {
                     return comparacion;
