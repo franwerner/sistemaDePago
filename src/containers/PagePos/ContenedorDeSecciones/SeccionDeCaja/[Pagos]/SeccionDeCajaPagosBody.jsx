@@ -5,13 +5,14 @@ import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import React, { lazy, useContext } from "react";
 import { SuspenseLoading } from "@/components//SuspenseLoading";
+import { algoritmoDeOrden } from "@/helper//algoritmoDeOrden";
 
 const ModalDetalleDePagos = lazy(() => import("./ModalDetalleDePagos"))
 
 const nroDeCaja = 1
 
 const metodosDePagosTest = [
-    { id: 1, nombre: "qr rebanking", tipo: "qr", pagos: [{ id: 1, monto: 4000, orden: 1 }, { id: 3, monto: 4000, orden: 3 }, { id: 2, monto: 1000, orden: 4 }], total: 3000 },
+    { id: 1, nombre: "qr rebanking", tipo: "qr", pagos: [{ id: 1, monto: 4000, orden: 15 }, { id: 3, monto: 4000, orden: 3 }, { id: 2, monto: 1000, orden: 4 }], total: 3000 },
     { id: 2, nombre: "tarjeta naranja", tipo: "tarjeta", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 6900 },
     { id: 3, nombre: "efectivo", tipo: "efectivo", pagos: [{ id: 1, monto: 1000, orden: 1 }, { id: 3, monto: 1000, orden: 1 }, { id: 2, monto: 1000, orden: 1 }], total: 2000 },
 ]
@@ -50,7 +51,6 @@ const AccordionBody = ({ monto, orden }) => {
     const onClick = (e) => {
 
         if (e.target.tagName !== "INPUT") alternarMostrar()
-
 
     }
 
@@ -102,7 +102,8 @@ const ContextAcordion = React.memo(({ eventKey, callback, nombre, total }) => {
 
 export const SeccionDeCajaPagosBody = () => {
 
-    console.log(3000 - 1000)
+    const test = algoritmoDeOrden(metodosDePagosTest[0].pagos)
+
     return (
         <Col className={`${styles.accordionContenedor} p-0`}>
             <Accordion
@@ -122,13 +123,7 @@ export const SeccionDeCajaPagosBody = () => {
                             <Accordion.Collapse eventKey={index}>
                                 <Card.Body >
                                     {
-                                        [...item.pagos].sort((a, b) => {
-                            
-                                            if (a.monto - b.monto !== 0) {
-                                                return a.monto - b.monto;
-                                              }
-                                              return a.orden - b.orden;
-                                        }).map(item =>
+                                        item.pagos.map(item =>
                                             <AccordionBody
                                                 key={item.id}
                                                 orden={item.orden}

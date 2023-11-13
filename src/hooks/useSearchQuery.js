@@ -10,12 +10,11 @@ export const useSearchQuery = () => {
     const agregarParametros = ({ target }) => {
 
         const nombre = target.dataset.name
+        const orden = target.dataset.orden
 
         if (parametros[nombre]) return
 
-        const largo = Object.values(parametros).length + 1
-
-        setParams({ ...parametros, [nombre]: largo })
+        setParams({ ...parametros, [nombre]: orden })
     }
 
     const removerParametro = ({ target }) => {
@@ -31,7 +30,7 @@ export const useSearchQuery = () => {
     }
 
     return {
-        params,
+        parametros,
         agregarParametros,
         removerParametro
     }

@@ -4,17 +4,19 @@ import { Col, Dropdown } from "react-bootstrap";
 
 
 const dropwDownList = [
-    { nombre: "Cantidad", valor: "cantidad" },
-    { nombre: "Monto ↑", valor: "monto ↑" },
-    { nombre: "Monto ↓", valor: "monto ↓" },
-    { nombre: "Hora", valor: "hora" },
+    { nombre: "Cantidad", orden: "<" },
+    { nombre: "Monto ↑", orden: ">" },
+    { nombre: "Monto ↓", orden: "<" },
+    { nombre: "Hora", orden: "<" },
+    { nombre: "Orden", orden: "<" },
 
 ]
 
-const DropwDownItems = ({ nombre, valor, onClick }) => {
+const DropwDownItems = ({ nombre, orden, onClick }) => {
     return (
         <Dropdown.Item
-            data-name={valor}
+            data-name={nombre}
+            data-orden={orden}
             onClick={onClick}>
             {nombre}
         </Dropdown.Item>
@@ -31,7 +33,7 @@ const DropdownDefaultPagos = () => {
                         onClick={agregarParametros}
                         key={item.nombre}
                         nombre={item.nombre}
-                        valor={item.valor} />
+                        orden={item.orden} />
                 )
             }
         </DropDownOrdenDefault>
