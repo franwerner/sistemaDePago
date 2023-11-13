@@ -6,7 +6,7 @@ import ContainerDeProductos from "./ContainerDeProductos";
 import ContenedorDeProductosNav from "./ContenedorDeProductosNav";
 
 const SeccionDeProductos = () => {
-  
+
     const containerRef = useRef(null)
 
     return (
@@ -19,6 +19,7 @@ const SeccionDeProductos = () => {
                 ref={containerRef}
                 className={`${styles.contedorDeProductos} flex-grow-1  scrollBarPersonalizada  h-100 p-0 m-auto`}>
                 <ContainerDeProductos containerRef={containerRef} />
+                
             </Row>
         </>
     );

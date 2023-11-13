@@ -104,11 +104,9 @@ const ContextAcordion = React.memo(({ eventKey, callback, nombre, total }) => {
 
 export const SeccionDeCajaPagosBody = () => {
 
-    const listaDePropiedades = ["monto", "hora", "orden"]
-
     const { queryParams } = useContext(QueryParamsContext)
 
-    const { iniciarSort } = algoritmoDeOrden(listaDePropiedades, queryParams)
+    const { iniciarSort } = algoritmoDeOrden(queryParams)
 
     return (
         <Col className={`${styles.accordionContenedor} p-0`}>

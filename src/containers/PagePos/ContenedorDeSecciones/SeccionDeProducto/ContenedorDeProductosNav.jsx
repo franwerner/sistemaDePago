@@ -1,5 +1,5 @@
 import styles from "@/styles/seccionDeProductos.module.css"
-import { lazy } from "react";
+import React, { lazy } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DropwDownItemsProductos from "./DropwDownFilterProductos";
@@ -18,8 +18,9 @@ const FiltradoDeFilas = () => {
     )
 }
 
-const ContenedorDeProductosNav = () => {
+const ContenedorDeProductosNav = React.memo(() => {
 
+   
     return (
         <Col className=" w-100 d-flex  justify-content-start m-0 align-items-center">
 
@@ -48,6 +49,6 @@ const ContenedorDeProductosNav = () => {
 
         </Col >
     );
-};
+})
 
 export default ContenedorDeProductosNav

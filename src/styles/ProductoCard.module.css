@@ -1,7 +1,7 @@
 .cardContainer{
 width: 12rem;
 max-height: 14rem;
-height: 14rem;
+min-height: 14rem;
 cursor: pointer;
 
 }

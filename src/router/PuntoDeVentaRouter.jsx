@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { SuspenseLoading } from '../components/SuspenseLoading';
 import ErrorPage from '../components/ErrorPage';
 import { redirect } from 'react-router-dom';
+import ContainerDeProductos from '../containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/ContainerDeProductos';
 
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
@@ -19,6 +20,10 @@ export const PuntoDeVentaRouter = {
     children: [
         {
             path: "productos",
+            element: <SeccionDeProductos />
+        },
+        {
+            path: "productos/:seccion",
             element: <SeccionDeProductos />
         },
         {
