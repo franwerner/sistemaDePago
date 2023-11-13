@@ -68,7 +68,7 @@ const ModalBody = () => {
 
 
 
-const ModalDetalleDeCompra = ({ alternarMostrar, mostrar, ticket, estado }) => {
+const ModalDetalleDeCompra = ({ alternarMostrar, mostrar, orden, estado }) => {
 
     return (
         <Modal
@@ -82,9 +82,9 @@ const ModalDetalleDeCompra = ({ alternarMostrar, mostrar, ticket, estado }) => {
 
                     <div className="d-flex fw-normal justify-content-center align-items-center">
                         <p className="m-0 me-1">N°</p>
-                        <p className="m-0">{AgregarCerosANumeros({ numero: ticket.caja, digitos: 4 })}</p>
+                        <p className="m-0">{AgregarCerosANumeros({ numero: 1, digitos: 4 })}</p>
                         -
-                        <p className="m-0">{AgregarCerosANumeros({ numero: ticket.orden, digitos: 5 })}</p>
+                        <p className="m-0">{AgregarCerosANumeros({ numero: orden, digitos: 5 })}</p>
                     </div>
                 </Modal.Title>
             </Modal.Header>

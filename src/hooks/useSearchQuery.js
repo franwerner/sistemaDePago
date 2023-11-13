@@ -7,19 +7,22 @@ export const useSearchQuery = () => {
 
     const parametros = Object.fromEntries(params)
 
+    const arrayParams = Array.from(params)
+
     const agregarParametros = ({ target }) => {
 
-        const nombre = target.dataset.name
-        const orden = target.dataset.orden
+        const nombre = target.dataset.name.toLowerCase()
 
-        if (parametros[nombre]) return
+        const prioridad = target.dataset.prioridad
 
-        setParams({ ...parametros, [nombre]: orden })
+        const buscarParametro = parametros[nombre] ? parametros[nombre] : ""
+
+        const orden = buscarParametro.match("<") ? ">" : "<"
+
+        setParams({ ...parametros, [nombre]: orden + prioridad })
     }
 
     const removerParametro = ({ target }) => {
-
-        const arrayParams = Array.from(params)
 
         const name = target.dataset.name
 
@@ -29,10 +32,22 @@ export const useSearchQuery = () => {
 
     }
 
+    const obtenerOrden = (nombre) => {
+
+        const parametroActual = parametros[nombre.toLowerCase()]
+
+        const expReg = /[<>]/g
+
+        const buscarParametro = parametroActual && parametroActual.match(expReg)[0]
+
+        return buscarParametro
+    }
+
     return {
         parametros,
         agregarParametros,
-        removerParametro
+        removerParametro,
+        obtenerOrden
     }
 
 };

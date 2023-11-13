@@ -1,48 +1,63 @@
-import { useSearchQuery } from "../hooks/useSearchQuery"
 
-export const algoritmoDeOrden = (array = []) => {
+export const algoritmoDeOrden = (listaDePropiedades = [],parametros = {}) => {
 
-    const mapeoPropiedades = {
-        "Monto ↑": "monto",
-        "Monto ↓": "monto",
-        "Hora": "hora",
-        "Orden": "orden"
-    }
+    const filtradoDeParametros = Object.entries(parametros).filter(([key, _]) => listaDePropiedades.includes(key))
 
-    const { parametros } = useSearchQuery() //Esto es igual a MontoMayor
+    const organizarPrioridad = filtradoDeParametros.sort(([__, valueA], [_, valueB]) => {
 
-    const ordenarMayor = (a, b, propiedad) => {
-        return b[propiedad] - a[propiedad]
-    }
+        const regExpN = /\d+/g
 
-    const ordenarMenor = (a, b, propiedad) => {
-        return a[propiedad] - b[propiedad]
-    }
+        const prioridadB = valueB.match(regExpN)
+        const prioridadA = valueA.match(regExpN)
 
-    const lista = Object.entries(parametros).reduce((acc, [key, value]) => {
-        if (!mapeoPropiedades[key]) return acc
-        return { ...acc, [mapeoPropiedades[key]]: value }
-    }, {})
+        return (prioridadA ? prioridadA[0] : 0) - (prioridadB ? prioridadB[0] : 0)
+    })
 
-    const propiedadesLista = Object.keys(lista);
+    const parametrosActuales = Object.fromEntries(organizarPrioridad)
 
-    array.sort((a, b) => {
-
-        const valoresA = propiedadesLista.map(prop => a[prop]);
-        const valoresB = propiedadesLista.map(prop => b[prop]);
-
-
-        for (let i = 0; i < propiedadesLista.length; i++) {
-
-            const prop = propiedadesLista[i];
-
-            return lista[prop] === '>' ? ordenarMayor(a, b, prop) : ordenarMenor(a, b, prop);
+    const ordernAscendente = (a = "", b = "") => {
+        if (isNaN(a) || isNaN(b)) {
+            return b.localeCompare(a)
         }
+        return b - a
+    }
 
-        return 0
-    });
+    const ordenDescendente = (a = "", b = "") => {
 
-    console.log(array)
+        if (isNaN(a) || isNaN(b)) {
+            return a.localeCompare(b)
+        }
+        
+        return a - b
+    }
+
+
+    const iniciarSort = (array = []) => {
+
+        return [...array].sort((a, b) => {
+
+            for (let i = 0; i < organizarPrioridad.length; i++) { //Este enfoque hace que se ejecute en orden segun el indice del array de las prioridades
+
+                const prop = organizarPrioridad[i][0];
+
+                const itemA = a[prop]
+                const itemB = b[prop]
+
+
+                const comparacion = parametrosActuales[prop].match(">") ? ordernAscendente(itemA, itemB) : ordenDescendente(itemA, itemB);
+
+                if (comparacion !== 0) {
+                    return comparacion;
+                }
+            }
+
+        });
+    }
+
+    return {
+        iniciarSort
+    }
+
 
 
 }

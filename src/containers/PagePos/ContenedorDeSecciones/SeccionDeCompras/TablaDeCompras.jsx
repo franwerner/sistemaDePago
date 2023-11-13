@@ -1,21 +1,25 @@
+import { QueryParamsContext } from "@/context//Contextos"
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros"
+import { algoritmoDeOrden } from "@/helper//algoritmoDeOrden"
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import styles from "@/styles/SeccionDeCaja.module.css"
-import React, { Suspense, lazy } from "react"
+import React, { Suspense, lazy, useContext } from "react"
 import { Col, Table } from "react-bootstrap"
 
 const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
 
+const listaDeOrden = ["estado", "cliente", "hora", "empleado", "orden", "total"]
+
 const theadTest = [
-    { id: 1, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", "ticket": { caja: 1, orden: 1 } },
-    { id: 2, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", "ticket": { caja: 1, orden: 2 } },
-    { id: 3, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", "ticket": { caja: 1, orden: 3 } },
-    { id: 4, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 666, "estado": "Pagado", "ticket": { caja: 1, orden: 4 } },
-    { id: 5, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", "ticket": { caja: 1, orden: 5 } }
+    { id: 1, "empleado": "Aranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", orden: 1 },
+    { id: 2, "empleado": "ABanco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 2 },
+    { id: 3, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 3 },
+    { id: 4, "empleado": "Dranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 666, "estado": "Pagado", orden: 4 },
+    { id: 5, "empleado": "Hranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", orden: 5 }
 ]
 
-const TrTablaBody = React.memo(({ empleado, hora, cliente, total, estado, ticket, alternarMostrar }) => {
+const TrTablaBody = React.memo(({ empleado, hora, cliente, total, estado, orden, alternarMostrar }) => {
 
     const verificarEstado = estado == "Pagado" ? "success" : "danger"
 
@@ -26,9 +30,9 @@ const TrTablaBody = React.memo(({ empleado, hora, cliente, total, estado, ticket
 
             <th className="text-truncate fw-normal">
                 <div className="d-flex justify-content-center align-items-center">
-                    <p className="m-0">{AgregarCerosANumeros({ numero: ticket.caja, digitos: 4 })}</p>
+                    <p className="m-0">{AgregarCerosANumeros({ numero: 1, digitos: 4 })}</p>
                     -
-                    <p className="m-0">{AgregarCerosANumeros({ numero: ticket.orden, digitos: 5 })}</p>
+                    <p className="m-0">{AgregarCerosANumeros({ numero: orden, digitos: 5 })}</p>
                 </div>
             </th>
 
@@ -56,7 +60,7 @@ const TablaTbody = (props) => {
                 <Suspense fallback={""}>
                     <ModalDetalleDePedido
                         mostrar={mostrar}
-                        ticket={props.ticket}
+                        orden={props.orden}
                         estado={props.estado}
                         alternarMostrar={alternarMostrar}
                     />
@@ -70,6 +74,11 @@ const TablaTbody = (props) => {
 }
 
 const TablaDeCompras = () => {
+
+
+    const { queryParams } = useContext(QueryParamsContext)
+
+    const { iniciarSort } = algoritmoDeOrden(listaDeOrden, queryParams)
 
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
@@ -86,7 +95,7 @@ const TablaDeCompras = () => {
                 </thead>
                 <tbody className="align-middle text-center">
                     {
-                        theadTest.map(item =>
+                        iniciarSort(theadTest).map(item =>
                             <TablaTbody
                                 key={item.id}
                                 {...item} />
