@@ -7,7 +7,7 @@ export const SuspenseCompontentsLoading = ({ children, texto = "" }) => {
 
     return (
         <Suspense children={children} fallback={
-            <div className=" p-0  d-flex  flex-column align-items-center">
+            <div  className=" p-0  d-flex bg-danger  flex-column align-items-center">
                 <Spinner
                     animation="border"
                     style={{ height: "30px", width: "30px" }}

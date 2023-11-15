@@ -1,16 +1,15 @@
-import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading"
+import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading"
 import { QueryParamsContext } from "@/context//Contextos"
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros"
 import { algoritmoDeOrden } from "@/helper//algoritmoDeOrden"
+import { retrasoTest } from "@/helper//retrasoTest"
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import styles from "@/styles/SeccionDeCaja.module.css"
-import React, { Suspense, lazy, useContext } from "react"
+import { lazy, memo, useContext } from "react"
 import { Col, Table } from "react-bootstrap"
-import { Await } from "react-router-dom"
 
-
-const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
+const ModalDetalleDePedido = lazy(() => retrasoTest(import("./ModalDetalleDeCompra/ModalDetalleDeCompra"), 545))
 
 const theadTest = [
     { id: 1, "empleado": "Aranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", orden: 1 },
@@ -20,7 +19,7 @@ const theadTest = [
     { id: 5, "empleado": "Hranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", orden: 5 }
 ]
 
-const TrTablaBody = React.memo(({ empleado, hora, cliente, total, estado, orden, alternarMostrar }) => {
+const TrTablaBody = memo(({ empleado, hora, cliente, total, estado, orden, alternarMostrar }) => {
 
     const verificarEstado = estado == "Pagado" ? "success" : "danger"
 
@@ -54,22 +53,20 @@ const TablaTbody = (props) => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <>
+        <SuspenseCompontentsLoading   texto={`${AgregarCerosANumeros({ numero: 1, digitos: 5 })} - ${AgregarCerosANumeros({ numero: 4, digitos: 5 })} `} >
             <TrTablaBody {...props} alternarMostrar={alternarMostrar} />
 
             {mostrar && (
-                <Suspense fallback={""}>
-                    <ModalDetalleDePedido
-                        mostrar={mostrar}
-                        orden={props.orden}
-                        estado={props.estado}
-                        alternarMostrar={alternarMostrar}
-                    />
-                </Suspense>
+
+                <ModalDetalleDePedido
+                    mostrar={mostrar}
+                    orden={props.orden}
+                    estado={props.estado}
+                    alternarMostrar={alternarMostrar}
+                />
+
             )}
-        </>
-
-
+        </SuspenseCompontentsLoading>
 
     )
 }
@@ -82,29 +79,29 @@ const TablaDeCompras = () => {
 
 
     return (
-                <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
-                    <Table className={styles.tablaDePedidos} hover >
-                        <thead className="shadow align-middle text-center  position-relative">
-                            <tr>
-                                <th>Empleado</th>
-                                <th>Hora</th>
-                                <th>Ticket</th>
-                                <th>Cliente</th>
-                                <th>Total</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody className="align-middle text-center">
-                            {
-                                iniciarSort(theadTest).map(item =>
-                                    <TablaTbody
-                                        key={item.id}
-                                        {...item} />
-                                )
-                            }
-                        </tbody>
-                    </Table>
-                </Col>
+        <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
+            <Table className={styles.tablaDePedidos} hover >
+                <thead className="shadow align-middle text-center  position-relative">
+                    <tr>
+                        <th>Empleado</th>
+                        <th>Hora</th>
+                        <th>Ticket</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody className="align-middle text-center">
+                    {
+                        iniciarSort(theadTest).map(item =>
+                            <TablaTbody
+                                key={item.id}
+                                {...item} />
+                        )
+                    }
+                </tbody>
+            </Table>
+        </Col>
     );
 }
 
