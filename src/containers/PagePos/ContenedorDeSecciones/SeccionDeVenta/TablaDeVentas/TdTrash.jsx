@@ -7,7 +7,7 @@ export const TdTrash = React.memo(({ borrarProducto, nombre }) => {
         <td className="p-0 text-center"  >
             <i
                 onClick={() => borrarProducto({ nombre })}
-                className={`${styles.tdIconTrash} zoom  fa-regular fa-trash-can fs-5`}></i>
+                className={`${styles.tdIconTrash} zoom  cursor-block fa-regular fa-trash-can fs-5`}></i>
         </td>
     );
 })

@@ -1,6 +1,12 @@
 @font-face {
     font-family: "Montserrat";
     src: url(fonts/Montserrat-VariableFont_wght.ttf);
+    font-display: auto;
+}
+body {
+    min-width: 200px;
+    overflow: scroll;
+    height: 100vh;
 }
 
 
@@ -12,8 +18,6 @@
     letter-spacing: 1px;
     scroll-behavior: smooth;
 }
-
-
 
 .bg-hoverdark:hover {
     filter: brightness(0.950)

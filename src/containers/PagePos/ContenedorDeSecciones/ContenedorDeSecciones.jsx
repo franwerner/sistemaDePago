@@ -1,27 +1,28 @@
 
-import { SuspenseLoading } from "@/components//SuspenseLoading";
+import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading";
 import { ProductoReducerProvider } from "@/context//provider/ProductosReducerProvider";
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider";
 import { TarifaProvider } from "@/context//provider/TarifaProvider";
-import React from "react";
+import { memo } from "react";
 import { Container } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 
 
-const ContenedorDeSecciones = React.memo(() => {
-
+const ContenedorDeSecciones = memo(() => {
 
     return (
-        <Container fluid className="p-0 scrollHidden d-flex flex-column flex-grow-1 h-100  ">
+        <Container
+            fluid
+            className="p-0 scrollHidden d-flex flex-column flex-grow-1 h-100  ">
             <TarifaProvider>
 
                 <ProductoReducerProvider>
 
                     <RestoDelPagoProvider>
 
-                        <SuspenseLoading>
+                        <SuspenseSecondaryPageLoading>
                             <Outlet />
-                        </SuspenseLoading>
+                        </SuspenseSecondaryPageLoading>
 
                     </RestoDelPagoProvider>
 

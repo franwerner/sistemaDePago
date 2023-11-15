@@ -1,15 +1,15 @@
-import NavBarPos from "@/components/NavBarPos";
 import { Col, Container, Row } from "react-bootstrap";
 import ContenedorDeSecciones from "../containers/PagePos/ContenedorDeSecciones/ContenedorDeSecciones";
 import { useEventoMostrar } from "../hooks/useEventoMostrar";
-import OffCavansNavegacion from "../components/OffCavansNavegacion/OffCavansNavegacion";
+import OffCavansNavegacion from "../containers/PagePos/OffCavansNavegacion/OffCavansNavegacion";
+import NavBarPos from "../containers/PagePos/NavBarPos";
 
 const PuntoDeVenta = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 
     return (
-        <Container fluid className="vh-100 animate__animated overflow-hidden animate__bounceInLeft   p-0">
+        <Container fluid className="vh-100 overflow-hidden    p-0">
             <Row className="h-100   m-0">
                 <Col
                     style={{ minWidth: "250px", zIndex: "20" }}

@@ -1,6 +1,11 @@
-.navBarContainer {
-    min-height: 60px;
+#navBar {
+    min-height: 70px;
     max-height: 120px;
+
+}
+
+#navBarContainer{
+    min-width: 320px;
 }
 
 .imgContainer{
@@ -12,10 +17,7 @@
 }
 
 .iconBars {
-    font-size: 35px;
     cursor: pointer;
-    color: #555;
-    left: 0%;
 }
 
 .iconBars:active {
@@ -23,8 +25,9 @@
 }
 
 
-@media (max-width : 360px){
+@media (max-width : 350px){
     .imgContainer, .imgContainer img {
        display: none;
+       min-width: 0px;
     }
 }

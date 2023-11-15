@@ -5,7 +5,7 @@ const DropDownFilterDefault = ({ children }) => {
 
     return (
 
-        <Dropdown>
+        <Dropdown autoClose="outside">
             <Dropdown.Toggle
                 variant="none"
                 id="dropdown-filter">

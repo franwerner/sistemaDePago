@@ -1,12 +1,12 @@
 import { Col } from "react-bootstrap";
 import { productoReducerContext } from "@/context//Contextos";
-import React, { lazy, useContext } from "react";
+import { Suspense, memo, useContext } from "react";
 import Ticket from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeVenta/Ticket/Ticket";
 import CarritoDeProductoVacio from "@/components//CarritoDeProductoVacio";
+import TablaDeVentas from "./TablaDeVentas/TablaDeVentas";
 
-const TablaDeVentas = lazy(() => import("./TablaDeVentas/TablaDeVentas"))
 
-const ContenedorSeccionVenta = React.memo(({ mostrar }) => {
+const ContenedorSeccionVenta = memo(({ mostrar }) => {
 
     const { listaProducto } = useContext(productoReducerContext)
 
@@ -15,12 +15,19 @@ const ContenedorSeccionVenta = React.memo(({ mostrar }) => {
         display: mostrar ? "d-flex" : "d-none",
         display2: mostrar ? "d-none" : "d-block"
     }
+
     return (
         <>
 
             <Col className={`${contenedorStats.display2} m-0 p-0 shadow h-100  scrollBarPersonalizada `}>
 
-                {listaProducto.length === 0 ? <CarritoDeProductoVacio /> : <TablaDeVentas />}
+                <Suspense fallback={<div>Loading...</div>}>
+                    {listaProducto.length === 0 ?
+                        <CarritoDeProductoVacio />
+                        :
+                        <TablaDeVentas />
+                    }
+                </Suspense>
 
             </Col>
 

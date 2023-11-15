@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import { memo } from "react"
 import styles from "@/styles/ProductoCard.module.css"
 import { CalcularPorcentajeMemoizado } from "../hooks/useCalcularPorcentaje"
 import { Card } from "react-bootstrap"
@@ -18,14 +18,11 @@ const CardFavorito = () => {
 }
 
 
-const ProductoCard = React.memo(({ producto, agregarProducto }) => {
+const ProductoCard = memo(({ producto, agregarProducto }) => {
 
     const { precio, nombre, metodo } = producto
 
     const { onMouseEnter, refFocusElement } = useFocusMouseElements()
-
-
-
 
     return (
         <Card
@@ -39,12 +36,16 @@ const ProductoCard = React.memo(({ producto, agregarProducto }) => {
                 <p className="m-2 mx-3">#1231</p>
                 <CardFavorito />
             </Card.Title>
+
             <Card.Img
+                sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 33.3vw"
+                alt={`${nombre}-${metodo}-${precio}`}
                 style={{ objectFit: "contain", minHeight: "90px" }}
                 width={90}
                 loading="lazy"
                 decoding="async"
-                height={110} src="https://static.vecteezy.com/system/resources/previews/011/033/490/non_2x/potatoes-isolated-no-background-png.png" />
+                height={110}
+                src="https://static.vecteezy.com/system/resources/previews/011/033/490/non_2x/potatoes-isolated-no-background-png.png" />
 
             <Card.Body className=" p-0 m-0 d-flex flex-column  h-100 align-items-center ">
 

@@ -19,8 +19,8 @@ export const useTouchMove = ({ alternarMostrar, containerRef }) => {
 
         }
 
-        containerRef.current.addEventListener("touchstart", TouchStart)
-        containerRef.current.addEventListener("touchend", TouchEnd)
+        containerRef.current.addEventListener("touchstart", TouchStart,{passive : true})
+        containerRef.current.addEventListener("touchend", TouchEnd,{passive : true})
 
         return () => {
             if(!containerRef.current) return

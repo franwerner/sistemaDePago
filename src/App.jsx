@@ -1,8 +1,8 @@
 import { Link, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
 import { lazy } from 'react';
-import { SuspenseLoading } from './components/SuspenseLoading';
 import { PuntoDeVentaRouter } from './router/PuntoDeVentaRouter';
+import { SuspenseMainPageLoading } from './components/SuspenseMainPageLoading';
 
 const ErrorPage = lazy(() => import('./components/ErrorPage'))
 const Seleccion = lazy(() => import("./screens/Seleccion"))
@@ -12,8 +12,8 @@ const Empleado = lazy(() => import("./screens/Empleado"))
 const router = createBrowserRouter([
   {
     path: "/empleado",
-    element: <SuspenseLoading><Empleado /></SuspenseLoading>,
-    errorElement: <ErrorPage />,
+    element: < Empleado />,
+    errorElement: < ErrorPage />,
   },
   {
     path: "/",
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/seleccion",
-    element: <SuspenseLoading><Seleccion /></SuspenseLoading>,
+    element: <Seleccion />,
     errorElement: <ErrorPage />,
   },
   {
@@ -39,7 +39,9 @@ function App() {
   return (
     <ListaUsuariosProvider>
 
-      <RouterProvider router={router} />
+      <SuspenseMainPageLoading>
+        <RouterProvider router={router} />
+      </SuspenseMainPageLoading>
 
     </ListaUsuariosProvider>
 

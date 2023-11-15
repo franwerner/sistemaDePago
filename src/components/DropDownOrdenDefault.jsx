@@ -1,6 +1,6 @@
 import { Dropdown } from "react-bootstrap";
 import styles from "@/styles/DropDownDefault.module.css"
-import React, { useContext } from "react";
+import { memo, useContext } from "react";
 import { QueryParamsContext } from "../context/Contextos";
 
 
@@ -10,7 +10,7 @@ const ordenList = {
 }
 
 
-const DropwDownParent = React.memo(({ children }) => {
+const DropwDownParent = memo(({ children }) => {
     return (
         <Dropdown className={`${styles.dropDownOrdenDefault} bg-hover `} autoClose="outside" >
             <Dropdown.Toggle

@@ -1,23 +1,37 @@
 import DropDownFilterDefault from "@/components//DropDownFilterDefault"
-import ModalDeSecciones from "@/components//ModalDeSecciones"
+import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { lazy } from "react"
 import { Dropdown } from "react-bootstrap"
+
+const ModalDeSecciones = lazy(() => import("@/components/ModalDeSecciones"))
 
 const SeccionesDropwItem = () => {
 
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <>
-            <ModalDeSecciones mostrar={mostrar} alternarMostrar={alternarMostrar} />
-            <Dropdown.Item onClick={alternarMostrar} className="fs-5">Secciones</Dropdown.Item>
-        </>
+        <SuspenseSecondaryPageLoading>
+
+
+            {
+                mostrar && <ModalDeSecciones
+                    mostrar={mostrar}
+                    alternarMostrar={alternarMostrar} />
+            }
+
+
+            <Dropdown.Item
+                onClick={alternarMostrar}
+                className="fs-5">Secciones</Dropdown.Item>
+                
+        </SuspenseSecondaryPageLoading>
     )
 }
 
 
 const DropwDownItemsProductos = () => {
+
     return (
         <DropDownFilterDefault>
             <SeccionesDropwItem />

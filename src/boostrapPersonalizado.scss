@@ -1,18 +1,53 @@
-$primary: #746AF4;
-$ligthdark : #555;
-$success : #6Ec89B;
-$danger : #eb636B;
-
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 
+
+/*Colores*/
 $theme-colors: (
-  "primary": $primary,
-  "ligthdark": $ligthdark,
-  "success" : $success,
-  "danger" : $danger
+  "primary": #746AF4,
+  "ligthdark": #555,
+  "success" : #6EC89B,
+  "danger" : #eb646B
 );
+
+/*Font Size*/
+$font-size-base : 1rem;
+
+$font-sizes: (
+  0: $font-size-base * 3.2,
+  6 : $font-size-base * 1.1,
+  7 : 0.80rem,
+  base : $font-size-base
+);
+
+/*Cursor*/
+$cursor-styles: (
+  pointer: pointer,
+  block: not-allowed,
+);
+
+@each $cursor-name, $cursor-value in $cursor-styles {
+  .cursor-#{$cursor-name} {
+    cursor: $cursor-value;
+  }
+}
+
+/*Letter Spaccing*/
+
+$letter-spacing : (
+  0 : 10px,
+  1 : 8px,
+  2 : 6px,
+  3 : 4px,
+  4 : 2px
+  );
+
+@each $letter-name, $letter-value in $letter-spacing {
+  .ls-#{$letter-name} {
+    letter-spacing: $letter-value;
+  }
+}
 
 .btn-primary {
   color: white !important;

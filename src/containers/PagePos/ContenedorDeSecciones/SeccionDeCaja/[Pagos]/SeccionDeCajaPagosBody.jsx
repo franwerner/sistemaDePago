@@ -4,7 +4,7 @@ import styles from "@/styles/SeccionDeCaja.module.css"
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import React, { lazy, useContext } from "react";
-import { SuspenseLoading } from "@/components//SuspenseLoading";
+import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading";
 import { algoritmoDeOrden } from "@/helper//algoritmoDeOrden";
 import { QueryParamsContext } from "@/context//Contextos";
 
@@ -64,11 +64,11 @@ const AccordionBody = ({ monto, orden }) => {
 
             {
                 mostrar &&
-                <SuspenseLoading>
+                <SuspenseSecondaryPageLoading>
                     <ModalDetalleDePagos
                         alternarMostrar={alternarMostrar}
                         mostrar={mostrar} />
-                </SuspenseLoading>
+                </SuspenseSecondaryPageLoading>
             }
         </>
     )

@@ -1,21 +1,19 @@
 import { lazy } from 'react';
-import { SuspenseLoading } from '../components/SuspenseLoading';
 import ErrorPage from '../components/ErrorPage';
 import { redirect } from 'react-router-dom';
-import ContainerDeProductos from '../containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/ContainerDeProductos';
+import { retrasoTest } from '../helper/retrasoTest';
 
-const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
+const PuntoDeVenta = lazy(() => retrasoTest(import("/src/screens/PuntoDeVenta")))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
 const SeccionDeVenta = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/SeccionDeVenta"))
 const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[Pagos]/SeccionVentaPagos'))
 const SeccionDeCaja = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/SeccionDeCaja"))
 const SeccionDeCajaPagos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pagos]/SeccionDeCajaPagos"))
-const SeccionDeCompras = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCompras/SeccionDeCompras"))
-
+const SeccionDeCompras = lazy(() => retrasoTest(import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCompras/SeccionDeCompras"), 1))
 
 export const PuntoDeVentaRouter = {
     path: "/pos",
-    element: <SuspenseLoading><PuntoDeVenta /></SuspenseLoading>,
+    element: <PuntoDeVenta />,
     errorElement: <ErrorPage />,
     children: [
         {
@@ -25,6 +23,10 @@ export const PuntoDeVentaRouter = {
         {
             path: "productos/:seccion",
             element: <SeccionDeProductos />
+        },
+        {
+            path: "productos/agregar",
+            element: <p>Asdad</p>
         },
         {
             path: "compras",

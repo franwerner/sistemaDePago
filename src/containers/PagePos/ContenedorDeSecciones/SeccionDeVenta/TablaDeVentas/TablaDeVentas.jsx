@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { Table } from "react-bootstrap";
 import { productoReducerContext } from "@/context/Contextos";
 import styles from "@/styles/SeccionDeVenta.module.css"
 import ListadoDeVentas from "./ListadoDeVentas";
-import { SuspenseLoading } from "@/components//SuspenseLoading";
 
-
-const TheadTabla = React.memo(() => {
+const TheadTabla = memo(() => {
 
     return <thead className="align-middle">
         <tr className="shadow ">
@@ -21,35 +19,28 @@ const TheadTabla = React.memo(() => {
     </thead>
 })
 
-const TablaDeVentas = React.memo(() => {
+const TablaDeVentas = memo(() => {
 
     const { listaProducto, modificarPrecio, modificarCantidad, borrarProducto, aplicarDescuento } = useContext(productoReducerContext)
 
     return (
-        <SuspenseLoading>
             <Table className={`${styles.tablaDeVentas} `} hover>
                 <TheadTabla />
                 <tbody className="align-middle overflow-hidden">
                     {
-                        listaProducto.map(({ cantidad, metodo, nombre, precioModificado, descuento }, index) =>
+                        listaProducto.map((item, index) =>
                             <ListadoDeVentas
                                 key={index}
                                 aplicarDescuento={aplicarDescuento}
                                 borrarProducto={borrarProducto}
                                 modificarPrecio={modificarPrecio}
                                 modificarCantidad={modificarCantidad}
-                                descuento={descuento}
-                                metodo={metodo}
-                                precioModificado={precioModificado}
-                                nombre={nombre}
-                                cantidad={cantidad}
+                                {...item}
                             />)
-
                     }
                 </tbody>
 
             </Table>
-        </SuspenseLoading>
     );
 })
 

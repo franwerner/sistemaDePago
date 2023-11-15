@@ -6,32 +6,32 @@ const ListaDeMenu = [
     {
         nombre: "Productos",
         icon: "fa-solid fa-box-open",
-        subRutas: [{ tipo: "productos", parametro: false }]
+        subRutas: ["productos", "agregar",]
     },
     {
         nombre: "Compras",
         icon: "fa fa-bag-shopping",
-        subRutas: [{ tipo: "compras", parametro: true }]
+        subRutas: ["compras"]
     },
     {
         nombre: "Caja",
         icon: "fa-solid fa-cash-register",
-        subRutas: [{ tipo: "caja", parametro: false }, { tipo: "pagos", parametro: false }]
+        subRutas: ["caja", "pagos",]
     },
     {
         nombre: "Clientes",
         icon: "fa-solid fa-users",
-        subRutas: [{ tipo: "clientes", parametro: false }]
+        subRutas: ["clientes"]
     },
     {
         nombre: "Almacen",
         icon: "fa-solid fa-cubes",
-        subRutas: [{ tipo: "almacen", parametro: false }]
+        subRutas: ["almacen"]
     },
     {
         nombre: "Venta",
         icon: "fa-solid fa-cart-shopping",
-        subRutas: [{ tipo: "venta", parametro: false }, { tipo: "pagos", parametro: false }]
+        subRutas: ["venta", "pagos"]
     }
 
 ]

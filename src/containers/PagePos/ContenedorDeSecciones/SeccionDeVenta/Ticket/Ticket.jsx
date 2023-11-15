@@ -19,9 +19,8 @@ const BotonTrashItems = () => {
             {listaProducto.length} ítems en el carrito
         </p>
         <i
-            style={{ cursor: "no-drop" }}
             onMouseUp={borrarListado}
-            className="fa-regular zoom mx-2 fs-4 fa-trash-can"></i>
+            className="fa-regular cursor-block zoom mx-2 fs-4 fa-trash-can"></i>
     </Button>
 
 }

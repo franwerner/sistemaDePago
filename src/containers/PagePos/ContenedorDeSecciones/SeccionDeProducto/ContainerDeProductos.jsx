@@ -1,8 +1,8 @@
 import CarritoDeComprasIndicador from "@/components//CarritoDeComprasIndicador";
 import { productoReducerContext } from "@/context//Contextos";
 import { obtenerSearchParams } from "@/helper//obtenerSearchParams";
-import React, { useCallback, useContext } from "react";
-import { Row, Stack } from "react-bootstrap";
+import { memo, useCallback, useContext } from "react";
+import { Stack } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import styles from "@/styles/seccionDeProductos.module.css"
 import ProductoCard from "@/components//ProductoCard";
@@ -135,7 +135,6 @@ const helados = [
     }
 ]
 
-
 const rotiseria = [
     {
         "nombre": "papas 1/4",
@@ -152,7 +151,7 @@ const secciones = {
     "rotiseria": rotiseria,
 };
 
-const ProductoMemoizado = React.memo(({ agregarProducto, producto }) => {
+const ProductoMemoizado = memo(({ agregarProducto, producto }) => {
 
 
     const onClick = useCallback((e) => {
@@ -168,7 +167,7 @@ const ProductoMemoizado = React.memo(({ agregarProducto, producto }) => {
 
 
 
-const ContainerDeProductos = React.memo(({ containerRef }) => {
+const ContainerDeProductos = memo(({ containerRef }) => {
 
     const { agregarProducto } = useContext(productoReducerContext)
 
@@ -183,20 +182,22 @@ const ContainerDeProductos = React.memo(({ containerRef }) => {
     }
 
     return (
-            <Stack direction="horizontal" className="flex-wrap position-relative  justify-content-center justify-content-md-start">
-                <div
-                    onClick={onClick}
-                    className={`${styles.contenedorDeCarritoIndicador} position-fixed border bg-white zoom border-2 border-dark  p-1 rounded-circle `}>
-                    <CarritoDeComprasIndicador />
-                </div>
+        <Stack
+            direction="horizontal"
+            className="flex-wrap position-relative  justify-content-center justify-content-md-start">
+            <div
+                onClick={onClick}
+                className={`${styles.contenedorDeCarritoIndicador} position-fixed border bg-white zoom border-2 border-dark  p-1 rounded-circle `}>
+                <CarritoDeComprasIndicador />
+            </div>
 
-                {seccionActual.map((producto, index) =>
-                    <ProductoMemoizado
-                        key={index}
-                        producto={producto}
-                        agregarProducto={agregarProducto} />
-                )}
-            </Stack>
+            {seccionActual.map((producto, index) =>
+                <ProductoMemoizado
+                    key={index}
+                    producto={producto}
+                    agregarProducto={agregarProducto} />
+            )}
+        </Stack>
     );
 })
 

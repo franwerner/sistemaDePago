@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import React, { lazy, useState } from "react";
 import styles from "@/styles/SeccionDeCaja.module.css"
 import TablaListaDeProductos from "./TablaListaDeProductos";
-import { SuspenseLoading } from "@/components//SuspenseLoading";
+import { SuspenseLoading } from "@/components//SuspenseSecondaryPageLoading";
 
 const TablaListaDeMetodosDePago = lazy(() => import("./TablaListaDeMetodosDePago"))
 const SeccionExtra = lazy(() => import("./SeccionExtra"))

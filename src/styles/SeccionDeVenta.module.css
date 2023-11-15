@@ -37,7 +37,6 @@
 
 .tdIconTrash {
     color: #555;
-    cursor: not-allowed;
 }
 
 @media (max-width : 1366px) {

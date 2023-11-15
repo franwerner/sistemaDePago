@@ -1,9 +1,8 @@
-import styles from "@/styles/seccionDeProductos.module.css"
-import React, { lazy } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DropwDownItemsProductos from "./DropwDownFilterProductos";
 import BuscadorInput from "@/components//BuscadorInput";
+import { memo } from "react";
 
 
 
@@ -18,9 +17,9 @@ const FiltradoDeFilas = () => {
     )
 }
 
-const ContenedorDeProductosNav = React.memo(() => {
+const ContenedorDeProductosNav = memo(() => {
 
-   
+
     return (
         <Col className=" w-100 d-flex  justify-content-start m-0 align-items-center">
 
@@ -41,7 +40,10 @@ const ContenedorDeProductosNav = React.memo(() => {
                         <FiltradoDeFilas />
                     </Col>
 
-                    <Col xs={12} md={"auto"} className="p-0 d-flex justify-content-center justify-content-md-end align-items-center">
+                    <Col
+                        xs={12}
+                        md={"auto"}
+                        className="p-0  d-flex justify-content-center justify-content-md-end align-items-center">
                         <BuscadorInput texto={"productos"} />
                     </Col>
                 </Row>

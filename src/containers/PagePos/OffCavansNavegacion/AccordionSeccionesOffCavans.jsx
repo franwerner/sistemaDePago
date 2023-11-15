@@ -1,47 +1,11 @@
-import React, { useEffect } from "react"
+import { memo, useEffect } from "react"
 import { Accordion, AccordionContext, Card, Stack, useAccordionButton } from "react-bootstrap"
 import { Link, useLocation } from "react-router-dom"
 import styles from "@/styles/OffCavansNavegacion.module.css"
 import { useContext } from "react"
+import { SeccionSubRutas } from "./SeccionSubRutas"
 
-
-const SeccionSubRutas = React.memo(({ subruta, ruta }) => {
-
-    const { tipo, parametro } = subruta
-
-    const { pathname } = useLocation()
-
-    const rutasArray = pathname.split("/").filter(item => item.length !== 0 && isNaN(item))
-
-    const rutaLowerCase = ruta.toLocaleLowerCase()
-
-    const verificarRuta = rutasArray.length == 2 && tipo == rutaLowerCase
-
-    const verificarSubRuta = rutasArray.includes(tipo) && rutaLowerCase !== tipo
-
-    const colorRuta = verificarRuta || verificarSubRuta ? "primary" : "ligthdark"
-
-    const link = rutaLowerCase == tipo ? "" : `/${tipo}`
-
-    return (
-        <Link
-            style={{ textDecoration: "none" }}
-            className={`text-${colorRuta}`}
-            to={`${rutaLowerCase}${link}${parametro ? "/1" : ""}`}>
-            <Stack
-                style={{ color: colorRuta }}
-                gap={2}
-                direction="horizontal"
-                className={`${styles.subRutas}`}
-            >
-                <i className="fa-solid  fa-minus"></i>
-                <p className="m-0 text-uppercase">{tipo}</p>
-            </Stack>
-        </Link>
-    )
-})
-
-const ContextAcordion = React.memo(({ children, eventKey, callback, rutaActual }) => {
+const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
 
     const { activeEventKey } = useContext(AccordionContext);
 
@@ -67,7 +31,7 @@ const ContextAcordion = React.memo(({ children, eventKey, callback, rutaActual }
     )
 })
 
-const BotonRuta = React.memo(({ nombre, icon }) => {
+const BotonRuta = memo(({ nombre, icon }) => {
 
     return (
         <Stack
@@ -81,7 +45,7 @@ const BotonRuta = React.memo(({ nombre, icon }) => {
     )
 })
 
-export const AccordionSeccionesOffCavans = React.memo(({ nombre, icon, subRutas, index }) => {
+export const AccordionSeccionesOffCavans = memo(({ nombre, icon, subRutas, index }) => {
 
     const nombreLowerCase = nombre.toLocaleLowerCase()
 
@@ -96,6 +60,7 @@ export const AccordionSeccionesOffCavans = React.memo(({ nombre, icon, subRutas,
             <Card.Header className={`border-0 rounded-3 p-0 ${styles[rutaActual ? "seccionElegida" : "seccionesMenu"]}`}>
 
                 <Link
+
                     style={{ textDecoration: "none" }}
                     to={nombreLowerCase}>
 
@@ -113,15 +78,7 @@ export const AccordionSeccionesOffCavans = React.memo(({ nombre, icon, subRutas,
             <Accordion.Collapse
                 eventKey={index}>
                 <Card.Body>
-                    {
-                        subRutas.map(item =>
-
-                            <SeccionSubRutas
-                                ruta={nombre}
-                                subruta={item}
-                                key={item.tipo} />
-                        )
-                    }
+                    <SeccionSubRutas subRutas={subRutas} ruta={nombreLowerCase} />
                 </Card.Body>
             </Accordion.Collapse>
 
