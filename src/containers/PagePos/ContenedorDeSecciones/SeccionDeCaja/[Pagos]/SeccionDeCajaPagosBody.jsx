@@ -4,11 +4,12 @@ import styles from "@/styles/SeccionDeCaja.module.css"
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import React, { lazy, useContext } from "react";
-import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading";
 import { algoritmoDeOrden } from "@/helper//algoritmoDeOrden";
 import { QueryParamsContext } from "@/context//Contextos";
+import { retrasoTest } from "@/helper//retrasoTest";
+import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading";
 
-const ModalDetalleDePagos = lazy(() => import("./ModalDetalleDePagos"))
+const ModalDetalleDePagos = lazy(() => retrasoTest(import("./ModalDetalleDePagos"), 500))
 
 const nroDeCaja = 1
 
@@ -55,21 +56,25 @@ const AccordionBody = ({ monto, orden }) => {
 
     }
 
+
+
     return (
         <>
-            <ListaDePagos
-                monto={monto}
-                orden={orden}
-                alternarMostrar={onClick} />
+            <SuspenseCompontentsLoading texto={`${AgregarCerosANumeros({ numero: nroDeCaja, digitos: 4 })} - ${AgregarCerosANumeros({ numero: orden, digitos: 5 })}`}>
+                <ListaDePagos
+                    monto={monto}
+                    orden={orden}
+                    alternarMostrar={onClick} />
 
-            {
-                mostrar &&
-                <SuspenseSecondaryPageLoading>
+                {
+                    mostrar &&
+
                     <ModalDetalleDePagos
                         alternarMostrar={alternarMostrar}
                         mostrar={mostrar} />
-                </SuspenseSecondaryPageLoading>
-            }
+
+                }
+            </SuspenseCompontentsLoading>
         </>
     )
 

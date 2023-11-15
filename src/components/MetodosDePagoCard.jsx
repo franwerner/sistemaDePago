@@ -1,5 +1,5 @@
 import styles from "@/styles/MetodosDePagoCard.module.css"
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react"
+import { forwardRef, memo, useEffect, useImperativeHandle, useRef } from "react"
 import { Button, Card, Form } from "react-bootstrap"
 import { useForm } from "../hooks/useForm"
 import { useRestanteTotal } from "../hooks/useRestanteTotal"
@@ -12,7 +12,7 @@ const iconType = {
     "otro": "fa-solid fa-globe"
 }
 
-const CardTitulo = React.memo(({ resto, id, nombre, modificarResto }) => {
+const CardTitulo = memo(({ resto, id, nombre, modificarResto }) => {
 
     const restoTotal = useRestanteTotal()
 
@@ -26,23 +26,23 @@ const CardTitulo = React.memo(({ resto, id, nombre, modificarResto }) => {
 
     return (
         <Card.Title
-            className={`${styles.cardTitulo} position-absolute w-100 text-end`}>
+            className={`${styles.cardTitulo} position-absolute  w-100 text-end`}>
             <Button
                 className="border-0"
                 variant="none"
                 onClick={onClick}>
-                <i className="fa-regular zoom fs-4 p-1 fa-square-plus"></i>
+                <i className="fa-regular zoom text-ligthdark fs-4 p-1 fa-square-plus"></i>
             </Button>
         </Card.Title>
     )
 
 })
-const CardBodyRestante = React.memo(({ tipo, nombre }) => {
+const CardBodyRestante = memo(({ tipo, nombre }) => {
 
     return (
         <>
             <div className={`${styles.iconContainer} ${styles[tipo]} d-flex justify-content-center align-items-center`}>
-                <i className={`${iconType[tipo]} `}></i>
+                <i className={`${iconType[tipo]} text-primary-2 `}></i>
             </div>
             <p className="fw-semibold fs-5">{nombre}</p>
 
@@ -51,7 +51,7 @@ const CardBodyRestante = React.memo(({ tipo, nombre }) => {
 })
 
 
-const RestoForm = React.memo(forwardRef(({ modificarResto, id, nombre, resto = 0, tipo }, ref) => {
+const RestoForm = memo(forwardRef(({ modificarResto, id, nombre, resto = 0, tipo }, ref) => {
 
     const { form, changeForm } = useForm({ resto })
 
@@ -88,7 +88,7 @@ const RestoForm = React.memo(forwardRef(({ modificarResto, id, nombre, resto = 0
 
 
 
-const CardFooter = React.memo(({ modificarResto, nombre, id }) => {
+const CardFooter = memo(({ modificarResto, nombre, id }) => {
 
     const onClick = () => {
         modificarResto({ resto: 0, id, nombre })
@@ -165,4 +165,4 @@ const MetodosDePagosCard = ({ tipo, nombre, modificarResto, id, resto }) => {
 
 }
 
-export default React.memo(MetodosDePagosCard)
+export default memo(MetodosDePagosCard)

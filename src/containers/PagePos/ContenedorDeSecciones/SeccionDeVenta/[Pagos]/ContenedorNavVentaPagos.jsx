@@ -6,7 +6,9 @@ import { Button, Col, Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import buscarCodigoDeMensajes from "@/helper//buscarCodigoDeMensajes";
 import TotalAVender from "@/components//TotalAVenderMemoizado";
-const TicketDeVenta = lazy(() => import("@/components/TicketDeVenta"))
+import { retrasoTest } from "@/helper//retrasoTest";
+import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading";
+const TicketDeVenta = lazy(() => retrasoTest(import("@/components/TicketDeVenta"), 5999))
 
 const BotonValidar = () => {
 
@@ -46,19 +48,21 @@ const BotonValidar = () => {
 
     return (
         <>
+            <SuspenseCompontentsLoading texto="Ticket">
+                <Button
+                    onClick={onClick}
+                    style={{ minWidth: "140px" }}
+                    className={`zoom bg-${className} border-0 shadow text-white fs-4`}>
+                    Validar
+                    <i className="fa-solid border-0 fa-angles-right"></i>
 
-            <Button
-                onClick={onClick}
-                style={{ minWidth: "140px" }}
-                className={`zoom bg-${className} border-0 shadow text-white fs-4`}>
-                Validar
-                <i className="fa-solid border-0 fa-angles-right"></i>
+                </Button>
 
-            </Button>
 
-            {
-                validacion && <TicketDeVenta />
-            }
+                {
+                    validacion && <TicketDeVenta />
+                }
+            </SuspenseCompontentsLoading>
 
         </>
     )

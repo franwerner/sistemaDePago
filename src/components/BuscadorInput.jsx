@@ -1,14 +1,26 @@
 import { Form, InputGroup } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
 import { useFocusMouseElements } from "../hooks/useFocusMouseElements"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
-const BuscadorInput = ({ texto }) => {
+const BuscadorInput = ({ texto = "" }) => {
 
     const { form, onSubmit, changeForm } = useForm({ "buscador": "" })
 
     const { buscador } = form
 
     const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
+
+    const redirect = useNavigate()
+
+    useEffect(() => {
+
+        if (buscador.length == 0) return redirect("")
+
+        redirect(`?search=${buscador}`)
+
+    }, [buscador])
 
     return (
         <Form

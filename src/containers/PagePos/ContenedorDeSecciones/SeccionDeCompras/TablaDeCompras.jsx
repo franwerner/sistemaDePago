@@ -1,3 +1,4 @@
+import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading"
 import { QueryParamsContext } from "@/context//Contextos"
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros"
 import { algoritmoDeOrden } from "@/helper//algoritmoDeOrden"
@@ -6,6 +7,8 @@ import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import styles from "@/styles/SeccionDeCaja.module.css"
 import React, { Suspense, lazy, useContext } from "react"
 import { Col, Table } from "react-bootstrap"
+import { Await } from "react-router-dom"
+
 
 const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
 
@@ -73,35 +76,35 @@ const TablaTbody = (props) => {
 
 const TablaDeCompras = () => {
 
-
     const { queryParams } = useContext(QueryParamsContext)
 
     const { iniciarSort } = algoritmoDeOrden(queryParams)
 
+
     return (
-        <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
-            <Table className={styles.tablaDePedidos} hover >
-                <thead className="shadow align-middle text-center  position-relative">
-                    <tr>
-                        <th>Empleado</th>
-                        <th>Hora</th>
-                        <th>Ticket</th>
-                        <th>Cliente</th>
-                        <th>Total</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody className="align-middle text-center">
-                    {
-                        iniciarSort(theadTest).map(item =>
-                            <TablaTbody
-                                key={item.id}
-                                {...item} />
-                        )
-                    }
-                </tbody>
-            </Table>
-        </Col>
+                <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
+                    <Table className={styles.tablaDePedidos} hover >
+                        <thead className="shadow align-middle text-center  position-relative">
+                            <tr>
+                                <th>Empleado</th>
+                                <th>Hora</th>
+                                <th>Ticket</th>
+                                <th>Cliente</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody className="align-middle text-center">
+                            {
+                                iniciarSort(theadTest).map(item =>
+                                    <TablaTbody
+                                        key={item.id}
+                                        {...item} />
+                                )
+                            }
+                        </tbody>
+                    </Table>
+                </Col>
     );
 }
 

@@ -1,17 +1,18 @@
 import DropDownFilterDefault from "@/components//DropDownFilterDefault"
-import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading"
+import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading"
+import { retrasoTest } from "@/helper//retrasoTest"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { lazy } from "react"
 import { Dropdown } from "react-bootstrap"
 
-const ModalDeSecciones = lazy(() => import("@/components/ModalDeSecciones"))
+const ModalDeSecciones = lazy(() => retrasoTest(import("@/components/ModalDeSecciones"), 555))
 
 const SeccionesDropwItem = () => {
 
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <SuspenseSecondaryPageLoading>
+        <SuspenseCompontentsLoading texto="Secciones">
 
 
             {
@@ -21,11 +22,13 @@ const SeccionesDropwItem = () => {
             }
 
 
+
             <Dropdown.Item
                 onClick={alternarMostrar}
-                className="fs-5">Secciones</Dropdown.Item>
-                
-        </SuspenseSecondaryPageLoading>
+                className="">
+                Secciones
+            </Dropdown.Item>
+        </SuspenseCompontentsLoading>
     )
 }
 
@@ -35,10 +38,10 @@ const DropwDownItemsProductos = () => {
     return (
         <DropDownFilterDefault>
             <SeccionesDropwItem />
-            <Dropdown.Item className="fs-5">Favoritos</Dropdown.Item>
-            <Dropdown.Item className="fs-5">Mas vendidos</Dropdown.Item>
-            <Dropdown.Item className=" fs-5">↑ Cantidad</Dropdown.Item>
-            <Dropdown.Item className=" fs-5">↓ Cantidad</Dropdown.Item>
+            <Dropdown.Item >Favoritos</Dropdown.Item>
+            <Dropdown.Item>Mas vendidos</Dropdown.Item>
+            <Dropdown.Item >↑ Cantidad</Dropdown.Item>
+            <Dropdown.Item>↓ Cantidad</Dropdown.Item>
         </DropDownFilterDefault>
     )
 }

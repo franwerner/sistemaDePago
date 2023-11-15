@@ -11,7 +11,7 @@ const CardFavorito = () => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <div onClick={alternarMostrar} className=" rounded-bottom-3 mx-2 p-1 py-2 d-flex align-items-center ">
+        <div onClick={alternarMostrar} className=" bg-primary-2 rounded-bottom-3 mx-2 p-1 py-2 d-flex align-items-center ">
             <i className={`fa-star ${mostrar && "animate__animated animate__bounceInDown"} text-white ${mostrar ? "fa-solid" : "fa-regular"}`}></i>
         </div>
     )
@@ -33,7 +33,7 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
             className={`${styles.cardContainer} m-2 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
-                <p className="m-2 mx-3">#1231</p>
+                <p className="m-2 text-primary-2 fs-6 mx-3">#1231</p>
                 <CardFavorito />
             </Card.Title>
 
@@ -53,7 +53,7 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
                 <p style={{ maxHeight: "69px", whiteSpace: "pre-line" }}
                     className="fw-light m-0 text-center text-dark w-100 text-truncate">{nombre}</p>
 
-                <p className={`${styles.cardPrecio} fw-semibold  text-truncate m-0`}>
+                <p className="fw-semibold  text-truncate m-0 text-ligthdark">
                     $<CalcularPorcentajeMemoizado n1={precio} n2={precio} />/{metodo}
                 </p>
 

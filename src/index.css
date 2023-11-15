@@ -79,7 +79,7 @@ body::-webkit-scrollbar {
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar:horizontal {
-    height: 5px;
+    height: 10px;
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar-thumb {

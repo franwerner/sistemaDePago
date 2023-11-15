@@ -1,15 +1,24 @@
+$primary: #746AF4;
+$ligthdark : #555;
+$success : #6Ec89B;
+$danger : #eb636B;
+$primary-2 : #9E6999;
+$primary-3 : #8689B6;
+
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 
-
 /*Colores*/
 $theme-colors: (
-  "primary": #746AF4,
-  "ligthdark": #555,
-  "success" : #6EC89B,
-  "danger" : #eb646B
+  primary: $primary,
+  primary-2 : $primary-2,
+  primary-3 : $primary-3,
+  ligthdark: $ligthdark,
+  success : $success,
+  danger : $danger
 );
+
 
 /*Font Size*/
 $font-size-base : 1rem;
@@ -35,13 +44,11 @@ $cursor-styles: (
 
 /*Letter Spaccing*/
 
-$letter-spacing : (
-  0 : 10px,
+$letter-spacing : (0 : 10px,
   1 : 8px,
   2 : 6px,
   3 : 4px,
-  4 : 2px
-  );
+  4 : 2px);
 
 @each $letter-name, $letter-value in $letter-spacing {
   .ls-#{$letter-name} {

@@ -1,6 +1,6 @@
-import { memo, useEffect } from "react"
-import { Accordion, AccordionContext, Card, Stack, useAccordionButton } from "react-bootstrap"
-import { Link, useLocation } from "react-router-dom"
+import { Suspense, memo, useEffect, useState } from "react"
+import { Accordion, AccordionContext, Card, Spinner, Stack, useAccordionButton } from "react-bootstrap"
+import { Link, useLocation, useNavigation } from "react-router-dom"
 import styles from "@/styles/OffCavansNavegacion.module.css"
 import { useContext } from "react"
 import { SeccionSubRutas } from "./SeccionSubRutas"
@@ -26,7 +26,9 @@ const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
             className={`${styles[iconConfig]}  p-2 text-start border-0 align-items-center d-flex justify-content-between`}
         >
             {children}
+
             <i className={` fa-solid fa-angle-up  p-0`}></i>
+
         </div>
     )
 })
@@ -60,7 +62,6 @@ export const AccordionSeccionesOffCavans = memo(({ nombre, icon, subRutas, index
             <Card.Header className={`border-0 rounded-3 p-0 ${styles[rutaActual ? "seccionElegida" : "seccionesMenu"]}`}>
 
                 <Link
-
                     style={{ textDecoration: "none" }}
                     to={nombreLowerCase}>
 

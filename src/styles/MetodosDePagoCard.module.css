@@ -13,13 +13,9 @@
     top: 0%;
 }
 
-.cardTitulo i {
-    color: #555;
-}
 
 .cardContainer:hover {
     opacity: 1;
-    border: 1px solid #9e699970;
 }
 
 .cardContainer:hover .iconContainer {
@@ -30,7 +26,6 @@
     height: 90px;
     width: 90px;
     font-size: 80px;
-    color: #9E6999;
 }
 
 .qr {

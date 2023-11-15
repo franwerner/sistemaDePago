@@ -10,18 +10,3 @@ cursor: pointer;
     border: 1px solid rgb(112, 245, 194);
     transition: 0s all;
 }
-
-.cardContainer p:nth-child(1) {
-    font-size: 15px;
-    color: #9E6999
-}
-
-.cardContainer div:nth-child(2){
-    background-color: #9E6999;
-    
-}
-
-
-.cardPrecio{
-    color: #555;
-}
