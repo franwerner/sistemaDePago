@@ -1,0 +1,15 @@
+#errorPageContenedor {
+    min-width: 300px;
+}
+
+#lupaContenedor {
+    max-width: min-content;
+}
+
+#lupaContenedor svg:active {
+    margin-left: 100px;
+    margin-top: -10px;
+    transform: scale(1.1);
+    transition: 0.2s all;
+    z-index: -1;
+}

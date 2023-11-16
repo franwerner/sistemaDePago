@@ -1,7 +1,7 @@
 import { lazy } from 'react';
-import ErrorPage from '../components/ErrorPage';
-import { defer, redirect, useLocation, useRoutes, useSearchParams } from 'react-router-dom';
+import { defer, redirect } from 'react-router-dom';
 import { retrasoTest } from '../helper/retrasoTest';
+import { SuspenseMainPageLoading } from '../components/SuspenseMainPageLoading';
 
 const PuntoDeVenta = lazy(() => retrasoTest(import("/src/screens/PuntoDeVenta")))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
@@ -9,22 +9,14 @@ const SeccionDeVenta = lazy(() => import("@/containers/PagePos/ContenedorDeSecci
 const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/[Pagos]/SeccionVentaPagos'))
 const SeccionDeCaja = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/SeccionDeCaja"))
 const SeccionDeCajaPagos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pagos]/SeccionDeCajaPagos"))
-const SeccionDeCompras = lazy(() => retrasoTest(import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCompras/SeccionDeCompras"), 1))
+const SeccionDeCompras = lazy(() => retrasoTest(import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCompras/SeccionDeCompras"), 34343))
 const SeccionDeProductosAgregar = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/[Agregar]/SeccionDeProductosAgregar"))
+const ErrorPage = lazy(() => import("@/components/ErrorPage"))
 
-const LoaderTest = () => {
-
-    return (
-        <p>
-            Cargando...
-        </p>
-    )
-
-}
 
 export const PuntoDeVentaRouter = {
     path: "/pos",
-    element: <PuntoDeVenta />,
+    element: <SuspenseMainPageLoading><PuntoDeVenta /></SuspenseMainPageLoading>,
     errorElement: <ErrorPage />,
     children: [
         {
@@ -48,7 +40,8 @@ export const PuntoDeVentaRouter = {
         },
         {
             path: "compras",
-            loader: () => redirect("/pos/compras/1")
+            loader: () => redirect("/pos/compras/1"),
+            element: <p>asdasd</p>
         },
         {
             path: "compras/:id",

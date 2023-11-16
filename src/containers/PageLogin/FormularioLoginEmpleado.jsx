@@ -34,7 +34,7 @@ const usuariosDataBase = [
 const FormSelect = React.memo(({ changeForm }) => {
 
     return (
-        <Col className="my-2">
+        <Col className="my-2 bg-da">
             <FloatingLabel
                 controlId="floatingSelect"
                 label="Selecciona un usuario"

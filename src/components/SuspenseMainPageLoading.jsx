@@ -1,23 +1,17 @@
 import { Suspense } from "react";
-import { primeraLetraMayuscula } from "../helper/primeraLetraMayuscula";
 import styles from "@/styles/SuspenseMainPageLoading.module.css"
 import { SvgHouse } from "./SvgHouse";
+import { RutasInterface } from "./RutasInterface";
 
 
 const Rutas = () => {
-
-    const path = window.location.pathname.split("/").filter(item => item.length !== 0)
 
     return (
         <div
             style={{ top: "4%", left: "5%" }}
             className="position-absolute  align-items-center d-flex text-white">
-            <SvgHouse/>
-            {
-                path.map(item =>
-                    <p key={item} className="m-0 pt-2 fs-6 ls-3 mx-1">/ {primeraLetraMayuscula(item)}</p>
-                )
-            }
+            <SvgHouse />
+            <RutasInterface />
         </div>
     )
 

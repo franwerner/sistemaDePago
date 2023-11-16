@@ -15,7 +15,6 @@ export const algoritmoDeOrden = (parametros = {}) => {
         return (prioridadA ? prioridadA[0] : 0) - (prioridadB ? prioridadB[0] : 0)
     })
 
-
     const ordernAscendente = (a = "", b = "") => {
         if (isNaN(a) || isNaN(b)) {
             return b.localeCompare(a)

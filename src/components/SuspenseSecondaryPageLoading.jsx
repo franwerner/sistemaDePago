@@ -1,29 +1,24 @@
 import React, { Suspense } from "react";
 import { Spinner } from "react-bootstrap";
 import styles from "@/styles/SuspenseLoading.module.css"
-import { primeraLetraMayuscula } from "../helper/primeraLetraMayuscula";
 import { useLocation } from "react-router-dom";
 import { SvgHouse } from "./SvgHouse";
+import { RutasInterface } from "./RutasInterface";
 
 const Rutas = () => {
 
   const { pathname } = useLocation()
 
-  const path = pathname.split("/").filter(item => item.length !== 0 && item !== "pos")
+  const color = "746AF4"
 
   return (
     <div
       id={styles.rutasContenedor}
       className="position-absolute  align-items-center d-flex text-ligthdark">
 
-    <SvgHouse color = {"746AF4"}/>
-    
-      {
+      <SvgHouse color={color} />
 
-        path.map(item =>
-          <p key={item} className="m-0 pt-2  fs-6 ls-3 mx-1">/ {primeraLetraMayuscula(item)}</p>
-        )
-      }
+      <RutasInterface textColor={"555"} color={color} />
     </div>
   )
 

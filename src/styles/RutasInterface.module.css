@@ -1,0 +1,12 @@
+#ruta:hover #linea {
+    display: block;
+}
+
+#linea {
+    display: none;
+    left: 8%;
+    bottom: 0%;
+    height: 0px;
+    z-index: -1;
+    width: 90%;
+}
