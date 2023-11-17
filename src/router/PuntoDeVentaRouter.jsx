@@ -16,7 +16,7 @@ const ErrorPage = lazy(() => import("@/components/ErrorPage"))
 
 export const PuntoDeVentaRouter = {
     path: "/pos",
-    element: <SuspenseMainPageLoading><PuntoDeVenta /></SuspenseMainPageLoading>,
+    element: <SuspenseMainPageLoading><PuntoDeVenta/></SuspenseMainPageLoading>,
     errorElement: <ErrorPage />,
     children: [
         {
