@@ -28,6 +28,8 @@ const CardTitulo = memo(({ resto, id, nombre, modificarResto }) => {
         <Card.Title
             className={`${styles.cardTitulo} position-absolute  w-100 text-end`}>
             <Button
+                type="button"
+                aria-label="Agregar resto"
                 className="border-0"
                 variant="none"
                 onClick={onClick}>
@@ -75,8 +77,9 @@ const RestoForm = memo(forwardRef(({ modificarResto, id, nombre, resto = 0, tipo
 
     return (
         <Form.Control
+            aria-label="resto del total"
             ref={inputRef}
-            tabIndex={1}
+            tabIndex={0}
             onChange={changeForm}
             value={calculo}
             name="resto"
@@ -129,7 +132,7 @@ const MetodosDePagosCard = ({ tipo, nombre, modificarResto, id, resto }) => {
     return (
         <Card
             ref={cardRef}
-            tabIndex={1}
+            tabIndex={0}
             onMouseLeave={onMouseLeave}
             onClick={onMouseEvents}
             onMouseEnter={onMouseEvents}

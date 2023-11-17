@@ -41,7 +41,8 @@ const BuscadorInput = ({ texto = "" }) => {
                     onChange={changeForm}
                     placeholder={`Buscar ${texto}....`}
                     autoComplete="off"
-                    aria-label="Search" style={{ boxShadow: "none" }} />
+                    aria-label={`Busqueda de  ${texto}`}
+                    style={{ boxShadow: "none" }} />
             </InputGroup>
         </Form>
     )

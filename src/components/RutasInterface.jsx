@@ -12,7 +12,7 @@ export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
     return (
         <Row className="m-0 p-1 p-md-3 p-lg-4 p-xl-5  d-flex justify-content-start w-100 position-sm-absolute ">
-            <Col className="align-items-center p-1 d-flex">
+            <Col className="align-items-center  p-1 d-flex">
 
                 <SvgHouse color={color} />
 
@@ -26,7 +26,7 @@ export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
                             <Link
                                 style={{ textDecoration: "none", color: `#${textColor}` }}
                                 key={index}
-                                className="z-1 fs-6 ls-3 mx-1"
+                                className="z-1 fs-4 ls-3 mx-1"
                                 to={concatenacionDeRutas(index)}>
                                 /{primeraLetraMayuscula(item)}
                             </Link>

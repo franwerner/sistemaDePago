@@ -14,7 +14,9 @@ const BotonRotacion = ({ alternarMostrar }) => {
 
     return (
         <Button
-            style={{ color: "#555"}}
+            type="button"
+            aria-label="rotacion"
+            style={{ color: "#555" }}
             className="border-2 p-2 d-flex align-items-center rounded-3 border-secondary"
             variant="none"
             onClick={onClick}>
