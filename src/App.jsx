@@ -1,4 +1,4 @@
-import { Link, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
 import { Suspense, lazy } from 'react';
 import { PuntoDeVentaRouter } from './router/PuntoDeVentaRouter';
@@ -17,12 +17,6 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <SuspenseMainPageLoading><Link to={"/empleado"}>Ir login</Link></SuspenseMainPageLoading>,
-    errorElement: <ErrorPage />,
-
-  },
-  {
-    path: "/seleccion",
     element: <SuspenseMainPageLoading><Seleccion /></SuspenseMainPageLoading>,
     errorElement: <ErrorPage />,
   },

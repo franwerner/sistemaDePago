@@ -1,0 +1,48 @@
+.tablaDeCompras thead {
+    height: 60px !important;
+}
+
+.tablaDeCompras tbody tr {
+    height: 50px;
+    cursor: pointer;
+}
+
+.tablaDeCompras tbody tr th {
+    max-width: 200px;
+}
+
+.tablaDeCompras {
+    font-size: 16px;
+}
+
+@media (max-width : 768px) {
+    .tablaDeCompras {
+        font-size: 13px;
+    }
+}
+
+
+/*TablaListaDeProductos*/
+
+
+.tablaListaDeProductos tbody tr th {
+    max-width: 100px;
+}
+
+#thProductosNombre {
+    max-width: 350px;
+}
+
+#thProductosTotal {
+    max-width: 200px;
+}
+
+
+.btnSeleccionado {
+    border-bottom: 4px solid #928cec;
+}
+
+.contenedorDeSecciones {
+    max-height: 350px;
+    min-height: 100px;
+}

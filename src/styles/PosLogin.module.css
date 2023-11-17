@@ -2,7 +2,7 @@
 .posLoginContainer>div:nth-child(2) {
     box-shadow: 14px 5px 25px -5px rgba(189, 183, 189, 1);
     min-height: 400px;
-    max-height: 450px;
+    max-height: 500px;
     max-width: 600px;
 }
 

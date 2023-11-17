@@ -1,15 +1,15 @@
 @font-face {
     font-family: "Montserrat";
-    src: url(fonts/Montserrat-VariableFont_wght.ttf);
-    font-display: auto;
+    src: url(fonts/Montserrat-VariableFont_wght.ttf),format("woff2");
+    font-display: swap;
 }
 
 body {
     min-width: 200px;
     overflow: scroll;
     height: 100vh;
+    max-height: 100vh;
 }
-
 
 * {
     font-family: "Montserrat";
@@ -18,6 +18,10 @@ body {
     transition: 0.150s all;
     letter-spacing: 1px;
     scroll-behavior: smooth;
+}
+
+table,th,td,tbody,p{
+    transition: 0s !important;
 }
 
 .bg-hoverdark:hover {
@@ -62,12 +66,14 @@ body::-webkit-scrollbar {
 
 .scrollBarPersonalizada {
     overflow-y: overlay;
-
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar {
+    cursor: grab; 
+  }
+  
+.scrollBarPersonalizada::-webkit-scrollbar {
     width: 0.5em;
-    /* Ajusta el ancho de la barra de desplazamiento vertical */
     height: 0.5em;
 }
 

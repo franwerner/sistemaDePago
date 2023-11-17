@@ -2,14 +2,14 @@ import { calcularPorcentaje } from "@/helper//calcularPorcentaje";
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import { Table } from "react-bootstrap";
-import styles from "@/styles/SeccionDeCaja.module.css"
+import styles from "@/styles/SeccionDeCompras.module.css"
 
 const productosTest = //En la base de datos, esto ya viene con el precio con la tarifa aplicada.
 {
     venta: { tarifa: "mercadopago", porcentaje: 10, metodosDePago: [{ qr: 1000, trasferencia: 1000 }], total: 2000 },
     productos: [
         { id: 1, nombre: "Pan", metodo: "kg", cantidad: 12, descuento: 0, precio: 210, precioModificado: 100, editado: true },
-        { id: 2, nombre: "Factura", metodo: "und", cantidad: 12, descuento: 19, precio: 210, precioModificado: 210, editado: false },
+        { id: 2, nombre: "Factura de dulcefffffffffffffffffffffffffffff ", metodo: "und", cantidad: 12444, descuento: 19, precio: 210, precioModificado: 210, editado: false },
         { id: 3, nombre: "Leche", metodo: "und", cantidad: 12, descuento: 100, precio: 210, precioModificado: 210, editado: false },
     ]
 }
@@ -23,7 +23,7 @@ const ThEditado = ({ editado, precio }) => {
     return (
         <th
             onClick={alternarMostrar}
-            className={`${styles.precioModificado} ${editado && "text-danger"} fw-medium text-uppercase`}>
+            className={`${editado && "text-danger"} bg-hover cursor-pointer fw-medium text-uppercase`}>
             {
                 !mostrar ?
                     isEditado
@@ -41,29 +41,31 @@ const TBody = ({ nombre, metodo, cantidad, descuento, editado, precioModificado,
 
     const descuentoAplicado = calcularPorcentaje({ numero: total, porcentaje: descuento })
 
-
     return (
-        <tr
-            className="text-center">
-            <th className="fw-normal">
+        <tr className="text-center">
+            <th
+                id={styles.thProductosNombre}
+                className="fw-normal text-truncate   ">
                 {nombre}
             </th>
-            <th className="fw-normal text-uppercase">
+            <th className="fw-normal  text-truncate   text-uppercase">
                 {metodo}
             </th>
-            <th className="fw-normal">
+            <th className="fw-normal  text-truncate  ">
                 {cantidad}
             </th>
 
             <ThEditado editado={editado} precio={precio} />
 
-            <th className="fw-normal text-nowrap">
+            <th className="fw-normal  text-truncate   text-nowrap">
                 $ {separarNumerosConDecimales(precioModificado)}
             </th>
             <th className="fw-normal">
                 {descuento}%
             </th>
-            <th className="fw-semibold text-nowrap">
+            <th
+                id={styles.thProductosTotal}
+                className="fw-semibold text-nowrap text-truncate">
                 $ {separarNumerosConDecimales(total - descuentoAplicado)}
             </th>
         </tr>
@@ -73,7 +75,7 @@ const TBody = ({ nombre, metodo, cantidad, descuento, editado, precioModificado,
 const TablaListaDeProductos = () => {
 
     return (
-        <Table hover >
+        <Table className={`${styles.tablaListaDeProductos} d-block  m-0`} hover >
             <thead className=" align-middle text-center  ">
                 <tr>
                     <th className="p-3">Item</th>

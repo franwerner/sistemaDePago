@@ -6,17 +6,20 @@ export const SuspenseCompontentsLoading = ({ children, texto = "" }) => {
 
 
     return (
-        <Suspense children={children} fallback={
-            <div  className=" p-0  d-flex bg-danger  flex-column align-items-center">
-                <Spinner
-                    animation="border"
-                    style={{ height: "30px", width: "30px" }}
-                    variant="secondary" />
+        <Suspense
+            children={children}
+            fallback={
 
-                <p className="m-0 fw-medium text-ligthdark ls-3 ">{texto}...</p>
+                <div className=" p-0 justify-content-center  d-flex flex-column align-items-center">
+                    <Spinner
+                        animation="border"
+                        style={{ height: "30px", width: "30px" }}
+                        variant="secondary" />
 
-            </div>
-        }>
+                    <p className="m-0 fw-medium text-ligthdark ls-3 ">{texto}</p>
+
+                </div>
+            }>
         </Suspense>
     );
 };

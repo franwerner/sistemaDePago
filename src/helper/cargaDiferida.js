@@ -15,17 +15,19 @@
 
 
 export const cargaDiferida = (importacion = () => { }) => {
-    
 
     const cargar = async () => {
         const res = await importacion().then(resultado => resultado)
-
         return res.default
     }
 
     const ejecutar = async (props) => {
+
+        const CopiaProps = props
+
         const fx = await cargar()
-        return fx(props)
+
+        return fx(CopiaProps)
     }
 
     return ejecutar

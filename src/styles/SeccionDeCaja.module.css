@@ -66,54 +66,6 @@
     color: #8689B6;
 }
 
-/*Seccion Pedidos*/
-
-
-
-.tablaDePedidos thead {
-    height: 60px !important;
-}
-
-.tablaDePedidos tbody tr {
-    height: 50px;
-    cursor: pointer;
-}
-
-.tablaDePedidos tbody tr th {
-    max-width: 200px;
-}
-
-
-.tablaDePedidos {
-    font-size: 16px;
-}
-
-@media (max-width : 768px) {
-    .tablaDePedidos {
-        font-size: 13px;
-    }
-}
-
-.botonesNavegacion {
-    cursor: pointer;
-}
-
-.btnSeleccionado {
-    border-bottom: 4px solid #928cec;
-}
-
-.contenedorDeSecciones {
-    max-height: 350px;
-    min-height: 100px;
-}
-
-.precioModificado {
-    cursor: pointer;
-}
-
-.precioModificado:hover {
-    background-color: #eae7e761;
-}
 
 /*Seccion Pagos*/
 

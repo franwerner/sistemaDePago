@@ -4,12 +4,11 @@ import styles from "@/styles/SeccionDeCaja.module.css"
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import React, { lazy, useContext } from "react";
-import { algoritmoDeOrden } from "@/helper//algoritmoDeOrden";
+import { useAlgoritmoDeOrden } from "@/hooks//useAlgoritmoDeOrden";
 import { QueryParamsContext } from "@/context//Contextos";
-import { retrasoTest } from "@/helper//retrasoTest";
 import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading";
 
-const ModalDetalleDePagos = lazy(() => retrasoTest(import("./ModalDetalleDePagos"), 500))
+const ModalDetalleDePagos = lazy(() => import("./ModalDetalleDePagos"))
 
 const nroDeCaja = 1
 
@@ -83,7 +82,6 @@ const AccordionBody = ({ monto, orden }) => {
 
 const ContextAcordion = React.memo(({ eventKey, callback, nombre, total }) => {
 
-
     const { activeEventKey } = useContext(AccordionContext);
 
     const decoratedOnClick = useAccordionButton(eventKey, () => callback && callback(eventKey));
@@ -111,7 +109,7 @@ export const SeccionDeCajaPagosBody = () => {
 
     const { queryParams } = useContext(QueryParamsContext)
 
-    const { iniciarSort } = algoritmoDeOrden(queryParams)
+    const { iniciarSort } = useAlgoritmoDeOrden(queryParams)
 
     return (
         <Col className={`${styles.accordionContenedor} p-0`}>

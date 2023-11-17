@@ -1,14 +1,15 @@
 import { productoReducerContext, restoDelPagoContext } from "@/context//Contextos";
 import { CambioTotalMemoizado } from "@/hooks//useCalcularCambioTotal";
 import { RestanteTotalMemoizando, useRestanteTotal } from "@/hooks//useRestanteTotal";
-import { lazy, useContext } from "react";
+import { lazy, useCallback, useContext } from "react";
 import { Button, Col, Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import buscarCodigoDeMensajes from "@/helper//buscarCodigoDeMensajes";
 import TotalAVender from "@/components//TotalAVenderMemoizado";
-import { retrasoTest } from "@/helper//retrasoTest";
 import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading";
-const TicketDeVenta = lazy(() => retrasoTest(import("@/components/TicketDeVenta"), 5999))
+import { cargaDiferida } from "@/helper//cargaDiferida";
+const TicketDeVenta = lazy(() => import("@/components/TicketDeVenta"))
+
+const buscarCodigo = cargaDiferida(() => import("@/helper/buscarCodigoMensajePersonalizado"))
 
 const BotonValidar = () => {
 
@@ -22,6 +23,10 @@ const BotonValidar = () => {
 
     const validacion = restante == 0 && listaProducto.length > 0
 
+    const onBuscarCodigo = useCallback((codigo) => {
+        buscarCodigo(codigo)
+    }, [])
+
     const onClick = () => {
         try {
             if (!validacion) throw new ErrorEvent("2F")
@@ -34,11 +39,11 @@ const BotonValidar = () => {
 
             navigate("/pos/venta")
 
-            buscarCodigoDeMensajes({ codigo: "3F" })
+            onBuscarCodigo({ codigo: "3F" })
 
         } catch (error) {
 
-            buscarCodigoDeMensajes({ codigo: `${error.type}` })
+            onBuscarCodigo({ codigo: `${error.type}` })
 
         }
 

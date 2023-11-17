@@ -39,6 +39,7 @@ export const SeccionSubRutas = memo(({ subRutas = [], ruta }) => {
 
     const filtradoDeRutas = pathname.split("/").filter(item => subRutas.includes(item))
 
+
     return (
         <>
             {

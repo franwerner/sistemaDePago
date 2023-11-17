@@ -6,7 +6,7 @@ export const SvgLupa = (props) => {
             {...props}
             fill="#fff"
             stroke="#fff"
-            className={`cursor-pointer`}
+            className={` cursor-pointer`}
             transform="rotate(50)"
             strokeWidth={0.005}
 

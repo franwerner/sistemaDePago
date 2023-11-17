@@ -1,11 +1,12 @@
-import { Suspense, memo, useEffect, useState } from "react"
-import { Accordion, AccordionContext, Card, Spinner, Stack, useAccordionButton } from "react-bootstrap"
-import { Link, useLocation, useNavigation } from "react-router-dom"
+import { memo, useEffect } from "react"
+import { Accordion, AccordionContext, Card, Stack, useAccordionButton } from "react-bootstrap"
+import { Link, useLocation } from "react-router-dom"
 import styles from "@/styles/OffCavansNavegacion.module.css"
 import { useContext } from "react"
 import { SeccionSubRutas } from "./SeccionSubRutas"
+import { splitDeRutas } from "@/helper//splitDeRutas"
 
-const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
+const ContextAcordion = memo(({ children, eventKey, callback, rutaActual, pathname }) => {
 
     const { activeEventKey } = useContext(AccordionContext);
 
@@ -13,13 +14,19 @@ const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
 
     const iconConfig = activeEventKey == eventKey ? "iconActivado" : "iconDesactivado"
 
+    const rutas = splitDeRutas()
+
     useEffect(() => {
 
         if (rutaActual && activeEventKey !== eventKey) {
             decoratedOnClick()
         }
+        else if (rutas.length == 1 && activeEventKey !== null) {
+            decoratedOnClick()
+        }
 
     }, [rutaActual, activeEventKey])
+
     return (
         <div
             onClick={decoratedOnClick}
@@ -65,7 +72,7 @@ export const AccordionSeccionesOffCavans = memo(({ nombre, icon, subRutas, index
                     style={{ textDecoration: "none" }}
                     to={nombreLowerCase}>
 
-                    <ContextAcordion rutaActual={rutaActual} eventKey={index} >
+                    <ContextAcordion rutaActual={rutaActual} pathname={pathname} eventKey={index} >
 
                         <BotonRuta
                             nombre={nombre}

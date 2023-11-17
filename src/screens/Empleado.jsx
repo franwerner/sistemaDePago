@@ -1,36 +1,21 @@
 import { Col, Container, Row } from "react-bootstrap"
 import styles from "@/styles/PosLogin.module.css"
 import { LoginContainer } from "@/containers/pageLogin/LoginContainer"
-import { SvgHouse } from "@/components/SvgHouse"
 import { RutasInterface } from "@/components/RutasInterface"
 
-
-
-const Rutas = () => {
-
-    return (
-        <Row
-            style={{ top: "4%", left: "5%" }}
-            className=" p-4 m-0 align-items-center d-flex text-white">
-            <Col className="d-flex">
-                <SvgHouse color = {"746af4"}/>
-                <RutasInterface color = {"746af4"} textColor = {"555"} />
-            </Col>
-        </Row>
-    )
-
-}
 
 const Empleado = () => {
 
     return (
         <Container
             fluid
-            className={`${styles.posLoginContainer} bg-white w-100 d-flex flex-column vh-100  `}>
+            className={`${styles.posLoginContainer}  bg-white d-flex flex-column  p-0 vh-100  `}>
 
-            <Rutas />
+            <RutasInterface
+                color={"746af4"}
+                textColor={"555"} />
 
-            <Row className="h-50 rounded-4 m-auto align-items-center d-flex flex-row justify-content-center animate__animated animate__bounceInLeft  ">
+            <Row className="h-75 m-auto rounded-4 mx-auto animate__animated animate__bounceInLeft  ">
 
                 <Col
                     xs={3}

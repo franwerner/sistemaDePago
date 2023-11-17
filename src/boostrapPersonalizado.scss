@@ -56,6 +56,34 @@ $letter-spacing : (0 : 10px,
   }
 }
 
+/*Position Absolute*/
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@mixin media-breakpoint-up($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+$position-classes: (
+  "sm": $breakpoint-sm,
+  "md": $breakpoint-md,
+  "lg": $breakpoint-lg,
+  "xl": $breakpoint-xl
+);
+
+@each $breakpoint, $width in $position-classes {
+  @include media-breakpoint-up($width) {
+    .position-#{$breakpoint}-absolute {
+      position: absolute;
+    }
+  }
+}
+
+
 .btn-primary {
   color: white !important;
 }

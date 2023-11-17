@@ -1,9 +1,7 @@
 import CarritoDeComprasIndicador from "@/components//CarritoDeComprasIndicador";
 import { productoReducerContext } from "@/context//Contextos";
-import { obtenerSearchParams } from "@/helper//obtenerSearchParams";
 import { memo, useCallback, useContext } from "react";
 import { Stack } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
 import styles from "@/styles/seccionDeProductos.module.css"
 import ProductoCard from "@/components//ProductoCard";
 
@@ -171,12 +169,6 @@ const ContainerDeProductos = memo(({ containerRef }) => {
 
     const { agregarProducto } = useContext(productoReducerContext)
 
-    const { search } = useLocation()
-
-    const seccionSlice = obtenerSearchParams(search)
-
-    const seccionActual = !secciones[seccionSlice] ? secciones["home"] : secciones[seccionSlice]
-
     const onClick = () => {
         containerRef.current.scrollTop = 0
     }
@@ -191,7 +183,7 @@ const ContainerDeProductos = memo(({ containerRef }) => {
                 <CarritoDeComprasIndicador />
             </div>
 
-            {seccionActual.map((producto, index) =>
+            {secciones["home"].map((producto, index) =>
                 <ProductoMemoizado
                     key={index}
                     producto={producto}

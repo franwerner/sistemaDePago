@@ -1,10 +1,8 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import styles from "@/styles/ModalDeSecciones.module.css"
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales";
-import { obtenerSearchParams } from "../helper/obtenerSearchParams";
-
 
 
 const secciones = [
@@ -17,17 +15,13 @@ const secciones = [
 
 const Secciones = React.memo(({ nombre }) => {
 
-    const { search } = useLocation()
-
-    const searchSeccion = obtenerSearchParams(search)
-
 
     return (
         <Link
             style={{ textDecoration: "none" }}
             to={`?seccion=${nombre}`}>
 
-            <div className={`${styles.containerSeccion} shadow-sm  ${searchSeccion == nombre && styles.seccionActual} my-1 p-3 d-flex justify-content-between align-items-center rounded-3`}>
+            <div className={`${styles.containerSeccion} shadow-sm  my-1 p-3 d-flex justify-content-between align-items-center rounded-3`}>
                 <p className="m-0 text-uppercase text-truncate text-ligthdark">
                     {nombre}
                 </p>

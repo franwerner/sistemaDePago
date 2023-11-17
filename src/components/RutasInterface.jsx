@@ -1,39 +1,46 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { primeraLetraMayuscula } from "@/helper/primeraLetraMayuscula"
 import styles from "@/styles/Rutasinterface.module.css"
-import { concatenacionDeRutas } from "../helper/concatenacionDeRutas"
+import { concatenacionDeRutas } from "@/helper/concatenacionDeRutas"
+import { splitDeRutas } from "../helper/splitDeRutas"
+import { SvgHouse } from "./SvgHouse"
+import { Col, Row } from "react-bootstrap"
 
 export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
-    const { pathname } = useLocation()
-
-    const arrayRutas = pathname.split("/").filter(item => item.length !== 0)
+    const rutas = splitDeRutas()
 
     return (
-        <>
-            {
-                arrayRutas.map((item, index) =>
-                    <div
-                        id={styles.ruta}
-                        className="mt-1 position-relative "
-                        key={index}>
-                        <Link
-                            style={{ textDecoration: "none", color: `#${textColor}` }}
-                            key={index}
-                            className="z-1 fs-6 ls-3 mx-1"
-                            to={concatenacionDeRutas(index, arrayRutas)}>
-                            /{primeraLetraMayuscula(item)}
-                        </Link>
-                        <span
-                            style={{ borderBottom: `2px solid #${color}` }}
-                            className="position-absolute z-1"
-                            id={styles.linea}>
-                        </span>
-                    </div>
+        <Row className="m-0 p-1 p-md-3 p-lg-4 p-xl-5  d-flex justify-content-start w-100 position-sm-absolute ">
+            <Col className="align-items-center p-1 d-flex">
 
-                )
-            }
-        </>
+                <SvgHouse color={color} />
+
+                {
+                    rutas.map((item, index) =>
+                        
+                        <div
+                            id={styles.ruta}
+                            className="mt-1 position-relative "
+                            key={index}>
+                            <Link
+                                style={{ textDecoration: "none", color: `#${textColor}` }}
+                                key={index}
+                                className="z-1 fs-6 ls-3 mx-1"
+                                to={concatenacionDeRutas(index)}>
+                                /{primeraLetraMayuscula(item)}
+                            </Link>
+                            <span
+                                style={{ borderBottom: `1px solid #${color}` }}
+                                className="position-absolute z-1"
+                                id={styles.linea}>
+                            </span>
+                        </div>
+
+                    )
+                }
+            </Col>
+        </Row>
     )
 
 }

@@ -1,15 +1,14 @@
 import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading"
 import { QueryParamsContext } from "@/context//Contextos"
 import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros"
-import { algoritmoDeOrden } from "@/helper//algoritmoDeOrden"
-import { retrasoTest } from "@/helper//retrasoTest"
 import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales"
+import { useAlgoritmoDeOrden } from "@/hooks//useAlgoritmoDeOrden"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
-import styles from "@/styles/SeccionDeCaja.module.css"
+import styles from "@/styles/SeccionDeCompras.module.css"
 import { lazy, memo, useContext } from "react"
 import { Col, Table } from "react-bootstrap"
 
-const ModalDetalleDePedido = lazy(() => retrasoTest(import("./ModalDetalleDeCompra/ModalDetalleDeCompra"), 545))
+const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
 
 const theadTest = [
     { id: 1, "empleado": "Aranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", orden: 1 },
@@ -75,12 +74,12 @@ const TablaDeCompras = () => {
 
     const { queryParams } = useContext(QueryParamsContext)
 
-    const { iniciarSort } = algoritmoDeOrden(queryParams)
+    const { iniciarSort } = useAlgoritmoDeOrden(queryParams)
 
 
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
-            <Table className={styles.tablaDePedidos} hover >
+            <Table className={styles.tablaDeCompras} hover >
                 <thead className="shadow align-middle text-center  position-relative">
                     <tr>
                         <th>Empleado</th>

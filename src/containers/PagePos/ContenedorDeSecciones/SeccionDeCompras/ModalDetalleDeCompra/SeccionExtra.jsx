@@ -3,7 +3,7 @@ import { Stack } from "react-bootstrap";
 
 const SeccionExtra = () => {
     return (
-        <div >
+        <div className="w-100">
             <Stack direction="horizontal" gap={4} className="m-0  p-3">
                 <p style={{ minWidth: "70px" }} className="m-0">
                     Cambio

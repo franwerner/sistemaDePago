@@ -3,12 +3,15 @@ import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPag
 import { ProductoReducerProvider } from "@/context//provider/ProductosReducerProvider";
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider";
 import { TarifaProvider } from "@/context//provider/TarifaProvider";
+import { splitDeRutas } from "@/helper//splitDeRutas";
 import { memo } from "react";
 import { Container } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 
 
 const ContenedorDeSecciones = memo(() => {
+
+    const rutas = splitDeRutas()
 
     return (
         <Container
@@ -21,7 +24,9 @@ const ContenedorDeSecciones = memo(() => {
                     <RestoDelPagoProvider>
 
                         <SuspenseSecondaryPageLoading>
-                            <Outlet />
+                            {
+                                rutas.length == 1 ? <p>asads</p> : <Outlet />
+                            }
                         </SuspenseSecondaryPageLoading>
 
                     </RestoDelPagoProvider>
