@@ -2,14 +2,15 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEventoMostrar } from "@/hooks/useEventoMostrar";
 import styles from "@/styles/CardSeleccionDeNavegacion.module.css"
-import React, { useEffect, useRef, } from "react";
+import { memo } from "react";
 
 
-const CardBody = React.memo(({ src, tipo, color }) => {
+const CardBody = memo(({ src, tipo, color }) => {
     return <Card.Body
         style={{ borderTop: `8px solid ${color}` }}
         className="d-flex rounded    justify-content-center flex-column">
         <Card.Img
+            alt={tipo}
             width={160}
             height={160}
             srcSet={src}
@@ -28,7 +29,7 @@ const CardSeleccionDeNavegacion = ({ src, tipo, color, link }) => {
     const { mostrar, alternarMostrar } = useEventoMostrar();
 
     return (
-        <Link  style={{ textDecoration: "none" }} to={link}>
+        <Link style={{ textDecoration: "none" }} to={link}>
             <Card
                 onMouseEnter={alternarMostrar}
                 onMouseLeave={alternarMostrar}

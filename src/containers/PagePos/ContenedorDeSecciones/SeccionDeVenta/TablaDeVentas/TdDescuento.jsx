@@ -31,7 +31,7 @@ const TdDescuento = React.memo(({ aplicarDescuento, descuento, nombre }) => {
                     onMouseLeave={onMouseLeave}
                     onChange={changeForm}
                     name="descuento"
-                    value={descuento}
+                    value={Math.abs(descuento)}
                     aria-describedby="descuentoTabla"
                     type="number"
                     className="text-center p-1"

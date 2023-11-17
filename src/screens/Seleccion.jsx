@@ -38,14 +38,11 @@ const Seleccion = () => {
                 <Col className=" p-0 mt-2 mt-md-0  d-flex justify-content-center  flex-wrap ">
 
                     {
-                        cards.map(({ link, tipo, color, src }) =>
+                        cards.map((props, index) =>
 
                             <CardSeleccionDeNavegacion
-                                key={tipo}
-                                color={color}
-                                tipo={tipo}
-                                link={link}
-                                src={src}
+                                key={index}
+                                {...props}
                             />
 
                         )

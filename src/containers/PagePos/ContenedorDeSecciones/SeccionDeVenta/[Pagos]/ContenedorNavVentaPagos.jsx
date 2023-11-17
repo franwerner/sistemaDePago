@@ -26,6 +26,8 @@ const BotonValidar = () => {
     const onBuscarCodigo = useCallback((codigo) => {
         buscarCodigo(codigo)
     }, [])
+    
+
 
     const onClick = () => {
         try {

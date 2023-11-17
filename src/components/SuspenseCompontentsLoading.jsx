@@ -1,8 +1,8 @@
-import { Suspense } from "react";
+import { Suspense, memo } from "react";
 import { Spinner } from "react-bootstrap";
 
 
-export const SuspenseCompontentsLoading = ({ children, texto = "" }) => {
+export const SuspenseCompontentsLoading = memo(({ children, texto = "" }) => {
 
 
     return (
@@ -22,4 +22,4 @@ export const SuspenseCompontentsLoading = ({ children, texto = "" }) => {
             }>
         </Suspense>
     );
-};
+})

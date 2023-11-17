@@ -26,7 +26,7 @@ export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
                             <Link
                                 style={{ textDecoration: "none", color: `#${textColor}` }}
                                 key={index}
-                                className="z-1 fs-4 ls-3 mx-1"
+                                className="z-1 fs-6 ls-3 mx-1"
                                 to={concatenacionDeRutas(index)}>
                                 /{primeraLetraMayuscula(item)}
                             </Link>

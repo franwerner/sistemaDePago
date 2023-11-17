@@ -9,6 +9,20 @@ const ordenList = {
     ">": "↑"
 }
 
+const DropwDownItems = ({ nombre, onClick, prioridad, orden }) => {
+
+    const buscarPropiedad = orden ? orden : ""
+
+    return (
+        <Dropdown.Item
+            className="fw-medium"
+            data-name={nombre}
+            data-prioridad={prioridad}
+            onClick={onClick}>
+            {nombre}{ordenList[buscarPropiedad]}
+        </Dropdown.Item>
+    )
+}
 
 const DropwDownParent = memo(({ children }) => {
     return (
@@ -28,20 +42,6 @@ const DropwDownParent = memo(({ children }) => {
     )
 })
 
-const DropwDownItems = ({ nombre, onClick, prioridad, orden }) => {
-
-    const buscarParametro = orden ? orden : ""
-
-    return (
-        <Dropdown.Item
-            className="fw-medium"
-            data-name={nombre}
-            data-prioridad={prioridad}
-            onClick={onClick}>
-            {nombre}{ordenList[buscarParametro]}
-        </Dropdown.Item>
-    )
-}
 
 
 const DropDownOrdenDefault = ({ dropwDownList = [] }) => {
