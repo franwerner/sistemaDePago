@@ -5,7 +5,7 @@ const DropDownFilterDefault = ({ children }) => {
 
     return (
 
-        <Dropdown className="position-relative" autoClose="outside">
+        <Dropdown.Menu show className="position-relative z-1  " autoClose="outside">
             <Dropdown.Toggle
                 variant="none"
                 id="dropdown-filter">
@@ -15,7 +15,7 @@ const DropDownFilterDefault = ({ children }) => {
             <Dropdown.Menu>
                 {children}
             </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown.Menu>
     )
 
 }

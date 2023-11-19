@@ -1,14 +1,10 @@
+
 #navBar {
     min-height: 70px;
     max-height: 120px;
-
 }
 
-#navBarContainer{
-    min-width: 320px;
-}
-
-.imgContainer{
+.imgContainer {
     min-width: 60px;
 }
 
@@ -16,18 +12,28 @@
     object-fit: cover;
 }
 
-.iconBars {
-    cursor: pointer;
-}
+@media (max-width : 375px) {
 
-.iconBars:active {
-    transform: scale(1.1);
-}
-
-
-@media (max-width : 350px){
-    .imgContainer, .imgContainer img {
-       display: none;
-       min-width: 0px;
+    .imgContainer,
+    .imgContainer img {
+        display: none;
+        visibility: hidden;
+        min-width: 0px;
     }
+
+    #usuarioInfo {
+        width: 150px ;
+    }
+}
+
+@media (max-width : 575px){
+    #usuarioInfo {
+        max-width: 175px;
+     }
+}
+
+@media (max-width : 768px){
+    #usuarioInfo {
+        max-width: 300px;
+     }
 }

@@ -31,7 +31,7 @@ const SeccionDeComprasNav = () => {
             <Col
                 md={{ order: "0", span: "auto" }}
                 xs={{ order: "3", span: "6" }}
-                className="d-flex p-1 align-items-center">
+                className="d-flex p-1 position-relative align-items-center">
                 <DropDownOrdenDefault dropwDownList={dropwDownList} />
             </Col>
             <Col

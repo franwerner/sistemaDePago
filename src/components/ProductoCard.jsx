@@ -11,7 +11,10 @@ const CardFavorito = () => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <div onClick={alternarMostrar} className=" bg-primary-2 rounded-bottom-3 mx-2 p-1 py-2 d-flex align-items-center ">
+        <div
+            id="contenedor-favorito"
+            onClick={alternarMostrar}
+            className=" bg-primary-2 rounded-bottom-3 mx-2 p-1 py-2 d-flex align-items-center ">
             <i className={`fa-star ${mostrar && "animate__animated animate__bounceInDown"} text-white ${mostrar ? "fa-solid" : "fa-regular"}`}></i>
         </div>
     )
@@ -24,12 +27,20 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
 
     const { onMouseEnter, refFocusElement } = useFocusMouseElements()
 
+    const onClick = (e) => {
+
+        if (e.target.id !== "contenedor-favorito" && e.target.tagName !== "I" ) {
+            agregarProducto(producto)
+        }
+
+    }
+
     return (
         <Card
-            tabIndex={1}
+            tabIndex={0}
             ref={refFocusElement}
             onMouseEnter={onMouseEnter}
-            onClick={agregarProducto}
+            onClick={onClick}
             className={`${styles.cardContainer} m-2 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
@@ -39,7 +50,7 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
 
             <Card.Img
                 sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 33.3vw"
-                alt={`${nombre}-${metodo}-${precio}`}
+                alt={`${nombre}-$${precio}`}
                 style={{ objectFit: "contain", minHeight: "90px" }}
                 width={90}
                 loading="lazy"

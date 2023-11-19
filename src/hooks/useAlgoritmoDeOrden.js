@@ -4,6 +4,7 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
 
 
     const dependenciaPrioridad = Object.keys(parametros)
+
     const dependenciaArray = Object.values(parametros)
 
 

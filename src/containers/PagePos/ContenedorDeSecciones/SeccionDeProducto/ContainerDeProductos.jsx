@@ -151,14 +151,9 @@ const secciones = {
 
 const ProductoMemoizado = memo(({ agregarProducto, producto }) => {
 
-
-    const onClick = useCallback((e) => {
-        e.target.tagName !== "I" && agregarProducto(producto)
-    }, [producto])
-
     return (
         <ProductoCard
-            agregarProducto={onClick}
+            agregarProducto={agregarProducto}
             producto={producto} />
     )
 })

@@ -1,8 +1,9 @@
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import { SvgLupa } from "./SvgLupa";
 import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "./RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
+import { splitDeRutas } from "../helper/splitDeRutas";
 
 const ListaDeErrores = [
   { tipo: 301, text: "La página o recurso solicitado ha sido movido permanentemente a una nueva ubicación. Actualiza tus marcadores o sigue el enlace proporcionado." },
@@ -21,14 +22,189 @@ const ListaDeErrores = [
   { tipo: 511, text: "Se requiere autenticación adicional para acceder a la red. Verifica tus credenciales o contacta al administrador de red." }
 ];
 
+const rutasAnidadas = [
+  {
+    raiz: "pos", subrutas: [
+      { ruta: "compras" },
+      { ruta: "caja" },
+      { ruta: "clientes" },
+      { ruta: "almacen" },
+      { ruta: "venta" },
+      { ruta: "productos" },
+    ],
+  },
+  {
+    raiz: "sucursales", subrutas: [
+
+    ],
+  },
+  {
+    raiz: "empleado", subrutas: [
+
+    ],
+  }
+]
+
+const bucleK = () => {
+
+  for (let i = 0; i < ruta.length; i++) {
 
 
+    const buscador = ruta.match(raiz[i])
+
+    if (
+      buscador && buscador[0].length &&
+      !coincidenciasSet.has(ruta[i])
+    ) {
+
+      coincidencias++;
+      coincidenciasSet.add(ruta[i]);
+    }
+
+  }
+}
+
+const buscarRutasRaiz = (rutaRaiz) => {
+
+  const ruta = rutaRaiz.toLowerCase()
+
+  let coincidenciaTotal = 0
+
+  let coincidenciaTipo = ""
+
+  rutasAnidadas.forEach(({ raiz }, index) => {
+
+    let coincidencias = 0
+    let coincidenciasSet = new Set();
+    let coincidenciasStart = 0
+    for (let i = 0; i < ruta.length; i++) {
+
+      if (raiz.startsWith(ruta[i])) {
+        coincidenciasStart++
+      }
+
+      const buscador = ruta.match(raiz[i])
+
+      if (
+        buscador && buscador[0].length &&
+        !coincidenciasSet.has(ruta[i])
+      ) {
+
+        coincidencias++;
+        coincidenciasSet.add(ruta[i]);
+      }
+
+    }
+
+    if (coincidencias + coincidenciasStart > coincidenciaTotal && coincidenciasStart !== 0) {
+
+      coincidenciaTotal = coincidencias
+      coincidenciaTipo = rutasAnidadas[index]
+    }
+  })
+
+  return coincidenciaTipo
+
+}
+
+const AlgoritmoDeBusquedaPagina = () => {
+
+  const rutas = splitDeRutas()
+
+  const rts = buscarRutasRaiz(rutas[0])
+
+  if (!rts) return ""
+
+
+  let coincidenciaTotal = 0
+
+  let coincidenciaTipo = ""
+
+  for (let i = 0; i < rutas.length; i++) {
+
+    const rutaActual = rutas[i].toLocaleLowerCase()
+
+    for (let j = 0; j < rts.subrutas.length > 0; j++) {
+
+      let coincidencias = 0
+
+      let coincidenciasStart = 0
+
+      let coincidenciasSet = new Set();
+
+      const rutaAnindadActual = rts.subrutas[j].ruta
+
+      for (let k = 0; (k < rutaActual.length && rutas.length == 2); k++) {
+
+        // if (rutaAnindadActual.startsWith(rutaActual[k])) {
+        //   console.log(rutaActual[k])
+        //   coincidenciasStart++
+        // }
+
+        const buscador = rutaActual.match(rutaAnindadActual[k])
+
+        if (
+          buscador && buscador[0].length &&
+          !coincidenciasSet.has(buscador[0])
+        ) {
+
+          coincidencias++;
+          coincidenciasSet.add(buscador[0]);
+        }
+
+      }
+
+      if (coincidencias + coincidenciasStart > coincidenciaTotal && coincidenciasStart !== 0) {
+
+        coincidenciaTotal = coincidencias
+        coincidenciaTipo = rutaAnindadActual
+      }
+
+    }
+
+console.log(coincidenciaTotal)
+  }
+
+  return `${rts.raiz}/${coincidenciaTipo}`
+
+}
+
+
+
+const ErrorPageRuta = ({ algoritmo }) => {
+
+  const ejecutar = algoritmo && AlgoritmoDeBusquedaPagina()
+
+  return (
+    <>
+
+      {
+        algoritmo &&
+        <div className="d-flex justify-content-center align-items-center my-3">
+          Posible Ruta
+          <div className="vr mx-3"></div>
+          {
+            ejecutar.length == 0 ? <p className="m-0 fw-semibold text-danger">No se encontro ninguna coincidencia.</p> :
+              <Link
+                className="text-uppercase"
+                to={ejecutar}>
+                {ejecutar}
+              </Link>
+          }
+        </div>
+      }
+    </>
+
+  )
+}
 
 
 export default function ErrorPage() {
   const error = useRouteError();
 
   const buscarError = ListaDeErrores.find(err => err.tipo == error.message || err.tipo == error.status)
+
+  const algoritmo = buscarError.tipo == 404
 
   return (
     <Container
@@ -58,6 +234,7 @@ export default function ErrorPage() {
           <p className="m-0 fs-6 ">
             {buscarError && buscarError.text || "Error desconocido, consulta con la administración"}.
           </p>
+          <ErrorPageRuta algoritmo={algoritmo} />
         </Col>
       </Row>
 

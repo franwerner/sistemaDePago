@@ -1,25 +1,27 @@
 import { Suspense, memo } from "react";
 import { Spinner } from "react-bootstrap";
 
+/*
+++Se pasa un ref del componente padre asi tiene una transsacion suave
+*/
+
 
 export const SuspenseCompontentsLoading = memo(({ children, texto = "" }) => {
 
-
     return (
         <Suspense
-            children={children}
             fallback={
-
-                <div className=" p-0 justify-content-center  d-flex flex-column align-items-center">
+                <div  className="p-0 justify-content-center z-1  d-flex flex-column align-items-center">
                     <Spinner
                         animation="border"
                         style={{ height: "30px", width: "30px" }}
-                        variant="secondary" />
-
-                    <p className="m-0 fw-medium text-ligthdark ls-3 ">{texto}</p>
-
+                        variant="secondary"
+                    />
+                    <p className="m-0 fw-medium text-ligthdark ls-3">{texto}</p>
                 </div>
-            }>
+            }
+        >
+            {children}
         </Suspense>
     );
-})
+});
