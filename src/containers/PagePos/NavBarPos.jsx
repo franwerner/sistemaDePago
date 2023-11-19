@@ -10,6 +10,7 @@ import { Link } from "react-router-dom"
 const MenuDeUsuario = ({ alternarMostrar, mostrar }) => {
     return (
         <Modal
+            centered
             show={mostrar}
             alternarMostrar={alternarMostrar}
             onHide={alternarMostrar}>
@@ -19,40 +20,50 @@ const MenuDeUsuario = ({ alternarMostrar, mostrar }) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>ASdad</p>
+                <Stack
+                    gap={3}
+                    direction="horizontal"
+                    className="align-items-center p-1 ">
+                    <p className="m-0 fs-6 ">Ventas realizadas</p>
+                    <div className="vr"></div>
+                    <p className="m-0 fw-medium">15/30</p>
+                </Stack>
             </Modal.Body>
-            <Modal.Footer>
-                <Link
-                to={"/"}
-                className="w-100">
+            <Modal.Footer className="d-block d-sm-flex">
                     <Button
-                        variant="outline-danger"
-                        className="w-100 fw-medium fs-5"
+                        variant="none"
+                        className="fw-medium fs-6 p-1"
                         type="button"
                         aria-label="Cerrar session">
+                        <i className="fa-solid me-1 fa-arrow-right-from-bracket fa-rotate-180"></i>
                         Cerrar Session
                     </Button>
-                </Link>
+                <Button
+                    className=" fw-medium w-50 fs-6 p-1"
+                    variant="none"
+                    type="button"
+                    aria-label="Cerrar session">
+                    Cambiar de usuario
+                </Button>
             </Modal.Footer>
         </Modal >
     )
 }
 
 
-const UsuarioTest = () => {
+const UsuarioTest = ({ children }) => {
 
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
         <>
-            <div onClick={alternarMostrar} className="cursor-pointer me-1 bg-hover">
-                <p
-                    style={{ color: "#555", fontSize: "16px", }}
-                    className="fw-semibold m-0 ">Franco Werner</p>
-                <p
-                    className="m-0 text-start"
-                    style={{ fontSize: "14px" }}>Empleado</p>
+            <div
+                role=""
+                onClick={alternarMostrar}
+                className="d-flex bg-hover  px-md-1 rounded-3 mx-md-1 align-items-center">
+                {children}
             </div>
+
             {
                 mostrar && <MenuDeUsuario
                     alternarMostrar={alternarMostrar}
@@ -89,20 +100,30 @@ const NavBarPos = React.memo(({ alternarMostrar }) => {
 
                         <IconMessage />
 
-                        <div className={`${styles.imgContainer} cursor-pointer d-flex justify-content-center align-items-center position-relative border border-secondary rounded-circle overflow-hidden`}>
-                            <img
-                                height={60}
-                                width={60}
-                                alt="foto-empleado"
-                                className="z-1"
-                                loading="eager"
-                                src="https://img.freepik.com/foto-gratis/primer-plano-hombre-negocios-serio-camisa-blanca-mirando-camara-pie-confiado_1258-26762.jpg" />
+                        <UsuarioTest>
+                            <div className={`${styles.imgContainer} me-md-1 cursor-pointer d-flex justify-content-center align-items-center position-relative border border-secondary rounded-circle overflow-hidden`}>
+                                <img
+                                    height={60}
+                                    width={60}
+                                    alt="foto-empleado"
+                                    className="z-1"
+                                    loading="eager"
+                                    src="https://img.freepik.com/foto-gratis/primer-plano-hombre-negocios-serio-camisa-blanca-mirando-camara-pie-confiado_1258-26762.jpg" />
 
-                        </div>
-                        <UsuarioTest />
+                            </div>
+
+                            <div className="cursor-pointer me-md-1 ">
+                                <p
+                                    style={{ color: "#555", fontSize: "16px", }}
+                                    className="fw-semibold m-0 ">Franco  Werner</p>
+                                <p
+                                    className="m-0 text-start"
+                                    style={{ fontSize: "14px" }}>Empleado</p>
+                            </div>
+
+                        </UsuarioTest>
 
                     </Stack>
-
                 </Nav>
 
             </Container>

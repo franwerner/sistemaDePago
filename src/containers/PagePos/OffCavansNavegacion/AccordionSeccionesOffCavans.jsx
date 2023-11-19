@@ -6,7 +6,7 @@ import { useContext } from "react"
 import { SeccionSubRutas } from "./SeccionSubRutas"
 import { splitDeRutas } from "@/helper//splitDeRutas"
 
-const ContextAcordion = memo(({ children, eventKey, callback, rutaActual, pathname }) => {
+const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
 
     const { activeEventKey } = useContext(AccordionContext);
 
@@ -62,6 +62,7 @@ export const AccordionSeccionesOffCavans = memo(({ nombre, icon, subRutas, index
 
     const rutaActual = pathname.toLocaleLowerCase().match(nombreLowerCase.toLocaleLowerCase())
 
+
     return (
 
         <Card className="my-5 border-0">
@@ -72,7 +73,7 @@ export const AccordionSeccionesOffCavans = memo(({ nombre, icon, subRutas, index
                     style={{ textDecoration: "none" }}
                     to={nombreLowerCase}>
 
-                    <ContextAcordion rutaActual={rutaActual} pathname={pathname} eventKey={index} >
+                    <ContextAcordion rutaActual={rutaActual} eventKey={index} >
 
                         <BotonRuta
                             nombre={nombre}
