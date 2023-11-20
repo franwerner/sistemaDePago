@@ -45,24 +45,6 @@ const rutasAnidadas = [
   }
 ]
 
-const bucleK = () => {
-
-  for (let i = 0; i < ruta.length; i++) {
-
-
-    const buscador = ruta.match(raiz[i])
-
-    if (
-      buscador && buscador[0].length &&
-      !coincidenciasSet.has(ruta[i])
-    ) {
-
-      coincidencias++;
-      coincidenciasSet.add(ruta[i]);
-    }
-
-  }
-}
 
 const buscarRutasRaiz = (rutaRaiz) => {
 
@@ -77,6 +59,7 @@ const buscarRutasRaiz = (rutaRaiz) => {
     let coincidencias = 0
     let coincidenciasSet = new Set();
     let coincidenciasStart = 0
+
     for (let i = 0; i < ruta.length; i++) {
 
       if (raiz.startsWith(ruta[i])) {
@@ -101,7 +84,10 @@ const buscarRutasRaiz = (rutaRaiz) => {
       coincidenciaTotal = coincidencias
       coincidenciaTipo = rutasAnidadas[index]
     }
+
+
   })
+
 
   return coincidenciaTipo
 
@@ -113,8 +99,9 @@ const AlgoritmoDeBusquedaPagina = () => {
 
   const rts = buscarRutasRaiz(rutas[0])
 
-  if (!rts) return ""
 
+
+  if (!rts) return ""
 
   let coincidenciaTotal = 0
 
@@ -131,18 +118,18 @@ const AlgoritmoDeBusquedaPagina = () => {
       let coincidenciasStart = 0
 
       let coincidenciasSet = new Set();
+      let concidenciasStartSet = new Set()
 
       const rutaAnindadActual = rts.subrutas[j].ruta
 
       for (let k = 0; (k < rutaActual.length && rutas.length == 2); k++) {
 
-        // if (rutaAnindadActual.startsWith(rutaActual[k])) {
-        //   console.log(rutaActual[k])
-        //   coincidenciasStart++
-        // }
+        if (rutaAnindadActual.startsWith(rutaActual[k]) && !concidenciasStartSet.has(rutaActual[k])) {
+          concidenciasStartSet.add(rutaActual[k])
+          coincidenciasStart++
+        }
 
         const buscador = rutaActual.match(rutaAnindadActual[k])
-
         if (
           buscador && buscador[0].length &&
           !coincidenciasSet.has(buscador[0])
@@ -154,7 +141,9 @@ const AlgoritmoDeBusquedaPagina = () => {
 
       }
 
-      if (coincidencias + coincidenciasStart > coincidenciaTotal && coincidenciasStart !== 0) {
+      console.log(concidenciasStartSet)
+
+      if ((coincidencias + coincidenciasStart ) > coincidenciaTotal && coincidenciasStart !== 0) {
 
         coincidenciaTotal = coincidencias
         coincidenciaTipo = rutaAnindadActual
@@ -162,7 +151,6 @@ const AlgoritmoDeBusquedaPagina = () => {
 
     }
 
-console.log(coincidenciaTotal)
   }
 
   return `${rts.raiz}/${coincidenciaTipo}`
