@@ -25,22 +25,18 @@ const ListaDeErrores = [
 const rutasAnidadas = [
   {
     raiz: "pos", subrutas: [
-      { ruta: "compras" },
-      { ruta: "caja" },
-      { ruta: "clientes" },
-      { ruta: "almacen" },
-      { ruta: "venta" },
-      { ruta: "productos" },
+      ["compras", "ventas"],
+      ["a", "b"],
     ],
   },
   {
     raiz: "sucursales", subrutas: [
-
+      [""]
     ],
   },
   {
     raiz: "empleado", subrutas: [
-
+      [""]
     ],
   }
 ]
@@ -99,61 +95,31 @@ const AlgoritmoDeBusquedaPagina = () => {
 
   const rts = buscarRutasRaiz(rutas[0])
 
-
-
   if (!rts) return ""
 
-  let coincidenciaTotal = 0
+  const subRutas = rts.subrutas
 
-  let coincidenciaTipo = ""
+  let test = 0
 
-  for (let i = 0; i < rutas.length; i++) {
+  for (let i = 0; i < subRutas.length; i++) {
 
-    const rutaActual = rutas[i].toLocaleLowerCase()
+    const matrizSubRuta = subRutas[i]
 
-    for (let j = 0; j < rts.subrutas.length > 0; j++) {
+    for (let j = 0; j < matrizSubRuta.length; j++) {
 
-      let coincidencias = 0
+     const subRutaActual = matrizSubRuta[j]
 
-      let coincidenciasStart = 0
+     for (let k = 1; k < rutas.length; k++) {
+      
+      console.log(rutas[k])
 
-      let coincidenciasSet = new Set();
-      let concidenciasStartSet = new Set()
-
-      const rutaAnindadActual = rts.subrutas[j].ruta
-
-      for (let k = 0; (k < rutaActual.length && rutas.length == 2); k++) {
-
-        if (rutaAnindadActual.startsWith(rutaActual[k]) && !concidenciasStartSet.has(rutaActual[k])) {
-          concidenciasStartSet.add(rutaActual[k])
-          coincidenciasStart++
-        }
-
-        const buscador = rutaActual.match(rutaAnindadActual[k])
-        if (
-          buscador && buscador[0].length &&
-          !coincidenciasSet.has(buscador[0])
-        ) {
-
-          coincidencias++;
-          coincidenciasSet.add(buscador[0]);
-        }
-
-      }
-
-      console.log(concidenciasStartSet)
-
-      if ((coincidencias + coincidenciasStart ) > coincidenciaTotal && coincidenciasStart !== 0) {
-
-        coincidenciaTotal = coincidencias
-        coincidenciaTipo = rutaAnindadActual
-      }
+     }
 
     }
 
   }
 
-  return `${rts.raiz}/${coincidenciaTipo}`
+  return `${rts.raiz}/${"coincidenciaTipo"}`
 
 }
 
