@@ -5,7 +5,7 @@ import { obtenerFecha } from "@/helper/obtenerFecha";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales";
 import { useCalcularCambio } from "@/hooks/useCalcularCambioTotal";
-import { AgregarCerosANumeros } from "../helper/AgregarCerosANumeros";
+import { AgregarCerosANumeros } from "../common/helper/AgregarCerosANumeros";
 import { useSumaTotalDeProductos } from "../hooks/useSumaTotalDeProductos";
 import { useCalcularDescuento } from "../hooks/useCalcularDescuento";
 import { useCalculadoraPorcenje } from "../hooks/useCalcularPorcentaje";

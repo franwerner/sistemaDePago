@@ -1,7 +1,7 @@
-import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
+import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales";
 import { Accordion, AccordionContext, Card, Col, Form, Stack, useAccordionButton } from "react-bootstrap";
 import styles from "@/styles/SeccionDeCaja.module.css"
-import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros";
+import { AgregarCerosANumeros } from "@/common/helper/AgregarCerosANumeros";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import React, { lazy, useContext } from "react";
 import { useAlgoritmoDeOrden } from "@/hooks//useAlgoritmoDeOrden";

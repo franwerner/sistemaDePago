@@ -1,28 +1,15 @@
 import { Link } from "react-router-dom"
-import { primeraLetraMayuscula } from "@/helper/primeraLetraMayuscula"
 import styles from "@/styles/Rutasinterface.module.css"
-import { splitDeRutas } from "../helper/splitDeRutas"
 import { SvgHouse } from "./SvgHouse"
 import { Col, Row } from "react-bootstrap"
-
-export const concatenacionDeRutas = (posicion) => {
-
-    const rutas = splitDeRutas()
-
-    let rutaNueva = ""
-
-    for (let i = 0; i < rutas.length; i++) {
-        if (i > posicion) break
-        rutaNueva += `/${rutas[i]}`
-    }
-
-    return rutaNueva
-}
+import { primeraLetraMayuscula } from "@/common/helper/primeraLetraMayuscula"
+import { splitDeRutasUtils } from "../common/utils/splitDeRutasUtils"
+import { concatenacionDeRutasUtils } from "../common/utils/concatenacionDeRutasUtils"
 
 
 export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
-    const rutas = splitDeRutas()
+    const rutas = splitDeRutasUtils()
 
     return (
         <Row className="m-0 p-1 p-md-3 p-lg-4 p-xl-5  d-flex justify-content-start w-100 position-sm-absolute ">
@@ -41,7 +28,7 @@ export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
                                 style={{ textDecoration: "none", color: `#${textColor}` }}
                                 key={index}
                                 className="z-1 fs-6 ls-3 mx-1"
-                                to={concatenacionDeRutas(index)}>
+                                to={concatenacionDeRutasUtils(index)}>
                                 /{primeraLetraMayuscula(item)}
                             </Link>
                             <span

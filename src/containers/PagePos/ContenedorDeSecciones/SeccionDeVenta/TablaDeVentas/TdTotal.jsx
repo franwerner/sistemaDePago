@@ -1,5 +1,5 @@
-import { calcularPorcentaje } from "@/helper//calcularPorcentaje";
-import { verificarSiEsNegativo } from "@/helper//verificarSiEsNegativo";
+import { calcularPorcentaje } from "@/common//helper/calcularPorcentaje";
+import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo";
 import { CalcularPorcentajeMemoizado } from "@/hooks//useCalcularPorcentaje";
 import styles from "@/styles/SeccionDeVenta.module.css"
 import React from "react";

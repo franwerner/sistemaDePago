@@ -1,5 +1,5 @@
 import { Dropdown, Stack } from "react-bootstrap";
-import { verificarSiEsNegativo } from "../helper/verificarSiEsNegativo";
+import { verificarSiEsNegativo } from "../common/helper/verificarSiEsNegativo";
 import React, { useContext } from "react";
 import { TarifaContex } from "../context/Contextos";
 

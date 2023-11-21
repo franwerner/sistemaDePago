@@ -1,9 +1,6 @@
 import { useContext } from "react"
 import { listaUsuariosContext } from "@/context/Contextos"
-import { cargaDiferida } from "../helper/cargaDiferida"
-
-const buscarCodigoDeMensajes =  cargaDiferida(() => import("@/helper//buscarCodigoMensajePersonalizado"))
-const validarUsuarioFetch =  cargaDiferida(() => import("@/helper/endpoints/validarUsuarioFetch"))
+import  {buscarCodigoDeMensajes} from "../common/helper/buscarCodigoDeMensajes.js"
 
 export const useValidarUsuarioSeleccionado = () => {
 

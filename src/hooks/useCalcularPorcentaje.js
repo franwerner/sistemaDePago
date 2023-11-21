@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { TarifaContex } from "../context/Contextos"
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
+import { separarNumerosConDecimales } from "../common/helper/separarNumerosConDecimales"
 
 
 export const useCalculadoraPorcenje = (numero) => {

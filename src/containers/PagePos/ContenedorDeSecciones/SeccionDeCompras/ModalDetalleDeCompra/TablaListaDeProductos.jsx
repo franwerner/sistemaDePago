@@ -1,5 +1,5 @@
-import { calcularPorcentaje } from "@/helper//calcularPorcentaje";
-import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
+import { calcularPorcentaje } from "@/common//helper/calcularPorcentaje";
+import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import { Table } from "react-bootstrap";
 import styles from "@/styles/SeccionDeCompras.module.css"

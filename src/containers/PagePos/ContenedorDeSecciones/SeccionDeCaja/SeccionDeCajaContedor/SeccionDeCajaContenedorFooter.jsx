@@ -1,4 +1,4 @@
-import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales"
+import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales"
 import { Col, Row, Stack } from "react-bootstrap"
 import styles from "@/styles/SeccionDeCaja.module.css"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"

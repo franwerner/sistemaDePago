@@ -1,7 +1,7 @@
 
 import { useContext, useMemo } from "react"
 import { productoReducerContext } from "@/context/Contextos"
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
+import { separarNumerosConDecimales } from "../common/helper/separarNumerosConDecimales"
 import { useCalculadoraPorcenje } from "./useCalcularPorcentaje"
 
 export const useSumaTotalDeProductos = () => {

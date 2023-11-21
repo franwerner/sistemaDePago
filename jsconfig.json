@@ -8,9 +8,6 @@
       "@/hooks/*": [
         "src/hooks*"
       ],
-      "@/helper/*": [
-        "src/helper*"
-      ],
       "@/context/*": [
         "src/context*"
       ],
@@ -20,8 +17,8 @@
       "@/containers/*": [
         "src/containers*"
       ],
-      "@/ContructoresJS/*": [
-        "src/ContructoresJS*"
+      "@/common/*": [
+        "src/common*"
       ],
     }
   }

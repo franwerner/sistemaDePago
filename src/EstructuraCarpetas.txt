@@ -1,0 +1,8 @@
+/-Utils-/
+*En esta carpeta se deben colocar solo archivos donde no sean, de tipo helper o hooks.
++
+*Es decir hacen uso de hooks personalizados/libreria/frameworks de react.
++
+*Pero no interactuan con los mismo de forma directa solo reciben los datos.
++
+/

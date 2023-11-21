@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
 import { useSumaTotalDeProductos } from "./useSumaTotalDeProductos";
 import { restoDelPagoContext } from "@/context/Contextos";
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales";
+import { separarNumerosConDecimales } from "../common/helper/separarNumerosConDecimales";
 import { useCalcularDescuento } from "./useCalcularDescuento";
 
 export const useRestanteTotal = () => {

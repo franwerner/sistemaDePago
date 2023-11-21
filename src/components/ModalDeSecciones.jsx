@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import styles from "@/styles/ModalDeSecciones.module.css"
 import { Link } from "react-router-dom";
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales";
+import { separarNumerosConDecimales } from "../common/helper/separarNumerosConDecimales";
 
 
 const secciones = [

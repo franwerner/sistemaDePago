@@ -1,4 +1,4 @@
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
+import { separarNumerosConDecimales } from "../common/helper/separarNumerosConDecimales"
 import { useCalcularDescuento } from "../hooks/useCalcularDescuento"
 import { useSumaTotalDeProductos } from "../hooks/useSumaTotalDeProductos"
 

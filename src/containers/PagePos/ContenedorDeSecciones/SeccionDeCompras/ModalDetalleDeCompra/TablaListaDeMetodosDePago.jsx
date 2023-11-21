@@ -1,4 +1,4 @@
-import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
+import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales";
 import { Table } from "react-bootstrap";
 
 const productosTest =

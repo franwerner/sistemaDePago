@@ -5,7 +5,7 @@ import TdPrecio from "./TdPrecio"
 import TdDescuento from "./TdDescuento"
 import { TdTrash } from "./TdTrash"
 import { TdTotal } from "./TdTotal"
-import { verificarSiEsNegativo } from "@/helper//verificarSiEsNegativo"
+import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo"
 
 const TdNombre = React.memo(({ nombre }) => {
 

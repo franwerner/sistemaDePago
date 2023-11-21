@@ -1,10 +1,10 @@
-import { AgregarCerosANumeros } from "@/helper//AgregarCerosANumeros";
+import { AgregarCerosANumeros } from "src/common/helper/AgregarCerosANumeros";
 import { Button, Modal } from "react-bootstrap";
 import React, { lazy, useCallback, useState } from "react";
 import styles from "@/styles/SeccionDeCompras.module.css"
 import TablaListaDeProductos from "./TablaListaDeProductos";
 import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading";
-import { retrasoTest } from "@/helper//retrasoTest";
+import { retrasoTest } from "@/common//helper/retrasoTest";
 
 const TablaListaDeMetodosDePago = lazy(() => import("./TablaListaDeMetodosDePago"))
 const SeccionExtra = lazy(() => import("./SeccionExtra"))

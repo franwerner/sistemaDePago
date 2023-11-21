@@ -1,5 +1,3 @@
-
-
 export const separarNumerosConDecimales = (numero) => {
 
     const opciones = { style: 'decimal', useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 };

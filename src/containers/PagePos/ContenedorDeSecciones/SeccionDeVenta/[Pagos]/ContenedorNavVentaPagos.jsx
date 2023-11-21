@@ -6,7 +6,7 @@ import { Button, Col, Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import TotalAVender from "@/components//TotalAVenderMemoizado";
 import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading";
-import { cargaDiferida } from "@/helper//cargaDiferida";
+import { cargaDiferida } from "@/common//helper/cargaDiferida";
 const TicketDeVenta = lazy(() => import("@/components/TicketDeVenta"))
 
 const buscarCodigo = cargaDiferida(() => import("@/helper/buscarCodigoMensajePersonalizado"))

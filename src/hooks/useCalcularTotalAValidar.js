@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
 import { useSumaTotalDeProductos } from "./useSumaTotalDeProductos";
 import { restoDelPagoContext } from "../context/Contextos";
-import { verificarSiEsNegativo } from "../helper/verificarSiEsNegativo";
+import { verificarSiEsNegativo } from "../common/helper/verificarSiEsNegativo";
 import { useCalcularCambio } from "./useCalcularCambioTotal";
 
 export const useCalcularTotalAValidar = () => {

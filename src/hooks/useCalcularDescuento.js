@@ -1,9 +1,9 @@
 import React, { useContext, useMemo } from "react"
 import { productoReducerContext } from "../context/Contextos"
-import { calcularPorcentaje } from "../helper/calcularPorcentaje"
-import { separarNumerosConDecimales } from "../helper/separarNumerosConDecimales"
+import { calcularPorcentaje } from "../common/helper/calcularPorcentaje"
+import { separarNumerosConDecimales } from "../common/helper/separarNumerosConDecimales"
 import { useCalculadoraPorcenje } from "./useCalcularPorcentaje"
-import { verificarSiEsNegativo } from "../helper/verificarSiEsNegativo"
+import { verificarSiEsNegativo } from "../common/helper/verificarSiEsNegativo"
 
 
 export const useCalcularDescuento = () => {

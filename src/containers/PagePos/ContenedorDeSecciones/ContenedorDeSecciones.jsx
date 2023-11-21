@@ -1,9 +1,9 @@
 
+import { splitDeRutasUtils } from "@/common//utils/splitDeRutasUtils";
 import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading";
 import { ProductoReducerProvider } from "@/context//provider/ProductosReducerProvider";
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider";
 import { TarifaProvider } from "@/context//provider/TarifaProvider";
-import { splitDeRutas } from "@/helper//splitDeRutas";
 import { memo } from "react";
 import { Container } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
@@ -11,7 +11,7 @@ import { Outlet } from "react-router-dom";
 
 const ContenedorDeSecciones = memo(() => {
 
-    const rutas = splitDeRutas()
+    const rutas = splitDeRutasUtils()
 
     return (
         <Container

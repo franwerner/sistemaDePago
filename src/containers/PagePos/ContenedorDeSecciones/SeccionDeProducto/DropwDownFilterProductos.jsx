@@ -1,6 +1,6 @@
 import DropDownFilterDefault from "@/components//DropDownFilterDefault"
 import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading"
-import { retrasoTest } from "@/helper//retrasoTest"
+import { retrasoTest } from "@/common//helper/retrasoTest"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { lazy } from "react"
 import { Dropdown } from "react-bootstrap"

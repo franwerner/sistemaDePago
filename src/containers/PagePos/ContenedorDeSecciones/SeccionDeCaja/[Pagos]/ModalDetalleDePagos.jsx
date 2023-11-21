@@ -1,4 +1,4 @@
-import { separarNumerosConDecimales } from "@/helper//separarNumerosConDecimales";
+import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales";
 import { Button, Modal, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

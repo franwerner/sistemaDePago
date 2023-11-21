@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom"
 import styles from "@/styles/OffCavansNavegacion.module.css"
 import { useContext } from "react"
 import { SeccionSubRutas } from "./SeccionSubRutas"
-import { splitDeRutas } from "@/helper//splitDeRutas"
+import { splitDeRutasUtils } from "@/common//utils/splitDeRutasUtils"
 
 const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
 
@@ -14,7 +14,7 @@ const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
 
     const iconConfig = activeEventKey == eventKey ? "iconActivado" : "iconDesactivado"
 
-    const rutas = splitDeRutas()
+    const rutas = splitDeRutasUtils()
 
     useEffect(() => {
 
