@@ -3,8 +3,8 @@ import { SvgLupa } from "./SvgLupa";
 import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "./RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
-import { splitDeRutasUtils } from "../common/utils/splitDeRutasUtils";
-import { concatenacionDeRutas } from "../common/helper/concatenacionDeRutas";
+import { splitDeRutasUtils } from "@/common/utils/splitDeRutasUtils";
+import { concatenacionDeRutas } from "@/common/helper/concatenacionDeRutas";
 
 const ListaDeErrores = [
   { tipo: 301, text: "La página o recurso solicitado ha sido movido permanentemente a una nueva ubicación. Actualiza tus marcadores o sigue el enlace proporcionado." },
@@ -23,144 +23,177 @@ const ListaDeErrores = [
   { tipo: 511, text: "Se requiere autenticación adicional para acceder a la red. Verifica tus credenciales o contacta al administrador de red." }
 ];
 
-const rutasAnidadas = [
+
+const rutasbidimensionales2 = [//En cada raiz incrementar el indice + 1 por cada capa
   {
-    raiz: "pos", subrutas: [
-      ["compras", "ventas"],
-      ["caja", "pagos"],
-    ],
+    raiz: "pos", indice: 0, subrutas: [
+      [ //Esto es un capa  + 1
+        "compras",
+        "clientes",
+        "almacen",
+
+        {
+          raiz: "ventas", indice: 1, subrutas: [
+            ["pagos"] //Esto es otra capa + 2
+          ]
+        },
+
+        {
+          raiz: "productos", indice: 1, subrutas: [
+            ["agregar",]
+          ]
+        },
+
+        {
+          raiz: "caja", indice: 1, subrutas: [
+            ["pagos"]
+          ]
+        },
+      ]
+    ]
   },
   {
-    raiz: "sucursales", subrutas: [
-      [""]
-    ],
+    raiz : "empleados", indice : 0, subrutas : []
   },
   {
-    raiz: "empleado", subrutas: [
-      [""]
-    ],
+    raiz : "sucursales", indice : 0, subrutas : []
   }
+
 ]
 
+const bucleForLetra = (string = "", ruta = "") => {
 
-const buscarRutasRaiz = (rutaRaiz) => {
+  let puntajeEnLetras = 0
 
-  const ruta = rutaRaiz.toLowerCase()
+  let puntajeSet = new Set()
 
-  let coincidenciaTotal = 0
+  let letrasConcatenadas = ""
 
-  let coincidenciaTipo = ""
+  for (let i = 0; i < string.length; i++) {
 
-  rutasAnidadas.forEach(({ raiz }, index) => {
+    const letra = string[i];
 
-    let coincidencias = 0
-    let coincidenciasSet = new Set();
-    let coincidenciasStart = 0
+    const buscador = ruta.match(letra)
 
-    for (let i = 0; i < ruta.length; i++) {
+    if (ruta.startsWith(letrasConcatenadas + letra) && letrasConcatenadas.length == i) {
 
-      if (raiz.startsWith(ruta[i])) {
-        coincidenciasStart++
-      }
-
-      const buscador = ruta.match(raiz[i])
-
-      if (
-        buscador && buscador[0].length &&
-        !coincidenciasSet.has(ruta[i])
-      ) {
-
-        coincidencias++;
-        coincidenciasSet.add(ruta[i]);
-      }
+      letrasConcatenadas += letra
 
     }
 
-    if (coincidencias + coincidenciasStart > coincidenciaTotal && coincidenciasStart !== 0) {
-
-      coincidenciaTotal = coincidencias
-      coincidenciaTipo = rutasAnidadas[index]
+    if (buscador && !puntajeSet.has(letra)) {
+      puntajeEnLetras++;
+      puntajeSet.add(letra)
     }
 
+  }
 
-  })
+  const porcentaje = Math.floor(((puntajeEnLetras / string.length) * 100))
 
+  if (letrasConcatenadas.length == 0 && porcentaje < 50) return
 
-  return coincidenciaTipo
+  return { string, puntaje: puntajeEnLetras + letrasConcatenadas.length }
+}
+
+const verificarMapeo = (mapeo, objecto, key) => {
+
+  const mapInfo = mapeo.get(key)
+
+  if (mapInfo && objecto) {
+    mapInfo.puntaje < objecto.puntaje && mapeo.set(key, objecto)
+  } else if (!mapInfo && objecto) {
+
+    mapeo.set(key, objecto)
+  }
 
 }
+
+
+const bucleTest = (indiceActual, mapeoTest = new Map()) => {
+
+  const { raiz, subrutas, indice } = indiceActual
+
+  const indiceAdelantado = indice + 1
+
+  const rutas = splitDeRutasUtils();
+
+
+  for (let i = 0; i < subrutas.length; i++) {
+
+    const indiceSubruta = subrutas[i]
+
+    if (indiceSubruta == undefined || indiceAdelantado >= rutas.length) break
+
+    for (let j = 0; j < indiceSubruta.length; j++) {
+
+      const subrutaJ = indiceSubruta[j]
+
+      if (typeof subrutaJ == "object") {
+
+        const bucle = bucleTest(subrutaJ, mapeoTest)
+
+        bucle.forEach((valor, clave) => {
+          mapeoTest.set(clave, valor)
+        });
+
+      } else {
+
+        const bucle = bucleForLetra(subrutaJ, rutas[indiceAdelantado])
+
+        verificarMapeo(mapeoTest, bucle, indiceAdelantado)
+
+
+      }
+
+    }
+
+  }
+
+
+  const raizActual = bucleForLetra(raiz, rutas[indice])
+
+  verificarMapeo(mapeoTest, raizActual, indice)
+
+
+  return mapeoTest
+
+};
 
 const AlgoritmoDeBusquedaPagina = () => {
 
-  const rutas = splitDeRutasUtils()
 
-  const rts = buscarRutasRaiz(rutas[0])
+  let sistemaDePuntaje = [];
 
-  if (!rts) return ""
+  for (let i = 0; i < rutasbidimensionales2.length; i++) {
 
-  const subRutas = rts.subrutas
+    const indiceActual = rutasbidimensionales2[i]
 
-  /*
-  Variables globales
-  */
-
-  let coincidenciasTotales = 0
-  let rutasAnidadas = []
-
-  /*
-  Bucle
-  */
-
-  for (let i = 0; i < subRutas.length; i++) { //Esto tiene que ser recorrido completo hasta el break condicional.
-
-    const matrizSubRuta = subRutas[i]
-
-    let coincidencias = 0
-    let coincidenciasSet = new Set()
-    let coincidenciasStart = 0
-    let letrasConcatenadas = ""
-
-    if (rutasAnidadas.length > 0) break
-
-    for (let j = 1; j < rutas.length; j++) { //Reccore en base al largo de las rutas split, se inicializa en 1 para evitar la ruta raiz
-
-      const subRutaActual = matrizSubRuta[j - 1]
-
-      if (subRutaActual == undefined) break
-
-      for (let k = 0; k < subRutaActual.length; k++) {
-
-        const letra = subRutaActual[k]
-
-        const buscador = rutas[j].match(letra)
-
-        if (subRutaActual.startsWith(letrasConcatenadas + letra)) {
-          letrasConcatenadas += letra;
-          coincidenciasStart++;
-        }
-
-        if (
-          buscador && buscador[0].length &&
-          !coincidenciasSet.has(subRutaActual[k])
-        ) {
-
-          coincidencias++;
-          coincidenciasSet.add(subRutaActual[k]);
-        }
-      }
-
-
-      if (coincidencias + coincidenciasStart > coincidenciasTotales && coincidenciasStart !== 0) {
-        rutasAnidadas.push(subRutaActual)
-      }
-
-    }
+    const mapeo = bucleTest(indiceActual)
+    sistemaDePuntaje.push(mapeo)
   }
 
 
-  return rts.raiz + concatenacionDeRutas(rutasAnidadas)
+  const verificarMayorPuntaje = sistemaDePuntaje.reduce((mayor, actual) => {
 
-}
+    let valorMayor = 0
+    let valorActual = 0
+
+    mayor.forEach((valor) => {
+      valorMayor += valor.puntaje
+    })
+
+    actual.forEach((valor) => {
+      valorActual += valor.puntaje
+    })
+
+    return valorActual > valorMayor ? actual : mayor
+
+  }, sistemaDePuntaje[0])
+
+  const newMap = [...verificarMayorPuntaje.values()].map(objeto => objeto.string);
+
+  return concatenacionDeRutas(newMap.reverse())
+};
 
 
 
