@@ -3,8 +3,8 @@ import { SvgLupa } from "./SvgLupa";
 import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "./RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
-import { splitDeRutasUtils } from "@/common/utils/splitDeRutasUtils";
-import { concatenacionDeRutas } from "@/common/helper/concatenacionDeRutas";
+import { algoritmoDeBusquedaPageUtils } from "../common/utils/algoritmoDeBusquedaPageUtils";
+
 
 const ListaDeErrores = [
   { tipo: 301, text: "La página o recurso solicitado ha sido movido permanentemente a una nueva ubicación. Actualiza tus marcadores o sigue el enlace proporcionado." },
@@ -24,182 +24,12 @@ const ListaDeErrores = [
 ];
 
 
-const rutasbidimensionales2 = [//En cada raiz incrementar el indice + 1 por cada capa
-  {
-    raiz: "pos", indice: 0, subrutas: [
-      [ //Esto es un capa  + 1
-        "compras",
-        "clientes",
-        "almacen",
-
-        {
-          raiz: "ventas", indice: 1, subrutas: [
-            ["pagos"] //Esto es otra capa + 2
-          ]
-        },
-
-        {
-          raiz: "productos", indice: 1, subrutas: [
-            ["agregar",]
-          ]
-        },
-
-        {
-          raiz: "caja", indice: 1, subrutas: [
-            ["pagos"]
-          ]
-        },
-      ]
-    ]
-  },
-  {
-    raiz : "empleados", indice : 0, subrutas : []
-  },
-  {
-    raiz : "sucursales", indice : 0, subrutas : []
-  }
-
-]
-
-const bucleForLetra = (string = "", ruta = "") => {
-
-  let puntajeEnLetras = 0
-
-  let puntajeSet = new Set()
-
-  let letrasConcatenadas = ""
-
-  for (let i = 0; i < string.length; i++) {
-
-    const letra = string[i];
-
-    const buscador = ruta.match(letra)
-
-    if (ruta.startsWith(letrasConcatenadas + letra) && letrasConcatenadas.length == i) {
-
-      letrasConcatenadas += letra
-
-    }
-
-    if (buscador && !puntajeSet.has(letra)) {
-      puntajeEnLetras++;
-      puntajeSet.add(letra)
-    }
-
-  }
-
-  const porcentaje = Math.floor(((puntajeEnLetras / string.length) * 100))
-
-  if (letrasConcatenadas.length == 0 && porcentaje < 50) return
-
-  return { string, puntaje: puntajeEnLetras + letrasConcatenadas.length }
-}
-
-const verificarMapeo = (mapeo, objecto, key) => {
-
-  const mapInfo = mapeo.get(key)
-
-  if (mapInfo && objecto) {
-    mapInfo.puntaje < objecto.puntaje && mapeo.set(key, objecto)
-  } else if (!mapInfo && objecto) {
-
-    mapeo.set(key, objecto)
-  }
-
-}
-
-
-const bucleTest = (indiceActual, mapeoTest = new Map()) => {
-
-  const { raiz, subrutas, indice } = indiceActual
-
-  const indiceAdelantado = indice + 1
-
-  const rutas = splitDeRutasUtils();
-
-
-  for (let i = 0; i < subrutas.length; i++) {
-
-    const indiceSubruta = subrutas[i]
-
-    if (indiceSubruta == undefined || indiceAdelantado >= rutas.length) break
-
-    for (let j = 0; j < indiceSubruta.length; j++) {
-
-      const subrutaJ = indiceSubruta[j]
-
-      if (typeof subrutaJ == "object") {
-
-        const bucle = bucleTest(subrutaJ, mapeoTest)
-
-        bucle.forEach((valor, clave) => {
-          mapeoTest.set(clave, valor)
-        });
-
-      } else {
-
-        const bucle = bucleForLetra(subrutaJ, rutas[indiceAdelantado])
-
-        verificarMapeo(mapeoTest, bucle, indiceAdelantado)
-
-
-      }
-
-    }
-
-  }
-
-
-  const raizActual = bucleForLetra(raiz, rutas[indice])
-
-  verificarMapeo(mapeoTest, raizActual, indice)
-
-
-  return mapeoTest
-
-};
-
-const AlgoritmoDeBusquedaPagina = () => {
-
-
-  let sistemaDePuntaje = [];
-
-  for (let i = 0; i < rutasbidimensionales2.length; i++) {
-
-    const indiceActual = rutasbidimensionales2[i]
-
-    const mapeo = bucleTest(indiceActual)
-    sistemaDePuntaje.push(mapeo)
-  }
-
-
-  const verificarMayorPuntaje = sistemaDePuntaje.reduce((mayor, actual) => {
-
-    let valorMayor = 0
-    let valorActual = 0
-
-    mayor.forEach((valor) => {
-      valorMayor += valor.puntaje
-    })
-
-    actual.forEach((valor) => {
-      valorActual += valor.puntaje
-    })
-
-    return valorActual > valorMayor ? actual : mayor
-
-  }, sistemaDePuntaje[0])
-
-  const newMap = [...verificarMayorPuntaje.values()].map(objeto => objeto.string);
-
-  return concatenacionDeRutas(newMap.reverse())
-};
 
 
 
 const ErrorPageRuta = ({ algoritmo }) => {
 
-  const ejecutar = algoritmo && AlgoritmoDeBusquedaPagina()
+  const ejecutar = algoritmo && algoritmoDeBusquedaPageUtils()
 
   return (
     <>
