@@ -1,10 +1,24 @@
 import { Link } from "react-router-dom"
 import { primeraLetraMayuscula } from "@/helper/primeraLetraMayuscula"
 import styles from "@/styles/Rutasinterface.module.css"
-import { concatenacionDeRutas } from "@/helper/concatenacionDeRutas"
 import { splitDeRutas } from "../helper/splitDeRutas"
 import { SvgHouse } from "./SvgHouse"
 import { Col, Row } from "react-bootstrap"
+
+export const concatenacionDeRutas = (posicion) => {
+
+    const rutas = splitDeRutas()
+
+    let rutaNueva = ""
+
+    for (let i = 0; i < rutas.length; i++) {
+        if (i > posicion) break
+        rutaNueva += `/${rutas[i]}`
+    }
+
+    return rutaNueva
+}
+
 
 export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
@@ -18,7 +32,7 @@ export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
                 {
                     rutas.map((item, index) =>
-                        
+
                         <div
                             id={styles.ruta}
                             className="mt-1 position-relative "

@@ -4,6 +4,7 @@ import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "./RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
 import { splitDeRutas } from "../helper/splitDeRutas";
+import { concatenacionDeRutas } from "../helper/concatenacionDeRutas";
 
 const ListaDeErrores = [
   { tipo: 301, text: "La página o recurso solicitado ha sido movido permanentemente a una nueva ubicación. Actualiza tus marcadores o sigue el enlace proporcionado." },
@@ -26,7 +27,7 @@ const rutasAnidadas = [
   {
     raiz: "pos", subrutas: [
       ["compras", "ventas"],
-      ["a", "b"],
+      ["caja", "pagos"],
     ],
   },
   {
@@ -99,25 +100,64 @@ const AlgoritmoDeBusquedaPagina = () => {
 
   const subRutas = rts.subrutas
 
-  let test = 0
+  /*
+  Variables globales
+  */
 
-  for (let i = 0; i < subRutas.length; i++) {
+  let coincidenciasTotales = 0
+  let rutasAnidadas = []
+
+  /*
+  Bucle
+  */
+
+  for (let i = 0; i < subRutas.length; i++) { //Esto tiene que ser recorrido completo hasta el break condicional.
 
     const matrizSubRuta = subRutas[i]
 
-    for (let j = 0; j < matrizSubRuta.length; j++) {
+    let coincidencias = 0
+    let coincidenciasSet = new Set()
+    let coincidenciasStart = 0
+    let letrasConcatenadas = ""
 
-     const subRutaActual = matrizSubRuta[j]
+    if (rutasAnidadas.length > 0) break
 
-     for (let k = 1; k < rutas.length; k++) {
-      
-      console.log(rutas[k])
+    for (let j = 1; j < rutas.length; j++) { //Reccore en base al largo de las rutas split, se inicializa en 1 para evitar la ruta raiz
 
-     }
+      const subRutaActual = matrizSubRuta[j - 1]
+
+      if (subRutaActual == undefined) break
+
+      for (let k = 0; k < subRutaActual.length; k++) {
+
+        const letra = subRutaActual[k]
+
+        const buscador = rutas[j].match(letra)
+
+        if (subRutaActual.startsWith(letrasConcatenadas + letra)) {
+          letrasConcatenadas += letra;
+          coincidenciasStart++;
+        }
+
+        if (
+          buscador && buscador[0].length &&
+          !coincidenciasSet.has(subRutaActual[k])
+        ) {
+
+          coincidencias++;
+          coincidenciasSet.add(subRutaActual[k]);
+        }
+      }
+
+
+      if (coincidencias + coincidenciasStart > coincidenciasTotales && coincidenciasStart !== 0) {
+        rutasAnidadas.push(subRutaActual)
+      }
 
     }
-
   }
+
+  concatenacionDeRutas(rutasAnidadas)
 
   return `${rts.raiz}/${"coincidenciaTipo"}`
 
