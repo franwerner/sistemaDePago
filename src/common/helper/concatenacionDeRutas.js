@@ -4,7 +4,9 @@ export const concatenacionDeRutas = (arrayDeRutas = []) => {
 
     for (let i = 0; i < arrayDeRutas.length; i++) {
 
-        ruta += "/"+arrayDeRutas[i];
+        const diagonal = i > 0 ? "/" : ""
+
+        ruta += diagonal + arrayDeRutas[i];
 
     }
 

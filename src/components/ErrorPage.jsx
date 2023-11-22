@@ -4,6 +4,7 @@ import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "./RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
 import { algoritmoDeBusquedaPageUtils } from "@/common/utils/AlgoritmoDeBusquedaPageUtils";
+import { concatenacionDeRutas } from "../common/helper/concatenacionDeRutas";
 
 const ListaDeErrores = [
   { tipo: 301, text: "La página o recurso solicitado ha sido movido permanentemente a una nueva ubicación. Actualiza tus marcadores o sigue el enlace proporcionado." },
@@ -30,6 +31,8 @@ const ErrorPageRuta = ({ algoritmo }) => {
 
   const ejecutar = algoritmo && algoritmoDeBusquedaPageUtils()
 
+  const covertirEnUrl = concatenacionDeRutas(ejecutar)
+
   return (
     <>
 
@@ -42,8 +45,8 @@ const ErrorPageRuta = ({ algoritmo }) => {
             ejecutar.length == 0 ? <p className="m-0 fw-semibold text-danger">No se encontro ninguna coincidencia.</p> :
               <Link
                 className="text-uppercase"
-                to={ejecutar}>
-                {ejecutar}
+                to={covertirEnUrl}>
+                {covertirEnUrl}
               </Link>
           }
         </div>

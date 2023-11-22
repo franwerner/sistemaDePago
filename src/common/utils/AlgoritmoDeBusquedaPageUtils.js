@@ -1,45 +1,44 @@
-import { concatenacionDeRutas } from "../helper/concatenacionDeRutas";
 import { splitDeRutasUtils } from "./splitDeRutasUtils";
 
 
 const rutasBidimensionales = [//En cada raiz incrementar el indice + 1 por cada capa
     {
         raiz: "pos", indice: 0, subrutas: [
-            [ //Esto es un capa  + 1
-                "compras",
-                "clientes",
-                "almacen",
+            //Esto es un capa  + 1
+            "compras", // 10
+            "clientes",
+            "almacen",
+            {
+                raiz: "venta", indice: 1, subrutas: [
+                    "pagos"
+                ]
+            },
 
-                {
-                    raiz: "venta", indice: 1, subrutas: [
-                        [
-                            "pagos"
+            {
+                raiz: "productos", indice: 1, subrutas: [// 5
+                    "agregar", // 6
+                    {
+                        raiz: "pepe", indice: 2, subrutas: [ // 3
+                            "test" //5
                         ]
-                    ]
-                },
+                    }
+                ]
+            },
 
-                {
-                    raiz: "productos", indice: 1, subrutas: [
-                        [
-                            "agregar",
-                        ]
-                    ]
-                },
+            {
+                raiz: "caja", indice: 1, subrutas: [
+                    "pagos"
+                ]
+            },
 
-                {
-                    raiz: "caja", indice: 1, subrutas: [
-                        ["pagos"]
-                    ]
-                },
-            ]
         ]
     },
-    {
-        raiz: "empleado", indice: 0, subrutas: []
-    },
-    {
-        raiz: "sucursales", indice: 0, subrutas: []
-    }
+    // {
+    //     raiz: "empleado", indice: 0, subrutas: []
+    // },
+    // {
+    //     raiz: "sucursales", indice: 0, subrutas: []
+    // }
 
 ]
 
@@ -98,7 +97,7 @@ const bucleForLetra = (string = "", path = "") => {
     const validarCocatenacion = string.length == letraLength ? 1 : 0
 
 
-    if (letraLength > 0 && (porcentaje > 50 / letraLength)) {
+    if (letraLength > 0 || (porcentaje > 50)) {
 
         const suma = puntaje + letraLength + validarPorcentaje + validarCocatenacion
 
@@ -120,29 +119,24 @@ const bucleBidimensional = (indiceActual, mapeoDePuntajes = new Map()) => {
 
     raizActual && verificarMapeo(mapeoDePuntajes, raizActual, indice);
 
-
     for (const index of subrutas) {
 
         const indiceSubruta = index;
 
         if (indiceSubruta == undefined || !raizActual) break;
 
-        for (let i = 0; i < indiceSubruta.length; i++) {
+        else if (typeof index == "object") {
 
-            const subrutaJ = indiceSubruta[i];
+            const recursividad = bucleBidimensional(index, mapeoDePuntajes);
 
-            if (typeof subrutaJ == "object") {
+        } else if (mapeoDePuntajes.get(indice).string == raiz) {//En caso de que la raizActual sea valida, pero no este insertada en el mapeo
 
-                const recursividad = bucleBidimensional(subrutaJ, mapeoDePuntajes);
+            const bucle = bucleForLetra(index, rutas[indiceAdelantado]);
 
-            } else if (mapeoDePuntajes.get(indice).string == raiz) {//En caso de que la raizActual sea valida, pero no este insertada en el mapeo
+            bucle && verificarMapeo(mapeoDePuntajes, bucle, indiceAdelantado);
 
-                const bucle = bucleForLetra(subrutaJ, rutas[indiceAdelantado]);
-
-                bucle && verificarMapeo(mapeoDePuntajes, bucle, indiceAdelantado);
-
-            }
         }
+
     }
 
     return mapeoDePuntajes
@@ -150,17 +144,8 @@ const bucleBidimensional = (indiceActual, mapeoDePuntajes = new Map()) => {
 
 export const algoritmoDeBusquedaPageUtils = () => {
 
+    const sistemaDePuntaje = rutasBidimensionales.map(item => bucleBidimensional(item)).filter(item => item.size !== 0)
 
-    let sistemaDePuntaje = [];
-
-    for (const index of rutasBidimensionales) {
-
-        const indiceActual = index
-
-        const mapeoDePuntajes = bucleBidimensional(indiceActual)
-
-        sistemaDePuntaje.push(mapeoDePuntajes)
-    }
 
     const verificarMayorPuntaje = sistemaDePuntaje.reduce((mayor, actual) => {
 
@@ -176,5 +161,5 @@ export const algoritmoDeBusquedaPageUtils = () => {
 
     const newMap = [...verificarMayorPuntaje.entries()].map(([_, b]) => b.string)
 
-    return concatenacionDeRutas(newMap)
+    return newMap
 };
