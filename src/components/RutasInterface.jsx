@@ -3,8 +3,8 @@ import styles from "@/styles/Rutasinterface.module.css"
 import { SvgHouse } from "./SvgHouse"
 import { Col, Row } from "react-bootstrap"
 import { primeraLetraMayuscula } from "@/common/helper/primeraLetraMayuscula"
-import { splitDeRutasUtils } from "../common/utils/splitDeRutasUtils"
-import { concatenacionDeRutasUtils } from "../common/utils/concatenacionDeRutasUtils"
+import { splitDeRutasUtils } from "@/common/utils/splitDeRutasUtils"
+import { concatenacionDeRutasUtils } from "@/common/utils/concatenacionDeRutasUtils"
 
 
 export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
@@ -22,7 +22,7 @@ export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
                         <div
                             id={styles.ruta}
-                            className="mt-1  position-relative "
+                            className="mt-1  text-truncate position-relative "
                             key={index}>
                             <Link
                                 style={{ textDecoration: "none", color: `#${textColor}` }}

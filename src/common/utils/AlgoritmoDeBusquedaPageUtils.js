@@ -22,7 +22,6 @@ const rutasBidimensionales = [//En cada raiz incrementar el indice + 1 por cada 
                     raiz: "productos", indice: 1, subrutas: [
                         [
                             "agregar",
-                            { raiz: "pepe", indice: 2,  }
                         ]
                     ]
                 },
@@ -90,16 +89,18 @@ const bucleForLetra = (string = "", path = "") => {
         }
     }
 
+    const letraLength = letrasConcatenadas.length
+
     const porcentaje = Math.floor(((puntaje / string.length) * 100))
 
     const validarPorcentaje = porcentaje == 100 ? 1 : 0
 
-    const validarCocatenacion = string.length == letrasConcatenadas.length ? 1 : 0
+    const validarCocatenacion = string.length == letraLength ? 1 : 0
 
 
-    if (letrasConcatenadas.length > 0 || porcentaje > 50) {
+    if (letraLength > 0 && (porcentaje > 50 / letraLength)) {
 
-        const suma = puntaje + letrasConcatenadas.length + validarPorcentaje + validarCocatenacion
+        const suma = puntaje + letraLength + validarPorcentaje + validarCocatenacion
 
         return { string, puntaje: suma }
     }
@@ -107,7 +108,7 @@ const bucleForLetra = (string = "", path = "") => {
 
 }
 
-const bucleBidimensional = (indiceActual, mapeoTest = new Map()) => {
+const bucleBidimensional = (indiceActual, mapeoDePuntajes = new Map()) => {
 
     const rutas = splitDeRutasUtils();
 
@@ -117,7 +118,7 @@ const bucleBidimensional = (indiceActual, mapeoTest = new Map()) => {
 
     const raizActual = bucleForLetra(raiz, rutas[indice]);
 
-    raizActual && verificarMapeo(mapeoTest, raizActual, indice);
+    raizActual && verificarMapeo(mapeoDePuntajes, raizActual, indice);
 
 
     for (const index of subrutas) {
@@ -126,24 +127,25 @@ const bucleBidimensional = (indiceActual, mapeoTest = new Map()) => {
 
         if (indiceSubruta == undefined || !raizActual) break;
 
-
         for (let i = 0; i < indiceSubruta.length; i++) {
 
             const subrutaJ = indiceSubruta[i];
 
             if (typeof subrutaJ == "object") {
 
-                const recursividad = bucleBidimensional(subrutaJ, mapeoTest);
+                const recursividad = bucleBidimensional(subrutaJ, mapeoDePuntajes);
 
-            } else {
+            } else if (mapeoDePuntajes.get(indice).string == raiz) {//En caso de que la raizActual sea valida, pero no este insertada en el mapeo
 
                 const bucle = bucleForLetra(subrutaJ, rutas[indiceAdelantado]);
-                bucle && verificarMapeo(mapeoTest, bucle, indiceAdelantado);
+
+                bucle && verificarMapeo(mapeoDePuntajes, bucle, indiceAdelantado);
+
             }
         }
     }
 
-    return mapeoTest
+    return mapeoDePuntajes
 };
 
 export const algoritmoDeBusquedaPageUtils = () => {
@@ -155,9 +157,9 @@ export const algoritmoDeBusquedaPageUtils = () => {
 
         const indiceActual = index
 
-        const mapeoTest = bucleBidimensional(indiceActual)
+        const mapeoDePuntajes = bucleBidimensional(indiceActual)
 
-        sistemaDePuntaje.push(mapeoTest)
+        sistemaDePuntaje.push(mapeoDePuntajes)
     }
 
     const verificarMayorPuntaje = sistemaDePuntaje.reduce((mayor, actual) => {
@@ -172,12 +174,7 @@ export const algoritmoDeBusquedaPageUtils = () => {
     }, sistemaDePuntaje[0])
 
 
-    const newMap = [...verificarMayorPuntaje.entries()].sort((a, b) => {
-
-        return a[0] - b[0]
-
-    }).map(([_, b]) => b.string)
-
+    const newMap = [...verificarMayorPuntaje.entries()].map(([_, b]) => b.string)
 
     return concatenacionDeRutas(newMap)
 };
