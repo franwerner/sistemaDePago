@@ -1,4 +1,4 @@
-import { AgregarCerosANumeros } from "src/common/helper/AgregarCerosANumeros";
+import { AgregarCerosANumeros } from "@/common/helper/AgregarCerosANumeros";
 import { Button, Modal } from "react-bootstrap";
 import React, { lazy, useCallback, useState } from "react";
 import styles from "@/styles/SeccionDeCompras.module.css"

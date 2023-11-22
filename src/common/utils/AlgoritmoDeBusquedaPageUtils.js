@@ -2,7 +2,7 @@ import { concatenacionDeRutas } from "../helper/concatenacionDeRutas";
 import { splitDeRutasUtils } from "./splitDeRutasUtils";
 
 
-const rutasbidimensionales2 = [//En cada raiz incrementar el indice + 1 por cada capa
+const rutasBidimensionales = [//En cada raiz incrementar el indice + 1 por cada capa
     {
         raiz: "pos", indice: 0, subrutas: [
             [ //Esto es un capa  + 1
@@ -11,14 +11,19 @@ const rutasbidimensionales2 = [//En cada raiz incrementar el indice + 1 por cada
                 "almacen",
 
                 {
-                    raiz: "ventas", indice: 1, subrutas: [
-                        ["pagos"] //Esto es otra capa + 2
+                    raiz: "venta", indice: 1, subrutas: [
+                        [
+                            "pagos"
+                        ]
                     ]
                 },
 
                 {
                     raiz: "productos", indice: 1, subrutas: [
-                        ["agregar",]
+                        [
+                            "agregar",
+                            { raiz: "pepe", indice: 2,  }
+                        ]
                     ]
                 },
 
@@ -30,15 +35,14 @@ const rutasbidimensionales2 = [//En cada raiz incrementar el indice + 1 por cada
             ]
         ]
     },
-    // {
-    //     raiz: "empleado", indice: 0, subrutas: []
-    // },
-    // {
-    //     raiz: "sucursales", indice: 0, subrutas: []
-    // }
+    {
+        raiz: "empleado", indice: 0, subrutas: []
+    },
+    {
+        raiz: "sucursales", indice: 0, subrutas: []
+    }
 
 ]
-
 
 const verificarMapeo = (mapeo, objecto, key) => {
 
@@ -47,14 +51,14 @@ const verificarMapeo = (mapeo, objecto, key) => {
     if (mapInfo && objecto) {
         mapInfo.puntaje < objecto.puntaje && mapeo.set(key, objecto)
     } else if (!mapInfo && objecto) {
-
         mapeo.set(key, objecto)
     }
 
 }
 
+const bucleForLetra = (string = "", path = "") => {
 
-const bucleForLetra = (string = "", ruta = "") => {
+    const ruta = path.toLocaleLowerCase()
 
     const [mapeoLetrasString, mapeoLetrasRuta] = [string, ruta].reduce((mapa, letra, indice) => {
 
@@ -62,7 +66,7 @@ const bucleForLetra = (string = "", ruta = "") => {
             mapa[indice].set(iterator, (mapa[indice].get(iterator) || 0) + 1);
         }
         return mapa;
-        
+
     }, [new Map(), new Map()])
 
     let puntaje = 0;
@@ -74,68 +78,72 @@ const bucleForLetra = (string = "", ruta = "") => {
             const cantidadEnString = mapeoLetrasString.get(letra);
             puntaje += Math.min(cantidadEnRuta, cantidadEnString);
         }
+    }
 
-        if (string.startsWith(letrasConcatenadas + letra)) {
+    for (let i = 0; i < ruta.length; i++) {
+
+        const letra = ruta[i]
+
+        if (string.startsWith(letrasConcatenadas + letra) && letrasConcatenadas.length == i) {
+
             letrasConcatenadas += letra
         }
     }
-
-
 
     const porcentaje = Math.floor(((puntaje / string.length) * 100))
 
     const validarPorcentaje = porcentaje == 100 ? 1 : 0
 
-    if (letrasConcatenadas.length == 0 && porcentaje < 50) return
+    const validarCocatenacion = string.length == letrasConcatenadas.length ? 1 : 0
 
-    return { string, puntaje: puntaje + letrasConcatenadas.length + validarPorcentaje }
+
+    if (letrasConcatenadas.length > 0 || porcentaje > 50) {
+
+        const suma = puntaje + letrasConcatenadas.length + validarPorcentaje + validarCocatenacion
+
+        return { string, puntaje: suma }
+    }
+
+
 }
 
 const bucleBidimensional = (indiceActual, mapeoTest = new Map()) => {
 
     const rutas = splitDeRutasUtils();
-    const { raiz, subrutas, indice } = indiceActual
 
-    const indiceAdelantado = indice + 1
+    const { raiz = "", subrutas = [], indice = 0 } = indiceActual;
 
-    const raizActual = bucleForLetra(raiz, rutas[indice])
+    const indiceAdelantado = indice + 1;
 
-    for (let i = 0; i < subrutas.length; i++) {
+    const raizActual = bucleForLetra(raiz, rutas[indice]);
 
-        const indiceSubruta = subrutas[i]
+    raizActual && verificarMapeo(mapeoTest, raizActual, indice);
 
-        if (indiceSubruta == undefined || indiceAdelantado >= rutas.length) break
 
-        for (let j = 0; j < indiceSubruta.length; j++) {
+    for (const index of subrutas) {
 
-            const subrutaJ = indiceSubruta[j]
+        const indiceSubruta = index;
+
+        if (indiceSubruta == undefined || !raizActual) break;
+
+
+        for (let i = 0; i < indiceSubruta.length; i++) {
+
+            const subrutaJ = indiceSubruta[i];
 
             if (typeof subrutaJ == "object") {
 
-                const bucle = bucleBidimensional(subrutaJ, mapeoTest)
-
-                bucle.forEach((valor, clave) => {
-                    mapeoTest.set(clave, valor)
-                });
+                const recursividad = bucleBidimensional(subrutaJ, mapeoTest);
 
             } else {
 
-                const bucle = bucleForLetra(subrutaJ, rutas[indiceAdelantado])
-
-                verificarMapeo(mapeoTest, bucle, indiceAdelantado)
-
-
+                const bucle = bucleForLetra(subrutaJ, rutas[indiceAdelantado]);
+                bucle && verificarMapeo(mapeoTest, bucle, indiceAdelantado);
             }
-
         }
-
     }
 
-
-    verificarMapeo(mapeoTest, raizActual, indice)
-
     return mapeoTest
-
 };
 
 export const algoritmoDeBusquedaPageUtils = () => {
@@ -143,31 +151,26 @@ export const algoritmoDeBusquedaPageUtils = () => {
 
     let sistemaDePuntaje = [];
 
-    for (let i = 0; i < rutasbidimensionales2.length; i++) {
+    for (const index of rutasBidimensionales) {
 
-        const indiceActual = rutasbidimensionales2[i]
+        const indiceActual = index
 
-        const mapeo = bucleBidimensional(indiceActual)
+        const mapeoTest = bucleBidimensional(indiceActual)
 
-        mapeo.size > 0 && sistemaDePuntaje.push(mapeo)
+        sistemaDePuntaje.push(mapeoTest)
     }
 
     const verificarMayorPuntaje = sistemaDePuntaje.reduce((mayor, actual) => {
 
-        let valorMayor = 0
-        let valorActual = 0
+        const arrays = [[...mayor.values()], [...actual.values()]].map((item) => {
 
-        mayor.forEach((valor) => {
-            valorMayor += valor.puntaje
+            return item.reduce((acc, curren) => acc + curren.puntaje, 0)
         })
 
-        actual.forEach((valor) => {
-            valorActual += valor.puntaje
-        })
-
-        return valorActual > valorMayor ? actual : mayor
+        return arrays[0] < arrays[1] ? actual : mayor
 
     }, sistemaDePuntaje[0])
+
 
     const newMap = [...verificarMayorPuntaje.entries()].sort((a, b) => {
 

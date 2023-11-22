@@ -13,7 +13,7 @@ export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
     return (
         <Row className="m-0 p-1 p-md-3 p-lg-4 p-xl-5  d-flex justify-content-start w-100 position-sm-absolute ">
-            <Col className="align-items-center  p-1 d-flex">
+            <Col className="align-items-center flex-wrap  p-1 d-flex">
 
                 <SvgHouse color={color} />
 
@@ -22,7 +22,7 @@ export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
                         <div
                             id={styles.ruta}
-                            className="mt-1 position-relative "
+                            className="mt-1  position-relative "
                             key={index}>
                             <Link
                                 style={{ textDecoration: "none", color: `#${textColor}` }}

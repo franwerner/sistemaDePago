@@ -18,7 +18,7 @@ export const MenuDeUsuario = () => {
                     id={usuarioInfo}
                     onClick={alternarMostrar}
                     className=" me-md-1 cursor-pointer ">
-                    <p className="fw-semibold m-0  text-truncate text-ligthdark">Franco Carlos Werner</p>
+                    <p className="fw-semibold m-0  text-truncate text-ligthdark">Franco Werner</p>
                     <div className="d-flex">
                         <p className="m-0 text-start me-2 ">Empleado</p>
                         <i

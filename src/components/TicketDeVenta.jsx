@@ -1,9 +1,9 @@
 import styles from "@/styles/TicketDeVenta.module.css"
 import { useContext } from "react";
 import { productoReducerContext } from "@/context/Contextos";
-import { obtenerFecha } from "@/helper/obtenerFecha";
+import { obtenerFecha } from "@/common/helper/obtenerFecha";
 import { Col, Container, Row, Stack } from "react-bootstrap";
-import { separarNumerosConDecimales } from "@/helper/separarNumerosConDecimales";
+import { separarNumerosConDecimales } from "@/common/helper/separarNumerosConDecimales";
 import { useCalcularCambio } from "@/hooks/useCalcularCambioTotal";
 import { AgregarCerosANumeros } from "../common/helper/AgregarCerosANumeros";
 import { useSumaTotalDeProductos } from "../hooks/useSumaTotalDeProductos";
@@ -41,7 +41,6 @@ const Totales = () => {
     const descuento = useCalcularDescuento()
 
     const cambio = useCalcularCambio()
-
     return (
 
         <Col

@@ -7,9 +7,10 @@ import { Link, useNavigate } from "react-router-dom";
 import TotalAVender from "@/components//TotalAVenderMemoizado";
 import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading";
 import { cargaDiferida } from "@/common//helper/cargaDiferida";
+
 const TicketDeVenta = lazy(() => import("@/components/TicketDeVenta"))
 
-const buscarCodigo = cargaDiferida(() => import("@/helper/buscarCodigoMensajePersonalizado"))
+const buscarCodigo = cargaDiferida(() => import("@/common/helper/buscarCodigoMensajePersonalizado"))
 
 const BotonValidar = () => {
 
@@ -26,7 +27,7 @@ const BotonValidar = () => {
     const onBuscarCodigo = useCallback((codigo) => {
         buscarCodigo(codigo)
     }, [])
-    
+
 
 
     const onClick = () => {
@@ -41,7 +42,7 @@ const BotonValidar = () => {
 
             navigate("/pos/venta")
 
-            onBuscarCodigo({ codigo: "3F" })
+
 
         } catch (error) {
 
@@ -67,7 +68,7 @@ const BotonValidar = () => {
 
 
                 {
-                    validacion && <TicketDeVenta />
+                    <TicketDeVenta />
                 }
             </SuspenseCompontentsLoading>
 
