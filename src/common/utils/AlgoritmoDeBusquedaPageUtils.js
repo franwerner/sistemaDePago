@@ -1,79 +1,42 @@
+import { concatenacionDeRutas } from "../helper/concatenacionDeRutas";
 import { splitDeRutasUtils } from "./splitDeRutasUtils";
 
-
-const rutasBidimensionales = [//En cada raiz incrementar el indice + 1 por cada capa
-    {
-        raiz: "pos", indice: 0, subrutas: [
-            //Esto es un capa  + 1
-            "compras", // 10
-            "clientes",
-            "almacen",
-            {
-                raiz: "venta", indice: 1, subrutas: [
-                    "pagos"
-                ]
-            },
-
-            {
-                raiz: "productos", indice: 1, subrutas: [// 5
-                    "agregar", // 6
+const rutasAnidaas = [
+    [
+        {
+            nombre: "pos", children:
+                [
+                    { nombre: "compras" },
+                    { nombre: "almacen" },
+                    { nombre: "caja", children: [{ nombre: "pagos" }] },
                     {
-                        raiz: "pepe", indice: 2, subrutas: [ // 3
-                            "test" //5
+                        nombre: "venta", children:
+                            [
+                                { nombre: "pagos" },
+                            ]
+                    },
+                    {
+                        nombre: "productos", children: [
+                            {
+                                nombre: "agregar",
+                            },
                         ]
-                    }
+                    },
+
                 ]
-            },
-
-            {
-                raiz: "caja", indice: 1, subrutas: [
-                    "pagos"
-                ]
-            },
-
-        ]
-    },
-    // {
-    //     raiz: "empleado", indice: 0, subrutas: []
-    // },
-    // {
-    //     raiz: "sucursales", indice: 0, subrutas: []
-    // }
-
+        }
+    ],
+    [
+        { nombre: "empleados" }
+    ]
 ]
 
-const map = new Map()//Mapeo todos los elementos
-
-map.set(0, [{ tipo: "raiz", nombre: "pos", puntaje: 15, children: ["compras", "venta", "almacen"] },])
-map.set(1, [{ tipo: "raiz", nombre: "venta", puntaje: 10, children: ["pagos"] }])
-map.set(2, [{ tipo: "child", nombre: "pagos", puntaje: 5 }])
-
-const test = () => {
-    const i1 = map.get(1)
-    const i0 = map.get(0)
-
-   const mapeo = i0.map(item => item)
-   console.log(mapeo)
-
-}
-
-test()
-
-const verificarMapeo = (mapeo, objecto, key) => {
-
-    const mapInfo = mapeo.get(key)
-
-    if (mapInfo && objecto) {
-        mapInfo.puntaje < objecto.puntaje && mapeo.set(key, objecto)
-    } else if (!mapInfo && objecto) {
-        mapeo.set(key, objecto)
-    }
-
-}
 
 const bucleForLetra = (string = "", path = "") => {
 
     const ruta = path.toLocaleLowerCase()
+
+    // console.log(`${string} - ${path}`)
 
     const [mapeoLetrasString, mapeoLetrasRuta] = [string, ruta].reduce((mapa, letra, indice) => {
 
@@ -111,72 +74,95 @@ const bucleForLetra = (string = "", path = "") => {
 
     const validarPorcentaje = porcentaje == 100 ? 1 : 0
 
-    const validarCocatenacion = string.length == letraLength ? 1 : 0
+    const validarCocatenacion = string.length == letraLength ? 3 : 0
 
+    const suma = puntaje + letraLength + validarPorcentaje + validarCocatenacion
 
-    if (letraLength > 0 || (porcentaje > 50)) {
-
-        const suma = puntaje + letraLength + validarPorcentaje + validarCocatenacion
-
-        return { string, puntaje: suma }
-    }
-
+    return suma
 
 }
 
-const bucleBidimensional = (indiceActual, mapeoDePuntajes = new Map()) => {
+const bucleBidimensional = (jerarquia = [], suma = -1, total = 0) => {
 
     const rutas = splitDeRutasUtils();
 
-    const { raiz = "", subrutas = [], indice = 0 } = indiceActual;
+    suma++; //La suma se mantiene hasta el proximo nivel de jerarquia, por mas que se reinicie dentro del bucle, manteiene el estado anterior.
 
-    const indiceAdelantado = indice + 1;
+    const mapeo = jerarquia.map(item => {
 
-    const raizActual = bucleForLetra(raiz, rutas[indice]);
+        const puntaje = bucleForLetra(item.nombre, rutas[suma])
 
-    raizActual && verificarMapeo(mapeoDePuntajes, raizActual, indice);
+        if (rutas.length <= suma + 1) return { ...item, puntaje, children: null };
+        const bucle = bucleBidimensional(item.children, suma, total)
 
-    for (const index of subrutas) {
+        return {
+            ...item,
+            puntaje,
+            total: bucle.reduce((acc, current) => {
+                total += current.puntaje
+                return acc + current.puntaje
+            }, 0),
+            children: [bucle.reduce((acc, current) => {
+                const { total: totalAcc = 0, puntaje: puntajeAcc = 0 } = acc
+                const { total = 0, puntaje = 0 } = current
+                const accTotal = totalAcc + puntajeAcc
+                const currentTotal = total + puntaje
 
-        const indiceSubruta = index;
-
-        if (indiceSubruta == undefined || !raizActual) break;
-
-        else if (typeof index == "object") {
-
-            const recursividad = bucleBidimensional(index, mapeoDePuntajes);
-
-        } else if (mapeoDePuntajes.get(indice).string == raiz) {//En caso de que la raizActual sea valida, pero no este insertada en el mapeo
-
-            const bucle = bucleForLetra(index, rutas[indiceAdelantado]);
-
-            bucle && verificarMapeo(mapeoDePuntajes, bucle, indiceAdelantado);
-
+                return accTotal > currentTotal ? acc : current
+            }, {})]
         }
+    })
 
-    }
-
-    return mapeoDePuntajes
+    return mapeo
 };
+
+const encontrarPuntajeMasAlto = (date) => {
+
+    let suma = date.puntaje;
+
+    for (const key of date.children) {
+
+        if (typeof date.children[key] == "object") {
+            suma += encontrarPuntajeMasAlto(date.children);
+        }
+    }
+    return suma
+
+}
 
 export const algoritmoDeBusquedaPageUtils = () => {
 
-    const sistemaDePuntaje = rutasBidimensionales.map(item => bucleBidimensional(item)).filter(item => item.size !== 0)
+    let sumaActual = 0
+    let rutaActual = ""
+    const sistemaDePuntaje = rutasAnidaas
+        .map(item => bucleBidimensional(item))
 
 
-    const verificarMayorPuntaje = sistemaDePuntaje.reduce((mayor, actual) => {
-
-        const arrays = [[...mayor.values()], [...actual.values()]].map((item) => {
-
-            return item.reduce((acc, curren) => acc + curren.puntaje, 0)
-        })
-
-        return arrays[0] < arrays[1] ? actual : mayor
-
-    }, sistemaDePuntaje[0])
+    for (const iterator of sistemaDePuntaje) {
+        const a = encontrarPuntajeMasAlto(iterator[0])
+        const mathMax = Math.max(sumaActual, a)
+        if (mathMax > sumaActual) {
+            rutaActual = iterator
+            sumaActual = mathMax
+        }
+    }
 
 
-    const newMap = [...verificarMayorPuntaje.entries()].map(([_, b]) => b.string)
 
-    return newMap
+    const concatenacionRecursiva = (date) => {
+
+        let concatenacion = date[0].nombre
+
+        for (const iterator of date) {
+            if(!iterator.children) return concatenacion
+            concatenacion += "/" + concatenacionRecursiva(iterator.children);
+            
+        }
+
+        return concatenacion
+    }
+
+
+    return concatenacionRecursiva(rutaActual)
+
 };
