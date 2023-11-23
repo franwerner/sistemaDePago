@@ -42,6 +42,23 @@ const rutasBidimensionales = [//En cada raiz incrementar el indice + 1 por cada 
 
 ]
 
+const map = new Map()//Mapeo todos los elementos
+
+map.set(0, [{ tipo: "raiz", nombre: "pos", puntaje: 15, children: ["compras", "venta", "almacen"] },])
+map.set(1, [{ tipo: "raiz", nombre: "venta", puntaje: 10, children: ["pagos"] }])
+map.set(2, [{ tipo: "child", nombre: "pagos", puntaje: 5 }])
+
+const test = () => {
+    const i1 = map.get(1)
+    const i0 = map.get(0)
+
+   const mapeo = i0.map(item => item)
+   console.log(mapeo)
+
+}
+
+test()
+
 const verificarMapeo = (mapeo, objecto, key) => {
 
     const mapInfo = mapeo.get(key)
