@@ -1,9 +1,10 @@
 import { Link, useRouteError } from "react-router-dom";
-import { SvgLupa } from "./SvgLupa";
+import { SvgLupa } from "../SvgLupa";
 import styles from "@/styles/ErrorPage.module.css"
-import { RutasInterface } from "./RutasInterface";
+import { RutasInterface } from "../RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
-import { algoritmoDeBusquedaPageUtils } from "@/common/utils/AlgoritmoDeBusquedaPageUtils";
+import { algoritmoDeBusquedaPageUtils } from "./AltoritmoDeBusquedaPageUtils/AlgoritmoDeBusquedaPageUtils";
+
 
 const ListaDeErrores = [
   { tipo: 301, text: "La página o recurso solicitado ha sido movido permanentemente a una nueva ubicación. Actualiza tus marcadores o sigue el enlace proporcionado." },

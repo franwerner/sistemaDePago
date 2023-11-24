@@ -4,7 +4,7 @@ import { Suspense, lazy } from 'react';
 import { PuntoDeVentaRouter } from './router/PuntoDeVentaRouter';
 import { SuspenseMainPageLoading } from './components/SuspenseMainPageLoading';
 
-const ErrorPage = lazy(() => import('./components/ErrorPage'))
+const ErrorPage = lazy(() => import('./components/ErrorPage/ErrorPage'))
 const Seleccion = lazy(() => import("./screens/Seleccion"))
 const Empleado = lazy(() => import("./screens/Empleado"))
 
