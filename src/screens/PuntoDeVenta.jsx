@@ -3,7 +3,6 @@ import ContenedorDeSecciones from "../containers/PagePos/ContenedorDeSecciones/C
 import { useEventoMostrar } from "../hooks/useEventoMostrar";
 import OffCavansNavegacion from "../containers/PagePos/OffCavansNavegacion/OffCavansNavegacion";
 import NavBarPos from "../containers/PagePos/NavBar/NavBarPos";
-
 const PuntoDeVenta = () => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()

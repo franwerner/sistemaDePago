@@ -1,9 +1,10 @@
 import { Button, Dropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
- const DropDownUsuario = ({ mostrar }) => {
+const DropDownUsuario = ({ mostrar }) => {
     return (
         <Dropdown.Menu
+            style={{ minWidth: "180px" }}
             variant="none"
             className=" w-100 shadow mt-2 me-1 animate__animated animate__bounceIn"
             align="end"
@@ -15,7 +16,7 @@ import { Link } from "react-router-dom"
             </Dropdown.ItemText>
             <Dropdown.Divider />
             <Link to={"/"}>
-                <Button variant="none" className="w-100  fw-semibold">
+                <Button variant="none" className="w-100 p-1  fw-semibold">
                     <i className="fa-solid me-1 fa-arrow-right-to-bracket fa-rotate-180"></i>
                     Cerrar Session
                 </Button>

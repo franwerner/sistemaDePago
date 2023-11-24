@@ -27,15 +27,8 @@ export const PuntoDeVentaRouter = {
             element: <SeccionDeProductos />
         },
         {
-            path: "productos/agregar/:id",
+            path: "productos/agregar",
             element: <SeccionDeProductosAgregar />,
-            loader: async ({ params, request }) => {
-
-                await new Promise((resolve) => setTimeout(() => resolve(), 3333))
-                const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${params.id}`)
-                    .then((data) => data.json());
-                return defer(res)
-            },
         },
         {
             path: "compras",

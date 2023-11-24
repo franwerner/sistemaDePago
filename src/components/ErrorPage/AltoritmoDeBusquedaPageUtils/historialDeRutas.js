@@ -5,6 +5,7 @@ const historialDeRutas = [
                 [
                     { nombre: "compras" },
                     { nombre: "almacen" },
+                    { nombre: "clientes" },
                     { nombre: "caja", children: [{ nombre: "pagos" }] },
                     {
                         nombre: "venta", children:
@@ -15,11 +16,8 @@ const historialDeRutas = [
                     {
                         nombre: "productos", children: [
                             {
-                                nombre: "agregar", children: [{ nombre: "pene" }],
+                                nombre: "agregar",
                             },
-                            {
-                                nombre: "zuc"
-                            }
                         ]
                     },
 
@@ -27,7 +25,7 @@ const historialDeRutas = [
         }
     ],
     [
-        { nombre: "empleados" }
+        { nombre: "empleado" }
     ]
 ]
 

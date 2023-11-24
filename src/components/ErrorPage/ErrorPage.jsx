@@ -24,26 +24,35 @@ const ListaDeErrores = [
 ];
 
 
+
+
+
 const ErrorPageRuta = ({ algoritmo }) => {
 
   const ejecutar = algoritmo && algoritmoDeBusquedaPageUtils()
-
   return (
     <>
-
       {
         algoritmo &&
-        <div className="d-flex justify-content-center align-items-center my-3">
-          Posible Ruta
+        <div className="d-flex justify-content-center w-100 p-0 align-items-center my-3">
+          <p className="m-0 text-wrap">Posible Ruta </p>
           <div className="vr mx-3"></div>
+
           {
-            ejecutar.length == 0 ? <p className="m-0 fw-semibold text-danger">No se encontro ninguna coincidencia.</p> :
+            ejecutar.length == 0 ? <p className="m-0  fw-semibold text-center text-wrap text-truncate text-danger">No se encontro ninguna coincidencia.</p> :
               <Link
-                className="text-uppercase fs-6"
+                className="text-uppercase text-center  h-100 text-truncate fs-6 text-truncate"
                 to={ejecutar}>
-                {ejecutar}
+                <div className="flex-wrap h-100 d-flex ">
+                  {ejecutar.split("/").filter(item => item.length !== 0).map((item, index) =>
+                    <p
+                      style={{ maxWidth: "300px" }}
+                      className="m-0 text-truncate " key={index}>{item}/</p>
+                  )}
+                </div>
               </Link>
           }
+
         </div>
       }
     </>

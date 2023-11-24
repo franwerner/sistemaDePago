@@ -1,7 +1,6 @@
-const bucleDePuntuacion = (string = "", path = "") => {
+const bucleDePuntuacion = (string = "", path = "", nivelJerarquico) => {
 
     let puntaje = 0;
-    let letrasConcatenadas = ""
 
     const ruta = path.toLocaleLowerCase()
 
@@ -21,22 +20,17 @@ const bucleDePuntuacion = (string = "", path = "") => {
         cantidadEnString && (puntaje += Math.min(cantidadEnRuta, cantidadEnString)) //Se evalua en base a la ruta mal escrita, cuanto de esas letra estan en string(ruta original).
     }
 
-    for (let i = 0; i < ruta.length; i++) {
+    const letrasConcatenadas = path.split("").reduce((acc, current, index) => string.startsWith(acc + current) ? acc += current : acc, "")
 
-        const letra = ruta[i]
+    const validarCocatenacion = string.length == letrasConcatenadas.length ? 5 : 0
 
-        if (string.startsWith(letrasConcatenadas + letra) && letrasConcatenadas.length == i) {
+    const nivelacion = nivelJerarquico * 1.5
 
-            letrasConcatenadas += letra
-        }
-    }
-
-
-
-    const validarCocatenacion = string.length == letrasConcatenadas.length ? 3 : 0
+    const verificacion = puntaje == 0 ? 0 : nivelacion
 
     const suma = puntaje + validarCocatenacion
-    return suma
+
+    return (suma + letrasConcatenadas.length) - verificacion
 
 }
 

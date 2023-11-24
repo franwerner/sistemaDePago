@@ -20,9 +20,9 @@ const bucleJerarquico = (jerarquia = [], suma = -1) => {
 
     const mapeo = jerarquia.map(item => {
 
-        const puntaje = bucleDePuntuacion(item.nombre, rutas[suma])
+        const puntaje = bucleDePuntuacion(item.nombre, rutas[suma],suma)
 
-        if (rutas.length <= suma + 1) return { ...item, puntaje, total: puntaje, children: null };
+        if (rutas.length <= suma + 1) return { ...item, puntaje, children: null };
         const bucle = bucleJerarquico(item.children, suma)
         return {
             ...item,

@@ -17,7 +17,7 @@ export const SuspenseCompontentsLoading = memo(({ children, texto = "" }) => {
                         style={{ height: "30px", width: "30px" }}
                         variant="secondary"
                     />
-                    <p className="m-0 fw-medium text-ligthdark ls-3">{texto}</p>
+                    <p className="m-0 fw-medium text-primary-2 ls-3">{texto}</p>
                 </div>
             }
         >

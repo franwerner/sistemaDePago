@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { QueryParamsContext } from "../Contextos";
-
+//Sirve para pasarle al servidor/cliente informacion sobre que es lo que tiene que filtrar u ordenar
 export const QueryParamsProvider = ({ children }) => {
 
     const [queryParams, setQueryParams] = useState({});

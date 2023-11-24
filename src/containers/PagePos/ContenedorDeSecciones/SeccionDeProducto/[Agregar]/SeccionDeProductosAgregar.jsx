@@ -1,25 +1,21 @@
-import { Paginacion } from "@/components//Paginacion";
-import { Suspense } from "react";
-import { Await, useLoaderData, useLocation, useNavigate, useNavigation, useParams } from "react-router-dom";
+import { Row } from "react-bootstrap";
+import { SeccionDeProductosAgregarContenedor } from "./SeccionDeProductosAgregarContenedor";
 
 
 const SeccionDeProductosAgregar = () => {
 
-  const a = useLoaderData()
-
-  const { state } = useNavigation()
-
-
-  const params = useParams()
 
   return (
     <>
-      <Paginacion largo={15} parametro={params.id} url={"pos/productos/agregar"}></Paginacion>
-      <Suspense fallback={<p>cargando...</p>}>
-        <Await resolve={a} children ={a.id}>
+      <Row
+        style={{ minHeight: "90px" }}
+        className="shadow">
 
-        </Await>
-      </Suspense>
+      </Row>
+
+      <Row className="d-flex justify-content-center align-items-center h-100 my-5">
+        <SeccionDeProductosAgregarContenedor />
+      </Row>
     </>
   );
 };

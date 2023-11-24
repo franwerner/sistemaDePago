@@ -3,22 +3,9 @@ import { Link } from "react-router-dom";
 import DropwDownItemsProductos from "./DropwDownFilterProductos";
 import BuscadorInput from "@/components//BuscadorInput";
 import { memo } from "react";
-
-
-
-const FiltradoDeFilas = () => {
-
-    return (
-        <>
-            <i className="fa-solid fs-4 fa-list"></i>
-            <i className="fa-solid fs-4 mx-1 fa-table-cells-large"></i>
-            <i className="fa-solid fs-4 fa-table-cells"></i>
-        </>
-    )
-}
+import { VistaDeCuadricula } from "@/components//VistaDeCuadricula";
 
 const ContenedorDeProductosNav = memo(() => {
-
 
     return (
         <Col className=" w-100 d-flex  justify-content-start m-0 align-items-center">
@@ -27,9 +14,7 @@ const ContenedorDeProductosNav = memo(() => {
                 <Row className="m-0 h-100">
 
                     <Col className="d-flex justify-content-evenly p-0 align-items-center">
-
                         <DropwDownItemsProductos />
-
                         <Link to={"?"}>
                             <i className="fa-solid fs-4 fa-filter-circle-xmark"></i>
                         </Link>
@@ -37,7 +22,7 @@ const ContenedorDeProductosNav = memo(() => {
                     </Col>
 
                     <Col className="d-flex justify-content-evenly p-0 align-items-center ">
-                        <FiltradoDeFilas />
+                        <VistaDeCuadricula />
                     </Col>
 
                     <Col
