@@ -3,7 +3,7 @@ import { SvgLupa } from "./SvgLupa";
 import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "./RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
-import { algoritmoDeBusquedaPageUtils } from "../common/utils/algoritmoDeBusquedaPageUtils";
+import { algoritmoDeBusquedaPageUtils } from "@/common/utils/AlgoritmoDeBusquedaPageUtils";
 
 const ListaDeErrores = [
   { tipo: 301, text: "La página o recurso solicitado ha sido movido permanentemente a una nueva ubicación. Actualiza tus marcadores o sigue el enlace proporcionado." },

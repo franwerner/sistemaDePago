@@ -1,4 +1,3 @@
-import { concatenacionDeRutas } from "../helper/concatenacionDeRutas";
 import { splitDeRutasUtils } from "./splitDeRutasUtils";
 
 const rutasAnidaas = [
@@ -18,8 +17,11 @@ const rutasAnidaas = [
                     {
                         nombre: "productos", children: [
                             {
-                                nombre: "agregar",
+                                nombre: "agregar", children: [{ nombre: "pene" }],
                             },
+                            {
+                                nombre: "zuc"
+                            }
                         ]
                     },
 
@@ -31,12 +33,12 @@ const rutasAnidaas = [
     ]
 ]
 
-
 const bucleForLetra = (string = "", path = "") => {
 
-    const ruta = path.toLocaleLowerCase()
+    let puntaje = 0;
+    let letrasConcatenadas = ""
 
-    // console.log(`${string} - ${path}`)
+    const ruta = path.toLocaleLowerCase()
 
     const [mapeoLetrasString, mapeoLetrasRuta] = [string, ruta].reduce((mapa, letra, indice) => {
 
@@ -47,15 +49,11 @@ const bucleForLetra = (string = "", path = "") => {
 
     }, [new Map(), new Map()])
 
-    let puntaje = 0;
-    let letrasConcatenadas = ""
-
     for (const [letra, cantidadEnRuta] of mapeoLetrasRuta.entries()) {
 
-        if (mapeoLetrasString.has(letra)) {
-            const cantidadEnString = mapeoLetrasString.get(letra);
-            puntaje += Math.min(cantidadEnRuta, cantidadEnString);
-        }
+        const cantidadEnString = mapeoLetrasString.get(letra);
+
+        cantidadEnString && (puntaje += Math.min(cantidadEnRuta, cantidadEnString)) //Se evalua en base a la ruta mal escrita, cuanto de esas letra estan en string(ruta original).
     }
 
     for (let i = 0; i < ruta.length; i++) {
@@ -68,47 +66,51 @@ const bucleForLetra = (string = "", path = "") => {
         }
     }
 
-    const letraLength = letrasConcatenadas.length
 
-    const porcentaje = Math.floor(((puntaje / string.length) * 100))
 
-    const validarPorcentaje = porcentaje == 100 ? 1 : 0
+    const validarCocatenacion = string.length == letrasConcatenadas.length ? 3 : 0
 
-    const validarCocatenacion = string.length == letraLength ? 3 : 0
-
-    const suma = puntaje + letraLength + validarPorcentaje + validarCocatenacion
-
+    const suma = puntaje + validarCocatenacion
     return suma
 
 }
 
-const bucleBidimensional = (jerarquia = [], suma = -1, total = 0) => {
+const sumarTotalRecursivo = (children) => {
+
+    return children.reduce((acc, current) => {
+        const puntaje = current.puntaje ? current.puntaje : 0
+        const recursividad = current.children ? sumarTotalRecursivo(current.children) : 0
+        return acc + puntaje + recursividad
+    }, 0)
+
+}
+
+
+const bucleBidimensional = (jerarquia = [], suma = -1) => {
 
     const rutas = splitDeRutasUtils();
 
     suma++; //La suma se mantiene hasta el proximo nivel de jerarquia, por mas que se reinicie dentro del bucle, manteiene el estado anterior.
+    // ejm : se matiene 1 hasta que en el capa 2 del mapeo se termine, entonces siempre sera uno hasta que pase al siguiente nivel de jerarquia
 
     const mapeo = jerarquia.map(item => {
 
         const puntaje = bucleForLetra(item.nombre, rutas[suma])
 
-        if (rutas.length <= suma + 1) return { ...item, puntaje, children: null };
-        const bucle = bucleBidimensional(item.children, suma, total)
-
+        if (rutas.length <= suma + 1) return { ...item, puntaje, total: puntaje, children: null };
+        const bucle = bucleBidimensional(item.children, suma)
         return {
             ...item,
             puntaje,
-            total: bucle.reduce((acc, current) => {
-                total += current.puntaje
-                return acc + current.puntaje
-            }, 0),
-            children: [bucle.reduce((acc, current) => {
+            total: bucle && sumarTotalRecursivo(bucle),
+            children: bucle && [bucle.reduce((acc, current) => {
                 const { total: totalAcc = 0, puntaje: puntajeAcc = 0 } = acc
                 const { total = 0, puntaje = 0 } = current
                 const accTotal = totalAcc + puntajeAcc
                 const currentTotal = total + puntaje
 
-                return accTotal > currentTotal ? acc : current
+                return accTotal > currentTotal || puntaje == 0 ? acc : current
+
             }, {})]
         }
     })
@@ -116,47 +118,52 @@ const bucleBidimensional = (jerarquia = [], suma = -1, total = 0) => {
     return mapeo
 };
 
+
+
 const encontrarPuntajeMasAlto = (date) => {
 
-    let suma = date.puntaje;
-
-    for (const key of date.children) {
-
-        if (typeof date.children[key] == "object") {
-            suma += encontrarPuntajeMasAlto(date.children);
+    let suma = date[0].puntaje || 0
+    for (const key of date) {
+        if (key.children) {
+            suma += encontrarPuntajeMasAlto(key.children);
         }
     }
     return suma
-
 }
 
 export const algoritmoDeBusquedaPageUtils = () => {
 
     let sumaActual = 0
-    let rutaActual = ""
-    const sistemaDePuntaje = rutasAnidaas
-        .map(item => bucleBidimensional(item))
+    let rutaActual = []
 
+    const sistemaDePuntaje = rutasAnidaas
+        .map(item => {
+            const bucle = bucleBidimensional(item)[0]
+            const hijo = bucle.children[0].total
+            const puntaje = bucle.puntaje
+            const verificarHijo = hijo ? hijo + puntaje : puntaje
+            return [{ ...bucle, total: verificarHijo }] //Se suman el valor real del hijo mas cercano y el puntaje de la capa 1
+        })
 
     for (const iterator of sistemaDePuntaje) {
-        const a = encontrarPuntajeMasAlto(iterator[0])
-        const mathMax = Math.max(sumaActual, a)
+
+        const search = encontrarPuntajeMasAlto(iterator)
+
+        const mathMax = Math.max(sumaActual, search)
         if (mathMax > sumaActual) {
             rutaActual = iterator
             sumaActual = mathMax
         }
     }
 
-
-
     const concatenacionRecursiva = (date) => {
 
-        let concatenacion = date[0].nombre
+        let concatenacion = typeof date[0] == "object" ? date[0].nombre || "" : ""
 
         for (const iterator of date) {
-            if(!iterator.children) return concatenacion
+            if (!iterator.children) return concatenacion
             concatenacion += "/" + concatenacionRecursiva(iterator.children);
-            
+
         }
 
         return concatenacion
