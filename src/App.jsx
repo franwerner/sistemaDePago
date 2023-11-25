@@ -5,7 +5,7 @@ import { PuntoDeVentaRouter } from './router/PuntoDeVentaRouter';
 import { SuspenseMainPageLoading } from './components/SuspenseMainPageLoading';
 
 const ErrorPage = lazy(() => import('./components/ErrorPage/ErrorPage'))
-const Seleccion = lazy(() => import("./screens/Seleccion"))
+const Menu = lazy(() => import("./screens/Menu"))
 const Empleado = lazy(() => import("./screens/Empleado"))
 
 
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <SuspenseMainPageLoading><Seleccion /></SuspenseMainPageLoading>,
+    element: <SuspenseMainPageLoading><Menu/></SuspenseMainPageLoading>,
     errorElement: <ErrorPage />,
   },
   {

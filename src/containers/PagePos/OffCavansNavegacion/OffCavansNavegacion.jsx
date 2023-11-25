@@ -6,7 +6,7 @@ const ListaDeMenu = [
     {
         nombre: "Productos",
         icon: "fa-solid fa-box-open",
-        subRutas: ["productos", "agregar",]
+        subRutas: ["productos"]
     },
     {
         nombre: "Compras",

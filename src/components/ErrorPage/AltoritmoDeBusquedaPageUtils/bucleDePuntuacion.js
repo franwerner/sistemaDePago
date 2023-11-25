@@ -20,7 +20,7 @@ const bucleDePuntuacion = (string = "", path = "", nivelJerarquico) => {
         cantidadEnString && (puntaje += Math.min(cantidadEnRuta, cantidadEnString)) //Se evalua en base a la ruta mal escrita, cuanto de esas letra estan en string(ruta original).
     }
 
-    const letrasConcatenadas = path.split("").reduce((acc, current, index) => string.startsWith(acc + current) ? acc += current : acc, "")
+    const letrasConcatenadas = path.split("").reduce((acc, current) => string.startsWith(acc + current) ? acc += current : acc, "")
 
     const validarCocatenacion = string.length == letrasConcatenadas.length ? 5 : 0
 

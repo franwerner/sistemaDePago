@@ -1,9 +1,24 @@
+import { Col, Container, Row } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEventoMostrar } from "@/hooks/useEventoMostrar";
-import styles from "@/styles/CardSeleccionDeNavegacion.module.css"
+import styles from "@/styles/Menu.module.css"
 import { memo } from "react";
 
+const cards = [
+    {
+        tipo: "Sucursales",
+        src: "https://i.ibb.co/3SzxDLb/png-transparent-store-branches-illustration-removebg-preview.png",
+        color: "#ff785d",
+        link: "/sucursales"
+    },
+    {
+        tipo: "Punto de venta",
+        src: "https://i.ibb.co/PwvyCyf/png-transparent-computer-icons-cashier-cash-register-icon-s-cashier-miscellaneous-angle-material-rem.png",
+        color: "#66cce0",
+        link: "/empleado"
+    },
+]
 
 const CardBody = memo(({ src, tipo, color }) => {
     return <Card.Body
@@ -48,4 +63,33 @@ const CardSeleccionDeNavegacion = ({ src, tipo, color, link }) => {
 
 }
 
-export default CardSeleccionDeNavegacion
+
+
+const Menu = () => {
+    return (
+        <Container className="scrollHidden p-0 d-flex a justify-content-center flex-column align-items-center vh-100" fluid>
+
+            <Row className="w-100 h-100 p-0 d-flex justify-content-center align-items-center m-0">
+
+                <Col className=" p-0 mt-2 mt-md-0  d-flex justify-content-center  flex-wrap ">
+
+                    {
+                        cards.map((props, index) =>
+
+                            <CardSeleccionDeNavegacion
+                                key={index}
+                                {...props}
+                            />
+
+                        )
+                    }
+
+                </Col>
+            </Row>
+
+        </Container>
+    );
+};
+
+
+export default Menu

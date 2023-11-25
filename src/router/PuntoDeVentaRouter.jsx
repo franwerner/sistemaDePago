@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { defer, redirect } from 'react-router-dom';
+import {redirect } from 'react-router-dom';
 import { SuspenseMainPageLoading } from '../components/SuspenseMainPageLoading';
 
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
@@ -9,7 +9,7 @@ const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSe
 const SeccionDeCaja = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/SeccionDeCaja"))
 const SeccionDeCajaPagos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pagos]/SeccionDeCajaPagos"))
 const SeccionDeCompras = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCompras/SeccionDeCompras"))
-const SeccionDeProductosAgregar = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/[Agregar]/SeccionDeProductosAgregar"))
+
 const ErrorPage = lazy(() => import("@/components/ErrorPage"))
 
 
@@ -25,10 +25,6 @@ export const PuntoDeVentaRouter = {
         {
             path: "productos/:seccion",
             element: <SeccionDeProductos />
-        },
-        {
-            path: "productos/agregar",
-            element: <SeccionDeProductosAgregar />,
         },
         {
             path: "compras",

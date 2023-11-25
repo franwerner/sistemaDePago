@@ -13,20 +13,17 @@ const historialDeRutas = [
                                 { nombre: "pagos" },
                             ]
                     },
-                    {
-                        nombre: "productos", children: [
-                            {
-                                nombre: "agregar",
-                            },
-                        ]
-                    },
-
+                    { nombre: "productos" }
                 ]
         }
     ],
     [
         { nombre: "empleado" }
+    ],
+    [
+        { nombre: "sucursales" }
     ]
 ]
+
 
 export default historialDeRutas
