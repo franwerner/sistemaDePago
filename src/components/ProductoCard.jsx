@@ -41,7 +41,7 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
             ref={refFocusElement}
             onMouseEnter={onMouseEnter}
             onClick={onClick}
-            className={`${styles.cardContainer} m-2 overflow-hidden`}>
+            className={`${styles.cardContainer} m-2 shadow border-0 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
                 <p className="m-2 text-primary-2 fs-6 mx-3">#1231</p>

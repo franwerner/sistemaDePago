@@ -84,11 +84,11 @@ $position-classes: (
 }
 
 
-.btn-primary {
+.btn-primary,.btn-primary-2 {
   color: white !important;
 }
 
-.btn-outline-primary:hover,.btn-outline-danger:hover {
+.btn-outline-primary:hover,.btn-outline-danger:hover,.btn-outline-primary-2:hover{
   color: white !important;
 }
 

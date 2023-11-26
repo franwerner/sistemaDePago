@@ -9,6 +9,7 @@ export const ListadoDeSubRutas = memo(({ subruta, ruta, rutasArray }) => {
 
     const verificaRuta = rutasArray.length == 1 && rutaLowerCase == subruta
 
+
     const verificarSubRuta = rutasArray.includes(subruta !== rutaLowerCase && subruta)
 
     const colorRuta = verificaRuta || verificarSubRuta ? "primary" : "ligthdark"
@@ -38,7 +39,6 @@ export const SeccionSubRutas = memo(({ subRutas = [], ruta }) => {
     const { pathname } = useLocation()
 
     const filtradoDeRutas = pathname.split("/").filter(item => subRutas.includes(item))
-
 
     return (
         <>

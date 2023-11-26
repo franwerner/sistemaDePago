@@ -4,6 +4,7 @@ import DropwDownItemsProductos from "./DropwDownFilterProductos";
 import BuscadorInput from "@/components//BuscadorInput";
 import { memo } from "react";
 import { VistaDeCuadricula } from "@/components//VistaDeCuadricula";
+import { RemoveFilterIcon } from "@/components//removeFilterIcon";
 
 const ContenedorDeProductosNav = memo(() => {
 
@@ -15,10 +16,9 @@ const ContenedorDeProductosNav = memo(() => {
 
                     <Col className="d-flex justify-content-evenly p-0 align-items-center">
                         <DropwDownItemsProductos />
-                        <Link to={"?"}>
-                            <i className="fa-solid fs-4 fa-filter-circle-xmark"></i>
-                        </Link>
 
+                        <RemoveFilterIcon />
+                        
                     </Col>
 
                     <Col className="d-flex justify-content-evenly p-0 align-items-center ">

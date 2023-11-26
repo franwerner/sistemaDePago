@@ -2,7 +2,7 @@ import historialDeRutas from "./historialDeRutas";
 import bucleJerarquico from "./bucleJerarquico";
 
 
-const encontrarPuntajeMasAlto = (sistemaDePuntaje) => {
+const encontrarPuntajeMasAltoEntreRaices = (sistemaDePuntaje) => {
     let sumaActual = 0
     let rutaActual = []
 
@@ -54,7 +54,7 @@ export const algoritmoDeBusquedaPageUtils = () => {
             return [{ ...bucle, total: verificarHijo }] //Se suman el valor real del hijo mas cercano y el puntaje de la capa 1
         })
 
-    const rutaActual = encontrarPuntajeMasAlto(sistemaDePuntaje)
+    const rutaActual = encontrarPuntajeMasAltoEntreRaices(sistemaDePuntaje)
 
     return concatenacionRecursiva(rutaActual)
 

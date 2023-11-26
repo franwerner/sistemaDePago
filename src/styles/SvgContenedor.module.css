@@ -1,0 +1,59 @@
+#gancho1,
+#gancho2,
+#ganchoCuerda,
+#tiraDerecha,
+#tiraIzquierda,
+#boxContainer1,
+#boxContainer2,
+#boxContainer3,
+#boxContainer,
+#numeroLote {
+    transform: translateY(-50px);
+}
+
+.caidaLibre {
+    animation: caida 0.7s ease-in-out 1 alternate forwards;
+    transform: translateY(0);
+  }
+  
+  .gancho {
+    animation: gancho 3s ease-in-out infinite 0.2s; 
+    transform-origin: center bottom;
+    transform: rotate(-2deg) translateY(-50px);
+
+
+  }
+  
+  @keyframes gancho {
+    0%, 100% {
+      transform: rotate(-0.6deg) translateY(-50px);
+    }
+    50% {
+      transform: rotate(0.6deg) translateY(-50px);
+    }
+  }
+  
+  .balanceo {
+    animation: balanceo 3s ease-in-out infinite 0.2s; 
+    transform-origin: center bottom;
+    transform: rotate(-2deg) translateY(-50px);
+  }
+  
+  @keyframes balanceo {
+    0%, 100% {
+      transform: rotate(-0.8deg) translateY(-50px);
+    }
+    50% {
+      transform: rotate(0.8deg) translateY(-50px);
+    }
+  }
+  
+  @keyframes caida {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(50px);
+    }
+  }
+

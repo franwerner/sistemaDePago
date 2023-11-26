@@ -1,6 +1,6 @@
 import { memo, useEffect } from "react"
 import { Accordion, AccordionContext, Card, Stack, useAccordionButton } from "react-bootstrap"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import styles from "@/styles/OffCavansNavegacion.module.css"
 import { useContext } from "react"
 import { SeccionSubRutas } from "./SeccionSubRutas"
@@ -16,12 +16,13 @@ const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
 
     const rutas = splitDeRutasUtils()
 
-    useEffect(() => {
+    useEffect(() => {//Ese useEffect lo que hace, es cuando una ruta secundaria esta activa, automaticamente el decortedOnClick se activa
 
         if (rutaActual && activeEventKey !== eventKey) {
             decoratedOnClick()
         }
-        else if (rutas.length == 1 && activeEventKey !== null) {
+        else if (rutas.length == 1 && activeEventKey !== null) {//Esto sirve para cuando la ruta solo es POS
+
             decoratedOnClick()
         }
 
@@ -29,7 +30,6 @@ const ContextAcordion = memo(({ children, eventKey, callback, rutaActual }) => {
 
     return (
         <div
-            onClick={decoratedOnClick}
             className={`${styles[iconConfig]}  p-2 text-start border-0 align-items-center d-flex justify-content-between`}
         >
             {children}
@@ -58,10 +58,9 @@ export const AccordionSeccionesOffCavans = memo(({ nombre, icon, subRutas, index
 
     const nombreLowerCase = nombre.toLocaleLowerCase()
 
-    const { pathname } = useLocation()
+    const rutas = splitDeRutasUtils()
 
-    const rutaActual = pathname.toLocaleLowerCase().match(nombreLowerCase.toLocaleLowerCase())
-
+    const rutaActual = rutas.includes(nombreLowerCase)
 
     return (
 

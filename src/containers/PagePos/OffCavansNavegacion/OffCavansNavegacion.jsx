@@ -24,9 +24,9 @@ const ListaDeMenu = [
         subRutas: ["clientes"]
     },
     {
-        nombre: "Almacen",
+        nombre: "Inventario",
         icon: "fa-solid fa-cubes",
-        subRutas: ["almacen"]
+        subRutas: ["inventario","añadir","gestion"]
     },
     {
         nombre: "Venta",

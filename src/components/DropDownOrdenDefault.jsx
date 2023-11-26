@@ -12,26 +12,32 @@ const DropwDownItems = ({ nombre, onClick, prioridad, orden }) => {
 
     const buscarPropiedad = orden ? orden : ""
 
+    const color = orden == "<" ? "danger" : "success"
+
     return (
         <Dropdown.Item
-            className="fw-medium"
+            className="fw-medium bg-white"
             data-name={nombre}
             data-prioridad={prioridad}
             onClick={onClick}>
-            {nombre}{ordenList[buscarPropiedad]}
+            {nombre}
+            <span
+                data-name={nombre}
+                data-prioridad={prioridad}
+                className={`text-${color} fs-5`}>{ordenList[buscarPropiedad]}</span>
         </Dropdown.Item>
     )
 }
 
 const DropwDownParent = memo(({ children }) => {
     return (
-        <Dropdown  className="position-relative" autoClose="outside" >
+        <Dropdown className="position-relative" autoClose="outside" >
             <Dropdown.Toggle
-                variant=""
-                className="border"
+                variant="outline-ligthdark"
+                className=" d-flex py-2 align-items-center"
                 id="dropdown-orden">
-                <i className="fa-solid mx-1 fa-chart-bar"></i>
-                Ordenar por
+                <i className="fa-solid mx-1 fw-bolder fa-chart-bar"></i>
+                <p className="m-0 fw-medium">Ordenar por</p>
             </Dropdown.Toggle>
 
             <Dropdown.Menu >

@@ -2,16 +2,17 @@ import { Dropdown } from "react-bootstrap"
 
 const DropwDownItems = ({ nombre, component }) => {
 
+
     return (
         <>
         {component ? (
             component
         ) : (
             <Dropdown.Item
-                className="fw-medium"
+                className="fw-medium  bg-white"
                 data-name={nombre}
             >
-                {nombre}
+                {nombre}<span className="text-primary mx-2 fs-6"><i className="fa-solid fa-check"></i></span>
             </Dropdown.Item>
         )}
     </>
@@ -24,9 +25,9 @@ const DropDownParent = ({ children }) => {
             className="position-relative"
             autoClose="outside" >
             <Dropdown.Toggle
-                variant="none"
+                variant="outline-ligthdark"
                 id="dropdown-filter" >
-                <i className="fa-solid fs-4 fa-filter"></i>
+                <i className="fa-solid cursor-pointer zoom fs-4 fa-filter"></i>
             </Dropdown.Toggle>
 
             <Dropdown.Menu >

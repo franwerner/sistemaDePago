@@ -35,6 +35,8 @@ const BotonValidar = () => {
             if (!validacion) throw new ErrorEvent("2F")
 
             print()
+            
+            buscarCodigo({codigo : "3F"})
 
             borrarListado()
 

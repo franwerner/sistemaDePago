@@ -15,7 +15,7 @@ const bucleJerarquico = (jerarquia = [], suma = -1) => {
 
     const rutas = splitDeRutasUtils();
 
-    suma++; //La suma se mantiene hasta el proximo nivel de jerarquia, por mas que se reinicie dentro del bucle, manteiene el estado anterior.
+    suma++; //La suma se mantiene hasta el proximo nivel de jerarquia, por mas que se reinicie dentro del bucle, mantiene el estado anterior.
     // ejm : se matiene 1 hasta que en el capa 2 del mapeo se termine, entonces siempre sera uno hasta que pase al siguiente nivel de jerarquia
 
     const mapeo = jerarquia.map(item => {
