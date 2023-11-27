@@ -6,21 +6,17 @@
     color: #555;
 }
 
-.enterAnimation img {
-    transition: all 0.6s;
+.enterAnimation svg {
+    transition: all 0.2s;
     transform: translateY(-5px);
 }
 
-.cardSeleccion img {
-    object-fit: contain;
-
-}
 
 .enterAnimation,
 .enterAnimation:active {
     z-index: 12;
     opacity: 1;
-    box-shadow: 14px 10px 17px -9px rgba(0, 0, 0, 0.75);
+
     transform: scale(1.1);
 }
 

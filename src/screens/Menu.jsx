@@ -4,59 +4,44 @@ import { Link } from "react-router-dom";
 import { useEventoMostrar } from "@/hooks/useEventoMostrar";
 import styles from "@/styles/Menu.module.css"
 import { memo } from "react";
+import SvgCashRegister from "../components/SvgCashRegister";
+import { SvgSucursales } from "../components/SvgSucursales";
 
 const cards = [
     {
         tipo: "Sucursales",
-        src: "https://i.ibb.co/3SzxDLb/png-transparent-store-branches-illustration-removebg-preview.png",
-        color: "#ff785d",
+        Componente: () => <SvgSucursales />,
         link: "/sucursales"
     },
     {
         tipo: "Punto de venta",
-        src: "https://i.ibb.co/PwvyCyf/png-transparent-computer-icons-cashier-cash-register-icon-s-cashier-miscellaneous-angle-material-rem.png",
-        color: "#66cce0",
+        Componente: () => <SvgCashRegister />,
         link: "/empleado"
     },
-]
+];
 
-const CardBody = memo(({ src, tipo, color }) => {
-    return <Card.Body
-        style={{ borderTop: `8px solid ${color}` }}
-        className="d-flex rounded    justify-content-center flex-column">
-        <Card.Img
-            alt={tipo}
-            width={160}
-            height={160}
-            srcSet={src}
-            loading="lazy"
-            decoding="async"
-            src={src} />
-        <Card.Title className="fw-bolder text-center">
-            <p>{tipo}</p>
-        </Card.Title>
 
-    </Card.Body>
 
-})
-
-const CardSeleccionDeNavegacion = ({ src, tipo, color, link }) => {
+const CardSeleccionDeNavegacion = ({ Componente, tipo, link }) => {
     const { mostrar, alternarMostrar } = useEventoMostrar();
 
     return (
-        <Link style={{ textDecoration: "none" }} to={link}>
+        <Link className="shadow animate__animated animate__bounceInDown m-4 rounded" style={{ textDecoration: "none" }} to={link}>
             <Card
                 onMouseEnter={alternarMostrar}
                 onMouseLeave={alternarMostrar}
                 onTouchStart={alternarMostrar}
                 onTouchEnd={alternarMostrar}
-                className={`${styles.cardSeleccion} animate__animated animate__bounceInDown m-2 ${mostrar ? styles.enterAnimation : styles.leaveAnimation}`}
+                className={`${styles.cardSeleccion} h-100 shadow  border-0  ${mostrar ? styles.enterAnimation : styles.leaveAnimation}`}
             >
-                <CardBody
-                    src={src}
-                    color={color}
-                    tipo={tipo}
-                />
+                <Card.Body className="h-100" >
+                    <Componente />
+                </Card.Body>
+
+
+                <Card.Footer className="fw-bolder border-2 border-top  bg-white text-center">
+                    <p className="m-0 ls-4 text-ligthdark">{tipo}</p>
+                </Card.Footer>
             </Card>
         </Link>
     );

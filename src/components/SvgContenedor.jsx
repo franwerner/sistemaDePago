@@ -13,10 +13,14 @@ const SvgContenedor = ({ numero = 1, lote = null, animation }) => {
 
   const { box1, box2, box3 } = coloresRandomBox[numero]
 
-  const activada = animation ? "caidaLibre" : ""
-  const cuerdaActivada = animation ? "balanceo" : ""
-  const ganchoActivado = animation ? "gancho" : ""
-  
+  const obj = {
+    caidaActivada: "caidaLibre",
+    cuerdaActivada: "balanceo",
+    ganchoActivado: "gancho",
+  }
+
+  const animationOn = animation ? obj : {}
+
   return (
 
     <svg
@@ -24,27 +28,25 @@ const SvgContenedor = ({ numero = 1, lote = null, animation }) => {
       xmlSpace="preserve"
       width={200}
       height={200}
+      id={styles.svgContenedor}
       className="h-100"
       viewBox="0 0 499.192 499.192"
     >
       <path
-        className={styles[ganchoActivado]}
-        id={styles.gancho1}
+        className={styles[animationOn.ganchoActivado]}
         d="M257.938 81.164V11.823c0-4.608-3.742-8.35-8.342-8.35-4.6 0-8.342 3.742-8.342 8.35v77.17c0 4.6 3.742 8.342 8.342 8.342.52 0 1.048-.055 1.536-.158 17.881.819 32.185 15.573 32.185 33.642 0 18.582-15.124 33.713-33.721 33.713-18.582 0-33.721-15.132-33.721-33.713h-16.691c0 27.79 22.63 50.404 50.412 50.404 27.798 0 50.412-22.615 50.412-50.404 0-24.945-18.243-45.654-42.07-49.655z"
         style={{
           fill: "#91adb5",
         }}
       />
       <path
-        className={styles[ganchoActivado]}
-        id={styles.gancho2}
+        className={styles[animationOn.ganchoActivado]}
         d="M249.596 80.187c.52 0 1.048-.063 1.536-.158a33.62 33.62 0 0 1 6.798 1.024V11.823c0-4.608-3.742-8.35-8.342-8.35-4.6 0-8.342 3.742-8.342 8.35v60.022c.008 4.608 3.75 8.342 8.35 8.342zM299.229 122.132c-3.568-20.488-19.598-36.691-39.952-40.676 13.879 4.167 24.048 16.998 24.048 32.224 0 2.962-.433 5.821-1.15 8.562.725 2.749 1.15 5.616 1.15 8.586 0 15.273-10.232 28.199-24.198 32.327 20.496-3.954 36.588-20.354 40.102-41.023zM215.875 130.82h-13.619c5.986 16.463 20.259 28.956 37.817 32.327-13.966-4.128-24.198-17.046-24.198-32.327z"
         style={{
           fill: "#a8c6cc",
         }}
       />
       <path
-        id={styles.ganchoCuerda}
         d="M281.23 24.332c0 3.08-2.489 5.569-5.553 5.569h-52.153a5.55 5.55 0 0 1-5.553-5.569V5.561A5.543 5.543 0 0 1 223.524 0h52.153a5.553 5.553 0 0 1 5.553 5.561v18.771z"
         style={{
           fill: "#608387",
@@ -52,40 +54,35 @@ const SvgContenedor = ({ numero = 1, lote = null, animation }) => {
       />
 
       <path
-        className={styles[activada]}
-        id={styles.boxContainer}
+        className={styles[animationOn.caidaActivada]}
         cd="M92.719 336.4c-3.033 0-6.049-1.15-8.357-3.458-4.616-4.616-4.616-12.091 0-16.707l156.877-156.877c4.616-4.616 12.091-4.616 16.707 0l156.877 156.877c4.616 4.616 4.616 12.091 0 16.707-4.616 4.616-12.091 4.616-16.707 0l-148.52-148.527-148.519 148.527a11.792 11.792 0 0 1-8.358 3.458z"
         style={{
           fill: "#91adb5",
         }}
       />
       <path
-        className={styles[activada]}
-        id={styles.boxContainer1}
+        className={styles[animationOn.caidaActivada]}
         d="M485.691 483.801c0 8.499-6.877 15.392-15.384 15.392H28.9c-8.507 0-15.399-6.892-15.399-15.392v-168.11c0-8.499 6.892-15.392 15.399-15.392h441.407c8.507 0 15.384 6.892 15.384 15.392v168.11z"
         style={{
           fill: box1,
         }}
       />
       <path
-        className={styles[cuerdaActivada]}
-        id={styles.tiraDerecha}
+        className={styles[animationOn.cuerdaActivada]}
         d="M92.719 336.4c-3.033 0-6.049-1.15-8.357-3.458-4.616-4.616-4.616-12.091 0-16.707l156.877-156.877c4.616-4.616 12.091-4.616 16.707 0l156.877 156.877c4.616 4.616 4.616 12.091 0 16.707-4.616 4.616-12.091 4.616-16.707 0l-148.52-148.527-148.519 148.527a11.792 11.792 0 0 1-8.358 3.458z"
         style={{
           fill: "#91adb5",
         }}
       />
       <path
-        className={styles[cuerdaActivada]}
-        id={styles.tiraIzquierda}
+        className={styles[animationOn.cuerdaActivada]}
         d="m100.777 332.635 156.877-156.877a11.8 11.8 0 0 1 16.675-.016l-16.384-16.392c-4.616-4.616-12.091-4.616-16.707 0L84.362 316.227c-4.616 4.616-4.616 12.091 0 16.707a11.765 11.765 0 0 0 8.357 3.458c2.678 0 5.293-1.063 7.475-2.875.229-.268.323-.615.583-.882z"
         style={{
           fill: "#a8c6cc",
         }}
       />
       <path
-        className={styles[activada]}
-        id={styles.boxContainer2}
+        className={styles[animationOn.caidaActivada]}
         d="M485.691 483.801v-168.11c0-8.499-6.877-15.392-15.384-15.392H324.285c-8.507 0-15.399 6.892-15.399 15.392V483.8c0 8.499 6.892 15.392 15.399 15.392h146.022c8.508 0 15.384-6.892 15.384-15.391z"
         style={{
           fill: box2,
@@ -93,14 +90,19 @@ const SvgContenedor = ({ numero = 1, lote = null, animation }) => {
       />
 
       <path
-        className={styles[activada]}
-        id={styles.boxContainer3}
+        className={styles[animationOn.caidaActivada]}
         d="M324.285 300.3c-8.507 0-15.399 6.892-15.399 15.392v168.109c0 8.499 6.892 15.392 15.399 15.392h146.022c8.507 0 15.384-6.892 15.384-15.392M51.239 458.823a3.944 3.944 0 0 1-3.938 3.938 3.934 3.934 0 0 1-3.938-3.938V340.669a3.935 3.935 0 0 1 3.938-3.938 3.944 3.944 0 0 1 3.938 3.938v118.154zM80.132 458.823a3.944 3.944 0 0 1-3.938 3.938 3.934 3.934 0 0 1-3.938-3.938V340.669a3.935 3.935 0 0 1 3.938-3.938 3.944 3.944 0 0 1 3.938 3.938v118.154zM109.009 458.823a3.944 3.944 0 0 1-3.938 3.938 3.934 3.934 0 0 1-3.938-3.938V340.669a3.935 3.935 0 0 1 3.938-3.938 3.944 3.944 0 0 1 3.938 3.938v118.154zM137.901 458.823a3.944 3.944 0 0 1-3.938 3.938 3.934 3.934 0 0 1-3.938-3.938V340.669a3.935 3.935 0 0 1 3.938-3.938 3.944 3.944 0 0 1 3.938 3.938v118.154zM166.778 458.823a3.944 3.944 0 0 1-3.938 3.938 3.934 3.934 0 0 1-3.938-3.938V340.669a3.935 3.935 0 0 1 3.938-3.938 3.944 3.944 0 0 1 3.938 3.938v118.154zM195.655 458.823a3.935 3.935 0 0 1-3.938 3.938 3.944 3.944 0 0 1-3.938-3.938V340.669a3.944 3.944 0 0 1 3.938-3.938 3.934 3.934 0 0 1 3.938 3.938v118.154zM224.547 458.823a3.944 3.944 0 0 1-3.938 3.938 3.934 3.934 0 0 1-3.938-3.938V340.669a3.935 3.935 0 0 1 3.938-3.938 3.944 3.944 0 0 1 3.938 3.938v118.154zM253.424 458.823a3.935 3.935 0 0 1-3.938 3.938 3.944 3.944 0 0 1-3.938-3.938V340.669a3.944 3.944 0 0 1 3.938-3.938 3.934 3.934 0 0 1 3.938 3.938v118.154zM282.317 458.823a3.944 3.944 0 0 1-3.938 3.938 3.934 3.934 0 0 1-3.938-3.938V340.669a3.935 3.935 0 0 1 3.938-3.938 3.944 3.944 0 0 1 3.938 3.938v118.154z"
         style={{
           fill: box3,
         }}
       />
-      <text id={styles.numeroLote} x="325" y="420" font-size="50" className={`${styles[activada]} fw-bolder text-truncate`} fill="White">
+      <text
+        id={styles.numeroLote}
+        x="325"
+        y="420"
+        fontSize={50}
+        className={`${styles[animationOn.caidaActivada]} fw-bolder text-truncate`}
+        fill="White">
         #{lote}
       </text>
 
