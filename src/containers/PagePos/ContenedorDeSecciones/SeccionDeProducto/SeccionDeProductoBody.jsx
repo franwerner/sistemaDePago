@@ -147,10 +147,9 @@ const secciones = {
     "rotiseria": rotiseria,
 };
 
-const ProductoMemoizado = memo(({ agregarProducto, producto, productoEnLista }) => {
+const ProductoMemoizado = memo(({ agregarProducto, producto }) => {
     return (
         <ProductoCard
-            productoEnLista={productoEnLista}
             agregarProducto={agregarProducto}
             producto={producto} />
     )
@@ -170,7 +169,6 @@ const SeccionDeProductoBody = memo(() => {
             {secciones["home"].map((producto, index) =>
                 <ProductoMemoizado
                     key={index}
-                    productoEnLista={listaProducto.find(item => item.nombre == producto.nombre)}
                     producto={producto}
                     agregarProducto={agregarProducto} />
             )}

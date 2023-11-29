@@ -2,13 +2,12 @@ import { useCallback, useMemo } from "react";
 
 export const useAlgoritmoDeOrden = (parametros = "") => {
 
-
     const dependenciaPrioridad = Object.keys(parametros)
 
     const dependenciaArray = Object.values(parametros)
 
 
-    const organizarPrioridad = useMemo(() => {
+    const organizarPrioridad = useMemo(() => { 
 
         return Object.entries(parametros).sort(([_, valueA], [__, valueB]) => {
 
@@ -22,6 +21,7 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
         })
 
     }, [dependenciaPrioridad.toString()])
+
 
 
     const ordernAscendente = (a = "", b = "") => {
@@ -49,12 +49,12 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
 
                 const itemA = a[prop]
                 const itemB = b[prop]
-
+   
                 const parametrosActual = parametros[prop] ? parametros[prop] : ""
 
                 const comparacion = parametrosActual.match(">") ? ordernAscendente(itemA, itemB) : ordenDescendente(itemA, itemB);
 
-                if (comparacion !== 0) {
+                if (comparacion !== 0) {//Esto sirve para que detenga todo el bucle en caso de que encuentre un valor diferente a 0, entonces la prioridad acutal se mantiene intacta
                     return comparacion;
                 }
             }

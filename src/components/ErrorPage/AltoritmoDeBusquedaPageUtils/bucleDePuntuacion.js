@@ -24,13 +24,13 @@ const bucleDePuntuacion = (string = "", path = "", nivelJerarquico) => {
 
     const validarCocatenacion = string.length == letrasConcatenadas.length ? 5 : 0
 
-    const nivelacion = nivelJerarquico * 1.5
+    const nivelacion = (nivelJerarquico * 1.5 )
 
     const suma = puntaje + validarCocatenacion
 
     const resultado = (suma + letrasConcatenadas.length) - nivelacion
-
-    if (resultado < 1 && puntaje > 0) return 1
+   
+    if (resultado < 1 && puntaje > 0) return 0.9
     else return resultado
 
 }

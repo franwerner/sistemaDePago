@@ -6,6 +6,7 @@ export const QueryParamsProvider = ({ children }) => {//Deespues añadir logica 
     const [queryParams, setQueryParams] = useState({});
 
     const establecerQueryParams = ({ target }) => {
+   
         const nombre = target.dataset.name.toLowerCase()
 
         const prioridad = target.dataset.prioridad
@@ -28,8 +29,13 @@ export const QueryParamsProvider = ({ children }) => {//Deespues añadir logica 
         return buscarParametro
     }
 
+    const borrarParametro = (nombre) => {
+        const borrado = Object.entries(queryParams).filter(([key, value]) => key !== nombre.toLowerCase())
+        setQueryParams(Object.fromEntries(borrado))
+    }
+
     return (
-        <QueryParamsContext.Provider value={{ queryParams, establecerQueryParams, obtenerOrden }}>
+        <QueryParamsContext.Provider value={{ queryParams, establecerQueryParams, obtenerOrden,borrarParametro }}>
             {children}
         </QueryParamsContext.Provider>
     )

@@ -1,11 +1,10 @@
-import { memo, useMemo, useState } from "react"
+import { memo, useMemo } from "react"
 import styles from "@/styles/SeccionDeProductos.module.css"
 import { CalcularPorcentajeMemoizado } from "@/hooks/useCalcularPorcentaje"
 import { Card } from "react-bootstrap"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
 import { useFocusMouseElements } from "@/hooks/useFocusMouseElements"
-import buscarCodigoMensajePersonalizado from "@/common//helper/buscarCodigoMensajePersonalizado"
-
+import { AgregarCerosANumeros } from "@/common//helper/AgregarCerosANumeros"
 
 const CardFavorito = () => {
 
@@ -22,25 +21,19 @@ const CardFavorito = () => {
 }
 
 
-const ProductoCard = memo(({ producto, agregarProducto, productoEnLista = { cantidad: 0 } }) => {
+const ProductoCard = memo(({ producto, agregarProducto }) => {
 
     const { precio, nombre, metodo } = producto
 
     const { onMouseEnter, refFocusElement } = useFocusMouseElements()
 
-    const [onAlert, setOnAlert] = useState(false)
-
-    const cantidadTest = useMemo(() => Math.round(Math.random(1) * 10), [])
+    const cantidadTest = useMemo(() => Math.round(Math.random(1) * 10) + 1, [])
 
 
     const onClick = (e) => {
 
-        e.target.id !== "contenedor-favorito" && e.target.tagName !== "I" && agregarProducto({ ...producto, max: cantidadTest })
+        e.target.id !== "contenedor-favorito" && e.target.tagName !== "I" && agregarProducto({ ...producto, lote: cantidadTest })
 
-        if (cantidadTest <= productoEnLista.cantidad && !onAlert) {
-            setOnAlert(true)
-            buscarCodigoMensajePersonalizado({ codigo: "4F" })
-        }
     }
 
     return (
@@ -52,7 +45,7 @@ const ProductoCard = memo(({ producto, agregarProducto, productoEnLista = { cant
             className={`${styles.cardContainer} m-2 shadow border-0 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
-                <p className="m-2 text-ligthdark fs-6  mx-3">Cant.{`(${cantidadTest - productoEnLista.cantidad})`}</p>
+                <p className="m-2 text-primary-2 fs-6  mx-3">#{AgregarCerosANumeros({numero : cantidadTest,digitos : 3})}</p>
                 <CardFavorito />
             </Card.Title>
 

@@ -4,28 +4,39 @@ import { QueryParamsContext } from "../context/Contextos";
 
 
 const ordenList = {
-    "<": "↓",
-    ">": "↑"
+    "<": "down",
+    ">": "up"
 }
 
-const DropwDownItems = ({ nombre, onClick, prioridad, orden }) => {
+const DropwDownItems = ({ nombre, establecerQueryParams, prioridad, orden, borrarParametro }) => {
 
     const buscarPropiedad = orden ? orden : ""
 
     const color = orden == "<" ? "danger" : "success"
 
+    const onRemove = () => {
+        borrarParametro(nombre)
+    }
+
+    const prioridadList = ordenList[buscarPropiedad]
     return (
-        <Dropdown.Item
-            className="fw-medium  bg-hoverdark bg-white"
-            data-name={nombre}
-            data-prioridad={prioridad}
-            onClick={onClick}>
-            {nombre}
-            <span
+        <div className="d-flex bg-hoverdark cursor-pointer  w-100 align-items-center">
+            <Dropdown.Item
+                onClick={establecerQueryParams}
                 data-name={nombre}
                 data-prioridad={prioridad}
-                className={`text-${color} fs-5`}>{ordenList[buscarPropiedad]}</span>
-        </Dropdown.Item>
+                className="fw-medium bg-white" >
+                {nombre}
+                <i className={`fa-solid fs-7 fa-arrow-${prioridadList} text-${color}`} />
+            </Dropdown.Item>
+            {
+                prioridadList &&
+                <i
+                    style={{ right: "2%" }}
+                    onClick={onRemove}
+                    className="fa-solid fs-5 position-absolute  text-end text-ligthdark fa-xmark" />
+            }
+        </div>
     )
 }
 
@@ -51,17 +62,18 @@ const DropwDownParent = memo(({ children }) => {
 
 const DropDownOrdenDefault = ({ dropwDownList = [] }) => {
 
-    const { establecerQueryParams, obtenerOrden } = useContext(QueryParamsContext)
+    const { establecerQueryParams, obtenerOrden, borrarParametro } = useContext(QueryParamsContext)
 
     return (
         <DropwDownParent>
             {
                 dropwDownList.map(item =>
                     <DropwDownItems
-                        onClick={establecerQueryParams}
+                        establecerQueryParams={establecerQueryParams}
                         key={item.nombre}
                         nombre={item.nombre}
                         prioridad={item.prioridad}
+                        borrarParametro={borrarParametro}
                         orden={obtenerOrden(item.nombre.toLowerCase())} />
                 )
             }

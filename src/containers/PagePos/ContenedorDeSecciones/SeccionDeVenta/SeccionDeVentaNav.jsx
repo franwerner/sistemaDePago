@@ -1,10 +1,21 @@
 import BotonRotacion from "@/components//BotonRotacion";
 import BuscadorInput from "@/components//BuscadorInput";
-import React from "react";
+import DropDownOrdenDefault from "@/components//DropDownOrdenDefault";
+import { memo } from "react";
 import { Col } from "react-bootstrap";
 
+const dropDownList = [
+    { nombre: "Nombre", prioridad: 6 },
+    { nombre: "Metodo", prioridad: 5 },
+    { nombre: "Cantidad", prioridad: 4 },
+    { nombre: "Precio", prioridad: 2 },
+    { nombre: "Descuento", prioridad: 3 },
+    { nombre: "Lote", prioridad: 1 },
+    { nombre: "Total", prioridad: 0 },
+]
 
-const SeccionDeVentaNav = React.memo(({ alternarMostrar }) => {
+
+const SeccionDeVentaNav = memo(({ alternarMostrar }) => {
 
     return (
         <>
@@ -14,8 +25,11 @@ const SeccionDeVentaNav = React.memo(({ alternarMostrar }) => {
                 <BotonRotacion alternarMostrar={alternarMostrar} />
             </Col>
 
+            <Col xs="8" md="auto" className="d-flex justify-content-end   align-items-center">
+                <DropDownOrdenDefault dropwDownList={dropDownList} />
+            </Col>
 
-            <Col className="p-0 d-flex mx-3 bg-dangerd-flex justify-content-center align-items-center">
+            <Col xs="11" md="8" className="p-0 d-flex mx-3  d-flex justify-content-center align-items-center">
                 <BuscadorInput texto={"productos"} />
             </Col>
         </>

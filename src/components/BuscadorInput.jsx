@@ -24,7 +24,7 @@ const BuscadorInput = ({ texto = "" }) => {
 
     return (
         <Form
-            className="w-100"
+            className="w-100 "
             onSubmit={onSubmit}>
 
             <InputGroup >

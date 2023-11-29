@@ -1,31 +1,38 @@
 import styles from "@/styles/SeccionDeVenta.module.css"
-import React from "react"
 import TdCantidad from "./TdCantidad"
 import TdPrecio from "./TdPrecio"
 import TdDescuento from "./TdDescuento"
 import { TdTrash } from "./TdTrash"
 import { TdTotal } from "./TdTotal"
 import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo"
+import { memo } from "react"
 
-const TdNombre = React.memo(({ nombre }) => {
+const TdNombre = memo(({ nombre }) => {
 
     return <td className={`${styles.tdNombre} text-truncate`}>
         {nombre}
     </td>
 })
 
-const TdMetodo = React.memo(({ metodo }) => {
+const TdMetodo = memo(({ metodo }) => {
 
     return <td className={`text-uppercase p-0 text-center`}>
         <p className="m-0">{metodo}</p>
     </td>
 })
 
-const ListadoDeVentas = React.memo(({ cantidad, metodo, nombre, precioModificado, modificarCantidad, modificarPrecio, borrarProducto, aplicarDescuento, descuento }) => {
+const TdLote = memo(({ lote = "" }) => {
+    return (
+        <td className="text-center fw-bolder text-ligthdark">
+            #{lote}
+        </td>
+    )
+})
+
+const ListadoDeVentas = memo(({ cantidad, lote, metodo, nombre, precioModificado, modificarCantidad, modificarPrecio, borrarProducto, aplicarDescuento, descuento }) => {
 
     return (
         <tr >
-
             <TdNombre nombre={nombre} />
 
             <TdMetodo metodo={metodo} />
@@ -44,6 +51,8 @@ const ListadoDeVentas = React.memo(({ cantidad, metodo, nombre, precioModificado
                 nombre={nombre}
                 descuento={verificarSiEsNegativo(cantidad) ? 0 : descuento}
                 aplicarDescuento={aplicarDescuento} />
+
+            <TdLote lote={lote} />
 
             <TdTotal
                 descuento={descuento}
