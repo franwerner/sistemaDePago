@@ -6,7 +6,7 @@ import CarritoDeProductoVacio from "@/components//CarritoDeProductoVacio";
 import TablaDeVentas from "./TablaDeVentas/TablaDeVentas";
 
 
-const ContenedorSeccionVenta = memo(({ mostrar }) => {
+const SeccionDeVentaBody = memo(({ mostrar }) => {
 
     const { listaProducto } = useContext(productoReducerContext)
 
@@ -44,4 +44,4 @@ const ContenedorSeccionVenta = memo(({ mostrar }) => {
 })
 
 
-export default ContenedorSeccionVenta
+export default SeccionDeVentaBody

@@ -1,8 +1,8 @@
 import styles from "@/styles/MetodosDePagoCard.module.css"
 import { forwardRef, memo, useEffect, useImperativeHandle, useRef } from "react"
 import { Button, Card, Form } from "react-bootstrap"
-import { useForm } from "../hooks/useForm"
-import { useRestanteTotal } from "../hooks/useRestanteTotal"
+import { useForm } from "../../../../../hooks/useForm"
+import { useRestanteTotal } from "../../../../../hooks/useRestanteTotal"
 
 const iconType = {
     "efectivo": "fa-solid fa-money-bill",

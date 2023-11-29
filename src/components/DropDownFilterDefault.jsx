@@ -5,24 +5,24 @@ const DropwDownItems = ({ nombre, component }) => {
 
     return (
         <>
-        {component ? (
-            component
-        ) : (
-            <Dropdown.Item
-                className="fw-medium  bg-white"
-                data-name={nombre}
-            >
-                {nombre}<span className="text-primary mx-2 fs-6"><i className="fa-solid fa-check"></i></span>
-            </Dropdown.Item>
-        )}
-    </>
+            {component ? (
+                component
+            ) : (
+                <Dropdown.Item
+                    className="fw-medium  bg-hoverdark  bg-white"
+                    data-name={nombre}
+                >
+                    {nombre}<i className="fa-solid fa-check text-primary mx-2 fs-6"></i>
+                </Dropdown.Item>
+            )}
+        </>
     )
 }
 
 const DropDownParent = ({ children }) => {
     return (
         <Dropdown
-            className="position-relative"
+            className="position-relative "
             autoClose="outside" >
             <Dropdown.Toggle
                 variant="outline-ligthdark"

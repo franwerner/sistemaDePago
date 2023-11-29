@@ -3,14 +3,13 @@
     background-color: white;
     border-bottom: var(--border-dashed);
     left: 0%;
-    top: 5%;
-
 }
 
 :root {
     --border-dashed: 2px dashed #555;
     --color-parrafo: "#555"
 }
+
 
 
 @media print {

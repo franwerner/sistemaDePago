@@ -1,15 +1,20 @@
-.contenedorDeProductosNav {
-    background-color: white;
-    height: 90px;
-}
-
-
-.contenedorDeCarritoIndicador {
-    right: 2%;
-    top: 20%;
+.cardContainer{
+    width: 12rem;
+    max-height: 14rem;
+    min-height: 14rem;
     cursor: pointer;
-}
-
+    border: 1px solid white;
+    
+    }
+    
+    .cardContainer:active {
+        border: 1px solid rgb(112, 245, 194) !important;
+        transition: 0s all;
+    }
+    
+    .cardContainer:hover {
+        transform: translateY(-5px);
+    }
 
 @media (max-width : 1200px) {
     .contedorDeProductos {

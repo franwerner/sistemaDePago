@@ -52,25 +52,27 @@ const TablaTbody = (props) => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <SuspenseCompontentsLoading   texto={`${AgregarCerosANumeros({ numero: 1, digitos: 5 })} - ${AgregarCerosANumeros({ numero: 4, digitos: 5 })} `} >
+        <>
             <TrTablaBody {...props} alternarMostrar={alternarMostrar} />
 
-            {mostrar && (
+            {
+                mostrar && (
 
-                <ModalDetalleDePedido
-                    mostrar={mostrar}
-                    orden={props.orden}
-                    estado={props.estado}
-                    alternarMostrar={alternarMostrar}
-                />
+                    <ModalDetalleDePedido
+                        mostrar={mostrar}
+                        orden={props.orden}
+                        estado={props.estado}
+                        alternarMostrar={alternarMostrar}
+                    />
 
-            )}
-        </SuspenseCompontentsLoading>
+                )
+            }
+        </>
 
     )
 }
 
-const TablaDeCompras = () => {
+const SeccionDeComprasBody = () => {
 
     const { queryParams } = useContext(QueryParamsContext)
 
@@ -79,30 +81,32 @@ const TablaDeCompras = () => {
 
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
-            <Table className={styles.tablaDeCompras} hover >
-                <thead className="shadow align-middle text-center  position-relative">
-                    <tr>
-                        <th>Empleado</th>
-                        <th>Hora</th>
-                        <th>Ticket</th>
-                        <th>Cliente</th>
-                        <th>Total</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody className="align-middle text-center">
-                    {
-                        iniciarSort(theadTest).map(item =>
-                            <TablaTbody
-                                key={item.id}
-                                {...item} />
-                        )
-                    }
-                </tbody>
-            </Table>
+            <SuspenseCompontentsLoading texto={`${AgregarCerosANumeros({ numero: 1, digitos: 5 })} - ${AgregarCerosANumeros({ numero: 4, digitos: 5 })} `} >
+                <Table className={styles.tablaDeCompras} hover >
+                    <thead className="shadow align-middle text-center  position-relative">
+                        <tr>
+                            <th>Empleado</th>
+                            <th>Hora</th>
+                            <th>Ticket</th>
+                            <th>Cliente</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody className="align-middle text-center">
+                        {
+                            iniciarSort(theadTest).map(item =>
+                                <TablaTbody
+                                    key={item.id}
+                                    {...item} />
+                            )
+                        }
+                    </tbody>
+                </Table>
+            </SuspenseCompontentsLoading>
         </Col>
     );
 }
 
 
-export default TablaDeCompras
+export default SeccionDeComprasBody

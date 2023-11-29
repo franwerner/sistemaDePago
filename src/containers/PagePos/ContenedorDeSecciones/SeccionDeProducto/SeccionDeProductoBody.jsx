@@ -1,9 +1,7 @@
-import CarritoDeComprasIndicador from "@/components//CarritoDeComprasIndicador";
 import { productoReducerContext } from "@/context//Contextos";
-import { memo, useCallback, useContext } from "react";
+import { memo, useContext } from "react";
 import { Stack } from "react-bootstrap";
-import styles from "@/styles/seccionDeProductos.module.css"
-import ProductoCard from "@/components//ProductoCard";
+import ProductoCard from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeProducto/ProductoCard";
 
 
 const kiosco = [
@@ -149,10 +147,10 @@ const secciones = {
     "rotiseria": rotiseria,
 };
 
-const ProductoMemoizado = memo(({ agregarProducto, producto }) => {
-
+const ProductoMemoizado = memo(({ agregarProducto, producto, productoEnLista }) => {
     return (
         <ProductoCard
+            productoEnLista={productoEnLista}
             agregarProducto={agregarProducto}
             producto={producto} />
     )
@@ -160,27 +158,19 @@ const ProductoMemoizado = memo(({ agregarProducto, producto }) => {
 
 
 
-const ContainerDeProductos = memo(({ containerRef }) => {
+const SeccionDeProductoBody = memo(() => {
 
-    const { agregarProducto } = useContext(productoReducerContext)
-
-    const onClick = () => {
-        containerRef.current.scrollTop = 0
-    }
+    const { agregarProducto, listaProducto } = useContext(productoReducerContext)
 
     return (
         <Stack
             direction="horizontal"
             className="flex-wrap position-relative  justify-content-center justify-content-md-start">
-            <div
-                onClick={onClick}
-                className={`${styles.contenedorDeCarritoIndicador} position-fixed border bg-white zoom border-2 border-dark  p-1 rounded-circle `}>
-                <CarritoDeComprasIndicador />
-            </div>
 
             {secciones["home"].map((producto, index) =>
                 <ProductoMemoizado
                     key={index}
+                    productoEnLista={listaProducto.find(item => item.nombre == producto.nombre)}
                     producto={producto}
                     agregarProducto={agregarProducto} />
             )}
@@ -188,4 +178,4 @@ const ContainerDeProductos = memo(({ containerRef }) => {
     );
 })
 
-export default ContainerDeProductos
+export default SeccionDeProductoBody

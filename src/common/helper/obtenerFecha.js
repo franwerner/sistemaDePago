@@ -1,6 +1,4 @@
-export const obtenerFecha = () => {
-
-    const fecha = new Date()
+export const obtenerFecha = (fecha = new Date()) => {
 
     const dia = fecha.getDay() + 1
 

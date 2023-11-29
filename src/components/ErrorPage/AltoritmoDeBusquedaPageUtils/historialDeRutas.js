@@ -4,7 +4,12 @@ const historialDeRutas = [
             nombre: "pos", children:
                 [
                     { nombre: "compras" },
-                    { nombre: "inventario" },
+                    {
+                        nombre: "inventario", children: [
+                            { nombre: "gestion" },
+                            { nombre: "añadir" }
+                        ]
+                    },
                     { nombre: "clientes" },
                     { nombre: "caja", children: [{ nombre: "pagos" }] },
                     {

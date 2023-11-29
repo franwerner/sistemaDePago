@@ -14,7 +14,7 @@ const DropwDownItems = React.memo(({ tarifa, cambiarTarifa }) => {
     const verificacion = verificarSiEsNegativo(porcentaje) ? "danger" : "success"
 
     return (
-        <Dropdown.Item onClick={onClick}>
+        <Dropdown.Item className="bg-white bg-hoverdark" onClick={onClick}>
             <Stack
                 direction="horizontal"
                 className=" justify-content-between">
@@ -39,8 +39,8 @@ export const DropDownDeTarifas = () => {
         <Dropdown
             className="d-flex  w-100 justify-content-center">
             <Dropdown.Toggle
-                className="w-100 border border-2 text-truncate text-uppercase"
-                variant="outline-secondary">
+                className="w-100 fw-bolder border-2 text-truncate text-uppercase"
+                variant="outline-ligthdark">
                 Tar.{tarifaActual.tipoDeTarifa}
             </Dropdown.Toggle>
 

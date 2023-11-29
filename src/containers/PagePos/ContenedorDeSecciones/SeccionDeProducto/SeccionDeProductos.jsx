@@ -1,25 +1,22 @@
 
 import { Row } from "react-bootstrap";
 import styles from "@/styles/seccionDeProductos.module.css"
-import React, { useRef } from "react";
-import ContainerDeProductos from "./ContainerDeProductos";
-import ContenedorDeProductosNav from "./ContenedorDeProductosNav";
+import React from "react";
+import SeccionDeProductoBody from "./SeccionDeProductoBody";
+import SeccionDeProductosNav from "./SeccionDeProductosNav";
 
 const SeccionDeProductos = () => {
 
-    const containerRef = useRef(null)
-
     return (
         <>
-            <Row className={`${styles.contenedorDeProductosNav} w-100 shadow m-0 p-0`}>
-                <ContenedorDeProductosNav />
+            <Row className="w-100 p-0 pb-1 p-md-3 shadow border-bottom m-0 p-0">
+                <SeccionDeProductosNav />
             </Row>
 
             <Row
-                ref={containerRef}
                 className={`${styles.contedorDeProductos} flex-grow-1  scrollBarPersonalizada  h-100 p-0 m-auto`}>
-                <ContainerDeProductos containerRef={containerRef} />
-                
+                <SeccionDeProductoBody />
+
             </Row>
         </>
     );

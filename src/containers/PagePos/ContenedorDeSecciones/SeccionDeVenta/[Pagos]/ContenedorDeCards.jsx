@@ -1,4 +1,4 @@
-import MetodosDePagosCard from "@/components//MetodosDePagoCard";
+import MetodosDePagosCard from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeVenta/[Pagos]/MetodosDePagoCard";
 import { TarifaContex, restoDelPagoContext } from "@/context//Contextos";
 import { useContext } from "react";
 import { Stack } from "react-bootstrap";

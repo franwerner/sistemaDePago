@@ -1,60 +1,24 @@
-#svgContenedor path,
-text {
-  transform: translateY(-50px);
+
+.svg-1 {
+  transform: rotateY(180deg);
 }
 
-
-
-.caidaLibre {
-  animation: caida 0.7s ease-in-out 1 alternate forwards;
-  transform: translateY(0);
+.svg-2 {
+  top: 20%;
+  left: 40%;
 }
 
-@keyframes caida {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(50px);
-  }
+.svg-3 {
+  left: 30%;
+  top: -25%;
 }
 
-
-.gancho {
-  animation: gancho 3s ease-in-out infinite 0.1s;
-  transform-origin: center bottom;
-  transform: rotate(-2deg) translateY(-50px);
-
-
+.svg-4 {
+  transform: rotateY(180deg);
+  left: 20%;
+  top: 25%;
 }
 
-@keyframes gancho {
-
-  0%,
-  100% {
-    transform: rotate(-0.6deg) translateY(-50px);
-  }
-
-  50% {
-    transform: rotate(0.6deg) translateY(-50px);
-  }
-}
-
-.balanceo {
-  animation: balanceo 3s ease-in-out infinite 0.1s;
-  transform-origin: center bottom;
-  transform: rotate(-2deg) translateY(-50px);
-}
-
-@keyframes balanceo {
-
-  0%,
-  100% {
-    transform: rotate(-0.8deg) translateY(-50px);
-  }
-
-  50% {
-    transform: rotate(0.8deg) translateY(-50px);
-  }
+.svg-5 {
+  left: 20%;
 }

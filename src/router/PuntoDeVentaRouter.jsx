@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { redirect } from 'react-router-dom';
+import { defer, redirect } from 'react-router-dom';
 import { SuspenseMainPageLoading } from '@/components/SuspenseMainPageLoading';
 
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
@@ -9,9 +9,9 @@ const SeccionVentaPagos = lazy(() => import('@/containers/PagePos/ContenedorDeSe
 const SeccionDeCaja = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/SeccionDeCaja"))
 const SeccionDeCajaPagos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCaja/[Pagos]/SeccionDeCajaPagos"))
 const SeccionDeCompras = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeCompras/SeccionDeCompras"))
-const SeccionDeInventario = lazy(()=> import("../containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/SeccionDeInventario"))
+const SeccionDeInventario = lazy(() => import("../containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/SeccionDeInventario"))
 const ErrorPage = lazy(() => import("@/components/ErrorPage/ErrorPage"))
-
+const SeccionDeInventarioGestion = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/[gestion]/SeccionDeInventarioGestion"))
 
 export const PuntoDeVentaRouter = {
     path: "/pos",
@@ -47,8 +47,20 @@ export const PuntoDeVentaRouter = {
             element: <h1>3</h1>
         },
         {
-            path: "Inventario",
+            path: "inventario",
             element: <SeccionDeInventario />
+        },
+        {
+            path: "inventario/gestion",
+            element: <SeccionDeInventarioGestion />,
+            loader: async () => {
+                const promise = new Promise((resolve) =>
+                    setTimeout(() => {
+                        resolve({ db: "success" })
+                    }, 5000)
+                )
+                return defer({ promise });
+            }
         },
         {
             path: "venta",

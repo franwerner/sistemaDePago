@@ -1,9 +1,10 @@
-import { Link, useRouteError } from "react-router-dom";
+import { Link, useNavigation, useRouteError } from "react-router-dom";
 import { SvgLupa } from "../SvgLupa";
 import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "../RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
 import { algoritmoDeBusquedaPageUtils } from "./AltoritmoDeBusquedaPageUtils/AlgoritmoDeBusquedaPageUtils";
+import { LoadingStateLoader } from "../LoadingStateLoader";
 
 
 const ListaDeErrores = [
@@ -30,8 +31,10 @@ const ListaDeErrores = [
 const ErrorPageRuta = ({ algoritmo }) => {
 
   const ejecutar = algoritmo && algoritmoDeBusquedaPageUtils()
+
   return (
     <>
+    <LoadingStateLoader texto={"datos de redireccion"}/>
       {
         algoritmo &&
         <div className="d-flex justify-content-center w-100 p-0 align-items-center my-3">
@@ -66,7 +69,7 @@ export default function ErrorPage() {
 
   const buscarError = ListaDeErrores.find(err => err.tipo == error.message || err.tipo == error.status)
 
-  const algoritmo = buscarError.tipo == 404
+  const algoritmo = buscarError ? buscarError.tipo == 404 : undefined
 
   return (
     <Container

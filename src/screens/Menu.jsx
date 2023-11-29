@@ -6,6 +6,7 @@ import styles from "@/styles/Menu.module.css"
 import { memo } from "react";
 import SvgCashRegister from "../components/SvgCashRegister";
 import { SvgSucursales } from "../components/SvgSucursales";
+import { SvgEngranaje } from "../components/SvgEngranaje";
 
 const cards = [
     {
@@ -18,6 +19,11 @@ const cards = [
         Componente: () => <SvgCashRegister />,
         link: "/empleado"
     },
+    {
+        tipo : "Configuracion",
+        Componente : () => <SvgEngranaje/>,
+        link : "/configuracion"
+    }
 ];
 
 

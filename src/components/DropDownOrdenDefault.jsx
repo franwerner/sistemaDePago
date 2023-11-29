@@ -16,7 +16,7 @@ const DropwDownItems = ({ nombre, onClick, prioridad, orden }) => {
 
     return (
         <Dropdown.Item
-            className="fw-medium bg-white"
+            className="fw-medium  bg-hoverdark bg-white"
             data-name={nombre}
             data-prioridad={prioridad}
             onClick={onClick}>

@@ -4,7 +4,7 @@ import React from "react";
 import { Col } from "react-bootstrap";
 
 
-const ContenedorDeSeccionesNav = React.memo(({ alternarMostrar }) => {
+const SeccionDeVentaNav = React.memo(({ alternarMostrar }) => {
 
     return (
         <>
@@ -22,4 +22,4 @@ const ContenedorDeSeccionesNav = React.memo(({ alternarMostrar }) => {
     )
 })
 
-export default ContenedorDeSeccionesNav
+export default SeccionDeVentaNav

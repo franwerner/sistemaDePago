@@ -1,15 +1,17 @@
 import { Row } from "react-bootstrap";
-import { SeccionDeInvenarioNav } from "./SeccionDeInvenarioNav";
 import { SeccionDeInventarioBody } from "./SeccionDeInventarioBody";
+import styles from "@/styles/SeccionDeInventario.module.css"
+import { SeccionDeInventarioNav } from "./SeccionDeInventarioNav";
 
 const SeccionDeInventario = () => {
     return (
         <>
-            <Row style={{ minHeight: "fit-content" }}
+            <Row 
+            id={styles.inventarioNav}
                 className="m-0 shadow d-flex p-md-3 align-items-center  justify-content-between">
-                <SeccionDeInvenarioNav />
+                <SeccionDeInventarioNav />
             </Row>
-            <Row className="m-0 h-100 overflow-hidden">
+            <Row  className="m-0 h-100 scrollBarPersonalizada">
                 <SeccionDeInventarioBody />
             </Row>
         </>

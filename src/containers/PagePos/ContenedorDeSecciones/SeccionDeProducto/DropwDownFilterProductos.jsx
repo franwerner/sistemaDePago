@@ -22,7 +22,7 @@ const SeccionesDropwItem = () => {
             <Dropdown.Item
                 onClick={alternarMostrar}
                 className="fw-medium">
-                Secciones
+                Secciones<i className="fa-solid text-primary mx-2 fs-6 fa-check"></i>
             </Dropdown.Item>
         </SuspenseCompontentsLoading>
     )
@@ -32,7 +32,6 @@ const dropwDownList = [
     { nombre: "Mas vendidos" },
     { nombre: "Secciones", component: <SeccionesDropwItem /> },
     { nombre: "Favoritos" },
-    { nombre: "Lote" },
 ]
 
 const DropwDownItemsProductos = () => {

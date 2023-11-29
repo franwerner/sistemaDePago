@@ -4,16 +4,15 @@ import { RutasInterface } from "./RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
 
 
-
 export const SuspenseMainPageLoading = ({ children }) => {
 
-
     return (
-        <Suspense fallback={
-            <Container 
+    <Suspense  fallback={
+            <Container
+           
             id = {styles.suspenseMainContainer}
             fluid 
-            className="bg-dark p-0 pt-3 pt-sm-0 m-0 d-flex flex-column flex-sm-row  scrollHidden justify-content-center p-0 vh-100">
+            className="bg-dark  p-0 pt-3 pt-sm-0 m-0 d-flex flex-column flex-sm-row  scrollHidden justify-content-center p-0 vh-100">
 
                 <RutasInterface />
 

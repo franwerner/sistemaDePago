@@ -28,7 +28,7 @@ const ListaDePagos = React.memo(({ alternarMostrar, monto, orden }) => {
 
             <div className="d-flex align-items-center">
 
-                <Form.Check type="checkbox" className={`${styles.test} mx-1`} />
+                <Form.Check type="checkbox" className="mx-1" />
 
                 <p className="m-0 me-1">07/11/2023 21:54</p>
 
@@ -58,23 +58,21 @@ const AccordionBody = ({ monto, orden }) => {
 
 
     return (
-        <>
-            <SuspenseCompontentsLoading texto={`${AgregarCerosANumeros({ numero: nroDeCaja, digitos: 4 })} - ${AgregarCerosANumeros({ numero: orden, digitos: 5 })}`}>
-                <ListaDePagos
-                    monto={monto}
-                    orden={orden}
-                    alternarMostrar={onClick} />
+        <SuspenseCompontentsLoading texto={`${AgregarCerosANumeros({ numero: nroDeCaja, digitos: 4 })} - ${AgregarCerosANumeros({ numero: orden, digitos: 5 })}`}>
+            <ListaDePagos
+                monto={monto}
+                orden={orden}
+                alternarMostrar={onClick} />
 
-                {
-                    mostrar &&
+            {
+                mostrar &&
 
-                    <ModalDetalleDePagos
-                        alternarMostrar={alternarMostrar}
-                        mostrar={mostrar} />
+                <ModalDetalleDePagos
+                    alternarMostrar={alternarMostrar}
+                    mostrar={mostrar} />
 
-                }
-            </SuspenseCompontentsLoading>
-        </>
+            }
+        </SuspenseCompontentsLoading>
     )
 
 }

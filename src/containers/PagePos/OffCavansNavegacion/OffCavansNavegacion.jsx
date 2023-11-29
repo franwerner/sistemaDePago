@@ -39,8 +39,6 @@ const ListaDeMenu = [
 
 const OffCavansNavegacion = ({ alternarMostrar, mostrar }) => {
 
-
-
     return (
         <Offcanvas
             responsive="lg"

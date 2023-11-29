@@ -20,9 +20,6 @@ const router = createBrowserRouter([
     element: <SuspenseMainPageLoading><Menu/></SuspenseMainPageLoading>,
     errorElement: <ErrorPage />,
   },
-  {
-    path: "/caja",
-  },
 
   { ...PuntoDeVentaRouter }
 

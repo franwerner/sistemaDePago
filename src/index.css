@@ -27,7 +27,7 @@ table,th,td,tbody,p{
 }
 
 .bg-hoverdark:hover {
-    filter: brightness(0.5)
+    filter: brightness(0.8)
 }
 
 .bg-hover:hover {

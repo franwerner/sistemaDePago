@@ -1,6 +1,6 @@
 import { Row } from "react-bootstrap";
 import SeccionDeComprasNav from "./SeccionDeComprasNav";
-import TablaDeCompras from "./TablaDeCompras";
+import SeccionDeComprasBody from "./SeccionDeComprasBody";
 import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider";
 
 const SeccionDeCompras = () => {
@@ -11,7 +11,7 @@ const SeccionDeCompras = () => {
             </Row>
 
             <Row className="m-0 overflow-hidden  justify-content-center  p-1 p-md-3 h-100">
-                <TablaDeCompras />
+                <SeccionDeComprasBody />
             </Row>
         </QueryParamsProvider>
     );

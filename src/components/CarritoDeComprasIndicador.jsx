@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { productoReducerContext } from "../context/Contextos";
 import styles from "@/styles/CarritoDeCompras.module.css"
+import { Link } from "react-router-dom";
 
 const CarritoDeComprasIndicador = React.memo(() => {
 
@@ -28,14 +29,16 @@ const CarritoDeComprasIndicador = React.memo(() => {
     }, [listaProducto.length])
 
     return (
-        <>
+       <Link to={"/pos/venta"}>
+        <div className="position-relative cursor-pointer  zoom">
             <span
                 ref={ref}
                 className={`${styles.carritoBg} position-absolute fw-bolder d-flex justify-content-center aling-items-center  text-white  rounded-circle`}>
                 {listaProducto.length}
             </span>
-            <i className="fa-solid fs-3 text-dark fa-cart-shopping"></i>
-        </>
+            <i style={{fontSize : "30px"}} className="fa-solid text-ligthdark fa-cart-shopping"></i>
+        </div>
+       </Link>
     );
 })
 

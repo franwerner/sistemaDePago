@@ -1,9 +1,10 @@
-import { memo } from "react"
-import styles from "@/styles/ProductoCard.module.css"
-import { CalcularPorcentajeMemoizado } from "../hooks/useCalcularPorcentaje"
+import { memo, useMemo, useState } from "react"
+import styles from "@/styles/SeccionDeProductos.module.css"
+import { CalcularPorcentajeMemoizado } from "@/hooks/useCalcularPorcentaje"
 import { Card } from "react-bootstrap"
-import { useEventoMostrar } from "../hooks/useEventoMostrar"
-import { useFocusMouseElements } from "../hooks/useFocusMouseElements"
+import { useEventoMostrar } from "@/hooks/useEventoMostrar"
+import { useFocusMouseElements } from "@/hooks/useFocusMouseElements"
+import buscarCodigoMensajePersonalizado from "@/common//helper/buscarCodigoMensajePersonalizado"
 
 
 const CardFavorito = () => {
@@ -21,18 +22,25 @@ const CardFavorito = () => {
 }
 
 
-const ProductoCard = memo(({ producto, agregarProducto }) => {
+const ProductoCard = memo(({ producto, agregarProducto, productoEnLista = { cantidad: 0 } }) => {
 
     const { precio, nombre, metodo } = producto
 
     const { onMouseEnter, refFocusElement } = useFocusMouseElements()
 
+    const [onAlert, setOnAlert] = useState(false)
+
+    const cantidadTest = useMemo(() => Math.round(Math.random(1) * 10), [])
+
+
     const onClick = (e) => {
 
-        if (e.target.id !== "contenedor-favorito" && e.target.tagName !== "I" ) {
-            agregarProducto(producto)
-        }
+        e.target.id !== "contenedor-favorito" && e.target.tagName !== "I" && agregarProducto({ ...producto, max: cantidadTest })
 
+        if (cantidadTest <= productoEnLista.cantidad && !onAlert) {
+            setOnAlert(true)
+            buscarCodigoMensajePersonalizado({ codigo: "4F" })
+        }
     }
 
     return (
@@ -44,7 +52,7 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
             className={`${styles.cardContainer} m-2 shadow border-0 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
-                <p className="m-2 text-primary-2 fs-6 mx-3">#1231</p>
+                <p className="m-2 text-ligthdark fs-6  mx-3">Cant.{`(${cantidadTest - productoEnLista.cantidad})`}</p>
                 <CardFavorito />
             </Card.Title>
 
