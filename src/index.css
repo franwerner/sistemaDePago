@@ -22,6 +22,10 @@ body {
     scroll-behavior: smooth;
 }
 
+.card-move-up:hover {
+    transform: translateY(-5px);
+}
+
 table,th,td,tbody,p{
     transition: 0s !important;
 }

@@ -12,6 +12,7 @@ const SeccionDeCompras = lazy(() => import("@/containers/PagePos/ContenedorDeSec
 const SeccionDeInventario = lazy(() => import("../containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/SeccionDeInventario"))
 const ErrorPage = lazy(() => import("@/components/ErrorPage/ErrorPage"))
 const SeccionDeInventarioGestion = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/[gestion]/SeccionDeInventarioGestion"))
+const SeccionDeClientes = lazy(() => import('../containers/PagePos/ContenedorDeSecciones/SeccionDeClientes/SeccionDeClientes'))
 
 export const PuntoDeVentaRouter = {
     path: "/pos",
@@ -44,7 +45,7 @@ export const PuntoDeVentaRouter = {
         },
         {
             path: "clientes",
-            element: <h1>3</h1>
+            element: <SeccionDeClientes />
         },
         {
             path: "inventario",

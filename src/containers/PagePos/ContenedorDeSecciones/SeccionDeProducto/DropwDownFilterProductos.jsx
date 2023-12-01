@@ -4,7 +4,7 @@ import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { lazy } from "react"
 import { Dropdown } from "react-bootstrap"
 
-const ModalDeSecciones = lazy(() => import("@/components/ModalDeSecciones"))
+const ModalDeSecciones = lazy(() => import("@/components/Modales/ModalDeSecciones"))
 
 const SeccionesDropwItem = () => {
 

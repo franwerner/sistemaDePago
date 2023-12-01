@@ -3,7 +3,6 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEventoMostrar } from "@/hooks/useEventoMostrar";
 import styles from "@/styles/Menu.module.css"
-import { memo } from "react";
 import SvgCashRegister from "../components/Svg/SvgCashRegister";
 import { SvgSucursales } from "../components/Svg/SvgSucursales";
 import { SvgEngranaje } from "../components/Svg/SvgEngranaje";
@@ -20,15 +19,16 @@ const cards = [
         link: "/empleado"
     },
     {
-        tipo : "Configuracion",
-        Componente : () => <SvgEngranaje/>,
-        link : "/configuracion"
+        tipo: "Configuracion",
+        Componente: () => <SvgEngranaje />,
+        link: "/configuracion"
     }
 ];
 
 
 
 const CardSeleccionDeNavegacion = ({ Componente, tipo, link }) => {
+
     const { mostrar, alternarMostrar } = useEventoMostrar();
 
     return (

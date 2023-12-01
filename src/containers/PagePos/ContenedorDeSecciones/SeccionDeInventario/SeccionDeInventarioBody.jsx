@@ -17,7 +17,7 @@ const CardBody = memo(() => {
         <Card.Body
             className=" d-flex  p-0  position-relative  justify-content-center h-100">
             {
-                Array.from({ length: cajas < 1 ? 1 :  cajas }).map((item, index) =>
+                Array.from({ length: cajas < 1 ? 1 : cajas }).map((item, index) =>
                     <SvgContenedor key={index} total={index + 1} />
                 )
             }
@@ -48,7 +48,7 @@ export const ContenedorCard = memo(() => {
             ref={refFocusElement}
             id={styles.containerCard}
             onMouseEnter={onMouseEnter}
-            className="m-2  border-0 shadow position-relative  cursor-pointer overflow-hidden">
+            className="m-2 card-move-up  border-0 shadow position-relative  cursor-pointer overflow-hidden">
 
             <Card.Title className="d-flex z-1  px-2 position-absolute w-100 justify-content-between">
                 <DropDownDetalleDeLote />
@@ -63,10 +63,9 @@ export const ContenedorCard = memo(() => {
 export const SeccionDeInventarioBody = () => {
 
     return (
-        <>
             <Col
                 id={styles.inventarioBody}
-                className="h-100 d-flex justify-content-center flex-wrap scrollBarPersonalizada">
+                className="d-flex justify-content-center align-content-start flex-wrap">
 
                 {Array.from({ length: 20 }).map((item, index) =>
                     <ContenedorCard key={index} />
@@ -74,6 +73,5 @@ export const SeccionDeInventarioBody = () => {
 
             </Col>
 
-        </>
     );
 };

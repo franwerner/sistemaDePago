@@ -15,7 +15,7 @@ const sumarTotalRecursivo = (children) => {//Esto es total entre padre + suma de
 const bucleJerarquico = (jerarquia = [], suma = -1) => {
 
     const rutas = splitDeRutasUtils();
-    rutas.unshift("")
+    rutas.unshift("")//Esto ayuda a que la RAIZ se tome en cuenta en el proceso de buclePuntuacion.
 
     suma++; //La suma se mantiene hasta el proximo nivel de jerarquia, por mas que se reinicie dentro del bucle, mantiene el estado anterior.
     // ejm : se matiene 1 hasta que en el capa 2 del mapeo se termine, entonces siempre sera uno hasta que pase al siguiente nivel de jerarquia

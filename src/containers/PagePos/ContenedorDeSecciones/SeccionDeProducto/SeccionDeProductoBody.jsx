@@ -1,6 +1,6 @@
 import { productoReducerContext } from "@/context//Contextos";
 import { memo, useContext } from "react";
-import { Stack } from "react-bootstrap";
+import { Col, Stack } from "react-bootstrap";
 import ProductoCard from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeProducto/ProductoCard";
 
 
@@ -155,24 +155,20 @@ const ProductoMemoizado = memo(({ agregarProducto, producto }) => {
     )
 })
 
-
-
 const SeccionDeProductoBody = memo(() => {
 
-    const { agregarProducto, listaProducto } = useContext(productoReducerContext)
+    const { agregarProducto } = useContext(productoReducerContext)
 
     return (
-        <Stack
-            direction="horizontal"
-            className="flex-wrap position-relative  justify-content-center justify-content-md-start">
-
+        <Col
+            className="flex-wrap position-relative  align-content-start d-flex justify-content-center justify-content-md-start">
             {secciones["home"].map((producto, index) =>
                 <ProductoMemoizado
                     key={index}
                     producto={producto}
                     agregarProducto={agregarProducto} />
             )}
-        </Stack>
+        </Col>
     );
 })
 

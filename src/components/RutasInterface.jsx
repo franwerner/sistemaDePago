@@ -6,7 +6,6 @@ import { primeraLetraMayuscula } from "@/common/helper/primeraLetraMayuscula"
 import { splitDeRutasUtils } from "@/common/utils/splitDeRutasUtils"
 import { concatenacionDeRutasUtils } from "@/common/utils/concatenacionDeRutasUtils"
 
-
 export const RutasInterface = ({ color = "fff", textColor = "fff" }) => {
 
     const rutas = splitDeRutasUtils()

@@ -42,7 +42,7 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
             ref={refFocusElement}
             onMouseEnter={onMouseEnter}
             onClick={onClick}
-            className={`${styles.cardContainer} m-2 shadow border-0 overflow-hidden`}>
+            className={`${styles.cardContainer} card-move-up m-2 shadow border-0 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
                 <p className="m-2 text-primary-2 fs-6  mx-3">#{AgregarCerosANumeros({numero : cantidadTest,digitos : 3})}</p>

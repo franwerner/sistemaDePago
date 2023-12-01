@@ -11,10 +11,6 @@
         border: 1px solid rgb(112, 245, 194) !important;
         transition: 0s all;
     }
-    
-    .cardContainer:hover {
-        transform: translateY(-5px);
-    }
 
 @media (max-width : 1200px) {
     .contedorDeProductos {

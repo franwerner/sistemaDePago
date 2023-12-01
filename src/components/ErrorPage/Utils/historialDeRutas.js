@@ -11,7 +11,11 @@ const historialDeRutas = [
                                 { nombre: "añadir" }
                             ]
                         },
-                        { nombre: "clientes" },
+                        {
+                            nombre: "clientes", children: [
+                                { nombre: "gestion" }
+                            ]
+                        },
                         { nombre: "caja", children: [{ nombre: "pagos" }] },
                         {
                             nombre: "venta", children:
@@ -19,11 +23,12 @@ const historialDeRutas = [
                                     { nombre: "pagos" },
                                 ]
                         },
-                        { nombre: "productos"}
+                        { nombre: "productos" }
                     ]
             },
             { nombre: "empleado" },
-            { nombre: "sucursales" }
+            { nombre: "sucursales" },
+            { nombre: "configuracion" }
         ]
     }
 

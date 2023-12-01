@@ -4,7 +4,7 @@ import styles from "@/styles/SeccionDeCaja.module.css"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { lazy } from "react"
 
-const InterfaceDeRetiroYIngresoEfectivo = lazy(() => import("@/components//InterfaceDeRetiroYIngresoEfectivo"))
+const InterfaceDeRetiroYIngresoEfectivo = lazy(() => import("@/components//Modales/InterfaceDeRetiroYIngresoEfectivo"))
 
 const opcionesBoton = {
     retirar: { nombre: "Retirar", icon: "fa-arrow-turn-down" },

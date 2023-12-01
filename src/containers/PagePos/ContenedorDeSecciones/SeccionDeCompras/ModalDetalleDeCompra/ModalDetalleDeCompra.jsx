@@ -10,7 +10,7 @@ const BuscarCodigoDeMensaje = cargaDiferida(() => import("@/common//helper/busca
 
 const productosTest =
 {
-    venta: { tarifa: "mercadopago", porcentaje: 10, metodosDePago: [{ qr: 1000, trasferencia: 1000 }], total: 2000, porcentaje: 10, fecha: 1701233016968, descuento: 500, cambio: 220 },
+    venta: { tarifa: "mercadopago", porcentaje: 10, metodosDePago: [{ qr: 1000, trasferencia: 1000 }], total: 2000, fecha: 1701233016968, descuento: 500, cambio: 220 },
     productos: [
         { id: 1, nombre: "Pan", metodo: "kg", cantidad: 12, descuento: 0, precio: 210, precioModificado: 100, editado: true },
         { id: 2, nombre: "Factura de dulcefffffffffffffffffffffffffffff ", metodo: "u", cantidad: 1, descuento: 19, precio: 210, precioModificado: 210, editado: false },

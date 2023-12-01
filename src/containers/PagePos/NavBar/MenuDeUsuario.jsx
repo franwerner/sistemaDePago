@@ -3,7 +3,7 @@ import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { usuarioInfo } from "@/styles/NavBarPos.module.css"
 import { lazy } from "react"
 
-const DropDownUsuario = lazy(() => import("@/components/DropwDownUsuario"))
+const DropDownUsuario = lazy(() => import("@/components/DropDowns/DropwDownUsuario"))
 
 export const MenuDeUsuario = () => {
 
