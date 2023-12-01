@@ -1,19 +1,16 @@
-import React from "react";
+import React, { memo } from "react";
 import { Button, Modal } from "react-bootstrap";
 import styles from "@/styles/ModalDeSecciones.module.css"
 import { Link } from "react-router-dom";
 import { separarNumerosConDecimales } from "../common/helper/separarNumerosConDecimales";
 
-
 const secciones = [
     { nombre: "kiosco" },
     { nombre: "panaderia" },
     { nombre: "helados" },
-
-
 ]
 
-const Secciones = React.memo(({ nombre }) => {
+const Secciones = memo(({ nombre }) => {
 
 
     return (

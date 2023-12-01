@@ -1,10 +1,11 @@
 import { useForm } from "@/hooks//useForm"
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { Form } from "react-bootstrap"
 import styles from "@/styles/SeccionDeVenta.module.css"
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
+import { memo } from "react"
 
-const TdDescuento = React.memo(({ aplicarDescuento, descuento, nombre }) => {
+const TdDescuento = memo(({ aplicarDescuento, descuento, nombre }) => {
 
     const { changeForm, form } = useForm({ descuento })
 

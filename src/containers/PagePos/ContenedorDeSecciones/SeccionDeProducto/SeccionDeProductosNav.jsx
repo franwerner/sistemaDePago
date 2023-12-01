@@ -2,9 +2,9 @@ import { Col } from "react-bootstrap";
 import DropwDownItemsProductos from "./DropwDownFilterProductos";
 import BuscadorInput from "@/components//BuscadorInput";
 import { memo } from "react";
-import { RemoveFilterIcon } from "@/components//removeFilterIcon";
-import { DropDownDeTarifas } from "@/components//DropDownDeTarifas";
-import CarritoDeComprasIndicador from "@/components//CarritoDeComprasIndicador";
+import { RemoveFilterIcon } from "@/components//Icons/RemoveFilterIcon";
+import { DropDownDeTarifas } from "@/components//DropDowns/DropDownDeTarifas";
+import CarritoDeComprasIndicador from "@/components//Icons/CarritoDeComprasIndicador";
 
 
 const SeccionDeProductosNav = memo(() => {

@@ -1,6 +1,6 @@
 
 import { splitDeRutasUtils } from "@/common//utils/splitDeRutasUtils";
-import { SuspenseSecondaryPageLoading } from "@/components//SuspenseSecondaryPageLoading";
+import { SuspenseSecondaryPageLoading } from "@/components//Suspense/SuspenseSecondaryPageLoading";
 import { ProductoReducerProvider } from "@/context//provider/ProductosReducerProvider";
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider";
 import { TarifaProvider } from "@/context//provider/TarifaProvider";

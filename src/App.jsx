@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ListaUsuariosProvider } from './context/provider/ListaUsuariosProvider';
 import { Suspense, lazy } from 'react';
 import { PuntoDeVentaRouter } from './router/PuntoDeVentaRouter';
-import { SuspenseMainPageLoading } from './components/SuspenseMainPageLoading';
+import { SuspenseMainPageLoading } from './components/Suspense/SuspenseMainPageLoading';
 
 const ErrorPage = lazy(() => import('./components/ErrorPage/ErrorPage'))
 const Menu = lazy(() => import("./screens/Menu"))

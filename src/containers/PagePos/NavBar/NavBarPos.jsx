@@ -1,11 +1,11 @@
 import { Container, Nav, Navbar, Stack } from "react-bootstrap"
 import styles from "@/styles/NavBarPos.module.css"
-import IconBell from "@/components/IconBell"
-import IconMessage from "@/components/IconMessage"
-import React from "react"
+import IconBell from "@/components/Icons/IconBell"
+import IconMessage from "@/components/Icons/IconMessage"
+import React, { memo } from "react"
 import { MenuDeUsuario } from "./MenuDeUsuario"
 
-const NavBarPos = React.memo(({ alternarMostrar }) => {
+const NavBarPos = memo(({ alternarMostrar }) => {
     return (
 
         <Navbar

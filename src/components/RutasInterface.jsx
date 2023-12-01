@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import styles from "@/styles/Rutasinterface.module.css"
-import { SvgHouse } from "./SvgHouse"
+import { SvgHouse } from "./Svg/SvgHouse"
 import { Col, Row } from "react-bootstrap"
 import { primeraLetraMayuscula } from "@/common/helper/primeraLetraMayuscula"
 import { splitDeRutasUtils } from "@/common/utils/splitDeRutasUtils"

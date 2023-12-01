@@ -3,8 +3,6 @@ import { obtenerFecha } from "@/common/helper/obtenerFecha";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { separarNumerosConDecimales } from "@/common/helper/separarNumerosConDecimales";
 import { AgregarCerosANumeros } from "@/common/helper/AgregarCerosANumeros";
-import { calcularPorcentaje } from "@/common/helper/calcularPorcentaje";
-
 
 const DestallesTotales = ({ nombre, numero }) => {
     return (
@@ -26,9 +24,8 @@ const DestallesTotales = ({ nombre, numero }) => {
 }
 
 
-const ListaDeProductos = ({ nombre, cantidad, precioModificado, porcentaje = 0 }) => {
+const ListaDeProductos = ({ nombre, cantidad, precioModificado }) => {
 
-    const porcentajeAplicado = calcularPorcentaje({ numero: precioModificado, porcentaje: porcentaje }) + precioModificado
 
     return (
         <>
@@ -50,13 +47,13 @@ const ListaDeProductos = ({ nombre, cantidad, precioModificado, porcentaje = 0 }
                         x
                     </p>
 
-                    <p className="m-0 text-start ">{separarNumerosConDecimales(porcentaje)}</p>
+                    <p className="m-0 text-start ">{separarNumerosConDecimales(precioModificado)}</p>
                 </div>
 
                 <div className="d-flex justify-content-end  align-items-center  ">
                     <p className={`${styles.totalDelProducto} m-0 fw-semibold mx-2   text-end`} >
 
-                        $ {separarNumerosConDecimales(porcentajeAplicado * cantidad)}
+                        $ {separarNumerosConDecimales(precioModificado * cantidad)}
                     </p>
                 </div>
             </Stack>
@@ -75,12 +72,12 @@ const InformacionAdicional = ({ fecha }) => {
             className="justify-content-between px-4">
 
             <p className="m-0  my-1  ">
-                Fecha : {AgregarCerosANumeros({ numero: dia, digitos: 2 })}/{AgregarCerosANumeros({ numero: mes, digitos: 2 })}/{año}
+                Fecha : {dia}/{mes}/{año}
             </p>
 
 
             <p className="m-0  my-1 ">
-                Hora : {AgregarCerosANumeros({ numero: hora, digitos: 2 })}:{AgregarCerosANumeros({ numero: minutos, digitos: 2 })}:{AgregarCerosANumeros({ numero: segundos, digitos: 2 })}
+                Hora : {hora}:{minutos}:{segundos}
             </p>
 
         </Stack>
@@ -89,17 +86,17 @@ const InformacionAdicional = ({ fecha }) => {
 
 
 
-const TicketDeVenta = ({ listaDeProductos = [], cambio, sumaTotal, descuento , fecha, porcentaje = 0,topAbsolute = 5 }) => {
+const TicketDeVenta = ({ listaDeProductos = [], cambio, sumaTotal, descuento, fecha, adeudoTotal, topAbsolute = 5 }) => {
 
     const totalTicket = [
         { nombre: "Base", numero: sumaTotal },
         { nombre: "Descuento", numero: descuento },
-        { nombre: "Total", numero: (sumaTotal - descuento) },
+        { nombre: "Total", numero: adeudoTotal },
         { nombre: "Cambio", numero: cambio },
     ]
 
     return (
-        <Container style={{top : `${topAbsolute}%`}} className={`position-absolute  p-0  lh-1 w-100 ${styles.ticket} `}>
+        <Container style={{ top: `${topAbsolute}%` }} className={`position-absolute  p-0  lh-1 w-100 ${styles.ticket} `}>
 
             <Row className="justify-content-center m-0 align-items-center text-center">
                 <h2 className={`${styles.numeroDeTicket} text-uppercase m-0 py-1`}>
@@ -115,7 +112,6 @@ const TicketDeVenta = ({ listaDeProductos = [], cambio, sumaTotal, descuento , f
                 <Col className="overflow-hidden px-3 py-1">
                     {listaDeProductos.map(({ cantidad, precioModificado, nombre }, index) =>
                         <ListaDeProductos
-                            porcentaje={porcentaje}
                             key={index}
                             nombre={nombre}
                             precioModificado={precioModificado}

@@ -1,4 +1,4 @@
-import { DropDownDeTarifas } from "@/components//DropDownDeTarifas"
+import { DropDownDeTarifas } from "@/components//DropDowns/DropDownDeTarifas"
 import { Col} from "react-bootstrap"
 
 export const TicketBody = () => {

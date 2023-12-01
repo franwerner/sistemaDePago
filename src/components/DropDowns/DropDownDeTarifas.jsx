@@ -1,7 +1,7 @@
 import { Dropdown, Stack } from "react-bootstrap";
-import { verificarSiEsNegativo } from "../common/helper/verificarSiEsNegativo";
+import { verificarSiEsNegativo } from "../../common/helper/verificarSiEsNegativo";
 import React, { useContext } from "react";
-import { TarifaContex } from "../context/Contextos";
+import { TarifaContex } from "../../context/Contextos";
 
 const DropwDownItems = React.memo(({ tarifa, cambiarTarifa }) => {
 

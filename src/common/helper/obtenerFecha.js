@@ -1,19 +1,25 @@
-export const obtenerFecha = (fecha = new Date()) => {
+import { AgregarCerosANumeros } from "./AgregarCerosANumeros";
 
-    const dia = fecha.getDay() + 1
+export const obtenerFecha = (fechaMiliseconds) => {
 
-    const mes = fecha.getMonth() + 1
+    const obtenerFecha = fechaMiliseconds ? new Date(fechaMiliseconds) : new Date()
 
-    const año = fecha.getFullYear()
+    const concatenar = (input) => AgregarCerosANumeros({ numero: input, digitos: 2 })
 
-    const hora = fecha.getHours()
+    const dia = concatenar(obtenerFecha.getDay() + 1)
 
-    const minutos = fecha.getMinutes()
+    const mes = concatenar(obtenerFecha.getMonth() + 1)
 
-    const segundos = fecha.getSeconds()
+    const año = obtenerFecha.getFullYear()
+
+    const hora = concatenar(obtenerFecha.getHours())
+
+    const minutos = concatenar(obtenerFecha.getMinutes())
+
+    const segundos = concatenar(obtenerFecha.getSeconds())
 
     const opciones = { month: 'long' };
-    const nombreMes = new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
+    const nombreMes = new Intl.DateTimeFormat('es-ES', opciones).format(obtenerFecha);
 
 
     return {

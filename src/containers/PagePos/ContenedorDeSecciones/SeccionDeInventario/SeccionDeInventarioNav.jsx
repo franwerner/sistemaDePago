@@ -1,23 +1,23 @@
 import BuscadorInput from "@/components//BuscadorInput";
-import DropDownFilterDefault from "@/components//DropDownFilterDefault";
-import DropDownOrdenDefault from "@/components//DropDownOrdenDefault";
-import { RemoveFilterIcon } from "@/components//removeFilterIcon";
+import DropDownFilterDefault from "@/components//DropDowns/DropDownFilterDefault";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault";
+import { RemoveFilterIcon } from "@/components//Icons/RemoveFilterIcon";
 import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider";
 import { Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const dropwDownOrden = [
-    { nombre: "Vencimiento", prioridad: 0 },
-    { nombre: "Fabricacion", prioridad: 1 },
-    { nombre: "Numero", prioridad: 2 },
-    { nombre: "Ingreso", prioridad: 3 },
-    { nombre: "Items", prioridad: 4 },
+    { nombre: ["Vencimiento"], prioridad: 0 },
+    { nombre: ["Fabricacion"], prioridad: 1 },
+    { nombre: ["Numero"], prioridad: 2 },
+    { nombre: ["Ingreso"], prioridad: 3 },
+    { nombre: ["Items"], prioridad: 4 },
 
 ]
 
 const dropwDownFilter = [
     { nombre: "Vencidos" },
-    {nombre : "Sin productos"}
+    { nombre: "Sin productos" }
 ]
 
 export const SeccionDeInventarioNav = () => {

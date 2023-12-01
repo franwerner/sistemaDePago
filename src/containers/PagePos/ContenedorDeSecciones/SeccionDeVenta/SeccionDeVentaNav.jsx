@@ -1,19 +1,16 @@
-import BotonRotacion from "@/components//BotonRotacion";
-import BuscadorInput from "@/components//BuscadorInput";
-import DropDownOrdenDefault from "@/components//DropDownOrdenDefault";
-import { memo } from "react";
-import { Col } from "react-bootstrap";
+import BotonRotacion from "@/components//Botones/BotonRotacion"
+import BuscadorInput from "@/components//BuscadorInput"
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault"
+import { memo } from "react"
+import { Col } from "react-bootstrap"
+
 
 const dropDownList = [
-    { nombre: "Nombre", prioridad: 6 },
-    { nombre: "Metodo", prioridad: 5 },
-    { nombre: "Cantidad", prioridad: 4 },
-    { nombre: "Precio", prioridad: 2 },
-    { nombre: "Descuento", prioridad: 3 },
-    { nombre: "Lote", prioridad: 1 },
-    { nombre: "Total", prioridad: 0 },
+    { nombre: ["Nombre"], prioridad: 7 },
+    { nombre: ["Metodo"], prioridad: 6 },
+    { nombre: ["Precio", "precioModificado"], prioridad: 3 },
+    { nombre: ["Lote"], prioridad: 2 },
 ]
-
 
 const SeccionDeVentaNav = memo(({ alternarMostrar }) => {
 

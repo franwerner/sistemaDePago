@@ -1,4 +1,4 @@
-import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading"
+import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { usuarioInfo } from "@/styles/NavBarPos.module.css"
 import { lazy } from "react"

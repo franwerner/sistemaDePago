@@ -2,9 +2,9 @@ import { calcularPorcentaje } from "@/common//helper/calcularPorcentaje";
 import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo";
 import { CalcularPorcentajeMemoizado } from "@/hooks//useCalcularPorcentaje";
 import styles from "@/styles/SeccionDeVenta.module.css"
-import React from "react";
+import  { memo } from "react";
 
-export const TdTotal = React.memo(({ precioModificado, cantidad, descuento }) => {
+export const TdTotal = memo(({ precioModificado, cantidad, descuento }) => {
 
     const total = precioModificado * cantidad
 

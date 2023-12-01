@@ -1,4 +1,5 @@
 import { useCallback, useReducer } from 'react';
+import { calcularPorcentaje } from '../common/helper/calcularPorcentaje';
 
 const agregarNuevasPropiedades = (action) => {
 
@@ -6,6 +7,7 @@ const agregarNuevasPropiedades = (action) => {
         "editado": false,
         "cantidad": 1,
         "descuento": 0,
+        "precioFinal": 0,
         "precioModificado": action.producto.precio
     }
 
@@ -31,7 +33,9 @@ const reducer = (state, action) => {
     if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
 
 
+
     return state.map(estado => {
+
 
         if (estado.nombre !== action.producto.nombre) return estado
 
@@ -46,7 +50,9 @@ const reducer = (state, action) => {
             case "CANTIDAD":
                 return {
                     ...estado,
-                    "cantidad": producto.cantidad
+                    "cantidad": producto.cantidad,
+                    "descuento": Math.sign(estado.cantidad) == -1 || producto.cantidad == 0 ? 0 : estado.descuento,
+                    "precioFinal": estado.precioModificado - calcularPorcentaje({ porcentaje: producto.descuento, numero: estado.precioModificado }) //Esto se combina con la tarifa
                 }
 
             case "PRECIO":
@@ -60,7 +66,8 @@ const reducer = (state, action) => {
             case "DESCUENTO":
                 return {
                     ...estado,
-                    "descuento": producto.descuento
+                    "descuento": producto.descuento,
+                    "precioFinal": estado.precioModificado - calcularPorcentaje({ porcentaje: producto.descuento, numero: estado.precioModificado })
                 }
 
             case "BORRAR":
@@ -69,7 +76,7 @@ const reducer = (state, action) => {
 
 
             default:
-                return state
+                return estado
 
 
         }

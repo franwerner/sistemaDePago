@@ -19,7 +19,7 @@ const historialDeRutas = [
                                     { nombre: "pagos" },
                                 ]
                         },
-                        { nombre: "productos", children: [{ nombre: "f" }, { nombre: "fr" }] }
+                        { nombre: "productos"}
                     ]
             },
             { nombre: "empleado" },

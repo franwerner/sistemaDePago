@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { defer, redirect } from 'react-router-dom';
-import { SuspenseMainPageLoading } from '@/components/SuspenseMainPageLoading';
+import { SuspenseMainPageLoading } from '@/components/Suspense/SuspenseMainPageLoading';
 
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))

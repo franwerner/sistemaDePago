@@ -1,25 +1,24 @@
 import styles from "@/styles/MetodosDePagoCard.module.css"
 import { forwardRef, memo, useEffect, useImperativeHandle, useRef } from "react"
 import { Button, Card, Form } from "react-bootstrap"
-import { useForm } from "../../../../../hooks/useForm"
-import { useRestanteTotal } from "../../../../../hooks/useRestanteTotal"
+import { useForm } from "@/hooks/useForm"
+import { useTotalMetodoDePago } from "../Utils/useTotalMetodoDePago"
 
 const iconType = {
     "efectivo": "fa-solid fa-money-bill",
     "tarjeta": "fa-regular fa-credit-card",
     "qr": "fa-solid fa-qrcode",
     "transferencia": "fa-solid fa-building-columns",
-    "otro": "fa-solid fa-globe"
 }
 
 const CardTitulo = memo(({ resto, id, nombre, modificarResto }) => {
 
-    const restoTotal = useRestanteTotal()
+    const { restante } = useTotalMetodoDePago()
 
     const onClick = () => {
 
-        if (restoTotal > 0 || restoTotal < 0) {
-            modificarResto({ resto: resto + restoTotal, id, nombre })
+        if (restante > 0 || restante < 0) {
+            modificarResto({ resto: resto + restante, id, nombre })
         }
 
     }
@@ -46,7 +45,7 @@ const CardBodyRestante = memo(({ tipo, nombre }) => {
             <div className={`${styles.iconContainer} ${styles[tipo]} d-flex justify-content-center align-items-center`}>
                 <i className={`${iconType[tipo]} text-primary-2 `}></i>
             </div>
-            <p className="fw-semibold fs-5">{nombre}</p>
+            <p style={{ maxWidth: "200px"}} className="fw-semibold fs-6  text-center text-truncate">{nombre}</p>
 
         </>
     )
@@ -77,13 +76,14 @@ const RestoForm = memo(forwardRef(({ modificarResto, id, nombre, resto = 0, tipo
 
     return (
         <Form.Control
+      
             aria-label="resto del total"
             ref={inputRef}
             tabIndex={0}
             onChange={changeForm}
             value={calculo}
             name="resto"
-            className={`${styles.formResto} w-50 text-center px-3 `}
+            className={`${styles.formResto} w-50  text-center px-3 `}
             type="number"
             placeholder="" />
     )
@@ -138,7 +138,7 @@ const MetodosDePagosCard = ({ tipo, nombre, modificarResto, id, resto }) => {
             onMouseEnter={onMouseEvents}
             className={`${styles.cardContainer} shadow  overflow-hidden`}>
 
-            <Card.Body className=" p-0 m-0 d-flex flex-column justify-content-center  h-100 align-items-center ">
+            <Card.Body  className=" p-0 m-0 d-flex flex-column justify-content-center  h-100 align-items-center ">
 
                 <CardTitulo
                     resto={resto}

@@ -7,8 +7,7 @@ import { TicketBody } from "./TicketBody"
 import { Link } from "react-router-dom"
 import { productoReducerContext } from "@/context//Contextos"
 import buscarCodigoMensajePersonalizado from "@/common//helper/buscarCodigoMensajePersonalizado"
-import TotalAVender from "./TotalAVenderMemoizado"
-
+import { TotalListaProductoMemoizado } from "../Utils/useTotalListaProducto"
 
 const BotonTrashItems = () => {
 
@@ -24,7 +23,6 @@ const BotonTrashItems = () => {
             onMouseUp={borrarListado}
             className="fa-regular cursor-block zoom mx-2 fs-4 fa-trash-can"></i>
     </Button>
-
 }
 
 const BotonPagos = () => {
@@ -48,7 +46,7 @@ const BotonPagos = () => {
                 pagos
             </p>
             <p className="m-0 mx-2 text-truncate">
-                $/ {<TotalAVender />}
+                $/ <TotalListaProductoMemoizado obj={"adeudoTotal"} />
             </p>
         </Button>
     }, [])

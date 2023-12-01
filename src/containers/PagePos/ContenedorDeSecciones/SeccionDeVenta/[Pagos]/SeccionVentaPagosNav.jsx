@@ -1,9 +1,10 @@
-import { CambioTotalMemoizado } from "@/hooks//useCalcularCambioTotal";
-import { RestanteTotalMemoizando } from "@/hooks//useRestanteTotal";
 import { Button, Col, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import BotonValidar from "./BotonValidar";
-import TotalAVender from "../Ticket/TotalAVenderMemoizado";
+import { TotalMetodoDePagoMemoizado } from "../Utils/useTotalMetodoDePago";
+import { TotalListaProductoMemoizado } from "../Utils/useTotalListaProducto";
+
+
 
 export const SeccionVentaPagosNav = () => {
     return (
@@ -24,18 +25,17 @@ export const SeccionVentaPagosNav = () => {
             <Col
                 xs={{ order: 1 }}
                 sm={{ order: 0 }}
-                style={{ color: "#555" }}
-                className="mt-3 mt-sm-0 p-0 ">
+                className="mt-3 text-ligthdark mt-sm-0 p-0 ">
                 <Stack
                     gap={2}
                     direction="horizontal"
                     className="justify-content-between align-items-center p-1 ">
                     <div className="text-truncate text-center ">
                         <p className="m-0  fw-semibold text-nowrap">
-                            AdeudoTotal
+                            Adeudo Total
                         </p>
                         <p className="m-0 textext-truncate">
-                            $/ <TotalAVender />
+                            $/ <TotalListaProductoMemoizado obj={"adeudoTotal"} />
                         </p>
                     </div>
 
@@ -45,7 +45,7 @@ export const SeccionVentaPagosNav = () => {
                             Restante
                         </p>
                         <p className="m-0 text-truncate">
-                            $/ {<RestanteTotalMemoizando />}
+                            $/ <TotalMetodoDePagoMemoizado obj={"restante"} />
                         </p>
                     </div>
 
@@ -54,7 +54,7 @@ export const SeccionVentaPagosNav = () => {
                             Cambio
                         </p>
                         <p className="m-0  text-truncate">
-                            $/  <CambioTotalMemoizado />
+                            <TotalMetodoDePagoMemoizado obj={"cambio"} />
                         </p>
                     </div>
                 </Stack>

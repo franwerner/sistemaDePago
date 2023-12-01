@@ -1,7 +1,7 @@
-import { CambioTotalMemoizado } from "@/hooks//useCalcularCambioTotal"
-import { CalcularDescuentoMemoizado } from "@/hooks//useCalcularDescuento"
-import { SumarProductosMemoizado } from "@/hooks//useSumaTotalDeProductos"
+
 import { Stack } from "react-bootstrap"
+import { TotalListaProductoMemoizado } from "../Utils/useTotalListaProducto"
+import { TotalMetodoDePagoMemoizado } from "../Utils/useTotalMetodoDePago"
 
 export const DetellaDeTicket = () => {
 
@@ -11,11 +11,11 @@ export const DetellaDeTicket = () => {
             direction="horizontal"
             className="justify-content-between p-1 px-3">
             <div className="text-truncate text-center ">
-                <p  className="m-0  fw-semibold text-nowrap">
+                <p className="m-0  fw-semibold text-nowrap">
                     Base
                 </p>
                 <p className="m-0 text-truncate">
-                    $/ <SumarProductosMemoizado />
+                    $/ <TotalListaProductoMemoizado obj={"total"} />
                 </p>
             </div>
 
@@ -25,7 +25,7 @@ export const DetellaDeTicket = () => {
                     Descuento
                 </p>
                 <p className="m-0 text-truncate">
-                    $/ {<CalcularDescuentoMemoizado />}
+                $/ <TotalListaProductoMemoizado obj={"descuento"} />
                 </p>
             </div>
 
@@ -34,10 +34,12 @@ export const DetellaDeTicket = () => {
                     Cambio
                 </p>
                 <p className="m-0  text-truncate">
-                    $/  <CambioTotalMemoizado />
+                $/ <TotalMetodoDePagoMemoizado obj={"cambio"} />
                 </p>
             </div>
         </Stack>
     )
 
 }
+
+//SOLO SE USA ACA SUMAPRODUCTOS,DESCUENTO

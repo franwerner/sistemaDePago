@@ -1,12 +1,12 @@
 import { useForm } from "@/hooks//useForm"
-import React, { useCallback, useEffect } from "react"
-import BotonRestar from "@/components/BotonRestar"
-import BotonSumar from "@/components/BotonSumar"
+import React, { memo, useCallback, useEffect } from "react"
+import BotonRestar from "@/components/Botones/BotonRestar"
+import BotonSumar from "@/components/Botones/BotonSumar"
 import { Form } from "react-bootstrap"
 import styles from "@/styles/SeccionDeVenta.module.css"
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
 
-const TdCantidad = React.memo(({ cantidad, nombre, modificarCantidad }) => {
+const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
 
     const { changeForm, form } = useForm({ cantidad })
 

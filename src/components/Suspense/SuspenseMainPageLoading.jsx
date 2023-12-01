@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import styles from "@/styles/SuspenseMainPageLoading.module.css"
-import { RutasInterface } from "./RutasInterface";
+import { RutasInterface } from "../RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
 
 

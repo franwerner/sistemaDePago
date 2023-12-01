@@ -1,7 +1,7 @@
 import { lazy, memo, useCallback, useState } from "react";
 import TablaListaDeProductos from "./TablaListaDeProductos";
 import { Modal } from "react-bootstrap";
-import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading";
+import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading";
 import styles from "@/styles/SeccionDeCompras.module.css"
 
 const TablaListaDeMetodosDePago = lazy(() => import("./TablaListaDeMetodosDePago"))

@@ -3,6 +3,34 @@
 +
 *Es decir hacen uso de hooks personalizados/libreria/frameworks de react.
 +
-*Pero no interactuan con los mismo de forma directa solo reciben los datos.
+*Pero no interactuan con los hooks de forma directa solo reciben los datos.
 +
+*No tiene que tener relacion con el ciclo de vida de la APP.
 /
+
+/-Helper-/
+*En esta carpeta solo van archivos que no contengan ninguna relacion con react, es decir ningun hook etc.
++
+*Puede contener codigo de otros paquetes, pero no de react.
++
+
+/-Containers-/
+*Aca lo unico que va son los contenedos que representan una pagina en RAIZ en concreto, por ejemplo: Pos,Empleado,Configuracion etc.
++
+*Puede contener mas carpetas como hooks,utils etc, solo en caso de que esa logica que se utiliza sea parte de la unica de la carpeta contenedora
++
+
+/-Componentes-/
+*Contiene los componentes que se pueden representa de forma abstracta, es decir que no estan ligados especificamente a una logica de un contenedor.
++
+*Pueden contener logica de contextos.
++
+
+/-Router-/
+*Contiene todo lo que se refire a la anidacion de rutas de una RAIZ, por ejemplo: Pos,Empleado,Configuracion etc.
++
+
+/-Screens-/
+*Contiene la representancion de la anidacion de la carpetas, es decir el contenedor principal que representa de la carpeta containers.
++
+

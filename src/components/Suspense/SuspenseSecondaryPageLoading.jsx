@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
-import { RutasInterface } from "./RutasInterface";
+import { RutasInterface } from "../RutasInterface";
 
 export const SuspenseSecondaryPageLoading = ({ children }) => {
 

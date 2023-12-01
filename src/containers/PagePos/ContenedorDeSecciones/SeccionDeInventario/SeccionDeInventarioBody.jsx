@@ -1,8 +1,8 @@
 import { Card, Col } from "react-bootstrap";
 import styles from "@/styles/SeccionDeInventario.module.css"
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
-import SvgContenedor from "@/components//SvgContenedor";
-import { DropDownDetalleDeLote } from "@/components//DropDownDetalleDeLote";
+import SvgContenedor from "@/components//Svg/SvgContenedor";
+import { DropDownDetalleDeLote } from "@/components//DropDowns/DropDownDetalleDeLote";
 import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
-import DropDownFilterDefault from "@/components//DropDownFilterDefault"
-import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading"
+import DropDownFilterDefault from "@/components//DropDowns/DropDownFilterDefault"
+import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { lazy } from "react"
 import { Dropdown } from "react-bootstrap"

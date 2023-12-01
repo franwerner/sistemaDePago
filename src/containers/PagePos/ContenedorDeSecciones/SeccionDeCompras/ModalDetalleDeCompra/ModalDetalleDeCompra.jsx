@@ -38,11 +38,11 @@ const ReImpresion = () => {
                 <TicketDeVenta
                     sumaTotal={productosTest.venta.total}
                     cambio={productosTest.venta.cambio}
-                    porcentaje={productosTest.venta.porcentaje}
+                    adeudoTotal={productosTest.venta.total - productosTest.venta.descuento}
                     descuento={productosTest.venta.descuento}
                     listaDeProductos={productosTest.productos}
                     topAbsolute={13}
-                    fecha={new Date(productosTest.venta.fecha)}
+                    fecha={productosTest.venta.fecha}
                 />
             }
 

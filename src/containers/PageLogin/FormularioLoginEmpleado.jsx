@@ -1,8 +1,8 @@
 import { Col, FloatingLabel, Form } from "react-bootstrap";
 import { useForm } from "../../hooks/useForm";
 import { useEventoMostrar } from "../../hooks/useEventoMostrar";
-import { EyeInput } from "../../components/EyeInput";
-import React, { useEffect } from "react";
+import { EyeInput } from "../../components/Icons/EyeInput";
+import { memo, useEffect } from "react";
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
 
 
@@ -31,7 +31,7 @@ const usuariosDataBase = [
 ]
 
 
-const FormSelect = React.memo(({ changeForm }) => {
+const FormSelect = memo(({ changeForm }) => {
 
     return (
         <Col className="my-2 bg-da">
@@ -51,7 +51,7 @@ const FormSelect = React.memo(({ changeForm }) => {
     )
 })
 
-const FormularioLoginEmpleado = React.memo(({ alternarUsuario }) => {
+const FormularioLoginEmpleado = memo(({ alternarUsuario }) => {
 
     const { mostrar, alternarMostrar } = useEventoMostrar()
 

@@ -1,4 +1,4 @@
-import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading"
+import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading"
 import { QueryParamsContext } from "@/context//Contextos"
 import { AgregarCerosANumeros } from "@/common/helper/AgregarCerosANumeros"
 import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales"
@@ -7,25 +7,30 @@ import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import styles from "@/styles/SeccionDeCompras.module.css"
 import { lazy, memo, useContext } from "react"
 import { Col, Table } from "react-bootstrap"
+import { obtenerFecha } from "@/common//helper/obtenerFecha"
 
 const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
 
 const theadTest = [
-    { id: 1, "empleado": "Aranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", orden: 1 },
-    { id: 2, "empleado": "ABanco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 2 },
-    { id: 3, "empleado": "Franco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 3 },
-    { id: 4, "empleado": "Dranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 666, "estado": "Pagado", orden: 4 },
-    { id: 5, "empleado": "Hranco Werner", "hora": "5/11/2023 17:05:23", "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", orden: 5 }
+    { id: 1, "empleado": "Aranco Werner", "fecha": 1631011278000, "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", orden: 1 },
+    { id: 2, "empleado": "ABanco Werner", "fecha": 1634825246000, "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 2 },
+    { id: 3, "empleado": "Franco Werner", "fecha": 1640928132000, "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 3 },
+    { id: 4, "empleado": "Dranco Werner", "fecha": 1643562391000, "cliente": "Consumidor Anonimo", "total": 666, "estado": "Pagado", orden: 4 },
+    { id: 5, "empleado": "Hranco Werner", "fecha": 1647356814000, "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", orden: 5 }
 ]
 
-const TrTablaBody = memo(({ empleado, hora, cliente, total, estado, orden, alternarMostrar }) => {
+const TrTablaBody = memo(({ empleado, fecha, cliente, total, estado, orden, alternarMostrar }) => {
 
     const verificarEstado = estado == "Pagado" ? "success" : "danger"
+
+    const { dia, hora, minutos, segundos, mes, año } = obtenerFecha(fecha)
+
 
     return (
         <tr onClick={alternarMostrar}>
             <th className="text-truncate fw-normal">{empleado}</th>
-            <th className="text-truncate fw-normal">{hora}</th>
+            <th className="text-truncate fw-normal">{hora}:{minutos}:{segundos}</th>
+            <th className="text-truncate fw-normal">{dia}/{mes}/{año}</th>
 
             <th className="text-truncate fw-normal">
                 <div className="d-flex justify-content-center align-items-center">
@@ -78,7 +83,6 @@ const SeccionDeComprasBody = () => {
 
     const { iniciarSort } = useAlgoritmoDeOrden(queryParams)
 
-
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
             <SuspenseCompontentsLoading texto={`${AgregarCerosANumeros({ numero: 1, digitos: 5 })} - ${AgregarCerosANumeros({ numero: 4, digitos: 5 })} `} >
@@ -87,6 +91,7 @@ const SeccionDeComprasBody = () => {
                         <tr>
                             <th>Empleado</th>
                             <th>Hora</th>
+                            <th>Fecha</th>
                             <th>Ticket</th>
                             <th>Cliente</th>
                             <th>Total</th>

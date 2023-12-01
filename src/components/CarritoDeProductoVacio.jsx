@@ -1,4 +1,3 @@
-import { Col, Row } from "react-bootstrap"
 import styles from "@/styles/CarritoProductoVacio.module.css"
 
 const CarritoDeProductoVacio = () => {

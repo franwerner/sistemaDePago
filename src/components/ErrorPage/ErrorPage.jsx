@@ -1,10 +1,10 @@
-import { Link, useNavigation, useRouteError } from "react-router-dom";
-import { SvgLupa } from "../SvgLupa";
+import { Link, useRouteError } from "react-router-dom";
+import { SvgLupa } from "../Svg/SvgLupa";
 import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "../RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
-import { algoritmoDeBusquedaPageUtils } from "./AltoritmoDeBusquedaPageUtils/AlgoritmoDeBusquedaPageUtils";
-import { LoadingStateLoader } from "../LoadingStateLoader";
+import { algoritmoDeBusquedaPageUtils } from "./Utils/AlgoritmoDeBusquedaPageUtils";
+import { LoadingStateLoader } from "../Suspense/LoadingStateLoader";
 
 
 const ListaDeErrores = [

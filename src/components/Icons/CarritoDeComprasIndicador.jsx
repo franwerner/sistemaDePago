@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { productoReducerContext } from "../context/Contextos";
+import { productoReducerContext } from "../../context/Contextos";
 import styles from "@/styles/CarritoDeCompras.module.css"
 import { Link } from "react-router-dom";
 

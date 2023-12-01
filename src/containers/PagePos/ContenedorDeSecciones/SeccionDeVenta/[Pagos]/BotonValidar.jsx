@@ -1,44 +1,39 @@
 import { cargaDiferida } from "@/common//helper/cargaDiferida"
-import { SuspenseCompontentsLoading } from "@/components//SuspenseCompontentsLoading"
-import { TarifaContex, productoReducerContext, restoDelPagoContext } from "@/context//Contextos"
-import { useCalcularCambio } from "@/hooks//useCalcularCambioTotal"
-import { useCalcularDescuento } from "@/hooks//useCalcularDescuento"
-import { useRestanteTotal } from "@/hooks//useRestanteTotal"
-import { useSumaTotalDeProductos } from "@/hooks//useSumaTotalDeProductos"
+import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading"
+import { productoReducerContext, restoDelPagoContext } from "@/context//Contextos"
 import { lazy, useCallback, useContext } from "react"
 import { Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
+import { useTotalMetodoDePago } from "../Utils/useTotalMetodoDePago"
+import { useTotalListaProducto } from "../Utils/useTotalListaProducto"
+import { useAplicarPorcentajeAProductos } from "../Utils/useAplicarPorcentajeAProductos"
 
+
+const buscarCodigo = cargaDiferida(() => import("@/common/helper/buscarCodigoMensajePersonalizado"))
 const TicketDeVenta = lazy(() => import("@/components/TicketDeVenta"))
 
 const TicketProps = () => {
 
-    const { listaProducto } = useContext(productoReducerContext)
+    const newList = useAplicarPorcentajeAProductos()
 
-    const suma = useSumaTotalDeProductos()
+    const { descuento, total, adeudoTotal } = useTotalListaProducto()
 
-    const descuento = useCalcularDescuento()
-
-    const cambio = useCalcularCambio()
-
-    const { tarifaActual } = useContext(TarifaContex)
+    const { cambio } = useTotalMetodoDePago()
 
     return (
         <TicketDeVenta
-            listaDeProductos={listaProducto}
+            listaDeProductos={newList}
             cambio={cambio}
+            adeudoTotal={adeudoTotal}
             descuento={descuento}
-            sumaTotal={suma}
-            porcentaje={tarifaActual.porcentaje}
+            sumaTotal={total}
         />
     )
 }
 
-const buscarCodigo = cargaDiferida(() => import("@/common/helper/buscarCodigoMensajePersonalizado"))
-
 const BotonValidar = () => {
 
-    const restante = useRestanteTotal()
+    const { restante } = useTotalMetodoDePago()
 
     const navigate = useNavigate()
 
@@ -51,8 +46,6 @@ const BotonValidar = () => {
     const onBuscarCodigo = useCallback((codigo) => {
         buscarCodigo(codigo)
     }, [])
-
-
 
     const onClick = () => {
         try {

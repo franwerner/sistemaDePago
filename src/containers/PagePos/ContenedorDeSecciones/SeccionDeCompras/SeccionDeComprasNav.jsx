@@ -1,21 +1,20 @@
 import BuscadorInput from "@/components//BuscadorInput"
-import DropDownOrdenDefault from "@/components//DropDownOrdenDefault"
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault"
 import { Col } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import { Paginacion } from "@/components//Paginacion"
 
 const dropwDownList = [
-    { nombre: "Estado", prioridad: 6 },
-    { nombre: "Cliente", prioridad: 5 },
-    { nombre: "Hora", prioridad: 2 },
-    { nombre: "Empleado", prioridad: 4 },
-    { nombre: "Orden", prioridad: 3 },
-    { nombre: "Total", prioridad: 1 },
+    { nombre: ["Estado"], prioridad: 6 },
+    { nombre: ["Cliente"], prioridad: 5 },
+    { nombre: ["Hora","fecha"], prioridad: 2 },
+    { nombre: ["Empleado"], prioridad: 4 },
+    { nombre: ["Orden"], prioridad: 3 },
+    { nombre: ["Total"], prioridad: 1 },
 ]
 
-
-
 const PaginacionCompras = () => {
+
     const { id } = useParams()
 
     return (

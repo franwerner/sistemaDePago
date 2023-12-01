@@ -13,12 +13,10 @@ const concatenacionRecursiva = (date) => {
     return concatenacion
 }
 
+
 export const algoritmoDeBusquedaPageUtils = () => {
 
     const sistemaDePuntaje = bucleJerarquico(historialDeRutas)
-
-    console.log(sistemaDePuntaje)
-
     return concatenacionRecursiva(sistemaDePuntaje[0].children)
 
 };

@@ -1,8 +1,8 @@
 import FormularioLoginEmpleado from "@/containers//PageLogin/FormularioLoginEmpleado";
 import { useCallback, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import styles from "@/styles/PosLogin.module.css"
-import { ButtonIngresar } from "./ButtonIngresar";
+import { Link } from "react-router-dom";
 
 
 const usuariosDataBase = [
@@ -30,6 +30,16 @@ const usuariosDataBase = [
 ]
 
 
+const ButtonIngresar = () => {
+    return <Col className="w-100 m-0 p-0">
+        <Link to={"/pos"}>
+            <Button variant="primary" className={`text-white border-light fw-bolder p-3 w-100`}>
+                Ingresar
+            </Button>
+        </Link>
+    </Col>
+}
+
 export const LoginContainer = () => {
 
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(usuariosDataBase[0])
@@ -42,8 +52,6 @@ export const LoginContainer = () => {
     }, [])
 
     return (
-
-
         <Container fluid className="h-100  d-flex justify-content-center align-items-center flex-column ">
 
             <Row className={`${styles.userPhotoContainer} position-absolute`}>

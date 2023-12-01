@@ -1,7 +1,7 @@
 import { Row } from "react-bootstrap";
 import SeccionDeVentaNav from "./SeccionDeVentaNav";
 import SeccionDeVentaBody from "./SeccionDeVentaBody";
-import { hocTouchYReponsive } from "@/components//HocTouchYReponsive";
+import { hocTouchYReponsive } from "@/components//HOC/HocTouchYReponsive";
 import React from "react";
 import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider";
 
