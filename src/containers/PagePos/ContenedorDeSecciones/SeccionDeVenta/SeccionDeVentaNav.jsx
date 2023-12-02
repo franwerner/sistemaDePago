@@ -26,7 +26,7 @@ const SeccionDeVentaNav = memo(({ alternarMostrar }) => {
                 <DropDownOrdenDefault dropwDownList={dropDownList} />
             </Col>
 
-            <Col xs="11" md="8" className="p-0 d-flex mx-3  d-flex justify-content-center align-items-center">
+            <Col xs="11" md="8" className="d-flex mx-3  d-flex justify-content-center align-items-center">
                 <BuscadorInput texto={"productos"} />
             </Col>
         </>

@@ -13,7 +13,7 @@ export const useTotalListaProducto = () => {
    const { total = 0, descuento = 0, items = 0 } = useMemo(() => {
 
       const total = listaProducto.reduce((acc, { precioModificado, cantidad }) => acc + precioModificado * cantidad, 0)
-      const descuento = listaProducto.reduce((acc, { descuento, precioModificado }) => acc + calcularPorcentaje({ porcentaje: descuento, numero: precioModificado }), 0)
+      const descuento = listaProducto.reduce((acc, { descuento, precioModificado,cantidad }) => acc + calcularPorcentaje({ porcentaje: descuento, numero: precioModificado * cantidad}), 0)
       const items = listaProducto.reduce((acc, { cantidad }) => acc + cantidad, 0)
 
       return {

@@ -8,7 +8,7 @@ const SeccionDeInventario = () => {
         <>
             <Row 
             id={styles.inventarioNav}
-                className="m-0 shadow d-flex p-md-3 align-items-center  justify-content-between">
+                className="m-0 shadow d-flex p-2 p-md-3  align-items-center  justify-content-between">
                 <SeccionDeInventarioNav />
             </Row>
             <Row  className="m-0 h-100 scrollBarPersonalizada">

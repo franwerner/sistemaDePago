@@ -8,7 +8,7 @@ const SeccionVentaPagos = () => {
     
     return (
         <>
-            <Row className="m-0  p-3 shadow">
+            <Row className="m-0  p-2 p-md-3  shadow">
                 <SeccionVentaPagosNav />
             </Row>
 

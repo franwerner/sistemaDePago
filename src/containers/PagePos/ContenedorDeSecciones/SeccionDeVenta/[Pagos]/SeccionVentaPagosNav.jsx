@@ -10,7 +10,7 @@ export const SeccionVentaPagosNav = () => {
     return (
         <>
             <Col
-                className="p-0 d-flex  align-items-center ">
+                className=" d-flex  align-items-center ">
                 <Link to={"/pos/venta"}>
                     <Button
                         variant="secondary"
@@ -23,9 +23,9 @@ export const SeccionVentaPagosNav = () => {
             </Col>
 
             <Col
-                xs={{ order: 1 }}
-                sm={{ order: 0 }}
-                className="mt-3 text-ligthdark mt-sm-0 p-0 ">
+                xs={{ order: 1, span: 12 }}
+                md = {{order : 0,span : "6"}}
+                className="mt-3  text-ligthdark mt-sm-0 p-0 ">
                 <Stack
                     gap={2}
                     direction="horizontal"
@@ -60,7 +60,7 @@ export const SeccionVentaPagosNav = () => {
                 </Stack>
             </Col>
 
-            <Col className="d-flex  align-items-center justify-content-end  p-0">
+            <Col className="d-flex  align-items-center justify-content-end  ">
                 <BotonValidar />
             </Col>
         </>

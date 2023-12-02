@@ -7,7 +7,7 @@ import { Paginacion } from "@/components//Paginacion"
 const dropwDownList = [
     { nombre: ["Estado"], prioridad: 6 },
     { nombre: ["Cliente"], prioridad: 5 },
-    { nombre: ["Hora","fecha"], prioridad: 2 },
+    { nombre: ["Hora", "fecha"], prioridad: 2 },
     { nombre: ["Empleado"], prioridad: 4 },
     { nombre: ["Orden"], prioridad: 3 },
     { nombre: ["Total"], prioridad: 1 },
@@ -28,21 +28,19 @@ const SeccionDeComprasNav = () => {
     return (
         <>
             <Col
-                md={{ order: "0", span: "auto" }}
-                xs={{ order: "3", span: "6" }}
-                className="d-flex p-1 position-relative align-items-center">
+                className="d-flex  position-relative align-items-center">
                 <DropDownOrdenDefault dropwDownList={dropwDownList} />
             </Col>
             <Col
-                xs="12" md="6"
-                className="d-flex justify-content-center align-items-center">
-                <BuscadorInput texto={"nro de orden"} />
-            </Col>
-            <Col
-                md={{ order: "0", span: "auto" }}
-                xs={{ order: "3", span: "6" }}
+                xs={{ order: "0",span : "auto"}}
+                md={{ order: "2", span: "auto" }}
                 className="d-flex justify-content-end  align-items-center">
                 <PaginacionCompras />
+            </Col>
+            <Col
+                xs="12" md="5"
+                className="d-flex justify-content-center align-items-center">
+                <BuscadorInput texto={"nro de orden"} />
             </Col>
 
         </>
