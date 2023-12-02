@@ -1,22 +1,35 @@
 import { useForm } from "@/hooks//useForm"
 import React, { memo, useCallback, useEffect } from "react"
-import BotonRestar from "@/components/Botones/BotonRestar"
-import BotonSumar from "@/components/Botones/BotonSumar"
-import { Form } from "react-bootstrap"
+import { Button, Form } from "react-bootstrap"
 import styles from "@/styles/SeccionDeVenta.module.css"
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
 
+const BotonCantidad = memo(({ tipo, onClick }) => {
+
+    const iconType = tipo == "resta" ? "minus" : "plus"
+
+    const numero = tipo == "resta" ? -1 : +1
+
+    return (
+        <Button
+            onClick={() => onClick(numero)}
+            variant="none"
+            className=" p-0 border-0 bg-primary zoom d-flex align-items-center">
+            <i className={`fa-${iconType} fa-solid rounded-2 text-white p-1 `}></i>
+        </Button>
+    )
+})
+
 const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
 
-    const { changeForm, form } = useForm({ cantidad })
+    const { changeForm, form, setForm } = useForm({ cantidad })
 
     const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
 
-    const modificacionForm = useCallback((numero) => {
-        const resultado = cantidad + (numero)
-
-        changeForm({ target: { name: "cantidad", value: resultado } })
-    }, [cantidad])
+    const modificacionForm = useCallback((numero) => setForm(({ cantidad }) => {
+        const verificar = isNaN(cantidad) ? 0 : cantidad
+        return { cantidad: parseFloat(verificar) + numero }
+    }), [])
 
     useEffect(() => {
 
@@ -32,7 +45,10 @@ const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
         <td className={`${styles.tdCantidad} `}>
 
             <div className="d-flex align-items-center justify-content-center">
-                <BotonRestar restarCantidad={modificacionForm} />
+
+                <BotonCantidad
+                    tipo={"resta"}
+                    onClick={modificacionForm} />
 
                 <Form.Control
                     onMouseEnter={onMouseEnter}
@@ -45,8 +61,10 @@ const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
                     value={cantidad}
                     className="mx-1 px-1 text-center"
                 />
+                <BotonCantidad
+                    tipo={"sumar"}
+                    onClick={modificacionForm} />
 
-                <BotonSumar sumarCantidad={modificacionForm} />
 
             </div>
 

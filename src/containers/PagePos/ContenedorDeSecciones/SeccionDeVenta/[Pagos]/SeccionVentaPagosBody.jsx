@@ -1,31 +1,29 @@
-import MetodosDePagosCard from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeVenta/[Pagos]/MetodosDePagoCard";
+import MetodosDePagosCard from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeVenta/[Pagos]/MetodosDePagoCard/MetodosDePagoCard";
 import { TarifaContex, restoDelPagoContext } from "@/context//Contextos";
 import { useContext } from "react";
-import { Stack } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
-const ContenedorDeCards = () => {
+const SeccionVentaPagosBody = () => {
 
-    const { pagoActual, agregarResto, modificarResto } = useContext(restoDelPagoContext)
+    const { pagoActual, agregarResto, modificarResto, eliminarResto } = useContext(restoDelPagoContext)
 
     const { tarifaActual } = useContext(TarifaContex)
 
     const buscarResto = (id) => {
-        const restoActual = pagoActual.metodosDePago.find(item => item.id == id)
+        const restoActual = pagoActual.find(item => item.id == id)
 
-        return restoActual ? restoActual.resto : 0
+        return restoActual && restoActual.resto 
     }
 
     return (
 
-        <Stack
-            gap={3}
-            className="flex-wrap justify-content-center"
-            direction="horizontal">
+        <Col className="flex-wrap d-flex align-items-center justify-content-center">
 
             {
                 tarifaActual.metodosDePago.map(item =>
                     <MetodosDePagosCard
                         key={item.id}
+                        eliminarResto={eliminarResto}
                         resto={buscarResto(item.id)}
                         id={item.id}
                         modificarResto={modificarResto}
@@ -34,10 +32,10 @@ const ContenedorDeCards = () => {
                         tipo={item.tipo} />
                 )
             }
-        </Stack>
+        </Col>
 
     );
 };
 
 
-export default ContenedorDeCards
+export default SeccionVentaPagosBody

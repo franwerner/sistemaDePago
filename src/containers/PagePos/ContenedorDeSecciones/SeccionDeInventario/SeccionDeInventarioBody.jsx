@@ -2,9 +2,9 @@ import { Card, Col } from "react-bootstrap";
 import styles from "@/styles/SeccionDeInventario.module.css"
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
 import SvgContenedor from "@/components//Svg/SvgContenedor";
-import { DropDownDetalleDeLote } from "@/components//DropDowns/DropDownDetalleDeLote";
 import { memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { DropDownDetalle } from "@/components//DropDowns/DropDownDetalle";
 
 
 const CardBody = memo(() => {
@@ -41,6 +41,12 @@ export const ContenedorCard = memo(() => {
         if (e.target.tagName !== "I" && e.target.id !== "dropdown") navigate("gestion")
     }
 
+    const DatosTest = [
+        {tipo : "Ing.",data : "3/12/2023"},
+        {tipo : "Vto.",data : "1/12/2024"},
+        {tipo : "Fab.",data : "17/10/2323"}
+    ]
+
     return (
         <Card
             onClick={onClick}
@@ -51,7 +57,7 @@ export const ContenedorCard = memo(() => {
             className="m-2 card-move-up  border-0 shadow position-relative  cursor-pointer overflow-hidden">
 
             <Card.Title className="d-flex z-1  px-2 position-absolute w-100 justify-content-between">
-                <DropDownDetalleDeLote />
+                <DropDownDetalle itemList = {DatosTest} />
             </Card.Title>
 
             <CardBody />

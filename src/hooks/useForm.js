@@ -22,5 +22,6 @@ export const useForm = (intialInput = {}) => {
         onSubmit,
         changeForm,
         form,
+        setForm
     }
 }

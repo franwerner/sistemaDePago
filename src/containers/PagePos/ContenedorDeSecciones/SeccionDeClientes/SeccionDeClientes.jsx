@@ -7,7 +7,7 @@ const SeccionDeClientes = () => {
 
     return (
         <QueryParamsProvider>
-            <Row className="m-0 shadow p-3">
+            <Row className="m-0 shadow p-3 d-flex justify-content-between">
                 <SeccionDeClientesNav />
             </Row>
             <Row className="m-0 h-100 scrollBarPersonalizada">

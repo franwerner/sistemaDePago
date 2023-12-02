@@ -3,22 +3,20 @@ import { useTotalListaProducto } from "./useTotalListaProducto";
 import { restoDelPagoContext } from "@/context/Contextos";
 import { separarNumerosConDecimales } from "@/common/helper/separarNumerosConDecimales";
 import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo";
-import { productoReducerContext } from "@/context//Contextos";
 
 export const useTotalMetodoDePago = () => {
 
     const { total, descuento } = useTotalListaProducto()
-    const { listaProducto } = useContext(productoReducerContext)
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
-    const dependeciaString = JSON.stringify(pagoActual.metodosDePago)
+    const dependeciaString = JSON.stringify(pagoActual)
 
     return useMemo(() => {
 
-        const sumaDeRestos = pagoActual.metodosDePago.reduce((acc, current) => acc - current.resto, (total - descuento))
+        const sumaDeRestos = pagoActual.reduce((acc, current) => acc - current.resto, (total - descuento))
 
-        const verificarCambio = !verificarSiEsNegativo(total) && listaProducto.length > 0 && verificarSiEsNegativo(sumaDeRestos) ? Math.abs(sumaDeRestos) : 0
+        const verificarCambio = !verificarSiEsNegativo(total)  && verificarSiEsNegativo(sumaDeRestos) ? Math.abs(sumaDeRestos) : 0
 
         const verificarResto = verificarSiEsNegativo(total) || !verificarSiEsNegativo(sumaDeRestos) ? sumaDeRestos : 0
 

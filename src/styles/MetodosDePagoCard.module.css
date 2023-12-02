@@ -13,13 +13,8 @@
     top: 0%;
 }
 
-
 .cardContainer:hover {
     opacity: 1;
-}
-
-.cardContainer:hover .iconContainer {
-    transform: translateY(-5%);
 }
 
 .iconContainer {
@@ -39,3 +34,9 @@
 }
 
 
+.cardActiva {
+    transition: 0.1s !important;
+    opacity: 1;
+    transform: translateY(-5px);
+    
+}

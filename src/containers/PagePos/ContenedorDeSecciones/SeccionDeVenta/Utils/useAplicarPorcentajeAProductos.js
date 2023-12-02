@@ -14,7 +14,7 @@ export const useAplicarPorcentajeAProductos = () => {
     const newList = useMemo(() => {
 
         return listaProducto.map(item => {
-            return { ...item, precioFinal: porcentaje(item.precioFinal), precio: porcentaje(item.precio), precioModificado: porcentaje(item.precioModificado) }
+            return { ...item, precio: porcentaje(item.precio), precioModificado: porcentaje(item.precioModificado) }
         })
 
     }, [dependeciaString])

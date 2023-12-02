@@ -30,8 +30,6 @@ export const SeccionDeInventarioNav = () => {
                 <QueryParamsProvider>
                     <DropDownOrdenDefault dropwDownList={dropwDownOrden} />
                 </QueryParamsProvider>
-
-
             </Col>
 
             <Col
@@ -51,7 +49,8 @@ export const SeccionDeInventarioNav = () => {
 
             <Col
                 xs="12"
-                md="auto" className="p-0 d-flex justify-content-start  ">
+                md="auto"
+                 className="p-0 d-flex justify-content-start  ">
                 <Link to="añadir" className="w-100 px-5 px-md-0">
                     <Button
                         variant="outline-ligthdark"

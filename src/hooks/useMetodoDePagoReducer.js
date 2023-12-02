@@ -21,6 +21,11 @@ const modificiarResto = (state, pago) => {
 
 }
 
+const filtrar = (state, pago) => {
+
+    console.log()
+
+}
 
 const reducer = (state, action) => {
 
@@ -29,6 +34,8 @@ const reducer = (state, action) => {
     const configIncial = {
         metodosDePago: [pago]
     }
+
+
 
     const pagoActual = () => {
 
@@ -46,6 +53,11 @@ const reducer = (state, action) => {
                 return {
                     metodosDePago
                 }
+
+            case "Eliminar": {
+
+                return { metodosDePago: state[tipoDeTarifa].metodosDePago.filter(item => item.id !== pago.id) }
+            }
 
             case "Restablecer":
 
@@ -75,28 +87,31 @@ export const useMetodoDePagoReducer = () => {
 
     const pagoActual = !pagoEncontrado ? { metodosDePago: [] } : pagoEncontrado
 
-    const dependenciaCallback = [tipoDeTarifa, pagoActual.metodosDePago.length]
-
     const agregarResto = useCallback((pago) => {
         dispatch({ type: "Agregar", pago, tipoDeTarifa })
-    }, [tipoDeTarifa])
+    }, [])
+
+    const eliminarResto = useCallback((pago) => {
+        dispatch({ type: "Eliminar", pago, tipoDeTarifa })
+    }, [])
 
     const modificarResto = useCallback((pago) => {
 
         dispatch({ type: "Modificar", pago, tipoDeTarifa })
 
-    }, dependenciaCallback)
+    }, [])
 
     const restablecerPagos = useCallback((pago) => {
 
         dispatch({ type: "Restablecer", pago, tipoDeTarifa })
 
-    }, dependenciaCallback)
+    }, [])
 
 
     return {
-        pagoActual,
+        pagoActual : pagoActual.metodosDePago,
         listaDePagos,
+        eliminarResto,
         agregarResto,
         modificarResto,
         restablecerPagos,

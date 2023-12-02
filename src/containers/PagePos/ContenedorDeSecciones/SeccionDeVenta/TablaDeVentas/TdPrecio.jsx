@@ -1,4 +1,4 @@
-import DropwDownPrecio from "@/components//DropDowns/DropDownPrecio"
+import DropwDownPrecio from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeVenta/TablaDeVentas/DropDownPrecio"
 import { CalcularPorcentajeMemoizado } from "@/hooks//useCalcularPorcentaje"
 import { memo } from "react"
 import styles from "@/styles/SeccionDeVenta.module.css"

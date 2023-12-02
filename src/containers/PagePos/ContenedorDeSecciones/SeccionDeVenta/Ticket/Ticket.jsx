@@ -11,13 +11,13 @@ import { TotalListaProductoMemoizado } from "../Utils/useTotalListaProducto"
 
 const BotonTrashItems = () => {
 
-    const { listaProducto, borrarListado } = useContext(productoReducerContext)
+    const { borrarListado } = useContext(productoReducerContext)
 
     return <Button
         variant="ligthdark"
         className="d-flex text-white  fw-semibold justify-content-between rounded-3   p-2  align-items-center ">
         <p className="m-0 mx-2 text-truncate">
-            {listaProducto.length} ítems en el carrito
+            <TotalListaProductoMemoizado obj={"items"}/> ítems en el carrito
         </p>
         <i
             onMouseUp={borrarListado}

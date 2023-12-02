@@ -32,10 +32,7 @@ const reducer = (state, action) => {
 
     if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
 
-
-
     return state.map(estado => {
-
 
         if (estado.nombre !== action.producto.nombre) return estado
 
@@ -48,11 +45,13 @@ const reducer = (state, action) => {
                 };
 
             case "CANTIDAD":
+
+                const verificarCantidad = producto.cantidad <= 0 ? 0 : estado.descuento
+
                 return {
                     ...estado,
                     "cantidad": producto.cantidad,
-                    "descuento": Math.sign(estado.cantidad) == -1 || producto.cantidad == 0 ? 0 : estado.descuento,
-                    "precioFinal": estado.precioModificado - calcularPorcentaje({ porcentaje: producto.descuento, numero: estado.precioModificado }) //Esto se combina con la tarifa
+                    "descuento": verificarCantidad,
                 }
 
             case "PRECIO":
@@ -60,14 +59,13 @@ const reducer = (state, action) => {
                     ...estado,
                     "precioModificado": producto.precioModificado,
                     "editado": true
-
                 };
 
             case "DESCUENTO":
+                const verificarDescuento = estado.cantidad <= 0 ? 0 : producto.descuento
                 return {
                     ...estado,
-                    "descuento": producto.descuento,
-                    "precioFinal": estado.precioModificado - calcularPorcentaje({ porcentaje: producto.descuento, numero: estado.precioModificado })
+                    "descuento": verificarDescuento,
                 }
 
             case "BORRAR":

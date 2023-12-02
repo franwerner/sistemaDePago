@@ -10,8 +10,7 @@ const SeccionDeVenta = ({ containerRef, alternarMostrar, mostrar }) => {
     return (
         <QueryParamsProvider>
             <Row
-
-                className="shadow p-2 w-100 d-flex justify-content-between m-0">
+                className="shadow p-2 p-md-3 w-100 d-flex justify-content-between m-0">
                 <SeccionDeVentaNav alternarMostrar={alternarMostrar} />
             </Row>
 

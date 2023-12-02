@@ -1,6 +1,6 @@
 import { Col, Row } from "react-bootstrap";
 import styles from "@/styles/seccionDeVenta.module.css"
-import ContenedorDeCards from "./ContenedorDeCards";
+import SeccionVentaPagosBody from "./SeccionVentaPagosBody";
 import { SeccionVentaPagosNav } from "./SeccionVentaPagosNav";
 
 
@@ -14,7 +14,7 @@ const SeccionVentaPagos = () => {
 
             <Row className={`${styles.seccionVentaPagos} m-0 scrollBarPersonalizada h-100`}>
                 <Col className="p-3 d-flex justify-content-center">
-                    <ContenedorDeCards />
+                    <SeccionVentaPagosBody />
                 </Col>
             </Row>
 

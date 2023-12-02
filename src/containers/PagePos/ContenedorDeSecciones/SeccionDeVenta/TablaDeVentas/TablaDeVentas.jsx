@@ -10,7 +10,7 @@ const TheadTabla = memo(() => {
 
     return <thead className="align-middle">
         <tr className="shadow ">
-            <th className="px-3">Item</th>
+            <th className="px-3">Producto</th>
             <th className="text-center">Metodo</th>
             <th className="text-center ">Cantidad</th>
             <th className="text-center">Precio</th>

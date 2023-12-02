@@ -1,8 +1,8 @@
-import React from "react";
+import { memo } from "react";
 import { Button, Dropdown, FloatingLabel, Form } from "react-bootstrap";
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "../../../../../hooks/useForm";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
-import { useFocusMouseElements } from "../../hooks/useFocusMouseElements";
+import { useFocusMouseElements } from "../../../../../hooks/useFocusMouseElements";
 
 
 
@@ -23,7 +23,7 @@ const FormDropwDown = ({ changeForm, precio }) => {
           onMouseLeave={onMouseLeave}
           autoComplete="off"
           placeholder=""
-          tabIndex={1}
+          tabIndex={0}
           onChange={changeForm}
           aria-describedby="precioTable"
           type="number"
@@ -38,7 +38,7 @@ const FormDropwDown = ({ changeForm, precio }) => {
 }
 
 
-const DropwDownPrecio = React.memo(({ children, modificarPrecio, nombre }) => {
+const DropwDownPrecio = memo(({ children, modificarPrecio, nombre }) => {
 
   const { changeForm, form } = useForm({ precio: 0 })
 
@@ -73,9 +73,8 @@ const DropwDownPrecio = React.memo(({ children, modificarPrecio, nombre }) => {
 
         <Dropdown.ItemText>
           <Button
-            style={{ background: "#746AF4" }}
             className="text-white fw-semibold w-100"
-            variant="none"
+            variant="primary"
             type="button"
             onClick={onClick}>
             Cambiar

@@ -30,10 +30,10 @@ const TdLote = memo(({ lote = "" }) => {
 })
 
 const ListadoDeVentas = memo((
-    { cantidad, lote, metodo, nombre, precioModificado, 
-        modificarCantidad, modificarPrecio, borrarProducto, 
+    { cantidad, lote, metodo, nombre, precioModificado,
+        modificarCantidad, modificarPrecio, borrarProducto,
         aplicarDescuento, descuento }
-    ) => {
+) => {
 
     return (
         <tr >
