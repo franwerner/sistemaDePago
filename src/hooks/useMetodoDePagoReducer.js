@@ -35,8 +35,6 @@ const reducer = (state, action) => {
         metodosDePago: [pago]
     }
 
-
-
     const pagoActual = () => {
 
         if (state[tipoDeTarifa] == undefined) return configIncial
@@ -89,27 +87,27 @@ export const useMetodoDePagoReducer = () => {
 
     const agregarResto = useCallback((pago) => {
         dispatch({ type: "Agregar", pago, tipoDeTarifa })
-    }, [])
+    }, [tipoDeTarifa])
 
     const eliminarResto = useCallback((pago) => {
         dispatch({ type: "Eliminar", pago, tipoDeTarifa })
-    }, [])
+    }, [tipoDeTarifa])
 
     const modificarResto = useCallback((pago) => {
 
         dispatch({ type: "Modificar", pago, tipoDeTarifa })
 
-    }, [])
+    }, [tipoDeTarifa])
 
     const restablecerPagos = useCallback((pago) => {
 
         dispatch({ type: "Restablecer", pago, tipoDeTarifa })
 
-    }, [])
+    }, [tipoDeTarifa])
 
 
     return {
-        pagoActual : pagoActual.metodosDePago,
+        pagoActual: pagoActual.metodosDePago,
         listaDePagos,
         eliminarResto,
         agregarResto,

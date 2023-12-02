@@ -12,33 +12,24 @@ export const useTotalListaProducto = () => {
 
    const { total = 0, descuento = 0, items = 0 } = useMemo(() => {
 
-      return listaProducto.reduce((acc, { precioModificado, cantidad, descuento }) => {
+      const total = listaProducto.reduce((acc, { precioModificado, cantidad }) => acc + precioModificado * cantidad, 0)
+      const descuento = listaProducto.reduce((acc, { descuento, precioModificado }) => acc + calcularPorcentaje({ porcentaje: descuento, numero: precioModificado }), 0)
+      const items = listaProducto.reduce((acc, { cantidad }) => acc + cantidad, 0)
 
-         const suma = precioModificado * cantidad
-
-         const porcentaje = calcularPorcentaje({ numero: precioModificado, porcentaje: descuento })
-
-         const total = acc.total ? acc.total + suma : suma
-
-         const descuentoTotal = acc.descuento ? acc.descuento + porcentaje : porcentaje
-
-         const itemsTotal = acc.items ? acc.items + cantidad : cantidad
-
-         return { total: total, descuento: Math.abs(descuentoTotal), items: itemsTotal }
-
-      }, {})
+      return {
+         total,
+         descuento,
+         items
+      }
 
    }, [dependeciaString])
-
-
+   
    const porcentaje = (input) => useCalculadoraPorcenje(input) + input
 
-   const totalRes = porcentaje(total)
+   const totalTarifa = porcentaje(total)
+   const descuentoTarifa = porcentaje(descuento)
 
-   const descuentoRes = porcentaje(descuento)
-
-
-   return { total: totalRes, descuento: descuentoRes, adeudoTotal: totalRes - descuentoRes, items }
+   return { total: totalTarifa, descuento: descuentoTarifa, adeudoTotal: totalTarifa - descuentoTarifa, items }
 
 }
 
@@ -48,7 +39,9 @@ export const TotalListaProductoMemoizado = ({ obj }) => {
 
    const propActual = listaProducto[obj] || 0
 
-   return obj == "items" ? parseFloat(propActual.toFixed(2)) : separarNumerosConDecimales(propActual)
+   const verificarNumero = isNaN(propActual) ? 0 : propActual
+
+   return obj == "items" ? parseFloat(verificarNumero).toFixed(2) : separarNumerosConDecimales(propActual)
 }
 
 

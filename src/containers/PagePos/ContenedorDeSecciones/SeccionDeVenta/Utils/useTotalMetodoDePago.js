@@ -6,27 +6,29 @@ import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo";
 
 export const useTotalMetodoDePago = () => {
 
-    const { total, descuento } = useTotalListaProducto()
+    const { adeudoTotal } = useTotalListaProducto()
 
     const { pagoActual } = useContext(restoDelPagoContext)
 
     const dependeciaString = JSON.stringify(pagoActual)
 
-    return useMemo(() => {
+    const res = useMemo(() => {
 
-        const sumaDeRestos = pagoActual.reduce((acc, current) => acc - current.resto, (total - descuento))
+        const sumaDeRestos = pagoActual.reduce((acc, current) => acc - current.resto, adeudoTotal)
 
-        const verificarCambio = !verificarSiEsNegativo(total)  && verificarSiEsNegativo(sumaDeRestos) ? Math.abs(sumaDeRestos) : 0
+        const verificarCambio = !verificarSiEsNegativo(adeudoTotal) && verificarSiEsNegativo(sumaDeRestos) ? Math.abs(sumaDeRestos) : 0
 
-        const verificarResto = verificarSiEsNegativo(total) || !verificarSiEsNegativo(sumaDeRestos) ? sumaDeRestos : 0
+        const verificarResto = verificarSiEsNegativo(adeudoTotal) || !verificarSiEsNegativo(sumaDeRestos) ? sumaDeRestos : 0 
 
         return {
             restante: verificarResto,
             cambio: verificarCambio
         }
 
-    }, [total, dependeciaString])
+    }, [adeudoTotal, dependeciaString])
 
+
+    return res
 }
 
 

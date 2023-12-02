@@ -23,7 +23,7 @@ const MetodosDePagosCard = ({ tipo, nombre, modificarResto, id, resto, eliminarR
 
     const obj = { id, nombre, tipo }
 
-    const activo = !isNaN(resto) ? "cardActiva" : "f"
+    const activo = !isNaN(resto) ? "cardActiva" : ""
 
     return (
         <Card

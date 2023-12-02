@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap"
 
 export const RestoForm = memo(forwardRef(({ modificarResto, resto = 0, obj }, ref) => {
 
-    const { form, changeForm,setForm} = useForm({ resto })
+    const { form, changeForm} = useForm({ resto })
 
     const inputRef = useRef(null)
 
@@ -13,7 +13,6 @@ export const RestoForm = memo(forwardRef(({ modificarResto, resto = 0, obj }, re
         focusInput: () => inputRef.current.focus(),
         blurInput: () => inputRef.current.blur()
     }))
-
 
     useEffect(() => {
     

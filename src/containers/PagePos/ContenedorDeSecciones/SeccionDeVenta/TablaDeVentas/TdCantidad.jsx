@@ -33,9 +33,7 @@ const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
 
     useEffect(() => {
 
-        if (cantidad == form.cantidad) return
-
-        const verificacion = form.cantidad.length == 0 || isNaN(form.cantidad) ? "" : parseFloat(form.cantidad)
+        const verificacion = form.cantidad.length == 0 || isNaN(form.cantidad) ? 0 : parseFloat(form.cantidad)
 
         modificarCantidad({ nombre, cantidad: verificacion })
 
@@ -58,7 +56,7 @@ const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
                     name="cantidad"
                     aria-describedby="cantidadTable"
                     type="number"
-                    value={cantidad}
+                    value={cantidad == 0 ? "" : cantidad}
                     className="mx-1 px-1 text-center"
                 />
                 <BotonCantidad

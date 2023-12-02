@@ -41,7 +41,6 @@ const BotonValidar = () => {
 
     const { restablecerPagos,pagoActual } = useContext(restoDelPagoContext)
 
-
     const validacion = restante == 0 && listaProducto.length > 0 && pagoActual.length > 0
 
     const onBuscarCodigo = useCallback((codigo) => {

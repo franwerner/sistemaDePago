@@ -1,5 +1,4 @@
 import { useCallback, useReducer } from 'react';
-import { calcularPorcentaje } from '../common/helper/calcularPorcentaje';
 
 const agregarNuevasPropiedades = (action) => {
 
@@ -7,7 +6,6 @@ const agregarNuevasPropiedades = (action) => {
         "editado": false,
         "cantidad": 1,
         "descuento": 0,
-        "precioFinal": 0,
         "precioModificado": action.producto.precio
     }
 
