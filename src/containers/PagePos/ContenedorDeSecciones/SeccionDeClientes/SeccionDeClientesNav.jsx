@@ -27,7 +27,7 @@ export const SeccionDeClientesNav = () => {
                 className="pt-2"
                 xs="12"
                 md="6">
-                <BuscadorInput />
+                <BuscadorInput texto="por dni"/>
             </Col>
         </>
     );

@@ -1,6 +1,7 @@
 import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales";
 import { SvgClienteHombre } from "@/components//Svg/SvgClienteHombre";
 import { SvgClienteMujer } from "@/components//Svg/SvgClienteMujer";
+import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
 import { Card, Col } from "react-bootstrap";
 
 const clientesTest = [
@@ -19,31 +20,31 @@ const clientesTest = [
 
 const ClienteCard = ({ nombre, apellido, dni, ingreso, compras, devoluciones, sexo }) => {
 
+    const { onMouseEnter, onMouseLeave, refFocusElement } = useFocusMouseElements()
+    const colorSexo = sexo == "M" ? "#6ab7ff" : "#ffb6d9"
     return (
         <Card
-            className="shadow m-3 mb-4 card-move-up cursor-pointer border-0"
-            style={{ height: "14rem", width: "14rem" }}>
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            ref={refFocusElement}
+            tabIndex={0}
+            className="shadow m-3 mb-4 card-move-up cursor-pointer overflow-hidden border-0"
+            style={{ height: "15rem", width: "12.5rem", maxHeight: "15rem" }}>
             <Card.Title className="text-end  m-0 position-absolute w-100">
                 <i className="fa-solid text-ligthdark position-aboslute p-2 fs-3 fa-ellipsis-vertical"></i>
             </Card.Title>
-            <Card.Body className="d-flex flex-column justify-content-center">
-                <div className=" d-flex justify-content-center">
-                    {
-                        sexo == "M" ?
-                            <div style={{ background: "#6ab7ff" }} className="rounded-circle p-2 ">
-                                <SvgClienteHombre />
-                            </div> :
-                            <div style={{ background: "#ffb6d9" }} className="rounded-circle p-2">
-                                <SvgClienteMujer />
-                            </div>
+            <Card.Body className="d-flex flex-column  justify-content-center align-items-center">
 
-                    }
+                <div
+                    style={{ background: colorSexo, maxWidth: "fit-content" }}
+                    className="rounded-circle  p-2 ">
+                    {sexo == "M" ? <SvgClienteHombre /> : <SvgClienteMujer />}
                 </div>
-                
-                <p className="m-0 text-center">{dni.toLocaleString()}</p>
+
+                <p className="m-0 text-center text-ligthdark fw-medium ls-4 ">{dni.toLocaleString()}</p>
             </Card.Body>
             <Card.Footer className="text-center bg-white border-0">
-                <p className="m-0 ls-4 text-truncate">
+                <p className="m-0 ls-4 text-wrap">
                     {nombre + " " + apellido}
                 </p>
             </Card.Footer>
@@ -53,7 +54,7 @@ const ClienteCard = ({ nombre, apellido, dni, ingreso, compras, devoluciones, se
 
 export const SeccionDeClientasBody = () => {
     return (
-        <Col className="d-flex align-content-start flex-wrap scrollBarPersonalizada">
+        <Col className="d-flex align-content-start flex-wrap h-100">
 
             {
                 clientesTest.map(item =>
