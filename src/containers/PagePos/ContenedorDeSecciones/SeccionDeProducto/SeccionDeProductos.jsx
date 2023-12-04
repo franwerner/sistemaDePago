@@ -1,23 +1,21 @@
-
 import { Row } from "react-bootstrap";
-import styles from "@/styles/seccionDeProductos.module.css"
 import React from "react";
 import SeccionDeProductoBody from "./SeccionDeProductoBody";
 import SeccionDeProductosNav from "./SeccionDeProductosNav";
+import { SeccionNavDefault } from "@/components//SeccionNavDefault";
+import { SeccionBodyDefault } from "@/components//SeccionBodyDefault";
 
 const SeccionDeProductos = () => {
 
     return (
         <>
-            <Row className="w-100 p-0 pb-1 p-md-3 shadow border-bottom m-0 p-0">
+            <SeccionNavDefault >
                 <SeccionDeProductosNav />
-            </Row>
+            </SeccionNavDefault >
 
-            <Row
-                className={`${styles.contedorDeProductos} flex-grow-1  scrollBarPersonalizada  h-100 p-0 m-auto`}>
+            <SeccionBodyDefault>
                 <SeccionDeProductoBody />
-
-            </Row>
+            </SeccionBodyDefault>
         </>
     );
 };

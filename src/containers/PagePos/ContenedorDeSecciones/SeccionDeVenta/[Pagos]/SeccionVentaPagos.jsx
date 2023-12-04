@@ -1,23 +1,21 @@
-import { Col, Row } from "react-bootstrap";
-import styles from "@/styles/seccionDeVenta.module.css"
 import SeccionVentaPagosBody from "./SeccionVentaPagosBody";
 import { SeccionVentaPagosNav } from "./SeccionVentaPagosNav";
+import { SeccionBodyDefault } from "@/components//SeccionBodyDefault";
+import { SeccionNavDefault } from "@/components//SeccionNavDefault";
 
 
 const SeccionVentaPagos = () => {
-    
+
     return (
         <>
-            <Row className="m-0  p-2 p-md-3  shadow">
+            <SeccionNavDefault>
                 <SeccionVentaPagosNav />
-            </Row>
+            </SeccionNavDefault>
 
-            <Row className={`${styles.seccionVentaPagos} m-0 scrollBarPersonalizada h-100`}>
-                <Col className="p-3 d-flex justify-content-center">
-                    <SeccionVentaPagosBody />
-                </Col>
-            </Row>
 
+            <SeccionBodyDefault>
+                <SeccionVentaPagosBody />
+            </SeccionBodyDefault>
         </>
     );
 };

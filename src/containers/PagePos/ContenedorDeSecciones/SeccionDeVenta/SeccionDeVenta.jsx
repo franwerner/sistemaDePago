@@ -1,25 +1,28 @@
-import { Row } from "react-bootstrap";
 import SeccionDeVentaNav from "./SeccionDeVentaNav";
 import SeccionDeVentaBody from "./SeccionDeVentaBody";
 import { hocTouchYReponsive } from "@/components//HOC/HocTouchYReponsive";
 import React from "react";
 import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider";
+import { SeccionNavDefault } from "@/components//SeccionNavDefault";
+import { SeccionBodyDefault } from "@/components//SeccionBodyDefault";
 
 const SeccionDeVenta = ({ containerRef, alternarMostrar, mostrar }) => {
 
     return (
         <QueryParamsProvider>
-            <Row
-                className="shadow p-2 p-md-3 w-100 d-flex justify-content-between m-0">
-                <SeccionDeVentaNav alternarMostrar={alternarMostrar} />
-            </Row>
 
-            <Row
-                ref={containerRef}
-                className="m-0 overflow-hidden  justify-content-center   p-3 h-100 w-100 shadow ">
+            <SeccionNavDefault>
+                <SeccionDeVentaNav alternarMostrar={alternarMostrar} />
+            </SeccionNavDefault>
+
+            <SeccionBodyDefault
+                clasesAdd="justify-content-center  p-3"
+                referido={containerRef}>
                 <SeccionDeVentaBody mostrar={mostrar} />
-            </Row>
-        </QueryParamsProvider>
+            </SeccionBodyDefault>
+
+
+        </QueryParamsProvider >
     );
 
 

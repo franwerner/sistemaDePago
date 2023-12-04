@@ -20,8 +20,8 @@
 }
 
 .tdCantidad input {
-    min-width: 25px;
-    max-width: 45px;
+    min-width: 50px;
+    max-width: 50px;
 
 }
 
@@ -81,5 +81,5 @@
     }
 }
 
-/*SECCION DE VENTA PAGOS*/
+
 

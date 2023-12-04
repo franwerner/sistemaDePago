@@ -1,19 +1,18 @@
-import { Row } from "react-bootstrap";
 import { SeccionDeInventarioBody } from "./SeccionDeInventarioBody";
-import styles from "@/styles/SeccionDeInventario.module.css"
 import { SeccionDeInventarioNav } from "./SeccionDeInventarioNav";
+import { SeccionNavDefault } from "@/components//SeccionNavDefault";
+import { SeccionBodyDefault } from "@/components//SeccionBodyDefault";
 
 const SeccionDeInventario = () => {
     return (
         <>
-            <Row 
-            id={styles.inventarioNav}
-                className="m-0 shadow d-flex p-2 p-md-3  align-items-center  justify-content-between">
+            <SeccionNavDefault>
                 <SeccionDeInventarioNav />
-            </Row>
-            <Row  className="m-0 h-100 scrollBarPersonalizada">
+            </SeccionNavDefault>
+
+            <SeccionBodyDefault>
                 <SeccionDeInventarioBody />
-            </Row>
+            </SeccionBodyDefault>
         </>
     );
 };

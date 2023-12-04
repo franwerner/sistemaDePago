@@ -161,7 +161,7 @@ const SeccionDeProductoBody = memo(() => {
 
     return (
         <Col
-            className="flex-wrap position-relative h-100 align-content-start d-flex justify-content-center justify-content-md-start">
+            className="flex-wrap position-relative align-content-start p-0 d-flex justify-content-center justify-content-md-start">
             {secciones["home"].map((producto, index) =>
                 <ProductoMemoizado
                     key={index}

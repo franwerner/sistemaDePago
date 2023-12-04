@@ -21,6 +21,12 @@ const validarProductoExistente = (state, action) => {
 
 }
 
+const verificarCantidad = (cantidad, descuento) => {
+
+    return [0, -1].includes(Math.sign(cantidad)) ? 0 : Math.abs(descuento)
+}
+
+const verificarNumero = (numero) => isNaN(numero) ? 0 : parseFloat(numero)
 
 const reducer = (state, action) => {
 
@@ -39,31 +45,28 @@ const reducer = (state, action) => {
 
                 return {
                     ...estado,
-                    "cantidad": estado.cantidad + 1,
+                    "cantidad": verificarNumero(estado.cantidad) + 1,
                 };
 
             case "CANTIDAD":
 
-                const verificarCantidad = producto.cantidad <= 0 ? 0 : estado.descuento
-
                 return {
                     ...estado,
-                    "cantidad": producto.cantidad,
-                    "descuento": verificarCantidad,
+                    "cantidad": verificarNumero(parseFloat(producto.cantidad * 100) / 100),
+                    "descuento": verificarNumero(verificarCantidad(producto.cantidad, estado.descuento)),
                 }
 
             case "PRECIO":
                 return {
                     ...estado,
-                    "precioModificado": producto.precioModificado,
+                    "precioModificado": verificarNumero(Math.abs(producto.precioModificado)),
                     "editado": true
                 };
 
             case "DESCUENTO":
-                const verificarDescuento = estado.cantidad <= 0 ? 0 : producto.descuento
                 return {
                     ...estado,
-                    "descuento": verificarDescuento,
+                    "descuento": verificarNumero(verificarCantidad(estado.cantidad, producto.descuento))
                 }
 
             case "BORRAR":

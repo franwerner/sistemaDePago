@@ -12,9 +12,3 @@
         transition: 0s all;
     }
 
-@media (max-width : 1200px) {
-    .contedorDeProductos {
-        flex-grow: 1;
-        height: 100%;
-    }
-}

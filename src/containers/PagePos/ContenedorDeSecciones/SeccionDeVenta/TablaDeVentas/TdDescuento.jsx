@@ -5,7 +5,7 @@ import styles from "@/styles/SeccionDeVenta.module.css"
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
 import { memo } from "react"
 
-const TdDescuento = memo(({ aplicarDescuento, descuento, nombre }) => {
+const TdDescuento = memo(({ aplicarDescuento, descuento = 0, nombre }) => {
 
     const { changeForm, form } = useForm({ descuento })
 
@@ -13,15 +13,13 @@ const TdDescuento = memo(({ aplicarDescuento, descuento, nombre }) => {
 
     const porcentajeForm = parseFloat(form.descuento)
 
-    const determinarSiPorcentajeEsNegativo = (numero) => Math.sign(porcentajeForm) == -1 ? -(Math.abs(numero)) : numero
-
-    const evaluarPorcentaje = (porcentajeForm >= 100 || porcentajeForm <= -100 ? determinarSiPorcentajeEsNegativo(100) : porcentajeForm)
-
     useEffect(() => {
 
-        aplicarDescuento({ nombre, descuento: isNaN(evaluarPorcentaje) ? 0 : evaluarPorcentaje })
+        const verificarSiEsMayorA100 = porcentajeForm >= 100 ? 100 : porcentajeForm
 
-    }, [evaluarPorcentaje])
+        aplicarDescuento({ nombre, descuento: verificarSiEsMayorA100 })
+
+    }, [porcentajeForm])
 
     return (
         <td className={`${styles.tdDescuento}`}>
@@ -32,7 +30,7 @@ const TdDescuento = memo(({ aplicarDescuento, descuento, nombre }) => {
                     onMouseLeave={onMouseLeave}
                     onChange={changeForm}
                     name="descuento"
-                    value={Math.abs(descuento)}
+                    value={descuento}
                     aria-describedby="descuentoTabla"
                     type="number"
                     className="text-center p-1"

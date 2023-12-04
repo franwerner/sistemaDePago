@@ -17,7 +17,7 @@ const SeccionDeProductosNav = memo(() => {
                 md="5"
                 lg="4"
                 xxl="3"
-                className="d-flex borderpx-1 p-md-0 align-items-center ">
+                className="d-flex p-md-0 align-items-center ">
                 <DropDownDeTarifas />
             </Col>
 

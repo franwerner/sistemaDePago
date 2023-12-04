@@ -1,19 +1,23 @@
 import { memo } from "react";
 import { Button, Dropdown, FloatingLabel, Form } from "react-bootstrap";
-import { useForm } from "../../../../../hooks/useForm";
+import { useForm } from "@/hooks/useForm";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
-import { useFocusMouseElements } from "../../../../../hooks/useFocusMouseElements";
+import { useFocusMouseElements } from "@/hooks/useFocusMouseElements";
 
 
 
-const FormDropwDown = ({ changeForm, precio }) => {
-
-
+const FormDropwDown = ({ modificarPrecio, nombre }) => {
   const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
 
+  const { changeForm, form } = useForm({ precio: 0 })
+
+  const onClick = () => {
+
+    modificarPrecio({ nombre, precioModificado: form.precio })
+  }
 
   return (
-    <>
+    <Form>
       <FloatingLabel
         controlId="porcentajeControl"
         label="Nuevo Precio">
@@ -28,26 +32,25 @@ const FormDropwDown = ({ changeForm, precio }) => {
           aria-describedby="precioTable"
           type="number"
           name="precio"
-          value={Math.abs(precio) == 0 ? "" : Math.abs(precio)}
+          value={form.precio == 0 ? "" : Math.abs(form.precio)}
           className="px-1 text-center"
 
         />
+        <Button
+          type="button"
+          onClick={onClick}
+          className="text-white mt-2  fw-semibold w-100"
+          variant="primary">
+          Cambiar
+        </Button>
       </FloatingLabel>
-    </>
+    </Form>
   )
 }
 
 
 const DropwDownPrecio = memo(({ children, modificarPrecio, nombre }) => {
 
-  const { changeForm, form } = useForm({ precio: 0 })
-
-  const onClick = () => {
-
-    const verificacion = form.precio.length == 0 || isNaN(form.precio) ? 0 : Math.abs(form.precio)
-
-    modificarPrecio({ nombre, precioModificado: verificacion })
-  }
 
   return (
     <Dropdown
@@ -57,28 +60,17 @@ const DropwDownPrecio = memo(({ children, modificarPrecio, nombre }) => {
       className="d-flex justify-content-center"
       id="dropdown-menu-align-end"
     >
-      <Dropdown.Toggle variant="none" className="d-flex  align-items-center" >
+      <Dropdown.Toggle
+        variant="none"
+        className="d-flex  align-items-center" >
         <p className="m-0 text-truncate">{children}</p>
       </Dropdown.Toggle>
 
       <DropdownMenu>
         <Dropdown.ItemText>
           <FormDropwDown
-            changeForm={changeForm}
-            precio={form.precio}
-          />
-        </Dropdown.ItemText>
-
-        <Dropdown.Divider />
-
-        <Dropdown.ItemText>
-          <Button
-            className="text-white fw-semibold w-100"
-            variant="primary"
-            type="button"
-            onClick={onClick}>
-            Cambiar
-          </Button>
+            modificarPrecio={modificarPrecio}
+            nombre={nombre} />
         </Dropdown.ItemText>
       </DropdownMenu>
     </Dropdown>

@@ -21,12 +21,6 @@ const modificiarResto = (state, pago) => {
 
 }
 
-const filtrar = (state, pago) => {
-
-    console.log()
-
-}
-
 const reducer = (state, action) => {
 
     const { pago, type, tipoDeTarifa } = action

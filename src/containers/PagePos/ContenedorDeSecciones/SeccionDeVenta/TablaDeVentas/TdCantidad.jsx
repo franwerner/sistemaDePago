@@ -4,6 +4,10 @@ import { Button, Form } from "react-bootstrap"
 import styles from "@/styles/SeccionDeVenta.module.css"
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
 
+import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo"
+import { obtenerDecimales } from "@/common//helper/obtenerDecimales"
+import { concatenarDecimales } from "@/common//helper/concatenarDecimales"
+
 const BotonCantidad = memo(({ tipo, onClick }) => {
 
     const iconType = tipo == "resta" ? "minus" : "plus"
@@ -20,24 +24,25 @@ const BotonCantidad = memo(({ tipo, onClick }) => {
     )
 })
 
-const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
+
+const TdCantidad = memo(({ cantidad = 0, nombre, modificarCantidad }) => {
 
     const { changeForm, form, setForm } = useForm({ cantidad })
 
     const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
 
     const modificacionForm = useCallback((numero) => setForm(({ cantidad }) => {
-        const verificar = isNaN(cantidad) ? 0 : cantidad
-        return { cantidad: parseFloat(verificar) + numero }
+
+        return { cantidad: concatenarDecimales(cantidad, numero) }
+
     }), [])
 
     useEffect(() => {
 
-        const verificacion = form.cantidad.length == 0 || isNaN(form.cantidad) ? 0 : parseFloat(form.cantidad)
-
-        modificarCantidad({ nombre, cantidad: verificacion })
+        modificarCantidad({ nombre, cantidad: form.cantidad })
 
     }, [form.cantidad])
+
 
     return (
         <td className={`${styles.tdCantidad} `}>
@@ -47,8 +52,8 @@ const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
                 <BotonCantidad
                     tipo={"resta"}
                     onClick={modificacionForm} />
-
                 <Form.Control
+                    step="0.1"
                     onMouseEnter={onMouseEnter}
                     onMouseLeave={onMouseLeave}
                     ref={refFocusElement}
@@ -57,7 +62,7 @@ const TdCantidad = memo(({ cantidad, nombre, modificarCantidad }) => {
                     aria-describedby="cantidadTable"
                     type="number"
                     value={cantidad == 0 ? "" : cantidad}
-                    className="mx-1 px-1 text-center"
+                    className="mx-1 px-0 text-center"
                 />
                 <BotonCantidad
                     tipo={"sumar"}

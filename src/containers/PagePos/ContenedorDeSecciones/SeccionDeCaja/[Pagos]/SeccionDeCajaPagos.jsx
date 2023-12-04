@@ -2,16 +2,20 @@ import { Row } from "react-bootstrap"
 import { SeccionDeCajaPagosNav } from "./SeccionDeCajaPagosNav"
 import { SeccionDeCajaPagosBody } from "./SeccionDeCajaPagosBody"
 import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider"
+import { SeccionNavDefault } from "@/components//SeccionNavDefault"
+import { SeccionBodyDefault } from "@/components//SeccionBodyDefault"
 
 const SeccionDeCajasPagos = () => {
     return (
         <QueryParamsProvider>
-            <Row className="shadow d-flex justify-content-between p-md-3 p-2">
+            <SeccionNavDefault>
                 <SeccionDeCajaPagosNav />
-            </Row>
-            <Row className="shadow border  m-md-5 m-0 my-4 h-100 scrollBarPersonalizada">
+            </SeccionNavDefault>
+
+            <SeccionBodyDefault clasesAdd="p-md-5 ">
                 <SeccionDeCajaPagosBody />
-            </Row>
+            </SeccionBodyDefault>
+
         </QueryParamsProvider>
     )
 }
