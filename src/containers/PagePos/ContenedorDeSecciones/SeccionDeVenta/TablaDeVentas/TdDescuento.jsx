@@ -25,6 +25,7 @@ const TdDescuento = memo(({ aplicarDescuento, descuento = 0, nombre }) => {
         <td className={`${styles.tdDescuento}`}>
             <div className="d-flex justify-content-center ">
                 <Form.Control
+                step = "0.1"
                     ref={refFocusElement}
                     onMouseEnter={onMouseEnter}
                     onMouseLeave={onMouseLeave}

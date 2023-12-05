@@ -8,7 +8,7 @@ const historialDeRutas = [
                         {
                             nombre: "inventario", children: [
                                 { nombre: "gestion" },
-                                { nombre: "añadir" }
+                                { nombre: "agregar" }
                             ]
                         },
                         {

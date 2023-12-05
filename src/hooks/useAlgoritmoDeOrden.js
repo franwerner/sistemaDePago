@@ -1,11 +1,8 @@
 import { useCallback, useMemo } from "react";
 
-export const useAlgoritmoDeOrden = (parametros = "") => {
+const ordenarPrioridad = (parametros) => {
 
     const dependenciaPrioridad = Object.keys(parametros)
-
-    const dependenciaArray = Object.values(parametros)
-
 
     const organizarPrioridad = useMemo(() => {
 
@@ -22,23 +19,34 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
 
     }, [dependenciaPrioridad.toString()])
 
+    return organizarPrioridad
+}
 
-    const ordernAscendente = (a = "", b = "") => {
-        if (isNaN(a) || isNaN(b)) {
-            return b.localeCompare(a)
-        }
 
-        return b - a
+const ordernAscendente = (a = "", b = "") => {
+    if (isNaN(a) || isNaN(b)) {
+        return b.localeCompare(a)
     }
 
-    const ordenDescendente = (a = "", b = "") => {
+    return b - a
+}
 
-        if (isNaN(a) || isNaN(b)) {
-            return a.localeCompare(b)
-        }
+const ordenDescendente = (a = "", b = "") => {
 
-        return a - b
+    if (isNaN(a) || isNaN(b)) {
+        return a.localeCompare(b)
     }
+
+    return a - b
+}
+
+export const useAlgoritmoDeOrden = (parametros = "") => {
+
+    const dependenciaArray = Object.values(parametros)
+
+    const organizarPrioridad = ordenarPrioridad(parametros)
+
+
     const iniciarSort = useCallback((array = []) => {
 
         return [...array].sort((a, b) => {

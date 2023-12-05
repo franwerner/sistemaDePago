@@ -4,7 +4,7 @@ import { Button, Col, Form, Modal, Row, Spinner, Stack } from "react-bootstrap";
 
 const NombreApellido = memo(({ changeForm, nombre, apellido }) => (
     <Row className="m-0">
-        <Form.Group className="d-flex p-0" as={Col}>
+        <Form.Group className="px-1 p-0" as={Col}>
             <Form.Control
                 type="text"
                 onChange={changeForm}
@@ -15,6 +15,8 @@ const NombreApellido = memo(({ changeForm, nombre, apellido }) => (
                 placeholder="Nombre"
                 aria-label="Nombre"
             />
+        </Form.Group>
+        <Form.Group className="p-0 px-1" as={Col}>
             <Form.Control
                 type="text"
                 name="apellido"
@@ -108,7 +110,7 @@ const Sexo = memo(({ changeForm }) => (
         <Form.Group as={Col} className="d-flex p-0 align-items-center flex-column">
             <Form.Check
                 onChange={changeForm}
-                value="femeino"
+                value="femenino"
                 name="sexo"
                 required
                 type="radio" />
@@ -163,7 +165,7 @@ const ModalBody = () => {
 
 
     return (
-        <Modal.Body>
+        <Modal.Body >
             <Form
                 noValidate
 
@@ -203,7 +205,7 @@ const FormularioModalDeAñadir = ({ mostrar, alternarMostrar }) => {
 
     return (
         <Modal
-            className="shadow"
+            className="shadow "
             centered
             show={mostrar}
             onHide={alternarMostrar}>

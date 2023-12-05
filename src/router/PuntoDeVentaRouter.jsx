@@ -1,7 +1,6 @@
 import { lazy } from 'react';
 import { defer, redirect } from 'react-router-dom';
 import { SuspenseMainPageLoading } from '@/components/Suspense/SuspenseMainPageLoading';
-
 const PuntoDeVenta = lazy(() => import("/src/screens/PuntoDeVenta"))
 const SeccionDeProductos = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeProducto/SeccionDeProductos"))
 const SeccionDeVenta = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeVenta/SeccionDeVenta"))
@@ -13,7 +12,7 @@ const SeccionDeInventario = lazy(() => import("../containers/PagePos/ContenedorD
 const ErrorPage = lazy(() => import("@/components/ErrorPage/ErrorPage"))
 const SeccionDeInventarioGestion = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/[gestion]/SeccionDeInventarioGestion"))
 const SeccionDeClientes = lazy(() => import('../containers/PagePos/ContenedorDeSecciones/SeccionDeClientes/SeccionDeClientes'))
-
+const SeccionDeInventarioAgregar = lazy(() => import("../containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/[agregar]/SeccionDeInventarioAgregar"))
 export const PuntoDeVentaRouter = {
     path: "/pos",
     element: <SuspenseMainPageLoading><PuntoDeVenta /></SuspenseMainPageLoading>,
@@ -62,6 +61,11 @@ export const PuntoDeVentaRouter = {
                 )
                 return defer({ promise });
             }
+        },
+        {
+            path: "inventario/agregar",
+            element: <SeccionDeInventarioAgregar />
+
         },
         {
             path: "venta",
