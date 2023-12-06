@@ -2,10 +2,10 @@ import styles from "@/styles/SeccionDeVenta.module.css"
 import TdCantidad from "./TdCantidad"
 import TdPrecio from "./TdPrecio"
 import TdDescuento from "./TdDescuento"
-import { TdTrash } from "./TdTrash"
 import { TdTotal } from "./TdTotal"
 import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo"
 import { memo } from "react"
+import { IconTrash } from "@/components//Icons/iconTrash"
 
 const TdNombre = memo(({ nombre }) => {
 
@@ -27,6 +27,19 @@ const TdLote = memo(({ lote = "" }) => {
             #{lote}
         </td>
     )
+})
+
+const TdTrash = memo(({ borrarProducto, nombre }) => {
+    const onClick = () => {
+        borrarProducto({ nombre })
+    }
+
+    return (
+
+        <td className="p-0 text-center"  >
+            <IconTrash classAdd={"fs-5"} borrarItem={onClick} />
+        </td>
+    );
 })
 
 const ListadoDeVentas = memo((

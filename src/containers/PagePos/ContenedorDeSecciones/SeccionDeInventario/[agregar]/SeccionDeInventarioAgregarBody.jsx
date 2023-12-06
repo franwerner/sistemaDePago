@@ -1,16 +1,18 @@
 import { SvgContenedorVacio } from "@/components//Svg/SvgContenedorVacio";
 import { Col } from "react-bootstrap";
-import { TablaDeProductos } from "./TablaDeProductos";
-
+import { TablaDeProductos } from "./TablaDeProductos/TablaDeProductos";
+import { useContext } from "react";
+import { InventarioAddContext } from "@/context//Contextos";
 
 export const SeccionDeInventarioAgregarBody = () => {
-    const listContenedor = []
+    const {listaDeProductos} = useContext(InventarioAddContext)
+
     return (
 
-        <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
+        <Col className="m-0 p-0 shadow h-100 scrollBarPersonalizada">
             {
-                listContenedor.length == 1 ?
-                    <div className="text-center">
+                listaDeProductos.length == 0 ?
+                    <div className="text-center h-100 d-flex justify-content-center flex-column align-items-center">
                         <SvgContenedorVacio />
                         <p className="m-0 fw-semibold fs-5 text-ligthdark">No hay producto seleccionados.</p>
                     </div>

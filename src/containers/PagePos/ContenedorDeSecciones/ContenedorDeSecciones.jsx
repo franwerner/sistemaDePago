@@ -1,6 +1,7 @@
 
 import { splitDeRutasUtils } from "@/common//utils/splitDeRutasUtils";
 import { SuspenseSecondaryPageLoading } from "@/components//Suspense/SuspenseSecondaryPageLoading";
+import { InventarioAddProvider } from "@/context//provider/InventarioAddProvider";
 import { ProductoReducerProvider } from "@/context//provider/ProductosReducerProvider";
 import { RestoDelPagoProvider } from "@/context//provider/RestoDelPagoProvider";
 import { TarifaProvider } from "@/context//provider/TarifaProvider";
@@ -22,12 +23,16 @@ const ContenedorDeSecciones = memo(() => {
                 <ProductoReducerProvider>
 
                     <RestoDelPagoProvider>
+                        <InventarioAddProvider>
 
-                        <SuspenseSecondaryPageLoading>
-                            {
-                                rutas.length == 1 ? <p>asads</p> : <Outlet />
-                            }
-                        </SuspenseSecondaryPageLoading>
+
+                            <SuspenseSecondaryPageLoading>
+                                {
+                                    rutas.length == 1 ? <p>asads</p> : <Outlet />
+                                }
+                            </SuspenseSecondaryPageLoading>
+
+                        </InventarioAddProvider>
 
                     </RestoDelPagoProvider>
 

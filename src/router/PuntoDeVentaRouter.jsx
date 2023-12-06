@@ -13,6 +13,7 @@ const ErrorPage = lazy(() => import("@/components/ErrorPage/ErrorPage"))
 const SeccionDeInventarioGestion = lazy(() => import("@/containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/[gestion]/SeccionDeInventarioGestion"))
 const SeccionDeClientes = lazy(() => import('../containers/PagePos/ContenedorDeSecciones/SeccionDeClientes/SeccionDeClientes'))
 const SeccionDeInventarioAgregar = lazy(() => import("../containers/PagePos/ContenedorDeSecciones/SeccionDeInventario/[agregar]/SeccionDeInventarioAgregar"))
+
 export const PuntoDeVentaRouter = {
     path: "/pos",
     element: <SuspenseMainPageLoading><PuntoDeVenta /></SuspenseMainPageLoading>,

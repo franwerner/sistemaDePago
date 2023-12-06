@@ -35,10 +35,6 @@
     min-width: 110px;
 }
 
-.tdIconTrash {
-    color: #555;
-}
-
 @media (max-width : 1366px) {
     .tablaDeVentas * {
         font-size: 12px;

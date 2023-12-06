@@ -1,6 +1,6 @@
 import styles from "@/styles/SeccionDeVenta.module.css"
 import { Button, Container, Row, Stack } from "react-bootstrap"
-import React, { useCallback, useContext } from "react"
+import { memo, useCallback, useContext } from "react"
 import { DetellaDeTicket } from "./DetallateDeTicket"
 import { TicketHeader } from "./TicketHeader"
 import { TicketBody } from "./TicketBody"
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import { productoReducerContext } from "@/context//Contextos"
 import buscarCodigoMensajePersonalizado from "@/common//helper/buscarCodigoMensajePersonalizado"
 import { TotalListaProductoMemoizado } from "../Utils/useTotalListaProducto"
+import { IconTrash } from "@/components//Icons/iconTrash"
 
 const BotonTrashItems = () => {
 
@@ -17,11 +18,9 @@ const BotonTrashItems = () => {
         variant="ligthdark"
         className="d-flex text-white  fw-semibold justify-content-between rounded-3   p-2  align-items-center ">
         <p className="m-0 mx-2 text-truncate">
-            <TotalListaProductoMemoizado obj={"items"}/> ítems en el carrito
+            <TotalListaProductoMemoizado obj={"items"} /> ítems en el carrito
         </p>
-        <i
-            onMouseUp={borrarListado}
-            className="fa-regular cursor-block zoom mx-2 fs-4 fa-trash-can"></i>
+        <IconTrash borrarItem={borrarListado} classAdd={"fs-4"} />
     </Button>
 }
 
@@ -60,7 +59,7 @@ const BotonPagos = () => {
 }
 
 
-const Ticket = React.memo(() => {
+const Ticket = memo(() => {
 
     return (
 

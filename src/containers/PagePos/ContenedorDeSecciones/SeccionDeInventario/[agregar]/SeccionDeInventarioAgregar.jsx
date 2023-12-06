@@ -11,7 +11,7 @@ const SeccionDeInventarioAgregar = () => {
                 <SeccionDeInventarioAgregarNav />
             </SeccionNavDefault>
 
-            <SeccionBodyDefault clasesAdd="p-5">
+            <SeccionBodyDefault clasesAdd="p-md-5 p-2">
                 <SeccionDeInventarioAgregarBody />
             </SeccionBodyDefault>
         </>

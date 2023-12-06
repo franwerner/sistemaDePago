@@ -1,10 +1,13 @@
 import BuscadorInput from "@/components//BuscadorInput";
 import { useForm } from "@/hooks//useForm";
 import { useValidatedForm } from "@/hooks//useValidatedForm";
-import {  useRef } from "react";
+import { forwardRef, memo, useImperativeHandle, useRef } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import shortid from "shortid";
 
-const ModalBody = ({ changeForm, form, formRef }) => {
+const ModalBody = forwardRef(({ changeForm, form, formRef }, ref) => {
+
+    const formularioRef = useRef(null);
 
     const { onValidated, validado } = useValidatedForm()
 
@@ -14,11 +17,17 @@ const ModalBody = ({ changeForm, form, formRef }) => {
     const fabricacionVerificacion = fabricacion.length !== 0
     const vencimientoVerificacion = vencimiento.length !== 0
 
+    useImperativeHandle(ref, () => ({
+        verificacion: cantidadVerificacion && fabricacionVerificacion && vencimientoVerificacion,
+        sendForm: () => formularioRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }))
+    }))
+
     return (
         <Modal.Body>
-            <p className="ls-4 text-ligthdark text-break text-center border border-3 border-li rounded-3 p-1 overflow-hidden fw-semibold">{form.producto}</p>
-            <Form noValidate
-                ref={formRef}
+            <p className="ls-4 text-ligthdark text-break text-center border border-3 border-li rounded-3 p-1 overflow-hidden fw-semibold">Factura con dulce de Chele</p>
+            <Form
+                noValidate
+                ref={formularioRef}
                 onSubmit={onValidated}
             >
                 <Form.Group>
@@ -63,34 +72,50 @@ const ModalBody = ({ changeForm, form, formRef }) => {
 
         </Modal.Body>
     )
-}
+})
 
 
 
 
-const ModalDeAgregarProducto = ({ mostrar, alternarMostrar }) => {
+const ModalDeAgregarProducto = memo(({ mostrar, alternarMostrar, agregarProducto }) => {
 
-    const { form, changeForm } = useForm({ producto: "Factura Con Dulce De Leche", cantidad: 0, vencimiento: "", fabricacion: "" })
+    const { form, changeForm } = useForm({ cantidad: 0, vencimiento: "", fabricacion: "" })
 
-    const formularioRef = useRef(null);
+    const { cantidad, vencimiento, fabricacion } = form
 
-    const enviarFormulario = (e) => {
-        formularioRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }))
+    const imperativeRef = useRef(null)
+
+    const enviarFormulario = () => {
+
+        imperativeRef.current.sendForm()
+
+        if (imperativeRef.current.verificacion) {
+            agregarProducto(
+                {
+                    id: shortid(),
+                    nombre: "test",
+                    cantidad,
+                    vencimiento: new Date(vencimiento + 'T00:00:00').getTime(),
+                    fabricacion: new Date(fabricacion + 'T00:00:00').getTime()
+                }
+            )
+        }
+
     }
 
     return (
         <Modal
-            show={true}
+            show={mostrar}
             onHide={alternarMostrar}>
 
             <Modal.Header className="d-flex justify-content-between align-items-center" >
                 <Modal.Title className="flex-fill" >
-                    <BuscadorInput texto="producto" /> {/*Cuando el buscado encuentro algun producto lo agregar a producto del form*/}
+                    <BuscadorInput texto="producto" />
                 </Modal.Title>
             </Modal.Header>
 
             <ModalBody
-                formRef={formularioRef}
+                ref={imperativeRef}
                 changeForm={changeForm}
                 form={form}
             />
@@ -112,6 +137,6 @@ const ModalDeAgregarProducto = ({ mostrar, alternarMostrar }) => {
             </Modal.Footer>
         </Modal>
     );
-};
+})
 
 export default ModalDeAgregarProducto

@@ -2,7 +2,8 @@ import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault";
 import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import { Button, Col } from "react-bootstrap";
-import { lazy } from "react";
+import { lazy, useContext } from "react";
+import { InventarioAddContext } from "@/context//Contextos";
 const ModalDeAgregarProducto = lazy(() => import("./ModalDeAgregarProducto"))
 
 const dropwDownList = [
@@ -14,6 +15,8 @@ const dropwDownList = [
 
 const BotonAgregar = () => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
+    const { agregarProducto } = useContext(InventarioAddContext)
+
 
     return (
         <Col xs="auto"
@@ -23,6 +26,7 @@ const BotonAgregar = () => {
             </Button>
 
             <ModalDeAgregarProducto
+                agregarProducto={agregarProducto}
                 alternarMostrar={alternarMostrar}
                 mostrar={mostrar} />
         </Col>
