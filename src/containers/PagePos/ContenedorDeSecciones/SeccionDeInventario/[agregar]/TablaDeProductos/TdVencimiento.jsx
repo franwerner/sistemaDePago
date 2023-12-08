@@ -1,8 +1,14 @@
 import { obtenerFecha } from "@/common//helper/obtenerFecha";
 import { memo, useEffect } from "react";
 import { Form } from "react-bootstrap";
+import { tVencimiento } from "@/styles/SeccionDeInventario.module.css"
 
-export const TdVencimiento = memo(({ vencimiento, modificarVencimiento, id, fechaVec, changeForm }) => {
+export const TdVencimiento = memo(({
+    vencimiento,
+    modificarVencimiento,
+    id,
+    fechaVec,
+    changeForm }) => {
 
     const { dia, mes, año, hora, minutos } = obtenerFecha(vencimiento)
 
@@ -19,7 +25,7 @@ export const TdVencimiento = memo(({ vencimiento, modificarVencimiento, id, fech
                 <Form.Control
                     name="fechaVec"
                     onChange={changeForm}
-                    style={{ maxWidth: "190px" }}
+                    id={tVencimiento}
                     aria-label="vencimiento fecha"
                     defaultValue={`${año}-${mes}-${dia}T${hora}:${minutos}`}
                     type="datetime-local">

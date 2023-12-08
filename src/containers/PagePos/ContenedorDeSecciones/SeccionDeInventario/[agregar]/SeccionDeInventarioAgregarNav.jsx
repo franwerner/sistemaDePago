@@ -1,4 +1,4 @@
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import { Col } from "react-bootstrap";
 import { lazy, useContext } from "react";

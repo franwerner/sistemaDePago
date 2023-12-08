@@ -1,33 +1,16 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { QueryParamsContext } from "../Contextos";
-//Sirve para pasarle al servidor/cliente informacion sobre que es lo que tiene que filtrar u ordenar
-export const QueryParamsProvider = ({ children }) => {//Deespues añadir logica para filtros y organizar un un array de objectos u objectos anidas la estructura de orden y filtros.
 
-    const [queryParams, setQueryParams] = useState({});
+export const QueryParamsProvider = ({ children }) => { //Esto reemplaza al query de las URL, en el caso de los filtrados y ordenes, mas que nada para un enfoque mas controlado y que la URL no se llene de querys.
 
-    const establecerQueryParams = ({ target }) => {
+    const [queryParams, setQueryParams] = useState({
+        "filtros": {},
+        "orden": {}
+    }); //Objectos anidados
 
-        const nombre = target.dataset.name.toLowerCase()
-
-        const prioridad = target.dataset.prioridad
-
-        const buscarParametro = queryParams[nombre] ? queryParams[nombre] : ""
-
-        const orden = buscarParametro.match("<") ? ">" : "<"
-
-        setQueryParams((query) => ({ ...query, [nombre]: orden + prioridad }))
-    };
-
-    const obtenerOrden = (nombre) => {
-
-        const parametroActual = queryParams[nombre.toLowerCase()]
-
-        const expReg = /[<>]/g
-
-        const buscarParametro = parametroActual && parametroActual.match(expReg)[0]
-
-        return buscarParametro
-    }
+    const establecerQueryParams = useCallback(({ tipo, nuevo }) => {
+        setQueryParams((query) => ({ ...query, [tipo]: nuevo }))
+    }, [])
 
     const borrarParametro = (nombre) => {
         const borrado = Object.entries(queryParams).filter(([key, _]) => key !== nombre.toLowerCase())
@@ -35,7 +18,7 @@ export const QueryParamsProvider = ({ children }) => {//Deespues añadir logica 
     }
 
     return (
-        <QueryParamsContext.Provider value={{ queryParams, establecerQueryParams, obtenerOrden, borrarParametro }}>
+        <QueryParamsContext.Provider value={{ queryParams, establecerQueryParams, borrarParametro }}>
             {children}
         </QueryParamsContext.Provider>
     )

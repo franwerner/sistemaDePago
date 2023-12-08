@@ -3,6 +3,7 @@ import { ListadoDeProductos } from "./ListadoDeProductos";
 import { useContext } from "react";
 import { InventarioAddContext, QueryParamsContext } from "@/context//Contextos";
 import { useAlgoritmoDeOrden } from "@/hooks//useAlgoritmoDeOrden";
+import { tHead } from "@/styles/SeccionDeInventario.module.css"
 
 const Tbody = () => {
 
@@ -33,9 +34,9 @@ export const TablaDeProductos = () => {
 
 
     return (
-        <Table hover className="h-100r" >
+        <Table hover className="h-100" >
             <thead
-                style={{ height: "60px" }}
+                id={tHead}
                 className="align-middle border-white position-relative">
                 <tr className="shadow">
                     <th className="px-2">Producto</th>

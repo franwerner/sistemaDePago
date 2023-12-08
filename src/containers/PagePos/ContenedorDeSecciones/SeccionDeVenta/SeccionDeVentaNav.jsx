@@ -1,6 +1,6 @@
 import BotonRotacion from "@/components//Botones/BotonRotacion"
 import BuscadorInput from "@/components//BuscadorInput"
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault"
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault"
 import { memo } from "react"
 import { Col } from "react-bootstrap"
 

@@ -1,7 +1,7 @@
 import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 import BuscadorInput from "@/components//BuscadorInput";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownFilterDefault";
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
 import { RemoveFilterIcon } from "@/components//Icons/RemoveFilterIcon";
 import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider";
 import { Button, Col } from "react-bootstrap";

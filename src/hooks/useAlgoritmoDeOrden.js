@@ -8,13 +8,7 @@ const ordenarPrioridad = (parametros) => {
 
         return Object.entries(parametros).sort(([_, valueA], [__, valueB]) => {
 
-            const regExpN = /\d+/g
-
-            const prioridadB = valueB.match(regExpN)
-
-            const prioridadA = valueA.match(regExpN)
-
-            return (prioridadA ? prioridadA[0] : 0) - (prioridadB ? prioridadB[0] : 0)
+            return valueA.prioridad - valueB.prioridad
         })
 
     }, [dependenciaPrioridad.toString()])
@@ -46,7 +40,6 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
 
     const organizarPrioridad = ordenarPrioridad(parametros)
 
-
     const iniciarSort = useCallback((array = []) => {
 
         return [...array].sort((a, b) => {
@@ -61,9 +54,9 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
 
                 const itemB = buscarItem(b)
 
-                const parametrosActual = parametros[prop] ? parametros[prop] : ""
+                const parametrosActual = parametros[prop] ? parametros[prop] : {}
 
-                const comparacion = parametrosActual.match(">") ? ordernAscendente(itemA, itemB) : ordenDescendente(itemA, itemB);
+                const comparacion = parametrosActual.estado == "<" ? ordernAscendente(itemA, itemB) : parametrosActual.estado == ">" && ordenDescendente(itemA, itemB);
 
                 if (comparacion !== 0) {//Esto sirve para que detenga todo el bucle en caso de que encuentre un valor diferente a 0, entonces la prioridad acutal se mantiene intacta
                     return comparacion;
@@ -71,7 +64,8 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
             }
 
         });
-    }, [dependenciaArray.toString()])
+
+    }, [JSON.stringify(dependenciaArray)])
 
     return {
         iniciarSort

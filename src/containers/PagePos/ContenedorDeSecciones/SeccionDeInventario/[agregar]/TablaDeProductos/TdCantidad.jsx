@@ -1,7 +1,8 @@
 import { memo, useEffect } from "react"
 import { Form } from "react-bootstrap"
+import {tCantidad} from "@/styles/SeccionDeInventario.module.css"
 
-export const TdCantidad = memo(({ cantidad, modificarCantidad, id, cantidadForm,changeForm }) => {
+export const TdCantidad = memo(({ cantidad, modificarCantidad, id, cantidadForm, changeForm }) => {
 
     useEffect(() => {
 
@@ -17,7 +18,7 @@ export const TdCantidad = memo(({ cantidad, modificarCantidad, id, cantidadForm,
                 <Form.Control
                     name="cantidad"
                     className="text-center"
-                    style={{ maxWidth: "100px" }}
+                    id={tCantidad}
                     onChange={changeForm}
                     aria-label="cantidad"
                     value={cantidad}

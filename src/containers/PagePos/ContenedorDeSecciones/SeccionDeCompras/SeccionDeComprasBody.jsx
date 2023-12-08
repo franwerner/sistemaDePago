@@ -89,7 +89,7 @@ const SeccionDeComprasBody = () => {
 
     const { queryParams } = useContext(QueryParamsContext)
 
-    const { iniciarSort } = useAlgoritmoDeOrden(queryParams)
+    const { iniciarSort } = useAlgoritmoDeOrden(queryParams["orden"])
 
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">

@@ -1,6 +1,7 @@
 import { obtenerFecha } from "@/common//helper/obtenerFecha";
 import { memo, useEffect } from "react";
 import { Form } from "react-bootstrap";
+import { tFabricacion } from "@/styles/SeccionDeInventario.module.css"
 
 export const TdFabricacion = memo(({ fabricacion, modificarFabricacion, id, fechaFab, changeForm }) => {
 
@@ -18,7 +19,7 @@ export const TdFabricacion = memo(({ fabricacion, modificarFabricacion, id, fech
         <td className="text-center">
             <div className="d-flex justify-content-center">
                 <Form.Control
-                    style={{ maxWidth: "190px" }}
+                    id={tFabricacion}
                     name="fechaFab"
                     onChange={changeForm}
                     aria-label="fabricacion fecha"

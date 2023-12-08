@@ -15,3 +15,15 @@
     75% { transform: translateX(-6px) rotate(1deg); }
     100% { transform: translateX(0); }
   }
+
+  /*[Agregar]*/
+  #tHead {
+    height: 60px;
+  }
+  #tCantidad{
+    max-width: 100px;
+  }
+
+#tFabricacion,#tVencimiento {
+    max-width: 190px;
+  }

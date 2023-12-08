@@ -1,5 +1,5 @@
 import BuscadorInput from "@/components//BuscadorInput";
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
 import { Col } from "react-bootstrap";
 
 const dropwDownList = [

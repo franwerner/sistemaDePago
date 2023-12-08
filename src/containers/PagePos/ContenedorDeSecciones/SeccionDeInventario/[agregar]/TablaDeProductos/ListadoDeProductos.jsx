@@ -11,7 +11,7 @@ const TdNombre = memo(({ nombre }) => {
     )
 })
 
-const TdIconTrash = memo(({ eliminarProducto }) => {
+const TdIconTrash = memo(({ eliminarProducto, id }) => {
     return (
         <td
             onClick={() => eliminarProducto({ id })}
@@ -22,7 +22,8 @@ const TdIconTrash = memo(({ eliminarProducto }) => {
     )
 })
 
-export const ListadoDeProductos = memo(({ id,
+export const ListadoDeProductos = memo(({
+    id,
     cantidad = 0,
     fabricacion,
     vencimiento,
@@ -63,7 +64,9 @@ export const ListadoDeProductos = memo(({ id,
                 id={id}
                 cantidad={cantidad}
             />
-            <TdIconTrash eliminarProducto={eliminarProducto} />
+            <TdIconTrash
+                id={id}
+                eliminarProducto={eliminarProducto} />
 
         </tr>
     );
