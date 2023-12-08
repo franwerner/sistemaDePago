@@ -19,7 +19,15 @@ const theadTest = [
     { id: 5, "empleado": "Hranco Werner", "fecha": 1647356814000, "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", orden: 5 }
 ]
 
-const TrTablaBody = memo(({ empleado, fecha, cliente, total, estado, orden, alternarMostrar }) => {
+const TrTablaBody = memo(({
+    empleado,
+    fecha,
+    cliente,
+    total,
+    estado,
+    orden,
+    alternarMostrar
+}) => {
 
     const verificarEstado = estado == "Pagado" ? "success" : "danger"
 
@@ -88,7 +96,7 @@ const SeccionDeComprasBody = () => {
             <SuspenseCompontentsLoading texto={`${AgregarCerosANumeros({ numero: 1, digitos: 5 })} - ${AgregarCerosANumeros({ numero: 4, digitos: 5 })} `} >
                 <Table className={styles.tablaDeCompras} hover >
                     <thead className="shadow align-middle text-center  position-relative">
-                        <tr>
+                        <tr className="border-white ">
                             <th>Empleado</th>
                             <th>Hora</th>
                             <th>Fecha</th>

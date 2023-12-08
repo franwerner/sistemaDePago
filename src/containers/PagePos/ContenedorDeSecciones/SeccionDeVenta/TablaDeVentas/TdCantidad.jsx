@@ -3,9 +3,6 @@ import React, { memo, useCallback, useEffect } from "react"
 import { Button, Form } from "react-bootstrap"
 import styles from "@/styles/SeccionDeVenta.module.css"
 import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
-
-import { verificarSiEsNegativo } from "@/common//helper/verificarSiEsNegativo"
-import { obtenerDecimales } from "@/common//helper/obtenerDecimales"
 import { concatenarDecimales } from "@/common//helper/concatenarDecimales"
 
 const BotonCantidad = memo(({ tipo, onClick }) => {

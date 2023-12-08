@@ -1,116 +1,70 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import { useForm } from "@/hooks//useForm";
-import { Form } from "react-bootstrap";
-import { obtenerFecha } from "@/common//helper/obtenerFecha";
 import { IconTrash } from "@/components//Icons/iconTrash";
+import { TdFabricacion } from "./TdFabricacion";
+import { TdVencimiento } from "./TdVencimiento";
+import { TdCantidad } from "./TdCantidad";
 
-
-const TdCantidad = memo(({ cantidad, modificarCantidad, id }) => {
-
-    const { changeForm, form } = useForm({ cant: 0 })
-
-    useEffect(() => {
-
-        if (form.cant !== 0) {
-            modificarCantidad({ id, cantidad: Math.abs(form.cant) })
-        }
-
-    }, [form.cant])
-
+const TdNombre = memo(({ nombre }) => {
     return (
-        <td>
-            <Form.Control
-                name="cant"
-                onChange={changeForm}
-                aria-label="cantidad"
-                value={cantidad}
-                step={"0.1"}
-                type="number">
-            </Form.Control>
+        <td className="align-middle ls-4 fs-6">{nombre}</td>
+    )
+})
+
+const TdIconTrash = memo(({ eliminarProducto }) => {
+    return (
+        <td
+            onClick={() => eliminarProducto({ id })}
+            className="cursor-block text-center align-middle">
+            <IconTrash classAdd={"fs-4"}
+            />
         </td>
     )
 })
 
-const TdFabricacion = memo(({ fabricacion, modificarFabricacion, id }) => {
+export const ListadoDeProductos = memo(({ id,
+    cantidad = 0,
+    fabricacion,
+    vencimiento,
+    nombre,
+    modificarFabricacion,
+    modificarVencimiento,
+    modificarCantidad,
+    eliminarProducto
+}) => {
 
-    const { changeForm, form } = useForm({ fecha: "" })
-
-    const { dia, mes, año } = obtenerFecha(fabricacion)
-
-    useEffect(() => {
-        if (form.fecha.length !== 0) {
-
-            modificarFabricacion({ id, fabricacion: new Date(form.fecha + 'T00:00:00').getTime() })
-        }
-    }, [form.fecha])
-
-    return (
-        <td className="text-center">
-            <Form.Control
-                name="fecha"
-                onChange={changeForm}
-                aria-label="fabricacion fecha"
-                defaultValue={`${año}-${mes}-${dia}`}
-                type="date">
-            </Form.Control>
-        </td>
-    );
-
-})
-
-const TdVencimiento = ({ vencimiento, modificarVencimiento, id }) => {
-    const { changeForm, form } = useForm({ fecha: "" })
-
-    const { dia, mes, año } = obtenerFecha(vencimiento)
-
-    useEffect(() => {
-        if (form.fecha.length !== 0) {
-
-            modificarVencimiento({ id, fabricacion: new Date(form.fecha + 'T00:00:00').getTime() })
-        }
-    }, [form.fecha])
-
-    return (
-        <td className="text-center">
-            <Form.Control
-                name="fecha"
-                onChange={changeForm}
-                aria-label="vencimiento fecha"
-                defaultValue={`${año}-${mes}-${dia}`}
-                type="date">
-            </Form.Control>
-        </td>
-    );
-};
-
-export const ListadoDeProductos = memo(({ id, cantidad, fabricacion, vencimiento, nombre, modificarFabricacion, modificarVencimiento, modificarCantidad, eliminarProducto }) => {
+    const { changeForm, form } = useForm({ fechaVec: "", fechaFab: "", cantidad: cantidad })
 
     return (
         <tr>
-            <td>{nombre}</td>
+
+            <TdNombre nombre={nombre} />
 
             <TdFabricacion
                 id={id}
+                changeForm={changeForm}
+                fechaFab={form.fechaFab}
                 modificarFabricacion={modificarFabricacion}
                 fabricacion={fabricacion} />
 
 
             <TdVencimiento
                 id={id}
+                changeForm={changeForm}
+                fechaVec={form.fechaVec}
                 modificarVencimiento={modificarVencimiento}
                 vencimiento={vencimiento}
             />
 
             <TdCantidad
+                changeForm={changeForm}
+                cantidadForm={form.cantidad}
                 modificarCantidad={modificarCantidad}
                 id={id}
                 cantidad={cantidad}
             />
-            <td
-                onClick={() => eliminarProducto({ id })}
-                className="cursor-block align-middle">
-                <IconTrash classAdd={"fs-4"} />
-            </td>
+            <TdIconTrash eliminarProducto={eliminarProducto} />
+
         </tr>
     );
 })

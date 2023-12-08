@@ -5,7 +5,7 @@ import { forwardRef, memo, useImperativeHandle, useRef } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import shortid from "shortid";
 
-const ModalBody = forwardRef(({ changeForm, form, formRef }, ref) => {
+const ModalBody = forwardRef(({ changeForm, form }, ref) => {
 
     const formularioRef = useRef(null);
 
@@ -39,7 +39,7 @@ const ModalBody = forwardRef(({ changeForm, form, formRef }, ref) => {
                         onChange={changeForm}
                         name="fabricacion"
                         aria-label="Fabricacion"
-                        type="date"
+                        type="datetime-local"
                     />
                 </Form.Group>
                 <Form.Group className="my-1">
@@ -51,7 +51,7 @@ const ModalBody = forwardRef(({ changeForm, form, formRef }, ref) => {
                         onChange={changeForm}
                         name="vencimiento"
                         aria-label="Vencimiento"
-                        type="date"
+                        type="datetime-local"
                     />
                 </Form.Group>
                 <Form.Group className="my-1">
@@ -83,6 +83,7 @@ const ModalDeAgregarProducto = memo(({ mostrar, alternarMostrar, agregarProducto
 
     const { cantidad, vencimiento, fabricacion } = form
 
+
     const imperativeRef = useRef(null)
 
     const enviarFormulario = () => {
@@ -95,12 +96,11 @@ const ModalDeAgregarProducto = memo(({ mostrar, alternarMostrar, agregarProducto
                     id: shortid(),
                     nombre: "test",
                     cantidad,
-                    vencimiento: new Date(vencimiento + 'T00:00:00').getTime(),
-                    fabricacion: new Date(fabricacion + 'T00:00:00').getTime()
+                    vencimiento: Date.parse(vencimiento),
+                    fabricacion: Date.parse(fabricacion)
                 }
             )
         }
-
     }
 
     return (

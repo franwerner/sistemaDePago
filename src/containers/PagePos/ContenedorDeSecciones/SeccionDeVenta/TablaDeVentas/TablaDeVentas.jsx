@@ -9,7 +9,7 @@ import { useAlgoritmoDeOrden } from "@/hooks//useAlgoritmoDeOrden";
 const TheadTabla = memo(() => {
 
     return <thead className="align-middle">
-        <tr className="shadow ">
+        <tr className="shadow border-white  ">
             <th className="px-3">Producto</th>
             <th className="text-center">Metodo</th>
             <th className="text-center ">Cantidad</th>

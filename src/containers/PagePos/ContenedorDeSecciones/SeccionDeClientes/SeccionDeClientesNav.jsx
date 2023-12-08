@@ -2,10 +2,11 @@ import BuscadorInput from "@/components//BuscadorInput";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownFilterDefault";
 import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
-import { Button, Col } from "react-bootstrap";
+import {Col } from "react-bootstrap";
 import { lazy } from "react";
 import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading";
 import { retrasoTest } from "@/common//helper/retrasoTest";
+import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 const FormularioModalDeAñadir = lazy(() => retrasoTest(import("./FormularioModalDeAñadir"), 1))
 
 
@@ -27,7 +28,7 @@ const ButtonAñadirCliente = () => {
         <Col
             xs="12"
             md="auto"
-            className="p-0 d-flex justify-content-start  ">
+            className="p-0 mt-1 mt-md-0 d-flex justify-content-start  ">
             <SuspenseCompontentsLoading>
                 {
                     mostrar && <FormularioModalDeAñadir
@@ -35,14 +36,11 @@ const ButtonAñadirCliente = () => {
                         alternarMostrar={alternarMostrar} />
                 }
             </SuspenseCompontentsLoading>
-            <Button
-                onClick={alternarMostrar}
-                variant="outline-ligthdark"
-                type="button"
-                className="fs-6 zoom w-100 mt-1 m-md-0 fw-medium ">
+            
+            <BotonSeccionNav onClick={alternarMostrar}>
                 Añadir cliente
                 <i className="fa-solid mx-1 fa-user-plus"></i>
-            </Button>
+            </BotonSeccionNav>
 
         </Col>
     )

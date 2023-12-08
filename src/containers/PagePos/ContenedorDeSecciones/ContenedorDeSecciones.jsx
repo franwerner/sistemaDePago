@@ -23,6 +23,7 @@ const ContenedorDeSecciones = memo(() => {
                 <ProductoReducerProvider>
 
                     <RestoDelPagoProvider>
+                        
                         <InventarioAddProvider>
 
 

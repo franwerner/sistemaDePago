@@ -7,7 +7,7 @@ export const useForm = (intialInput = {}) => {
 
     const changeForm = useCallback(({ target }) => {
         const { name, value } = target
-
+        
         setForm(form => ({ ...form, [name]: value }))
 
     }, [])

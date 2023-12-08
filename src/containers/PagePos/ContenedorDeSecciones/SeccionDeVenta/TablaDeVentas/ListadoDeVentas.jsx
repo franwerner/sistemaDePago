@@ -43,9 +43,16 @@ const TdTrash = memo(({ borrarProducto, nombre }) => {
 })
 
 const ListadoDeVentas = memo((
-    { cantidad, lote, metodo, nombre, precioModificado,
-        modificarCantidad, modificarPrecio, borrarProducto,
-        aplicarDescuento, descuento }
+    { cantidad,
+        lote,
+        metodo,
+        nombre,
+        precioModificado,
+        modificarCantidad,
+        modificarPrecio,
+        borrarProducto,
+        aplicarDescuento,
+        descuento }
 ) => {
 
     return (

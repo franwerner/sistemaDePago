@@ -5,7 +5,8 @@ import { useContext } from "react";
 import { InventarioAddContext } from "@/context//Contextos";
 
 export const SeccionDeInventarioAgregarBody = () => {
-    const {listaDeProductos} = useContext(InventarioAddContext)
+    const { listaDeProductos } = useContext(InventarioAddContext)
+
 
     return (
 

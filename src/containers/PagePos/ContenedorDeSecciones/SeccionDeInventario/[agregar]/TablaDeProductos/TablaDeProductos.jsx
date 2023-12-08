@@ -1,25 +1,27 @@
 import { Table } from "react-bootstrap";
 import { ListadoDeProductos } from "./ListadoDeProductos";
 import { useContext } from "react";
-import { InventarioAddContext } from "@/context//Contextos";
-
-
-
+import { InventarioAddContext, QueryParamsContext } from "@/context//Contextos";
+import { useAlgoritmoDeOrden } from "@/hooks//useAlgoritmoDeOrden";
 
 const Tbody = () => {
 
     const { listaDeProductos, modificarFabricacion, modificarVencimiento, modificarCantidad, eliminarProducto } = useContext(InventarioAddContext)
 
+    const { queryParams } = useContext(QueryParamsContext)
+
+    const { iniciarSort } = useAlgoritmoDeOrden(queryParams)
+
     return (
         <tbody>
             {
-                listaDeProductos.map(item =>
+                iniciarSort(listaDeProductos).map(item =>
                     <ListadoDeProductos
                         key={item.id}
                         modificarVencimiento={modificarVencimiento}
                         modificarFabricacion={modificarFabricacion}
                         modificarCantidad={modificarCantidad}
-                        eliminarProducto = {eliminarProducto}
+                        eliminarProducto={eliminarProducto}
                         {...item} />
                 )
             }
@@ -29,13 +31,14 @@ const Tbody = () => {
 
 export const TablaDeProductos = () => {
 
+
     return (
-        <Table hover className="h-100 border" >
+        <Table hover className="h-100r" >
             <thead
                 style={{ height: "60px" }}
-                className="align-middle position-relative">
+                className="align-middle border-white position-relative">
                 <tr className="shadow">
-                    <th className="px-3">Producto</th>
+                    <th className="px-2">Producto</th>
                     <th className="text-center">Fabricacion</th>
                     <th className="text-center ">Vencimiento</th>
                     <th className="text-center">Cantidad</th>

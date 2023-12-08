@@ -1,3 +1,4 @@
+import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 import BuscadorInput from "@/components//BuscadorInput";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownFilterDefault";
 import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault";
@@ -50,16 +51,12 @@ export const SeccionDeInventarioNav = () => {
             <Col
                 xs="12"
                 md="auto"
-                 className="p-0 d-flex justify-content-start  ">
-                <Link to="añadir" className="w-100 px-5 px-md-0">
-                    <Button
-                        variant="outline-ligthdark"
-                        type="button"
-                        className="fs-6  w-100 zoom  py-2 mt-2 mt-lg-0 px-4 fw-medium "
-                        aria-labelledby="agregar contenedor">
+                className="p-0 d-flex justify-content-start  ">
+                <Link to="agregar" className="w-100 px-5 px-md-0">
+                    <BotonSeccionNav>
                         Añadir lote
                         <i className="fa-solid mx-md-2 fa-truck-ramp-box fa-flip-horizontal"></i>
-                    </Button>
+                    </BotonSeccionNav>
                 </Link>
             </Col>
         </>
