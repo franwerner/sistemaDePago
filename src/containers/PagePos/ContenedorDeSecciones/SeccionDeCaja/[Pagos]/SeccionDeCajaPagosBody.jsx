@@ -129,7 +129,7 @@ export const SeccionDeCajaPagosBody = () => {
 
     const { queryParams } = useContext(QueryParamsContext)
 
-    const { iniciarSort } = useAlgoritmoDeOrden(queryParams)
+    const { iniciarSort } = useAlgoritmoDeOrden(queryParams["orden"])
 
     return (
         <Col className={`${styles.accordionContenedor} border p-0`}>

@@ -15,10 +15,10 @@ export const SeccionDeCajaPagosNav = () => {
             <Col xs="auto" clas>
                 <DropDownOrdenDefault dropwDownList={dropwDownList} />
             </Col>
-            <Col 
-            className="pt-1 pt-md-0"
-            md = "8"
-            xs = "12">
+            <Col
+                className="pt-1 pt-md-0"
+                md="8"
+                xs="12">
                 <BuscadorInput texto="por nro de orden" />
             </Col>
         </>
