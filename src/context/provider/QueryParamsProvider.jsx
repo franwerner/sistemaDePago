@@ -4,7 +4,7 @@ import { QueryParamsContext } from "../Contextos";
 export const QueryParamsProvider = ({ children }) => { //Esto reemplaza al query de las URL, en el caso de los filtrados y ordenes, mas que nada para un enfoque mas controlado y que la URL no se llene de querys.
 
     const [queryParams, setQueryParams] = useState({
-        "filtros": {},
+        "filtro": {},
         "orden": {}
     }); //Objectos anidados
 

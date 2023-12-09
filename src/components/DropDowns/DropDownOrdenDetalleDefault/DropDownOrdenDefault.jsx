@@ -5,49 +5,41 @@ import { useOrdenamiento } from "./useOrdenamiento";
 
 
 const ordenList = {
-    "<": "down",
-    ">": "up"
+    "<": { tipo: "down", color: "danger" },
+    ">": { tipo: "up", color: "success" }
 }
 
-const DropwDownItems = memo(({ nombre, nombreTecnico, prioridad, establecerQueryParams }) => {
+const DropwDownItems = memo(({ nombre, nombreTecnico, prioridad, orden, establecerOrden, removerOrden }) => {
 
-    const { establecerOrden, orden } = useOrdenamiento()
+    const buscarPropiedad = orden || {}
 
+    const { tipo, color } = ordenList[buscarPropiedad.estado] || {}
 
-    const buscarPropiedad = orden ? orden : ""
+    const onClick = () => {
+        establecerOrden(nombreTecnico, prioridad)
+    }
 
-    const color = orden == "<" ? "danger" : "success"
-
-    const prioridadList = ordenList[buscarPropiedad]
-
-    useEffect(() => {
-
-        if (Object.getOwnPropertyNames(orden).length >= 1) {
-
-            establecerQueryParams({ tipo: "orden", nuevo: orden })
-        }
-
-    }, [JSON.stringify(orden)])
+    const onClick2 = () => {
+        removerOrden(nombreTecnico)
+    }
 
     return (
         <div className="d-flex bg-hoverdark cursor-pointer w-100  position-relative  align-items-center">
 
             <Dropdown.Item
-                onClick={establecerOrden}
-                data-name={nombreTecnico}
-                data-prioridad={prioridad}
+                onClick={onClick}
                 className="fw-medium bg-white position-relative d-flex align-items-center p-3 py-2  " >
                 {nombre}
 
                 <i style={{ left: "0%" }}
-                    className={`fa-solid fs-7  position-absolute p-1 fa-arrow-${prioridadList} text-${color}`} />
+                    className={`fa-solid fs-7  position-absolute p-1 fa-arrow-${tipo} text-${color}`} />
             </Dropdown.Item>
 
             {
-                prioridadList &&
+                orden &&
                 <i
                     style={{ right: "2%" }}
-                    onClick={onRemove}
+                    onClick={onClick2}
                     className="fa-solid fs-5 position-absolute cursor-block text-endp-1 bg-white text-ligthdark fa-xmark" />
             }
         </div>
@@ -80,6 +72,14 @@ const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
 
     const { establecerQueryParams } = useContext(QueryParamsContext)
 
+    const { establecerOrden, orden, removerOrden } = useOrdenamiento()
+
+    useEffect(() => {
+
+        establecerQueryParams({ tipo: "orden", nuevo: orden })
+
+    }, [JSON.stringify(orden)])
+
     return (
         <DropwDownParent>
             {
@@ -90,21 +90,17 @@ const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
                     const nombreTecnico = !item.nombre[1] ? nombreVisual : item.nombre[1]
 
                     return (
-
-
                         <DropwDownItems
                             key={item.nombre}
-                            establecerQueryParams={establecerQueryParams}
+                            establecerOrden={establecerOrden}
+                            orden={orden[nombreTecnico.toLowerCase()]}
                             nombre={item.nombre[0]}
-                            nombreTecnico={nombreTecnico}
+                            nombreTecnico={nombreTecnico.toLowerCase()}
+                            removerOrden={removerOrden}
                             prioridad={item.prioridad}
                         />
-
-
                     )
-                }
-
-                )
+                })
             }
         </DropwDownParent>
     );

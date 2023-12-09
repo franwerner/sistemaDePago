@@ -1,6 +1,6 @@
 import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 import BuscadorInput from "@/components//BuscadorInput";
-import DropDownFilterDefault from "@/components//DropDowns/DropDownFilterDefault";
+import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
 import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
 import { RemoveFilterIcon } from "@/components//Icons/RemoveFilterIcon";
 import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider";

@@ -28,7 +28,7 @@ const BuscadorInput = ({ texto = "" }) => {
             onSubmit={onSubmit}>
 
             <InputGroup >
-                <InputGroup.Text className="text-center border-0 border-bottom rounded-0 bg-white" >
+                <InputGroup.Text className="text-center  border-0 border-bottom rounded-0 bg-white" >
                     <i className="fa-solid fa-magnifying-glass "></i>
                 </InputGroup.Text>
                 <Form.Control type="search"

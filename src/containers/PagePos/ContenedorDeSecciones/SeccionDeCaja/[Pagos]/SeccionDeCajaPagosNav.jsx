@@ -12,9 +12,10 @@ export const SeccionDeCajaPagosNav = () => {
 
     return (
         <>
-            <Col xs="auto" clas>
+            <Col xs="auto" >
                 <DropDownOrdenDefault dropwDownList={dropwDownList} />
             </Col>
+            
             <Col
                 className="pt-1 pt-md-0"
                 md="8"

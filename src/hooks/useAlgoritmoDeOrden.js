@@ -42,17 +42,16 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
 
     const iniciarSort = useCallback((array = []) => {
 
-     
         return [...array].sort((a, b) => {
 
             for (let i = 0; i < organizarPrioridad.length; i++) { //Este enfoque hace que se ejecute en orden segun el indice del array de las prioridades
-                
+
                 const prop = organizarPrioridad[i][0]
 
                 const buscarItem = (indice) => Object.entries(indice).find(([key]) => key.toLocaleLowerCase() == prop)[1]
-     
+
                 const itemA = buscarItem(a)
-      
+
                 const itemB = buscarItem(b)
 
                 const parametrosActual = parametros[prop] ? parametros[prop] : {}

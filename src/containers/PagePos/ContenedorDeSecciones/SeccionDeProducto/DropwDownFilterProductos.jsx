@@ -1,4 +1,4 @@
-import DropDownFilterDefault from "@/components//DropDowns/DropDownFilterDefault"
+import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault"
 import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { lazy } from "react"

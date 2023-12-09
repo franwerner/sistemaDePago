@@ -4,11 +4,7 @@ export const useOrdenamiento = () => {
 
     const [orden, setOrden] = useState({})
 
-    const establecerOrden = useCallback(({ target }) => {
-
-        const nombre = target.dataset.name.toLowerCase()
-
-        const prioridad = target.dataset.prioridad
+    const establecerOrden = useCallback((nombre, prioridad) => {
 
         setOrden(prev => {
 
@@ -26,9 +22,19 @@ export const useOrdenamiento = () => {
 
     }, [])
 
+    const removerOrden = useCallback((nombre) => {
+
+        setOrden(prev => {
+            const resultado = Object.entries(prev).filter(([a, b]) => a !== nombre)
+            return Object.fromEntries(resultado)
+        })
+
+    }, [])
+
     return {
         establecerOrden,
-        orden
+        orden,
+        removerOrden
     }
 
 };

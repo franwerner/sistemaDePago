@@ -3,8 +3,6 @@ import { useForm } from "../../hooks/useForm";
 import { useEventoMostrar } from "../../hooks/useEventoMostrar";
 import { EyeInput } from "../../components/Icons/EyeInput";
 import { memo, useEffect } from "react";
-import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
-
 
 const usuariosDataBase = [
     {
@@ -57,8 +55,6 @@ const FormularioLoginEmpleado = memo(({ alternarUsuario }) => {
 
     const { form, changeForm, onSubmit } = useForm({ password: "", empleado: "" })
 
-    const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
-
     useEffect(() => {
 
         if (form.empleado.length == 0) return
@@ -81,9 +77,6 @@ const FormularioLoginEmpleado = memo(({ alternarUsuario }) => {
                     <FloatingLabel controlId="floatingPassword"
                         label="Contraseña">
                         <Form.Control
-                            ref={refFocusElement}
-                            onMouseEnter={onMouseEnter}
-                            onMouseLeave={onMouseLeave}
                             style={{ boxShadow: "none" }}
                             onChange={changeForm}
                             value={form.password}

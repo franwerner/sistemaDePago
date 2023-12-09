@@ -3,6 +3,7 @@ import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDe
 import { Col } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import { Paginacion } from "@/components//Paginacion"
+import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault"
 
 const dropwDownList = [
     { nombre: ["Estado"], prioridad: 6 },
@@ -11,6 +12,11 @@ const dropwDownList = [
     { nombre: ["Empleado"], prioridad: 4 },
     { nombre: ["Orden"], prioridad: 3 },
     { nombre: ["Total"], prioridad: 1 },
+]
+
+const dropwDownList2 = [
+    { nombre: "Devuelto" },
+    {nombre : "Pagado"}
 ]
 
 const PaginacionCompras = () => {
@@ -30,9 +36,10 @@ const SeccionDeComprasNav = () => {
             <Col
                 className="d-flex  position-relative align-items-center">
                 <DropDownOrdenDefault dropwDownList={dropwDownList} />
+                <DropDownFilterDefault dropwDownList={dropwDownList2} />
             </Col>
             <Col
-                xs={{ order: "0",span : "auto"}}
+                xs={{ order: "0", span: "auto" }}
                 md={{ order: "2", span: "auto" }}
                 className="d-flex justify-content-end  align-items-center">
                 <PaginacionCompras />

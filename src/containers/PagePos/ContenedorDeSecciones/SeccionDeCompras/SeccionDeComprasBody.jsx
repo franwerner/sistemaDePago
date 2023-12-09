@@ -14,9 +14,9 @@ const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDeta
 const theadTest = [
     { id: 1, "empleado": "Aranco Werner", "fecha": 1631011278000, "cliente": "Consumidor Anonimo", "total": 9898, "estado": "Pagado", orden: 1 },
     { id: 2, "empleado": "ABanco Werner", "fecha": 1634825246000, "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 2 },
-    { id: 3, "empleado": "Franco Werner", "fecha": 1640928132000, "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 3 },
     { id: 4, "empleado": "Dranco Werner", "fecha": 1643562391000, "cliente": "Consumidor Anonimo", "total": 666, "estado": "Pagado", orden: 4 },
-    { id: 5, "empleado": "Hranco Werner", "fecha": 1647356814000, "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", orden: 5 }
+    { id: 5, "empleado": "Hranco Werner", "fecha": 1647356814000, "cliente": "Consumidor Anonimo", "total": 123, "estado": "Devuelto", orden: 5 },
+    { id: 3, "empleado": "Franco Werner", "fecha": 1640928132000, "cliente": "Consumidor Anonimo", "total": 34454, "estado": "Pagado", orden: 3 },
 ]
 
 const TrTablaBody = memo(({
