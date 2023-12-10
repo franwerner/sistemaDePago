@@ -1,5 +1,4 @@
 import { Button, Col } from "react-bootstrap";
-import styles from "@/styles/SeccionDeCaja.module.css"
 
 export const SeccionDeCajaNav = () => {
     return (
