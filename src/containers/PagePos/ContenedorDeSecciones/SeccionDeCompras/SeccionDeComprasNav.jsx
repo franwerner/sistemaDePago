@@ -34,13 +34,13 @@ const SeccionDeComprasNav = () => {
     return (
         <>
             <Col
-                className="d-flex  position-relative align-items-center">
+                className="d-flex justify-content-between align-items-center">
                 <DropDownOrdenDefault dropwDownList={dropwDownList} />
                 <DropDownFilterDefault dropwDownList={dropwDownList2} />
             </Col>
             <Col
                 xs={{ order: "0", span: "auto" }}
-                md={{ order: "2", span: "auto" }}
+                md={{ order: "2", span: "2" }}
                 className="d-flex justify-content-end  align-items-center">
                 <PaginacionCompras />
             </Col>

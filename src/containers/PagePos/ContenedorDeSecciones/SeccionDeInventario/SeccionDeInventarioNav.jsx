@@ -2,9 +2,7 @@ import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 import BuscadorInput from "@/components//BuscadorInput";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
 import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
-import { RemoveFilterIcon } from "@/components//Icons/RemoveFilterIcon";
-import { QueryParamsProvider } from "@/context//provider/QueryParamsProvider";
-import { Button, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const dropwDownOrden = [
@@ -27,10 +25,7 @@ export const SeccionDeInventarioNav = () => {
             <Col
                 xs="auto"
                 className="p-0 d-flex m-1 align-items-center">
-
-                <QueryParamsProvider>
-                    <DropDownOrdenDefault dropwDownList={dropwDownOrden} />
-                </QueryParamsProvider>
+                <DropDownOrdenDefault dropwDownList={dropwDownOrden} />
             </Col>
 
             <Col
@@ -38,7 +33,7 @@ export const SeccionDeInventarioNav = () => {
                 xs="auto"
                 md="1">
                 <DropDownFilterDefault dropwDownList={dropwDownFilter} />
-                <RemoveFilterIcon />
+
             </Col>
 
             <Col

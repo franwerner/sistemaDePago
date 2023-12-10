@@ -12,7 +12,8 @@ export const SeccionDeCajaNav = () => {
 
             <Col className="d-flex fs-5 align-items-center justify-content-end">
                 <Button
-                    className={`${styles.botonFinDeSession} bg-hoverdark border-0  rounded-2 `}>
+                    variant="outline-primary-2"
+                    className={` fw-semibold  rounded-2 `}>
                     Fin de la session
                 </Button>
             </Col>

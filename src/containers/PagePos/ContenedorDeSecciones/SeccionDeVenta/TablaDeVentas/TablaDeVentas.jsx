@@ -28,7 +28,7 @@ const TablaDeVentas = memo(() => {
 
     const { queryParams } = useContext(QueryParamsContext)
 
-    const { iniciarSort } = useAlgoritmoDeOrden(queryParams)
+    const { iniciarSort } = useAlgoritmoDeOrden(queryParams["orden"])
 
     return (
         <Table className={`${styles.tablaDeVentas} `} hover>
