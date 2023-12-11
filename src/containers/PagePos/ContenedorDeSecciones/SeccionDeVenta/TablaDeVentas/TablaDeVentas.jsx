@@ -15,7 +15,6 @@ const TheadTabla = memo(() => {
             <th className="text-center ">Cantidad</th>
             <th className="text-center">Precio</th>
             <th className="text-center">Descuento</th>
-            <th className="text-center">Lote</th>
             <th className="text-center">Total</th>
             <th></th>
         </tr>
