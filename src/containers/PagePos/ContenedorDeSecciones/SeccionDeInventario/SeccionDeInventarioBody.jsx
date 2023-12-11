@@ -32,9 +32,6 @@ const CardBody = memo(() => {
 })
 
 export const ContenedorCard = memo(() => {
-
-    const { onMouseEnter, refFocusElement } = useFocusMouseElements()
-
     const navigate = useNavigate()
 
     const onClick = (e) => {
@@ -51,9 +48,7 @@ export const ContenedorCard = memo(() => {
         <Card
             onClick={onClick}
             tabIndex={0}
-            ref={refFocusElement}
             id={styles.containerCard}
-            onMouseEnter={onMouseEnter}
             className="m-2 card-move-up  border-0 shadow position-relative  cursor-pointer overflow-hidden">
 
             <Card.Title className="d-flex z-1  px-2 position-absolute w-100 justify-content-between">

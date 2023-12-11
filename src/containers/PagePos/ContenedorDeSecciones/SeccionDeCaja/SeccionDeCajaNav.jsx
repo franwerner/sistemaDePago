@@ -11,7 +11,7 @@ export const SeccionDeCajaNav = () => {
 
             <Col className="d-flex fs-5 align-items-center justify-content-end">
                 <Button
-                    variant="outline-primary-2"
+                    variant="outline-ligthdark"
                     className={` fw-semibold  rounded-2 `}>
                     Fin de la session
                 </Button>

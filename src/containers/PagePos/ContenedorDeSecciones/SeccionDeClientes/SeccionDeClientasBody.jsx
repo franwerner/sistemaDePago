@@ -3,7 +3,6 @@ import { obtenerFecha } from "@/common//helper/obtenerFecha";
 import { DropDownDetalle } from "@/components//DropDowns/DropDownDetalle";
 import { SvgClienteHombre } from "@/components//Svg/SvgClienteHombre";
 import { SvgClienteMujer } from "@/components//Svg/SvgClienteMujer";
-import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
 import { Card, Col } from "react-bootstrap";
 
 const clientesTest = [
@@ -24,8 +23,6 @@ const clientesTest = [
 
 const ClienteCard = ({ nombre, apellido, dni, ingreso, compras, devoluciones, sexo }) => {
 
-    const { onMouseEnter, onMouseLeave, refFocusElement } = useFocusMouseElements()
-
     const colorSexo = sexo == "M" ? "#6ab7ff" : "#ffb6d9"
 
     const {año,mes} = obtenerFecha(ingreso)
@@ -38,9 +35,6 @@ const ClienteCard = ({ nombre, apellido, dni, ingreso, compras, devoluciones, se
 
     return (
         <Card
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-            ref={refFocusElement}
             tabIndex={0}
             className="shadow m-3 mb-4 card-move-up cursor-pointer overflow-hidden border-0"
             style={{ height: "15rem", width: "12.5rem", maxHeight: "15rem" }}>

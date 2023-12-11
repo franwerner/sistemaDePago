@@ -3,7 +3,6 @@ import styles from "@/styles/SeccionDeProductos.module.css"
 import { CalcularPorcentajeMemoizado } from "@/hooks/useCalcularPorcentaje"
 import { Card } from "react-bootstrap"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
-import { useFocusMouseElements } from "@/hooks/useFocusMouseElements"
 import { AgregarCerosANumeros } from "@/common//helper/AgregarCerosANumeros"
 
 const CardFavorito = () => {
@@ -25,8 +24,6 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
 
     const { precio, nombre, metodo } = producto
 
-    const { onMouseEnter, refFocusElement } = useFocusMouseElements()
-
     const cantidadTest = useMemo(() => Math.round(Math.random(1) * 10) + 1, [])
 
 
@@ -38,9 +35,6 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
 
     return (
         <Card
-            tabIndex={0}
-            ref={refFocusElement}
-            onMouseEnter={onMouseEnter}
             onClick={onClick}
             className={`${styles.cardContainer} card-move-up m-2 shadow border-0 overflow-hidden`}>
 

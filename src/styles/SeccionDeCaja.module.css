@@ -1,29 +1,5 @@
 /*SeccionDeCaja*/
 
-.botonFinDeSession {
-    background-color: #746AF4 !important;
-}
-
-
-.botonesDeNavegacion {
-    cursor: pointer;
-}
-
-.botonesDeNavegacion a {
-    text-decoration: none !important;
-}
-
-.botonesDeNavegacion p {
-    color: #555;
-}
-
-.botonesDeNavegacion i {
-    color: #8689B6;
-}
-
-.botonesDeNavegacion p:nth-child(1) {
-    color: #8689B6;
-}
 
 .botonesDeNavegacion {
     min-width: 150px;
@@ -33,17 +9,6 @@
     transform: scale(1.1);
 }
 
-.seccionCajaBody {
-    color: #555;
-}
-
-.seccionCajaBody div:nth-child(2) {
-    color: #8689B6;
-}
-
-.seccionCajaFooter {
-    color: #555;
-}
 
 .borderControlEfectivo {
     max-width: fit-content;
