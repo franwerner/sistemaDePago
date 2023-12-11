@@ -1,9 +1,9 @@
 import styles from "@/styles/Paginacion.module.css"
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Paginacion = ({ parametro, largo, url }) => {
+export const Paginacion = memo(({ parametro, largo, url }) => {
 
     const navigate = useNavigate()
 
@@ -18,6 +18,7 @@ export const Paginacion = ({ parametro, largo, url }) => {
 
 
     const leftNav = parsearParametro == 1 ? parsearParametro : parsearParametro - 1
+
     return (
         <Stack
             direction="horizontal"
@@ -28,12 +29,14 @@ export const Paginacion = ({ parametro, largo, url }) => {
                 <i className="fa-solid zoom text-black fa-chevron-left p-2"></i>
             </Link>
 
-            <p style={{ minWidth: "60px" }} className="m-0 fw-medium text-center">{parametro} / {largo}</p>
+            <p
+                style={{ minWidth: "60px" }}
+                className="m-0 fw-medium text-center">{parametro} / {largo}</p>
 
-            <Link to={`/${url}/${parsearParametro + 1}`}>
-                <i className="fa-solid zoom text-black fa-chevron-right p-2"></i>
+            <Link className="" to={`/${url}/${parsearParametro + 1}`}>
+                <i className="fa-solid text-black fa-chevron-right p-2"></i>
             </Link>
 
         </Stack>
     );
-};
+})

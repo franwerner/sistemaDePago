@@ -1,34 +1,11 @@
 /*SeccionDeCaja*/
 
 
-.botonesDeNavegacion {
-    min-width: 150px;
-}
-
-.botonesDeNavegacion:active i {
-    transform: scale(1.1);
-}
-
 
 .borderControlEfectivo {
     max-width: fit-content;
     color: #555;
     transform: translateY(1px);
-}
-
-.botonesDeEfectivo div:nth-child(1),
-.botonesDeEfectivo div:nth-child(2) {
-    cursor: pointer;
-    min-width: 230px
-}
-
-
-.botonesDeEfectivo p {
-    color: #555;
-}
-
-.botonesDeEfectivo i {
-    color: #8689B6;
 }
 
 

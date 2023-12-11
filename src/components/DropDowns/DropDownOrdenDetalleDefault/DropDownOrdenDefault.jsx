@@ -5,8 +5,8 @@ import { useOrdenamiento } from "./useOrdenamiento";
 
 
 const ordenList = {
-    "<": { tipo: "down", color: "danger" },
-    ">": { tipo: "up", color: "success" }
+    ">": { tipo: "down", color: "danger" },
+    "<": { tipo: "up", color: "success" }
 }
 
 const DropwDownItems = memo(({ nombre, nombreTecnico, prioridad, orden, establecerOrden, removerOrden }) => {
@@ -46,29 +46,7 @@ const DropwDownItems = memo(({ nombre, nombreTecnico, prioridad, orden, establec
     )
 })
 
-const DropwDownParent = memo(({ children }) => {
-    return (
-        <Dropdown className="position-relative" autoClose="outside" >
-            <Dropdown.Toggle
-                variant="outline-ligthdark"
-                className=" d-flex py-2 align-items-center"
-                id="dropdown-orden">
-                <i className="fa-solid mx-1 fw-bolder fa-chart-bar"></i>
-                <p className="m-0 fw-medium">Ordenar por</p>
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu >
-                {children}
-            </Dropdown.Menu>
-        </Dropdown>
-    )
-})
-
-
-//la propiedad nombre : [a,b] -> A representa el nombre visual y B representa el nombre de la propiedad.
-//Este enfoque sirve darle un nombre diferente en caso de que el objecto que contiene las propiedades no sea igual al nombre visual.
-
-const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
+const Menu = ({ dropwDownList }) => {
 
     const { establecerQueryParams } = useContext(QueryParamsContext)
 
@@ -81,29 +59,51 @@ const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
     }, [JSON.stringify(orden)])
 
     return (
-        <DropwDownParent>
+        <Dropdown.Menu>
             {
-                dropwDownList.map(item => {
+                dropwDownList.map(({ nombre, propiedad, prioridad }, index) => {
 
-                    const nombreVisual = item.nombre[0]
-
-                    const nombreTecnico = !item.nombre[1] ? nombreVisual : item.nombre[1]
+                    const nombreTecnico = propiedad ? propiedad : nombre
 
                     return (
                         <DropwDownItems
-                            key={item.nombre}
+                            key={index}
                             establecerOrden={establecerOrden}
                             orden={orden[nombreTecnico.toLowerCase()]}
-                            nombre={item.nombre[0]}
+                            nombre={nombre}
                             nombreTecnico={nombreTecnico.toLowerCase()}
                             removerOrden={removerOrden}
-                            prioridad={item.prioridad}
+                            prioridad={prioridad}
                         />
                     )
                 })
             }
-        </DropwDownParent>
-    );
+        </Dropdown.Menu>
+    )
+}
+
+
+//DropDownList : 
+//Nombre : Esta la representacion visual.
+//Propiedad : Es la propiedad que se evaluara para el algoritmo/db
+//Prioridad : Sirve para ordenar en base a cual es el mas importante
+const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
+
+
+
+    return (
+        <Dropdown className="position-relative" autoClose="outside" >
+            <Dropdown.Toggle
+                variant="outline-ligthdark"
+                className=" d-flex py-2 align-items-center"
+                id="dropdown-orden">
+                <i className="fa-solid mx-1 fw-bolder fa-chart-bar"></i>
+                <p className="m-0 fw-medium">Ordenar por</p>
+            </Dropdown.Toggle>
+
+            <Menu dropwDownList={dropwDownList} />
+        </Dropdown>
+    )
 })
 
 

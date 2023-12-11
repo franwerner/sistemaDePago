@@ -1,10 +1,10 @@
 import { Button, FloatingLabel, Form, Modal } from "react-bootstrap";
 import { useForm } from "../../../../hooks/useForm";
-import React from "react";
+import { memo } from "react";
 import styles from "@/styles/InterfaceDeRetiroYIngresoEfectivo.module.css"
 import { verificarSiEsNegativo } from "../../../../common/helper/verificarSiEsNegativo";
 
-const FormImporte = React.memo(({ importe, changeForm }) => {
+const FormImporte = memo(({ importe, changeForm }) => {
 
     return (
         <FloatingLabel
@@ -22,7 +22,7 @@ const FormImporte = React.memo(({ importe, changeForm }) => {
     )
 })
 
-const FormNota = React.memo(({ motivo, changeForm }) => {
+const FormNota = memo(({ motivo, changeForm }) => {
 
     return (
 
@@ -60,8 +60,7 @@ const Formulario = ({ signo }) => {
 
         <Form
             onSubmit={onSubmit}
-            id="form-efectivo">
-
+        >
 
             <FormNota
                 changeForm={changeForm}
@@ -80,6 +79,8 @@ const InterfaceDeRetiroYIngresoEfectivo = ({ tipo, alternarMostrar, mostrar }) =
 
     const signo = tipo == "retirar" ? "negativo" : "positivo"
 
+    const color = tipo == "retirar" ? "danger" : "success"
+
     return (
         <Modal
             show={mostrar}
@@ -97,10 +98,9 @@ const InterfaceDeRetiroYIngresoEfectivo = ({ tipo, alternarMostrar, mostrar }) =
             <Modal.Footer>
 
                 <Button
-                    form="form-efectivo"
                     type="submit"
-                    variant="primary"
-                    className={`${styles.btnForm} shadow bg-hoverdark text-uppercase border-0 fw-semibold w-100`}
+                    variant={color}
+                    className="shadow text-white ls-3 text-uppercase border-0 fw-semibold w-100"
                     onClick={alternarMostrar}
                 >
                     {tipo} efectivo

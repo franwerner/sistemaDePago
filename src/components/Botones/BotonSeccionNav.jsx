@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Button } from "react-bootstrap";
 
-export const BotonSeccionNav = memo(({ children,onClick }) => {
+export const BotonSeccionNav = memo(({ children,onClick = () =>{} }) => {
     return (
         <Button
         onClick={onClick}

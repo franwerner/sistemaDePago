@@ -1,6 +1,6 @@
 import { productoReducerContext } from "@/context//Contextos";
 import { memo, useContext } from "react";
-import { Col, Stack } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import ProductoCard from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeProducto/ProductoCard";
 
 
@@ -157,7 +157,7 @@ const ProductoMemoizado = memo(({ agregarProducto, producto }) => {
 
 const SeccionDeProductoBody = memo(() => {
 
-    const { agregarProducto } = useContext(productoReducerContext)
+    const { agregarProducto} = useContext(productoReducerContext)
 
     return (
         <Col

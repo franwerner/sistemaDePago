@@ -2,18 +2,17 @@ import BuscadorInput from "@/components//BuscadorInput";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
 import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
-import {Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { lazy } from "react";
 import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading";
-import { retrasoTest } from "@/common//helper/retrasoTest";
 import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
-const FormularioModalDeAñadir = lazy(() => retrasoTest(import("./FormularioModalDeAñadir"), 1))
 
+const FormularioModalDeAñadir = lazy(() => import("./FormularioModalDeAñadir"))
 
 const ordenList = [
-    { nombre: ["Ingreso"], prioridad: 3 },
-    { nombre: ["Compras"], prioridad: 1 },
-    { nombre: ["Devoluciones"], prioridad: 2 }
+    { nombre: "Ingreso", prioridad: 3 },
+    { nombre: "Compras", prioridad: 1 },
+    { nombre: "Devoluciones", prioridad: 2 }
 ]
 
 const filtradoList = [
@@ -36,7 +35,7 @@ const ButtonAñadirCliente = () => {
                         alternarMostrar={alternarMostrar} />
                 }
             </SuspenseCompontentsLoading>
-            
+
             <BotonSeccionNav onClick={alternarMostrar}>
                 Añadir cliente
                 <i className="fa-solid mx-1 fa-user-plus"></i>

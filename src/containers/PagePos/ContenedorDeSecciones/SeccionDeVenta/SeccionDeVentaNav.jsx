@@ -6,10 +6,10 @@ import { Col } from "react-bootstrap"
 
 
 const dropDownList = [
-    { nombre: ["Nombre"], prioridad: 7 },
-    { nombre: ["Metodo"], prioridad: 6 },
-    { nombre: ["Precio", "precioModificado"], prioridad: 3 },
-    { nombre: ["Lote"], prioridad: 2 },
+    { nombre: "Nombre", prioridad: 7 },
+    { nombre: "Metodo", prioridad: 6 },
+    { nombre: "Precio", propiedad: "precioModificado", prioridad: 3 },
+    { nombre: "Lote", prioridad: 2 },
 ]
 
 const SeccionDeVentaNav = memo(({ alternarMostrar }) => {

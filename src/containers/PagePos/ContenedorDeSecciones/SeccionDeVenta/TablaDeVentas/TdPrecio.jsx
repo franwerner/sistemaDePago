@@ -6,15 +6,13 @@ import styles from "@/styles/SeccionDeVenta.module.css"
 
 
 
-const TdPrecio = memo(({ precioModificado, modificarPrecio, nombre }) => {
-
-
+const TdPrecio = memo(({ precioModificado, modificarPrecio, obj }) => {
 
     return (
         <td className={`${styles.tdPrecio} text-center p-0`}>
             <DropwDownPrecio
                 modificarPrecio={modificarPrecio}
-                nombre={nombre} >
+                obj={obj} >
                 <CalcularPorcentajeMemoizado
                     n1={precioModificado}
                     n2={precioModificado} />

@@ -1,8 +1,12 @@
 import { Button, Col, Row, Stack } from "react-bootstrap"
 import styles from "@/styles/SeccionDeCaja.module.css"
 import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales"
-import InterfaceDeRetiroYIngresoEfectivo from "./InterfaceDeRetiroYIngresoEfectivo"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
+import { lazy } from "react"
+import { retrasoTest } from "@/common//helper/retrasoTest"
+import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading"
+
+const InterfaceDeRetiroYIngresoEfectivo = lazy(() => retrasoTest(import("./InterfaceDeRetiroYIngresoEfectivo")))
 
 const opcionesBoton = [
     { nombre: "Retirar", icon: "fa-arrow-turn-down" },
@@ -14,15 +18,24 @@ const BotonEfectivo = ({ nombre, icon }) => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <>
+        <div className="my-3 w-100 d-flex justify-content-center ">
+            <SuspenseCompontentsLoading>
+                {
+                    mostrar &&
+                    <InterfaceDeRetiroYIngresoEfectivo
+                        tipo={nombre.toLowerCase()}
+                        alternarMostrar={alternarMostrar}
+                        mostrar={mostrar} />
+                }
+            </SuspenseCompontentsLoading>
+
             <Button
                 onClick={alternarMostrar}
-                variant="outline-primary">
+                variant="outline-primary-2  mx-1 ls-3 border-2 w-75 fs-5 p-2">
                 {nombre}
-                <i className={`fa-solid ${icon}`} />
+                <i className={`fa-solid fs-4 ${icon}`} />
             </Button>
-            <InterfaceDeRetiroYIngresoEfectivo tipo={nombre.toLowerCase()} alternarMostrar={alternarMostrar} mostrar={mostrar} />
-        </>
+        </div>
     )
 }
 
@@ -41,12 +54,14 @@ export const SeccionDeCajaBody = () => {
                         <div className="text-dark">
                             <p>Abierto por</p>
                             <p>Punto de venta</p>
-                            <p className="my-0">Apertura</p>
+                            <p >Apertura</p>
+                            <p className="my-0">Estado</p>
                         </div>
                         <div className="border-start  mx-1 px-3 ">
                             <p className="text-primary-2" >Franco Werner </p>
                             <p className="text-primary-2">Provincias unidas 1992</p>
-                            <p className="my-0 text-dark fw-light">3/11/2023 17:01:56</p>
+                            <p className="text-dark fw-light">3/11/2023 17:01:56</p>
+                            <p className="my-0 text-success">Abierto</p>
                         </div>
 
                     </Stack>
@@ -61,7 +76,7 @@ export const SeccionDeCajaBody = () => {
             </Row>
 
             <Row className="m-0 flex-grow-1">
-                <Col xs="auto">
+                <Col xs="12" md="8">
                     <Stack
                         gap={5}
                         direction="horizontal"
@@ -80,7 +95,7 @@ export const SeccionDeCajaBody = () => {
                     </Stack>
                 </Col>
 
-                <Col>
+                <Col xs className="d-flex align-items-center flex-column justify-content-center">
                     {
                         opcionesBoton.map(item =>
                             <BotonEfectivo key={item.nombre} {...item} />

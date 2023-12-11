@@ -39,8 +39,8 @@ export const ModalBody = () => {
     }, [])
 
     return (
-        <Modal.Body className="h-100 p-0">
-            <div className="d-flex justify-content-around  p-1 pb-0 ">
+        <Modal.Body className="h-100 ">
+            <div className="d-flex justify-content-around mb-2 p-1 pb-0 ">
                 {
                     botonesNavegacion.map(item =>
                         <div
@@ -54,7 +54,7 @@ export const ModalBody = () => {
                 }
             </div>
 
-            <div className={`${styles.contenedorDeSecciones} d-flex  justify-content-center h-100 w-100 scrollBarPersonalizada shadow`}>
+            <div className={`${styles.contenedorDeSecciones} d-flex shadow justify-content-center  h-100 w-100 scrollBarPersonalizada `}>
 
                 {
                     <SuspenseCompontentsLoading>

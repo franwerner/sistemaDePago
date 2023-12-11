@@ -2,8 +2,6 @@ import { useForm } from "@/hooks//useForm"
 import React, { memo, useCallback, useEffect } from "react"
 import { Button, Form } from "react-bootstrap"
 import styles from "@/styles/SeccionDeVenta.module.css"
-import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
-import { concatenarDecimales } from "@/common//helper/concatenarDecimales"
 
 const BotonCantidad = memo(({ tipo, onClick }) => {
 
@@ -22,21 +20,24 @@ const BotonCantidad = memo(({ tipo, onClick }) => {
 })
 
 
-const TdCantidad = memo(({ cantidad = 0, nombre, modificarCantidad }) => {
+const TdCantidad = memo(({ cantidad = 0, modificarCantidad, obj }) => {
 
     const { changeForm, form, setForm } = useForm({ cantidad })
 
-    const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
-
     const modificacionForm = useCallback((numero) => setForm(({ cantidad }) => {
 
-        return { cantidad: concatenarDecimales(cantidad, numero) }
+        if (parseInt(cantidad) == 0) {
+            return { cantidad: numero }
+        }
+
+        return { cantidad: (numero + parseFloat(cantidad)).toFixed(2) }
 
     }), [])
 
     useEffect(() => {
+        if (cantidad == 0 || isNaN(cantidad) || form.cantidad == cantidad) return
 
-        modificarCantidad({ nombre, cantidad: form.cantidad })
+        modificarCantidad({cantidad: form.cantidad, ...obj })
 
     }, [form.cantidad])
 
@@ -51,9 +52,6 @@ const TdCantidad = memo(({ cantidad = 0, nombre, modificarCantidad }) => {
                     onClick={modificacionForm} />
                 <Form.Control
                     step="0.1"
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
-                    ref={refFocusElement}
                     onChange={changeForm}
                     name="cantidad"
                     aria-describedby="cantidadTable"

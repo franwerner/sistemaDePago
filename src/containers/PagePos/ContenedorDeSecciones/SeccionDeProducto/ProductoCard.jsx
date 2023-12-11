@@ -29,7 +29,7 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
 
     const onClick = (e) => {
 
-        e.target.id !== "contenedor-favorito" && e.target.tagName !== "I" && agregarProducto({ ...producto, lote: cantidadTest })
+        e.target.id !== "contenedor-favorito" && e.target.tagName !== "I" && agregarProducto({ ...producto, cantidadDisponible: cantidadTest })
 
     }
 
@@ -39,20 +39,20 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
             className={`${styles.cardContainer} card-move-up m-2 shadow border-0 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
-                <p className="m-2 text-primary-2 fs-6  mx-3">#{AgregarCerosANumeros({numero : cantidadTest,digitos : 3})}</p>
+                <p className="m-2 text-primary-2 fs-6  mx-2">{`*(${cantidadTest})` || "Sin lote"}</p>
+
                 <CardFavorito />
+
             </Card.Title>
-
-            <Card.Img
-                sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 33.3vw"
-                alt={`${nombre}-$${precio}`}
-                style={{ objectFit: "contain", minHeight: "90px" }}
-                width={90}
-                loading="lazy"
-                decoding="async"
-                height={110}
-                src="https://static.vecteezy.com/system/resources/previews/011/033/490/non_2x/potatoes-isolated-no-background-png.png" />
-
+                <Card.Img
+                    sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 33.3vw"
+                    alt={`${nombre}-$${precio}`}
+                    style={{ objectFit: "contain", minHeight: "90px" }}
+                    width={90}
+                    loading="lazy"
+                    decoding="async"
+                    height={95}
+                    src="https://static.vecteezy.com/system/resources/previews/011/033/490/non_2x/potatoes-isolated-no-background-png.png" />
             <Card.Body className=" p-0 m-0 d-flex flex-column  h-100 align-items-center ">
 
 

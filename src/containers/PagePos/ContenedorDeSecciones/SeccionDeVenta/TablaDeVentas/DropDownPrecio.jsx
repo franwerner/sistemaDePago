@@ -4,16 +4,14 @@ import { useForm } from "@/hooks/useForm";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { useFocusMouseElements } from "@/hooks/useFocusMouseElements";
 
-
-
-const FormDropwDown = ({ modificarPrecio, nombre }) => {
+const FormDropwDown = ({ modificarPrecio, obj }) => {
   const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
 
   const { changeForm, form } = useForm({ precio: 0 })
 
   const onClick = () => {
 
-    modificarPrecio({ nombre, precioModificado: form.precio })
+    modificarPrecio({ ...obj, precioModificado: form.precio })
   }
 
   return (
@@ -49,7 +47,7 @@ const FormDropwDown = ({ modificarPrecio, nombre }) => {
 }
 
 
-const DropwDownPrecio = memo(({ children, modificarPrecio, nombre }) => {
+const DropwDownPrecio = memo(({ children, modificarPrecio, obj = {} }) => {
 
 
   return (
@@ -70,7 +68,7 @@ const DropwDownPrecio = memo(({ children, modificarPrecio, nombre }) => {
         <Dropdown.ItemText>
           <FormDropwDown
             modificarPrecio={modificarPrecio}
-            nombre={nombre} />
+            obj={obj} />
         </Dropdown.ItemText>
       </DropdownMenu>
     </Dropdown>

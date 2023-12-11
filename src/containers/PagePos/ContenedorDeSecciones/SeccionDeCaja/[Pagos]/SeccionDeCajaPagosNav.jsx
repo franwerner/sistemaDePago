@@ -3,9 +3,9 @@ import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDe
 import { Col } from "react-bootstrap";
 
 const dropwDownList = [
-    { nombre: ["Monto"], prioridad: 1 },
-    { nombre: ["Hora", "fecha"], prioridad: 3 },
-    { nombre: ["Orden"], prioridad: 2 },
+    { nombre: "Monto", prioridad: 1 },
+    { nombre: "Hora", propiedad: "fecha", prioridad: 3 },
+    { nombre: "Orden", prioridad: 2 },
 ]
 
 export const SeccionDeCajaPagosNav = () => {
@@ -15,7 +15,7 @@ export const SeccionDeCajaPagosNav = () => {
             <Col xs="auto" >
                 <DropDownOrdenDefault dropwDownList={dropwDownList} />
             </Col>
-            
+
             <Col
                 className="pt-1 pt-md-0"
                 md="8"

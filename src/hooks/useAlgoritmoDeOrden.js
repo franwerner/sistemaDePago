@@ -1,21 +1,4 @@
-import { useCallback, useMemo } from "react";
-
-const ordenarPrioridad = (parametros) => {
-
-    const dependenciaPrioridad = Object.keys(parametros)
-
-    const organizarPrioridad = useMemo(() => {
-
-        return Object.entries(parametros).sort(([_, valueA], [__, valueB]) => {
-
-            return valueA.prioridad - valueB.prioridad
-        })
-
-    }, [JSON.stringify(dependenciaPrioridad)])
-
-    return organizarPrioridad
-}
-
+import { useCallback } from "react";
 
 const ordernAscendente = (a = "", b = "") => {
     if (isNaN(a) || isNaN(b)) {
@@ -38,15 +21,15 @@ export const useAlgoritmoDeOrden = (parametros = "") => {
 
     const dependenciaArray = Object.values(parametros)
 
-    const organizarPrioridad = ordenarPrioridad(parametros)
+    const entries = Object.entries(parametros)
 
     const iniciarSort = useCallback((array = []) => {
 
         return [...array].sort((a, b) => {
 
-            for (let i = 0; i < organizarPrioridad.length; i++) { //Este enfoque hace que se ejecute en orden segun el indice del array de las prioridades
+            for (let i = 0; i < entries.length; i++) { //Este enfoque hace que se ejecute en orden segun el indice del array de las prioridades
 
-                const prop = organizarPrioridad[i][0]
+                const prop = entries[i][0]
 
                 const buscarItem = (indice) => Object.entries(indice).find(([key]) => key.toLocaleLowerCase() == prop)[1]
 

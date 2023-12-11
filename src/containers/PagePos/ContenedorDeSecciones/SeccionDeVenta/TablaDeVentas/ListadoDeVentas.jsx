@@ -21,14 +21,6 @@ const TdMetodo = memo(({ metodo }) => {
     </td>
 })
 
-const TdLote = memo(({ lote = "" }) => {
-    return (
-        <td className="text-center fw-bolder text-ligthdark">
-            #{lote}
-        </td>
-    )
-})
-
 const TdTrash = memo(({ borrarProducto, nombre }) => {
     const onClick = () => {
         borrarProducto({ nombre })
@@ -44,7 +36,6 @@ const TdTrash = memo(({ borrarProducto, nombre }) => {
 
 const ListadoDeVentas = memo((
     { cantidad,
-        lote,
         metodo,
         nombre,
         precioModificado,
@@ -55,6 +46,8 @@ const ListadoDeVentas = memo((
         descuento }
 ) => {
 
+    const obj = { nombre }
+
     return (
         <tr >
             <TdNombre nombre={nombre} />
@@ -62,21 +55,19 @@ const ListadoDeVentas = memo((
             <TdMetodo metodo={metodo} />
 
             <TdCantidad
+                obj={obj}
                 modificarCantidad={modificarCantidad}
-                nombre={nombre}
                 cantidad={cantidad} />
 
             <TdPrecio
                 precioModificado={precioModificado}
-                nombre={nombre}
+                obj={obj}
                 modificarPrecio={modificarPrecio} />
 
             <TdDescuento
-                nombre={nombre}
+                obj={obj}
                 descuento={verificarSiEsNegativo(cantidad) ? 0 : descuento}
                 aplicarDescuento={aplicarDescuento} />
-
-            <TdLote lote={lote} />
 
             <TdTotal
                 descuento={descuento}

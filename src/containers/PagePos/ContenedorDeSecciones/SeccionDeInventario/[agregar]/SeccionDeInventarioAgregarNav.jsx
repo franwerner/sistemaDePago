@@ -8,10 +8,10 @@ import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 const ModalDeAgregarProducto = lazy(() => import("./ModalDeAgregarProducto"))
 
 const dropwDownList = [
-    { nombre: ["Nombre"], prioridad: 4 },
-    { nombre: ["Cantidad"], prioridad: 1 },
-    { nombre: ["Fabricacion"], prioridad: 2 },
-    { nombre: ["Vencimiento"], prioridad: 3 },
+    { nombre: "Nombre", prioridad: 4 },
+    { nombre: "Cantidad", prioridad: 1 },
+    { nombre: "Fabricacion", prioridad: 2 },
+    { nombre: "Vencimiento", prioridad: 3 },
 ]
 
 const BotonAgregar = () => {

@@ -14,28 +14,9 @@ const productosTest = //En la base de datos, esto ya viene con el precio con la 
     ],
 }
 
-const ThEditado = ({ editado, precio }) => {
-    const { alternarMostrar, mostrar } = useEventoMostrar()
 
 
-    const isEditado = editado ? "si" : "no"
-
-    return (
-        <th
-            onClick={alternarMostrar}
-            className={`${editado && "text-danger"} bg-hover cursor-pointer fw-medium text-uppercase`}>
-            {
-                !mostrar ?
-                    isEditado
-                    :
-                    `$ ${separarNumerosConDecimales((precio))}`
-            }
-        </th>
-    )
-
-}
-
-const TBody = ({ nombre, metodo, cantidad, descuento, editado, precioModificado, precio }) => {
+const TBody = ({ nombre, metodo, cantidad, descuento, precioModificado }) => {
 
     const total = cantidad * precioModificado
 
@@ -54,8 +35,6 @@ const TBody = ({ nombre, metodo, cantidad, descuento, editado, precioModificado,
             <th className="fw-normal  text-truncate  ">
                 {cantidad}
             </th>
-
-            <ThEditado editado={editado} precio={precio} />
 
             <th className="fw-normal  text-truncate   text-nowrap">
                 $ {separarNumerosConDecimales(precioModificado)}
@@ -81,7 +60,6 @@ const TablaListaDeProductos = () => {
                     <th className="p-3">Item</th>
                     <th>Metodo</th>
                     <th>Cantidad</th>
-                    <th>Modificado</th>
                     <th>Precio</th>
                     <th>Descuento</th>
                     <th>Total</th>

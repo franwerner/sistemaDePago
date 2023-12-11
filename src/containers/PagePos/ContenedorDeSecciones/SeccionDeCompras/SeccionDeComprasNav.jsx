@@ -6,17 +6,17 @@ import { Paginacion } from "@/components//Paginacion"
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault"
 
 const dropwDownList = [
-    { nombre: ["Estado"], prioridad: 6 },
-    { nombre: ["Cliente"], prioridad: 5 },
-    { nombre: ["Hora", "fecha"], prioridad: 2 },
-    { nombre: ["Empleado"], prioridad: 4 },
-    { nombre: ["Orden"], prioridad: 3 },
-    { nombre: ["Total"], prioridad: 1 },
+    { nombre: "Estado", prioridad: 6 },
+    { nombre: "Cliente", prioridad: 5 },
+    { nombre: "Hora", propiedad: "fecha", prioridad: 2 },
+    { nombre: "Empleado", prioridad: 4 },
+    { nombre: "Orden", prioridad: 3 },
+    { nombre: "Total", prioridad: 1 },
 ]
 
 const dropwDownList2 = [
-    { nombre: "Devuelto" },
-    {nombre : "Pagado"}
+    { nombre: "Devuelto", propiedad: "estado", condicional: "devuelto" },
+    { nombre: "Pagado", propiedad: "estado", condicional: "pagado" }
 ]
 
 const PaginacionCompras = () => {
@@ -24,7 +24,10 @@ const PaginacionCompras = () => {
     const { id } = useParams()
 
     return (
-        <Paginacion url={"pos/compras"} parametro={id} largo={15} />
+        <Paginacion
+            url={"pos/compras"}
+            parametro={id}
+            largo={15} />
     )
 }
 
@@ -34,10 +37,16 @@ const SeccionDeComprasNav = () => {
     return (
         <>
             <Col
+                xs="auto"
+                md="3"
                 className="d-flex justify-content-between align-items-center">
                 <DropDownOrdenDefault dropwDownList={dropwDownList} />
-                <DropDownFilterDefault dropwDownList={dropwDownList2} />
+
+                <span className="mx-1">
+                    <DropDownFilterDefault dropwDownList={dropwDownList2} />
+                </span>
             </Col>
+
             <Col
                 xs={{ order: "0", span: "auto" }}
                 md={{ order: "2", span: "2" }}

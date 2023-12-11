@@ -51,10 +51,10 @@ export const SeccionVentaPagosNav = () => {
 
                     <div className="text-truncate text-center">
                         <p className="m-0 fw-semibold text-nowrap">
-                            Cambio
+                           Cambio
                         </p>
                         <p className="m-0  text-truncate">
-                            <TotalMetodoDePagoMemoizado obj={"cambio"} />
+                        $/  <TotalMetodoDePagoMemoizado obj={"cambio"} />
                         </p>
                     </div>
                 </Stack>

@@ -2,22 +2,21 @@ import { useForm } from "@/hooks//useForm"
 import { useEffect } from "react"
 import { Form } from "react-bootstrap"
 import styles from "@/styles/SeccionDeVenta.module.css"
-import { useFocusMouseElements } from "@/hooks//useFocusMouseElements"
 import { memo } from "react"
 
-const TdDescuento = memo(({ aplicarDescuento, descuento = 0, nombre }) => {
+const TdDescuento = memo(({ aplicarDescuento, descuento = 0, obj }) => {
 
     const { changeForm, form } = useForm({ descuento })
-
-    const { refFocusElement, onMouseEnter, onMouseLeave } = useFocusMouseElements()
 
     const porcentajeForm = parseFloat(form.descuento)
 
     useEffect(() => {
 
+        if (descuento == form.descuento) return
+
         const verificarSiEsMayorA100 = porcentajeForm >= 100 ? 100 : porcentajeForm
 
-        aplicarDescuento({ nombre, descuento: verificarSiEsMayorA100 })
+        aplicarDescuento({ ...obj, descuento: verificarSiEsMayorA100 })
 
     }, [porcentajeForm])
 
@@ -25,10 +24,7 @@ const TdDescuento = memo(({ aplicarDescuento, descuento = 0, nombre }) => {
         <td className={`${styles.tdDescuento}`}>
             <div className="d-flex justify-content-center ">
                 <Form.Control
-                step = "0.1"
-                    ref={refFocusElement}
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
+                    step="0.1"
                     onChange={changeForm}
                     name="descuento"
                     value={descuento}

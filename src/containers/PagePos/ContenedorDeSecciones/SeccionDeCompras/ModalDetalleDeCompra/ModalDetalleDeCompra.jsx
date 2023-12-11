@@ -6,6 +6,7 @@ import { ModalBody } from "./ModalBody";
 import { cargaDiferida } from "@/common//helper/cargaDiferida";
 
 const TicketDeVenta = lazy(() => import("@/components//TicketDeVenta"))
+
 const BuscarCodigoDeMensaje = cargaDiferida(() => import("@/common//helper/buscarCodigoMensajePersonalizado"))
 
 const productosTest =
@@ -32,7 +33,7 @@ const ReImpresion = () => {
 
     return (
         <>
-            <i onClick={alternarMostrar} className="fa-solid fa-print fs-2 bg-secondary cursor-pointer zoom text-white mx-2 p-2 rounded-circle"></i>
+            <i onClick={alternarMostrar} className="fa-solid fa-print fs-2 bg-primary cursor-pointer zoom text-white mx-2 p-2 rounded-circle"></i>
 
             {mostrar &&
                 <TicketDeVenta
@@ -61,7 +62,6 @@ const ModalDetalleDeCompra = ({ alternarMostrar, mostrar, orden, estado }) => {
             onHide={alternarMostrar}>
 
             <Modal.Header
-                className="shadow"
                 closeButton>
                 <Modal.Title className="d-flex align-items-center p-0 w-100 justify-content-between">
 
@@ -71,7 +71,7 @@ const ModalDetalleDeCompra = ({ alternarMostrar, mostrar, orden, estado }) => {
                         -
                         <p className="m-0">{AgregarCerosANumeros({ numero: orden, digitos: 5 })}</p>
 
-                        {estado == "Pagado" &&
+                        {estado == "pagado" &&
                             <ReImpresion />
                         }
                     </div>
@@ -82,10 +82,10 @@ const ModalDetalleDeCompra = ({ alternarMostrar, mostrar, orden, estado }) => {
             <ModalBody />
 
             <Modal.Footer >
-                {estado == "Pagado" &&
+                {estado == "pagado" &&
                     <Button
-                        variant="outline-primary"
-                        className="fw-bold w-100 p-2">
+                        variant="outline-ligthdark"
+                        className="fw-bold text-uppercase ls-3 w-100 p-2">
                         Devolver Producto
                     </Button>}
             </Modal.Footer>

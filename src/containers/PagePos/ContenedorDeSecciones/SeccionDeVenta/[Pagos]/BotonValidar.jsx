@@ -39,7 +39,7 @@ const BotonValidar = () => {
 
     const { listaProducto, borrarListado } = useContext(productoReducerContext)
 
-    const { restablecerPagos,pagoActual } = useContext(restoDelPagoContext)
+    const { restablecerPagos, pagoActual } = useContext(restoDelPagoContext)
 
     const validacion = restante == 0 && listaProducto.length > 0 && pagoActual.length > 0
 

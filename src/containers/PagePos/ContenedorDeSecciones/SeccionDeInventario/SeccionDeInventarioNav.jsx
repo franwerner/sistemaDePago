@@ -6,11 +6,11 @@ import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const dropwDownOrden = [
-    { nombre: ["Vencimiento"], prioridad: 0 },
-    { nombre: ["Fabricacion"], prioridad: 1 },
-    { nombre: ["Numero"], prioridad: 2 },
-    { nombre: ["Ingreso"], prioridad: 3 },
-    { nombre: ["Items"], prioridad: 4 },
+    { nombre: "Vencimiento", prioridad: 0 },
+    { nombre: "Fabricacion", prioridad: 1 },
+    { nombre: "Numero", prioridad: 2 },
+    { nombre: "Ingreso", prioridad: 3 },
+    { nombre: "Items", prioridad: 4 },
 
 ]
 

@@ -9,7 +9,7 @@ const SeccionDeCaja = () => {
 
     return (
         <>
-            <SeccionNavDefault>
+            <SeccionNavDefault classAdd="p-2">
                 <SeccionDeCajaNav />
             </SeccionNavDefault>
 

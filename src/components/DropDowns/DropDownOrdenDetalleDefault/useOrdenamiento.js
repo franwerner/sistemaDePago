@@ -10,7 +10,7 @@ export const useOrdenamiento = () => {
 
             const buscarParametro = prev[nombre] ? prev[nombre] : {}
 
-            const estadoActual = buscarParametro.estado == ">" ? "<" : ">"
+            const estadoActual = buscarParametro.estado == "<" ? ">" : "<"
 
             return {
                 ...prev, [nombre]: {
@@ -31,9 +31,18 @@ export const useOrdenamiento = () => {
 
     }, [])
 
+    const ordenarPrioridad = (parametros) => {
+
+            const prioridades =  Object.entries(parametros).sort(([_, valueA], [__, valueB]) => {
+
+                return valueA.prioridad - valueB.prioridad
+            })
+        return Object.fromEntries(prioridades)
+    }
+
     return {
         establecerOrden,
-        orden,
+        orden: ordenarPrioridad(orden),
         removerOrden
     }
 
