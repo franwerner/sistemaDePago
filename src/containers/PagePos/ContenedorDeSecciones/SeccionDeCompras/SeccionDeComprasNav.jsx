@@ -1,9 +1,10 @@
 import BuscadorInput from "@/components//BuscadorInput"
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault"
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault"
 import { Col } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import { Paginacion } from "@/components//Paginacion"
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault"
+import { SeccionNavCol } from "@/components//SeccionNavCol"
 
 const dropwDownList = [
     { nombre: "Estado", prioridad: 6 },
@@ -31,36 +32,22 @@ const PaginacionCompras = () => {
     )
 }
 
+const List = [
+    { component: <DropDownOrdenDefault dropwDownList={dropwDownList} /> },
+    { component: <DropDownFilterDefault dropwDownList={dropwDownList2} />, },
+    {
+        component: <BuscadorInput texto="nro de orden" />,
+        props: { className: "d-flex justify-content-center  align-items-center", xs: { order: 2, span: 12 }, xl: { order: 0, span: "auto" } }
+    },
+    { component: <PaginacionCompras /> },
+
+]
+
 
 const SeccionDeComprasNav = () => {
 
     return (
-        <>
-            <Col
-                xs="auto"
-                md="3"
-                className="d-flex justify-content-between align-items-center">
-                <DropDownOrdenDefault dropwDownList={dropwDownList} />
-
-                <span className="mx-1">
-                    <DropDownFilterDefault dropwDownList={dropwDownList2} />
-                </span>
-            </Col>
-
-            <Col
-                xs={{ order: "0", span: "auto" }}
-                md={{ order: "2", span: "2" }}
-                className="d-flex justify-content-end  align-items-center">
-                <PaginacionCompras />
-            </Col>
-            <Col
-                xs="12" md="5"
-                className="d-flex justify-content-center align-items-center">
-                <BuscadorInput texto={"nro de orden"} />
-            </Col>
-
-        </>
-
+        <SeccionNavCol list={List} />
     )
 }
 

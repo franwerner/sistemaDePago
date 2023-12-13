@@ -69,7 +69,7 @@ export const AccordionSeccionesOffCavans = memo(({ nombre, icon, subRutas, index
             <Card.Header className={`border-0 rounded-3 p-0 ${styles[rutaActual ? "seccionElegida" : "seccionesMenu"]}`}>
 
                 <Link
-                    style={{ textDecoration: "none" }}
+                    className="text-decoration-none"
                     to={nombreLowerCase}>
 
                     <ContextAcordion rutaActual={rutaActual} eventKey={index} >

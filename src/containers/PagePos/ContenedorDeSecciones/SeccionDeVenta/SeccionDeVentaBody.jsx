@@ -1,21 +1,12 @@
 import { Col } from "react-bootstrap";
 import { productoReducerContext } from "@/context//Contextos";
-import { Suspense, memo, useContext } from "react";
+import { Suspense, lazy, memo, useContext } from "react";
 import TablaDeVentas from "./TablaDeVentas/TablaDeVentas";
 import Ticket from "./Ticket/Ticket";
-import SvgCarritoVacio from "@/components//Svg/SvgCarritoVacio";
-import { Link } from "react-router-dom";
+import ContenedorVacio from "@/components//ContenedorVacio";
 
-const ContenedorCarrito = () => {
-    return (
-        <div className="h-100 d-flex flex-column justify-content-center align-items-center">
-            <Link className="zoom" to={"/pos/productos"}>
-                <SvgCarritoVacio />
-            </Link>
-            <p className="m-0  text-wrap fs-5 text-ligthdark fw-semibold text-center">No hay productos seleccionados.</p>
-        </div>
-    )
-}
+const SvgCarritoVacio = lazy(() => import("@/components//Svg/SvgCarritoVacio"))
+
 
 const SeccionDeVentaBody = memo(({ mostrar }) => {
 
@@ -32,7 +23,11 @@ const SeccionDeVentaBody = memo(({ mostrar }) => {
 
                 <Suspense fallback={<div>Loading...</div>}>
                     {listaProducto.length === 0 ?
-                        <ContenedorCarrito />
+                        <ContenedorVacio
+                            ruta={"/pos/productos"}
+                            texto={"No se encontro ningun producto"}>
+                            <SvgCarritoVacio />
+                        </ContenedorVacio>
                         :
                         <TablaDeVentas />
                     }

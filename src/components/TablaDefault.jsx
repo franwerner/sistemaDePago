@@ -5,7 +5,7 @@ import styles from "@/styles/TablaDefault.module.css"
 export const TablaDefault = memo(({ thead = [], children }) => {
 
     return (
-        <Table striped  className="border " id={styles.tabla}  hover>
+        <Table striped id={styles.tabla} className="m-0 "  hover>
             <thead className="shadow align-middle text-center position-relative">
                 <tr className="border-white ">
                     {

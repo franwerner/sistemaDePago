@@ -1,9 +1,10 @@
 import { productoReducerContext } from "@/context//Contextos";
-import { memo, useContext } from "react";
+import { lazy, memo, useContext } from "react";
 import { Col } from "react-bootstrap";
 import ProductoCard from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeProducto/ProductoCard";
 import shortid from "shortid";
-
+const ContenedorVacio = lazy(() => import("@/components//ContenedorVacio"))
+const SvgBarCode = lazy(()=> import("@/components//Svg/SvgBarCode"))
 
 const kiosco = [
     {
@@ -182,20 +183,31 @@ const ProductoMemoizado = memo(({ agregarProducto, producto, productoEnLista }) 
     )
 })
 
+
+
 const SeccionDeProductoBody = memo(() => {
 
     const { agregarProducto, listaProducto } = useContext(productoReducerContext)
 
+    const productos = [1]
+
     return (
         <Col
             className="flex-wrap position-relative align-content-start p-0 d-flex justify-content-center justify-content-md-start">
-            {secciones["home"].map((producto) =>
-                <ProductoMemoizado
-                    key={producto.id_producto}
-                    producto={producto}
-                    productoEnLista={listaProducto.find(item => item.id_producto == producto.id_producto)}
-                    agregarProducto={agregarProducto} />
-            )}
+            {
+                productos.length > 0 ? secciones["home"].map((producto) =>
+                    <ProductoMemoizado
+                        key={producto.id_producto}
+                        producto={producto}
+                        productoEnLista={listaProducto.find(item => item.id_producto == producto.id_producto)}
+                        agregarProducto={agregarProducto} />
+                )
+                    :
+
+                    <ContenedorVacio texto={"No se encontro ningun producto"}>
+                        <SvgBarCode />
+                    </ContenedorVacio>
+            }
         </Col>
     );
 })

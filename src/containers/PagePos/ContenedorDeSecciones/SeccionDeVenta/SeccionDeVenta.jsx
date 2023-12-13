@@ -20,12 +20,9 @@ const SeccionDeVenta = ({ containerRef, alternarMostrar, mostrar }) => {
                 referido={containerRef}>
                 <SeccionDeVentaBody mostrar={mostrar} />
             </SeccionBodyDefault>
-
-
+            
         </QueryParamsProvider >
     );
-
-
 };
 
 

@@ -1,20 +1,19 @@
-import { Button, Col } from "react-bootstrap";
+import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
+import {  Col } from "react-bootstrap";
 
 export const SeccionDeCajaNav = () => {
     return (
         <>
             <Col
                 className="d-flex   fw-medium align-items-center">
-                <p className="m-0 text-ligthdark fs-5">POS / 08456</p>
+                <p className="m-0 text-ligthdark fs-5 border-bottom">POS / 08456</p>
             </Col>
 
 
-            <Col className="d-flex align-items-center justify-content-end">
-                <Button
-                    variant="outline-ligthdark"
-                    className="fw-semibold ls- fs-6">
+            <Col xs="auto" className="d-flex align-items-center justify-content-end">
+                <BotonSeccionNav>
                     Fin de la session
-                </Button>
+                </BotonSeccionNav>
             </Col>
 
 

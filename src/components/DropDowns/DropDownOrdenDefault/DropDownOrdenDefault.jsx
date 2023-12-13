@@ -28,12 +28,12 @@ const DropwDownItems = memo(({ nombre, nombreTecnico, prioridad, orden, establec
 
             <Dropdown.Item
                 onClick={onClick}
-                className="fw-medium bg-white position-relative pe-5 d-flex align-items-center p-3 py-2  " >
+                className="fw-medium bg-white position-relative text-ligthdark  pe-5 d-flex align-items-center p-3 py-2  " >
                 <div className="position-relative">
                     <p className="m-0">{nombre}</p>
                     <span
                         style={{ fontSize: "14px", top: "-40%", right: "-12px" }}
-                        className="position-absolute border-bottom ">{prioridad}</span>
+                        className="position-absolute text-dark fw-medium border-bottom ">{prioridad}</span>
                 </div>
 
 
@@ -66,6 +66,13 @@ const Menu = ({ dropwDownList }) => {
 
     return (
         <Dropdown.Menu >
+
+            <Dropdown.ItemText className="text-center text-uppercase text-ligthdark fw-semibold ls-3">
+                Orden
+            </Dropdown.ItemText>
+
+            <Dropdown.Divider className="m-0 pb-1" />
+
             {
                 dropwDownList.map(({ nombre, propiedad, prioridad }, index) => {
 
@@ -105,13 +112,15 @@ const Menu = ({ dropwDownList }) => {
 const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
 
     return (
-        <Dropdown className="position-relative" autoClose="outside" >
+        <Dropdown
+            className="position-relative"
+            autoClose="outside" >
             <Dropdown.Toggle
                 variant="outline-ligthdark"
                 className=" d-flex py-2 align-items-center"
                 id="dropdown-orden">
-                <i className="fa-solid mx-1 fw-bolder fa-chart-bar"></i>
-                <p className="m-0 fw-medium">Ordenar por</p>
+                <i className="fa-solid mx-1 fs-5 fw-bolder fa-chart-bar"></i>
+                <span className="m-0 fw-medium d-none d-sm-inline">Ordenar por</span>
             </Dropdown.Toggle>
 
             <Menu dropwDownList={dropwDownList.sort((a, b) => a.prioridad - b.prioridad)} />

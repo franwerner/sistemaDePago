@@ -1,11 +1,12 @@
 import BuscadorInput from "@/components//BuscadorInput";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import { Col } from "react-bootstrap";
 import { lazy } from "react";
 import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading";
 import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
+import { SeccionNavCol } from "@/components//SeccionNavCol";
 
 const FormularioModalDeAñadir = lazy(() => import("./FormularioModalDeAñadir"))
 
@@ -25,8 +26,7 @@ const ButtonAñadirCliente = () => {
 
     return (
         <Col
-            xs="12"
-            md="auto"
+            xs="auto"
             className="p-0 mt-1 mt-md-0 d-flex justify-content-start  ">
             <SuspenseCompontentsLoading>
                 {
@@ -37,7 +37,7 @@ const ButtonAñadirCliente = () => {
             </SuspenseCompontentsLoading>
 
             <BotonSeccionNav onClick={alternarMostrar}>
-                Añadir cliente
+                <span className="d-none  d-sm-inline"> Añadir cliente</span>
                 <i className="fa-solid mx-1 fa-user-plus"></i>
             </BotonSeccionNav>
 
@@ -45,28 +45,18 @@ const ButtonAñadirCliente = () => {
     )
 }
 
+const list = [
+    { component: <DropDownOrdenDefault dropwDownList={ordenList} /> },
+    { component: <DropDownFilterDefault dropwDownList={filtradoList} /> },
+    { component: <ButtonAñadirCliente /> },
+    { component: <BuscadorInput texto="por dni" />, props: { xs: 12, xl: 4 } },
+]
+
 
 export const SeccionDeClientesNav = () => {
     return (
         <>
-            <Col
-                xs="auto"
-                className="d-flex justify-content-center align-items-center">
-                <DropDownOrdenDefault dropwDownList={ordenList} />
-            </Col>
-            <Col
-                className="d-flex justify-content-center align-items-center"
-                xs="auto">
-                <DropDownFilterDefault dropwDownList={filtradoList} />
-            </Col>
-            <Col
-                className="pt-2"
-                xs={{ order: "3" }}
-                xl={{ order: "0", span: "5" }}>
-                <BuscadorInput texto="por dni" />
-            </Col>
-
-            <ButtonAñadirCliente />
+            <SeccionNavCol list={list} />
         </>
     );
 };

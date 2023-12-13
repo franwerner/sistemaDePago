@@ -2,11 +2,12 @@ import { Col } from "react-bootstrap";
 import BuscadorInput from "@/components//BuscadorInput";
 import { lazy, memo } from "react";
 import { DropDownDeTarifas } from "@/components//DropDowns/DropDownDeTarifas";
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
 import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading";
-import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
+import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
+import { SeccionNavCol } from "@/components//SeccionNavCol";
 
 const ModalDeSecciones = lazy(() => import("./ModalDeSecciones"))
 
@@ -18,7 +19,7 @@ const dropwDownList = [
 const dropwDownList2 = [
     { nombre: "Mas vendidos" },
     { nombre: "Favoritos" },
-    {nombre : "Sin items"}
+    { nombre: "Sin items" }
 ]
 
 const BotonSecciones = () => {
@@ -36,46 +37,27 @@ const BotonSecciones = () => {
                 }
             </SuspenseCompontentsLoading>
 
-            <BotonSeccionNav onClick={alternarMostrar}>
+            <BotonSeccionNavText
+                text={"Secciones"}
+                onClick={alternarMostrar}>
                 <i className="fa-solid mx-1 fa-layer-group"></i>
-                <span className="d-none d-sm-inline"> Secciones</span>
-            </BotonSeccionNav>
+            </BotonSeccionNavText>
         </Col>
     )
 }
 
+const list = [
+    { component: <DropDownDeTarifas responsive={true} /> },
+    { component: <DropDownOrdenDefault dropwDownList={dropwDownList} /> },
+    { component: <DropDownFilterDefault dropwDownList={dropwDownList2} /> },
+    { component: <BotonSecciones /> },
+    { component: <BuscadorInput texto={"producto"} />, props: { xs: 12, xl: "auto", className: "" } },
+]
+
 const SeccionDeProductosNav = memo(() => {
 
     return (
-        <>
-            <Col
-                xs="12"
-                md="5"
-                lg="4"
-                xxl="3"
-                className="d-flex p-md-0 align-items-center ">
-                <DropDownDeTarifas />
-            </Col>
-
-            <Col xs="auto" className="d-flex align-items-center flex-fill justify-content-around mx-0 mx-md-2 p-0 mt-3 mt-md-0">
-                <DropDownFilterDefault dropwDownList={dropwDownList2} />
-
-                <DropDownOrdenDefault dropwDownList={dropwDownList} />
-
-                <BotonSecciones />
-
-            </Col>
-
-
-
-            <Col
-                xs={12}
-                md={"auto"}
-                className="p-0 flex-fill d-flex justify-content-center justify-content-md-end align-items-center">
-                <BuscadorInput texto={"productos"} />
-            </Col>
-
-        </>
+        <SeccionNavCol list={list} />
     );
 })
 

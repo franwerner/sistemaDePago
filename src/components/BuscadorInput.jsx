@@ -1,41 +1,49 @@
 import { Form, InputGroup } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { memo, useEffect } from "react"
+import { useSearchParams } from "react-router-dom"
 
-const BuscadorInput = ({ texto = "" }) => {
+const BuscadorInput = memo(({ texto = "" }) => {
 
     const { form, changeForm } = useForm({ "buscador": "" })
+    const [search, setSearch] = useSearchParams()
+
+    const searching = search.get("search")
 
     const { buscador } = form
 
-    const redirect = useNavigate()
 
     useEffect(() => {
 
-        if (buscador.length == 0) return redirect("")
+        if (buscador.length == 0) return setSearch("")
 
-        redirect(`?search=${buscador}`)
+        setSearch(`?search=${buscador}`)
 
     }, [buscador])
 
     return (
-
-        <InputGroup>
-            <InputGroup.Text className="text-center  border-0 border-bottom rounded-0 bg-white" >
-                <i className="fa-solid fa-magnifying-glass "></i>
-            </InputGroup.Text>
-            <Form.Control type="search"
-                value={buscador}
-                name="buscador"
-                className="border-0 border-bottom rounded-0"
-                onChange={changeForm}
-                placeholder={`Buscar ${texto}....`}
-                autoComplete="off"
-                aria-label={`Busqueda de  ${texto}`}
-                style={{ boxShadow: "none" }} />
-        </InputGroup>
+        <div
+            className="rounded-5 w-100 p-1"
+            style={{ background: "#F0F2F5" }}>
+            <InputGroup>
+                <InputGroup.Text
+                    style={{ background: "transparent" }}
+                    className="text-center p-0 ms-3 border-0" >
+                    <i className="fa-solid text-ligthdark fa-magnifying-glass "></i>
+                </InputGroup.Text>
+                <Form.Control
+                    type="search"
+                    value={!searching && buscador.length > 0 ? "" : buscador}
+                    name="buscador"
+                    className="border-0 fw-medium"
+                    style={{ boxShadow: "none", background: "transparent" }}
+                    onChange={changeForm}
+                    placeholder={`Buscar ${texto}....`}
+                    autoComplete="off"
+                    aria-label={`Busqueda de ${texto}`} />
+            </InputGroup>
+        </div>
     )
-}
+})
 
 export default BuscadorInput

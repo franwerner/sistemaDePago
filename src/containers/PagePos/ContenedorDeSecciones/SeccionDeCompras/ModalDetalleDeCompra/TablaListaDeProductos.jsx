@@ -1,8 +1,7 @@
 import { calcularPorcentaje } from "@/common//helper/calcularPorcentaje";
 import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales";
-import { useEventoMostrar } from "@/hooks//useEventoMostrar";
-import { Table } from "react-bootstrap";
 import styles from "@/styles/SeccionDeCompras.module.css"
+import { TablaDefault } from "@/components//TablaDefault";
 
 const productosTest = //En la base de datos, esto ya viene con el precio con la tarifa aplicada.
 {
@@ -23,58 +22,49 @@ const TBody = ({ nombre, metodo, cantidad, descuento, precioModificado }) => {
     const descuentoAplicado = calcularPorcentaje({ numero: total, porcentaje: descuento })
 
     return (
-        <tr className="text-center">
-            <th
+        <tr>
+            <td
                 id={styles.thProductosNombre}
-                className="fw-normal text-truncate   ">
+                className="fw-normal text-truncate">
                 {nombre}
-            </th>
-            <th className="fw-normal  text-truncate   text-uppercase">
+            </td>
+            <td className="fw-normal text-uppercase">
                 {metodo}
-            </th>
-            <th className="fw-normal  text-truncate  ">
+            </td>
+            <td className="fw-normal">
                 {cantidad}
-            </th>
+            </td>
 
-            <th className="fw-normal  text-truncate   text-nowrap">
+            <td className="fw-normal   text-nowrap">
                 $ {separarNumerosConDecimales(precioModificado)}
-            </th>
-            <th className="fw-normal">
+            </td>
+            <td className="fw-normal">
                 {descuento}%
-            </th>
-            <th
+            </td>
+            <td
                 id={styles.thProductosTotal}
                 className="fw-semibold text-nowrap text-truncate">
                 $ {separarNumerosConDecimales(total - descuentoAplicado)}
-            </th>
+            </td>
         </tr>
     )
 }
 
+const thead = ["Producto", "Metodo", "Cantidad", "Precio", "Descuento", "Total"]
+
 const TablaListaDeProductos = () => {
 
     return (
-        <Table className={`${styles.tablaListaDeProductos} d-block  m-0`} hover >
-            <thead className=" align-middle text-center  ">
-                <tr>
-                    <th className="p-3">Item</th>
-                    <th>Metodo</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Descuento</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+        <TablaDefault thead={thead}>
+            {
+                productosTest.productos.map(item =>
 
-            <tbody>
-                {
-                    productosTest.productos.map(item =>
+                    <TBody key={item.id} {...item} />
+                )
+            }
 
-                        <TBody key={item.id} {...item} />
-                    )
-                }
-            </tbody>
-        </Table >
+        </TablaDefault>
+
     );
 };
 

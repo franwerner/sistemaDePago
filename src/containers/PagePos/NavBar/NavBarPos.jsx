@@ -48,9 +48,12 @@ const NavBarPos = memo(({ alternarMostrar, isFullScreen }) => {
 
                 <Nav className=" justify-content-between  justify-content-lg-end w-100  align-items-center ">
 
-                    <i
-                        onClick={alternarMostrar}
-                        className={`${styles.iconBars} cursor-pointer w-100 fa-brands text-ligthdark fs-0 mx-2  text-start p-2  ${display} fa-microsoft`} />
+                    <span className=" w-100 ">
+                        <i
+                            style={{ maxWidth: "min-content" }}
+                            onClick={alternarMostrar}
+                            className={`${styles.iconBars}  cursor-pointer fa-brands text-ligthdark fs-0 mx-2  text-start p-2  ${display} fa-microsoft`} />
+                    </span>
 
                     <NavBarBody />
                 </Nav>

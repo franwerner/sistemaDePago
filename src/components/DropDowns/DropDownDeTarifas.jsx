@@ -1,9 +1,9 @@
 import { Dropdown, Stack } from "react-bootstrap";
 import { verificarSiEsNegativo } from "../../common/helper/verificarSiEsNegativo";
-import React, { useContext } from "react";
+import { memo, useContext } from "react";
 import { TarifaContex } from "../../context/Contextos";
 
-const DropwDownItems = React.memo(({ tarifa, cambiarTarifa }) => {
+const DropwDownItems = memo(({ tarifa, cambiarTarifa, isSelect }) => {
 
     const { porcentaje, tipoDeTarifa } = tarifa
 
@@ -11,19 +11,21 @@ const DropwDownItems = React.memo(({ tarifa, cambiarTarifa }) => {
         cambiarTarifa(tarifa)
     }
 
-    const verificacion = verificarSiEsNegativo(porcentaje) ? "danger" : "success"
+    const verificacion = verificarSiEsNegativo(porcentaje) ? "text-danger" : "text-success"
+    const backGroundItem = isSelect ? "bg-ligthdark " : "bg-white"
+    const colorText = isSelect ? "text-white fw-semibold" : "text-ligthdark"
+    const colorText2 = isSelect ? `${verificacion} fw-semibold` : verificacion
 
     return (
-        <Dropdown.Item className="bg-white bg-hoverdark" onClick={onClick}>
+        <Dropdown.Item className={`${backGroundItem} ${!isSelect && "bg-hoverdark"} `} onClick={onClick}>
             <Stack
                 direction="horizontal"
                 className=" justify-content-between">
                 <p
-                    style={{ color: "#555" }}
-                    className="m-0">
+                    className={`${colorText} m-0 ls-4 text-truncate`}>
                     {tipoDeTarifa}
                 </p>
-                <p className={`text-${verificacion} m-0`}>
+                <p className={`${colorText2} m-0`}>
                     {porcentaje}%
                 </p>
             </Stack>
@@ -31,20 +33,25 @@ const DropwDownItems = React.memo(({ tarifa, cambiarTarifa }) => {
     )
 })
 
-export const DropDownDeTarifas = () => {
+export const DropDownDeTarifas = memo(({ responsive}) => {
 
     const { tarifaActual, listadoDeTarifas, cambiarTarifa } = useContext(TarifaContex)
 
+    const display = responsive && "d-none d-md-inline"
     return (
         <Dropdown
+        autoClose = {"outside"}
             className="d-flex  w-100 justify-content-center">
             <Dropdown.Toggle
                 className="w-100 fw-bolder border-1 text-truncate text-uppercase"
                 variant="outline-ligthdark">
-                Tar.{tarifaActual.tipoDeTarifa}
+                <i className="fa-solid mx-1 fs-6 fa-percent"></i>
+                <span className={display}>Tarifa</span>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu className="w-100">
+            <Dropdown.Menu
+                style={{ minWidth: "280px" }}
+                className="w-100">
                 <Dropdown.ItemText>
                     <Stack
                         className="justify-content-between fw-semibold"
@@ -59,6 +66,7 @@ export const DropDownDeTarifas = () => {
                 {
                     listadoDeTarifas.map(item =>
                         <DropwDownItems
+                            isSelect={item.tipoDeTarifa == tarifaActual.tipoDeTarifa}
                             cambiarTarifa={cambiarTarifa}
                             key={item.id}
                             tarifa={item} />
@@ -69,4 +77,4 @@ export const DropDownDeTarifas = () => {
             </Dropdown.Menu>
         </Dropdown>
     );
-};
+})

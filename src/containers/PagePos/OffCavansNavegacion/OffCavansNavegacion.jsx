@@ -40,7 +40,7 @@ const ListaDeMenu = [
 const OffCavansNavegacion = ({ alternarMostrar, mostrar, handleScreen, isFullScreen }) => {
 
     const responsive = !isFullScreen ? { responsive: "lg" } : {}
-    
+
     const icon = !isFullScreen ? "fa-maximize" : "fa-down-left-and-up-right-to-center"
     return (
         <Offcanvas

@@ -17,17 +17,25 @@ const componentes = {
     Nota: <NotaDelPedido />
 };
 
-const BodyButtons = memo(({ nombre, onAlternarSeccion }) => {
+const BodyButtons = memo(({
+    nombre,
+    onAlternarSeccion,
+    isSeccion
+}) => {
 
     const onClick = () => {
         onAlternarSeccion(nombre)
     }
 
-    return <span
-        className={`${styles.botonesNavegacion}  cursor-pointer text-uppercase fw-meidum`}
-        onClick={onClick}>
-        {nombre}
-    </span>
+    return (
+        <div className={`${isSeccion && "border-bottom border-primary border-3"}`}>
+            <span
+                className={`${styles.botonesNavegacion}  cursor-pointer text-uppercase fw-meidum`}
+                onClick={onClick}>
+                {nombre}
+            </span>
+        </div>
+    )
 })
 
 export const ModalBody = () => {
@@ -43,25 +51,19 @@ export const ModalBody = () => {
             <div className="d-flex justify-content-around mb-2 p-1 pb-0 ">
                 {
                     botonesNavegacion.map(item =>
-                        <div
+                        <BodyButtons
+                            nombre={item}
                             key={item}
-                            className={`${styles[item == seccion && "btnSeleccionado"]}`}>
-                            <BodyButtons
-                                nombre={item}
-                                onAlternarSeccion={onAlternarSeccion} />
-                        </div>
+                            isSeccion={item == seccion}
+                            onAlternarSeccion={onAlternarSeccion} />
                     )
                 }
             </div>
 
-            <div className={`${styles.contenedorDeSecciones} d-flex shadow justify-content-center  h-100 w-100 scrollBarPersonalizada `}>
-
-                {
-                    <SuspenseCompontentsLoading>
-                        {componentes[seccion]}
-                    </SuspenseCompontentsLoading>
-                }
-
+            <div className={`${styles.contenedorDeSecciones}  shadow w-100  scrollBarPersonalizada `}>
+                <SuspenseCompontentsLoading>
+                    {componentes[seccion]}
+                </SuspenseCompontentsLoading>
             </div>
 
 

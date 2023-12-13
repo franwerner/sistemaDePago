@@ -10,6 +10,9 @@ import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompo
 import { obtenerFecha } from "@/common//helper/obtenerFecha";
 
 const ModalDetalleDePagos = lazy(() => import("./ModalDetalleDePagos"))
+const SvgPagosVacio = lazy(() => import("@/components//Svg/SvgPagosVacio"))
+const ContenedorVacio = lazy(() => import("@/components//ContenedorVacio"))
+
 
 const nroDeCaja = 1
 
@@ -124,45 +127,59 @@ const ContextAcordion = memo(({ eventKey, callback, nombre, total }) => {
     )
 })
 
-
-export const SeccionDeCajaPagosBody = () => {
+const AccordionPagos = () => {
 
     const { queryParams } = useContext(QueryParamsContext)
 
     const { iniciarSort } = useAlgoritmoDeOrden(queryParams["orden"])
+    return (
+        <Accordion
+            className="mx-md-5 m-0   my-md-4"
+            flush>
+            {
+                metodosDePagosTest.map((item, index) =>
+
+                    <Card className="p-0 mt-2 shadow " key={item.id}>
+                        <Card.Header className="p-0 d-flex">
+                            <ContextAcordion
+                                nombre={item.nombre}
+                                total={item.total}
+                                eventKey={index} />
+                        </Card.Header>
+
+                        <Accordion.Collapse eventKey={index}>
+                            <Card.Body >
+                                {
+                                    iniciarSort(item.pagos).map(item =>
+                                        <AccordionBody
+                                            key={item.id}
+                                            {...item}
+                                        />
+                                    )
+                                }
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                )
+            }
+        </Accordion>
+    )
+}
+
+export const SeccionDeCajaPagosBody = () => {
+
+    const pagos = [1]
 
     return (
         <Col className={`${styles.accordionContenedor} border p-0`}>
-            <Accordion
-                className="mx-md-5 m-0   my-md-4"
-                flush>
-                {
-                    metodosDePagosTest.map((item, index) =>
+            {
+                pagos.length > 0 ? <AccordionPagos /> :
+                    <ContenedorVacio texto={"No se encontraron pagos"}>
+                        <SvgPagosVacio />
+                    </ContenedorVacio>
 
-                        <Card className="p-0 mt-2 shadow " key={item.id}>
-                            <Card.Header className="p-0 d-flex">
-                                <ContextAcordion
-                                    nombre={item.nombre}
-                                    total={item.total}
-                                    eventKey={index} />
-                            </Card.Header>
 
-                            <Accordion.Collapse eventKey={index}>
-                                <Card.Body >
-                                    {
-                                        iniciarSort(item.pagos).map(item =>
-                                            <AccordionBody
-                                                key={item.id}
-                                                {...item}
-                                            />
-                                        )
-                                    }
-                                </Card.Body>
-                            </Accordion.Collapse>
-                        </Card>
-                    )
-                }
-            </Accordion>
+            }
 
         </Col>
     );

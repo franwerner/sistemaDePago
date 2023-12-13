@@ -4,8 +4,6 @@ import styles from "@/styles/ErrorPage.module.css"
 import { RutasInterface } from "../RutasInterface";
 import { Col, Container, Row } from "react-bootstrap";
 import { algoritmoDeBusquedaPageUtils } from "./Utils/AlgoritmoDeBusquedaPageUtils";
-import { LoadingStateLoader } from "../Suspense/LoadingStateLoader";
-
 
 const ListaDeErrores = [
   { tipo: 301, text: "La página o recurso solicitado ha sido movido permanentemente a una nueva ubicación. Actualiza tus marcadores o sigue el enlace proporcionado." },
@@ -34,9 +32,7 @@ const ErrorPageRuta = ({ algoritmo }) => {
 
   return (
     <>
-    <LoadingStateLoader texto={"datos de redireccion"}/>
-      {
-        algoritmo &&
+
         <div className="d-flex justify-content-center w-100 p-0 align-items-center my-3">
           <p className="m-0 text-wrap">Posible Ruta </p>
           <div className="vr mx-3"></div>
@@ -57,7 +53,7 @@ const ErrorPageRuta = ({ algoritmo }) => {
           }
 
         </div>
-      }
+ 
     </>
 
   )

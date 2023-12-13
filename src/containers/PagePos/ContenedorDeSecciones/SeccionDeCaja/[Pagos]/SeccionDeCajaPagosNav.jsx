@@ -1,6 +1,6 @@
 import BuscadorInput from "@/components//BuscadorInput";
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
-import { Col } from "react-bootstrap";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault";
+import { SeccionNavCol } from "@/components//SeccionNavCol";
 
 const dropwDownList = [
     { nombre: "Monto", prioridad: 1 },
@@ -8,21 +8,15 @@ const dropwDownList = [
     { nombre: "Orden", prioridad: 2 },
 ]
 
+const listado = [
+    { component: <DropDownOrdenDefault dropwDownList={dropwDownList} /> },
+    { component: <BuscadorInput texto="por nro de orden" />, props: { md: 6, xs: "9" } }
+]
+
 export const SeccionDeCajaPagosNav = () => {
 
     return (
-        <>
-            <Col xs="auto" >
-                <DropDownOrdenDefault dropwDownList={dropwDownList} />
-            </Col>
-
-            <Col
-                className="pt-1 pt-md-0"
-                md="8"
-                xs="12">
-                <BuscadorInput texto="por nro de orden" />
-            </Col>
-        </>
+        <SeccionNavCol list={listado} />
     )
 
 }

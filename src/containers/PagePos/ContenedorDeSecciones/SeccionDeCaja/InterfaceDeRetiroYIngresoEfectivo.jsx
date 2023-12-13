@@ -1,8 +1,7 @@
 import { Button, FloatingLabel, Form, Modal } from "react-bootstrap";
-import { useForm } from "../../../../hooks/useForm";
+import { useForm } from "@/hooks/useForm";
 import { memo } from "react";
-import styles from "@/styles/InterfaceDeRetiroYIngresoEfectivo.module.css"
-import { verificarSiEsNegativo } from "../../../../common/helper/verificarSiEsNegativo";
+import { verificarSiEsNegativo } from "@/common/helper/verificarSiEsNegativo";
 
 const FormImporte = memo(({ importe, changeForm }) => {
 

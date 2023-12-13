@@ -14,7 +14,7 @@ const DropwDownItems = ({
     return (
         <Dropdown.Item
             onClick={() => establecerFiltros({ nombre, condicional, propiedad })}
-            className="fw-medium  bg-hoverdark position-relative d-flex align-items-center  bg-white"
+            className="fw-medium text-ligthdark bg-hoverdark position-relative d-flex align-items-center  bg-white"
             data-name={nombre}>
             {nombre}
             {
@@ -39,7 +39,10 @@ const Menu = ({ dropwDownList }) => {
     return (
 
         <Dropdown.Menu >
-
+            <Dropdown.ItemText className="text-center text-uppercase  text-ligthdark fw-semibold ls-3">
+                Filtros
+            </Dropdown.ItemText>
+            <Dropdown.Divider className="p-0 m-0"/>
             {
                 dropwDownList.map(({ nombre, condicional, propiedad }, index) =>
                     <DropwDownItems
@@ -80,6 +83,7 @@ const DropDownFilterDefault = ({ dropwDownList = [] }) => {
                 variant="outline-ligthdark"
                 id="dropdown-filter" >
                 <i className="fa-solid cursor-pointer zoom fs-4 fa-filter"></i>
+                <span className="m-0 fw-medium d-none d-sm-inline">Filtrar por</span>
             </Dropdown.Toggle>
 
             <Menu

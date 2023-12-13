@@ -78,11 +78,9 @@ const Ticket = memo(() => {
 
             <Row className="m-0 ">
                 <Stack gap={3}>
-
                     <BotonPagos />
 
                     <BotonTrashItems />
-
                 </Stack>
             </Row>
         </Container>

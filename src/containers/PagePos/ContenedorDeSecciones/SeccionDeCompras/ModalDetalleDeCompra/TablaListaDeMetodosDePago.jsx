@@ -1,5 +1,5 @@
 import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales";
-import { Table } from "react-bootstrap";
+import { TablaDefault } from "@/components//TablaDefault";
 
 const productosTest =
 {
@@ -17,25 +17,21 @@ const TBody = ({ monto, tipo }) => {
     )
 }
 
+const thead = ["Tipo","Total"]
+
 const TablaListaDeMetodosDePago = () => {
     return (
-        <Table hover >
-            <thead className=" align-middle text-center  ">
-                <tr>
-                    <th className="p-3">Tipo</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+        <TablaDefault thead = {thead}>
+            {
+                productosTest.venta.metodosDePago.map(item =>
 
-            <tbody>
-                {
-                    productosTest.venta.metodosDePago.map(item =>
+                    <TBody key={item.id} {...item} />
+                )
+            }
+        </TablaDefault>
 
-                        <TBody key={item.id} {...item} />
-                    )
-                }
-            </tbody>
-        </Table >
+
+
     );
 };
 

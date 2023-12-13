@@ -1,10 +1,12 @@
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import { Col } from "react-bootstrap";
 import { lazy, useContext } from "react";
 import { InventarioAddContext } from "@/context//Contextos";
 import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading";
 import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
+import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
+import { SeccionNavCol } from "@/components//SeccionNavCol";
 const ModalDeAgregarProducto = lazy(() => import("./ModalDeAgregarProducto"))
 
 const dropwDownList = [
@@ -16,7 +18,7 @@ const dropwDownList = [
 
 const BotonAgregar = () => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
-    
+
     const { agregarProducto } = useContext(InventarioAddContext)
 
 
@@ -33,29 +35,28 @@ const BotonAgregar = () => {
                         mostrar={mostrar} />
                 }
             </SuspenseCompontentsLoading>
-            <BotonSeccionNav
+            <BotonSeccionNavText
+                text="Agregar"
                 onClick={alternarMostrar}>
-                Agregar
                 <i className="fa-solid mx-1 fa-circle-plus"></i>
-            </BotonSeccionNav>
+            </BotonSeccionNavText>
 
         </Col>
     )
 }
 
+const NumeroDeLote = () => (
+    <h2 className="m-0 border-bottom border-2 text-ligthdark ls-4 fs-3 mx-2">#405</h2>
+)
+
+const listado = [
+    { component: <NumeroDeLote /> },
+    { component: <DropDownOrdenDefault dropwDownList={dropwDownList} /> },
+    { component: <BotonAgregar /> },
+]
+
 export const SeccionDeInventarioAgregarNav = () => {
     return (
-        <>
-            <Col xs="auto">
-                <h2 className="m-0 border-bottom border-2 text-ligthdark ls-4 fs-3 mx-2">#405</h2>
-            </Col>
-
-                <Col xs="auto"
-                    className="p-0">
-                    <DropDownOrdenDefault dropwDownList={dropwDownList} />
-                </Col>
-
-            <BotonAgregar />
-        </>
+            <SeccionNavCol list={listado} />
     );
 };

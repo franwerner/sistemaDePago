@@ -10,7 +10,10 @@ import { obtenerFecha } from "@/common//helper/obtenerFecha"
 import { primeraLetraMayuscula } from "@/common//helper/primeraLetraMayuscula"
 import { TablaDefault } from "@/components//TablaDefault"
 
+
 const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
+const SvgComprasVacio = lazy(() => import("@/components//Svg/SvgComprasVacio"))
+const ContenedorVacio = lazy(()=> import("@/components//ContenedorVacio"))
 
 const theadTest = [
     { id: 1, "empleado": "Aranco Werner", "fecha": 1631011278000, "cliente": "Consumidor Anonimo", "total": 9898, "estado": "pagado", orden: 1 },
@@ -85,29 +88,46 @@ const TablaTbody = (props) => {
     )
 }
 
-const thead = ["Empleado", "Hora", "Ticket", "Cliente", "Total", "Estado"]
-
-const SeccionDeComprasBody = () => {
-
+const Tabla = () => {
     const { queryParams } = useContext(QueryParamsContext)
 
 
     const { iniciarSort } = useAlgoritmoDeOrden(queryParams["orden"])
 
+    return (
+        <SuspenseCompontentsLoading texto={"Cargando ticket"} >
+            <TablaDefault thead={thead}>
+                {
+                    iniciarSort(theadTest).map(item =>
+                        <TablaTbody
+                            key={item.id}
+                            {...item} />
+                    )
+                }
+            </TablaDefault>
+        </SuspenseCompontentsLoading>
+    )
+}
+
+
+const thead = ["Empleado", "Hora", "Ticket", "Cliente", "Total", "Estado"]
+
+const SeccionDeComprasBody = () => {
+
+    const compras = [1]
+
+
 
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
-            <SuspenseCompontentsLoading texto={"Cargando ticket"} >
-                <TablaDefault thead={thead}>
-                    {
-                        iniciarSort(theadTest).map(item =>
-                            <TablaTbody
-                                key={item.id}
-                                {...item} />
-                        )
-                    }
-                </TablaDefault>
-            </SuspenseCompontentsLoading>
+            {
+                compras.length > 0 ? <Tabla /> :
+                    <ContenedorVacio texto={"No se encontro ninguna compra"}>
+                        <SvgComprasVacio />
+                    </ContenedorVacio>
+
+
+            }
         </Col>
     );
 }

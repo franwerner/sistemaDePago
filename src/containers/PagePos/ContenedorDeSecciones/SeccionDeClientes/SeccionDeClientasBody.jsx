@@ -3,7 +3,11 @@ import { obtenerFecha } from "@/common//helper/obtenerFecha";
 import { DropDownDetalle } from "@/components//DropDowns/DropDownDetalle";
 import { SvgClienteHombre } from "@/components//Svg/SvgClienteHombre";
 import { SvgClienteMujer } from "@/components//Svg/SvgClienteMujer";
+import { lazy } from "react";
 import { Card, Col } from "react-bootstrap";
+
+const ContenedorVacio = lazy(() => import("@/components//ContenedorVacio"))
+const SvgClienteVacio = lazy(() => import("@/components//Svg/SvgClienteVacio"))
 
 const clientesTest = [
     { id: 1, nombre: "Franco Carlos", apellido: "Werner", dni: 43292578, ingreso: 1701468639926, compras: 13, devoluciones: 3, sexo: "M" },
@@ -25,7 +29,7 @@ const ClienteCard = ({ nombre, apellido, dni, ingreso, compras, devoluciones, se
 
     const colorSexo = sexo == "M" ? "#6ab7ff" : "#ffb6d9"
 
-    const {año,mes} = obtenerFecha(ingreso)
+    const { año, mes } = obtenerFecha(ingreso)
 
     const dropDownList = [
         { tipo: "Ing.", data: `${mes}/${año}` },
@@ -37,7 +41,7 @@ const ClienteCard = ({ nombre, apellido, dni, ingreso, compras, devoluciones, se
         <Card
             tabIndex={0}
             className="shadow m-3 mb-4 card-move-up cursor-pointer overflow-hidden border-0"
-            style={{ height: "15rem", width: "12.5rem", maxHeight: "15rem" }}>
+            style={{ height: "15rem", minWidth: "12.5rem",maxWidth : "12.5rem", maxHeight: "15rem" }}>
             <Card.Title className="text-end  m-0 position-absolute w-100">
                 <DropDownDetalle itemList={dropDownList} />
             </Card.Title>
@@ -61,13 +65,25 @@ const ClienteCard = ({ nombre, apellido, dni, ingreso, compras, devoluciones, se
 }
 
 export const SeccionDeClientasBody = () => {
+
+    const clientes = [1]
+    
     return (
-        <Col className="d-flex align-content-start flex-wrap h-100">
+        <Col className="d-flex align-content-start justify-content-center justify-content-sm-start flex-wrap h-100">
 
             {
-                clientesTest.map(item =>
-                    <ClienteCard key={item.id} {...item} />
-                )
+                clientes.length > 0 ?
+                    clientesTest.map(item =>
+                        <ClienteCard key={item.id} {...item} />
+                    )
+
+                    :
+                    <ContenedorVacio texto="No se encontro ningun cliente">
+                        <SvgClienteVacio />
+                    </ContenedorVacio>
+
+
+
             }
 
         </Col>

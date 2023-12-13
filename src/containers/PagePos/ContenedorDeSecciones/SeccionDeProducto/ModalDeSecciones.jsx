@@ -44,6 +44,11 @@ const ModalDeSecciones = ({ mostrar, alternarMostrar }) => {
             keyboard={true}
         >
             <Modal.Header closeButton className="border-0">
+                <Link
+                    className="text-decoration-none zoom   "
+                    to={"/pos/productos/"}>
+                    <i className="fa-solid text-ligthdark cursor-pointer fs-3 fa-filter-circle-xmark"></i>
+                </Link>
                 <Modal.Title className="text-center w-100 text-uppercase text-ligthdark ls-3 border-bottom">Secciones</Modal.Title>
             </Modal.Header>
             <Modal.Body className="" >

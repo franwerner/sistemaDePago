@@ -2,7 +2,7 @@ import styles from "@/styles/SeccionDeVenta.module.css"
 
 export const TicketHeader = () => {
 
-    const mapeo = new Array(15).fill("")
+    const mapeo = new Array(20).fill("")
 
     return (
         <>

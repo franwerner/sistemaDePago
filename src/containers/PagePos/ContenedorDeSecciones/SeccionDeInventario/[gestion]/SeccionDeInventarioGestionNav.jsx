@@ -1,9 +1,11 @@
 import { AgregarCerosANumeros } from "@/common//helper/AgregarCerosANumeros";
-import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
+import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
 import BuscadorInput from "@/components//BuscadorInput";
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
-import { Col } from "react-bootstrap";
+import { SeccionNavCol } from "@/components//SeccionNavCol";
+import { useEventoMostrar } from "@/hooks//useEventoMostrar";
+import { ModalDeInformacion } from "./ModalDeInformacion";
 
 const orden = [
     { nombre: "Nombre", prioridad: 4 },
@@ -16,31 +18,34 @@ const filtro = [
     { nombre: "Sin stock" }
 ]
 
-export const SeccionDeInventarioGestionNav = () => {
+const NumeroDeLote = () => (
+    <h2 className="m-0 border-bottom border-2 text-ligthdark ls-4 fs-3 mx-2">#{AgregarCerosANumeros({ digitos: 3, numero: 45 })}</h2>
+)
+
+const InformacionBoton = () => {
+
+    const { alternarMostrar, mostrar } = useEventoMostrar()
+
     return (
         <>
-            <Col xs="auto">
-                <h2 className="m-0 border-bottom border-2 text-ligthdark ls-4 fs-3 mx-2">#{AgregarCerosANumeros({digitos : 3,numero : 45})}</h2>
-            </Col>
-
-            <Col xs = "auto">
-                <BotonSeccionNav>
-                     Informacion
-                    <i className="fa-solid te mx-1 fa-circle-info"></i>
-                </BotonSeccionNav>
-            </Col>
-
-            <Col xs="auto" className="d-flex  justify-content-between">
-                <DropDownOrdenDefault dropwDownList={orden} />
-            </Col>
-
-            <Col xs="auto" >
-                <DropDownFilterDefault dropwDownList={filtro} />
-            </Col>
-
-            <Col xs="12" md="5">
-                <BuscadorInput texto="producto" />
-            </Col>
+            <BotonSeccionNavText onClick={alternarMostrar} text="Información">
+                <i className="fa-solid fs-5 mx-1 fa-circle-info"></i>
+            </BotonSeccionNavText>
+            <ModalDeInformacion alternarMostrar={alternarMostrar} mostrar={mostrar} />
         </>
+    )
+}
+
+const listado = [
+    { component: <NumeroDeLote /> },
+    { component: <InformacionBoton /> },
+    { component: <DropDownOrdenDefault dropwDownList={orden} /> },
+    { component: <DropDownFilterDefault dropwDownList={filtro} /> },
+    { component: <BuscadorInput texto="producto" />, props: { xs: 12, md: 5 } },
+]
+
+export const SeccionDeInventarioGestionNav = () => {
+    return (
+        <SeccionNavCol list={listado} />
     );
 };

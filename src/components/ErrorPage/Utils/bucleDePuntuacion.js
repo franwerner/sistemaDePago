@@ -31,8 +31,9 @@ const bucleDePuntuacion = (string = "", path = "", nivelJerarquico) => {
 
     if (puntaje == 0) {
         return 0
-    } else if (Math.sign(resultado) == -1 || resultado == 0) {
-        return   letrasConcatenadas.length
+    } else if (puntaje > 0 && Math.sign(resultado) == -1) {
+        return letrasConcatenadas.length + (puntaje / 1.5)
+
     } else {
         return resultado
     }

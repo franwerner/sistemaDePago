@@ -1,9 +1,9 @@
-import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 import BuscadorInput from "@/components//BuscadorInput";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
-import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDetalleDefault/DropDownOrdenDefault";
-import { Col } from "react-bootstrap";
+import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault";
 import { Link } from "react-router-dom";
+import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
+import { SeccionNavCol } from "@/components//SeccionNavCol";
 
 const dropwDownOrden = [
     { nombre: "Vencimiento", prioridad: 0 },
@@ -11,7 +11,6 @@ const dropwDownOrden = [
     { nombre: "Numero", prioridad: 2 },
     { nombre: "Ingreso", prioridad: 3 },
     { nombre: "Items", prioridad: 4 },
-
 ]
 
 const dropwDownFilter = [
@@ -19,41 +18,24 @@ const dropwDownFilter = [
     { nombre: "Sin productos" }
 ]
 
+
+const BotonAñadirLote = () => (
+    <Link to="agregar">
+        <BotonSeccionNavText text="Añadir lote">
+            <i className="fa-solid mx-1 fs-4 fa-boxes-packing"></i>
+        </BotonSeccionNavText>
+    </Link>
+)
+
+const listado = [
+    { component: <DropDownOrdenDefault dropwDownList={dropwDownOrden} /> },
+    { component: <DropDownFilterDefault dropwDownList={dropwDownFilter} /> },
+    { component: <BotonAñadirLote /> },
+    { component: <BuscadorInput texto="numero de lote" />, props: { xs: 12, xl: 4 } },
+]
+
 export const SeccionDeInventarioNav = () => {
     return (
-        <>
-            <Col
-                xs="auto"
-                className="p-0 d-flex m-1 align-items-center">
-                <DropDownOrdenDefault dropwDownList={dropwDownOrden} />
-            </Col>
-
-            <Col
-                className="d-flex p-0 align-items-center justify-content-between"
-                xs="auto"
-                md="1">
-                <DropDownFilterDefault dropwDownList={dropwDownFilter} />
-
-            </Col>
-
-            <Col
-                xs={{ order: "3" }}
-                xl={{ order: "0", span: "5" }}
-                className="p-0 py-1 px-2 ">
-                <BuscadorInput texto="numero de lote" />
-            </Col>
-
-            <Col
-                xs="12"
-                md="auto"
-                className="p-0 d-flex justify-content-start  ">
-                <Link to="agregar" className="w-100 px-5 px-md-0">
-                    <BotonSeccionNav>
-                        Añadir lote
-                        <i className="fa-solid mx-md-2 fa-truck-ramp-box fa-flip-horizontal"></i>
-                    </BotonSeccionNav>
-                </Link>
-            </Col>
-        </>
+        <SeccionNavCol list={listado} />
     );
 };

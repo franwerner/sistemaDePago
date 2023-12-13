@@ -52,7 +52,12 @@ const ReImpresion = () => {
 }
 
 
-const ModalDetalleDeCompra = ({ alternarMostrar, mostrar, orden, estado }) => {
+const ModalDetalleDeCompra = ({
+    alternarMostrar,
+    mostrar,
+    orden,
+    estado
+}) => {
 
     return (
         <Modal

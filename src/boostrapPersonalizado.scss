@@ -34,6 +34,7 @@ $font-sizes: (
 $cursor-styles: (
   pointer: pointer,
   block: not-allowed,
+  normal : normal
 );
 
 @each $cursor-name, $cursor-value in $cursor-styles {
