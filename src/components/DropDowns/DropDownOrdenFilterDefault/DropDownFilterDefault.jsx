@@ -14,11 +14,11 @@ const DropwDownItems = ({
     return (
         <Dropdown.Item
             onClick={() => establecerFiltros({ nombre, condicional, propiedad })}
-            className="fw-medium  bg-hoverdark  bg-white"
+            className="fw-medium  bg-hoverdark position-relative d-flex align-items-center  bg-white"
             data-name={nombre}>
             {nombre}
             {
-                filtroActual && <i className="fa-solid fa-check text-primary mx-2 fs-6"></i>
+                filtroActual && <i style={{ right: "26%" }} className="fa-solid fa-check text-primary position-absolute text-end  mx-2 fs-6"></i>
             }
         </Dropdown.Item>
     )
@@ -71,7 +71,7 @@ const Menu = ({ dropwDownList }) => {
 
 
 
-const DropDownFilterDefault = ({ dropwDownList }) => {
+const DropDownFilterDefault = ({ dropwDownList = [] }) => {
     return (
         <Dropdown
             className="position-relative "

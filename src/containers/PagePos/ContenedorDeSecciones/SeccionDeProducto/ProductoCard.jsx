@@ -1,9 +1,9 @@
-import { memo, useMemo } from "react"
+import { memo } from "react"
 import styles from "@/styles/SeccionDeProductos.module.css"
 import { CalcularPorcentajeMemoizado } from "@/hooks/useCalcularPorcentaje"
 import { Card } from "react-bootstrap"
 import { useEventoMostrar } from "@/hooks/useEventoMostrar"
-import { AgregarCerosANumeros } from "@/common//helper/AgregarCerosANumeros"
+
 
 const CardFavorito = () => {
 
@@ -19,18 +19,21 @@ const CardFavorito = () => {
     )
 }
 
+const ProductoCard = memo(({ producto, agregarProducto, productoEnLista = {} }) => {
 
-const ProductoCard = memo(({ producto, agregarProducto }) => {
+    const { precio, nombre, metodo, cantidad_disponible = 5.54 } = producto
 
-    const { precio, nombre, metodo } = producto
+    const cantidadRestante = cantidad_disponible - (productoEnLista.cantidad || 0)
 
-    const cantidadTest = useMemo(() => Math.round(Math.random(1) * 10) + 1, [])
-
+    const decimales = cantidadRestante % 1
 
     const onClick = (e) => {
 
-        e.target.id !== "contenedor-favorito" && e.target.tagName !== "I" && agregarProducto({ ...producto, cantidadDisponible: cantidadTest })
+        const confirmarCantidad = parseInt(cantidadRestante) == 0 && decimales !== 0 ? decimales : 1
 
+        if (e.target.id !== "contenedor-favorito" && e.target.tagName !== "I") {
+            agregarProducto({ ...producto, cantidad_disponible: cantidad_disponible, cantidad: confirmarCantidad })
+        }
     }
 
     return (
@@ -39,20 +42,21 @@ const ProductoCard = memo(({ producto, agregarProducto }) => {
             className={`${styles.cardContainer} card-move-up m-2 shadow border-0 overflow-hidden`}>
 
             <Card.Title className="d-flex justify-content-between">
-                <p className="m-2 text-primary-2 fs-6  mx-2">{`*(${cantidadTest})` || "Sin lote"}</p>
+                <p  className="m-2 text-primary-2 fs-6 mx-2">{`(${(cantidadRestante).toFixed(2)}) `}</p>
 
                 <CardFavorito />
 
             </Card.Title>
-                <Card.Img
-                    sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 33.3vw"
-                    alt={`${nombre}-$${precio}`}
-                    style={{ objectFit: "contain", minHeight: "90px" }}
-                    width={90}
-                    loading="lazy"
-                    decoding="async"
-                    height={95}
-                    src="https://static.vecteezy.com/system/resources/previews/011/033/490/non_2x/potatoes-isolated-no-background-png.png" />
+
+            <Card.Img
+                sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 33.3vw"
+                alt={`${nombre}-$${precio}`}
+                style={{ objectFit: "contain", minHeight: "90px" }}
+                width={90}
+                loading="lazy"
+                decoding="async"
+                height={95}
+                src="https://static.vecteezy.com/system/resources/previews/011/033/490/non_2x/potatoes-isolated-no-background-png.png" />
             <Card.Body className=" p-0 m-0 d-flex flex-column  h-100 align-items-center ">
 
 

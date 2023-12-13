@@ -12,12 +12,13 @@ const ModalDeSecciones = lazy(() => import("./ModalDeSecciones"))
 
 const dropwDownList = [
     { nombre: "Precio", prioridad: 1 },
-    { nombre: "Lote", prioridad: 2 },
+    { nombre: "Cantidad", prioridad: 2 },
 ]
 
 const dropwDownList2 = [
     { nombre: "Mas vendidos" },
     { nombre: "Favoritos" },
+    {nombre : "Sin items"}
 ]
 
 const BotonSecciones = () => {

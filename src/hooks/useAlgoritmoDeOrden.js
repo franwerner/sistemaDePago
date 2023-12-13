@@ -17,19 +17,19 @@ const ordenDescendente = (a = "", b = "") => {
     return a - b
 }
 
-export const useAlgoritmoDeOrden = (parametros = "") => {
+export const useAlgoritmoDeOrden = (parametros = {}) => {
 
     const dependenciaArray = Object.values(parametros)
 
-    const entries = Object.entries(parametros)
+    const entriesParametros = Object.entries(parametros)
 
     const iniciarSort = useCallback((array = []) => {
 
         return [...array].sort((a, b) => {
 
-            for (let i = 0; i < entries.length; i++) { //Este enfoque hace que se ejecute en orden segun el indice del array de las prioridades
+            for (let i = 0; i < entriesParametros.length; i++) { //Este enfoque hace que se ejecute en orden segun la prioridad  establecida.
 
-                const prop = entries[i][0]
+                const prop = entriesParametros[i][0]
 
                 const buscarItem = (indice) => Object.entries(indice).find(([key]) => key.toLocaleLowerCase() == prop)[1]
 

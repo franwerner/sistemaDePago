@@ -45,7 +45,7 @@ const reducer = (state, action) => {
 
                 return {
                     ...estado,
-                    "cantidad": verificarNumero(estado.cantidad) + 1,
+                    "cantidad": verificarNumero(estado.cantidad) + parseFloat((producto.cantidad).toFixed(2)) || 0,
                 };
 
             case "CANTIDAD":

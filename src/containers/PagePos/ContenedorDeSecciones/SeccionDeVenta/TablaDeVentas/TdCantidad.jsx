@@ -35,9 +35,9 @@ const TdCantidad = memo(({ cantidad = 0, modificarCantidad, obj }) => {
     }), [])
 
     useEffect(() => {
-        if (cantidad == 0 || isNaN(cantidad) || form.cantidad == cantidad) return
+        if (isNaN(cantidad) || form.cantidad == cantidad) return
 
-        modificarCantidad({cantidad: form.cantidad, ...obj })
+        modificarCantidad({ cantidad: form.cantidad, ...obj })
 
     }, [form.cantidad])
 

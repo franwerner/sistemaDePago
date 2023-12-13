@@ -4,11 +4,11 @@ import { AgregarCerosANumeros } from "@/common/helper/AgregarCerosANumeros"
 import { separarNumerosConDecimales } from "@/common//helper/separarNumerosConDecimales"
 import { useAlgoritmoDeOrden } from "@/hooks//useAlgoritmoDeOrden"
 import { useEventoMostrar } from "@/hooks//useEventoMostrar"
-import styles from "@/styles/SeccionDeCompras.module.css"
 import { lazy, memo, useContext } from "react"
-import { Col, Table } from "react-bootstrap"
+import { Col } from "react-bootstrap"
 import { obtenerFecha } from "@/common//helper/obtenerFecha"
 import { primeraLetraMayuscula } from "@/common//helper/primeraLetraMayuscula"
+import { TablaDefault } from "@/components//TablaDefault"
 
 const ModalDetalleDePedido = lazy(() => import("./ModalDetalleDeCompra/ModalDetalleDeCompra"))
 
@@ -85,6 +85,8 @@ const TablaTbody = (props) => {
     )
 }
 
+const thead = ["Empleado", "Hora", "Ticket", "Cliente", "Total", "Estado"]
+
 const SeccionDeComprasBody = () => {
 
     const { queryParams } = useContext(QueryParamsContext)
@@ -96,27 +98,15 @@ const SeccionDeComprasBody = () => {
     return (
         <Col className="m-0 p-0 shadow h-100  scrollBarPersonalizada">
             <SuspenseCompontentsLoading texto={"Cargando ticket"} >
-                <Table className={styles.tablaDeCompras} hover >
-                    <thead className="shadow align-middle text-center position-relative">
-                        <tr className="border-white ">
-                            <th >Empleado</th>
-                            <th>Hora</th>
-                            <th>Ticket</th>
-                            <th>Cliente</th>
-                            <th>Total</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody className="align-middle text-center">
-                        {
-                            iniciarSort(theadTest).map(item =>
-                                <TablaTbody
-                                    key={item.id}
-                                    {...item} />
-                            )
-                        }
-                    </tbody>
-                </Table>
+                <TablaDefault thead={thead}>
+                    {
+                        iniciarSort(theadTest).map(item =>
+                            <TablaTbody
+                                key={item.id}
+                                {...item} />
+                        )
+                    }
+                </TablaDefault>
             </SuspenseCompontentsLoading>
         </Col>
     );

@@ -1,6 +1,6 @@
 import { Dropdown } from "react-bootstrap";
 import { memo, useContext, useEffect } from "react";
-import { QueryParamsContext } from "../../../context/Contextos";
+import { QueryParamsContext } from "@/context/Contextos";
 import { useOrdenamiento } from "./useOrdenamiento";
 
 
@@ -24,12 +24,18 @@ const DropwDownItems = memo(({ nombre, nombreTecnico, prioridad, orden, establec
     }
 
     return (
-        <div className="d-flex bg-hoverdark cursor-pointer w-100  position-relative  align-items-center">
+        <div className="d-flex bg-hoverdark cursor-pointer w-100 justify-content-between  position-relative  align-items-center">
 
             <Dropdown.Item
                 onClick={onClick}
-                className="fw-medium bg-white position-relative d-flex align-items-center p-3 py-2  " >
-                {nombre}
+                className="fw-medium bg-white position-relative pe-5 d-flex align-items-center p-3 py-2  " >
+                <div className="position-relative">
+                    <p className="m-0">{nombre}</p>
+                    <span
+                        style={{ fontSize: "14px", top: "-40%", right: "-12px" }}
+                        className="position-absolute border-bottom ">{prioridad}</span>
+                </div>
+
 
                 <i style={{ left: "0%" }}
                     className={`fa-solid fs-7  position-absolute p-1 fa-arrow-${tipo} text-${color}`} />
@@ -38,9 +44,9 @@ const DropwDownItems = memo(({ nombre, nombreTecnico, prioridad, orden, establec
             {
                 orden &&
                 <i
-                    style={{ right: "2%" }}
+                    style={{ right: "0%" }}
                     onClick={onClick2}
-                    className="fa-solid fs-5 position-absolute cursor-block text-endp-1 bg-white text-ligthdark fa-xmark" />
+                    className="fa-solid fs-5 position-absolute cursor-block text-end p-1 bg-white text-ligthdark fa-xmark" />
             }
         </div>
     )
@@ -50,7 +56,7 @@ const Menu = ({ dropwDownList }) => {
 
     const { establecerQueryParams } = useContext(QueryParamsContext)
 
-    const { establecerOrden, orden, removerOrden } = useOrdenamiento()
+    const { establecerOrden, orden, removerOrden, reestablecerOrdenes } = useOrdenamiento()
 
     useEffect(() => {
 
@@ -59,7 +65,7 @@ const Menu = ({ dropwDownList }) => {
     }, [JSON.stringify(orden)])
 
     return (
-        <Dropdown.Menu>
+        <Dropdown.Menu >
             {
                 dropwDownList.map(({ nombre, propiedad, prioridad }, index) => {
 
@@ -78,6 +84,14 @@ const Menu = ({ dropwDownList }) => {
                     )
                 })
             }
+            <Dropdown.Divider />
+            <Dropdown.Item
+                onClick={reestablecerOrdenes}
+                className="text-danger bg-white fw-medium">
+                <p className="m-0 text-center zoom">
+                    Remover orden
+                </p>
+            </Dropdown.Item>
         </Dropdown.Menu>
     )
 }
@@ -87,9 +101,8 @@ const Menu = ({ dropwDownList }) => {
 //Nombre : Esta la representacion visual.
 //Propiedad : Es la propiedad que se evaluara para el algoritmo/db
 //Prioridad : Sirve para ordenar en base a cual es el mas importante
+
 const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
-
-
 
     return (
         <Dropdown className="position-relative" autoClose="outside" >
@@ -101,7 +114,7 @@ const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
                 <p className="m-0 fw-medium">Ordenar por</p>
             </Dropdown.Toggle>
 
-            <Menu dropwDownList={dropwDownList} />
+            <Menu dropwDownList={dropwDownList.sort((a, b) => a.prioridad - b.prioridad)} />
         </Dropdown>
     )
 })

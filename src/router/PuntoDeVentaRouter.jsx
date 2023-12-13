@@ -54,14 +54,6 @@ export const PuntoDeVentaRouter = {
         {
             path: "inventario/gestion",
             element: <SeccionDeInventarioGestion />,
-            loader: async () => {
-                const promise = new Promise((resolve) =>
-                    setTimeout(() => {
-                        resolve({ db: "success" })
-                    }, 5000)
-                )
-                return defer({ promise });
-            }
         },
         {
             path: "inventario/agregar",

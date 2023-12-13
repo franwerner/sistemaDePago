@@ -13,6 +13,7 @@ body {
 }
 
 
+
 * {
     font-family: "Montserrat";
     outline: none;
@@ -74,22 +75,22 @@ body::-webkit-scrollbar {
     overflow-y: overlay;
 }
 
-.scrollBarPersonalizada::-webkit-scrollbar {
-    cursor: grab; 
-  }
   
 .scrollBarPersonalizada::-webkit-scrollbar {
     width: 0.5em;
     height: 0.5em;
+    background-color: #e7e7e7;
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar:vertical {
+
     width: 5px;
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar-button:increment,
 .scrollBarPersonalizada::-webkit-scrollbar-button {
     display: none;
+
 }
 
 .scrollBarPersonalizada::-webkit-scrollbar:horizontal {

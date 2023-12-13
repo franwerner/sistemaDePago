@@ -1,11 +1,15 @@
 import { useForm } from "@/hooks//useForm";
+import { useValidarForm } from "@/hooks//useValidarForm";
 import { memo, useState } from "react";
 import { Button, Col, Form, Modal, Row, Spinner, Stack } from "react-bootstrap";
 
-const NombreApellido = memo(({ changeForm, nombre, apellido }) => (
+const NombreApellido = memo(({ changeForm, nombre, apellido, nombreValidacion, apellidoValidacion, validado }) => (
+
     <Row className="m-0">
         <Form.Group className="px-1 p-0" as={Col}>
             <Form.Control
+                isInvalid={!nombreValidacion && validado}
+                isValid={nombreValidacion && validado}
                 type="text"
                 onChange={changeForm}
                 value={nombre}
@@ -18,6 +22,8 @@ const NombreApellido = memo(({ changeForm, nombre, apellido }) => (
         </Form.Group>
         <Form.Group className="p-0 px-1" as={Col}>
             <Form.Control
+                isInvalid={!apellidoValidacion && validado}
+                isValid={apellidoValidacion && validado}
                 type="text"
                 name="apellido"
                 autoComplete="off"
@@ -31,12 +37,14 @@ const NombreApellido = memo(({ changeForm, nombre, apellido }) => (
     </Row>
 ))
 
-const Dni = memo(({ dni, changeForm }) => {
+const Dni = memo(({ dni, changeForm, dniValidacion, validado }) => {
     return (
         <Row className="m-0">
             <Form.Control
                 type="number"
                 className="my-1"
+                isInvalid={!dniValidacion && validado}
+                isValid={dniValidacion && validado}
                 name="dni"
                 required
                 maxLength="9"
@@ -47,20 +55,19 @@ const Dni = memo(({ dni, changeForm }) => {
                 placeholder="Dni"
                 aria-label="Indentificacion"
             />
-            <Form.Control.Feedback type="invalid">
-                Debe contener al menos 9 caracteres
-            </Form.Control.Feedback>
         </Row>
     )
 })
 
-const Telefono = memo(({ changeForm, telefono }) => (
+const Telefono = memo(({ changeForm, telefono, telefonoValidado, validado }) => (
     <Row className="m-0">
         <Form.Control
             className="my-1"
             type="number"
             name="telefono"
             autoComplete="off"
+            isInvalid={!telefonoValidado && validado}
+            isValid={telefonoValidado && validado}
             min={9}
             required
             onChange={changeForm}
@@ -68,20 +75,16 @@ const Telefono = memo(({ changeForm, telefono }) => (
             placeholder="Telefono"
             aria-label="Telefono"
         />
-        <Form.Control.Feedback type="invalid">
-            Debe contener al menos 9 caracteres
-        </Form.Control.Feedback>
-
     </Row>
 ))
 
-const Email = memo(({ changeForm, email, validado }) => (
+const Email = memo(({ changeForm, email, validado, emailValidado }) => (
     <Row className="m-0">
         <Form.Control
-            isInvalid={email.toString().length < 20 && validado ? true : false}
-            isValid={email.toString().length > 20 && validado}
             type="email"
             required
+            isInvalid={!emailValidado && validado}
+            isValid={emailValidado && validado}
             className="my-1"
             autoComplete="off"
             name="email"
@@ -122,7 +125,9 @@ const Sexo = memo(({ changeForm }) => (
 
 ))
 
-const ButonForm = memo(() => {
+const ButonForm = memo(({ validaciones }) => {
+
+    const verificar = Object.values(validaciones).every(item => item)//Verifica que todas las validaciones se envien
 
     const [spinner, setSpinner] = useState(false)
 
@@ -146,54 +151,58 @@ const ButonForm = memo(() => {
 
 const ModalBody = () => {
 
-    const [validado, setValidado] = useState(false)
+    const { onHandleSubmit, validado } = useValidarForm()
 
-    const { changeForm, form, onSubmit } = useForm({ nombre: "", apellido: "", dni: "", sexo: "", email: "", telefono: "" })
-
-    const onHandleSubmit = (event) => {
-        const form = event.currentTarget;
-
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
-        setValidado(true);
-    }
+    const { changeForm, form } = useForm({ nombre: "", apellido: "", dni: "", sexo: "masculino", email: "", telefono: "" })
 
     const { nombre, apellido, dni, sexo, email, telefono } = form
 
+    const validaciones = {
+        email: email.search("@") >= 1,
+        dni: dni.length > 0,
+        nombre: nombre.length > 0,
+        apellido: apellido.length > 0,
+        telefono: telefono.length > 0,
+        sexo: ["masculino", "femenino"].includes(sexo)
+    }
 
     return (
         <Modal.Body >
             <Form
                 noValidate
-
                 onSubmit={onHandleSubmit}>
                 <Stack gap={3}>
 
                     <NombreApellido
+                        validado={validado}
+                        nombreValidacion={validaciones.nombre}
+                        apellidoValidacion={validaciones.apellido}
                         changeForm={changeForm}
                         nombre={nombre}
                         apellido={apellido} />
 
                     <Dni
                         dni={dni}
+                        validado={validado}
+                        dniValidacion={validaciones.dni}
                         changeForm={changeForm} />
 
                     <Telefono
                         changeForm={changeForm}
-                        telefono={telefono} />
+                        telefono={telefono}
+                        telefonoValidado={validaciones.telefono}
+                        validado={validado}
+                    />
 
                     <Email
                         validado={validado}
                         email={email}
+                        emailValidado={validaciones.email}
                         changeForm={changeForm} />
 
                     <Sexo changeForm={changeForm} />
 
-                    <ButonForm />
-
+                    <ButonForm validaciones={validaciones} />
 
                 </Stack>
             </Form>
@@ -213,7 +222,7 @@ const FormularioModalDeAñadir = ({ mostrar, alternarMostrar }) => {
                 className="border-0"
                 closeButton>
                 <Modal.Title className="text-center w-100 text-ligthdark ls-4 text-uppercase border-bottom">
-                    Ingresa lo datos
+                    Ingresa los datos
                 </Modal.Title>
             </Modal.Header>
             <ModalBody />

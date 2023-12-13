@@ -1,6 +1,5 @@
 import { Card, Col } from "react-bootstrap";
 import styles from "@/styles/SeccionDeInventario.module.css"
-import { useFocusMouseElements } from "@/hooks//useFocusMouseElements";
 import SvgContenedor from "@/components//Svg/SvgContenedor";
 import { memo } from "react";
 import { useNavigate } from "react-router-dom";
@@ -39,9 +38,9 @@ export const ContenedorCard = memo(() => {
     }
 
     const DatosTest = [
-        {tipo : "Ing.",data : "3/12/2023"},
-        {tipo : "Vto.",data : "1/12/2024"},
-        {tipo : "Fab.",data : "17/10/2323"}
+        { tipo: "Ing.", data: "3/12/2023" },
+        // { tipo: "Vto.", data: "1/12/2024" },
+        // { tipo: "Fab.", data: "17/10/2323" }
     ]
 
     return (
@@ -52,7 +51,7 @@ export const ContenedorCard = memo(() => {
             className="m-2 card-move-up  border-0 shadow position-relative  cursor-pointer overflow-hidden">
 
             <Card.Title className="d-flex z-1  px-2 position-absolute w-100 justify-content-between">
-                <DropDownDetalle itemList = {DatosTest} />
+                <DropDownDetalle itemList={DatosTest} />
             </Card.Title>
 
             <CardBody />
@@ -64,15 +63,15 @@ export const ContenedorCard = memo(() => {
 export const SeccionDeInventarioBody = () => {
 
     return (
-            <Col
-                id={styles.inventarioBody}
-                className="d-flex justify-content-center align-content-start flex-wrap">
+        <Col
+            id={styles.inventarioBody}
+            className="d-flex justify-content-center align-content-start flex-wrap">
 
-                {Array.from({ length: 20 }).map((item, index) =>
-                    <ContenedorCard key={index} />
-                )}
+            {Array.from({ length: 20 }).map((item, index) =>
+                <ContenedorCard key={index} />
+            )}
 
-            </Col>
+        </Col>
 
     );
 };

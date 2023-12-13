@@ -40,10 +40,15 @@ export const useOrdenamiento = () => {
         return Object.fromEntries(prioridades)
     }
 
+    const reestablecerOrdenes = useCallback(() => {
+        setOrden({})
+    },[])
+
     return {
         establecerOrden,
         orden: ordenarPrioridad(orden),
-        removerOrden
+        removerOrden,
+        reestablecerOrdenes
     }
 
 };

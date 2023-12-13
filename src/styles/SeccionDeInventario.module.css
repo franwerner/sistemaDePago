@@ -17,13 +17,12 @@
   }
 
   /*[Agregar]*/
-  #tHead {
-    height: 60px;
-  }
+
   #tCantidad{
     max-width: 100px;
   }
 
 #tFabricacion,#tVencimiento {
     max-width: 190px;
+    min-width: 190px;
   }

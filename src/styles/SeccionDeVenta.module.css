@@ -5,40 +5,16 @@
 /*TABLA DE VENTAS*/
 
 
-.tablaDeVentas thead {
-    position: relative;
-    height: 60px;
-}
-
 .tdDescuento input {
     min-width: 45px;
     max-width: 45px;
 }
 
-.tdPrecio p {
-    max-width: 90px;
-}
 
 .tdCantidad input {
     min-width: 50px;
     max-width: 50px;
 
-}
-
-
-.tdNombre {
-    max-width: 200px;
-}
-
-.tdTotal {
-    max-width: 110px;
-    min-width: 110px;
-}
-
-@media (max-width : 1366px) {
-    .tablaDeVentas * {
-        font-size: 12px;
-    }
 }
 
 

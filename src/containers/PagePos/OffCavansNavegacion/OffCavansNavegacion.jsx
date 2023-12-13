@@ -26,7 +26,7 @@ const ListaDeMenu = [
     {
         nombre: "Inventario",
         icon: "fa-solid fa-cubes",
-        subRutas: ["inventario","agregar","gestion"]
+        subRutas: ["inventario", "agregar", "gestion"]
     },
     {
         nombre: "Venta",
@@ -37,17 +37,20 @@ const ListaDeMenu = [
 ]
 
 
-const OffCavansNavegacion = ({ alternarMostrar, mostrar }) => {
+const OffCavansNavegacion = ({ alternarMostrar, mostrar, handleScreen, isFullScreen }) => {
 
+    const responsive = !isFullScreen ? { responsive: "lg" } : {}
+    
+    const icon = !isFullScreen ? "fa-maximize" : "fa-down-left-and-up-right-to-center"
     return (
         <Offcanvas
-            responsive="lg"
+            {...responsive}
             onHide={alternarMostrar}
             show={mostrar}
             backdrop={true}>
-            <Offcanvas.Header closeButton>
-            </Offcanvas.Header>
+            <Offcanvas.Header closeButton className="position-absolute" />
             <OffcanvasTitle className="p-2 text-center ">
+                <i onClick={handleScreen} className={`fa-solid ${icon} d-none d-lg-block cursor-pointer fs-3 text-ligthdark text-end w-100`}></i>
                 <p
                     style={{ color: "#555" }}
                     className="my-2  fs-3">Urban Vog
