@@ -1,20 +1,16 @@
 import { useCallback } from "react";
 
-const ordernAscendente = (a = "", b = "") => {
-    if (isNaN(a) || isNaN(b)) {
-        return b.localeCompare(a)
+
+
+const Orden = (item1 = "", item2 = "") => {
+
+    if (isNaN(item1) || isNaN(item2)) {
+        return item1.localeCompare(item2)
     }
 
-    return b - a
-}
-
-const ordenDescendente = (a = "", b = "") => {
-
-    if (isNaN(a) || isNaN(b)) {
-        return a.localeCompare(b)
-    }
-
-    return a - b
+    if (item1 > item2) return 1
+    else if (item1 < item2) return -1
+    else return 0
 }
 
 export const useAlgoritmoDeOrden = (parametros = {}) => {
@@ -39,7 +35,7 @@ export const useAlgoritmoDeOrden = (parametros = {}) => {
 
                 const parametrosActual = parametros[prop] ? parametros[prop] : {}
 
-                const comparacion = parametrosActual.estado == "<" ? ordernAscendente(itemA, itemB) : parametrosActual.estado == ">" && ordenDescendente(itemA, itemB);
+                const comparacion = parametrosActual.estado == "<" ? Orden(itemB, itemA) : parametrosActual.estado == ">" && Orden(itemA, itemB);
 
                 if (comparacion !== 0) {//Esto sirve para que detenga todo el bucle en caso de que encuentre un valor diferente a 0, entonces la prioridad acutal se mantiene intacta
                     return comparacion;

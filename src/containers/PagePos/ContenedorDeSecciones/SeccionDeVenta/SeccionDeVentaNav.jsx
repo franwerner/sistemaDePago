@@ -2,7 +2,6 @@ import BotonRotacion from "@/components//Botones/BotonRotacion"
 import BuscadorInput from "@/components//BuscadorInput"
 import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault"
 import { SeccionNavCol } from "@/components//SeccionNavCol"
-import { useEventoMostrar } from "@/hooks//useEventoMostrar"
 import { memo, useCallback, useState } from "react"
 import { Col, Collapse } from "react-bootstrap"
 import { useSearchParams } from "react-router-dom"
@@ -12,6 +11,7 @@ const dropDownList = [
     { nombre: "Metodo", prioridad: 3 },
     { nombre: "Precio", propiedad: "precioModificado", prioridad: 1 },
 ]
+
 
 const testList = ["Papas", "Galletitas", "Factura Con Leche de caballo", "Pene bien rico al whisky", "a", "b", "3", "5", "f", "g"]
 
@@ -37,7 +37,7 @@ const Test = () => { //Podria pasar un array con las propiedades que quiero tene
 
     const [mostrar, alternarMostrar] = useState(false)
 
-    const verificar = mostrar ? "w-75  position-absolute p-0 position-relative " : "p-0"
+    const verificar = mostrar ? "w-75  position-absolute p-2 position-relative " : "p-0"
 
     return (
         <Col
