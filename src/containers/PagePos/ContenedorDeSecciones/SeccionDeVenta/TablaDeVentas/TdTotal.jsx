@@ -1,6 +1,7 @@
 import { calcularPorcentaje } from "@/common//helper/calcularPorcentaje";
 import { CalcularPorcentajeMemoizado } from "@/hooks//useCalcularPorcentaje";
-import  { memo } from "react";
+import { memo } from "react";
+import styles from "@/styles/SeccionDeVenta.module.css"
 
 export const TdTotal = memo(({ precioModificado, cantidad, descuento }) => {
 
@@ -9,7 +10,7 @@ export const TdTotal = memo(({ precioModificado, cantidad, descuento }) => {
     const porcentaje = calcularPorcentaje({ numero: total, porcentaje: descuento })
 
     return (
-        <td className={` text-center fw-semibold text-truncate`}>
+        <td className={`${styles.tdTotal} text-center fw-semibold text-truncate`}>
             <CalcularPorcentajeMemoizado
                 n1={total - porcentaje}
                 n2={total - porcentaje} />

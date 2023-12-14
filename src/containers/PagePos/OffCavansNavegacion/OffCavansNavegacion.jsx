@@ -57,7 +57,7 @@ const OffCavansNavegacion = ({ alternarMostrar, mostrar, handleScreen, isFullScr
                     < span style={{ color: "#746AF4" }}>ue</span>
                 </p>
             </OffcanvasTitle>
-            <Offcanvas.Body className="mx-3">
+            <Offcanvas.Body className="mx-3 scrollBarPersonalizada">
                 <Accordion className="my-3  w-100">
                     {
                         ListaDeMenu.map(({ nombre, icon, subRutas }, index) =>
