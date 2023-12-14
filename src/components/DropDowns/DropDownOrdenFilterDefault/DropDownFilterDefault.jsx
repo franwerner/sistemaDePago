@@ -12,15 +12,19 @@ const DropwDownItems = ({
 }) => {
 
     return (
-        <Dropdown.Item
-            onClick={() => establecerFiltros({ nombre, condicional, propiedad })}
-            className="fw-medium text-ligthdark bg-hoverdark position-relative d-flex align-items-center  bg-white"
-            data-name={nombre}>
-            {nombre}
-            {
-                filtroActual && <i style={{ right: "26%" }} className="fa-solid fa-check text-primary position-absolute text-end  mx-2 fs-6"></i>
-            }
-        </Dropdown.Item>
+            <Dropdown.Item
+                onClick={() => establecerFiltros({ nombre, condicional, propiedad })}
+                className="fw-medium  bg-white text-ligthdark bg-hoverdark pe-5  d-flex align-items-center  py-2  ">
+                <div className="position-relative d-flex align-items-center">
+                    <p className="m-0 ">{nombre}</p>
+
+                    {
+                        filtroActual && <i style={{ right: "-30px" }} className="fa-solid z-1 fa-check text-primary position-absolute text-end  mx-2 fs-6"></i>
+                    }
+
+                </div>
+
+            </Dropdown.Item>
     )
 }
 
@@ -42,7 +46,7 @@ const Menu = ({ dropwDownList }) => {
             <Dropdown.ItemText className="text-center text-uppercase  text-ligthdark fw-semibold ls-3">
                 Filtros
             </Dropdown.ItemText>
-            <Dropdown.Divider className="p-0 m-0"/>
+            <Dropdown.Divider className="p-0 m-0" />
             {
                 dropwDownList.map(({ nombre, condicional, propiedad }, index) =>
                     <DropwDownItems
