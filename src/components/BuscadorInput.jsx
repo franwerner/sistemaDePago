@@ -1,41 +1,53 @@
 import { Form, InputGroup } from "react-bootstrap"
 import { useForm } from "@/hooks/useForm"
-import { memo, useEffect } from "react"
+import { memo, useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 
-const BuscadorInput = memo(({ texto = "" }) => {
+const BuscadorInput = memo(({ texto = "", }) => {
 
     const { form, changeForm } = useForm({ "buscador": "" })
+
     const [search, setSearch] = useSearchParams()
 
-    const searching = search.get("search")
+    const [isTyping, setTyping] = useState()
+
+    const searching = search.get("search") || ""
 
     const { buscador } = form
 
-
     useEffect(() => {
 
-        if (buscador.length == 0) return setSearch("")
+        !isTyping && setTyping(true)
 
-        setSearch(`?search=${buscador}`)
+        const timeoutSearch = setTimeout(() => {
+
+            if (buscador.length == 0) return setSearch("")
+
+            setSearch(`?search=${buscador}`)
+
+            setTyping(false)
+
+        }, 600);
+
+        return () => clearTimeout(timeoutSearch)
 
     }, [buscador])
 
     return (
         <div
-            className="rounded-5 w-100 p-1"
+            className="rounded-5 p-1"
             style={{ background: "#F0F2F5" }}>
-            <InputGroup>
+            <InputGroup className="cursor-pointer">
                 <InputGroup.Text
                     style={{ background: "transparent" }}
-                    className="text-center p-0 ms-3 border-0" >
-                    <i className="fa-solid text-ligthdark fa-magnifying-glass "></i>
+                    className="text-center border-0 m-auto m-md-0 p-0" >
+                    <i className="fa-solid text-ligthdark p-2 mx-1 fa-magnifying-glass "></i>
                 </InputGroup.Text>
                 <Form.Control
                     type="search"
-                    value={!searching && buscador.length > 0 ? "" : buscador}
+                    value={isTyping ? buscador : searching}
                     name="buscador"
-                    className="border-0 fw-medium"
+                    className={` border-0  d-sm-inline fw-medium`}
                     style={{ boxShadow: "none", background: "transparent" }}
                     onChange={changeForm}
                     placeholder={`Buscar ${texto}....`}

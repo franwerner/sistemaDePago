@@ -1,9 +1,9 @@
-import BuscadorInput from "@/components//BuscadorInput";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
 import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault";
 import { Link } from "react-router-dom";
 import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
 import { SeccionNavCol } from "@/components//SeccionNavCol";
+import { BuscadorResponsivo } from "@/components//BuscadorResponsivo";
 
 const dropwDownOrden = [
     { nombre: "Vencimiento", prioridad: 0 },
@@ -21,21 +21,22 @@ const dropwDownFilter = [
 
 const BotonAñadirLote = () => (
     <Link to="agregar">
-        <BotonSeccionNavText text="Añadir lote">
+        <BotonSeccionNavText size="xl" text="Añadir lote">
             <i className="fa-solid mx-1 fs-4 fa-boxes-packing"></i>
         </BotonSeccionNavText>
     </Link>
 )
 
 const listado = [
-    { component: <DropDownOrdenDefault dropwDownList={dropwDownOrden} /> },
-    { component: <DropDownFilterDefault dropwDownList={dropwDownFilter} /> },
+    { component: <DropDownOrdenDefault size="xl" dropwDownList={dropwDownOrden} /> },
+    { component: <DropDownFilterDefault size="xl" dropwDownList={dropwDownFilter} /> },
     { component: <BotonAñadirLote /> },
-    { component: <BuscadorInput texto="numero de lote" />, props: { xs: 12, xl: 4 } },
 ]
 
 export const SeccionDeInventarioNav = () => {
     return (
-        <SeccionNavCol list={listado} />
+        <SeccionNavCol list={listado}>
+            <BuscadorResponsivo texto={"nro de lote"} />
+        </SeccionNavCol>
     );
 };

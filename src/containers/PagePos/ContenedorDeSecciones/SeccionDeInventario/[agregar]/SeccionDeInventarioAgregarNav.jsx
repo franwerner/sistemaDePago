@@ -4,7 +4,6 @@ import { Col } from "react-bootstrap";
 import { lazy, useContext } from "react";
 import { InventarioAddContext } from "@/context//Contextos";
 import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading";
-import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
 import { SeccionNavCol } from "@/components//SeccionNavCol";
 const ModalDeAgregarProducto = lazy(() => import("./ModalDeAgregarProducto"))
@@ -20,7 +19,6 @@ const BotonAgregar = () => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     const { agregarProducto } = useContext(InventarioAddContext)
-
 
     return (
         <Col xs="auto"
@@ -57,6 +55,6 @@ const listado = [
 
 export const SeccionDeInventarioAgregarNav = () => {
     return (
-            <SeccionNavCol list={listado} />
+        <SeccionNavCol list={listado} />
     );
 };

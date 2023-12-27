@@ -1,11 +1,11 @@
 import { AgregarCerosANumeros } from "@/common//helper/AgregarCerosANumeros";
 import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
-import BuscadorInput from "@/components//BuscadorInput";
 import DropDownOrdenDefault from "@/components//DropDowns/DropDownOrdenDefault/DropDownOrdenDefault";
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault";
 import { SeccionNavCol } from "@/components//SeccionNavCol";
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import { ModalDeInformacion } from "./ModalDeInformacion";
+import { BuscadorResponsivo } from "@/components//BuscadorResponsivo";
 
 const orden = [
     { nombre: "Nombre", prioridad: 4 },
@@ -28,7 +28,10 @@ const InformacionBoton = () => {
 
     return (
         <>
-            <BotonSeccionNavText onClick={alternarMostrar} text="Información">
+            <BotonSeccionNavText
+                size="xl"
+                onClick={alternarMostrar}
+                text="Información">
                 <i className="fa-solid fs-5 mx-1 fa-circle-info"></i>
             </BotonSeccionNavText>
             <ModalDeInformacion alternarMostrar={alternarMostrar} mostrar={mostrar} />
@@ -39,13 +42,14 @@ const InformacionBoton = () => {
 const listado = [
     { component: <NumeroDeLote /> },
     { component: <InformacionBoton /> },
-    { component: <DropDownOrdenDefault dropwDownList={orden} /> },
-    { component: <DropDownFilterDefault dropwDownList={filtro} /> },
-    { component: <BuscadorInput texto="producto" />, props: { xs: 12, md: 5 } },
+    { component: <DropDownOrdenDefault size="xl" dropwDownList={orden} /> },
+    { component: <DropDownFilterDefault size="xl" dropwDownList={filtro} /> },
 ]
 
 export const SeccionDeInventarioGestionNav = () => {
     return (
-        <SeccionNavCol list={listado} />
+        <SeccionNavCol list={listado}>
+            <BuscadorResponsivo texto={"producto"} />
+        </SeccionNavCol>
     );
 };

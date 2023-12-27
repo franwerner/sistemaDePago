@@ -8,6 +8,7 @@ import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompo
 import { useEventoMostrar } from "@/hooks//useEventoMostrar";
 import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
 import { SeccionNavCol } from "@/components//SeccionNavCol";
+import { BuscadorResponsivo } from "@/components//BuscadorResponsivo";
 
 const ModalDeSecciones = lazy(() => import("./ModalDeSecciones"))
 
@@ -27,7 +28,9 @@ const BotonSecciones = () => {
     const { alternarMostrar, mostrar } = useEventoMostrar()
 
     return (
-        <Col xs="auto" className="d-flex p-0">
+        <Col
+            xs="auto"
+            className="d-flex p-0">
             <SuspenseCompontentsLoading>
                 {
                     mostrar &&
@@ -39,6 +42,7 @@ const BotonSecciones = () => {
 
             <BotonSeccionNavText
                 text={"Secciones"}
+                size="xl"
                 onClick={alternarMostrar}>
                 <i className="fa-solid mx-1 fa-layer-group"></i>
             </BotonSeccionNavText>
@@ -47,17 +51,18 @@ const BotonSecciones = () => {
 }
 
 const list = [
-    { component: <DropDownDeTarifas responsive={true} /> },
-    { component: <DropDownOrdenDefault dropwDownList={dropwDownList} /> },
-    { component: <DropDownFilterDefault dropwDownList={dropwDownList2} /> },
+    { component: <DropDownOrdenDefault size="xl" dropwDownList={dropwDownList} /> },
+    { component: <DropDownFilterDefault size="xl" dropwDownList={dropwDownList2} /> },
+    { component: <DropDownDeTarifas size="xl" responsive={true} /> },
     { component: <BotonSecciones /> },
-    { component: <BuscadorInput texto={"producto"} />, props: { xs: 12, xl: "auto", className: "" } },
 ]
 
 const SeccionDeProductosNav = memo(() => {
 
     return (
-        <SeccionNavCol list={list} />
+        <SeccionNavCol list={list} >
+            <BuscadorResponsivo texto={"productos"} />
+        </SeccionNavCol>
     );
 })
 

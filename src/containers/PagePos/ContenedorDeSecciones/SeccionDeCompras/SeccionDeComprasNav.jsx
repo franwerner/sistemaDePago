@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import { Paginacion } from "@/components//Paginacion"
 import DropDownFilterDefault from "@/components//DropDowns/DropDownOrdenFilterDefault/DropDownFilterDefault"
 import { SeccionNavCol } from "@/components//SeccionNavCol"
+import { BuscadorResponsivo } from "@/components//BuscadorResponsivo"
 
 const dropwDownList = [
     { nombre: "Estado", prioridad: 6 },
@@ -33,12 +34,8 @@ const PaginacionCompras = () => {
 }
 
 const List = [
-    { component: <DropDownOrdenDefault dropwDownList={dropwDownList} /> },
-    { component: <DropDownFilterDefault dropwDownList={dropwDownList2} />, },
-    {
-        component: <BuscadorInput texto="nro de orden" />,
-        props: { className: "d-flex justify-content-center  align-items-center", xs: { order: 2, span: 12 }, xl: { order: 0, span: "auto" } }
-    },
+    { component: <DropDownOrdenDefault size="xl" dropwDownList={dropwDownList} /> },
+    { component: <DropDownFilterDefault size="xl" dropwDownList={dropwDownList2} />, },
     { component: <PaginacionCompras /> },
 
 ]
@@ -47,7 +44,9 @@ const List = [
 const SeccionDeComprasNav = () => {
 
     return (
-        <SeccionNavCol list={List} />
+        <SeccionNavCol list={List}>
+            <BuscadorResponsivo texto={"nro de ticket"} />
+        </SeccionNavCol>
     )
 }
 

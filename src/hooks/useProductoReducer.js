@@ -31,7 +31,7 @@ const verificarNumero = (numero) => isNaN(numero) ? 0 : parseFloat(numero)
 const reducer = (state, action) => {
 
     const { producto } = action
-
+   
     if (action.type == "BORRAR LISTADO") return []
 
     if (validarProductoExistente(state, action) == false) return [...state, agregarNuevasPropiedades(action)];
@@ -42,7 +42,6 @@ const reducer = (state, action) => {
 
         switch (action.type) {
             case "AGREGAR":
-
                 return {
                     ...estado,
                     "cantidad": verificarNumero(estado.cantidad) + parseFloat((producto.cantidad).toFixed(2)) || 0,

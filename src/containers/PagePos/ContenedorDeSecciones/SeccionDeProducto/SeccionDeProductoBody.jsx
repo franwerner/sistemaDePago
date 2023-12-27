@@ -4,17 +4,15 @@ import { Col } from "react-bootstrap";
 import ProductoCard from "@/containers//PagePos/ContenedorDeSecciones/SeccionDeProducto/ProductoCard";
 import shortid from "shortid";
 const ContenedorVacio = lazy(() => import("@/components//ContenedorVacio"))
-const SvgBarCode = lazy(()=> import("@/components//Svg/SvgBarCode"))
+const SvgBarCode = lazy(() => import("@/components//Svg/SvgBarCode"))
 
 const kiosco = [
     {
-        "id_producto": shortid(),
         "nombre": "Huevo mapple",
         "precio": 80,
         "metodo": "U"
     },
     {
-        "id_producto": shortid(),
         "nombre": "Semillas ",
         "precio": 500,
         "metodo": "kg"
@@ -26,10 +24,8 @@ const panaderia = [
         "nombre": "Pan",
         "precio": 457,
         "metodo": "kg",
-        "id_producto": shortid()
     },
     {
-        "id_producto": shortid(),
         "nombre": "Factura dulce de leche con crema",
         "precio": 80,
         "metodo": "u"
@@ -38,108 +34,91 @@ const panaderia = [
         "nombre": "Galletitas",
         "precio": 500,
         "metodo": "kg",
-        "id_producto": shortid(),
     },
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas2",
         "precio": 500,
         "metodo": "kg"
 
     },
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas3",
         "precio": 500,
         "metodo": "kg"
     },
 
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas24",
         "precio": 500,
         "metodo": "kg"
     },
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas34",
         "precio": 500,
         "metodo": "kg"
     },
 
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas25",
         "precio": 500,
         "metodo": "kg"
     },
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas35",
         "precio": 500,
         "metodo": "kg"
     },
 
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas26",
         "precio": 500,
         "metodo": "kg"
     },
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas36",
         "precio": 500,
         "metodo": "kg"
     },
 
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas27",
         "precio": 500,
         "metodo": "kg"
     },
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas37",
         "precio": 500,
         "metodo": "kg"
     },
 
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas28",
         "precio": 500,
         "metodo": "kg"
     },
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas38",
         "precio": 500,
         "metodo": "kg"
     },
 
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas99",
         "precio": 500,
         "metodo": "kg"
     },
     {
-        "id_producto": shortid(),
         "nombre": "Galletitas993",
         "precio": 500,
         "metodo": "kg"
     },
 
     {
-        "id_producto": shortid(),
         "nombre": "Galletit9as2",
         "precio": 500,
         "metodo": "kg"
     },
     {
-        "id_producto": shortid(),
         "nombre": "Gal9letitas3",
         "precio": 500,
         "metodo": "kg"
@@ -149,7 +128,6 @@ const panaderia = [
 
 const helados = [
     {
-        "id_producto": shortid(),
         "nombre": "pote 1/4",
         "precio": 2000,
         "metodo": "u"
@@ -158,7 +136,6 @@ const helados = [
 
 const rotiseria = [
     {
-        "id_producto": shortid(),
         "nombre": "papas 1/4",
         "precio": 2000,
         "metodo": "u"
@@ -197,9 +174,9 @@ const SeccionDeProductoBody = memo(() => {
             {
                 productos.length > 0 ? secciones["home"].map((producto) =>
                     <ProductoMemoizado
-                        key={producto.id_producto}
+                        key={producto.nombre}
                         producto={producto}
-                        productoEnLista={listaProducto.find(item => item.id_producto == producto.id_producto)}
+                        productoEnLista={listaProducto.find(item => item.nombre == producto.nombre)}
                         agregarProducto={agregarProducto} />
                 )
                     :

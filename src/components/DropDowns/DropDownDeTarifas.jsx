@@ -33,11 +33,11 @@ const DropwDownItems = memo(({ tarifa, cambiarTarifa, isSelect }) => {
     )
 })
 
-export const DropDownDeTarifas = memo(({ responsive}) => {
+export const DropDownDeTarifas = memo(({ responsive,size = "sm"}) => {
 
     const { tarifaActual, listadoDeTarifas, cambiarTarifa } = useContext(TarifaContex)
 
-    const display = responsive && "d-none d-md-inline"
+    const display = responsive && `d-none d-${size}-inline`
     return (
         <Dropdown
         autoClose = {"outside"}

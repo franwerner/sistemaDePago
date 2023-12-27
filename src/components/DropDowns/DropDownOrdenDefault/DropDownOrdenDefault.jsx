@@ -109,7 +109,8 @@ const Menu = ({ dropwDownList }) => {
 //Propiedad : Es la propiedad que se evaluara para el algoritmo/db
 //Prioridad : Sirve para ordenar en base a cual es el mas importante
 
-const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
+const DropDownOrdenDefault = memo(({ dropwDownList = [], size = "sm" }) => {
+
 
     return (
         <Dropdown
@@ -120,7 +121,7 @@ const DropDownOrdenDefault = memo(({ dropwDownList = [] }) => {
                 className=" d-flex py-2 align-items-center"
                 id="dropdown-orden">
                 <i className="fa-solid mx-1 fs-5 fw-bolder fa-chart-bar"></i>
-                <span className="m-0 fw-medium d-none d-sm-inline">Ordenar por</span>
+                <span className={`m-0 fw-medium d-none d-${size}-inline`}>Ordenar por</span>
             </Dropdown.Toggle>
 
             <Menu dropwDownList={dropwDownList.sort((a, b) => a.prioridad - b.prioridad)} />

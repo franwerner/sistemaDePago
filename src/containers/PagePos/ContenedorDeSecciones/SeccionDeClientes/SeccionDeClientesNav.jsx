@@ -7,6 +7,8 @@ import { lazy } from "react";
 import { SuspenseCompontentsLoading } from "@/components//Suspense/SuspenseCompontentsLoading";
 import { BotonSeccionNav } from "@/components//Botones/BotonSeccionNav";
 import { SeccionNavCol } from "@/components//SeccionNavCol";
+import { BuscadorResponsivo } from "@/components//BuscadorResponsivo";
+import { BotonSeccionNavText } from "@/components//Botones/BotonSeccionNavText";
 
 const FormularioModalDeAñadir = lazy(() => import("./FormularioModalDeAñadir"))
 
@@ -36,27 +38,29 @@ const ButtonAñadirCliente = () => {
                 }
             </SuspenseCompontentsLoading>
 
-            <BotonSeccionNav onClick={alternarMostrar}>
-                <span className="d-none  d-sm-inline"> Añadir cliente</span>
+            <BotonSeccionNavText
+                text="Añadir cliente"
+                size="xl"
+                onClick={alternarMostrar}>
                 <i className="fa-solid mx-1 fa-user-plus"></i>
-            </BotonSeccionNav>
-
+            </BotonSeccionNavText>
         </Col>
     )
 }
 
 const list = [
-    { component: <DropDownOrdenDefault dropwDownList={ordenList} /> },
-    { component: <DropDownFilterDefault dropwDownList={filtradoList} /> },
+    { component: <DropDownOrdenDefault size="xl" dropwDownList={ordenList} /> },
+    { component: <DropDownFilterDefault size="xl" dropwDownList={filtradoList} /> },
     { component: <ButtonAñadirCliente /> },
-    { component: <BuscadorInput texto="por dni" />, props: { xs: 12, xl: 4 } },
 ]
 
 
 export const SeccionDeClientesNav = () => {
     return (
         <>
-            <SeccionNavCol list={list} />
+            <SeccionNavCol list={list}>
+                <BuscadorResponsivo texto="por dni" />
+            </SeccionNavCol>
         </>
     );
 };

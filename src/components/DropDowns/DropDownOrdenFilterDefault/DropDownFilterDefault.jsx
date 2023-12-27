@@ -12,19 +12,19 @@ const DropwDownItems = ({
 }) => {
 
     return (
-            <Dropdown.Item
-                onClick={() => establecerFiltros({ nombre, condicional, propiedad })}
-                className="fw-medium  bg-white text-ligthdark bg-hoverdark pe-5  d-flex align-items-center  py-2  ">
-                <div className="position-relative d-flex align-items-center">
-                    <p className="m-0 ">{nombre}</p>
+        <Dropdown.Item
+            onClick={() => establecerFiltros({ nombre, condicional, propiedad })}
+            className="fw-medium  bg-white text-ligthdark bg-hoverdark pe-5  d-flex align-items-center  py-2  ">
+            <div className="position-relative d-flex align-items-center">
+                <p className="m-0 ">{nombre}</p>
 
-                    {
-                        filtroActual && <i style={{ right: "-30px" }} className="fa-solid z-1 fa-check text-primary position-absolute text-end  mx-2 fs-6"></i>
-                    }
+                {
+                    filtroActual && <i style={{ right: "-30px" }} className="fa-solid z-1 fa-check text-primary position-absolute text-end  mx-2 fs-6"></i>
+                }
 
-                </div>
+            </div>
 
-            </Dropdown.Item>
+        </Dropdown.Item>
     )
 }
 
@@ -78,7 +78,7 @@ const Menu = ({ dropwDownList }) => {
 
 
 
-const DropDownFilterDefault = ({ dropwDownList = [] }) => {
+const DropDownFilterDefault = ({ dropwDownList = [], size = "sm" }) => {
     return (
         <Dropdown
             className="position-relative "
@@ -87,7 +87,7 @@ const DropDownFilterDefault = ({ dropwDownList = [] }) => {
                 variant="outline-ligthdark"
                 id="dropdown-filter" >
                 <i className="fa-solid cursor-pointer zoom fs-4 fa-filter"></i>
-                <span className="m-0 fw-medium d-none d-sm-inline">Filtrar por</span>
+                <span className={`m-0 fw-medium d-none d-${size}-inline`}>Filtrar por</span>
             </Dropdown.Toggle>
 
             <Menu
