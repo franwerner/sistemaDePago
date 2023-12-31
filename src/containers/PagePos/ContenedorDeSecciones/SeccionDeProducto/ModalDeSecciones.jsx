@@ -5,6 +5,7 @@ import { separarNumerosConDecimales } from "@/common/helper/separarNumerosConDec
 import { splitDeRutasUtils } from "@/common//utils/splitDeRutasUtils";
 
 const secciones = [
+    { nombre: "destacados" },
     { nombre: "kiosco" },
     { nombre: "panaderia" },
     { nombre: "helados" },
