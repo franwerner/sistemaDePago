@@ -1,5 +1,5 @@
 {
-  "name": "sistema",
+  "name": "sistema-front",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,20 +8,16 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "start": "nodemon server/server.js"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.4.2",
     "@sweetalert2/theme-dark": "^5.0.15",
     "bootstrap": "^5.3.1",
-    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "^4.4.1",
     "react-router-dom": "^6.17.0",
-    "short-unique-id": "^5.0.3",
     "shortid": "^2.2.16",
     "sweetalert2": "^11.6.13"
   },

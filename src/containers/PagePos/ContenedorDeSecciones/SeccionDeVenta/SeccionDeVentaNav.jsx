@@ -25,6 +25,17 @@ const listaDataBase = [
     }
 ]
 
+const BuscadorResponsivo2 = () => {
+    return (
+        <BuscadorResponsivo
+            texto={"productos"} >
+
+            <ListadoDeBusquedas listado={listaDataBase} />
+
+        </BuscadorResponsivo>
+    )
+}
+
 const SeccionDeVentaNav = memo(({ alternarMostrar }) => {
 
     const listado = [
@@ -49,12 +60,7 @@ const SeccionDeVentaNav = memo(({ alternarMostrar }) => {
 
     return (
         <SeccionNavCol list={listado}>
-            <BuscadorResponsivo
-                texto={"productos"} >
-
-                <ListadoDeBusquedas listado={listaDataBase} />
-
-            </BuscadorResponsivo>
+            <BuscadorResponsivo2 />
         </SeccionNavCol>
     )
 })

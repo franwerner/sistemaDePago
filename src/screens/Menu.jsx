@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEventoMostrar } from "@/hooks/useEventoMostrar";
@@ -6,6 +6,7 @@ import styles from "@/styles/Menu.module.css"
 import SvgCashRegister from "../components/Svg/SvgCashRegister";
 import { SvgSucursales } from "../components/Svg/SvgSucursales";
 import { SvgEngranaje } from "../components/Svg/SvgEngranaje";
+import { useState } from "react";
 
 const cards = [
     {
@@ -57,9 +58,9 @@ const CardSeleccionDeNavegacion = ({ Componente, tipo, link }) => {
 
 
 const Menu = () => {
+
     return (
         <Container className="scrollHidden p-0 d-flex a justify-content-center flex-column align-items-center vh-100" fluid>
-
             <Row className="w-100 h-100 p-0 d-flex justify-content-center align-items-center m-0">
 
                 <Col className=" p-0 mt-2 mt-md-0  d-flex justify-content-center  flex-wrap ">
