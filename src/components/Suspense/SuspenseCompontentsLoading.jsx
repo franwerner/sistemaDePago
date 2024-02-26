@@ -1,10 +1,6 @@
 import { Suspense, memo } from "react";
 import { Spinner } from "react-bootstrap";
 
-/*
-++Se pasa un ref del componente padre asi tiene una transsacion suave
-*/
-
 
 export const SuspenseCompontentsLoading = memo(({ children, texto = "" }) => {
 
